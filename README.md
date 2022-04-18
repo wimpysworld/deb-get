@@ -8,6 +8,13 @@
 <br />
 Made with 💝 for <img src=".github/ubuntu.png" align="top" width="18" /></p>
 
+## Introduction
+
+There are application vendors and projects who express their support for Debian
+and Ubuntu by publishing `.debs` of their software as direct downloads or via
+their own officially supported apt archives. `deb-get` makes it easy to find,
+install and update `.debs` published in this way.
+
 ## Install
 
 ```bash
