@@ -514,6 +514,13 @@ function deb_onlyoffice-desktopeditors() {
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
 }
 
+function deb_powershell() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/PowerShell/PowerShell/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4)"
+}
+
 function deb_mailspring() {
     METHOD="direct"
     get_github_releases "https://api.github.com/repos/Foundry376/Mailspring/releases"
