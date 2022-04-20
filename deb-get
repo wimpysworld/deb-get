@@ -195,8 +195,8 @@ function version_deb() {
 function info_deb() {
     local INSTALLED="${VERSION_INSTALLED:-No}"
     case ${METHOD} in
-        direct) echo -e "${APP}:\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Origin:\t${URL}";;
-        apt) echo -e "${APP}:\n  Installed:\t${INSTALLED}\n  Origin:\t${APT_REPO_URL}";;
+        direct) echo -e "${APP}:\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${URL}\n  Website:\t${WEBSITE}";;
+        apt) echo -e "${APP}:\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}";;
     esac
 }
 
@@ -424,6 +424,7 @@ function deb_heroic() {
 }
 
 function deb_deb-get() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     METHOD="direct"
     get_github_releases "https://api.github.com/repos/wimpysworld/deb-get/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
@@ -724,7 +725,7 @@ fi
 case "${ACTION}" in
     cache) ls -lh "${CACHE_DIR}/";;
     clean) rm -v "${CACHE_DIR}"/*.deb;;
-    show) info_deb "${APP}" "${VERSION_INSTALLED}" "${VERSION_PUBLISHED}" "${URL}";;
+    show) info_deb;;
     install|reinstall)
         if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
             fancy_message error "${APP} is not supported on ${HOST_ARCH}."
