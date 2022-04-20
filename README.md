@@ -98,49 +98,49 @@ available for Ubuntu that is published by the project or vendor.
 
 ## Supported Software
 
-```
-antimicrox
-balena-etcher-electron
-bitwarden
-brave-browser
-code
-deb-get
-discord
-docker-ce
-docker-desktop
-dropbox
-figma-linux
-franz
-github-desktop
-gitkraken
-gitter
-google-chrome-stable
-google-earth-pro-stable
-heroic
-insomnia
-irccloud-desktop
-jellyfin
-keybase
-mailspring
-microsoft-edge-stable
-ocenaudio
-onlyoffice-desktopeditors
-opera-stable
-plexmediaserver
-powershell
-rambox
-rpi-imager
-signal-desktop
-simplenote
-skypeforlinux
-slack-desktop
-spotify-client
-sublime-merge
-sublime-text
-syncthing
-teams
-vivaldi-stable
-wavebox
-wire-desktop
-zoom
-```
+- [AntiMicroX](https://antimicrox.github.io/)
+- [Atom](https://atom.io/)
+- [Etcher](https://www.balena.io/etcher/)
+- [Bitwarden](https://bitwarden.com/)
+- [Brave](https://brave.com/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [deb-get](https://github.com/wimpysworld/deb-get)
+- [Discord](https://discord.com/)
+- [Docker Engine](https://www.docker.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Dropbox](https://www.dropbox.com/)
+- [Enpass](https://www.enpass.io/)
+- [Figma Linux](https://github.com/Figma-Linux/figma-linux)
+- [Franz](https://meetfranz.com/)
+- [GitHub Desktop](https://desktop.github.com/)
+- [GitKraken](https://www.gitkraken.com/invite/ieih1QR3)
+- [Gitter](https://gitter.im/)
+- [Google Chrome](https://www.google.com/chrome/)
+- [Google Earth Pro](https://www.google.com/earth/versions/)
+- [Heroic Games Launcher](https://heroicgameslauncher.com/)
+- [Insomnia](https://insomnia.rest/)
+- [IRCCloud Desktop](https://www.irccloud.com/)
+- [Jellyfin](https://jellyfin.org/)
+- [Keybase](https://keybase.io/)
+- [Mailspring](https://getmailspring.com/)
+- [Microsoft Edge](https://www.microsoft.com/edge)
+- [ocenaudio](https://www.ocenaudio.com/)
+- [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx)
+- [Opera](https://www.opera.com/)
+- [Plex](https://www.plex.tv/)
+- [PowerShell](https://docs.microsoft.com/powershell/)
+- [Rambox](https://rambox.app/)
+- [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager)
+- [Signal](https://signal.org/)
+- [Simplenote](https://simplenote.com/)
+- [Skype](https://www.skype.com/)
+- [Slack](https://slack.com/)
+- [Spotify](https://www.spotify.com/)
+- [Sublime Merge](https://www.sublimemerge.com/)
+- [Sublime Text](https://www.sublimetext.com/)
+- [Syncthing](https://syncthing.net/)
+- [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software)
+- [Vivaldi](https://vivaldi.com/)
+- [Wavebox](https://wavebox.io/)
+- [Wire](https://wire.com/)
+- [Zoom](https://zoom.us/)
