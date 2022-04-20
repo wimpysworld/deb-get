@@ -558,6 +558,13 @@ function deb_gitkraken() {
     URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
 }
 
+function deb_dropbox() {
+    ARCHS_SUPPORTED="amd64 i386"
+    METHOD="direct"
+    URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+}
+
 function deb_spotify-client() {
     # NOTE: Using direct as the latest spotify-client .deb is not in the archive Packages index.
     METHOD="direct"
