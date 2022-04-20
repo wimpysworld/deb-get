@@ -266,6 +266,13 @@ function deb_discord() {
     METHOD="direct"
     URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
     VERSION_PUBLISHED="$(unroll_url "${URL}" | cut -d'/' -f6)"
+
+function deb_atom() {
+    METHOD="apt"
+    APT_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
+    APT_LIST_NAME="atom"
+    APT_REPO_URL="deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+    WEBSITE="https://atom.io/"
 }
 
 function deb_code() {
