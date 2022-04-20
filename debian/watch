@@ -1,0 +1,5 @@
+version=4
+
+opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%deb-get-$1.tar.gz%" \
+   https://github.com/wimpysworld/deb-get/tags \
+   (?:.*?/)?v?(\d[\d.]*)\.tar\.gz

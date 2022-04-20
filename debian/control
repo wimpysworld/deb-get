@@ -1,0 +1,31 @@
+Source: deb-get
+Section: utils
+Priority: optional
+Maintainer: Martin Wimpress <code@wimpress.io>
+Build-Depends: debhelper-compat (= 12),
+Standards-Version: 4.5.1
+Homepage: https://github.com/wimpysworld/deb-get
+Vcs-Browser: https://github.com/wimpysworld/deb-get
+Vcs-Git: https://github.com/wimpysworld/deb-get.git
+Rules-Requires-Root: no
+
+Package: deb-get
+Architecture: all
+Depends: apt,
+         apt-transport-https,
+         bash (>= 4.4~),
+         coreutils (>= 8.25~),
+         curl,
+         dpkg,
+         grep,
+         libc-bin,
+         lsb-release,
+         sed,
+         software-properties-common,
+         sudo,
+         wget,
+         ${misc:Depends},
+Description: Script to "manage" .deb installs from 3rd party vendors/projects
+ apt-get functionality for .debs officially published by 3rd party vendors and
+ projects.
+ .
