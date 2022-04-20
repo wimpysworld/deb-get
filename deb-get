@@ -594,7 +594,7 @@ readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/get-deb"
 mkdir -p "${CACHE_DIR}" 2>/dev/null
 chmod 755 "${CACHE_DIR}" 2>/dev/null
-export VERSION="0.1.2"
+export VERSION="0.1.3"
 
 if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
