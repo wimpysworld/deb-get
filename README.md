@@ -107,8 +107,10 @@ code
 discord
 docker-ce
 docker-desktop
+dropbox
 figma-linux
 franz
+get-deb
 github-desktop
 gitkraken
 gitter
@@ -122,8 +124,10 @@ keybase
 mailspring
 microsoft-edge-stable
 ocenaudio
+onlyoffice-desktopeditors
 opera-stable
 plexmediaserver
+powershell
 rambox
 rpi-imager
 signal-desktop
