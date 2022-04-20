@@ -391,6 +391,13 @@ function deb_heroic() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
 }
 
+function deb_get-deb() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/wimpysworld/deb-get/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+}
+
 function deb_skypeforlinux() {
     METHOD="apt"
     APT_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"

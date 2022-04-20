@@ -85,9 +85,7 @@ software available for Ubuntu that is published by the project or vendor.
 ## Install
 
 ```bash
-git clone https://github.com/wimpysworld/deb-get.git
-cd deb-get
-sudo ./deb-get
+curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install get-deb
 ```
 
 ## Supported Software
