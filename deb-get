@@ -321,6 +321,28 @@ function deb_github-desktop() {
     WEBSITE="https://desktop.github.com/"
 }
 
+function deb_rclone() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/rclone/rclone/releases/latest"
+    case ${HOST_ARCH} in
+        armhf)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*arm-v7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+            URL=$(grep "browser_download_url.*arm-v7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+            ;;
+        i386)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*386.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+            URL=$(grep "browser_download_url.*386.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+            ;;
+        *)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+            URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+            ;;
+    esac
+    PRETTY_NAME="Rclone"
+    WEBSITE="https://rclone.org/"
+}
+
 function deb_simplenote() {
     ARCHS_SUPPORTED="amd64 armhf i386"
     METHOD="direct"

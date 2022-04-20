@@ -130,6 +130,7 @@ available for Ubuntu that is published by the project or vendor.
 - [Plex](https://www.plex.tv/)
 - [PowerShell](https://docs.microsoft.com/powershell/)
 - [Rambox](https://rambox.app/)
+- [Rclone](https://rclone.org/)
 - [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager)
 - [Signal](https://signal.org/)
 - [Simplenote](https://simplenote.com/)
