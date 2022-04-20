@@ -330,6 +330,13 @@ function deb_teams() {
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="teams"
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"
+
+function deb_enpass() {
+    METHOD="apt"
+    APT_KEY_URL="https://dl.sinew.in/keys/enpass-linux.key"
+    APT_LIST_NAME="enpass"
+    APT_REPO_URL="deb http://repo.sinew.in/ stable main"
+    WEBSITE="https://www.enpass.io/"
 }
 
 function deb_microsoft-edge-stable() {
