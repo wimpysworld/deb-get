@@ -110,6 +110,9 @@ function install_apt() {
     fi
 
     if [ -n "${GPG_KEY_URL}" ]; then
+        if [ ! -d /usr/share/keyrings ]; then
+            mkdir -p /usr/share/keyrings 2>/dev/null
+        fi
         wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
     fi
 
