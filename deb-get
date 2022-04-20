@@ -1,1 +1,660 @@
 #!/usr/bin/env bash
+LC_ALL=C
+
+function usage() {
+  echo -e "Usage
+
+get-deb {update | upgrade | show pkg | install pkg | reinstall pkg |
+remove pkg | purge pkg | search pkg | cache | clean | list | help | version}
+
+get-deb provides a high-level commandline interface for the package management
+system to easily install and update packages published in 3rd party apt
+repositories or via direct download.
+
+update\n\tupdate is used to resynchronize the package index files from their sources.\n
+upgrade\n\tupgrade is used to install the newest versions of all packages currently installed on the system.\n
+install\n\tinstall is followed by one package desired for installation or upgrading.\n
+reinstall\n\treinstall is followed by one package desired for reinstallation.\n
+remove\n\tremove is identical to install except that packages are removed instead of installed.\n
+purge\n\tpurge is identical to remove except that packages are removed and purged (any configuration files are deleted too).\n
+clean\n\tclean clears out the local repository (/var/cache/get-deb) of retrieved package files.\n
+search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by get-deb and display matches.\n
+show\n\tshow information about the given package including its download source.\n
+list\n\tlist the packages available via deb-get.\n
+cache\n\tlist the contents of the deb-get cache (/var/cache/get-deb)\n
+"
+  exit 1
+}
+
+function unroll_url() {
+    curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null
+}
+
+function get_github_releases() {
+    # Cache github releases json for 1 hour to try and prevent API rate limits
+    #   https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
+    #   {"message":"API rate limit exceeded for 62.31.16.154. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
+    #   curl -I https://api.github.com/users/flexiondotorg
+    fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
+    if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
+        curl -s "${1}" > "${CACHE_DIR}/${APP}.json"
+        if grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
+            rm -v "${CACHE_DIR}/${APP}.json"
+        fi
+    fi
+}
+
+function fancy_message() {
+    if [ -z "${1}" ] || [ -z "${2}" ]; then
+      return
+    fi
+
+    local RED="\e[31m"
+    local GREEN="\e[32m"
+    local YELLOW="\e[33m"
+    local RESET="\e[0m"
+    local MESSAGE_TYPE=""
+    local MESSAGE=""
+    MESSAGE_TYPE="${1}"
+    MESSAGE="${2}"
+
+    case ${MESSAGE_TYPE} in
+      info) echo -e "  [${GREEN}+${RESET}] ${MESSAGE}";;
+      progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}";;
+      warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}";;
+      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}";;
+      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}"
+             exit 1;;
+      *) echo -e "  [?] UNKNOWN: ${MESSAGE}";;
+    esac
+}
+
+function download_deb() {
+    local URL="${1}"
+    local FILE="${URL##*/}"
+
+    if ! wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
+        fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
+        rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+    fi
+}
+
+function eula() {
+    if [ -n "${EULA}" ]; then
+        echo -e "${EULA}"
+        echo -e "\nDo you agree to the ${APP} EULA?"
+        select yn in "Yes" "No"; do
+            case $yn in
+                Yes) break;;
+                No) exit;;
+            esac
+        done
+    fi
+}
+
+function update_apt() {
+    apt-get -q -y update
+}
+
+function upgrade_apt() {
+    apt-get -q -y upgrade
+}
+
+function install_apt() {
+    wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
+
+    if [ ! -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+        echo -e "${APT_REPO_URL}" > "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+        update_apt
+    fi
+
+    if ! dpkg -l "${APP}" >/dev/null 2>&1; then
+        eula
+        apt-get -q -y install "${APP}"
+    else
+        STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+        if [ "${STATUS}" == "install ok installed" ] && [ "${ACTION}" == "reinstall" ]; then
+            apt-get -q -y --reinstall install "${APP}"
+        else
+            fancy_message info "${APP} is up to date."
+        fi
+    fi
+}
+
+function install_deb() {
+    local URL="${1}"
+    local FILE="${URL##*/}"
+    local STATUS=""
+
+    if [ -z "${URL}" ]; then
+        fancy_message error "Download URL is empty. Skipping."
+        return
+    fi
+
+    if ! dpkg -l "${APP}" >/dev/null 2>&1; then
+        eula
+        download_deb "${URL}"
+        apt-get -q -y install "${CACHE_DIR}/${FILE}"
+    else
+        STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+        if [ "${STATUS}" == "install ok installed" ] && [ "${ACTION}" == "reinstall" ]; then
+            download_deb "${URL}"
+            apt-get -q -y --reinstall install "${CACHE_DIR}/${FILE}"
+        elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
+            download_deb "${URL}"
+            apt-get -q -y install "${CACHE_DIR}/${FILE}"
+        else
+            fancy_message info "${FILE} is up to date."
+        fi
+    fi
+    if [ -f "${CACHE_DIR}/${FILE}" ]; then
+        rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+    fi
+}
+
+function remove_deb() {
+    local APP="${1}"
+    local REMOVE="${2:-remove}"
+    local FILE="${URL##*/}"
+    local STATUS=""
+
+    if dpkg -l "${APP}" >/dev/null 2>&1; then
+        STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+        if [ "${STATUS}" == "deinstall ok config-files" ]; then
+            REMOVE="purge"
+        fi
+        apt-get -q -y --autoremove ${REMOVE} "${APP}"
+
+        case ${METHOD} in
+            direct)
+                if [ -f "${CACHE_DIR}/${FILE}" ]; then
+                    rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+                fi
+                ;;
+            apt)
+                rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
+                if [ -n "${APT_LIST_NAME}" ] && [ -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+                    rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+                    update_apt
+                fi
+                ;;
+        esac
+    else
+        fancy_message info "${APP} is not installed."
+    fi
+}
+
+function version_deb() {
+    if dpkg -l "${APP}" >/dev/null 2>&1; then
+        echo "$(dpkg -s "${APP}" | grep ^Version: | cut -d' ' -f2)"
+    else
+        echo ""
+    fi
+}
+
+function info_deb() {
+    local INSTALLED="${VERSION_INSTALLED:-No}"
+    case ${METHOD} in
+        direct) echo -e "${APP}:\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Origin:\t${URL}";;
+        apt) echo -e "${APP}:\n  Installed:\t${INSTALLED}\n  Origin:\t${APT_REPO_URL}";;
+    esac
+}
+
+function validate_deb() {
+    export APP="${1}"
+
+    if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
+        fancy_message error "${APP} is not a supported application."
+        list_debs
+        exit 1
+    fi
+
+    export APT_KEY_URL=""
+    export APT_LIST_NAME=""
+    export APT_REPO_URL=""
+    export ARCHS_SUPPORTED="amd64"
+    export METHOD=""
+    export EULA=""
+    export URL=""
+    export VERSION_INSTALLED=""
+    export VERSION_PUBLISHED=""
+    export HOMEPAGE=""
+    export ICON_URL=""
+
+    # Source the variables
+    deb_${APP}
+    VERSION_INSTALLED=$(version_deb)
+}
+
+function list_debs() {
+    for DEB in "${APPS[@]}"; do
+        echo "${DEB}"
+    done
+}
+
+function update_debs() {
+    local STATUS=""
+    update_apt
+    for DEB in "${APPS[@]}"; do
+        validate_deb "${DEB}"
+        # Only download .debs that are installed
+        if dpkg -l "${DEB}" >/dev/null 2>&1; then
+            STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
+            if [ "${METHOD}" == "direct" ] && [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
+                fancy_message warn "${APP} (${VERSION_INSTALLED}) has an update pending for: ${VERSION_PUBLISHED}"
+            fi
+        fi
+    done
+}
+
+function upgrade_debs() {
+    update_apt
+    upgrade_apt
+    for DEB in "${APPS[@]}"; do
+        validate_deb "${DEB}"
+        # Only upgrade .debs that are installed
+        if dpkg -l "${DEB}" >/dev/null 2>&1; then
+            STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
+            if [ "${METHOD}" == "direct" ] && [ "${STATUS}" == "install ok installed" ]; then
+                install_deb "${URL}"
+            fi
+        fi
+    done
+}
+
+function deb_discord() {
+    METHOD="direct"
+    URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
+    VERSION_PUBLISHED="$(unroll_url "${URL}" | cut -d'/' -f6)"
+}
+
+function deb_code() {
+    METHOD="apt"
+    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    APT_LIST_NAME="vscode"
+    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+}
+
+function deb_ocenaudio() {
+    ARCHS_SUPPORTED="amd64 i386"
+    METHOD="direct"
+    VERSION_PUBLISHED="$(curl -s "https://www.ocenaudio.com/en/download" | grep "<p>Version" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+    case ${HOST_ARCH} in
+        amd64) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_64.deb";;
+        i386) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_32.deb";;
+    esac
+}
+
+function deb_github-desktop() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/shiftkey/desktop/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|release-||')"
+    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_simplenote() {
+    ARCHS_SUPPORTED="amd64 armhf i386"
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/Automattic/simplenote-electron/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    case ${HOST_ARCH} in
+        amd64|i386) URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
+        armhf) URL=$(grep "browser_download_url.*armhv7l.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
+    esac
+}
+
+function deb_google-chrome-stable() {
+    METHOD="apt"
+    APT_KEY_URL="http://dl.google.com/linux/linux_signing_key.pub"
+    APT_LIST_NAME="google-chrome"
+    APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+    EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
+}
+
+function deb_opera-stable() {
+    METHOD="apt"
+    APT_KEY_URL="https://deb.opera.com/archive.key"
+    APT_LIST_NAME="opera-stable"
+    APT_REPO_URL="deb https://deb.opera.com/opera-stable/ stable non-free"
+}
+
+function deb_teams() {
+    METHOD="apt"
+    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    APT_LIST_NAME="teams"
+    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"
+}
+
+function deb_microsoft-edge-stable() {
+    METHOD="apt"
+    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    APT_LIST_NAME="microsoft-edge"
+    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+}
+
+function deb_brave-browser() {
+    METHOD="apt"
+    APT_KEY_URL="https://brave-browser-apt-release.s3.brave.com/brave-core.asc"
+    APT_LIST_NAME="brave-browser-release"
+    APT_REPO_URL="deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
+}
+
+function deb_docker-ce() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf"
+    METHOD="apt"
+    APT_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
+    APT_LIST_NAME="docker"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+}
+
+function deb_docker-desktop() {
+    METHOD="direct"
+    URL="$(curl -s "https://docs.docker.com/desktop/linux/" | grep -i main/amd64 | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | cut -d' ' -f8)"
+    # FIXME: Find a way to derive the major version for Linux
+    #local MAJOR_VER="$(curl -s "https://docs.docker.com/desktop/windows/release-notes/" | grep "#docker-desktop-" | sed -e 's/<[^>]*>//g' | head -n1 | sed -e 's/ //g' -e 's/DockerDesktop//')"
+    local MAJOR_VER="4.8.0"
+    VERSION_PUBLISHED="${MAJOR_VER}-$(echo "${URL}" | cut -d'/' -f7)"
+}
+
+function deb_irccloud-desktop() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/irccloud/irccloud-desktop/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_rambox() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/ramboxapp/download/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL=$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_antimicrox() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/AntiMicroX/antimicrox/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL=$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_franz() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/meetfranz/franz/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_heroic() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+}
+
+function deb_skypeforlinux() {
+    METHOD="apt"
+    APT_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
+    APT_LIST_NAME="skype-stable"
+    APT_REPO_URL="deb [arch=amd64] https://repo.skype.com/deb stable main"
+}
+
+function deb_wavebox() {
+    METHOD="apt"
+    APT_KEY_URL="https://wavebox.pro/dl/client/repo/archive.key"
+    APT_LIST_NAME="wavebox-stable"
+    APT_REPO_URL="deb [arch=amd64] https://download.wavebox.app/stable/linux/deb/ amd64/"
+}
+
+function deb_wire-desktop() {
+    METHOD="apt"
+    APT_KEY_URL="https://wire-app.wire.com/linux/releases.key"
+    APT_LIST_NAME="wire-desktop"
+    APT_REPO_URL="deb [arch=amd64] https://wire-app.wire.com/linux/debian stable main"
+}
+
+function deb_signal-desktop() {
+    METHOD="apt"
+    APT_KEY_URL="https://updates.signal.org/desktop/apt/keys.asc"
+    APT_LIST_NAME="signal-xenial.list"
+    APT_REPO_URL="deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+}
+
+function deb_syncthing() {
+    METHOD="apt"
+    APT_KEY_URL="https://syncthing.net/release-key.txt"
+    APT_LIST_NAME="syncthing"
+    APT_REPO_URL="deb http://apt.syncthing.net/ syncthing release"
+}
+
+function deb_sublime-text() {
+    METHOD="apt"
+    APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
+    APT_LIST_NAME="sublime-text"
+    APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
+}
+
+function deb_plexmediaserver() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    METHOD="apt"
+    APT_KEY_URL="https://downloads.plex.tv/plex-keys/PlexSign.key"
+    APT_LIST_NAME="plexmediaserver"
+    APT_REPO_URL="deb https://downloads.plex.tv/repo/deb public main"
+}
+
+function deb_jellyfin() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf"
+    METHOD="apt"
+    APT_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
+    APT_LIST_NAME="jellyfin"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu focal main"
+}
+
+function deb_sublime-merge() {
+    METHOD="apt"
+    APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
+    APT_LIST_NAME="sublime-text"
+    APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
+}
+
+function deb_google-earth-pro-stable() {
+    METHOD="apt"
+    APT_KEY_URL="https://dl-ssl.google.com/linux/linux_signing_key.pub"
+    APT_LIST_NAME="google-earth-pro"
+    APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/earth/deb/ stable main"
+}
+
+function deb_balena-etcher-electron() {
+    ARCHS_SUPPORTED="amd64 i386"
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/balena-io/etcher/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_figma-linux() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/Figma-Linux/figma-linux/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_rpi-imager() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/raspberrypi/rpi-imager/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+}
+
+function deb_bitwarden() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/bitwarden/desktop/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+}
+
+function deb_insomnia() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/Kong/insomnia/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4 | cut -d'-' -f2 | sed s'|\.deb||')"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+}
+
+function deb_mailspring() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/Foundry376/Mailspring/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+}
+
+function deb_gitter() {
+    METHOD="direct"
+    VERSION_PUBLISHED="$(curl -s "https://gitlab.com/gitterHQ/desktop/-/raw/master/CHANGELOG.md" | head -n1 | cut -d'`' -f2)"
+    case ${HOST_ARCH} in
+        amd64) URL="https://update.gitter.im/linux64/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+        i386) URL="https://update.gitter.im/linux32/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+    esac
+}
+
+function deb_slack-desktop() {
+    METHOD="apt"
+    APT_KEY_URL="https://packagecloud.io/slacktechnologies/slack/gpgkey"
+    APT_LIST_NAME="slack"
+    APT_REPO_URL="deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
+}
+
+function deb_vivaldi-stable() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf"
+    METHOD="apt"
+    APT_KEY_URL="http://repo.vivaldi.com/stable/linux_signing_key.pub"
+    APT_LIST_NAME="vivaldi"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.vivaldi.com/stable/deb/ stable main"
+}
+
+function deb_gitkraken() {
+    METHOD="direct"
+    VERSION_PUBLISHED="$(curl -s "https://www.gitkraken.com/download/linux-deb" | grep "name: '" | cut -d"'" -f2)"
+    URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
+}
+
+function deb_spotify-client() {
+    # NOTE: Using direct as the latest spotify-client .deb is not in the archive Packages index.
+    METHOD="direct"
+    local VERSION_UPSTREAM="$(curl -s http://repository.spotify.com/pool/non-free/s/spotify-client/ | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep -v Index | cut -d'_' -f2 | sort -uVr | head -n1)"
+    VERSION_PUBLISHED="1:${VERSION_UPSTREAM}"
+    URL="http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VERSION_UPSTREAM}_amd64.deb"
+}
+
+function deb_keybase() {
+    ARCHS_SUPPORTED="amd64 i386"
+    METHOD="apt"
+    APT_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
+    APT_LIST_NAME="keybase"
+    APT_REPO_URL="deb http://prerelease.keybase.io/deb stable main"
+}
+
+function deb_zoom() {
+    METHOD="direct"
+    local MAJOR_VER="$(curl -s --user-agent "${USER_AGENT}" https://zoom.us/download | grep linux-ver-text | sed -e 's/<[^>]*>//g' | grep ^Version | cut -d' ' -f2)"
+    local MINOR_VER="$(curl -s --user-agent "${USER_AGENT}" https://zoom.us/download | grep linux-ver-text | sed -e 's/<[^>]*>//g' | grep ^Version | cut -d'(' -f2 | cut -d')' -f1)"
+    VERSION_PUBLISHED="${MAJOR_VER}.${MINOR_VER}"
+    URL="https://cdn.zoom.us/prod/${VERSION_PUBLISHED}/zoom_amd64.deb"
+}
+
+# Create an array of all the deb_ functions
+readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
+export CACHE_DIR="/var/cache/get-deb"
+mkdir -p "${CACHE_DIR}" 2>/dev/null
+chmod 755 "${CACHE_DIR}" 2>/dev/null
+export VERSION="0.1.0"
+
+if ((BASH_VERSINFO[0] < 4)); then
+    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
+fi
+
+if [ "$(id -u)" -ne 0 ]; then
+  fancy_message fatal "You must use sudo to run $(basename ${0})."
+fi
+
+if [ -z "${SUDO_USER}" ]; then
+  fancy_message fatal "You must use sudo to run $(basename ${0})."
+else
+  SUDO_HOME=$(getent passwd "${SUDO_USER}" | cut -d: -f6)
+fi
+
+if ! command -v lsb_release 1>/dev/null; then
+  fancy_message fatal "lsb_release not detected. Quitting."
+fi
+
+export HOST_CPU="$(uname -m)"
+case ${HOST_CPU} in
+  aarch64|armv7l|x86_64) export HOST_ARCH="$(dpkg --print-architecture)";;
+  *) fancy_message fatal "${HOST_CPU} is not supported. Quitting.";;
+esac
+
+readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+
+OS_ID=$(lsb_release --id --short)
+case "${OS_ID}" in
+  Elementary) OS_ID_PRETTY="elementary OS";;
+  Linuxmint) OS_ID_PRETTY="Linux Mint";;
+  Neon) OS_ID_PRETTY="KDE Neon";;
+  Pop) OS_ID_PRETTY="Pop!_OS";;
+  Ubuntu) OS_ID_PRETTY="Ubuntu";;
+  *) fancy_message fatal "${OS_ID} is not supported.";;
+esac
+
+OS_CODENAME=$(lsb_release --codename --short)
+case "${OS_CODENAME}" in
+  focal|impish|jammy) OS_CODENAME_PRETTY="${OS_CODENAME^}";;
+  uma|una) OS_CODENAME_PRETTY="${OS_CODENAME^}";;
+  jolnir) OS_CODENAME_PRETTY="${OS_CODENAME^}";;
+  *) fancy_message fatal "${OS_CODENAME^} is not supported.";;
+esac
+
+if [ -n "${1}" ]; then
+    ACTION="${1,,}"
+else
+    fancy_message error "You must specify an action."
+    usage
+fi
+
+if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "reinstall" ] || [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ] || [ "${ACTION}" == "show" ]; then
+    if [ -n "${2}" ]; then
+        APP="${2,,}"
+    else
+        fancy_message error "You must specify an app:\n"
+        list_debs
+        exit 1
+    fi
+
+    if [ "${ACTION}" != "search" ]; then
+        # Check this app is supported and initialise the variables
+        validate_deb "${APP}"
+    fi
+fi
+
+case "${ACTION}" in
+    cache) ls -lh "${CACHE_DIR}/";;
+    clean) rm -v "${CACHE_DIR}"/*.deb;;
+    show) info_deb "${APP}" "${VERSION_INSTALLED}" "${VERSION_PUBLISHED}" "${URL}";;
+    install|reinstall)
+        if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
+            fancy_message error "${APP} is not supported on ${HOST_ARCH}."
+            return
+        fi
+        case ${METHOD} in
+            direct) install_deb "${URL}";;
+            apt) install_apt;;
+        esac
+        ;;
+    list) list_debs;;
+    purge) remove_deb "${APP}" purge;;
+    remove) remove_deb "${APP}";;
+    search) list_debs | grep "${APP}";;
+    update) update_debs;;
+    upgrade) upgrade_debs;;
+    version) echo "${VERSION}";;
+    help) usage;;
+    *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
+esac
