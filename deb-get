@@ -361,6 +361,15 @@ function deb_simplenote() {
     WEBSITE="https://simplenote.com/"
 }
 
+function deb_element-desktop() {
+    METHOD="apt"
+    GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
+    APT_LIST_NAME="element-io"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main"
+    PRETTY_NAME="Element"
+    WEBSITE="https://element.io/"
+}
+
 function deb_google-chrome-stable() {
     METHOD="apt"
     APT_KEY_URL="http://dl.google.com/linux/linux_signing_key.pub"
