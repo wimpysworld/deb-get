@@ -370,6 +370,15 @@ function deb_element-desktop() {
     WEBSITE="https://element.io/"
 }
 
+function deb_jami() {
+    METHOD="apt"
+    GPG_KEY_URL="https://dl.jami.net/public-key.gpg"
+    APT_LIST_NAME="jami"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_$(lsb_release -rs)/ jami main"
+    PRETTY_NAME="Jami"
+    WEBSITE="https://jami.net/"
+}
+
 function deb_google-chrome-stable() {
     METHOD="apt"
     APT_KEY_URL="http://dl.google.com/linux/linux_signing_key.pub"
