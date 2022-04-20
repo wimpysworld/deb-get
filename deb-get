@@ -218,8 +218,7 @@ function validate_deb() {
     export URL=""
     export VERSION_INSTALLED=""
     export VERSION_PUBLISHED=""
-    export HOMEPAGE=""
-    export ICON_URL=""
+    export WEBSITE=""
 
     # Source the variables
     deb_${APP}
@@ -266,6 +265,8 @@ function deb_discord() {
     METHOD="direct"
     URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
     VERSION_PUBLISHED="$(unroll_url "${URL}" | cut -d'/' -f6)"
+    WEBSITE="https://discord.com/"
+}
 
 function deb_atom() {
     METHOD="apt"
@@ -280,6 +281,7 @@ function deb_code() {
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="vscode"
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+    WEBSITE="https://code.visualstudio.com/"
 }
 
 function deb_ocenaudio() {
@@ -290,6 +292,7 @@ function deb_ocenaudio() {
         amd64) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_64.deb";;
         i386) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_32.deb";;
     esac
+    WEBSITE="https://www.ocenaudio.com/"
 }
 
 function deb_github-desktop() {
@@ -297,6 +300,7 @@ function deb_github-desktop() {
     get_github_releases "https://api.github.com/repos/shiftkey/desktop/releases/latest"
     VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|release-||')"
     URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://desktop.github.com/"
 }
 
 function deb_simplenote() {
@@ -308,6 +312,7 @@ function deb_simplenote() {
         amd64|i386) URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
         armhf) URL=$(grep "browser_download_url.*armhv7l.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
     esac
+    WEBSITE="https://simplenote.com/"
 }
 
 function deb_google-chrome-stable() {
@@ -316,6 +321,7 @@ function deb_google-chrome-stable() {
     APT_LIST_NAME="google-chrome"
     APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
     EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
+    WEBSITE="https://www.google.com/chrome/"
 }
 
 function deb_opera-stable() {
@@ -323,6 +329,7 @@ function deb_opera-stable() {
     APT_KEY_URL="https://deb.opera.com/archive.key"
     APT_LIST_NAME="opera-stable"
     APT_REPO_URL="deb https://deb.opera.com/opera-stable/ stable non-free"
+    WEBSITE="https://www.opera.com/"
 }
 
 function deb_teams() {
@@ -330,6 +337,8 @@ function deb_teams() {
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="teams"
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"
+    WEBSITE="https://www.microsoft.com/microsoft-teams/group-chat-software"
+}
 
 function deb_enpass() {
     METHOD="apt"
@@ -344,6 +353,7 @@ function deb_microsoft-edge-stable() {
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="microsoft-edge"
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+    WEBSITE="https://www.microsoft.com/edge"
 }
 
 function deb_brave-browser() {
@@ -351,6 +361,7 @@ function deb_brave-browser() {
     APT_KEY_URL="https://brave-browser-apt-release.s3.brave.com/brave-core.asc"
     APT_LIST_NAME="brave-browser-release"
     APT_REPO_URL="deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
+    WEBSITE="https://brave.com/"
 }
 
 function deb_docker-ce() {
@@ -359,6 +370,7 @@ function deb_docker-ce() {
     APT_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
     APT_LIST_NAME="docker"
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    WEBSITE="https://www.docker.com/"
 }
 
 function deb_docker-desktop() {
@@ -368,6 +380,7 @@ function deb_docker-desktop() {
     #local MAJOR_VER="$(curl -s "https://docs.docker.com/desktop/windows/release-notes/" | grep "#docker-desktop-" | sed -e 's/<[^>]*>//g' | head -n1 | sed -e 's/ //g' -e 's/DockerDesktop//')"
     local MAJOR_VER="4.8.0"
     VERSION_PUBLISHED="${MAJOR_VER}-$(echo "${URL}" | cut -d'/' -f7)"
+    WEBSITE="https://www.docker.com/products/docker-desktop/"
 }
 
 function deb_irccloud-desktop() {
@@ -375,6 +388,7 @@ function deb_irccloud-desktop() {
     get_github_releases "https://api.github.com/repos/irccloud/irccloud-desktop/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://www.irccloud.com/"
 }
 
 function deb_rambox() {
@@ -382,6 +396,7 @@ function deb_rambox() {
     get_github_releases "https://api.github.com/repos/ramboxapp/download/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
     URL=$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://rambox.app/"
 }
 
 function deb_antimicrox() {
@@ -389,6 +404,7 @@ function deb_antimicrox() {
     get_github_releases "https://api.github.com/repos/AntiMicroX/antimicrox/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
     URL=$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://antimicrox.github.io/"
 }
 
 function deb_franz() {
@@ -396,6 +412,7 @@ function deb_franz() {
     get_github_releases "https://api.github.com/repos/meetfranz/franz/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://meetfranz.com/"
 }
 
 function deb_heroic() {
@@ -403,6 +420,7 @@ function deb_heroic() {
     get_github_releases "https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    WEBSITE="https://heroicgameslauncher.com/"
 }
 
 function deb_deb-get() {
@@ -410,6 +428,7 @@ function deb_deb-get() {
     get_github_releases "https://api.github.com/repos/wimpysworld/deb-get/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    WEBSITE="https://github.com/wimpysworld/deb-get"
 }
 
 function deb_skypeforlinux() {
@@ -417,6 +436,7 @@ function deb_skypeforlinux() {
     APT_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
     APT_LIST_NAME="skype-stable"
     APT_REPO_URL="deb [arch=amd64] https://repo.skype.com/deb stable main"
+    WEBSITE="https://www.skype.com/"
 }
 
 function deb_wavebox() {
@@ -424,6 +444,7 @@ function deb_wavebox() {
     APT_KEY_URL="https://wavebox.pro/dl/client/repo/archive.key"
     APT_LIST_NAME="wavebox-stable"
     APT_REPO_URL="deb [arch=amd64] https://download.wavebox.app/stable/linux/deb/ amd64/"
+    WEBSITE="https://wavebox.io/"
 }
 
 function deb_wire-desktop() {
@@ -431,6 +452,7 @@ function deb_wire-desktop() {
     APT_KEY_URL="https://wire-app.wire.com/linux/releases.key"
     APT_LIST_NAME="wire-desktop"
     APT_REPO_URL="deb [arch=amd64] https://wire-app.wire.com/linux/debian stable main"
+    WEBSITE="https://wire.com/"
 }
 
 function deb_signal-desktop() {
@@ -438,6 +460,7 @@ function deb_signal-desktop() {
     APT_KEY_URL="https://updates.signal.org/desktop/apt/keys.asc"
     APT_LIST_NAME="signal-xenial.list"
     APT_REPO_URL="deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+    WEBSITE="https://signal.org/"
 }
 
 function deb_syncthing() {
@@ -445,6 +468,7 @@ function deb_syncthing() {
     APT_KEY_URL="https://syncthing.net/release-key.txt"
     APT_LIST_NAME="syncthing"
     APT_REPO_URL="deb http://apt.syncthing.net/ syncthing release"
+    WEBSITE="https://syncthing.net/"
 }
 
 function deb_sublime-text() {
@@ -452,6 +476,7 @@ function deb_sublime-text() {
     APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
     APT_LIST_NAME="sublime-text"
     APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
+    WEBSITE="https://www.sublimetext.com/"
 }
 
 function deb_plexmediaserver() {
@@ -460,6 +485,7 @@ function deb_plexmediaserver() {
     APT_KEY_URL="https://downloads.plex.tv/plex-keys/PlexSign.key"
     APT_LIST_NAME="plexmediaserver"
     APT_REPO_URL="deb https://downloads.plex.tv/repo/deb public main"
+    WEBSITE="https://www.plex.tv/"
 }
 
 function deb_jellyfin() {
@@ -468,6 +494,7 @@ function deb_jellyfin() {
     APT_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
     APT_LIST_NAME="jellyfin"
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu focal main"
+    WEBSITE="https://jellyfin.org/"
 }
 
 function deb_sublime-merge() {
@@ -475,6 +502,7 @@ function deb_sublime-merge() {
     APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
     APT_LIST_NAME="sublime-text"
     APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
+    WEBSITE="https://www.sublimemerge.com/"
 }
 
 function deb_google-earth-pro-stable() {
@@ -482,6 +510,7 @@ function deb_google-earth-pro-stable() {
     APT_KEY_URL="https://dl-ssl.google.com/linux/linux_signing_key.pub"
     APT_LIST_NAME="google-earth-pro"
     APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/earth/deb/ stable main"
+    WEBSITE="https://www.google.com/earth/versions/"
 }
 
 function deb_balena-etcher-electron() {
@@ -490,6 +519,7 @@ function deb_balena-etcher-electron() {
     get_github_releases "https://api.github.com/repos/balena-io/etcher/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://www.balena.io/etcher/"
 }
 
 function deb_figma-linux() {
@@ -498,6 +528,7 @@ function deb_figma-linux() {
     get_github_releases "https://api.github.com/repos/Figma-Linux/figma-linux/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://github.com/Figma-Linux/figma-linux"
 }
 
 function deb_rpi-imager() {
@@ -505,6 +536,7 @@ function deb_rpi-imager() {
     get_github_releases "https://api.github.com/repos/raspberrypi/rpi-imager/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    WEBSITE="https://github.com/raspberrypi/rpi-imager"
 }
 
 function deb_bitwarden() {
@@ -512,6 +544,7 @@ function deb_bitwarden() {
     get_github_releases "https://api.github.com/repos/bitwarden/desktop/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    WEBSITE="https://bitwarden.com/"
 }
 
 function deb_insomnia() {
@@ -519,6 +552,7 @@ function deb_insomnia() {
     get_github_releases "https://api.github.com/repos/Kong/insomnia/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4 | cut -d'-' -f2 | sed s'|\.deb||')"
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+    WEBSITE="https://insomnia.rest/"
 }
 
 function deb_onlyoffice-desktopeditors() {
@@ -526,6 +560,7 @@ function deb_onlyoffice-desktopeditors() {
     get_github_releases "https://api.github.com/repos/ONLYOFFICE/DesktopEditors/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    WEBSITE="https://www.onlyoffice.com/en/desktop.aspx"
 }
 
 function deb_powershell() {
@@ -533,6 +568,7 @@ function deb_powershell() {
     get_github_releases "https://api.github.com/repos/PowerShell/PowerShell/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4)"
+    WEBSITE="https://docs.microsoft.com/powershell/"
 }
 
 function deb_mailspring() {
@@ -540,6 +576,7 @@ function deb_mailspring() {
     get_github_releases "https://api.github.com/repos/Foundry376/Mailspring/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    WEBSITE="https://getmailspring.com/"
 }
 
 function deb_gitter() {
@@ -549,6 +586,7 @@ function deb_gitter() {
         amd64) URL="https://update.gitter.im/linux64/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
         i386) URL="https://update.gitter.im/linux32/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
     esac
+    WEBSITE="https://gitter.im/"
 }
 
 function deb_slack-desktop() {
@@ -556,6 +594,7 @@ function deb_slack-desktop() {
     APT_KEY_URL="https://packagecloud.io/slacktechnologies/slack/gpgkey"
     APT_LIST_NAME="slack"
     APT_REPO_URL="deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
+    WEBSITE="https://slack.com/"
 }
 
 function deb_vivaldi-stable() {
@@ -564,12 +603,14 @@ function deb_vivaldi-stable() {
     APT_KEY_URL="http://repo.vivaldi.com/stable/linux_signing_key.pub"
     APT_LIST_NAME="vivaldi"
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.vivaldi.com/stable/deb/ stable main"
+    WEBSITE="https://vivaldi.com/"
 }
 
 function deb_gitkraken() {
     METHOD="direct"
     VERSION_PUBLISHED="$(curl -s "https://www.gitkraken.com/download/linux-deb" | grep "name: '" | cut -d"'" -f2)"
     URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
+    WEBSITE="https://www.gitkraken.com/invite/ieih1QR3"
 }
 
 function deb_dropbox() {
@@ -577,6 +618,7 @@ function deb_dropbox() {
     METHOD="direct"
     URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    WEBSITE="https://www.dropbox.com/"
 }
 
 function deb_spotify-client() {
@@ -585,6 +627,7 @@ function deb_spotify-client() {
     local VERSION_UPSTREAM="$(curl -s http://repository.spotify.com/pool/non-free/s/spotify-client/ | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep -v Index | cut -d'_' -f2 | sort -uVr | head -n1)"
     VERSION_PUBLISHED="1:${VERSION_UPSTREAM}"
     URL="http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VERSION_UPSTREAM}_amd64.deb"
+    WEBSITE="https://www.spotify.com/"
 }
 
 function deb_keybase() {
@@ -593,6 +636,7 @@ function deb_keybase() {
     APT_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
     APT_LIST_NAME="keybase"
     APT_REPO_URL="deb http://prerelease.keybase.io/deb stable main"
+    WEBSITE="https://keybase.io/"
 }
 
 function deb_zoom() {
@@ -601,6 +645,7 @@ function deb_zoom() {
     local MINOR_VER="$(curl -s --user-agent "${USER_AGENT}" https://zoom.us/download | grep linux-ver-text | sed -e 's/<[^>]*>//g' | grep ^Version | cut -d'(' -f2 | cut -d')' -f1)"
     VERSION_PUBLISHED="${MAJOR_VER}.${MINOR_VER}"
     URL="https://cdn.zoom.us/prod/${VERSION_PUBLISHED}/zoom_amd64.deb"
+    WEBSITE="https://zoom.us/"
 }
 
 # Create an array of all the deb_ functions
