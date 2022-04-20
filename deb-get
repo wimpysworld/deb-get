@@ -35,11 +35,15 @@ function get_github_releases() {
     #   https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
     #   {"message":"API rate limit exceeded for 62.31.16.154. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
     #   curl -I https://api.github.com/users/flexiondotorg
-    fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
-    if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
-        curl -s "${1}" > "${CACHE_DIR}/${APP}.json"
-        if grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
-            rm -v "${CACHE_DIR}/${APP}.json"
+
+    # Do not process github releases while generating a pretty list
+    if [ "${PRETTY}" -eq 0 ]; then
+        fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
+        if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
+            curl -s "${1}" > "${CACHE_DIR}/${APP}.json"
+            if grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
+                rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+            fi
         fi
     fi
 }
@@ -195,13 +199,14 @@ function version_deb() {
 function info_deb() {
     local INSTALLED="${VERSION_INSTALLED:-No}"
     case ${METHOD} in
-        direct) echo -e "${APP}:\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${URL}\n  Website:\t${WEBSITE}";;
-        apt) echo -e "${APP}:\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}";;
+        direct) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${URL}\n  Website:\t${WEBSITE}";;
+        apt) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}";;
     esac
 }
 
 function validate_deb() {
     export APP="${1}"
+    export PRETTY="${2:-0}"
 
     if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
         fancy_message error "${APP} is not a supported application."
@@ -229,6 +234,13 @@ function validate_deb() {
 function list_debs() {
     for DEB in "${APPS[@]}"; do
         echo "${DEB}"
+    done
+}
+
+function prettylist_debs() {
+    for DEB in "${APPS[@]}"; do
+        validate_deb "${DEB}" 1
+        echo "- [${PRETTY_NAME}](${WEBSITE})"
     done
 }
 
@@ -784,6 +796,7 @@ case "${ACTION}" in
         esac
         ;;
     list) list_debs;;
+    pretty_list|prettylist) prettylist_debs;;
     purge) remove_deb "${APP}" purge;;
     remove) remove_deb "${APP}";;
     search) list_debs | grep "${APP}";;
