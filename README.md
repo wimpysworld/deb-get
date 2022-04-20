@@ -14,7 +14,18 @@ Made with 💝 for <img src=".github/ubuntu.png" align="top" width="18" /></p>
 apt repositories or made available via direct download on websites or GitHub
 release pages.
 
-### Usage
+## Install
+
+Use `get-deb` to install `get-deb`
+
+```bash
+curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install get-deb
+```
+
+Alternatively, you can [download the `.deb` of `get-deb` from the releases page](https://github.com/wimpysworld/deb-get/releases)
+and install it manually.
+
+## Usage
 
 Here's an example of how to install Google Chrome.
 
@@ -24,6 +35,9 @@ sudo get-deb install google-chrome-stable
 
 You can see what applications are supported by using `sudo get-deb list` or you
 can search the available applications with `sudo get-deb search <app>`
+
+You can upgrade packages installed using `get-deb` by running
+`sudo get-deb upgrade`.
 
 ```
 get-deb {update | upgrade | show pkg | install pkg | reinstall pkg |
@@ -79,14 +93,8 @@ their own apt repositories. `deb-get` makes it easy to find, install and update
   - Perhaps you want to use something that is not (yet) officially packaged for Debian/Ubuntu.
   - Perhaps you want to use some non-free software that Debian/Ubuntu cannot distribute due to licensing restrictions.
 
-`deb-get` tries to remedy the situation by providing a curated index of
-software available for Ubuntu that is published by the project or vendor.
-
-## Install
-
-```bash
-curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install get-deb
-```
+`deb-get` tries to remedy this by providing a curated index of software
+available for Ubuntu that is published by the project or vendor.
 
 ## Supported Software
 
