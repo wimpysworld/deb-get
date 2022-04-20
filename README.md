@@ -19,7 +19,7 @@ release pages.
 Use `get-deb` to install `get-deb`
 
 ```bash
-curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install get-deb
+curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
 ```
 
 Alternatively, you can [download the `.deb` of `get-deb` from the releases page](https://github.com/wimpysworld/deb-get/releases)
