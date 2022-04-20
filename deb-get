@@ -507,6 +507,13 @@ function deb_insomnia() {
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
 }
 
+function deb_onlyoffice-desktopeditors() {
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/ONLYOFFICE/DesktopEditors/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+}
+
 function deb_mailspring() {
     METHOD="direct"
     get_github_releases "https://api.github.com/repos/Foundry376/Mailspring/releases"
