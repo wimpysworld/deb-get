@@ -104,13 +104,13 @@ balena-etcher-electron
 bitwarden
 brave-browser
 code
+deb-get
 discord
 docker-ce
 docker-desktop
 dropbox
 figma-linux
 franz
-get-deb
 github-desktop
 gitkraken
 gitter
