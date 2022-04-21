@@ -762,6 +762,16 @@ function deb_mailspring() {
     WEBSITE="https://getmailspring.com/"
 }
 
+function deb_syft() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/anchore/syft/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="Syft"
+    WEBSITE="https://github.com/anchore/syft"
+}
+
 function deb_trivy() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     METHOD="direct"

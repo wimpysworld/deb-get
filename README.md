@@ -150,6 +150,7 @@ since 2015.
 - [Spotify](https://www.spotify.com/) (`spotify-client`)
 - [Sublime Merge](https://www.sublimemerge.com/) (`sublime-merge`)
 - [Sublime Text](https://www.sublimetext.com/) (`sublime-text`)
+- [Syft](https://github.com/anchore/syft) (`syft`)
 - [Syncthing](https://syncthing.net/) (`syncthing`)
 - [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)
 - [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)
