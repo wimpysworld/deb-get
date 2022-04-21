@@ -128,6 +128,7 @@ available for Ubuntu that is published by the project or vendor.
 - [Mailspring](https://getmailspring.com/)
 - [micro](https://micro-editor.github.io/)
 - [Microsoft Edge](https://www.microsoft.com/edge)
+- [Obsidian](https://obsidian.md/)
 - [ocenaudio](https://www.ocenaudio.com/)
 - [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx)
 - [Opera](https://www.opera.com/)
