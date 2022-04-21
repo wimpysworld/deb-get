@@ -368,7 +368,7 @@ function deb_element-desktop() {
     METHOD="apt"
     GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
     APT_LIST_NAME="element-io"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://packages.element.io/debian/ default main"
     PRETTY_NAME="Element"
     WEBSITE="https://element.io/"
 }
@@ -386,7 +386,7 @@ function deb_jami() {
     METHOD="apt"
     GPG_KEY_URL="https://dl.jami.net/public-key.gpg"
     APT_LIST_NAME="jami"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_$(lsb_release -rs)/ jami main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_$(lsb_release -rs)/ jami main"
     PRETTY_NAME="Jami"
     WEBSITE="https://jami.net/"
 }
