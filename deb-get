@@ -351,6 +351,12 @@ function deb_quickemu() {
     WEBSITE="https://github.com/quickemu-project/quickemu"
 }
 
+function deb_nextcloud-desktop() {
+    PPA="ppa:nextcloud-devs/client"
+    PRETTY_NAME="Nextcloud Desktop"
+    WEBSITE="https://nextcloud.com/"
+}
+
 function deb_atom() {
     APT_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
     APT_LIST_NAME="atom"

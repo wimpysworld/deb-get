@@ -135,6 +135,7 @@ since 2015.
 <img src=".github/github.png" align="top" width="20" /> [Mailspring](https://getmailspring.com/) (`mailspring`)<br />
 <img src=".github/github.png" align="top" width="20" /> [micro](https://micro-editor.github.io/) (`micro`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`)<br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Nextcloud Desktop](https://nextcloud.com/) (`nextcloud-desktop`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Obsidian](https://obsidian.md/) (`obsidian`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`)<br />
 <img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`)<br />
