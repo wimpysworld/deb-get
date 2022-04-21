@@ -208,7 +208,12 @@ function remove_deb() {
                 fi
                 ;;
             apt)
-                rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
+                if [ -n "${APT_KEY_URL}" ]; then
+                    rm "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc" 2>/dev/null
+                fi
+                if [ -n "${GPG_KEY_URL}" ]; then
+                    rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" 2>/dev/null
+                fi
                 if [ -n "${APT_LIST_NAME}" ] && [ -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
                     rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
                     update_apt
