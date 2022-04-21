@@ -1,3 +1,9 @@
+deb-get (0.1.5-1) unstable; urgency=medium
+
+  * Correct the get-deb typos and improve 'get-deb list'.
+
+ -- Martin Wimpress <code@wimpress.io>  Thu, 21 Apr 2022 11:13:00 +0100
+
 deb-get (0.1.4-1) unstable; urgency=medium
 
   * Added lots more apps.
