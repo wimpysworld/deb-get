@@ -357,6 +357,12 @@ function deb_nextcloud-desktop() {
     WEBSITE="https://nextcloud.com/"
 }
 
+function deb_keypassxc() {
+    PPA="ppa:phoerious/keepassxc"
+    PRETTY_NAME="KeyPassXC"
+    WEBSITE="https://keepassxc.org/"
+}
+
 function deb_atom() {
     APT_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
     APT_LIST_NAME="atom"

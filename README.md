@@ -131,6 +131,7 @@ since 2015.
 <img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`)<br />
+<img src=".github/launchpad.png" align="top" width="20" /> [KeyPassXC](https://keepassxc.org/) (`keypassxc`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Mailspring](https://getmailspring.com/) (`mailspring`)<br />
 <img src=".github/github.png" align="top" width="20" /> [micro](https://micro-editor.github.io/) (`micro`)<br />
