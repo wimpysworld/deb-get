@@ -166,7 +166,7 @@ since 2015.
 
 **Legend**
 
-The icons denotes how `deb-get` retrieves the vendor/project published packages.
+The icons denote how `deb-get` retrieves the vendor/project published packages.
 
 - apt repository <img src=".github/debian.png" align="top" width="20" />
 - GitHub releases <img src=".github/github.png" align="top" width="20" />
