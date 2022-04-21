@@ -801,10 +801,8 @@ function deb_keybase() {
 
 function deb_zoom() {
     METHOD="direct"
-    local MAJOR_VER="$(curl -s --user-agent "${USER_AGENT}" https://zoom.us/download | grep linux-ver-text | sed -e 's/<[^>]*>//g' | grep ^Version | cut -d' ' -f2)"
-    local MINOR_VER="$(curl -s --user-agent "${USER_AGENT}" https://zoom.us/download | grep linux-ver-text | sed -e 's/<[^>]*>//g' | grep ^Version | cut -d'(' -f2 | cut -d')' -f1)"
-    VERSION_PUBLISHED="${MAJOR_VER}.${MINOR_VER}"
-    URL="https://cdn.zoom.us/prod/${VERSION_PUBLISHED}/zoom_amd64.deb"
+    URL=$(unroll_url "https://zoom.us/client/latest/zoom_amd64.deb")
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f5)"
     PRETTY_NAME="Zoom"
     WEBSITE="https://zoom.us/"
 }
