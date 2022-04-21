@@ -10,19 +10,19 @@ Made with 💝 for <img src=".github/ubuntu.png" align="top" width="18" /></p>
 
 ## Introduction
 
-`get-deb` makes is easy to install and update `.debs` published in 3rd party
+`deb-get` makes is easy to install and update `.debs` published in 3rd party
 apt repositories or made available via direct download on websites or GitHub
 release pages.
 
 ## Install
 
-Use `get-deb` to install `get-deb`
+Use `deb-get` to install `deb-get`
 
 ```bash
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
 ```
 
-Alternatively, you can [download the `.deb` of `get-deb` from the releases page](https://github.com/wimpysworld/deb-get/releases)
+Alternatively, you can [download the `.deb` of `deb-get` from the releases page](https://github.com/wimpysworld/deb-get/releases)
 and install it manually.
 
 ## Usage
@@ -30,20 +30,20 @@ and install it manually.
 Here's an example of how to install Google Chrome.
 
 ```bash
-sudo get-deb install google-chrome-stable
+sudo deb-get install google-chrome-stable
 ```
 
-You can see what applications are supported by using `sudo get-deb list` or you
-can search the available applications with `sudo get-deb search <app>`
+You can see what applications are supported by using `sudo deb-get list` or you
+can search the available applications with `sudo deb-get search <app>`
 
-You can upgrade packages installed using `get-deb` by running
-`sudo get-deb upgrade`.
+You can upgrade packages installed using `deb-get` by running
+`sudo deb-get upgrade`.
 
 ```
-get-deb {update | upgrade | show pkg | install pkg | reinstall pkg |
+deb-get {update | upgrade | show pkg | install pkg | reinstall pkg |
 remove pkg | purge pkg | search pkg | cache | clean | list | help | version}
 
-get-deb provides a high-level commandline interface for the package management
+deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
@@ -66,10 +66,10 @@ purge
         purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
 
 clean
-        clean clears out the local repository (/var/cache/get-deb) of retrieved package files.
+        clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 search
-        search for the given regex(7) term(s) from the list of available packages supported by get-deb and display matches.
+        search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
         show information about the given package including its download source.
@@ -78,7 +78,7 @@ list
         list the packages available via deb-get.
 
 cache
-        list the contents of the deb-get cache (/var/cache/get-deb)
+        list the contents of the deb-get cache (/var/cache/deb-get)
 ```
 
 ### Why?

@@ -4,10 +4,10 @@ LC_ALL=C
 function usage() {
   echo -e "Usage
 
-get-deb {update | upgrade | show pkg | install pkg | reinstall pkg |
+deb-get {update | upgrade | show pkg | install pkg | reinstall pkg |
 remove pkg | purge pkg | search pkg | cache | clean | list | help | version}
 
-get-deb provides a high-level commandline interface for the package management
+deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
@@ -17,11 +17,11 @@ install\n\tinstall is followed by one package desired for installation or upgrad
 reinstall\n\treinstall is followed by one package desired for reinstallation.\n
 remove\n\tremove is identical to install except that packages are removed instead of installed.\n
 purge\n\tpurge is identical to remove except that packages are removed and purged (any configuration files are deleted too).\n
-clean\n\tclean clears out the local repository (/var/cache/get-deb) of retrieved package files.\n
-search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by get-deb and display matches.\n
+clean\n\tclean clears out the local repository (/var/cache/deb-get) of retrieved package files.\n
+search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.\n
 show\n\tshow information about the given package including its download source.\n
 list\n\tlist the packages available via deb-get.\n
-cache\n\tlist the contents of the deb-get cache (/var/cache/get-deb)\n
+cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 "
   exit 1
 }
@@ -405,6 +405,23 @@ function deb_google-chrome-stable() {
     EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
     PRETTY_NAME="Google Chrome"
     WEBSITE="https://www.google.com/chrome/"
+}
+
+function disabled_ungoogled-chromium() {
+    METHOD="apt"
+    APT_LIST_NAME="home-ungoogled_chromium.list"
+    case $(lsb_release -cs) in
+        focal)
+            APT_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key"
+            APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/ /"
+            ;;
+        *)
+            APT_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Debian_Sid/Release.key"
+            APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Debian_Sid/ /"
+            ;;
+    esac
+    PRETTY_NAME="ungoogled-chromium"
+    WEBSITE="https://github.com/Eloston/ungoogled-chromium"
 }
 
 function deb_opera-stable() {
