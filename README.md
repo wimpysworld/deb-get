@@ -124,6 +124,7 @@ since 2015.
 - [Gitter](https://gitter.im/) (`gitter`)
 - [Google Chrome](https://www.google.com/chrome/) (`google-chrome-stable`)
 - [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`)
+- [Grype](https://github.com/anchore/grype) (`grype`)
 - [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`)
 - [Insomnia](https://insomnia.rest/) (`insomnia`)
 - [IRCCloud Desktop](https://www.irccloud.com/) (`irccloud-desktop`)
