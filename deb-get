@@ -345,6 +345,12 @@ function deb_discord() {
     WEBSITE="https://discord.com/"
 }
 
+function deb_quickemu() {
+    PPA="ppa:flexiondotorg/quickemu"
+    PRETTY_NAME="Quickemu"
+    WEBSITE="https://github.com/quickemu-project/quickemu"
+}
+
 function deb_atom() {
     APT_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
     APT_LIST_NAME="atom"
