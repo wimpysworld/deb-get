@@ -152,6 +152,7 @@ since 2015.
 - [Sublime Text](https://www.sublimetext.com/) (`sublime-text`)
 - [Syncthing](https://syncthing.net/) (`syncthing`)
 - [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)
+- [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)
 - [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`)
 - [Wavebox](https://wavebox.io/) (`wavebox`)
 - [WeeChat](https://weechat.org/) (`weechat`)

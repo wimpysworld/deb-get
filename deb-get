@@ -762,6 +762,32 @@ function deb_mailspring() {
     WEBSITE="https://getmailspring.com/"
 }
 
+function deb_trivy() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/aquasecurity/trivy/releases"
+    case ${HOST_ARCH} in
+        amd64)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+            URL="$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+            ;;
+        arm64)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+            URL="$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+            ;;
+        armhf)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+            URL="$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+            ;;
+        i386)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+            URL="$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+            ;;
+    esac
+    PRETTY_NAME="Trivy"
+    WEBSITE="https://aquasecurity.github.io/trivy/"
+}
+
 function deb_gitter() {
     METHOD="direct"
     VERSION_PUBLISHED="$(curl -s "https://gitlab.com/gitterHQ/desktop/-/raw/master/CHANGELOG.md" | head -n1 | cut -d'`' -f2)"
