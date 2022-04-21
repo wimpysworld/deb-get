@@ -263,9 +263,16 @@ function list_debs() {
 }
 
 function prettylist_debs() {
+    local ICON=""
     for DEB in "${APPS[@]}"; do
         validate_deb "${DEB}" 1
-        echo "- [${PRETTY_NAME}](${WEBSITE}) ("'`'"${DEB}"'`'")"
+        case ${METHOD} in
+            apt)    ICON="debian.png";;
+            github) ICON="github.png";;
+            ppa)    ICON="launchpad.png";;
+            *)      ICON="direct.png";;
+        esac
+        echo "<img src=\".github/${ICON}\" align=\"top\" width=\"20\" /> [${PRETTY_NAME}](${WEBSITE}) ("'`'"${DEB}"'`'")"
     done
 }
 
