@@ -72,7 +72,7 @@ search
         search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-        show information about the given package including its download source.
+        show information about the given package including its install source and update mechanism.
 
 list
         list the packages available via deb-get.
@@ -167,7 +167,7 @@ since 2015.
 
 **Legend**
 
-The icons denote how `deb-get` retrieves the vendor/project published packages.
+The icons above denote how `deb-get` installs/updates the packages.
 
 - apt repository <img src=".github/debian.png" align="top" width="20" />
 - GitHub releases <img src=".github/github.png" align="top" width="20" />

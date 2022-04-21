@@ -19,7 +19,7 @@ remove\n\tremove is identical to install except that packages are removed instea
 purge\n\tpurge is identical to remove except that packages are removed and purged (any configuration files are deleted too).\n
 clean\n\tclean clears out the local repository (/var/cache/deb-get) of retrieved package files.\n
 search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.\n
-show\n\tshow information about the given package including its download source.\n
+show\n\tshow information about the given package including its install source and update mechanism.\n
 list\n\tlist the packages available via deb-get.\n
 cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 "
