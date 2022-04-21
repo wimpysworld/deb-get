@@ -1,3 +1,9 @@
+deb-get (0.2.0-1) unstable; urgency=medium
+
+  * Add support for Launchpad PPAs.
+
+ -- Martin Wimpress <code@wimpress.io>  Thu, 21 Apr 2022 23:21:49 +0100
+
 deb-get (0.1.5-1) unstable; urgency=medium
 
   * Correct the get-deb typos and improve 'get-deb list'.
