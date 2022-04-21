@@ -125,6 +125,7 @@ available for Ubuntu that is published by the project or vendor.
 - [Jami](https://jami.net/)
 - [Jellyfin](https://jellyfin.org/)
 - [Keybase](https://keybase.io/)
+- [Ludo](https://ludo.libretro.com/)
 - [Mailspring](https://getmailspring.com/)
 - [micro](https://micro-editor.github.io/)
 - [Microsoft Edge](https://www.microsoft.com/edge)
