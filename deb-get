@@ -137,6 +137,26 @@ function install_apt() {
     fi
 }
 
+function install_ppa() {
+    if apt-add-repository -y --no-update "${PPA}"; then
+        update_apt
+        if ! dpkg -l "${APP}" >/dev/null 2>&1; then
+            eula
+            apt-get -q -y install "${APP}"
+        else
+            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+            if [ "${STATUS}" == "install ok installed" ] && [ "${ACTION}" == "reinstall" ]; then
+                apt-get -q -y --reinstall install "${APP}"
+            else
+                fancy_message info "${APP} is up to date."
+            fi
+        fi
+    else
+        fancy_message error "Failed to add: ${PPA}. Deleting it."
+        apt-add-repository -y --remove "${PPA}"
+    fi
+}
+
 function install_deb() {
     local URL="${1}"
     local FILE="${URL##*/}"
@@ -194,6 +214,13 @@ function remove_deb() {
                     update_apt
                 fi
                 ;;
+            ppa)
+                rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
+                if [ -n "${PPA}" ]; then
+                    apt-add-repository -y --remove "${PPA}"
+                    update_apt
+                fi
+                ;;
         esac
     else
         fancy_message info "${APP} is not installed."
@@ -213,6 +240,7 @@ function info_deb() {
     case ${METHOD} in
         direct|github|website) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${URL}\n  Website:\t${WEBSITE}";;
         apt) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Repository:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}";;
+        ppa) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Launchpad:\t${PPA}\n  Website:\t${WEBSITE}";;
     esac
 }
 
@@ -930,6 +958,7 @@ case "${ACTION}" in
         case ${METHOD} in
             direct|github|website) install_deb "${URL}";;
             apt) install_apt;;
+            ppa) install_ppa;;
         esac
         ;;
     list) list_debs;;
