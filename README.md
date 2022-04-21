@@ -90,11 +90,15 @@ by publishing `.debs` of their software as direct downloads or via
 their own apt repositories. `deb-get` makes it easy to find, install and update
 `.debs` published in this way.
 
-  - Perhaps you want to use something that is not (yet) officially packaged for Debian/Ubuntu.
+  - Perhaps you want to use software that is not (yet) officially packaged for Debian/Ubuntu.
+  - Perhaps you want to use software that is fast moving and newer versions are available from the vendor/project.
   - Perhaps you want to use some non-free software that Debian/Ubuntu cannot distribute due to licensing restrictions.
 
 `deb-get` tries to remedy this by providing a curated index of software
-available for Ubuntu that is published by the project or vendor.
+available for Ubuntu that is published by the project or vendor. `deb-get` is
+inspired by Software Boutique, a graphical application I co-authored that does
+much the same thing and has been included in [Ubuntu MATE](https://ubuntu-mate.org)
+since 2015.
 
 ## Supported Software
 
