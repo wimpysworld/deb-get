@@ -145,5 +145,6 @@ available for Ubuntu that is published by the project or vendor.
 - [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software)
 - [Vivaldi](https://vivaldi.com/)
 - [Wavebox](https://wavebox.io/)
+- [WeeChat](https://weechat.org/)
 - [Wire](https://wire.com/)
 - [Zoom](https://zoom.us/)

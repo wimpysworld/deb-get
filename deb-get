@@ -373,6 +373,15 @@ function deb_element-desktop() {
     WEBSITE="https://element.io/"
 }
 
+function deb_weechat() {
+    METHOD="apt"
+    GPG_KEY_URL="https://weechat.org/dev/info/debian_repository_signing_key/"
+    APT_LIST_NAME="weechat"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://weechat.org/ubuntu $(lsb_release -cs) main"
+    PRETTY_NAME="WeeChat"
+    WEBSITE="https://weechat.org/"
+}
+
 function deb_jami() {
     METHOD="apt"
     GPG_KEY_URL="https://dl.jami.net/public-key.gpg"
