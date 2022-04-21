@@ -126,6 +126,7 @@ available for Ubuntu that is published by the project or vendor.
 - [Jellyfin](https://jellyfin.org/)
 - [Keybase](https://keybase.io/)
 - [Mailspring](https://getmailspring.com/)
+- [micro](https://micro-editor.github.io/)
 - [Microsoft Edge](https://www.microsoft.com/edge)
 - [ocenaudio](https://www.ocenaudio.com/)
 - [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx)
