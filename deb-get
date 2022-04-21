@@ -291,7 +291,7 @@ function upgrade_debs() {
 function deb_discord() {
     METHOD="direct"
     URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
-    VERSION_PUBLISHED="$(unroll_url "${URL}" | cut -d'/' -f6)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
     PRETTY_NAME="Discord"
     WEBSITE="https://discord.com/"
 }
