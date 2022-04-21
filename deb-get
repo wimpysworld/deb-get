@@ -805,7 +805,10 @@ function deb_zoom() {
 
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
-export CACHE_DIR="/var/cache/get-deb"
+export CACHE_DIR="/var/cache/deb-get"
+if [ -d /var/cache/get-deb ]; then
+    mv /var/cache/get-deb "${CACHE_DIR}"
+fi
 mkdir -p "${CACHE_DIR}" 2>/dev/null
 chmod 755 "${CACHE_DIR}" 2>/dev/null
 export VERSION="0.1.3"
