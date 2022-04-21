@@ -783,6 +783,14 @@ function deb_mailspring() {
     WEBSITE="https://getmailspring.com/"
 }
 
+function deb_mattermost-desktop() {
+    get_github_releases "https://api.github.com/repos/mattermost/desktop/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="Mattermost Desktop"
+    WEBSITE="https://mattermost.com/"
+}
+
 function deb_syft() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/anchore/syft/releases"
