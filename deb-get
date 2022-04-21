@@ -254,7 +254,7 @@ function list_debs() {
 function prettylist_debs() {
     for DEB in "${APPS[@]}"; do
         validate_deb "${DEB}" 1
-        echo "- [${PRETTY_NAME}](${WEBSITE})"
+        echo "- [${PRETTY_NAME}](${WEBSITE}) ("'`'"${DEB}"'`'")"
     done
 }
 
