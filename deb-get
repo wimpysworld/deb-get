@@ -240,8 +240,14 @@ function validate_deb() {
 }
 
 function list_debs() {
+    local PAD='                              '
     for DEB in "${APPS[@]}"; do
-        echo "${DEB}"
+        if dpkg -l "${DEB}" >/dev/null 2>&1; then
+            STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f4- )"
+            printf "%s %s [ ${STATUS} ]\n" "${DEB}" "${PAD:${#DEB}}"
+        else
+            echo "${DEB}"
+        fi
     done
 }
 
