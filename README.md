@@ -104,6 +104,7 @@ available for Ubuntu that is published by the project or vendor.
 - [Bitwarden](https://bitwarden.com/)
 - [Brave](https://brave.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
+- [VSCodium](https://vscodium.com/)
 - [deb-get](https://github.com/wimpysworld/deb-get)
 - [Discord](https://discord.com/)
 - [Docker Engine](https://www.docker.com/)

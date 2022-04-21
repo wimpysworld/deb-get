@@ -476,6 +476,16 @@ function deb_irccloud-desktop() {
     WEBSITE="https://www.irccloud.com/"
 }
 
+function deb_codium() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf"
+    METHOD="direct"
+    get_github_releases "https://api.github.com/repos/VSCodium/vscodium/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="VSCodium"
+    WEBSITE="https://vscodium.com/"
+}
+
 function deb_rambox() {
     METHOD="direct"
     get_github_releases "https://api.github.com/repos/ramboxapp/download/releases"
