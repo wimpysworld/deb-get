@@ -102,64 +102,64 @@ since 2015.
 
 ## Supported Software
 
-<img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`)
-<img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`)
-<img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`)
-<img src=".github/github.png" align="top" width="20" /> [Etcher](https://www.balena.io/etcher/) (`balena-etcher-electron`)
-<img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`)
-<img src=".github/debian.png" align="top" width="20" /> [Brave](https://brave.com/) (`brave-browser`)
-<img src=".github/debian.png" align="top" width="20" /> [Visual Studio Code](https://code.visualstudio.com/) (`code`)
-<img src=".github/github.png" align="top" width="20" /> [VSCodium](https://vscodium.com/) (`codium`)
-<img src=".github/github.png" align="top" width="20" /> [deb-get](https://github.com/wimpysworld/deb-get) (`deb-get`)
-<img src=".github/direct.png" align="top" width="20" /> [Discord](https://discord.com/) (`discord`)
-<img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`)
-<img src=".github/direct.png" align="top" width="20" /> [Docker Desktop](https://www.docker.com/products/docker-desktop/) (`docker-desktop`)
-<img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`)
-<img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`)
-<img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`)
-<img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`)
-<img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`)
-<img src=".github/github.png" align="top" width="20" /> [GitHub Desktop](https://desktop.github.com/) (`github-desktop`)
-<img src=".github/direct.png" align="top" width="20" /> [GitKraken](https://www.gitkraken.com/invite/ieih1QR3) (`gitkraken`)
-<img src=".github/direct.png" align="top" width="20" /> [Gitter](https://gitter.im/) (`gitter`)
-<img src=".github/debian.png" align="top" width="20" /> [Google Chrome](https://www.google.com/chrome/) (`google-chrome-stable`)
-<img src=".github/debian.png" align="top" width="20" /> [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`)
-<img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`)
-<img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`)
-<img src=".github/github.png" align="top" width="20" /> [Insomnia](https://insomnia.rest/) (`insomnia`)
-<img src=".github/github.png" align="top" width="20" /> [IRCCloud Desktop](https://www.irccloud.com/) (`irccloud-desktop`)
-<img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`)
-<img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`)
-<img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`)
-<img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`)
-<img src=".github/github.png" align="top" width="20" /> [Mailspring](https://getmailspring.com/) (`mailspring`)
-<img src=".github/github.png" align="top" width="20" /> [micro](https://micro-editor.github.io/) (`micro`)
-<img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`)
-<img src=".github/github.png" align="top" width="20" /> [Obsidian](https://obsidian.md/) (`obsidian`)
-<img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`)
-<img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`)
-<img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`)
-<img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`)
-<img src=".github/github.png" align="top" width="20" /> [PowerShell](https://docs.microsoft.com/powershell/) (`powershell`)
-<img src=".github/github.png" align="top" width="20" /> [Rambox](https://rambox.app/) (`rambox`)
-<img src=".github/github.png" align="top" width="20" /> [Rclone](https://rclone.org/) (`rclone`)
-<img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`)
-<img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`)
-<img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`)
-<img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`)
-<img src=".github/debian.png" align="top" width="20" /> [Slack](https://slack.com/) (`slack-desktop`)
-<img src=".github/direct.png" align="top" width="20" /> [Spotify](https://www.spotify.com/) (`spotify-client`)
-<img src=".github/debian.png" align="top" width="20" /> [Sublime Merge](https://www.sublimemerge.com/) (`sublime-merge`)
-<img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`)
-<img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`)
-<img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`)
-<img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)
-<img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)
-<img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`)
-<img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`)
-<img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`)
-<img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`)
-<img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`)
+<img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`)<br />
+<img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Etcher](https://www.balena.io/etcher/) (`balena-etcher-electron`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Brave](https://brave.com/) (`brave-browser`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Visual Studio Code](https://code.visualstudio.com/) (`code`)<br />
+<img src=".github/github.png" align="top" width="20" /> [VSCodium](https://vscodium.com/) (`codium`)<br />
+<img src=".github/github.png" align="top" width="20" /> [deb-get](https://github.com/wimpysworld/deb-get) (`deb-get`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Discord](https://discord.com/) (`discord`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Docker Desktop](https://www.docker.com/products/docker-desktop/) (`docker-desktop`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`)<br />
+<img src=".github/github.png" align="top" width="20" /> [GitHub Desktop](https://desktop.github.com/) (`github-desktop`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [GitKraken](https://www.gitkraken.com/invite/ieih1QR3) (`gitkraken`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Gitter](https://gitter.im/) (`gitter`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Google Chrome](https://www.google.com/chrome/) (`google-chrome-stable`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Insomnia](https://insomnia.rest/) (`insomnia`)<br />
+<img src=".github/github.png" align="top" width="20" /> [IRCCloud Desktop](https://www.irccloud.com/) (`irccloud-desktop`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Mailspring](https://getmailspring.com/) (`mailspring`)<br />
+<img src=".github/github.png" align="top" width="20" /> [micro](https://micro-editor.github.io/) (`micro`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Obsidian](https://obsidian.md/) (`obsidian`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`)<br />
+<img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`)<br />
+<img src=".github/github.png" align="top" width="20" /> [PowerShell](https://docs.microsoft.com/powershell/) (`powershell`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Rambox](https://rambox.app/) (`rambox`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Rclone](https://rclone.org/) (`rclone`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Slack](https://slack.com/) (`slack-desktop`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Spotify](https://www.spotify.com/) (`spotify-client`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Sublime Merge](https://www.sublimemerge.com/) (`sublime-merge`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`)<br />
 
 **Legend**
 
