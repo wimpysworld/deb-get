@@ -4,8 +4,8 @@ LC_ALL=C
 function usage() {
   echo -e "Usage
 
-deb-get {update | upgrade | show pkg | install pkg | reinstall pkg |
-remove pkg | purge pkg | search pkg | cache | clean | list | help | version}
+deb-get {update | upgrade | dist-upgrade | show pkg | install pkg | reinstall pkg |
+remove pkg | autoremove | purge pkg | search pkg | cache | clean | list | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -13,9 +13,11 @@ repositories or via direct download.
 
 update\n\tupdate is used to resynchronize the package index files from their sources.\n
 upgrade\n\tupgrade is used to install the newest versions of all packages currently installed on the system.\n
+dist-upgrade\ndist-upgrade in addition to performing the function of upgrade, also intelligently handles changing dependencies with new versions of packages.
 install\n\tinstall is followed by one package desired for installation or upgrading.\n
 reinstall\n\treinstall is followed by one package desired for reinstallation.\n
 remove\n\tremove is identical to install except that packages are removed instead of installed.\n
+autoremove\nautoremove is used to remove packages that were automatically installed to satisfy dependencies for other packages and are now no longer needed.\n
 purge\n\tpurge is identical to remove except that packages are removed and purged (any configuration files are deleted too).\n
 clean\n\tclean clears out the local repository (/var/cache/deb-get) of retrieved package files.\n
 search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.\n
@@ -109,6 +111,10 @@ function upgrade_apt() {
     apt-get -q -y upgrade
 }
 
+function dist_upgrade_apt() {
+    apt-get -q -y dist-upgrade
+}
+
 function install_apt() {
     if [ -n "${APT_KEY_URL}" ]; then
         wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
@@ -135,6 +141,10 @@ function install_apt() {
             fancy_message info "${APP} is up to date."
         fi
     fi
+}
+
+function autoremove_apt() {
+    apt-get -q -y autoremove
 }
 
 function install_ppa() {
@@ -230,6 +240,10 @@ function remove_deb() {
     else
         fancy_message info "${APP} is not installed."
     fi
+}
+
+function autoremove_debs() {
+    autoremove_apt
 }
 
 function version_deb() {
@@ -329,6 +343,23 @@ function update_debs() {
 function upgrade_debs() {
     update_apt
     upgrade_apt
+    for DEB in "${APPS[@]}"; do
+        validate_deb "${DEB}"
+        # Only upgrade .debs that are installed
+        if dpkg -l "${DEB}" >/dev/null 2>&1; then
+            STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
+            if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+                if [ "${STATUS}" == "install ok installed" ]; then
+                    install_deb "${URL}"
+                fi
+            fi
+        fi
+    done
+}
+
+function dist_upgrade_debs() {
+    update_apt
+    dist_upgrade_apt
     for DEB in "${APPS[@]}"; do
         validate_deb "${DEB}"
         # Only upgrade .debs that are installed
@@ -1004,9 +1035,11 @@ case "${ACTION}" in
     pretty_list|prettylist) prettylist_debs;;
     purge) remove_deb "${APP}" purge;;
     remove) remove_deb "${APP}";;
+    autoremove) autoremove_debs;;
     search) list_debs | grep "${APP}";;
     update) update_debs;;
     upgrade) upgrade_debs;;
+    dist-upgrade) dist_upgrade_debs;;
     version) echo "${VERSION}";;
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
