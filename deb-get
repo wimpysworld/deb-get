@@ -327,7 +327,7 @@ function update_debs() {
 }
 
 function upgrade_debs() {
-    update_apt
+    local STATUS=""
     upgrade_apt
     for DEB in "${APPS[@]}"; do
         validate_deb "${DEB}"
