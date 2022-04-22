@@ -356,6 +356,12 @@ function deb_quickemu() {
     WEBSITE="https://github.com/quickemu-project/quickemu"
 }
 
+function deb_quickgui() {
+    PPA="ppa:yannick-mauray/quickgui"
+    PRETTY_NAME="Quickgui"
+    WEBSITE="https://github.com/quickemu-project/quickgui"
+}
+
 function deb_nextcloud-desktop() {
     PPA="ppa:nextcloud-devs/client"
     PRETTY_NAME="Nextcloud Desktop"
