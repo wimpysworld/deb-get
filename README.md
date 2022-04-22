@@ -161,6 +161,7 @@ since 2015.
 <img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Webex](https://www.webex.com/) (`webex`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`)<br />

@@ -868,6 +868,14 @@ function deb_gitkraken() {
     WEBSITE="https://www.gitkraken.com/invite/ieih1QR3"
 }
 
+function deb_webex() {
+    # Note: get version number from Release Notes
+    VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" | grep "<p class=\"p\">Linux—" | head -n1 | cut -d'>' -f2 | cut -d'<' -f1 | sed 's/Linux—//')"
+    URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
+    PRETTY_NAME="Webex"
+    WEBSITE="https://www.webex.com/"
+}
+
 function deb_dropbox() {
     ARCHS_SUPPORTED="amd64 i386"
     URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
