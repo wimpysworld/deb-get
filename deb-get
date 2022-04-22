@@ -860,6 +860,13 @@ function deb_gitkraken() {
     WEBSITE="https://www.gitkraken.com/invite/ieih1QR3"
 }
 
+function deb_webex() {
+    VERSION_PUBLISHED="$(curl -s https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb | ar p Webex.deb control.tar.gz | tar xzOf - ./control | grep Version | cut -d" " -f2)"
+    URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
+    PRETTY_NAME="Webex"
+    WEBSITE="https://www.webex.com/"
+}
+
 function deb_dropbox() {
     ARCHS_SUPPORTED="amd64 i386"
     URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
