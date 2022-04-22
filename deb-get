@@ -861,7 +861,8 @@ function deb_gitkraken() {
 }
 
 function deb_webex() {
-    VERSION_PUBLISHED="$(curl -s https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb | ar p Webex.deb control.tar.gz | tar xzOf - ./control | grep Version | cut -d" " -f2)"
+    # Note: get version number from Release Notes
+    VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" | grep "<p class=\"p\">Linux—" | head -n1 | cut -d'>' -f2 | cut -d'<' -f1 | sed 's/Linux—//')"
     URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
     PRETTY_NAME="Webex"
     WEBSITE="https://www.webex.com/"
