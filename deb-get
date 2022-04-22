@@ -243,7 +243,7 @@ function version_deb() {
 function info_deb() {
     local INSTALLED="${VERSION_INSTALLED:-No}"
     case ${METHOD} in
-        direct|github|website) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Origin:\t${URL}\n  Website:\t${WEBSITE}";;
+        direct|github|website) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Download:\t${URL}\n  Website:\t${WEBSITE}";;
         apt) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Repository:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}";;
         ppa) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Launchpad:\t${PPA}\n  Website:\t${WEBSITE}";;
     esac
