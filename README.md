@@ -102,6 +102,14 @@ since 2015.
 
 ## Supported Software
 
+The software below can be installed, updated and removed using `deb-get`.
+
+- `sudo deb-get install <packagename>`
+- `sudo deb-get update`
+- `sudo deb-get upgrade`
+- `sudo deb-get remove <packagename>`
+- `sudo deb-get purge <packagename>`
+
 <img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`)<br />
 <img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`)<br />
