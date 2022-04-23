@@ -992,7 +992,7 @@ else
     usage
 fi
 
-if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "reinstall" ] || [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ] || [ "${ACTION}" == "show" ]; then
+if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "reinstall" ] || [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ] || [ "${ACTION}" == "show" ] || [ "${ACTION}" == "search" ]; then
     if [ -n "${2}" ]; then
         APP="${2,,}"
     else
