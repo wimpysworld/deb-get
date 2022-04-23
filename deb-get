@@ -922,6 +922,13 @@ function deb_exodus() {
     WEBSITE="https://exodus.com/"
 }
 
+function deb_jabref() {
+    ARCHS_SUPPORTED="amd64 i386"
+    URL="https://builds.jabref.org/main/$(curl -s "https://builds.jabref.org/main/" | grep .deb | sed -e 's/.*amd64.deb">//g' | sed -e 's/<.*//g')"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    PRETTY_NAME="JabRef"
+    WEBSITE="https://www.jabref.org/"
+}
 
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
