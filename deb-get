@@ -923,7 +923,7 @@ function deb_exodus() {
 }
 
 function deb_jabref() {
-    ARCHS_SUPPORTED="amd64 i386"
+    ARCHS_SUPPORTED="amd64"
     URL="https://builds.jabref.org/main/$(curl -s "https://builds.jabref.org/main/" | grep .deb | sed -e 's/.*amd64.deb">//g' | sed -e 's/<.*//g')"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     PRETTY_NAME="JabRef"
