@@ -707,6 +707,14 @@ function deb_jellyfin() {
     WEBSITE="https://jellyfin.org/"
 }
 
+function deb_pandoc() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    get_github_releases "https://api.github.com/repos/jgm/pandoc/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'-' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="Pandoc"
+    WEBSITE="https://pandoc.org/"
+}
 function deb_sublime-merge() {
     APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
     APT_LIST_NAME="sublime-text"
