@@ -702,7 +702,7 @@ function deb_jellyfin() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     APT_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
     APT_LIST_NAME="jellyfin"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu focal main"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu ${OS_CODENAME} main"
     PRETTY_NAME="Jellyfin"
     WEBSITE="https://jellyfin.org/"
 }
