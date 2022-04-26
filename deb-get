@@ -121,6 +121,8 @@ function install_apt() {
         wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
     fi
 
+    #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
+
     echo -e "${APT_REPO_URL}" > "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
     update_apt
 
