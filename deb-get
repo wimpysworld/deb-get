@@ -358,6 +358,12 @@ function deb_quickemu() {
     WEBSITE="https://github.com/quickemu-project/quickemu"
 }
 
+function deb_firefox-esr() {
+    PPA="ppa:mozillateam/ppa"
+    PRETTY_NAME="Firefox ESR"
+    WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+}
+
 function deb_quickgui() {
     PPA="ppa:yannick-mauray/quickgui"
     PRETTY_NAME="Quickgui"
