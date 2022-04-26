@@ -398,6 +398,13 @@ function deb_code() {
     WEBSITE="https://code.visualstudio.com/"
 }
 
+function deb_rstudio() {
+    URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep "amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | sed s'/-/+/')"
+    PRETTY_NAME="RStudio"
+    WEBSITE="https://www.rstudio.com/"
+}
+
 function deb_ocenaudio() {
     ARCHS_SUPPORTED="amd64 i386"
     VERSION_PUBLISHED="$(curl -s "https://www.ocenaudio.com/en/download" | grep "<p>Version" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"

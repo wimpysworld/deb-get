@@ -160,6 +160,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Rambox](https://rambox.app/) (`rambox`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Rclone](https://rclone.org/) (`rclone`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [RStudio](https://www.rstudio.com/) (`rstudio`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`)<br />
