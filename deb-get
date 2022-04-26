@@ -1028,7 +1028,7 @@ if [ -d /var/cache/get-deb ]; then
 fi
 mkdir -p "${CACHE_DIR}" 2>/dev/null
 chmod 755 "${CACHE_DIR}" 2>/dev/null
-export VERSION="0.2.1"
+export VERSION="0.2.2"
 
 if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
