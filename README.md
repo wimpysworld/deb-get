@@ -128,6 +128,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Docker Desktop](https://www.docker.com/products/docker-desktop/) (`docker-desktop`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`)<br />
+<img src=".github/github.png" align="top" width="20" /> [duf](https://github.com/muesli/duf) (`duf`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Exodus](https://exodus.com/) (`exodus`)<br />

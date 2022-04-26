@@ -468,6 +468,21 @@ function deb_fd() {
     WEBSITE="https://github.com/sharkdp/fd"
 }
 
+function deb_duf() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf"
+    get_github_releases "https://api.github.com/repos/muesli/duf/releases/latest"
+    case "${HOST_ARCH}" in
+        armhf) VERSION_PUBLISHED="$(grep "browser_download_url.*armv7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+               URL=$(grep "browser_download_url.*armv7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+               ;;
+        *)     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+               URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+               ;;
+    esac
+    PRETTY_NAME="duf"
+    WEBSITE="https://github.com/muesli/duf"
+}
+
 function deb_rclone() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/rclone/rclone/releases/latest"
