@@ -134,6 +134,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`)<br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Firefox ESR](https://www.mozilla.org/firefox/enterprise/) (`firefox-esr`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`)<br />
+<img src=".github/github.png" align="top" width="20" /> [git-delta](https://github.com/dandavison/delta) (`git-delta`)<br />
 <img src=".github/github.png" align="top" width="20" /> [GitHub Desktop](https://desktop.github.com/) (`github-desktop`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [GitKraken](https://www.gitkraken.com/invite/ieih1QR3) (`gitkraken`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Gitter](https://gitter.im/) (`gitter`)<br />
