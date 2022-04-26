@@ -125,7 +125,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Exodus](https://www.exodus.com/) (`exodus`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [Exodus](https://exodus.com/) (`exodus`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`)<br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Firefox ESR](https://www.mozilla.org/firefox/enterprise/) (`firefox-esr`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`)<br />
@@ -152,6 +152,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`)<br />
 <img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Pandoc](https://pandoc.org/) (`pandoc`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`)<br />
 <img src=".github/github.png" align="top" width="20" /> [PowerShell](https://docs.microsoft.com/powershell/) (`powershell`)<br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Quickemu](https://github.com/quickemu-project/quickemu) (`quickemu`)<br />
