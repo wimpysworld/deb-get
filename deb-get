@@ -383,6 +383,12 @@ function deb_keypassxc() {
     WEBSITE="https://keepassxc.org/"
 }
 
+function deb_ubuntu-make() {
+    PPA="ppa:lyzardking/ubuntu-make"
+    PRETTY_NAME="Ubuntu-Make"
+    WEBSITE="https://github.com/ubuntu/ubuntu-make"
+}
+
 function deb_atom() {
     APT_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
     APT_LIST_NAME="atom"
