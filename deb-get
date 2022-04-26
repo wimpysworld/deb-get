@@ -441,6 +441,15 @@ function deb_lsd() {
     WEBSITE="https://github.com/Peltoche/lsd"
 }
 
+function deb_bat() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf"
+    get_github_releases "https://api.github.com/repos/sharkdp/bat/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="bat"
+    WEBSITE="https://github.com/sharkdp/bat"
+}
+
 function deb_rclone() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/rclone/rclone/releases/latest"

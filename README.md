@@ -117,6 +117,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Etcher](https://www.balena.io/etcher/) (`balena-etcher-electron`)<br />
+<img src=".github/github.png" align="top" width="20" /> [bat](https://github.com/sharkdp/bat) (`bat`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [BeerSmith](https://beersmith.com/) (`beersmith3`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Brave](https://brave.com/) (`brave-browser`)<br />
