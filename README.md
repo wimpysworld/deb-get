@@ -187,6 +187,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [Webex](https://www.webex.com/) (`webex`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`)<br />
+<img src=".github/github.png" align="top" width="20" /> [Zenith](https://github.com/bvaisvil/zenith) (`zenith`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`)<br />
 
 **Legend**
