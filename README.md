@@ -40,8 +40,8 @@ You can upgrade packages installed using `deb-get` by running
 `sudo deb-get upgrade`.
 
 ```
-deb-get {update | upgrade | show pkg | install pkg | reinstall pkg |
-remove pkg | purge pkg | search pkg | cache | clean | list | help | version}
+deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
+| purge pkg | search pkg | cache | clean | list | prettylist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -76,6 +76,9 @@ show
 
 list
         list the packages available via deb-get.
+
+prettylist
+        markdown formatted list the packages available via deb-get. Use this to update README.md
 
 cache
         list the contents of the deb-get cache (/var/cache/deb-get)

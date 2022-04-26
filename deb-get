@@ -4,8 +4,8 @@ LC_ALL=C
 function usage() {
   echo -e "Usage
 
-deb-get {update | upgrade | show pkg | install pkg | reinstall pkg |
-remove pkg | purge pkg | search pkg | cache | clean | list | help | version}
+deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
+| purge pkg | search pkg | cache | clean | list | prettylist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -21,6 +21,7 @@ clean\n\tclean clears out the local repository (/var/cache/deb-get) of retrieved
 search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.\n
 show\n\tshow information about the given package including its install source and update mechanism.\n
 list\n\tlist the packages available via deb-get.\n
+prettylist\n\tmarkdown formatted list the packages available via deb-get. Use this to update README.md\n
 cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 "
   exit 1
