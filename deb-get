@@ -461,7 +461,7 @@ function deb_1password() {
 function deb_weechat() {
     GPG_KEY_URL="https://weechat.org/dev/info/debian_repository_signing_key/"
     APT_LIST_NAME="weechat"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://weechat.org/ubuntu $(lsb_release -cs) main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://weechat.org/ubuntu ${UBUNTU_CODENAME} main"
     PRETTY_NAME="WeeChat"
     WEBSITE="https://weechat.org/"
 }
@@ -469,7 +469,7 @@ function deb_weechat() {
 function deb_jami() {
     GPG_KEY_URL="https://dl.jami.net/public-key.gpg"
     APT_LIST_NAME="jami"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_$(lsb_release -rs)/ jami main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_${UBUNTU_RELEASE}/ jami main"
     PRETTY_NAME="Jami"
     WEBSITE="https://jami.net/"
 }
@@ -485,7 +485,7 @@ function deb_google-chrome-stable() {
 
 function disabled_ungoogled-chromium() {
     APT_LIST_NAME="home-ungoogled_chromium.list"
-    case $(lsb_release -cs) in
+    case "${UBUNTU_CODENAME}" in
         focal)
             APT_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key"
             APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/ /"
@@ -543,7 +543,7 @@ function deb_docker-ce() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     APT_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
     APT_LIST_NAME="docker"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/ubuntu ${UBUNTU_CODENAME} stable"
     PRETTY_NAME="Docker Engine"
     WEBSITE="https://www.docker.com/"
 }
@@ -702,7 +702,7 @@ function deb_jellyfin() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     APT_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
     APT_LIST_NAME="jellyfin"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu ${OS_CODENAME} main"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu ${UBUNTU_CODENAME} main"
     PRETTY_NAME="Jellyfin"
     WEBSITE="https://jellyfin.org/"
 }
@@ -978,11 +978,17 @@ case "${OS_ID}" in
 esac
 
 OS_CODENAME=$(lsb_release --codename --short)
-case "${OS_CODENAME}" in
-  focal|impish|jammy) OS_CODENAME_PRETTY="${OS_CODENAME^}";;
-  uma|una) OS_CODENAME_PRETTY="${OS_CODENAME^}";;
-  jolnir) OS_CODENAME_PRETTY="${OS_CODENAME^}";;
-  *) fancy_message fatal "${OS_CODENAME^} is not supported.";;
+if [ -e /etc/os-release ]; then
+    UBUNTU_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2)
+else
+    fancy_message fatal "/etc/os-release not found. Quitting"
+fi
+
+case "${UBUNTU_CODENAME}" in
+    focal)  UBUNTU_RELEASE=20.04;;
+    impish) UBUNTU_RELEASE=21.10;;
+    jammy)  UBUNTU_RELEASE=22.04;;
+    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Ubuntu release.";;
 esac
 
 if [ -n "${1}" ]; then
