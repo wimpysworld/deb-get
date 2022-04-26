@@ -147,6 +147,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`)<br />
 <img src=".github/launchpad.png" align="top" width="20" /> [KeyPassXC](https://keepassxc.org/) (`keypassxc`)<br />
+<img src=".github/github.png" align="top" width="20" /> [LSDeluxe](https://github.com/Peltoche/lsd) (`lsd`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Mailspring](https://getmailspring.com/) (`mailspring`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Mattermost Desktop](https://mattermost.com/) (`mattermost-desktop`)<br />

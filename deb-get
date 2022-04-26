@@ -432,6 +432,15 @@ function deb_github-desktop() {
     WEBSITE="https://desktop.github.com/"
 }
 
+function deb_lsd() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    get_github_releases "https://api.github.com/repos/Peltoche/lsd/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="LSDeluxe"
+    WEBSITE="https://github.com/Peltoche/lsd"
+}
+
 function deb_rclone() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/rclone/rclone/releases/latest"
