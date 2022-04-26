@@ -1063,6 +1063,7 @@ case "${OS_ID}" in
   Neon) OS_ID_PRETTY="KDE Neon";;
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
+  Zorin) OS_ID_PRETTY="Zorin OS";;
   *) fancy_message fatal "${OS_ID} is not supported.";;
 esac
 
