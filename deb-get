@@ -927,8 +927,8 @@ function deb_jabref() {
     get_github_releases "https://api.github.com/repos/jabref/jabref/releases/latest"
     VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
     URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-    PRETTY_NAME="GitHub Desktop"
-    WEBSITE="https://desktop.github.com/"
+    PRETTY_NAME="JabRef"
+    WEBSITE="https://www.jabref.org/"
 }
 
 # Create an array of all the deb_ functions
