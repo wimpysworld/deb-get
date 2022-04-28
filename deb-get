@@ -346,6 +346,13 @@ function upgrade_debs() {
     done
 }
 
+function deb_tixati() {
+    URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
+    VERSION_PUBLISHED="$( echo "${URL}" | cut -d'_' -f2 | cut -d'-' -f1 )"
+    PRETTY_NAME="Tixati"
+    WEBSITE="https://www.tixati.com/"
+}
+
 function deb_discord() {
     URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
