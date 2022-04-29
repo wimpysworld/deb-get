@@ -202,6 +202,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://gohugo.io/) | `hugo` | <i>Open-source static site generator.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://hyper.is/) | `hyper` | <i>A terminal built on web technologies.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />]("https://www.citrix.com/en-gb/downloads/workspace-app/linux) | `icaclient` | <i>Enables users to access virtual desktops and hosted applications delivered by XenDesktop and XenApp.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/igdmapps/igdm) | `igdm` | <i>Continue your Instagram direct messages from your phone to your desktop.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.influxdata.com/products/influxdb-overview/) | `influxdb` | <i>Scalable datastore for metrics, events, and real-time analytics.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.influxdata.com/products/influxdb-overview/) | `influxdb2` | <i>Scalable datastore for metrics, events, and real-time analytics.</i> |
