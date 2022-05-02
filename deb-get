@@ -1035,6 +1035,13 @@ function deb_jabref() {
     WEBSITE="https://www.jabref.org/"
 }
 
+function deb_teamviewer() {
+    VERSION_PUBLISHED="$(curl -s 'https://www.teamviewer.com/en/download/linux/' | grep -C 5 'Ubuntu, Debian' | grep '\*.deb package' | cut -d ' ' -f3 | sed 's/\([0-9\.]*\).*$/\1/')"
+    URL="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
+    PRETTY_NAME="TeamViewer"
+    WEBSITE="https://www.teamviewer.com/"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
