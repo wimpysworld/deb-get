@@ -393,7 +393,7 @@ function deb_keypassxc() {
 function deb_ubuntu-make() {
     PPA="ppa:lyzardking/ubuntu-make"
     PRETTY_NAME="Ubuntu-Make"
-    WEBSITE="https://github.com/ubuntu/ubuntu-make"
+    WEBSITE="https://github.com/ubuntu/ubuntu-make/"
 }
 
 function deb_atom() {
