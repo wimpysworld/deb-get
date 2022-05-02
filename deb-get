@@ -819,6 +819,15 @@ function deb_google-earth-pro-stable() {
     WEBSITE="https://www.google.com/earth/versions/"
 }
 
+function deb_insync() {
+    ARCHS_SUPPORTED="amd64"
+    APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
+    APT_LIST_NAME="insync"
+    APT_REPO_URL="deb http://apt.insync.io/ubuntu $(lsb_release -cs) non-free contrib"
+    PRETTY_NAME="Insync"
+    WEBSITE="https://www.insynchq.com/downloads/"
+}
+
 function deb_balena-etcher-electron() {
     ARCHS_SUPPORTED="amd64 i386"
     get_github_releases "https://api.github.com/repos/balena-io/etcher/releases"

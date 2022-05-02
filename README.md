@@ -145,6 +145,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Insomnia](https://insomnia.rest/) (`insomnia`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Insync](https://www.insynchq.com/) (`insync`)<br />
 <img src=".github/github.png" align="top" width="20" /> [IRCCloud Desktop](https://www.irccloud.com/) (`irccloud-desktop`)<br />
 <img src=".github/github.png" align="top" width="20" /> [JabRef](https://www.jabref.org/) (`jabref`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`)<br />
