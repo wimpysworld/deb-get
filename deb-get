@@ -348,7 +348,7 @@ function upgrade_debs() {
 
 function deb_tixati() {
     URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
-    VERSION_PUBLISHED="$( echo "${URL}" | cut -d'_' -f2 | cut -d'-' -f1 )"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     PRETTY_NAME="Tixati"
     WEBSITE="https://www.tixati.com/"
 }
