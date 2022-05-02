@@ -346,6 +346,13 @@ function upgrade_debs() {
     done
 }
 
+function deb_tixati() {
+    URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    PRETTY_NAME="Tixati"
+    WEBSITE="https://www.tixati.com/"
+}
+
 function deb_discord() {
     URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
@@ -819,6 +826,15 @@ function deb_google-earth-pro-stable() {
     WEBSITE="https://www.google.com/earth/versions/"
 }
 
+function deb_insync() {
+    ARCHS_SUPPORTED="amd64"
+    APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
+    APT_LIST_NAME="insync"
+    APT_REPO_URL="deb http://apt.insync.io/ubuntu ${UBUNTU_CODENAME} non-free contrib"
+    PRETTY_NAME="Insync"
+    WEBSITE="https://www.insynchq.com/downloads/"
+}
+
 function deb_balena-etcher-electron() {
     ARCHS_SUPPORTED="amd64 i386"
     get_github_releases "https://api.github.com/repos/balena-io/etcher/releases"
@@ -1024,6 +1040,13 @@ function deb_jabref() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="JabRef"
     WEBSITE="https://www.jabref.org/"
+}
+
+function deb_teamviewer() {
+    VERSION_PUBLISHED="$(curl -s 'https://www.teamviewer.com/en/download/linux/' | grep -C 5 'Ubuntu, Debian' | grep '\*.deb package' | cut -d ' ' -f3 | sed 's/\([0-9\.]*\).*$/\1/')"
+    URL="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
+    PRETTY_NAME="TeamViewer"
+    WEBSITE="https://www.teamviewer.com/"
 }
 
 # Create an array of all the deb_ functions
