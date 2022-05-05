@@ -1056,6 +1056,14 @@ function deb_lutris() {
     WEBSITE="https://lutris.net/"
 }
 
+function deb_azure-cli() {
+    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    APT_LIST_NAME="azure-cli"
+    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main"
+    PRETTY_NAME="Azure CLI"
+    WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
