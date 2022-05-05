@@ -1059,7 +1059,7 @@ function deb_lutris() {
 function deb_azure-cli() {
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="azure-cli"
-    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main"
+    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ ${UBUNTU_CODENAME} main"
     PRETTY_NAME="Azure CLI"
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
 }
