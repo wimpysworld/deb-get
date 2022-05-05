@@ -1064,6 +1064,14 @@ function deb_azure-cli() {
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
 }
 
+function deb_zotero() {
+    APT_KEY_URL="https://raw.githubusercontent.com/retorquere/zotero-deb/master/zotero-archive-keyring.gpg"
+    APT_LIST_NAME="zotero"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/zotero-archive-keyring.gpg by-hash=force] https://zotero.retorque.re/file/apt-package-archive ./"
+    PRETTY_NAME="Zotero"
+    WEBSITE="https://www.zotero.org/"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
