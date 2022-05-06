@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 LC_ALL=C
-# dpkg-buildpackage --build=binary --no-check-builddeps -compression=gzip
+# dpkg-buildpackage --build=binary --no-check-builddeps --compression=gzip
 
 function usage() {
   echo -e "Usage
