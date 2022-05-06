@@ -645,11 +645,10 @@ function deb_docker-ce() {
 }
 
 function deb_docker-desktop() {
-    URL="$(curl -s "https://docs.docker.com/desktop/linux/" | grep -i main/amd64 | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | cut -d' ' -f8)"
-    # FIXME: Find a way to derive the major version for Linux
-    #local MAJOR_VER="$(curl -s "https://docs.docker.com/desktop/windows/release-notes/" | grep "#docker-desktop-" | sed -e 's/<[^>]*>//g' | head -n1 | sed -e 's/ //g' -e 's/DockerDesktop//')"
-    local MAJOR_VER="4.8.0"
-    VERSION_PUBLISHED="${MAJOR_VER}-$(echo "${URL}" | cut -d'/' -f7)"
+    URL="$(curl -s "https://docs.docker.com/desktop/linux/install/" | grep amd64.deb | cut -d'"' -f2 | cut -d'?' -f1)"
+    local MAJOR_VER="$(echo ${URL} | cut -d'-' -f4)"
+    local MINOR_VER="$(echo ${URL} | cut -d'/' -f7)"
+    VERSION_PUBLISHED="${MAJOR_VER}-${MINOR_VER}"
     PRETTY_NAME="Docker Desktop"
     WEBSITE="https://www.docker.com/products/docker-desktop/"
 }
