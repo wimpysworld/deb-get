@@ -186,6 +186,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [TeamViewer](https://www.teamviewer.com/) (`teamviewer`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Terraform](https://www.terraform.io/) (`terraform`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Tixati](https://www.tixati.com/) (`tixati`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)<br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Ubuntu-Make](https://github.com/ubuntu/ubuntu-make/) (`ubuntu-make`)<br />

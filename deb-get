@@ -1063,6 +1063,14 @@ function deb_azure-cli() {
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
 }
 
+function deb_terraform() {
+    APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    APT_LIST_NAME="terraform"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UBUNTU_CODENAME} main"
+    PRETTY_NAME="Terraform"
+    WEBSITE="https://www.terraform.io/"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
