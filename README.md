@@ -190,6 +190,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)<br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Ubuntu-Make](https://github.com/ubuntu/ubuntu-make/) (`ubuntu-make`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [VueScan](https://www.hamrick.com/) (`vuescan`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Webex](https://www.webex.com/) (`webex`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`)<br />
