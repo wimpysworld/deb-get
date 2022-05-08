@@ -208,3 +208,29 @@ The icons above denote how `deb-get` installs/updates the packages.
 - GitHub releases <img src=".github/github.png" align="top" width="20" />
 - Launchpad PPA <img src=".github/launchpad.png" align="top" width="20" />
 - Website <img src=".github/direct.png" align="top" width="20" />
+
+### How do package updates work?
+
+#### 3rd party apt repositories and PPAs
+
+If packages are available via a 3rd party `apt` repository
+<img src=".github/debian.png" align="top" width="20" /> or a Launchpad PPA
+<img src=".github/launchpad.png" align="top" width="20" />, then those packages
+will be updated/upgraded when using `apt-get update` and `apt-get upgrade`.
+
+#### GitHub Releases and direct downloads
+
+For `.deb` packages that are only available via GitHub Releases
+<img src=".github/github.png" align="top" width="20" /> or direct download
+<img src=".github/direct.png" align="top" width="20" />, then those packages
+can only be updated/upgrade by using `deb-get update` and `deb-get upgrade`.
+
+## Adding Software
+
+Create a `function` in `deb-get` that is named `deb_the-package-name` where
+*"the-package-name"* is the `Package:` name shown using `apt show`. The `deb_`
+prefix is required so `deb-get` can dynamically build the list of available
+software.
+
+Take a look at the existing `deb_` functions as reference for adding new
+packages to `deb-get`.
