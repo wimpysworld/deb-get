@@ -1063,6 +1063,14 @@ function deb_azure-cli() {
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
 }
 
+function deb_tailscale() {
+    GPG_KEY_URL="https://pkgs.tailscale.com/stable/ubuntu/${UBUNTU_CODENAME}.noarmor.gpg"
+    APT_LIST_NAME="tailscale"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu ${UBUNTU_CODENAME} main"
+    PRETTY_NAME="Tailscale"
+    WEBSITE="https://tailscale.com/download/linux/"
+}
+
 function deb_vuescan() {
     ARCHS_SUPPORTED="amd64 arm64 i386"
     local ARCH_VER

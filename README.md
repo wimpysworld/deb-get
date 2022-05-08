@@ -184,6 +184,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Tailscale](https://tailscale.com.com/) (`tailscale`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [TeamViewer](https://www.teamviewer.com/) (`teamviewer`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Tixati](https://www.tixati.com/) (`tixati`)<br />
