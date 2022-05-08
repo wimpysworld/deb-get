@@ -1071,6 +1071,30 @@ function deb_terraform() {
     WEBSITE="https://www.terraform.io/"
 }
 
+function deb_tailscale() {
+    GPG_KEY_URL="https://pkgs.tailscale.com/stable/ubuntu/${UBUNTU_CODENAME}.noarmor.gpg"
+    APT_LIST_NAME="tailscale"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu ${UBUNTU_CODENAME} main"
+    PRETTY_NAME="Tailscale"
+    WEBSITE="https://tailscale.com/download/linux/"
+}
+
+function deb_vuescan() {
+    ARCHS_SUPPORTED="amd64 arm64 i386"
+    local ARCH_VER
+    case ${HOST_ARCH} in
+        x86_64)  ARCH_VER=x64;;
+        aarch64) ARCH_VER=a64;;
+        i386)    ARCH_VER=x32;;
+    esac
+    VERSION_PUBLISHED="$(curl -s https://www.hamrick.com/alternate-versions.html | grep '<a href="files/vue'${ARCH_VER}'.*\.deb">.*</a>' | head -n 1 | cut -d'>' -f2 | cut -d'<' -f1).0-0"
+    local MAJOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f1)"
+    local MINOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f2)"
+    URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
+    PRETTY_NAME="VueScan"
+    WEBSITE="https://www.hamrick.com/"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
