@@ -234,3 +234,15 @@ software.
 
 Take a look at the existing `deb_` functions as reference for adding new
 packages to `deb-get`.
+
+### What is acceptable?
+
+This defines what software that can be added to `deb-get` and therefore the
+scope of the project in terms if what it is intended for.
+
+  * Software **has to be published as a `.deb`**. Build from source, tarballs or other binaries releases will not be accepted.
+  * Software **has to be published authoritatively by the upstream vendor, project or maintainer**. Packages published by unassociated community contributors will not be accepted.
+  * **Software must be actively maintained**.
+  * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
+  * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
+  * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
