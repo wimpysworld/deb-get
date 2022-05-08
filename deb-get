@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 LC_ALL=C
-# dpkg-buildpackage --build=binary --no-check-builddeps -compression=gzip
+# dpkg-buildpackage --build=binary --no-check-builddeps --compression=gzip
 
 function usage() {
   echo -e "Usage
@@ -645,11 +645,10 @@ function deb_docker-ce() {
 }
 
 function deb_docker-desktop() {
-    URL="$(curl -s "https://docs.docker.com/desktop/linux/" | grep -i main/amd64 | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | cut -d' ' -f8)"
-    # FIXME: Find a way to derive the major version for Linux
-    #local MAJOR_VER="$(curl -s "https://docs.docker.com/desktop/windows/release-notes/" | grep "#docker-desktop-" | sed -e 's/<[^>]*>//g' | head -n1 | sed -e 's/ //g' -e 's/DockerDesktop//')"
-    local MAJOR_VER="4.8.0"
-    VERSION_PUBLISHED="${MAJOR_VER}-$(echo "${URL}" | cut -d'/' -f7)"
+    URL="$(curl -s "https://docs.docker.com/desktop/linux/install/" | grep amd64.deb | cut -d'"' -f2 | cut -d'?' -f1)"
+    local MAJOR_VER="$(echo ${URL} | cut -d'-' -f4)"
+    local MINOR_VER="$(echo ${URL} | cut -d'/' -f7)"
+    VERSION_PUBLISHED="${MAJOR_VER}-${MINOR_VER}"
     PRETTY_NAME="Docker Desktop"
     WEBSITE="https://www.docker.com/products/docker-desktop/"
 }
@@ -1072,6 +1071,22 @@ function deb_tailscale() {
     WEBSITE="https://tailscale.com/download/linux/"
 }
 
+function deb_vuescan() {
+    ARCHS_SUPPORTED="amd64 arm64 i386"
+    local ARCH_VER
+    case ${HOST_ARCH} in
+        x86_64)  ARCH_VER=x64;;
+        aarch64) ARCH_VER=a64;;
+        i386)    ARCH_VER=x32;;
+    esac
+    VERSION_PUBLISHED="$(curl -s https://www.hamrick.com/alternate-versions.html | grep '<a href="files/vue'${ARCH_VER}'.*\.deb">.*</a>' | head -n 1 | cut -d'>' -f2 | cut -d'<' -f1).0-0"
+    local MAJOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f1)"
+    local MINOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f2)"
+    URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
+    PRETTY_NAME="VueScan"
+    WEBSITE="https://www.hamrick.com/"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
@@ -1080,7 +1095,7 @@ if [ -d /var/cache/get-deb ]; then
 fi
 mkdir -p "${CACHE_DIR}" 2>/dev/null
 chmod 755 "${CACHE_DIR}" 2>/dev/null
-export VERSION="0.2.3"
+export VERSION="0.2.4"
 
 if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
@@ -1090,10 +1105,12 @@ if [ "$(id -u)" -ne 0 ]; then
   fancy_message fatal "You must use sudo to run $(basename ${0})."
 fi
 
-if [ -z "${SUDO_USER}" ]; then
-  fancy_message fatal "You must use sudo to run $(basename ${0})."
+if [ "${SUDO_USER}" ]; then
+  USER_HOME=$(getent passwd "${SUDO_USER}" | cut -d: -f6)
+elif [ "${DOAS_USER}" ]; then
+  USER_HOME=$(getent passwd "${DOAS_USER}" | cut -d: -f6)
 else
-  SUDO_HOME=$(getent passwd "${SUDO_USER}" | cut -d: -f6)
+  fancy_message fatal "You must use sudo to run $(basename ${0})."
 fi
 
 if ! command -v lsb_release 1>/dev/null; then

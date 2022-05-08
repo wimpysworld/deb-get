@@ -1,3 +1,9 @@
+deb-get (0.2.4-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Martin Wimpress <code@wimpress.io>  Fri, 06 May 2022 14:49:35 +0100
+
 deb-get (0.2.3-1) unstable; urgency=medium
 
   * Added Ubuntu Make, InSync, TeamViewer and Tixati.
