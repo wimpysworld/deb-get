@@ -1076,7 +1076,7 @@ function deb_tailscale() {
     APT_LIST_NAME="tailscale"
     APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu ${UBUNTU_CODENAME} main"
     PRETTY_NAME="Tailscale"
-    WEBSITE="https://tailscale.com/download/linux/"
+    WEBSITE="https://tailscale.com/"
 }
 
 function deb_vuescan() {
