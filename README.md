@@ -19,7 +19,8 @@ release pages.
 Use `deb-get` to install `deb-get`
 
 ```bash
-sudo apt install curl && curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
+sudo apt install curl
+curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
 ```
 
 Alternatively, you can [download the `.deb` of `deb-get` from the releases page](https://github.com/wimpysworld/deb-get/releases)
@@ -116,6 +117,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`)<br />
 <img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (`azure-cli`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Etcher](https://www.balena.io/etcher/) (`balena-etcher-electron`)<br />
 <img src=".github/github.png" align="top" width="20" /> [bat](https://github.com/sharkdp/bat) (`bat`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [BeerSmith](https://beersmith.com/) (`beersmith3`)<br />
@@ -182,12 +184,15 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Tailscale](https://tailscale.com/) (`tailscale`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [TeamViewer](https://www.teamviewer.com/) (`teamviewer`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [Terraform](https://www.terraform.io/) (`terraform`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Tixati](https://www.tixati.com/) (`tixati`)<br />
 <img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)<br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Ubuntu-Make](https://github.com/ubuntu/ubuntu-make/) (`ubuntu-make`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`)<br />
+<img src=".github/direct.png" align="top" width="20" /> [VueScan](https://www.hamrick.com/) (`vuescan`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`)<br />
 <img src=".github/direct.png" align="top" width="20" /> [Webex](https://www.webex.com/) (`webex`)<br />
 <img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`)<br />
@@ -203,3 +208,41 @@ The icons above denote how `deb-get` installs/updates the packages.
 - GitHub releases <img src=".github/github.png" align="top" width="20" />
 - Launchpad PPA <img src=".github/launchpad.png" align="top" width="20" />
 - Website <img src=".github/direct.png" align="top" width="20" />
+
+### How do package updates work?
+
+#### 3rd party apt repositories and PPAs
+
+If packages are available via a 3rd party `apt` repository
+<img src=".github/debian.png" align="top" width="20" /> or a Launchpad PPA
+<img src=".github/launchpad.png" align="top" width="20" />, then those packages
+will be updated/upgraded when using `apt-get update` and `apt-get upgrade`.
+
+#### GitHub Releases and direct downloads
+
+For `.deb` packages that are only available via GitHub Releases
+<img src=".github/github.png" align="top" width="20" /> or direct download
+<img src=".github/direct.png" align="top" width="20" />, then those packages
+can only be updated/upgrade by using `deb-get update` and `deb-get upgrade`.
+
+## Adding Software
+
+Create a `function` in `deb-get` that is named `deb_the-package-name` where
+*"the-package-name"* is the `Package:` name shown using `apt show`. The `deb_`
+prefix is required so `deb-get` can dynamically build the list of available
+software.
+
+Take a look at the existing `deb_` functions as reference for adding new
+packages to `deb-get`.
+
+### What is acceptable?
+
+This defines what software that can be added to `deb-get` and therefore the
+scope of the project in terms if what it is intended for.
+
+  * Software **has to be published as a `.deb`**. Build from source, tarballs or other binaries releases will not be accepted.
+  * Software **has to be published authoritatively by the upstream vendor, project or maintainer**. Packages published by unassociated community contributors will not be accepted.
+  * **Software must be actively maintained**.
+  * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
+  * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
+  * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
