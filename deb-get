@@ -28,6 +28,25 @@ cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
   exit 1
 }
 
+# https://github.com/wimpysworld/deb-get/issues/126
+## BEGIN package_is_installed {
+# Summary  : package_is_installed <package-name>;
+# Purpose  : Quickly check if a package is installed
+# Example  : package_is_installed kfocus-nvidia;
+# Returns  : 0 = package installed; 1 = not installed
+# Throws   : none
+#
+package_is_installed() {
+  declare _pkg_name _status_str;
+  _pkg_name="${1:-}";
+  _status_str="$( 2>&1 \
+    dpkg-query -f '${db:Status-abbrev}' -W "${_pkg_name}"
+  )";
+  if grep -qE '^.i ' <<< "${_status_str}"; then return 0; fi
+  return 1;
+}
+## . END package_is_installed }
+
 function unroll_url() {
     curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null
 }
