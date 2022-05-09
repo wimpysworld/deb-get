@@ -131,6 +131,7 @@ function upgrade_apt() {
 }
 
 function install_apt() {
+    local STATUS=""
     if [ -n "${APT_KEY_URL}" ]; then
         wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
     fi
@@ -147,7 +148,7 @@ function install_apt() {
     echo -e "${APT_REPO_URL}" > "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
     update_apt
 
-    if ! dpkg -l "${APP}" >/dev/null 2>&1; then
+    if ! package_is_installed "${APP}"; then
         eula
         apt-get -q -y install "${APP}"
     else
@@ -161,9 +162,10 @@ function install_apt() {
 }
 
 function install_ppa() {
+    local STATUS=""
     if apt-add-repository -y --no-update "${PPA}"; then
         update_apt
-        if ! dpkg -l "${APP}" >/dev/null 2>&1; then
+        if ! package_is_installed "${APP}"; then
             eula
             apt-get -q -y install "${APP}"
         else
@@ -190,7 +192,7 @@ function install_deb() {
         return
     fi
 
-    if ! dpkg -l "${APP}" >/dev/null 2>&1; then
+    if ! package_is_installed "${APP}"; then
         eula
         download_deb "${URL}"
         apt-get -q -y install "${CACHE_DIR}/${FILE}"
@@ -217,7 +219,7 @@ function remove_deb() {
     local FILE="${URL##*/}"
     local STATUS=""
 
-    if dpkg -l "${APP}" >/dev/null 2>&1; then
+    if package_is_installed "${APP}"; then
         STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
         if [ "${STATUS}" == "deinstall ok config-files" ]; then
             REMOVE="purge"
@@ -256,7 +258,7 @@ function remove_deb() {
 }
 
 function version_deb() {
-    if dpkg -l "${APP}" >/dev/null 2>&1; then
+    if package_is_installed "${APP}"; then
         echo "$(dpkg -s "${APP}" | grep ^Version: | cut -d' ' -f2)"
     else
         echo ""
@@ -308,8 +310,9 @@ function validate_deb() {
 
 function list_debs() {
     local PAD='                              '
+    local STATUS=""
     for DEB in "${APPS[@]}"; do
-        if dpkg -l "${DEB}" >/dev/null 2>&1; then
+        if package_is_installed "${DEB}"; then
             STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f4- )"
             printf "%s %s [ ${STATUS} ]\n" "${DEB}" "${PAD:${#DEB}}"
         else
@@ -338,7 +341,7 @@ function update_debs() {
     for DEB in "${APPS[@]}"; do
         validate_deb "${DEB}"
         # Only download .debs that are installed
-        if dpkg -l "${DEB}" >/dev/null 2>&1; then
+        if package_is_installed "${DEB}"; then
             STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
@@ -355,7 +358,7 @@ function upgrade_debs() {
     for DEB in "${APPS[@]}"; do
         validate_deb "${DEB}"
         # Only upgrade .debs that are installed
-        if dpkg -l "${DEB}" >/dev/null 2>&1; then
+        if package_is_installed "${DEB}"; then
             STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 if [ "${STATUS}" == "install ok installed" ]; then
