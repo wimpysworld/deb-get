@@ -247,3 +247,10 @@ scope of the project in terms if what it is intended for.
   * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
   * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
   * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
+
+## Related projects
+
+  * [App Outlet](https://app-outlet.github.io/): *A Universal linux app store*
+  * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
+  * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
+  * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
