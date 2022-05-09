@@ -1085,6 +1085,14 @@ function deb_azure-cli() {
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
 }
 
+function deb_zotero() {
+    GPG_KEY_URL="https://raw.githubusercontent.com/retorquere/zotero-deb/master/zotero-archive-keyring.gpg"
+    APT_LIST_NAME="zotero"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg by-hash=force] https://zotero.retorque.re/file/apt-package-archive ./"
+    PRETTY_NAME="Zotero"
+    WEBSITE="https://www.zotero.org/"
+}
+
 function deb_terraform() {
     APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
     APT_LIST_NAME="terraform"
