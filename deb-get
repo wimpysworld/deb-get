@@ -1064,6 +1064,15 @@ function deb_jabref() {
     WEBSITE="https://www.jabref.org/"
 }
 
+function deb_gh() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    get_github_releases "https://api.github.com/repos/cli/cli/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="GitHub CLI"
+    WEBSITE="https://cli.github.com/"
+}
+
 function deb_teamviewer() {
     VERSION_PUBLISHED="$(curl -s 'https://www.teamviewer.com/en/download/linux/' | grep -C 5 'Ubuntu, Debian' | grep '\*.deb package' | cut -d ' ' -f3 | sed 's/\([0-9\.]*\).*$/\1/')"
     URL="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
