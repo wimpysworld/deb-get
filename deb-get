@@ -1232,6 +1232,15 @@ function deb_tidal-hifi() {
     SUMMARY="Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine."
 }
 
+function deb_expressvpn() {
+    ARCHS_SUPPORTED="amd64 i386 armhf"
+    VERSION_PUBLISHED="$(curl -s https://www.expressvpn.com/latest#linux | grep -o 'value="https://www.expressvpn.works/clients/linux/expressvpn_.*'${HOST_ARCH}'.deb"' | cut -d"_" -f2)"
+    URL="https://www.expressvpn.works/clients/linux/expressvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    PRETTY_NAME="Expressvpn"
+    WEBSITE="https://www.expressvpn.com/"
+    SUMMARY="Popular VPN software"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
