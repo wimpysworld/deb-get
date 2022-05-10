@@ -1125,6 +1125,14 @@ function deb_vuescan() {
     WEBSITE="https://www.hamrick.com/"
 }
 
+function deb_tidal-hifi() {
+    get_github_releases "https://api.github.com/repos/Mastermindzh/tidal-hifi/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="Tidal-hifi"
+    WEBSITE="https://github.com/Mastermindzh/tidal-hifi"
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
