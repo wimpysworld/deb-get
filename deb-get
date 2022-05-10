@@ -1016,6 +1016,25 @@ function deb_whatsapp-for-linux() {
     SUMMARY="An unofficial WhatsApp desktop application for Linux."
 }
 
+function deb_igdm() {
+    get_github_releases "https://api.github.com/repos/igdmapps/igdm/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="IGdm Messenger"
+    WEBSITE="https://github.com/igdmapps/igdm"
+    SUMMARY="Continue your Instagram direct messages from your phone to your desktop."
+}
+
+# Upstream login bug
+function disabled_igdm-pro() {
+    get_github_releases "https://api.github.com/repos/igdmapps/igdm-pro-release/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="IGdm Pro Messenger"
+    WEBSITE="https://pro.igdm.me/"
+    SUMMARY="Continue your Instagram direct messages from your phone to your desktop."
+}
+
 function deb_whalebird() {
     get_github_releases "https://api.github.com/repos/h3poteto/whalebird-desktop/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
