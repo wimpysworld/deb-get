@@ -1143,7 +1143,9 @@ if [ "$(id -u)" -ne 0 ]; then
   fancy_message fatal "You must use sudo to run $(basename ${0})."
 fi
 
-if [ "${SUDO_USER}" ]; then
+if [ "$(id -u)" -eq "$(id -ru)" ]; then
+  USER_HOME=$(getent passwd "${USER}" | cut -d: -f6)
+elif [ "${SUDO_USER}" ]; then
   USER_HOME=$(getent passwd "${SUDO_USER}" | cut -d: -f6)
 elif [ "${DOAS_USER}" ]; then
   USER_HOME=$(getent passwd "${DOAS_USER}" | cut -d: -f6)
