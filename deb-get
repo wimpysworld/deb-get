@@ -1007,6 +1007,15 @@ function deb_rocketchat() {
     SUMMARY="Official Desktop Client for Rocket.Chat."
 }
 
+function deb_whatsapp-for-linux() {
+    get_github_releases "https://api.github.com/repos/eneshecan/whatsapp-for-linux/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="WhatsApp for Linux"
+    WEBSITE="https://github.com/eneshecan/whatsapp-for-linux"
+    SUMMARY="An unofficial WhatsApp desktop application for Linux."
+}
+
 function deb_whalebird() {
     get_github_releases "https://api.github.com/repos/h3poteto/whalebird-desktop/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
