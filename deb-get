@@ -268,9 +268,9 @@ function version_deb() {
 function info_deb() {
     local INSTALLED="${VERSION_INSTALLED:-No}"
     case ${METHOD} in
-        direct|github|website) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Download:\t${URL}\n  Website:\t${WEBSITE}";;
-        apt) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Repository:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}";;
-        ppa) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Launchpad:\t${PPA}\n  Website:\t${WEBSITE}";;
+        direct|github|website) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Download:\t${URL}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}";;
+        apt) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Repository:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}";;
+        ppa) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Launchpad:\t${PPA}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}";;
     esac
 }
 
@@ -296,6 +296,7 @@ function validate_deb() {
     export VERSION_INSTALLED=""
     export VERSION_PUBLISHED=""
     export PRETTY_NAME=""
+    export SUMMARY=""
     export WEBSITE=""
 
     # Source the variables
@@ -331,7 +332,7 @@ function prettylist_debs() {
             ppa)    ICON="launchpad.png";;
             *)      ICON="direct.png";;
         esac
-        echo "<img src=\".github/${ICON}\" align=\"top\" width=\"20\" /> [${PRETTY_NAME}](${WEBSITE}) ("'`'"${DEB}"'`'")<br />"
+        echo "<img src=\".github/${ICON}\" align=\"top\" width=\"20\" /> [${PRETTY_NAME}](${WEBSITE}) ("'`'"${DEB}"'`'") - <i>${SUMMARY}</i><br />"
     done
 }
 
@@ -374,6 +375,7 @@ function deb_tixati() {
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     PRETTY_NAME="Tixati"
     WEBSITE="https://www.tixati.com/"
+    SUMMARY="A New and Powerful P2P System."
 }
 
 function deb_discord() {
@@ -381,42 +383,49 @@ function deb_discord() {
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
     PRETTY_NAME="Discord"
     WEBSITE="https://discord.com/"
+    SUMMARY="A place that makes it easy to talk every day and hang out more often."
 }
 
 function deb_quickemu() {
     PPA="ppa:flexiondotorg/quickemu"
     PRETTY_NAME="Quickemu"
     WEBSITE="https://github.com/quickemu-project/quickemu"
+    SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
 }
 
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
     PRETTY_NAME="Firefox ESR"
     WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+    SUMMARY=" Firefox Extended Support Release."
 }
 
 function deb_quickgui() {
     PPA="ppa:yannick-mauray/quickgui"
     PRETTY_NAME="Quickgui"
     WEBSITE="https://github.com/quickemu-project/quickgui"
+    SUMMARY="A Flutter frontend for Quickemu."
 }
 
 function deb_nextcloud-desktop() {
     PPA="ppa:nextcloud-devs/client"
     PRETTY_NAME="Nextcloud Desktop"
     WEBSITE="https://nextcloud.com/"
+    SUMMARY="The self-hosted productivity platform that keeps you in control."
 }
 
 function deb_keepassxc() {
     PPA="ppa:phoerious/keepassxc"
     PRETTY_NAME="KeePassXC"
     WEBSITE="https://keepassxc.org/"
+    SUMMARY="Cross-Platform Password Manager."
 }
 
 function deb_ubuntu-make() {
     PPA="ppa:lyzardking/ubuntu-make"
     PRETTY_NAME="Ubuntu-Make"
     WEBSITE="https://github.com/ubuntu/ubuntu-make/"
+    SUMMARY="Easy setup of common tools for developers on Ubuntu."
 }
 
 function deb_atom() {
@@ -425,6 +434,7 @@ function deb_atom() {
     APT_REPO_URL="deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
     PRETTY_NAME="Atom"
     WEBSITE="https://atom.io/"
+    SUMMARY="A hackable text editor for the 21st Century."
 }
 
 function deb_code() {
@@ -433,6 +443,7 @@ function deb_code() {
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
     PRETTY_NAME="Visual Studio Code"
     WEBSITE="https://code.visualstudio.com/"
+    SUMMARY="Code editing. Redefined."
 }
 
 function deb_rstudio() {
@@ -440,6 +451,7 @@ function deb_rstudio() {
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | sed s'/-/+/')"
     PRETTY_NAME="RStudio"
     WEBSITE="https://www.rstudio.com/"
+    SUMMARY="Professional software for data science teams."
 }
 
 function deb_beersmith3() {
@@ -447,6 +459,7 @@ function deb_beersmith3() {
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)"
     PRETTY_NAME="BeerSmith"
     WEBSITE="https://beersmith.com/"
+    SUMMARY="Home Brewing Software."
 }
 
 function deb_ocenaudio() {
@@ -458,6 +471,7 @@ function deb_ocenaudio() {
     esac
     PRETTY_NAME="ocenaudio"
     WEBSITE="https://www.ocenaudio.com/"
+    SUMMARY="Easy, fast and powerful audio editor."
 }
 
 function deb_github-desktop() {
@@ -466,6 +480,7 @@ function deb_github-desktop() {
     URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="GitHub Desktop"
     WEBSITE="https://desktop.github.com/"
+    SUMMARY="Simple collaboration from your desktop."
 }
 
 function deb_lsd() {
@@ -475,6 +490,7 @@ function deb_lsd() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
+    SUMMARY="The next gen 'ls' command."
 }
 
 function deb_bat() {
@@ -484,6 +500,7 @@ function deb_bat() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="bat"
     WEBSITE="https://github.com/sharkdp/bat"
+    SUMMARY="A 'cat' clone with wings."
 }
 
 function deb_git-delta() {
@@ -493,6 +510,7 @@ function deb_git-delta() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="git-delta"
     WEBSITE="https://github.com/dandavison/delta"
+    SUMMARY="A syntax-highlighting pager for 'git', 'diff', and 'grep' output."
 }
 
 function deb_fd() {
@@ -502,6 +520,7 @@ function deb_fd() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="fd"
     WEBSITE="https://github.com/sharkdp/fd"
+    SUMMARY="A simple, fast and user-friendly alternative to 'find'."
 }
 
 function deb_duf() {
@@ -517,6 +536,7 @@ function deb_duf() {
     esac
     PRETTY_NAME="duf"
     WEBSITE="https://github.com/muesli/duf"
+    SUMMARY="Disk Usage/Free Utility - a better 'df' alternative."
 }
 
 function deb_zenith() {
@@ -525,6 +545,7 @@ function deb_zenith() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Zenith"
     WEBSITE="https://github.com/bvaisvil/zenith"
+    SUMMARY="Sort of like 'top' or 'htop' but with zoom-able charts."
 }
 
 function deb_rclone() {
@@ -546,6 +567,7 @@ function deb_rclone() {
     esac
     PRETTY_NAME="Rclone"
     WEBSITE="https://rclone.org/"
+    SUMMARY="Syncs your files to cloud storage."
 }
 
 function deb_simplenote() {
@@ -558,6 +580,7 @@ function deb_simplenote() {
     esac
     PRETTY_NAME="Simplenote"
     WEBSITE="https://simplenote.com/"
+    SUMMARY="The simplest way to keep notes."
 }
 
 function deb_element-desktop() {
@@ -566,6 +589,7 @@ function deb_element-desktop() {
     APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://packages.element.io/debian/ default main"
     PRETTY_NAME="Element"
     WEBSITE="https://element.io/"
+    SUMMARY="Secure and independent communication, connected via Matrix."
 }
 
 function deb_1password() {
@@ -574,6 +598,7 @@ function deb_1password() {
     APT_REPO_URL="deb [arch=amd64] https://downloads.1password.com/linux/debian/amd64 stable main"
     PRETTY_NAME="1Password"
     WEBSITE="https://1password.com/"
+    SUMMARY="The easiest way to store and use strong passwords."
 }
 
 function deb_weechat() {
@@ -582,6 +607,7 @@ function deb_weechat() {
     APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://weechat.org/ubuntu ${UBUNTU_CODENAME} main"
     PRETTY_NAME="WeeChat"
     WEBSITE="https://weechat.org/"
+    SUMMARY="The extensible chat client."
 }
 
 function deb_jami() {
@@ -590,6 +616,7 @@ function deb_jami() {
     APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_${UBUNTU_RELEASE}/ jami main"
     PRETTY_NAME="Jami"
     WEBSITE="https://jami.net/"
+    SUMMARY="Share, freely and privately."
 }
 
 function deb_google-chrome-stable() {
@@ -599,6 +626,7 @@ function deb_google-chrome-stable() {
     EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
     PRETTY_NAME="Google Chrome"
     WEBSITE="https://www.google.com/chrome/"
+    SUMMARY="Fast, Secure Browser from Google."
 }
 
 function disabled_ungoogled-chromium() {
@@ -615,6 +643,7 @@ function disabled_ungoogled-chromium() {
     esac
     PRETTY_NAME="ungoogled-chromium"
     WEBSITE="https://github.com/Eloston/ungoogled-chromium"
+    SUMMARY="Google Chromium, sans integration with Google."
 }
 
 function deb_opera-stable() {
@@ -623,6 +652,7 @@ function deb_opera-stable() {
     APT_REPO_URL="deb https://deb.opera.com/opera-stable/ stable non-free"
     PRETTY_NAME="Opera"
     WEBSITE="https://www.opera.com/"
+    SUMMARY="Faster, safer and smarter than default browsers."
 }
 
 function deb_teams() {
@@ -631,6 +661,7 @@ function deb_teams() {
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"
     PRETTY_NAME="Microsoft Teams"
     WEBSITE="https://www.microsoft.com/microsoft-teams/group-chat-software"
+    SUMMARY="Team chat and collaboration."
 }
 
 function deb_enpass() {
@@ -639,6 +670,7 @@ function deb_enpass() {
     APT_REPO_URL="deb http://repo.sinew.in/ stable main"
     PRETTY_NAME="Enpass"
     WEBSITE="https://www.enpass.io/"
+    SUMMARY="Remember one master password and let Enpass take care of the rest."
 }
 
 function deb_microsoft-edge-stable() {
@@ -647,6 +679,7 @@ function deb_microsoft-edge-stable() {
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
     PRETTY_NAME="Microsoft Edge"
     WEBSITE="https://www.microsoft.com/edge"
+    SUMMARY="Fast and secure browser that helps you protect your data and save time and money."
 }
 
 function deb_brave-browser() {
@@ -655,6 +688,7 @@ function deb_brave-browser() {
     APT_REPO_URL="deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
     PRETTY_NAME="Brave"
     WEBSITE="https://brave.com/"
+    SUMMARY="Browse privately. Search privately. And ditch Big Tech."
 }
 
 function deb_docker-ce() {
@@ -664,6 +698,7 @@ function deb_docker-ce() {
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/ubuntu ${UBUNTU_CODENAME} stable"
     PRETTY_NAME="Docker Engine"
     WEBSITE="https://www.docker.com/"
+    SUMMARY="Open source containerization technology for building and containerizing your applications."
 }
 
 function deb_docker-desktop() {
@@ -673,6 +708,7 @@ function deb_docker-desktop() {
     VERSION_PUBLISHED="${MAJOR_VER}-${MINOR_VER}"
     PRETTY_NAME="Docker Desktop"
     WEBSITE="https://www.docker.com/products/docker-desktop/"
+    SUMMARY="The fastest way to containerize applications."
 }
 
 function deb_irccloud-desktop() {
@@ -681,6 +717,7 @@ function deb_irccloud-desktop() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="IRCCloud Desktop"
     WEBSITE="https://www.irccloud.com/"
+    SUMMARY="IRCCloud desktop application."
 }
 
 function deb_codium() {
@@ -690,6 +727,7 @@ function deb_codium() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="VSCodium"
     WEBSITE="https://vscodium.com/"
+    SUMMARY="Community-driven, freely-licensed binary distribution of Microsoft's Code editor."
 }
 
 function deb_micro() {
@@ -698,6 +736,7 @@ function deb_micro() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="micro"
     WEBSITE="https://micro-editor.github.io/"
+    SUMMARY="A modern and intuitive terminal-based text editor."
 }
 
 function deb_ludo() {
@@ -707,6 +746,7 @@ function deb_ludo() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Ludo"
     WEBSITE="https://ludo.libretro.com/"
+    SUMMARY="A minimalist frontend for emulators."
 }
 
 function deb_obsidian() {
@@ -715,6 +755,7 @@ function deb_obsidian() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Obsidian"
     WEBSITE="https://obsidian.md/"
+    SUMMARY="A powerful knowledge base on top of a local folder of plain text Markdown files."
 }
 
 function deb_rambox() {
@@ -723,6 +764,7 @@ function deb_rambox() {
     URL=$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Rambox"
     WEBSITE="https://rambox.app/"
+    SUMMARY="Workspace simplifier."
 }
 
 function deb_antimicrox() {
@@ -731,6 +773,7 @@ function deb_antimicrox() {
     URL=$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="AntiMicroX"
     WEBSITE="https://antimicrox.github.io/"
+    SUMMARY="A graphical program used to map keyboard buttons and mouse controls to a gamepad."
 }
 
 function deb_franz() {
@@ -739,6 +782,7 @@ function deb_franz() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Franz"
     WEBSITE="https://meetfranz.com/"
+    SUMMARY="A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more."
 }
 
 function deb_heroic() {
@@ -747,6 +791,7 @@ function deb_heroic() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="Heroic Games Launcher"
     WEBSITE="https://heroicgameslauncher.com/"
+    SUMMARY="An Open Source GOG and Epic games launcher."
 }
 
 function deb_deb-get() {
@@ -756,6 +801,7 @@ function deb_deb-get() {
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="deb-get"
     WEBSITE="https://github.com/wimpysworld/deb-get"
+    SUMMARY="'apt-get' functionality for .debs published in 3rd party repositories or via direct download package."
 }
 
 function deb_skypeforlinux() {
@@ -764,6 +810,7 @@ function deb_skypeforlinux() {
     APT_REPO_URL="deb [arch=amd64] https://repo.skype.com/deb stable main"
     PRETTY_NAME="Skype"
     WEBSITE="https://www.skype.com/"
+    SUMMARY="Stay connected with free video calls worldwide."
 }
 
 function deb_wavebox() {
@@ -772,6 +819,7 @@ function deb_wavebox() {
     APT_REPO_URL="deb [arch=amd64] https://download.wavebox.app/stable/linux/deb/ amd64/"
     PRETTY_NAME="Wavebox"
     WEBSITE="https://wavebox.io/"
+    SUMMARY="Rethink the Web. Productivity Browser."
 }
 
 function deb_wire-desktop() {
@@ -780,6 +828,7 @@ function deb_wire-desktop() {
     APT_REPO_URL="deb [arch=amd64] https://wire-app.wire.com/linux/debian stable main"
     PRETTY_NAME="Wire"
     WEBSITE="https://wire.com/"
+    SUMMARY="Secure collaboration platform."
 }
 
 function deb_signal-desktop() {
@@ -788,6 +837,7 @@ function deb_signal-desktop() {
     APT_REPO_URL="deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
     PRETTY_NAME="Signal"
     WEBSITE="https://signal.org/"
+    SUMMARY="Private Messenger."
 }
 
 function deb_syncthing() {
@@ -796,6 +846,7 @@ function deb_syncthing() {
     APT_REPO_URL="deb http://apt.syncthing.net/ syncthing release"
     PRETTY_NAME="Syncthing"
     WEBSITE="https://syncthing.net/"
+    SUMMARY="Continuous file synchronization program."
 }
 
 function deb_sublime-text() {
@@ -804,6 +855,7 @@ function deb_sublime-text() {
     APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
     PRETTY_NAME="Sublime Text"
     WEBSITE="https://www.sublimetext.com/"
+    SUMMARY="Text Editing, Done Right."
 }
 
 function deb_plexmediaserver() {
@@ -813,6 +865,7 @@ function deb_plexmediaserver() {
     APT_REPO_URL="deb https://downloads.plex.tv/repo/deb public main"
     PRETTY_NAME="Plex"
     WEBSITE="https://www.plex.tv/"
+    SUMMARY="Stream Movies and TV Shows."
 }
 
 function deb_jellyfin() {
@@ -822,6 +875,7 @@ function deb_jellyfin() {
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu ${UBUNTU_CODENAME} main"
     PRETTY_NAME="Jellyfin"
     WEBSITE="https://jellyfin.org/"
+    SUMMARY="The Free Software Media System."
 }
 
 function deb_pandoc() {
@@ -831,6 +885,7 @@ function deb_pandoc() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Pandoc"
     WEBSITE="https://pandoc.org/"
+    SUMMARY="A universal document converter."
 }
 function deb_sublime-merge() {
     APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
@@ -838,6 +893,7 @@ function deb_sublime-merge() {
     APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
     PRETTY_NAME="Sublime Merge"
     WEBSITE="https://www.sublimemerge.com/"
+    SUMMARY="Git Client, done Sublime."
 }
 
 function deb_google-earth-pro-stable() {
@@ -846,6 +902,7 @@ function deb_google-earth-pro-stable() {
     APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/earth/deb/ stable main"
     PRETTY_NAME="Google Earth Pro"
     WEBSITE="https://www.google.com/earth/versions/"
+    SUMMARY="Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities."
 }
 
 function deb_insync() {
@@ -855,6 +912,7 @@ function deb_insync() {
     APT_REPO_URL="deb http://apt.insync.io/ubuntu ${UBUNTU_CODENAME} non-free contrib"
     PRETTY_NAME="Insync"
     WEBSITE="https://www.insynchq.com/"
+    SUMMARY="Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop."
 }
 
 function deb_balena-etcher-electron() {
@@ -864,6 +922,7 @@ function deb_balena-etcher-electron() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Etcher"
     WEBSITE="https://www.balena.io/etcher/"
+    SUMMARY="Flash OS images to SD cards & USB drives, safely and easily."
 }
 
 function deb_figma-linux() {
@@ -873,6 +932,7 @@ function deb_figma-linux() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Figma Linux"
     WEBSITE="https://github.com/Figma-Linux/figma-linux"
+    SUMMARY="Unofficial Electron-based Figma desktop app for Linux."
 }
 
 function deb_rpi-imager() {
@@ -881,6 +941,7 @@ function deb_rpi-imager() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Raspberry Pi Imager"
     WEBSITE="https://github.com/raspberrypi/rpi-imager"
+    SUMMARY="Raspberry Pi Imaging Utility."
 }
 
 function deb_bitwarden() {
@@ -889,6 +950,7 @@ function deb_bitwarden() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="Bitwarden"
     WEBSITE="https://bitwarden.com/"
+    SUMMARY="Open Source Password Manager."
 }
 
 function deb_insomnia() {
@@ -897,6 +959,7 @@ function deb_insomnia() {
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="Insomnia"
     WEBSITE="https://insomnia.rest/"
+    SUMMARY="The API Design Platform and API Client."
 }
 
 function deb_onlyoffice-desktopeditors() {
@@ -905,6 +968,7 @@ function deb_onlyoffice-desktopeditors() {
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="ONLYOFFICE Desktop Editors"
     WEBSITE="https://www.onlyoffice.com/en/desktop.aspx"
+    SUMMARY="Free desktop office suite for document editing and collaboration."
 }
 
 function deb_powershell() {
@@ -913,6 +977,7 @@ function deb_powershell() {
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="PowerShell"
     WEBSITE="https://docs.microsoft.com/powershell/"
+    SUMMARY="Cross-platform automation and configuration tool/framework and optimized for dealing with structured data."
 }
 
 function deb_mailspring() {
@@ -921,6 +986,7 @@ function deb_mailspring() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="Mailspring"
     WEBSITE="https://getmailspring.com/"
+    SUMMARY="Boost your productivity and send better email with the best mail client."
 }
 
 function deb_mattermost-desktop() {
@@ -929,6 +995,7 @@ function deb_mattermost-desktop() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="Mattermost Desktop"
     WEBSITE="https://mattermost.com/"
+    SUMMARY="Open Source platform for developer collaboration."
 }
 
 function deb_syft() {
@@ -938,6 +1005,7 @@ function deb_syft() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="Syft"
     WEBSITE="https://github.com/anchore/syft"
+    SUMMARY="CLI tool and library for generating a Software Bill of Materials from container images and filesystems."
 }
 
 function deb_grype() {
@@ -947,6 +1015,7 @@ function deb_grype() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="Grype"
     WEBSITE="https://github.com/anchore/grype"
+    SUMMARY="A vulnerability scanner for container images and filesystems."
 }
 
 function deb_trivy() {
@@ -972,6 +1041,7 @@ function deb_trivy() {
     esac
     PRETTY_NAME="Trivy"
     WEBSITE="https://aquasecurity.github.io/trivy/"
+    SUMMARY="A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts."
 }
 
 function deb_gitter() {
@@ -982,6 +1052,7 @@ function deb_gitter() {
     esac
     PRETTY_NAME="Gitter"
     WEBSITE="https://gitter.im/"
+    SUMMARY="A chat and networking platform to manage and connect communities through messaging, content and discovery."
 }
 
 function deb_slack-desktop() {
@@ -990,6 +1061,7 @@ function deb_slack-desktop() {
     APT_REPO_URL="deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
     PRETTY_NAME="Slack"
     WEBSITE="https://slack.com/"
+    SUMMARY="One platform for your team and your work."
 }
 
 function deb_vivaldi-stable() {
@@ -999,6 +1071,7 @@ function deb_vivaldi-stable() {
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.vivaldi.com/stable/deb/ stable main"
     PRETTY_NAME="Vivaldi"
     WEBSITE="https://vivaldi.com/"
+    SUMMARY="The most feature-packaged, customisable browser."
 }
 
 function deb_gitkraken() {
@@ -1006,6 +1079,7 @@ function deb_gitkraken() {
     URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
     PRETTY_NAME="GitKraken"
     WEBSITE="https://www.gitkraken.com/invite/ieih1QR3"
+    SUMMARY="Intuitive Git GUI & powerful Git CLI."
 }
 
 function deb_webex() {
@@ -1014,6 +1088,7 @@ function deb_webex() {
     URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
     PRETTY_NAME="Webex"
     WEBSITE="https://www.webex.com/"
+    SUMMARY="Video Conferencing, Cloud Calling and Screen Sharing."
 }
 
 function deb_dropbox() {
@@ -1022,6 +1097,7 @@ function deb_dropbox() {
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     PRETTY_NAME="Dropbox"
     WEBSITE="https://www.dropbox.com/"
+    SUMMARY="Securely share, store and do more with your content."
 }
 
 function deb_spotify-client() {
@@ -1031,6 +1107,7 @@ function deb_spotify-client() {
     URL="http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VERSION_UPSTREAM}_amd64.deb"
     PRETTY_NAME="Spotify"
     WEBSITE="https://www.spotify.com/"
+    SUMMARY="Millions of songs and podcasts."
 }
 
 function deb_keybase() {
@@ -1040,6 +1117,7 @@ function deb_keybase() {
     APT_REPO_URL="deb http://prerelease.keybase.io/deb stable main"
     PRETTY_NAME="Keybase"
     WEBSITE="https://keybase.io/"
+    SUMMARY="End-to-end encryption for things that matter. Secure messaging and file-sharing."
 }
 
 function deb_zoom() {
@@ -1047,6 +1125,7 @@ function deb_zoom() {
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f5)"
     PRETTY_NAME="Zoom"
     WEBSITE="https://zoom.us/"
+    SUMMARY="Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events."
 }
 
 function deb_exodus() {
@@ -1054,6 +1133,7 @@ function deb_exodus() {
     URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"
     PRETTY_NAME="Exodus"
     WEBSITE="https://exodus.com/"
+    SUMMARY="Bitcoin & Crypto Wallet."
 }
 
 function deb_jabref() {
@@ -1062,6 +1142,7 @@ function deb_jabref() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="JabRef"
     WEBSITE="https://www.jabref.org/"
+    SUMMARY="The efficient way to collect, organize & discover."
 }
 
 function deb_gh() {
@@ -1071,6 +1152,7 @@ function deb_gh() {
     URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
     PRETTY_NAME="GitHub CLI"
     WEBSITE="https://cli.github.com/"
+    SUMMARY="GitHub CLI brings GitHub to your terminal. Free and open source."
 }
 
 function deb_teamviewer() {
@@ -1078,12 +1160,14 @@ function deb_teamviewer() {
     URL="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
     PRETTY_NAME="TeamViewer"
     WEBSITE="https://www.teamviewer.com/"
+    SUMMARY="The Remote Desktop Software."
 }
 
 function deb_lutris() {
     PPA="ppa:lutris-team/lutris"
     PRETTY_NAME="Lutris"
     WEBSITE="https://lutris.net/"
+    SUMMARY="Open Gaming Platform."
 }
 
 function deb_azure-cli() {
@@ -1092,6 +1176,7 @@ function deb_azure-cli() {
     APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ ${UBUNTU_CODENAME} main"
     PRETTY_NAME="Azure CLI"
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
+    SUMMARY="Command-line interface used to create and manage Azure resources."
 }
 
 function deb_zotero() {
@@ -1100,6 +1185,7 @@ function deb_zotero() {
     APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg by-hash=force] https://zotero.retorque.re/file/apt-package-archive ./"
     PRETTY_NAME="Zotero"
     WEBSITE="https://www.zotero.org/"
+    SUMMARY="A free, easy-to-use tool to help you collect, organize, cite, and share research."
 }
 
 function deb_terraform() {
@@ -1108,6 +1194,7 @@ function deb_terraform() {
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UBUNTU_CODENAME} main"
     PRETTY_NAME="Terraform"
     WEBSITE="https://www.terraform.io/"
+    SUMMARY="Automate Infrastructure on Any Cloud."
 }
 
 function deb_tailscale() {
@@ -1116,6 +1203,7 @@ function deb_tailscale() {
     APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu ${UBUNTU_CODENAME} main"
     PRETTY_NAME="Tailscale"
     WEBSITE="https://tailscale.com/"
+    SUMMARY="Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere."
 }
 
 function deb_vuescan() {
@@ -1132,6 +1220,7 @@ function deb_vuescan() {
     URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
     PRETTY_NAME="VueScan"
     WEBSITE="https://www.hamrick.com/"
+    SUMMARY="Scanner Software that supports over 6500 scanners."
 }
 
 function deb_tidal-hifi() {
@@ -1140,6 +1229,7 @@ function deb_tidal-hifi() {
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Tidal-hifi"
     WEBSITE="https://github.com/Mastermindzh/tidal-hifi"
+    SUMMARY="Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine."
 }
 
 # Create an array of all the deb_ functions

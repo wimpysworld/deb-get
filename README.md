@@ -114,94 +114,94 @@ The software below can be installed, updated and removed using `deb-get`.
 - `sudo deb-get remove <packagename>`
 - `sudo deb-get purge <packagename>`
 
-<img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`)<br />
-<img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (`azure-cli`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Etcher](https://www.balena.io/etcher/) (`balena-etcher-electron`)<br />
-<img src=".github/github.png" align="top" width="20" /> [bat](https://github.com/sharkdp/bat) (`bat`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [BeerSmith](https://beersmith.com/) (`beersmith3`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Brave](https://brave.com/) (`brave-browser`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Visual Studio Code](https://code.visualstudio.com/) (`code`)<br />
-<img src=".github/github.png" align="top" width="20" /> [VSCodium](https://vscodium.com/) (`codium`)<br />
-<img src=".github/github.png" align="top" width="20" /> [deb-get](https://github.com/wimpysworld/deb-get) (`deb-get`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Discord](https://discord.com/) (`discord`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Docker Desktop](https://www.docker.com/products/docker-desktop/) (`docker-desktop`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`)<br />
-<img src=".github/github.png" align="top" width="20" /> [duf](https://github.com/muesli/duf) (`duf`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Exodus](https://exodus.com/) (`exodus`)<br />
-<img src=".github/github.png" align="top" width="20" /> [fd](https://github.com/sharkdp/fd) (`fd`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`)<br />
-<img src=".github/launchpad.png" align="top" width="20" /> [Firefox ESR](https://www.mozilla.org/firefox/enterprise/) (`firefox-esr`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`)<br />
-<img src=".github/github.png" align="top" width="20" /> [GitHub CLI](https://cli.github.com/) (`gh`)<br />
-<img src=".github/github.png" align="top" width="20" /> [git-delta](https://github.com/dandavison/delta) (`git-delta`)<br />
-<img src=".github/github.png" align="top" width="20" /> [GitHub Desktop](https://desktop.github.com/) (`github-desktop`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [GitKraken](https://www.gitkraken.com/invite/ieih1QR3) (`gitkraken`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Gitter](https://gitter.im/) (`gitter`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Google Chrome](https://www.google.com/chrome/) (`google-chrome-stable`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Insomnia](https://insomnia.rest/) (`insomnia`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Insync](https://www.insynchq.com/) (`insync`)<br />
-<img src=".github/github.png" align="top" width="20" /> [IRCCloud Desktop](https://www.irccloud.com/) (`irccloud-desktop`)<br />
-<img src=".github/github.png" align="top" width="20" /> [JabRef](https://www.jabref.org/) (`jabref`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`)<br />
-<img src=".github/launchpad.png" align="top" width="20" /> [KeePassXC](https://keepassxc.org/) (`keepassxc`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`)<br />
-<img src=".github/github.png" align="top" width="20" /> [LSDeluxe](https://github.com/Peltoche/lsd) (`lsd`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`)<br />
-<img src=".github/launchpad.png" align="top" width="20" /> [Lutris](https://lutris.net/) (`lutris`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Mailspring](https://getmailspring.com/) (`mailspring`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Mattermost Desktop](https://mattermost.com/) (`mattermost-desktop`)<br />
-<img src=".github/github.png" align="top" width="20" /> [micro](https://micro-editor.github.io/) (`micro`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`)<br />
-<img src=".github/launchpad.png" align="top" width="20" /> [Nextcloud Desktop](https://nextcloud.com/) (`nextcloud-desktop`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Obsidian](https://obsidian.md/) (`obsidian`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`)<br />
-<img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Pandoc](https://pandoc.org/) (`pandoc`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`)<br />
-<img src=".github/github.png" align="top" width="20" /> [PowerShell](https://docs.microsoft.com/powershell/) (`powershell`)<br />
-<img src=".github/launchpad.png" align="top" width="20" /> [Quickemu](https://github.com/quickemu-project/quickemu) (`quickemu`)<br />
-<img src=".github/launchpad.png" align="top" width="20" /> [Quickgui](https://github.com/quickemu-project/quickgui) (`quickgui`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Rambox](https://rambox.app/) (`rambox`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Rclone](https://rclone.org/) (`rclone`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [RStudio](https://www.rstudio.com/) (`rstudio`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Slack](https://slack.com/) (`slack-desktop`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Spotify](https://www.spotify.com/) (`spotify-client`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Sublime Merge](https://www.sublimemerge.com/) (`sublime-merge`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Tailscale](https://tailscale.com/) (`tailscale`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [TeamViewer](https://www.teamviewer.com/) (`teamviewer`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Terraform](https://www.terraform.io/) (`terraform`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Tidal-hifi](https://github.com/mastermindzh/tidal-hifi) (`tidal-hifi`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Tixati](https://www.tixati.com/) (`tixati`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`)<br />
-<img src=".github/launchpad.png" align="top" width="20" /> [Ubuntu-Make](https://github.com/ubuntu/ubuntu-make/) (`ubuntu-make`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [VueScan](https://www.hamrick.com/) (`vuescan`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Webex](https://www.webex.com/) (`webex`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`)<br />
-<img src=".github/github.png" align="top" width="20" /> [Zenith](https://github.com/bvaisvil/zenith) (`zenith`)<br />
-<img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`)<br />
-<img src=".github/debian.png" align="top" width="20" /> [Zotero](https://www.zotero.org/) (`zotero`)<br />
+<img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`) - <i>The easiest way to store and use strong passwords.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`) - <i>A graphical program used to map keyboard buttons and mouse controls to a gamepad.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`) - <i>A hackable text editor for the 21st Century.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (`azure-cli`) - <i>Command-line interface used to create and manage Azure resources.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Etcher](https://www.balena.io/etcher/) (`balena-etcher-electron`) - <i>Flash OS images to SD cards & USB drives, safely and easily.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [bat](https://github.com/sharkdp/bat) (`bat`) - <i>A 'cat' clone with wings.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [BeerSmith](https://beersmith.com/) (`beersmith3`) - <i>Home Brewing Software.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`) - <i>Open Source Password Manager.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Brave](https://brave.com/) (`brave-browser`) - <i>Browse privately. Search privately. And ditch Big Tech.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Visual Studio Code](https://code.visualstudio.com/) (`code`) - <i>Code editing. Redefined.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [VSCodium](https://vscodium.com/) (`codium`) - <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [deb-get](https://github.com/wimpysworld/deb-get) (`deb-get`) - <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Discord](https://discord.com/) (`discord`) - <i>A place that makes it easy to talk every day and hang out more often.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`) - <i>Open source containerization technology for building and containerizing your applications.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Docker Desktop](https://www.docker.com/products/docker-desktop/) (`docker-desktop`) - <i>The fastest way to containerize applications.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`) - <i>Securely share, store and do more with your content.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [duf](https://github.com/muesli/duf) (`duf`) - <i>Disk Usage/Free Utility - a better 'df' alternative.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`) - <i>Secure and independent communication, connected via Matrix.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`) - <i>Remember one master password and let Enpass take care of the rest.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Exodus](https://exodus.com/) (`exodus`) - <i>Bitcoin & Crypto Wallet.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [fd](https://github.com/sharkdp/fd) (`fd`) - <i>A simple, fast and user-friendly alternative to 'find'.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`) - <i>Unofficial Electron-based Figma desktop app for Linux.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Firefox ESR](https://www.mozilla.org/firefox/enterprise/) (`firefox-esr`) - <i> Firefox Extended Support Release.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`) - <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [GitHub CLI](https://cli.github.com/) (`gh`) - <i>GitHub CLI brings GitHub to your terminal. Free and open source.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [git-delta](https://github.com/dandavison/delta) (`git-delta`) - <i>A syntax-highlighting pager for 'git', 'diff', and 'grep' output.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [GitHub Desktop](https://desktop.github.com/) (`github-desktop`) - <i>Simple collaboration from your desktop.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [GitKraken](https://www.gitkraken.com/invite/ieih1QR3) (`gitkraken`) - <i>Intuitive Git GUI & powerful Git CLI.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Gitter](https://gitter.im/) (`gitter`) - <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Google Chrome](https://www.google.com/chrome/) (`google-chrome-stable`) - <i>Fast, Secure Browser from Google.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`) - <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`) - <i>A vulnerability scanner for container images and filesystems.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`) - <i>An Open Source GOG and Epic games launcher.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Insomnia](https://insomnia.rest/) (`insomnia`) - <i>The API Design Platform and API Client.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Insync](https://www.insynchq.com/) (`insync`) - <i>Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [IRCCloud Desktop](https://www.irccloud.com/) (`irccloud-desktop`) - <i>IRCCloud desktop application.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [JabRef](https://www.jabref.org/) (`jabref`) - <i>The efficient way to collect, organize & discover.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`) - <i>Share, freely and privately.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`) - <i>The Free Software Media System.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [KeePassXC](https://keepassxc.org/) (`keepassxc`) - <i>Cross-Platform Password Manager.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`) - <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [LSDeluxe](https://github.com/Peltoche/lsd) (`lsd`) - <i>The next gen 'ls' command.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`) - <i>A minimalist frontend for emulators.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Lutris](https://lutris.net/) (`lutris`) - <i>Open Gaming Platform.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Mailspring](https://getmailspring.com/) (`mailspring`) - <i>Boost your productivity and send better email with the best mail client.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Mattermost Desktop](https://mattermost.com/) (`mattermost-desktop`) - <i>Open Source platform for developer collaboration.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [micro](https://micro-editor.github.io/) (`micro`) - <i>A modern and intuitive terminal-based text editor.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`) - <i>Fast and secure browser that helps you protect your data and save time and money.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Nextcloud Desktop](https://nextcloud.com/) (`nextcloud-desktop`) - <i>The self-hosted productivity platform that keeps you in control.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Obsidian](https://obsidian.md/) (`obsidian`) - <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`) - <i>Easy, fast and powerful audio editor.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`) - <i>Free desktop office suite for document editing and collaboration.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`) - <i>Faster, safer and smarter than default browsers.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Pandoc](https://pandoc.org/) (`pandoc`) - <i>A universal document converter.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`) - <i>Stream Movies and TV Shows.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [PowerShell](https://docs.microsoft.com/powershell/) (`powershell`) - <i>Cross-platform automation and configuration tool/framework and optimized for dealing with structured data.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Quickemu](https://github.com/quickemu-project/quickemu) (`quickemu`) - <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Quickgui](https://github.com/quickemu-project/quickgui) (`quickgui`) - <i>A Flutter frontend for Quickemu.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Rambox](https://rambox.app/) (`rambox`) - <i>Workspace simplifier.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Rclone](https://rclone.org/) (`rclone`) - <i>Syncs your files to cloud storage.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`) - <i>Raspberry Pi Imaging Utility.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [RStudio](https://www.rstudio.com/) (`rstudio`) - <i>Professional software for data science teams.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`) - <i>Private Messenger.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`) - <i>The simplest way to keep notes.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`) - <i>Stay connected with free video calls worldwide.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Slack](https://slack.com/) (`slack-desktop`) - <i>One platform for your team and your work.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Spotify](https://www.spotify.com/) (`spotify-client`) - <i>Millions of songs and podcasts.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Sublime Merge](https://www.sublimemerge.com/) (`sublime-merge`) - <i>Git Client, done Sublime.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`) - <i>Text Editing, Done Right.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`) - <i>CLI tool and library for generating a Software Bill of Materials from container images and filesystems.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`) - <i>Continuous file synchronization program.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Tailscale](https://tailscale.com/) (`tailscale`) - <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`) - <i>Team chat and collaboration.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [TeamViewer](https://www.teamviewer.com/) (`teamviewer`) - <i>The Remote Desktop Software.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Terraform](https://www.terraform.io/) (`terraform`) - <i>Automate Infrastructure on Any Cloud.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Tidal-hifi](https://github.com/Mastermindzh/tidal-hifi) (`tidal-hifi`) - <i>Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Tixati](https://www.tixati.com/) (`tixati`) - <i>A New and Powerful P2P System.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`) - <i>A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Ubuntu-Make](https://github.com/ubuntu/ubuntu-make/) (`ubuntu-make`) - <i>Easy setup of common tools for developers on Ubuntu.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`) - <i>The most feature-packaged, customisable browser.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [VueScan](https://www.hamrick.com/) (`vuescan`) - <i>Scanner Software that supports over 6500 scanners.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`) - <i>Rethink the Web. Productivity Browser.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Webex](https://www.webex.com/) (`webex`) - <i>Video Conferencing, Cloud Calling and Screen Sharing.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`) - <i>The extensible chat client.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`) - <i>Secure collaboration platform.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Zenith](https://github.com/bvaisvil/zenith) (`zenith`) - <i>Sort of like 'top' or 'htop' but with zoom-able charts.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`) - <i>Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Zotero](https://www.zotero.org/) (`zotero`) - <i>A free, easy-to-use tool to help you collect, organize, cite, and share research.</i><br />
 
 **Legend**
 
