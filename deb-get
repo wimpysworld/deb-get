@@ -1146,6 +1146,14 @@ function deb_zoom() {
     SUMMARY="Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events."
 }
 
+function deb_azuredatastudio() {
+    URL=$(unroll_url "https://go.microsoft.com/fwlink/?linkid=2193327")
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | sed 's/\.deb//')"
+    PRETTY_NAME="Azure Data Studio"
+    WEBSITE="https://docs.microsoft.com/en-us/sql/azure-data-studio/"
+    SUMMARY="Data management tool for working with SQL Server, Azure SQL DB and SQL DW."
+}
+
 function deb_exodus() {
     VERSION_PUBLISHED="$(curl -s https://www.exodus.com/download/|sed "s/.*https:\/\/downloads.exodus.com\/releases\/hashes-exodus-//"|sed "s/\.txt.*//")"
     URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"
