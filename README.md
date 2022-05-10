@@ -134,7 +134,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`) - <i>Secure and independent communication, connected via Matrix.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`) - <i>Remember one master password and let Enpass take care of the rest.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Exodus](https://exodus.com/) (`exodus`) - <i>Bitcoin & Crypto Wallet.</i><br />
-<img src=".github/direct.png" align="top" width="20" /> [Expressvpn](https://www.expressvpncom.com/) (`expressvpn`) - <i>Popular VPN software.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Expressvpn](https://www.expressvpn.com/) (`expressvpn`) - <i>Popular VPN software</i><br />
 <img src=".github/github.png" align="top" width="20" /> [fd](https://github.com/sharkdp/fd) (`fd`) - <i>A simple, fast and user-friendly alternative to 'find'.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`) - <i>Unofficial Electron-based Figma desktop app for Linux.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Firefox ESR](https://www.mozilla.org/firefox/enterprise/) (`firefox-esr`) - <i> Firefox Extended Support Release.</i><br />
