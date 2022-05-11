@@ -934,6 +934,15 @@ function deb_balena-etcher-electron() {
     SUMMARY="Flash OS images to SD cards & USB drives, safely and easily."
 }
 
+function deb_caprine() {
+    get_github_releases "https://api.github.com/repos/sindresorhus/caprine/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="Caprine"
+    WEBSITE="https://sindresorhus.com/caprine"
+    SUMMARY="Elegant Facebook Messenger desktop app."
+}
+
 function deb_figma-linux() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Figma-Linux/figma-linux/releases"
