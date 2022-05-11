@@ -905,6 +905,15 @@ function deb_google-earth-pro-stable() {
     SUMMARY="Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities."
 }
 
+function deb_cawbird() {
+    APT_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/xUbuntu_22.04/Release.key"
+    APT_LIST_NAME="home:IBBoard:cawbird"
+    APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/IBBoard:/cawbird/xUbuntu_${UBUNTU_RELEASE}/ /"
+    PRETTY_NAME="Cawbird"
+    WEBSITE="https://ibboard.co.uk/cawbird/"
+    SUMMARY="Twitter client for the Linux desktop."
+}
+
 function deb_insync() {
     ARCHS_SUPPORTED="amd64"
     APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
