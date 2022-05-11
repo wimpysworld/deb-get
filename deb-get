@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 LC_ALL=C
+
+# REL_VER=$(grep "^export VERSION" deb-get | cut -d'"' -f2) && dch -v ${REL_VER}-1 --distribution=unstable "New upstream release."
 # dpkg-buildpackage --build=binary --no-check-builddeps --compression=gzip
 
 function usage() {
@@ -1330,7 +1332,7 @@ if [ -d /var/cache/get-deb ]; then
 fi
 mkdir -p "${CACHE_DIR}" 2>/dev/null
 chmod 755 "${CACHE_DIR}" 2>/dev/null
-export VERSION="0.2.5"
+export VERSION="0.2.6"
 
 if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
