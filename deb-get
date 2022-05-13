@@ -1370,22 +1370,29 @@ case "${OS_ID}" in
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
+  Debian) OS_ID_PRETTY="Debian";;
   *) fancy_message fatal "${OS_ID} is not supported.";;
 esac
 
 OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
+    DEBIAN_CODENAME=$(grep DEBIAN_CODENAME /etc/os-release | cut -d'=' -f2)
     UBUNTU_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2)
 else
     fancy_message fatal "/etc/os-release not found. Quitting"
 fi
 
-case "${UBUNTU_CODENAME}" in
-    focal)  UBUNTU_RELEASE=20.04;;
-    impish) UBUNTU_RELEASE=21.10;;
-    jammy)  UBUNTU_RELEASE=22.04;;
-    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Ubuntu release.";;
+case "${DEBIAN_CODENAME}" in
+    bullseye)  DEBIAN_RELEASE=11;;
+    *) 
+    case "${UBUNTU_CODENAME}" in
+        focal)  UBUNTU_RELEASE=20.04;;
+        impish) UBUNTU_RELEASE=21.10;;
+        jammy)  UBUNTU_RELEASE=22.04;;
+        *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Ubuntu or Debian release.";;
+    esac
 esac
+
 
 if [ -n "${1}" ]; then
     ACTION="${1,,}"
