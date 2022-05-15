@@ -1324,6 +1324,34 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_jumpapp() {
+    get_github_releases "https://api.github.com/repos/mkropat/jumpapp/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="jumpapp"
+    WEBSITE="https://github.com/mkropat/jumpapp"
+    SUMMARY="A run-or-raise application switcher for any X11 desktop"
+}
+
+
+function deb_whatsdesk() {
+    VERSION_PUBLISHED="$(curl -s "https://zerkc.gitlab.io/whatsdesk/page.js" | grep -o -P '(?<=Download v).*(?= .deb)')"
+    case ${HOST_ARCH} in
+        amd64) URL="https://zerkc.gitlab.io/whatsdesk/whatsdesk_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+        i386) URL="https://zerkc.gitlab.io/whatsdesk/whatsdesk_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+    esac
+    PRETTY_NAME="WhatsDesk"
+    WEBSITE="https://gitlab.com/zerkc/whatsdesk"
+    SUMMARY="WhatsDesk is a unofficial client of whatsapp"
+
+
+function deb_libreoffice-fresh() {
+    PPA="ppa:libreoffice/ppa"
+    PRETTY_NAME="LibreOffice Fresh"
+    WEBSITE="https://www.libreoffice.org/"
+    SUMMARY="This is what the Document Foundation calls "LibreOffice Fresh", the latest release of the newest series (but no alpha/beta releases)."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
