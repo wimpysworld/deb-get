@@ -200,6 +200,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [Tixati](https://www.tixati.com/) (`tixati`) - <i>A New and Powerful P2P System.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Trivy](https://aquasecurity.github.io/trivy/) (`trivy`) - <i>A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Ubuntu-Make](https://github.com/ubuntu/ubuntu-make/) (`ubuntu-make`) - <i>Easy setup of common tools for developers on Ubuntu.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Ulauncher](https://ulauncher.io/) (`ulauncher`) - <i>Application launcher for Linux.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Vivaldi](https://vivaldi.com/) (`vivaldi-stable`) - <i>The most feature-packaged, customisable browser.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [VueScan](https://www.hamrick.com/) (`vuescan`) - <i>Scanner Software that supports over 6500 scanners.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Wavebox](https://wavebox.io/) (`wavebox`) - <i>Rethink the Web. Productivity Browser.</i><br />
