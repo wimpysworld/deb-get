@@ -1334,6 +1334,13 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_ulauncher() {
+    PPA="ppa:agornostal/ulauncher"
+    PRETTY_NAME="Ulauncher"
+    WEBSITE="https://ulauncher.io/"
+    SUMMARY="Application launcher for Linux."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
