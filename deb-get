@@ -1293,7 +1293,7 @@ function deb_vuescan() {
     ARCHS_SUPPORTED="amd64 arm64 i386"
     local ARCH_VER
     case ${HOST_ARCH} in
-        x86_64)  ARCH_VER=x64;;
+        amd64)   ARCH_VER=x64;;
         aarch64) ARCH_VER=a64;;
         i386)    ARCH_VER=x32;;
     esac
