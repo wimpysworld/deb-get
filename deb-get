@@ -1324,6 +1324,13 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_obs-studio() {
+    PPA="ppa:obsproject/obs-studio"
+    PRETTY_NAME="OBS Studio"
+    WEBSITE="https://obsproject.com/"
+    SUMMARY="Free and open source software for video recording and live streaming."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
