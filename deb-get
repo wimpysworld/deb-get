@@ -1324,6 +1324,16 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_picocrypt() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/HACKERALERT/Picocrypt/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="Picocrypt"
+    WEBSITE="https://github.com/HACKERALERT/Picocrypt/"
+    SUMMARY="A very small, very simple, yet very secure encryption tool."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
