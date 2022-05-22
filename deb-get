@@ -372,6 +372,15 @@ function upgrade_debs() {
     done
 }
 
+function sudo_required()
+{
+    if [ "${ACTION}" == "purge" ] || [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "upgrade" ] || [ "${ACTION}" == "install" ] || [ "${ACTION}" == "reinstall" ] || [ "${ACTION}" == "clean" ]; then
+         return 0
+    else
+         return 1
+    fi
+}
+
 function deb_tixati() {
     URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
@@ -1338,16 +1347,23 @@ if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
 fi
 
-if [ "$(id -u)" -ne 0 ]; then
-  fancy_message fatal "You must use sudo to run $(basename ${0})."
+if [ -n "${1}" ]; then
+    ACTION="${1,,}"
+else
+    fancy_message error "You must specify an action."
+    usage
+fi
+
+if [ "$(id -u)" -ne 0 ] && sudo_required; then
+  fancy_message fatal "You must use sudo to run $(basename ${0}) ${ACTION}."
 fi
 
 if [ "${SUDO_USER}" ]; then
   USER_HOME=$(getent passwd "${SUDO_USER}" | cut -d: -f6)
 elif [ "${DOAS_USER}" ]; then
   USER_HOME=$(getent passwd "${DOAS_USER}" | cut -d: -f6)
-else
-  fancy_message fatal "You must use sudo to run $(basename ${0})."
+elif sudo_required; then
+  fancy_message fatal "You must use sudo to run $(basename ${0}) ${ACTION}."
 fi
 
 if ! command -v lsb_release 1>/dev/null; then
@@ -1387,13 +1403,6 @@ case "${UBUNTU_CODENAME}" in
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Ubuntu release.";;
 esac
 
-if [ -n "${1}" ]; then
-    ACTION="${1,,}"
-else
-    fancy_message error "You must specify an action."
-    usage
-fi
-
 if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "reinstall" ] || [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ] || [ "${ACTION}" == "show" ] || [ "${ACTION}" == "search" ]; then
     if [ -n "${2}" ]; then
         APP="${2,,}"
@@ -1431,7 +1440,7 @@ case "${ACTION}" in
     search) list_debs | grep "${APP}";;
     update) update_debs;;
     upgrade) upgrade_debs;;
-    version) echo "${VERSION}";;
-    help) usage;;
+    version|--version|-v) echo "${VERSION}";;
+    help|--help|-h) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
 esac
