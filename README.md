@@ -182,6 +182,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Rocketchat Desktop](https://rocket.chat/) (`rocketchat`) - <i>Official Desktop Client for Rocket.Chat.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`) - <i>Raspberry Pi Imaging Utility.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [RStudio](https://www.rstudio.com/) (`rstudio`) - <i>Professional software for data science teams.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [RustDesk](https://rustdesk.com/) (`rustdesk`) - <i>Open source virtual / remote desktop infrastructure for everyone!</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Sengi](https://github.com/NicolasConstant/sengi) (`sengi`) - <i>Tweetdeck inspired Mastodon & Pleroma Multi-account Desktop Client.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`) - <i>Private Messenger.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`) - <i>The simplest way to keep notes.</i><br />
