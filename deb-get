@@ -716,10 +716,8 @@ function deb_docker-ce() {
 }
 
 function deb_docker-desktop() {
-    URL="$(curl -s "https://docs.docker.com/desktop/linux/release-notes/" | grep amd64.deb | head -n1 | cut -d'"' -f2 | cut -d'?' -f1)"
-    local MAJOR_VER="$(echo "${URL}" | cut -d'-' -f4)"
-    local MINOR_VER="$(echo "${URL}" | cut -d'/' -f7)"
-    VERSION_PUBLISHED="${MAJOR_VER}-${MINOR_VER}"
+    URL="$(curl -s "https://docs.docker.com/desktop/linux/install/" | grep amd64.deb | head -n1 | cut -d'"' -f2 | cut -d'?' -f1)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
     PRETTY_NAME="Docker Desktop"
     WEBSITE="https://www.docker.com/products/docker-desktop/"
     SUMMARY="The fastest way to containerize applications."
