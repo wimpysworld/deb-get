@@ -328,39 +328,39 @@ function validate_deb() {
 function list_debs() {
     local PAD='                              '
     local STATUS=""
-    for DEB in "${APPS[@]}"; do
-        if package_is_installed "${DEB}"; then
-            STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f4- )"
-            printf "%s %s [ ${STATUS} ]\n" "${DEB}" "${PAD:${#DEB}}"
+    for APP in "${APPS[@]}"; do
+        if package_is_installed "${APP}"; then
+            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f4- )"
+            printf "%s %s [ ${STATUS} ]\n" "${APP}" "${PAD:${#APP}}"
         else
-            echo "${DEB}"
+            echo "${APP}"
         fi
     done
 }
 
 function prettylist_debs() {
     local ICON=""
-    for DEB in "${APPS[@]}"; do
-        validate_deb "${DEB}"
+    for APP in "${APPS[@]}"; do
+        validate_deb "${APP}"
         case ${METHOD} in
             apt)    ICON="debian.png";;
             github) ICON="github.png";;
             ppa)    ICON="launchpad.png";;
             *)      ICON="direct.png";;
         esac
-        echo "<img src=\".github/${ICON}\" align=\"top\" width=\"20\" /> [${PRETTY_NAME}](${WEBSITE}) ("'`'"${DEB}"'`'") - <i>${SUMMARY}</i><br />"
+        echo "<img src=\".github/${ICON}\" align=\"top\" width=\"20\" /> [${PRETTY_NAME}](${WEBSITE}) ("'`'"${APP}"'`'") - <i>${SUMMARY}</i><br />"
     done
 }
 
 function update_debs() {
     local STATUS=""
     update_apt
-    for DEB in "${APPS[@]}"; do
+    for APP in "${APPS[@]}"; do
         # Only download .debs that are installed
-        if package_is_installed "${DEB}"; then
-            validate_deb "${DEB}"
+        if package_is_installed "${APP}"; then
+            validate_deb "${APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-                STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
+                STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
                     fancy_message warn "${APP} (${VERSION_INSTALLED}) has an update pending for: ${VERSION_PUBLISHED}"
                 fi
@@ -372,12 +372,12 @@ function update_debs() {
 function upgrade_debs() {
     local STATUS=""
     upgrade_apt
-    for DEB in "${APPS[@]}"; do
+    for APP in "${APPS[@]}"; do
         # Only upgrade .debs that are installed
-        if package_is_installed "${DEB}"; then
-            validate_deb "${DEB}" 1
+        if package_is_installed "${APP}"; then
+            validate_deb "${APP}" 1
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-                STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
+                STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ]; then
                     install_deb "${URL}"
                 fi
