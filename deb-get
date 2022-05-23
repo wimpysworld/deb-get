@@ -955,7 +955,7 @@ function deb_caprine() {
     SUMMARY="Elegant Facebook Messenger desktop app."
 }
 
-function deb_sengi() {
+function disable_sengi() {
     get_github_releases "https://api.github.com/repos/NicolasConstant/sengi/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*linux.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
     URL=$(grep "browser_download_url.*linux.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
