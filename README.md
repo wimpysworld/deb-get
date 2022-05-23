@@ -123,14 +123,14 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [bat](https://github.com/sharkdp/bat) (`bat`) - <i>A 'cat' clone with wings.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [BeerSmith](https://beersmith.com/) (`beersmith3`) - <i>Home Brewing Software.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`) - <i>Open Source Password Manager.</i><br />
-<img src=".github/github.png" align="top" width="20" /> [Blockbench](https://www.blockbench.net/) (`blockbench`) - <i>A low-poly 3D model editor.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Blockbench](https://www.blockbench.net/) (`blockbench`) - <i>A low-poly 3D model editor</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Brave](https://brave.com/) (`brave-browser`) - <i>Browse privately. Search privately. And ditch Big Tech.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Caprine](https://sindresorhus.com/caprine) (`caprine`) - <i>Elegant Facebook Messenger desktop app.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Cawbird](https://ibboard.co.uk/cawbird/) (`cawbird`) - <i>Twitter client for the Linux desktop.</i><br />
-<img src=".github/launchpad.png" align="top" width="20" /> [CopyQ](https://hluk.github.io/CopyQ/) (`copyq`) - <i>An advanced clipboard manager with editing and scripting features.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Visual Studio Code](https://code.visualstudio.com/) (`code`) - <i>Code editing. Redefined.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [VSCodium](https://vscodium.com/) (`codium`) - <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i><br />
-<img src=".github/direct.png" align="top" width="20" /> [DBeaver](https://dbeaver.io/) (`dbeaver-ce`) - <i>Free multi-platform database tool.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [CopyQ](https://hluk.github.io/CopyQ/) (`copyq`) - <i>An advanced clipboard manager with editing and scripting features.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [DBeaver](https://dbeaver.io/) (`dbeaver-ce`) - <i>Database GUI Client</i><br />
 <img src=".github/github.png" align="top" width="20" /> [deb-get](https://github.com/wimpysworld/deb-get) (`deb-get`) - <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Discord](https://discord.com/) (`discord`) - <i>A place that makes it easy to talk every day and hang out more often.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`) - <i>Open source containerization technology for building and containerizing your applications.</i><br />
@@ -173,7 +173,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`) - <i>Fast and secure browser that helps you protect your data and save time and money.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Nextcloud Desktop](https://nextcloud.com/) (`nextcloud-desktop`) - <i>The self-hosted productivity platform that keeps you in control.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Obsidian](https://obsidian.md/) (`obsidian`) - <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i><br />
-<img src=".github/launchpad.png" align="top" width="20" /> [OBS Studio](https://obsproject.com/) (`obs-studio`) - <i>Free and open source software for video recording and live streaming.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [OBS Studio (Fully Loaded)](https://obsproject.com/) (`obs-studio`) - <i>Free and open source software for video recording and live streaming.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`) - <i>Easy, fast and powerful audio editor.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`) - <i>Free desktop office suite for document editing and collaboration.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`) - <i>Faster, safer and smarter than default browsers.</i><br />
@@ -188,7 +188,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Rocketchat Desktop](https://rocket.chat/) (`rocketchat`) - <i>Official Desktop Client for Rocket.Chat.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`) - <i>Raspberry Pi Imaging Utility.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [RStudio](https://www.rstudio.com/) (`rstudio`) - <i>Professional software for data science teams.</i><br />
-<img src=".github/github.png" align="top" width="20" /> [RustDesk](https://rustdesk.com/) (`rustdesk`) - <i>Open source virtual / remote desktop infrastructure for everyone!</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Blockbench](https://rustdesk.com/) (`rustdesk`) - <i>Open source virtual / remote desktop infrastructure for everyone!</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`) - <i>Private Messenger.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`) - <i>The simplest way to keep notes.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`) - <i>Stay connected with free video calls worldwide.</i><br />
