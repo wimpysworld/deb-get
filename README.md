@@ -83,6 +83,12 @@ prettylist
 
 cache
         list the contents of the deb-get cache (/var/cache/deb-get)
+
+help
+        show this help
+
+version
+        show deb-get version
 ```
 
 ### Why?

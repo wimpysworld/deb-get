@@ -26,6 +26,8 @@ show\n\tshow information about the given package including its install source an
 list\n\tlist the packages available via deb-get.\n
 prettylist\n\tmarkdown formatted list the packages available via deb-get. Use this to update README.md\n
 cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
+help\n\tshow this help\n
+version\n\tshow deb-get version\n
 "
   exit 1
 }
