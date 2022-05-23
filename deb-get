@@ -1457,6 +1457,7 @@ esac
 
 if [ -n "${1}" ]; then
     ACTION="${1,,}"
+    shift
 else
     fancy_message error "You must specify an action."
     usage
@@ -1464,9 +1465,7 @@ fi
 
 case ${ACTION} in
     install|reinstall|remove|purge|show)
-        if [ -n "${2}" ]; then
-            export APP="${2,,}"
-        else
+        if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
             list_debs
             exit 1
@@ -1482,21 +1481,24 @@ case "${ACTION}" in
         elevate_privs
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
     show)
-        validate_deb "${APP}"
-        info_deb;;
+        for APP in "${@,,}"; do
+            validate_deb "${APP}"
+            info_deb
+        done;;
     install|reinstall)
         elevate_privs
-        validate_deb "${APP}"
-        if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
-            fancy_message error "${APP} is not supported on ${HOST_ARCH}."
-            return
-        fi
-        case ${METHOD} in
-            direct|github|website) install_deb "${URL}";;
-            apt) install_apt;;
-            ppa) install_ppa;;
-        esac
-        ;;
+        for APP in "${@,,}"; do
+            validate_deb "${APP}"
+            if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
+                fancy_message error "${APP} is not supported on ${HOST_ARCH}."
+                return
+            fi
+            case ${METHOD} in
+                direct|github|website) install_deb "${URL}";;
+                apt) install_apt;;
+                ppa) install_ppa;;
+            esac
+        done;;
     list)
         list_debs;;
     pretty_list|prettylist)
@@ -1504,14 +1506,18 @@ case "${ACTION}" in
         prettylist_debs;;
     purge)
         elevate_privs
-        validate_deb "${APP}"
-        remove_deb "${APP}" purge;;
+        for APP in "${@,,}"; do
+            validate_deb "${APP}"
+            remove_deb "${APP}" purge
+        done;;
     remove)
         elevate_privs
-        validate_deb "${APP}"
-        remove_deb "${APP}";;
+        for APP in "${@,,}"; do
+            validate_deb "${APP}"
+            remove_deb "${APP}"
+        done;;
     search)
-        list_debs | grep "${2}";;
+        list_debs | grep "${1}";;
     update)
         elevate_privs
         update_debs;;
