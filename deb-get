@@ -1324,6 +1324,13 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_foliate() {
+    PPA="ppa:apandada1/foliate"
+    PRETTY_NAME="Foliate"
+    WEBSITE="https://johnfactotum.github.io/foliate/"
+    SUMMARY="A simple and modern eBook viewer for Linux desktops."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
