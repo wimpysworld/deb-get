@@ -49,6 +49,24 @@ package_is_installed() {
 }
 ## . END package_is_installed }
 
+function elevate_privs() {
+    if [ "$(id -ru)" -eq 0 ]; then
+        # Alreday in the root context
+        ELEVATE=""
+    elif command -v doas 1>/dev/null; then
+        ELEVATE="doas"
+    elif command -v sudo 1>/dev/null; then
+        ELEVATE="sudo"
+    else
+        fancy_message fatal "$(basename ${0}) requires sudo or doas to elevate permissions, neither were found."
+    fi
+
+    # Authenticate root context
+    if [ -n "${ELEVATE}" ]; then
+        ${ELEVATE} true
+    fi
+}
+
 function unroll_url() {
     curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null
 }
@@ -60,17 +78,17 @@ function get_github_releases() {
     #   {"message":"API rate limit exceeded for 62.31.16.154. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
     #   curl -I https://api.github.com/users/flexiondotorg
 
-    # Do not process github releases while generating a pretty list
-    if [ "${PRETTY}" -eq 0 ]; then
+    # Do not process github releases while generating a pretty list or upgrading
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ]; then
         fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
         if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
-            if ! wget -q "${1}" -O "${CACHE_DIR}/${APP}.json"; then
+            if ! ${ELEVATE} wget -q "${1}" -O "${CACHE_DIR}/${APP}.json"; then
                 fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it."
-                rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+                ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
             fi
             if [ -f "${CACHE_DIR}/${APP}.json" ] && grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
                 fancy_message warn "Updating ${CACHE_DIR}/${APP}.json exceed GitHub API limits. Deleting it."
-                rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+                ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
             fi
         fi
     fi
@@ -105,9 +123,9 @@ function download_deb() {
     local URL="${1}"
     local FILE="${URL##*/}"
 
-    if ! wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
+    if ! ${ELEVATE} wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
-        rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+        ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
     fi
 }
 
@@ -125,38 +143,36 @@ function eula() {
 }
 
 function update_apt() {
-    apt-get -q -y update
+    ${ELEVATE} apt-get -q -y update
 }
 
 function upgrade_apt() {
-    apt-get -q -y upgrade
+    ${ELEVATE} apt-get -q -y upgrade
 }
 
 function install_apt() {
-    local STATUS=""
     if [ -n "${APT_KEY_URL}" ]; then
-        wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
+        ${ELEVATE} wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
     fi
 
     if [ -n "${GPG_KEY_URL}" ]; then
         if [ ! -d /usr/share/keyrings ]; then
-            mkdir -p /usr/share/keyrings 2>/dev/null
+            ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
         fi
-        wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
     fi
 
     #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
 
-    echo -e "${APT_REPO_URL}" > "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+    echo -e "${APT_REPO_URL}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
     update_apt
 
     if ! package_is_installed "${APP}"; then
         eula
-        apt-get -q -y install "${APP}"
+        ${ELEVATE} apt-get -q -y install "${APP}"
     else
-        STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-        if [ "${STATUS}" == "install ok installed" ] && [ "${ACTION}" == "reinstall" ]; then
-            apt-get -q -y --reinstall install "${APP}"
+        if [ "${ACTION}" == "reinstall" ]; then
+            ${ELEVATE} apt-get -q -y --reinstall install "${APP}"
         else
             fancy_message info "${APP} is up to date."
         fi
@@ -164,23 +180,21 @@ function install_apt() {
 }
 
 function install_ppa() {
-    local STATUS=""
-    if apt-add-repository -y --no-update "${PPA}"; then
+    if ${ELEVATE} apt-add-repository -y --no-update "${PPA}"; then
         update_apt
         if ! package_is_installed "${APP}"; then
             eula
-            apt-get -q -y install "${APP}"
+            ${ELEVATE} apt-get -q -y install "${APP}"
         else
-            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-            if [ "${STATUS}" == "install ok installed" ] && [ "${ACTION}" == "reinstall" ]; then
-                apt-get -q -y --reinstall install "${APP}"
+            if [ "${ACTION}" == "reinstall" ]; then
+                ${ELEVATE} apt-get -q -y --reinstall install "${APP}"
             else
                 fancy_message info "${APP} is up to date."
             fi
         fi
     else
         fancy_message error "Failed to add: ${PPA}. Deleting it."
-        apt-add-repository -y --remove "${PPA}"
+        ${ELEVATE} apt-add-repository -y --remove "${PPA}"
     fi
 }
 
@@ -197,21 +211,20 @@ function install_deb() {
     if ! package_is_installed "${APP}"; then
         eula
         download_deb "${URL}"
-        apt-get -q -y install "${CACHE_DIR}/${FILE}"
+        ${ELEVATE} apt-get -q -y install "${CACHE_DIR}/${FILE}"
     else
-        STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-        if [ "${STATUS}" == "install ok installed" ] && [ "${ACTION}" == "reinstall" ]; then
+        if [ "${ACTION}" == "reinstall" ]; then
             download_deb "${URL}"
-            apt-get -q -y --reinstall install "${CACHE_DIR}/${FILE}"
+            ${ELEVATE} apt-get -q -y --reinstall install "${CACHE_DIR}/${FILE}"
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
             download_deb "${URL}"
-            apt-get -q -y install "${CACHE_DIR}/${FILE}"
+            ${ELEVATE} apt-get -q -y install "${CACHE_DIR}/${FILE}"
         else
             fancy_message info "${FILE} is up to date."
         fi
     fi
     if [ -f "${CACHE_DIR}/${FILE}" ]; then
-        rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+        ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
     fi
 }
 
@@ -226,30 +239,30 @@ function remove_deb() {
         if [ "${STATUS}" == "deinstall ok config-files" ]; then
             REMOVE="purge"
         fi
-        apt-get -q -y --autoremove ${REMOVE} "${APP}"
+        ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
 
         case ${METHOD} in
             direct|github|website)
                 if [ -f "${CACHE_DIR}/${FILE}" ]; then
-                    rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+                    ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
                 fi
                 ;;
             apt)
                 if [ -n "${APT_KEY_URL}" ]; then
-                    rm "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc" 2>/dev/null
+                    ${ELEVATE} rm "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc" 2>/dev/null
                 fi
                 if [ -n "${GPG_KEY_URL}" ]; then
-                    rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" 2>/dev/null
+                    ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" 2>/dev/null
                 fi
                 if [ -n "${APT_LIST_NAME}" ] && [ -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
-                    rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+                    ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
                     update_apt
                 fi
                 ;;
             ppa)
                 rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
                 if [ -n "${PPA}" ]; then
-                    apt-add-repository -y --remove "${PPA}"
+                    ${ELEVATE} apt-add-repository -y --remove "${PPA}"
                     update_apt
                 fi
                 ;;
@@ -278,7 +291,6 @@ function info_deb() {
 
 function validate_deb() {
     export APP="${1}"
-    export PRETTY="${2:-0}"
 
     if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
         fancy_message error "${APP} is not a supported application."
@@ -327,7 +339,7 @@ function list_debs() {
 function prettylist_debs() {
     local ICON=""
     for DEB in "${APPS[@]}"; do
-        validate_deb "${DEB}" 1
+        validate_deb "${DEB}"
         case ${METHOD} in
             apt)    ICON="debian.png";;
             github) ICON="github.png";;
@@ -342,11 +354,11 @@ function update_debs() {
     local STATUS=""
     update_apt
     for DEB in "${APPS[@]}"; do
-        validate_deb "${DEB}"
         # Only download .debs that are installed
         if package_is_installed "${DEB}"; then
-            STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
+            validate_deb "${DEB}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+                STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
                     fancy_message warn "${APP} (${VERSION_INSTALLED}) has an update pending for: ${VERSION_PUBLISHED}"
                 fi
@@ -359,11 +371,11 @@ function upgrade_debs() {
     local STATUS=""
     upgrade_apt
     for DEB in "${APPS[@]}"; do
-        validate_deb "${DEB}"
         # Only upgrade .debs that are installed
         if package_is_installed "${DEB}"; then
-            STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
+            validate_deb "${DEB}" 1
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+                STATUS="$(dpkg -s "${DEB}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ]; then
                     install_deb "${URL}"
                 fi
@@ -1338,18 +1350,6 @@ if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
 fi
 
-if [ "$(id -u)" -ne 0 ]; then
-  fancy_message fatal "You must use sudo to run $(basename ${0})."
-fi
-
-if [ "${SUDO_USER}" ]; then
-  USER_HOME=$(getent passwd "${SUDO_USER}" | cut -d: -f6)
-elif [ "${DOAS_USER}" ]; then
-  USER_HOME=$(getent passwd "${DOAS_USER}" | cut -d: -f6)
-else
-  fancy_message fatal "You must use sudo to run $(basename ${0})."
-fi
-
 if ! command -v lsb_release 1>/dev/null; then
   fancy_message fatal "lsb_release not detected. Quitting."
 fi
@@ -1361,6 +1361,7 @@ case ${HOST_CPU} in
 esac
 
 readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+readonly USER_HOME="${HOME}"
 
 OS_ID=$(lsb_release --id --short)
 case "${OS_ID}" in
@@ -1394,26 +1395,31 @@ else
     usage
 fi
 
-if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "reinstall" ] || [ "${ACTION}" == "remove" ] || [ "${ACTION}" == "purge" ] || [ "${ACTION}" == "show" ] || [ "${ACTION}" == "search" ]; then
-    if [ -n "${2}" ]; then
-        APP="${2,,}"
-    else
-        fancy_message error "You must specify an app:\n"
-        list_debs
-        exit 1
-    fi
+case ${ACTION} in
+    install|reinstall|remove|purge|show)
+        if [ -n "${2}" ]; then
+            export APP="${2,,}"
+        else
+            fancy_message error "You must specify an app:\n"
+            list_debs
+            exit 1
+        fi;;
+esac
 
-    if [ "${ACTION}" != "search" ]; then
-        # Check this app is supported and initialise the variables
-        validate_deb "${APP}"
-    fi
-fi
+export ELEVATE=""
 
 case "${ACTION}" in
-    cache) ls -lh "${CACHE_DIR}/";;
-    clean) rm -v "${CACHE_DIR}"/*.deb;;
-    show) info_deb;;
+    cache)
+        ls -lh "${CACHE_DIR}/";;
+    clean)
+        elevate_privs
+        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
+    show)
+        validate_deb "${APP}"
+        info_deb;;
     install|reinstall)
+        elevate_privs
+        validate_deb "${APP}"
         if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
             fancy_message error "${APP} is not supported on ${HOST_ARCH}."
             return
@@ -1424,13 +1430,27 @@ case "${ACTION}" in
             ppa) install_ppa;;
         esac
         ;;
-    list) list_debs;;
-    pretty_list|prettylist) prettylist_debs;;
-    purge) remove_deb "${APP}" purge;;
-    remove) remove_deb "${APP}";;
-    search) list_debs | grep "${APP}";;
-    update) update_debs;;
-    upgrade) upgrade_debs;;
+    list)
+        list_debs;;
+    pretty_list|prettylist)
+        ACTION="prettylist"
+        prettylist_debs;;
+    purge)
+        elevate_privs
+        validate_deb "${APP}"
+        remove_deb "${APP}" purge;;
+    remove)
+        elevate_privs
+        validate_deb "${APP}"
+        remove_deb "${APP}";;
+    search)
+        list_debs | grep "${2}";;
+    update)
+        elevate_privs
+        update_debs;;
+    upgrade)
+        elevate_privs
+        upgrade_debs;;
     version) echo "${VERSION}";;
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
