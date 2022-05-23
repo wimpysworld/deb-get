@@ -1334,6 +1334,16 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_blockbench() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/JannisX11/blockbench/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="Blockbench"
+    WEBSITE="https://www.blockbench.net/"
+    SUMMARY="A low-poly 3D model editor"
+}
+
 function deb_copyq() {
     PPA="ppa:hluk/copyq"
     PRETTY_NAME="CopyQ"
