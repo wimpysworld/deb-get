@@ -158,8 +158,10 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [JabRef](https://www.jabref.org/) (`jabref`) - <i>The efficient way to collect, organize & discover.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`) - <i>Share, freely and privately.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`) - <i>The Free Software Media System.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [jumpapp](https://github.com/mkropat/jumpapp) (`jumpapp`) - <i>A run-or-raise application switcher for any X11 desktop</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [KeePassXC](https://keepassxc.org/) (`keepassxc`) - <i>Cross-Platform Password Manager.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`) - <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Libreoffice Fresh](https://www.libreoffice.org/) (`libreoffice`) - <i>This is what the Document Foundation calls LibreOffice Fresh, the latest release of the newest series (but no alpha/beta releases).</i><br />
 <img src=".github/github.png" align="top" width="20" /> [LSDeluxe](https://github.com/Peltoche/lsd) (`lsd`) - <i>The next gen 'ls' command.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`) - <i>A minimalist frontend for emulators.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Lutris](https://lutris.net/) (`lutris`) - <i>Open Gaming Platform.</i><br />
@@ -207,6 +209,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [WeeChat](https://weechat.org/) (`weechat`) - <i>The extensible chat client.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Whalebird](https://whalebird.social/) (`whalebird`) - <i>A Mastodon, Pleroma, and Misskey client for desktop application.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [WhatsApp for Linux](https://github.com/eneshecan/whatsapp-for-linux) (`whatsapp-for-linux`) - <i>An unofficial WhatsApp desktop application for Linux.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [WhatsDesk](https://gitlab.com/zerkc/whatsdesk) (`whatsdesk`) - <i>An unofficial client of whatsapp</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`) - <i>Secure collaboration platform.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Zenith](https://github.com/bvaisvil/zenith) (`zenith`) - <i>Sort of like 'top' or 'htop' but with zoom-able charts.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`) - <i>Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events.</i><br />
