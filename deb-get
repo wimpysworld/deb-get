@@ -1334,6 +1334,16 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_rustdesk() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="Blockbench"
+    WEBSITE="https://rustdesk.com/"
+    SUMMARY="Open source virtual / remote desktop infrastructure for everyone!"
+}
+
 function deb_picocrypt() {
     ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/HACKERALERT/Picocrypt/releases/latest"
