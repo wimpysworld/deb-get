@@ -1334,6 +1334,13 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_obs-studio() {
+    PPA="ppa:flexiondotorg/obs-fully-loaded"
+    PRETTY_NAME="OBS Studio (Fully Loaded)"
+    WEBSITE="https://obsproject.com/"
+    SUMMARY="Free and open source software for video recording and live streaming."
+}
+
 function deb_foliate() {
     PPA="ppa:apandada1/foliate"
     PRETTY_NAME="Foliate"

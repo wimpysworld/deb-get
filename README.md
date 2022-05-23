@@ -170,6 +170,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`) - <i>Fast and secure browser that helps you protect your data and save time and money.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Nextcloud Desktop](https://nextcloud.com/) (`nextcloud-desktop`) - <i>The self-hosted productivity platform that keeps you in control.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Obsidian](https://obsidian.md/) (`obsidian`) - <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [OBS Studio](https://obsproject.com/) (`obs-studio`) - <i>Free and open source software for video recording and live streaming.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`) - <i>Easy, fast and powerful audio editor.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`) - <i>Free desktop office suite for document editing and collaboration.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`) - <i>Faster, safer and smarter than default browsers.</i><br />
