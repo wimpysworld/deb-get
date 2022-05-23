@@ -316,7 +316,7 @@ function validate_deb() {
     export WEBSITE=""
 
     # Source the variables
-    deb_${APP}
+    deb_${APP} 2>/dev/null
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
