@@ -143,11 +143,11 @@ function eula() {
 }
 
 function update_apt() {
-    ${ELEVATE} apt-get -q -y update
+    ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y update
 }
 
 function upgrade_apt() {
-    ${ELEVATE} apt-get -q -y upgrade
+    ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y upgrade
 }
 
 function install_apt() {
@@ -169,10 +169,10 @@ function install_apt() {
 
     if ! package_is_installed "${APP}"; then
         eula
-        ${ELEVATE} apt-get -q -y install "${APP}"
+        ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
     else
         if [ "${ACTION}" == "reinstall" ]; then
-            ${ELEVATE} apt-get -q -y --reinstall install "${APP}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${APP}"
         else
             fancy_message info "${APP} is up to date."
         fi
@@ -184,10 +184,10 @@ function install_ppa() {
         update_apt
         if ! package_is_installed "${APP}"; then
             eula
-            ${ELEVATE} apt-get -q -y install "${APP}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
         else
             if [ "${ACTION}" == "reinstall" ]; then
-                ${ELEVATE} apt-get -q -y --reinstall install "${APP}"
+                ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${APP}"
             else
                 fancy_message info "${APP} is up to date."
             fi
@@ -211,14 +211,14 @@ function install_deb() {
     if ! package_is_installed "${APP}"; then
         eula
         download_deb "${URL}"
-        ${ELEVATE} apt-get -q -y install "${CACHE_DIR}/${FILE}"
+        ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
     else
         if [ "${ACTION}" == "reinstall" ]; then
             download_deb "${URL}"
-            ${ELEVATE} apt-get -q -y --reinstall install "${CACHE_DIR}/${FILE}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${CACHE_DIR}/${FILE}"
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
             download_deb "${URL}"
-            ${ELEVATE} apt-get -q -y install "${CACHE_DIR}/${FILE}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
         else
             fancy_message info "${FILE} is up to date."
         fi
