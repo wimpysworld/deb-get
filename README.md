@@ -31,14 +31,14 @@ and install it manually.
 Here's an example of how to install Google Chrome.
 
 ```bash
-sudo deb-get install google-chrome-stable
+deb-get install google-chrome-stable
 ```
 
-You can see what applications are supported by using `sudo deb-get list` or you
-can search the available applications with `sudo deb-get search <app>`
+You can see what applications are supported by using `deb-get list` or you
+can search the available applications with `deb-get search <app>`
 
 You can upgrade packages installed using `deb-get` by running
-`sudo deb-get upgrade`.
+`deb-get upgrade`.
 
 ```
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
@@ -108,11 +108,11 @@ since 2015.
 
 The software below can be installed, updated and removed using `deb-get`.
 
-- `sudo deb-get install <packagename>`
-- `sudo deb-get update`
-- `sudo deb-get upgrade`
-- `sudo deb-get remove <packagename>`
-- `sudo deb-get purge <packagename>`
+- `deb-get install <packagename>`
+- `deb-get update`
+- `deb-get upgrade`
+- `deb-get remove <packagename>`
+- `deb-get purge <packagename>`
 
 <img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`) - <i>The easiest way to store and use strong passwords.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`) - <i>A graphical program used to map keyboard buttons and mouse controls to a gamepad.</i><br />
