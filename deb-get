@@ -1334,6 +1334,13 @@ function deb_expressvpn() {
     SUMMARY="Popular VPN software"
 }
 
+function deb_foliate() {
+    PPA="ppa:apandada1/foliate"
+    PRETTY_NAME="Foliate"
+    WEBSITE="https://johnfactotum.github.io/foliate/"
+    SUMMARY="A simple and modern eBook viewer for Linux desktops."
+}
+
 function deb_rustdesk() {
     ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/rustdesk/rustdesk/releases/latest"

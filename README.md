@@ -141,6 +141,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [fd](https://github.com/sharkdp/fd) (`fd`) - <i>A simple, fast and user-friendly alternative to 'find'.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Figma Linux](https://github.com/Figma-Linux/figma-linux) (`figma-linux`) - <i>Unofficial Electron-based Figma desktop app for Linux.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Firefox ESR](https://www.mozilla.org/firefox/enterprise/) (`firefox-esr`) - <i> Firefox Extended Support Release.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Foliate](https://johnfactotum.github.io/foliate/) (`foliate`) - <i>A simple and modern eBook viewer for Linux desktops.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`) - <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [GitHub CLI](https://cli.github.com/) (`gh`) - <i>GitHub CLI brings GitHub to your terminal. Free and open source.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [git-delta](https://github.com/dandavison/delta) (`git-delta`) - <i>A syntax-highlighting pager for 'git', 'diff', and 'grep' output.</i><br />
