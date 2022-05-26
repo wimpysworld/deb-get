@@ -1223,6 +1223,14 @@ function deb_spotify-client() {
     SUMMARY="Millions of songs and podcasts."
 }
 
+function deb_surfshark-release() {
+    URL="$(curl -s "https://surfshark.com/download/linux" | grep amd64.deb | head -n1 | cut -d'"' -f2)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    PRETTY_NAME="Surfshark VPN"
+    WEBSITE="https://surfshark.com/"
+    SUMMARY="Award-winning VPN service."
+}
+
 function deb_keybase() {
     ARCHS_SUPPORTED="amd64 i386"
     APT_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
