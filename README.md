@@ -142,6 +142,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [Discord](https://discord.com/) (`discord`) - <i>A place that makes it easy to talk every day and hang out more often.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`) - <i>Open source containerization technology for building and containerizing your applications.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Docker Desktop](https://www.docker.com/products/docker-desktop/) (`docker-desktop`) - <i>The fastest way to containerize applications.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [draw.io](https://www.diagrams.net) (`draw.io`) - <i>Diagramming and whiteboarding app that wraps the core draw.io editor.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`) - <i>Securely share, store and do more with your content.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [duf](https://github.com/muesli/duf) (`duf`) - <i>Disk Usage/Free Utility - a better 'df' alternative.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`) - <i>Secure and independent communication, connected via Matrix.</i><br />
