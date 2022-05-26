@@ -737,7 +737,7 @@ function deb_irccloud-desktop() {
 function deb_system-monitoring-center() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/hakandundar34coding/system-monitoring-center/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f4)"
     URL=$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="System Monitoring Center"
     WEBSITE="https://github.com/hakandundar34coding/system-monitoring-center"
