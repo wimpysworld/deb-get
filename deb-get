@@ -754,6 +754,15 @@ function deb_minigalaxy() {
     SUMMARY="A simple GOG client for Linux."
 }
 
+function deb_gamehub() {
+    get_github_releases "https://api.github.com/repos/tkashkin/GameHub/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v '\-dev' | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|-master||')"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v '\-dev' | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="GameHub"
+    WEBSITE="https://tkashkin.github.io/projects/gamehub"
+    SUMMARY="Unified library for all your games."
+}
+
 function deb_codium() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/VSCodium/vscodium/releases"
