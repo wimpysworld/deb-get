@@ -217,6 +217,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Tailscale](https://tailscale.com/) (`tailscale`) - <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`) - <i>Team chat and collaboration.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [TeamViewer](https://www.teamviewer.com/) (`teamviewer`) - <i>The Remote Desktop Software.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Telegraf](https://github.com/influxdata/telegraf) (`telegraf`) - <i>The plugin-driven server agent for collecting & reporting metrics.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Terraform](https://www.terraform.io/) (`terraform`) - <i>Automate Infrastructure on Any Cloud.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Tidal-hifi](https://github.com/Mastermindzh/tidal-hifi) (`tidal-hifi`) - <i>Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Tixati](https://www.tixati.com/) (`tixati`) - <i>A New and Powerful P2P System.</i><br />
