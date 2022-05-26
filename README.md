@@ -196,6 +196,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/launchpad.png" align="top" width="20" /> [Quickgui](https://github.com/quickemu-project/quickgui) (`quickgui`) - <i>A Flutter frontend for Quickemu.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Rambox](https://rambox.app/) (`rambox`) - <i>Workspace simplifier.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Rclone](https://rclone.org/) (`rclone`) - <i>Syncs your files to cloud storage.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Resilio Sync](https://www.resilio.com/) (`resilio-sync`) - <i>Fast, reliable, and simple file sync and share solution, powered by P2P technology</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Rocketchat Desktop](https://rocket.chat/) (`rocketchat`) - <i>Official Desktop Client for Rocket.Chat.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`) - <i>Raspberry Pi Imaging Utility.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [RStudio](https://www.rstudio.com/) (`rstudio`) - <i>Professional software for data science teams.</i><br />

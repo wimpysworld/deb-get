@@ -1268,6 +1268,15 @@ function deb_softmaker-office-2021() {
     SUMMARY="Create impressive documents with ease."
 }
 
+function deb_resilio-sync() {
+    APT_KEY_URL="https://linux-packages.resilio.com/resilio-sync/key.asc"
+    APT_LIST_NAME="resilio-sync"
+    APT_REPO_URL="deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
+    PRETTY_NAME="Resilio Sync"
+    WEBSITE="https://www.resilio.com/"
+    SUMMARY="Fast, reliable, and simple file sync and share solution, powered by P2P technology"
+}
+
 function deb_zoom() {
     URL=$(unroll_url "https://zoom.us/client/latest/zoom_amd64.deb")
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f5)"
