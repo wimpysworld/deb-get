@@ -1250,6 +1250,15 @@ function deb_keybase() {
     SUMMARY="End-to-end encryption for things that matter. Secure messaging and file-sharing."
 }
 
+function deb_protonvpn() {
+    APT_KEY_URL="https://protonvpn.com/download/public_key.asc"
+    APT_LIST_NAME="protonvpn-stable"
+    APT_REPO_URL="deb https://repo.protonvpn.com/debian stable main"
+    PRETTY_NAME="ProtonVPN"
+    WEBSITE="https://protonvpn.com/"
+    SUMMARY="High-speed Swiss VPN that safeguards your privacy."
+}
+
 function deb_zoom() {
     URL=$(unroll_url "https://zoom.us/client/latest/zoom_amd64.deb")
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f5)"
