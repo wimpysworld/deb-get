@@ -1310,6 +1310,15 @@ function deb_jabref() {
     SUMMARY="The efficient way to collect, organize & discover."
 }
 
+function deb_draw.io() {
+    get_github_releases "https://api.github.com/repos/jgraph/drawio-desktop/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="draw.io"
+    WEBSITE="https://www.diagrams.net"
+    SUMMARY="Diagramming and whiteboarding app that wraps the core draw.io editor."
+}
+
 function deb_gh() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/cli/cli/releases/latest"
