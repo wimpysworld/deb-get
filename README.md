@@ -204,6 +204,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`) - <i>Text Editing, Done Right.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`) - <i>CLI tool and library for generating a Software Bill of Materials from container images and filesystems.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`) - <i>Continuous file synchronization program.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [System Monitoring Center](https://github.com/hakandundar34coding/system-monitoring-center) (`system-monitoring-center`) - <i>Multi-featured system monitor.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Tailscale](https://tailscale.com/) (`tailscale`) - <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) (`teams`) - <i>Team chat and collaboration.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [TeamViewer](https://www.teamviewer.com/) (`teamviewer`) - <i>The Remote Desktop Software.</i><br />
