@@ -1191,7 +1191,8 @@ function deb_vivaldi-stable() {
 }
 
 function deb_gitkraken() {
-    VERSION_PUBLISHED="$(curl -s "https://www.gitkraken.com/download/linux-deb" | grep "name: '" | cut -d"'" -f2)"
+
+    VERSION_PUBLISHED="$(curl -s "https://support.gitkraken.com/release-notes/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
     URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
     PRETTY_NAME="GitKraken"
     WEBSITE="https://www.gitkraken.com/invite/ieih1QR3"
