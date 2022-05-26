@@ -204,6 +204,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`) - <i>The simplest way to keep notes.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`) - <i>Stay connected with free video calls worldwide.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Slack](https://slack.com/) (`slack-desktop`) - <i>One platform for your team and your work.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [SoftMaker Office 2021](https://www.softmaker.com/en/softmaker-office) (`softmaker-office-2021`) - <i>Create impressive documents with ease.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Spotify](https://www.spotify.com/) (`spotify-client`) - <i>Millions of songs and podcasts.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Sublime Merge](https://www.sublimemerge.com/) (`sublime-merge`) - <i>Git Client, done Sublime.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`) - <i>Text Editing, Done Right.</i><br />
