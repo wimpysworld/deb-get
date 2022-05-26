@@ -131,6 +131,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`) - <i>Open Source Password Manager.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Blockbench](https://www.blockbench.net/) (`blockbench`) - <i>A low-poly 3D model editor</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Brave](https://brave.com/) (`brave-browser`) - <i>Browse privately. Search privately. And ditch Big Tech.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Brisqi](https://brisqi.com/) (`brisqi`) - <i>An offline-first personal Kanban app.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Caprine](https://sindresorhus.com/caprine) (`caprine`) - <i>Elegant Facebook Messenger desktop app.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Cawbird](https://ibboard.co.uk/cawbird/) (`cawbird`) - <i>Twitter client for the Linux desktop.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Visual Studio Code](https://code.visualstudio.com/) (`code`) - <i>Code editing. Redefined.</i><br />

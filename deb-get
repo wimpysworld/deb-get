@@ -1277,6 +1277,15 @@ function deb_gh() {
     SUMMARY="GitHub CLI brings GitHub to your terminal. Free and open source."
 }
 
+function deb_brisqi() {
+    get_github_releases "https://api.github.com/repos/Brisqi/releases/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="Brisqi"
+    WEBSITE="https://brisqi.com/"
+    SUMMARY="An offline-first personal Kanban app."
+}
+
 function deb_teamviewer() {
     VERSION_PUBLISHED="$(curl -s 'https://www.teamviewer.com/en/download/linux/' | grep -C 5 'Ubuntu, Debian' | grep '\*.deb package' | cut -d ' ' -f3 | sed 's/\([0-9\.]*\).*$/\1/')"
     URL="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
