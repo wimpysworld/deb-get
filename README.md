@@ -205,6 +205,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [Spotify](https://www.spotify.com/) (`spotify-client`) - <i>Millions of songs and podcasts.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Sublime Merge](https://www.sublimemerge.com/) (`sublime-merge`) - <i>Git Client, done Sublime.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Sublime Text](https://www.sublimetext.com/) (`sublime-text`) - <i>Text Editing, Done Right.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Surfshark VPN](https://surfshark.com/) (`surfshark-release`) - <i>Award-winning VPN service.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Syft](https://github.com/anchore/syft) (`syft`) - <i>CLI tool and library for generating a Software Bill of Materials from container images and filesystems.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Syncthing](https://syncthing.net/) (`syncthing`) - <i>Continuous file synchronization program.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [System Monitoring Center](https://github.com/hakandundar34coding/system-monitoring-center) (`system-monitoring-center`) - <i>Multi-featured system monitor.</i><br />
