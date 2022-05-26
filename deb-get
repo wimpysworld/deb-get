@@ -1223,9 +1223,9 @@ function deb_spotify-client() {
     SUMMARY="Millions of songs and podcasts."
 }
 
-function deb_surfshark-release() {
-    URL="$(curl -s "https://surfshark.com/download/linux" | grep amd64.deb | head -n1 | cut -d'"' -f2)"
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+function deb_surfshark() {
+    VERSION_PUBLISHED="$(curl -s "https://ocean.surfshark.com/debian/pool/main/s/surfshark/"  | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep "${HOST_ARCH}" | sort -r | head -n1 | awk '{print $1}' | cut -d'_' -f2)"
+    URL="https://ocean.surfshark.com/debian/pool/main/s/surfshark/surfshark_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
     PRETTY_NAME="Surfshark VPN"
     WEBSITE="https://surfshark.com/"
     SUMMARY="Award-winning VPN service."
