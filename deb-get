@@ -1489,6 +1489,15 @@ function deb_tidal-hifi() {
     SUMMARY="Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine."
 }
 
+function deb_dustracing2d() {
+    get_github_releases "https://api.github.com/repos/juzzlin/DustRacing2D/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep "18.04" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep "18.04" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="DustRacing2D"
+    WEBSITE="http://juzzlin.github.io/DustRacing2D/index.html"
+    SUMMARY="Dust Racing 2D is a traditional top-down car racing game including a level editor."
+}
+
 function deb_expressvpn() {
     ARCHS_SUPPORTED="amd64 i386 armhf"
     VERSION_PUBLISHED="$(curl -s https://www.expressvpn.com/latest#linux | grep -o 'value="https://www.expressvpn.works/clients/linux/expressvpn_.*'${HOST_ARCH}'.deb"' | cut -d"_" -f2)"

@@ -146,6 +146,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [draw.io](https://www.diagrams.net) (`draw.io`) - <i>Diagramming and whiteboarding app that wraps the core draw.io editor.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Dropbox](https://www.dropbox.com/) (`dropbox`) - <i>Securely share, store and do more with your content.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [duf](https://github.com/muesli/duf) (`duf`) - <i>Disk Usage/Free Utility - a better 'df' alternative.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [DustRacing2D](http://juzzlin.github.io/DustRacing2D/index.html) (`dustracing2d`) - <i>Dust Racing 2D is a traditional top-down car racing game including a level editor.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Element](https://element.io/) (`element-desktop`) - <i>Secure and independent communication, connected via Matrix.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Enpass](https://www.enpass.io/) (`enpass`) - <i>Remember one master password and let Enpass take care of the rest.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Exodus](https://exodus.com/) (`exodus`) - <i>Bitcoin & Crypto Wallet.</i><br />
