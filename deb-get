@@ -1507,6 +1507,15 @@ function deb_p3x-onenote() {
     SUMMARY="A Linux compatible version of OneNote."
 }
 
+function deb_ms-office-electron() {
+    get_github_releases "https://api.github.com/repos/agam778/MS-Office-Electron/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="Office 365"
+    WEBSITE="https://agam778.github.io/MS-Office-Electron/"
+    SUMMARY="A Microsoft Office Online Desktop Client made with Electron."
+}
+
 function deb_tidal-hifi() {
     get_github_releases "https://api.github.com/repos/Mastermindzh/tidal-hifi/releases/latest"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
