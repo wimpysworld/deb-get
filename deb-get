@@ -1528,11 +1528,20 @@ function deb_geforcenow-electron() {
 function deb_zettlr() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Zettlr/Zettlr/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep "18.04" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="Zettlr"
     WEBSITE="https://www.zettlr.com/"
     SUMMARY="A Markdown Editor for the 21st century."
+}
+
+function deb_ksnip() {
+    get_github_releases "https://api.github.com/repos/ksnip/ksnip/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="ksnip"
+    WEBSITE="https://github.com/ksnip/ksnip"
+    SUMMARY="Cross-platform screenshot and annotation tool."
 }
 
 function deb_tidal-hifi() {
