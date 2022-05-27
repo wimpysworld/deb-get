@@ -157,6 +157,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/launchpad.png" align="top" width="20" /> [Foliate](https://johnfactotum.github.io/foliate/) (`foliate`) - <i>A simple and modern eBook viewer for Linux desktops.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Franz](https://meetfranz.com/) (`franz`) - <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [GameHub](https://tkashkin.github.io/projects/gamehub) (`gamehub`) - <i>Unified library for all your games.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [GeForce NOW](https://github.com/hmlendea/gfn-electron) (`geforcenow-electron`) - <i>Desktop client for Nvidia's GeForce NOW game streaming service.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [GitHub CLI](https://cli.github.com/) (`gh`) - <i>GitHub CLI brings GitHub to your terminal. Free and open source.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [git-delta](https://github.com/dandavison/delta) (`git-delta`) - <i>A syntax-highlighting pager for 'git', 'diff', and 'grep' output.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [GitHub Desktop](https://desktop.github.com/) (`github-desktop`) - <i>Simple collaboration from your desktop.</i><br />

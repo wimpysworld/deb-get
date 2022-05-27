@@ -1516,6 +1516,15 @@ function deb_ms-office-electron() {
     SUMMARY="A Microsoft Office Online Desktop Client made with Electron."
 }
 
+function deb_geforcenow-electron() {
+    get_github_releases "https://api.github.com/repos/hmlendea/gfn-electron/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="GeForce NOW"
+    WEBSITE="https://github.com/hmlendea/gfn-electron"
+    SUMMARY="Desktop client for Nvidia's GeForce NOW game streaming service."
+}
+
 function deb_tidal-hifi() {
     get_github_releases "https://api.github.com/repos/Mastermindzh/tidal-hifi/releases/latest"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
