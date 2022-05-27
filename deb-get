@@ -1427,6 +1427,14 @@ function deb_openrazer-meta() {
     SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
 }
 
+function deb_strawberry() {
+    PPA="ppa:jonaski/strawberry "
+    PRETTY_NAME="Strawberry Music Player"
+    WEBSITE="https://www.strawberrymusicplayer.org/"
+    SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
+}
+
+
 function deb_azure-cli() {
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="azure-cli"
