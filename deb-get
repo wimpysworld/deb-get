@@ -1329,7 +1329,58 @@ function deb_gh() {
     SUMMARY="GitHub CLI brings GitHub to your terminal. Free and open source."
 }
 
+function deb_chronograf() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    APT_LIST_NAME="influxdata"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
+    PRETTY_NAME="Chronograf"
+    WEBSITE="https://www.influxdata.com/time-series-platform/chronograf/"
+    SUMMARY="Open source monitoring and visualization UI for the TICK stack."
+}
+
+function deb_influxdb() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    APT_LIST_NAME="influxdata"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
+    PRETTY_NAME="InfluxDB"
+    WEBSITE="https://www.influxdata.com/products/influxdb-overview/"
+    SUMMARY="Scalable datastore for metrics, events, and real-time analytics."
+}
+
+function deb_influxdb2() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    APT_LIST_NAME="influxdata"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
+    PRETTY_NAME="InfluxDB2"
+    WEBSITE="https://www.influxdata.com/products/influxdb-overview/"
+    SUMMARY="Scalable datastore for metrics, events, and real-time analytics."
+}
+
+function deb_influxdb2-cli() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    APT_LIST_NAME="influxdata"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
+    PRETTY_NAME="InfluxDB2 CLI"
+    WEBSITE="https://www.influxdata.com/products/influxdb-overview/"
+    SUMMARY="CLI for managing resources in InfluxDB v2"
+}
+
+function deb_kapacitor() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    APT_LIST_NAME="influxdata"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
+    PRETTY_NAME="Kapacitor"
+    WEBSITE="https://github.com/influxdata/kapacitor"
+    SUMMARY="Open source framework for processing, monitoring, and alerting on time series data."
+}
+
 function deb_telegraf() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
     APT_LIST_NAME="influxdata"
     APT_REPO_URL="https://repos.influxdata.com/debian stable main"

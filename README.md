@@ -134,6 +134,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Brisqi](https://brisqi.com/) (`brisqi`) - <i>An offline-first personal Kanban app.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Caprine](https://sindresorhus.com/caprine) (`caprine`) - <i>Elegant Facebook Messenger desktop app.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Cawbird](https://ibboard.co.uk/cawbird/) (`cawbird`) - <i>Twitter client for the Linux desktop.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Chronograf](https://www.influxdata.com/time-series-platform/chronograf/) (`chronograf`) - <i>Open source monitoring and visualization UI for the TICK stack.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Visual Studio Code](https://code.visualstudio.com/) (`code`) - <i>Code editing. Redefined.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [VSCodium](https://vscodium.com/) (`codium`) - <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [CopyQ](https://hluk.github.io/CopyQ/) (`copyq`) - <i>An advanced clipboard manager with editing and scripting features.</i><br />
@@ -165,12 +166,16 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`) - <i>A vulnerability scanner for container images and filesystems.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`) - <i>An Open Source GOG and Epic games launcher.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [IGdm Messenger](https://github.com/igdmapps/igdm) (`igdm`) - <i>Continue your Instagram direct messages from your phone to your desktop.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) (`influxdb`) - <i>Scalable datastore for metrics, events, and real-time analytics.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [InfluxDB2](https://www.influxdata.com/products/influxdb-overview/) (`influxdb2`) - <i>Scalable datastore for metrics, events, and real-time analytics.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [InfluxDB2 CLI](https://www.influxdata.com/products/influxdb-overview/) (`influxdb2-cli`) - <i>CLI for managing resources in InfluxDB v2</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Insomnia](https://insomnia.rest/) (`insomnia`) - <i>The API Design Platform and API Client.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Insync](https://www.insynchq.com/) (`insync`) - <i>Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [IRCCloud Desktop](https://www.irccloud.com/) (`irccloud-desktop`) - <i>IRCCloud desktop application.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [JabRef](https://www.jabref.org/) (`jabref`) - <i>The efficient way to collect, organize & discover.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Jami](https://jami.net/) (`jami`) - <i>Share, freely and privately.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Jellyfin](https://jellyfin.org/) (`jellyfin`) - <i>The Free Software Media System.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [Kapacitor](https://github.com/influxdata/kapacitor) (`kapacitor`) - <i>Open source framework for processing, monitoring, and alerting on time series data.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [KeePassXC](https://keepassxc.org/) (`keepassxc`) - <i>Cross-Platform Password Manager.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`) - <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [LSDeluxe](https://github.com/Peltoche/lsd) (`lsd`) - <i>The next gen 'ls' command.</i><br />
