@@ -297,6 +297,7 @@ scope of the project in terms if what it is intended for.
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
   * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
   * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
+  * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
 
 ## In the media
 
