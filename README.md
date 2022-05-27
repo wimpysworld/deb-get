@@ -248,6 +248,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [WhatsApp for Linux](https://github.com/eneshecan/whatsapp-for-linux) (`whatsapp-for-linux`) - <i>An unofficial WhatsApp desktop application for Linux.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`) - <i>Secure collaboration platform.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Zenith](https://github.com/bvaisvil/zenith) (`zenith`) - <i>Sort of like 'top' or 'htop' but with zoom-able charts.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Zettlr](https://www.zettlr.com/) (`zettlr`) - <i>A Markdown Editor for the 21st century.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`) - <i>Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Zotero](https://www.zotero.org/) (`zotero`) - <i>A free, easy-to-use tool to help you collect, organize, cite, and share research.</i><br />
 
