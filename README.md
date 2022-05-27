@@ -192,10 +192,12 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/launchpad.png" align="top" width="20" /> [OBS Studio (Fully Loaded)](https://obsproject.com/) (`obs-studio`) - <i>Free and open source software for video recording and live streaming.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`) - <i>Easy, fast and powerful audio editor.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`) - <i>Free desktop office suite for document editing and collaboration.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [OpenRazer](https://openrazer.github.io/) (`openrazer-meta`) - <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`) - <i>Faster, safer and smarter than default browsers.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Pandoc](https://pandoc.org/) (`pandoc`) - <i>A universal document converter.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Picocrypt](https://github.com/HACKERALERT/Picocrypt/) (`picocrypt`) - <i>A very small, very simple, yet very secure encryption tool.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`) - <i>Stream Movies and TV Shows.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [Polychromatic](https://polychromatic.app/) (`polychromatic`) - <i>Frontend for OpenRazer that enables Razer devices to control lighting effects and more.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [PowerShell](https://docs.microsoft.com/powershell/) (`powershell`) - <i>Cross-platform automation and configuration tool/framework and optimized for dealing with structured data.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [ProtonVPN](https://protonvpn.com/) (`protonvpn`) - <i>High-speed Swiss VPN that safeguards your privacy.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Quickemu](https://github.com/quickemu-project/quickemu) (`quickemu`) - <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i><br />
