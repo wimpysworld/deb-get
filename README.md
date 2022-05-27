@@ -162,6 +162,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [GitHub Desktop](https://desktop.github.com/) (`github-desktop`) - <i>Simple collaboration from your desktop.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [GitKraken](https://www.gitkraken.com/invite/ieih1QR3) (`gitkraken`) - <i>Intuitive Git GUI & powerful Git CLI.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Gitter](https://gitter.im/) (`gitter`) - <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Google Chat](https://github.com/ankurk91/google-chat-electron) (`google-chat-electron`) - <i>An unofficial desktop app for Google Chat.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Google Chrome](https://www.google.com/chrome/) (`google-chrome-stable`) - <i>Fast, Secure Browser from Google.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`) - <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`) - <i>A vulnerability scanner for container images and filesystems.</i><br />
