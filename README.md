@@ -182,6 +182,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Kapacitor](https://github.com/influxdata/kapacitor) (`kapacitor`) - <i>Open source framework for processing, monitoring, and alerting on time series data.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [KeePassXC](https://keepassxc.org/) (`keepassxc`) - <i>Cross-Platform Password Manager.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Keybase](https://keybase.io/) (`keybase`) - <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [ksnip](https://github.com/ksnip/ksnip) (`ksnip`) - <i>Cross-platform screenshot and annotation tool.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [LSDeluxe](https://github.com/Peltoche/lsd) (`lsd`) - <i>The next gen 'ls' command.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Ludo](https://ludo.libretro.com/) (`ludo`) - <i>A minimalist frontend for emulators.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Lutris](https://lutris.net/) (`lutris`) - <i>Open Gaming Platform.</i><br />
