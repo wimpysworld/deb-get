@@ -1413,6 +1413,20 @@ function deb_lutris() {
     SUMMARY="Open Gaming Platform."
 }
 
+function deb_polychromatic() {
+    PPA="ppa:polychromatic/stable"
+    PRETTY_NAME="Polychromatic"
+    WEBSITE="https://polychromatic.app/"
+    SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."
+}
+
+function deb_openrazer-meta() {
+    PPA="ppa:openrazer/stable"
+    PRETTY_NAME="OpenRazer"
+    WEBSITE="https://openrazer.github.io/"
+    SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
+}
+
 function deb_azure-cli() {
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="azure-cli"
