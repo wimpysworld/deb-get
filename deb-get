@@ -1508,6 +1508,15 @@ function deb_obs-cli() {
     SUMMARY="OBS-cli is a command-line remote control for OBS."
 }
 
+function deb_google-chat-electron() {
+    get_github_releases "https://api.github.com/repos/ankurk91/google-chat-electron/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="Google Chat"
+    WEBSITE="https://github.com/ankurk91/google-chat-electron"
+    SUMMARY="An unofficial desktop app for Google Chat."
+}
+
 function deb_expressvpn() {
     ARCHS_SUPPORTED="amd64 i386 armhf"
     VERSION_PUBLISHED="$(curl -s https://www.expressvpn.com/latest#linux | grep -o 'value="https://www.expressvpn.works/clients/linux/expressvpn_.*'${HOST_ARCH}'.deb"' | cut -d"_" -f2)"
