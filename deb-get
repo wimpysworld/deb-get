@@ -1488,6 +1488,16 @@ function deb_vuescan() {
     SUMMARY="Scanner Software that supports over 6500 scanners."
 }
 
+function deb_hyper() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    get_github_releases "https://api.github.com/repos/vercel/hyper/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v canary | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v canary | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="Hyper"
+    WEBSITE="https://hyper.is/"
+    SUMMARY="A terminal built on web technologies."
+}
+
 function deb_tidal-hifi() {
     get_github_releases "https://api.github.com/repos/Mastermindzh/tidal-hifi/releases/latest"
     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"

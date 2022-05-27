@@ -167,6 +167,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`) - <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`) - <i>A vulnerability scanner for container images and filesystems.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`) - <i>An Open Source GOG and Epic games launcher.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Hyper](https://hyper.is/) (`hyper`) - <i>A terminal built on web technologies.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [IGdm Messenger](https://github.com/igdmapps/igdm) (`igdm`) - <i>Continue your Instagram direct messages from your phone to your desktop.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) (`influxdb`) - <i>Scalable datastore for metrics, events, and real-time analytics.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [InfluxDB2](https://www.influxdata.com/products/influxdb-overview/) (`influxdb2`) - <i>Scalable datastore for metrics, events, and real-time analytics.</i><br />
