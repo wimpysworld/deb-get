@@ -247,23 +247,28 @@ function remove_deb() {
     case ${METHOD} in
         direct|github|website)
             if [ -f "${CACHE_DIR}/${FILE}" ]; then
+                fancy_message info "Removing ${CACHE_DIR}/${FILE}"
                 ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
             fi
             ;;
         apt)
             if [ -n "${APT_KEY_URL}" ]; then
+                fancy_message info "Removing /etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
                 ${ELEVATE} rm "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc" 2>/dev/null
             fi
             if [ -n "${GPG_KEY_URL}" ]; then
+                fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
                 ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" 2>/dev/null
             fi
             if [ -n "${APT_LIST_NAME}" ] && [ -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+                fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
                 ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
             fi
             ;;
         ppa)
             rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
             if [ -n "${PPA}" ]; then
+                fancy_message info "Removing ${PPA}"
                 ${ELEVATE} apt-add-repository -y --remove "${PPA}"
             fi
             ;;
