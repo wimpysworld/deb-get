@@ -600,6 +600,15 @@ function deb_simplenote() {
     SUMMARY="The simplest way to keep notes."
 }
 
+function deb_peazip() {
+    get_github_releases "https://api.github.com/repos/peazip/PeaZip/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep Qt5 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep Qt5 | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="PeaZip"
+    WEBSITE="https://peazip.github.io"
+    SUMMARY="PeaZip is a free file archiver utility and extractor."
+}
+
 function deb_element-desktop() {
     GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
     APT_LIST_NAME="element-io"
