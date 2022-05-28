@@ -1683,7 +1683,6 @@ function deb_ulauncher() {
 }
 
 function deb_battery-monitor() {
-    ARCHS_SUPPORTED="a"
     get_github_releases "https://api.github.com/repos/hsbasu/battery-monitor/releases/latest"
     VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
     URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
