@@ -798,6 +798,15 @@ function deb_obsidian() {
     SUMMARY="A powerful knowledge base on top of a local folder of plain text Markdown files."
 }
 
+function deb_mpdevil() {
+    get_github_releases "https://api.github.com/repos/SoongNoonien/mpdevil/releases"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="mpdevil"
+    WEBSITE="https://github.com/SoongNoonien/mpdevil"
+    SUMMARY="A simple music browser for MPD."
+}
+
 function deb_rambox() {
     get_github_releases "https://api.github.com/repos/ramboxapp/download/releases"
     VERSION_PUBLISHED="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
