@@ -1674,6 +1674,16 @@ function deb_ulauncher() {
     SUMMARY="Application launcher for Linux."
 }
 
+function deb_battery-monitor() {
+    ARCHS_SUPPORTED="a"
+    get_github_releases "https://api.github.com/repos/hsbasu/battery-monitor/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="Battery Monitor"
+    WEBSITE="https://github.com/hsbasu/battery-monitor/"
+    SUMMARY="An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"

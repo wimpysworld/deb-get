@@ -128,6 +128,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/) (`azuredatastudio`) - <i>Data management tool for working with SQL Server, Azure SQL DB and SQL DW.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Etcher](https://www.balena.io/etcher/) (`balena-etcher-electron`) - <i>Flash OS images to SD cards & USB drives, safely and easily.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [bat](https://github.com/sharkdp/bat) (`bat`) - <i>A 'cat' clone with wings.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Battery Monitor](https://github.com/hsbasu/battery-monitor) (`battery-monitor`) - <i>An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [BeerSmith](https://beersmith.com/) (`beersmith3`) - <i>Home Brewing Software.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Bitwarden](https://bitwarden.com/) (`bitwarden`) - <i>Open Source Password Manager.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Blockbench](https://www.blockbench.net/) (`blockbench`) - <i>A low-poly 3D model editor</i><br />
