@@ -141,6 +141,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [VSCodium](https://vscodium.com/) (`codium`) - <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [CopyQ](https://hluk.github.io/CopyQ/) (`copyq`) - <i>An advanced clipboard manager with editing and scripting features.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [DBeaver](https://dbeaver.io/) (`dbeaver-ce`) - <i>Database GUI Client</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [DeaDBeeF Player](https://deadbeef.sourceforge.io/) (`deadbeef`) - <i>The ultimate music player</i><br />
 <img src=".github/github.png" align="top" width="20" /> [deb-get](https://github.com/wimpysworld/deb-get) (`deb-get`) - <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Discord](https://discord.com/) (`discord`) - <i>A place that makes it easy to talk every day and hang out more often.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Docker Engine](https://www.docker.com/) (`docker-ce`) - <i>Open source containerization technology for building and containerizing your applications.</i><br />

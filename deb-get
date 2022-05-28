@@ -1204,6 +1204,16 @@ function deb_webex() {
     SUMMARY="Video Conferencing, Cloud Calling and Screen Sharing."
 }
 
+function deb_deadbeef() {
+    local REDIR_URL=""
+    REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep amd64.deb | cut -d'"' -f2)"
+    URL=$(unroll_url "${REDIR_URL}")
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    PRETTY_NAME="DeaDBeeF Player"
+    WEBSITE="https://deadbeef.sourceforge.io/"
+    SUMMARY="The ultimate music player"
+}
+
 function deb_dropbox() {
     ARCHS_SUPPORTED="amd64 i386"
     URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
