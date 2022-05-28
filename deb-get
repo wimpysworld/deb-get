@@ -142,11 +142,11 @@ function eula() {
 }
 
 function update_apt() {
-    ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y update
+    ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y update
 }
 
 function upgrade_apt() {
-    ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y upgrade
+    ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y upgrade
 }
 
 function install_apt() {
