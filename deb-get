@@ -239,36 +239,35 @@ function remove_deb() {
             REMOVE="purge"
         fi
         ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
-
-        case ${METHOD} in
-            direct|github|website)
-                if [ -f "${CACHE_DIR}/${FILE}" ]; then
-                    ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
-                fi
-                ;;
-            apt)
-                if [ -n "${APT_KEY_URL}" ]; then
-                    ${ELEVATE} rm "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc" 2>/dev/null
-                fi
-                if [ -n "${GPG_KEY_URL}" ]; then
-                    ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" 2>/dev/null
-                fi
-                if [ -n "${APT_LIST_NAME}" ] && [ -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
-                    ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-                    update_apt
-                fi
-                ;;
-            ppa)
-                rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
-                if [ -n "${PPA}" ]; then
-                    ${ELEVATE} apt-add-repository -y --remove "${PPA}"
-                    update_apt
-                fi
-                ;;
-        esac
     else
         fancy_message info "${APP} is not installed."
     fi
+
+    # Remove repos/PPA/key even if the app is not installed.
+    case ${METHOD} in
+        direct|github|website)
+            if [ -f "${CACHE_DIR}/${FILE}" ]; then
+                ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+            fi
+            ;;
+        apt)
+            if [ -n "${APT_KEY_URL}" ]; then
+                ${ELEVATE} rm "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc" 2>/dev/null
+            fi
+            if [ -n "${GPG_KEY_URL}" ]; then
+                ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" 2>/dev/null
+            fi
+            if [ -n "${APT_LIST_NAME}" ] && [ -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+                ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+            fi
+            ;;
+        ppa)
+            rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
+            if [ -n "${PPA}" ]; then
+                ${ELEVATE} apt-add-repository -y --remove "${PPA}"
+            fi
+            ;;
+    esac
 }
 
 function version_deb() {
