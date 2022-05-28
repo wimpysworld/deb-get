@@ -208,6 +208,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [P3X OneNote](https://www.corifeus.com/onenote) (`p3x-onenote`) - <i>A Linux compatible version of OneNote.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Pandoc](https://pandoc.org/) (`pandoc`) - <i>A universal document converter.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Parsec](https://parsec.app/) (`parsec`) - <i>Simple, low-latency game streaming.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [PeaZip](https://peazip.github.io) (`peazip`) - <i>PeaZip is a free file archiver utility and extractor.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Picocrypt](https://github.com/HACKERALERT/Picocrypt/) (`picocrypt`) - <i>A very small, very simple, yet very secure encryption tool.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`) - <i>Stream Movies and TV Shows.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Polychromatic](https://polychromatic.app/) (`polychromatic`) - <i>Frontend for OpenRazer that enables Razer devices to control lighting effects and more.</i><br />
