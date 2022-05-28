@@ -358,7 +358,7 @@ function update_debs() {
             validate_deb "${APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-                if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
+                if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
                     fancy_message warn "${APP} (${VERSION_INSTALLED}) has an update pending for: ${VERSION_PUBLISHED}"
                 fi
             fi
@@ -375,7 +375,7 @@ function upgrade_debs() {
             validate_deb "${APP}" 1
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-                if [ "${STATUS}" == "install ok installed" ]; then
+                if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
                     install_deb "${URL}"
                 fi
             fi
@@ -1237,6 +1237,14 @@ function deb_shutter-encoder() {
     PRETTY_NAME="shutter-encoder"
     WEBSITE="https://www.shutterencoder.com/"
     SUMMARY="Professional video, audio and image coversion and encoding tool."
+}
+
+function deb_parsec() {
+    URL="https://builds.parsecgaming.com/package/parsec-linux.deb"
+    VERSION_PUBLISHED=""
+    PRETTY_NAME="Parsec"
+    WEBSITE="https://parsec.app/"
+    SUMMARY="Simple, low-latency game streaming."
 }
 
 function deb_nordvpn() {
