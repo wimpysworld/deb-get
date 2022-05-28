@@ -223,6 +223,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Raspberry Pi Imager](https://github.com/raspberrypi/rpi-imager) (`rpi-imager`) - <i>Raspberry Pi Imaging Utility.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [RStudio](https://www.rstudio.com/) (`rstudio`) - <i>Professional software for data science teams.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Blockbench](https://rustdesk.com/) (`rustdesk`) - <i>Open source virtual / remote desktop infrastructure for everyone!</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Sejda PDF Desktop](https://www.sejda.com/) (`sejda-desktop`) - <i>Easy, pleasant and productive PDF editor.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [shutter-encoder](https://www.shutterencoder.com/) (`shutter-encoder`) - <i>Professional video, audio and image coversion and encoding tool.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`) - <i>Private Messenger.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`) - <i>The simplest way to keep notes.</i><br />
