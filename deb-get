@@ -203,7 +203,7 @@ function install_deb() {
     local STATUS=""
 
     if [ -z "${URL}" ]; then
-        fancy_message error "Download URL is empty. Skipping."
+        fancy_message error "Download URL for ${APP} is empty. Skipping."
         return
     fi
 
