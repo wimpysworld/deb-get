@@ -122,6 +122,7 @@ The software below can be installed, updated and removed using `deb-get`.
 
 <img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`) - <i>The easiest way to store and use strong passwords.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`) - <i>A graphical program used to map keyboard buttons and mouse controls to a gamepad.</i><br />
+<img src=".github/debian.png" align="top" width="20" /> [AnyDesk]([https://www.shutterencoder.com/](https://anydesk.com)) (`anydesk`) - <i>Access any device at any time. From anywhere. Always secure and fast.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`) - <i>A hackable text editor for the 21st Century.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (`azure-cli`) - <i>Command-line interface used to create and manage Azure resources.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/) (`azuredatastudio`) - <i>Data management tool for working with SQL Server, Azure SQL DB and SQL DW.</i><br />
