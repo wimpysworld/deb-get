@@ -1777,9 +1777,10 @@ else
 fi
 
 case "${UBUNTU_CODENAME}" in
-    focal)  UBUNTU_RELEASE=20.04;;
-    impish) UBUNTU_RELEASE=21.10;;
-    jammy)  UBUNTU_RELEASE=22.04;;
+    focal)   UBUNTU_RELEASE=20.04;;
+    impish)  UBUNTU_RELEASE=21.10;;
+    jammy)   UBUNTU_RELEASE=22.04;;
+    kinetic) UBUNTU_RELEASE=22.10;;
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Ubuntu release.";;
 esac
 
