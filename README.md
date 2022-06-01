@@ -227,6 +227,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [shutter-encoder](https://www.shutterencoder.com/) (`shutter-encoder`) - <i>Professional video, audio and image coversion and encoding tool.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Signal](https://signal.org/) (`signal-desktop`) - <i>Private Messenger.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Simplenote](https://simplenote.com/) (`simplenote`) - <i>The simplest way to keep notes.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Simple Password Generator](https://github.com/hsbasu/simple-pwgen/) (`simple-pwgen`) - <i>Very simple Python3-based GUI application to generate secure and random password.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Skype](https://www.skype.com/) (`skypeforlinux`) - <i>Stay connected with free video calls worldwide.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Slack](https://slack.com/) (`slack-desktop`) - <i>One platform for your team and your work.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [SoftMaker Office 2021](https://www.softmaker.com/en/softmaker-office) (`softmaker-office-2021`) - <i>Create impressive documents with ease.</i><br />
