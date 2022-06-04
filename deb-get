@@ -1731,6 +1731,13 @@ function deb_battery-monitor() {
     SUMMARY="An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop."
 }
 
+function deb_yq() {
+    PPA="ppa:rmescandon/yq"
+    PRETTY_NAME="yq"
+    WEBSITE="https://mikefarah.gitbook.io/yq"
+    SUMMARY="A lightweight and portable command-line YAML processor."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
