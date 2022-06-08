@@ -1731,6 +1731,16 @@ function deb_battery-monitor() {
     SUMMARY="An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop."
 }
 
+function deb_android-messages-desktop() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/OrangeDrangon/android-messages-desktop/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="android-messages-desktop"
+    WEBSITE="https://github.com/OrangeDrangon/android-messages-desktop/"
+    SUMMARY="Run Android Messages as a desktop app."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
