@@ -172,6 +172,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Google Earth Pro](https://www.google.com/earth/versions/) (`google-earth-pro-stable`) - <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Grype](https://github.com/anchore/grype) (`grype`) - <i>A vulnerability scanner for container images and filesystems.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Heroic Games Launcher](https://heroicgameslauncher.com/) (`heroic`) - <i>An Open Source GOG and Epic games launcher.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Hugo](https://gohugo.io/) (`hugo`) - <i>Open-source static site generator.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Hyper](https://hyper.is/) (`hyper`) - <i>A terminal built on web technologies.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [IGdm Messenger](https://github.com/igdmapps/igdm) (`igdm`) - <i>Continue your Instagram direct messages from your phone to your desktop.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [InfluxDB](https://www.influxdata.com/products/influxdb-overview/) (`influxdb`) - <i>Scalable datastore for metrics, events, and real-time analytics.</i><br />
@@ -257,6 +258,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [Whalebird](https://whalebird.social/) (`whalebird`) - <i>A Mastodon, Pleroma, and Misskey client for desktop application.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [WhatsApp for Linux](https://github.com/eneshecan/whatsapp-for-linux) (`whatsapp-for-linux`) - <i>An unofficial WhatsApp desktop application for Linux.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Wire](https://wire.com/) (`wire-desktop`) - <i>Secure collaboration platform.</i><br />
+<img src=".github/launchpad.png" align="top" width="20" /> [yq](https://mikefarah.gitbook.io/yq) (`yq`) - <i>A lightweight and portable command-line YAML processor.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Zenith](https://github.com/bvaisvil/zenith) (`zenith`) - <i>Sort of like 'top' or 'htop' but with zoom-able charts.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Zettlr](https://www.zettlr.com/) (`zettlr`) - <i>A Markdown Editor for the 21st century.</i><br />
 <img src=".github/direct.png" align="top" width="20" /> [Zoom](https://zoom.us/) (`zoom`) - <i>Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events.</i><br />

@@ -587,6 +587,32 @@ function deb_rclone() {
     SUMMARY="Syncs your files to cloud storage."
 }
 
+function deb_hugo() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    get_github_releases "https://api.github.com/repos/gohugoio/hugo/releases/latest"
+    case ${HOST_ARCH} in
+        amd64)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+            URL=$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+            ;;
+        arm64)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+            URL=$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+            ;;
+        armhf)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+            URL=$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+            ;;
+        i386)
+            VERSION_PUBLISHED="$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+            URL=$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+            ;;
+    esac
+    PRETTY_NAME="Hugo"
+    WEBSITE="https://gohugo.io/"
+    SUMMARY="Open-source static site generator."
+}
+
 function deb_simplenote() {
     ARCHS_SUPPORTED="amd64 armhf i386"
     get_github_releases "https://api.github.com/repos/Automattic/simplenote-electron/releases/latest"
@@ -1732,13 +1758,19 @@ function deb_battery-monitor() {
 }
 
 function deb_android-messages-desktop() {
-    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/OrangeDrangon/android-messages-desktop/releases/latest"
     VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
     PRETTY_NAME="android-messages-desktop"
     WEBSITE="https://github.com/OrangeDrangon/android-messages-desktop/"
     SUMMARY="Run Android Messages as a desktop app."
+}
+
+function deb_yq() {
+    PPA="ppa:rmescandon/yq"
+    PRETTY_NAME="yq"
+    WEBSITE="https://mikefarah.gitbook.io/yq"
+    SUMMARY="A lightweight and portable command-line YAML processor."
 }
 
 # Create an array of all the deb_ functions
