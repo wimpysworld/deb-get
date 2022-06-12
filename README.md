@@ -121,6 +121,7 @@ The software below can be installed, updated and removed using `deb-get`.
 - `deb-get purge <packagename>`
 
 <img src=".github/debian.png" align="top" width="20" /> [1Password](https://1password.com/) (`1password`) - <i>The easiest way to store and use strong passwords.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [Android Messages Desktop](https://github.com/OrangeDrangon/android-messages-desktop) (`android-messages-desktop`) - <i>Run Android Messages as a desktop app, a la iMessage.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [AntiMicroX](https://antimicrox.github.io/) (`antimicrox`) - <i>A graphical program used to map keyboard buttons and mouse controls to a gamepad.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [AnyDesk](https://anydesk.com/) (`anydesk`) - <i>Access any device at any time. From anywhere. Always secure and fast.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Atom](https://atom.io/) (`atom`) - <i>A hackable text editor for the 21st Century.</i><br />
