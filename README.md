@@ -10,7 +10,7 @@ Made with 💝 for <img src=".github/ubuntu.png" align="top" width="20" /></p>
 
 ## Introduction
 
-`deb-get` makes is easy to install and update `.debs` published in 3rd party
+`deb-get` makes it easy to install and update `.debs` published in 3rd party
 apt repositories or made available via direct download on websites or GitHub
 release pages.
 
