@@ -215,6 +215,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/debian.png" align="top" width="20" /> [Plex](https://www.plex.tv/) (`plexmediaserver`) - <i>Stream Movies and TV Shows.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Polychromatic](https://polychromatic.app/) (`polychromatic`) - <i>Frontend for OpenRazer that enables Razer devices to control lighting effects and more.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [PowerShell](https://docs.microsoft.com/powershell/) (`powershell`) - <i>Cross-platform automation and configuration tool/framework and optimized for dealing with structured data.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [Portmaster](https://safing.io/portmaster/) (`portmaster`) - <i>Portmaster is a free and open-source application that puts you back in charge over all your computer's network connections.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [ProtonVPN](https://protonvpn.com/) (`protonvpn`) - <i>High-speed Swiss VPN that safeguards your privacy.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Quickemu](https://github.com/quickemu-project/quickemu) (`quickemu`) - <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Quickgui](https://github.com/quickemu-project/quickgui) (`quickgui`) - <i>A Flutter frontend for Quickemu.</i><br />
