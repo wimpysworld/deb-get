@@ -1773,6 +1773,16 @@ function deb_yq() {
     SUMMARY="A lightweight and portable command-line YAML processor."
 }
 
+function deb_youtube-music() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/th-ch/youtube-music/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    PRETTY_NAME="youtube-music"
+    WEBSITE="https://th-ch.github.io/youtube-music/"
+    SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
