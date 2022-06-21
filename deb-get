@@ -101,6 +101,7 @@ function fancy_message() {
     local RED="\e[31m"
     local GREEN="\e[32m"
     local YELLOW="\e[33m"
+    local MAGENTA="\e[35m"
     local RESET="\e[0m"
     local MESSAGE_TYPE=""
     local MESSAGE=""
@@ -110,6 +111,7 @@ function fancy_message() {
     case ${MESSAGE_TYPE} in
       info) echo -e "  [${GREEN}+${RESET}] ${MESSAGE}";;
       progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}";;
+      recommend) echo -e "  [${MAGENTA}!${RESET}] ${MESSAGE}";;
       warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}";;
       error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}";;
       fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}"
@@ -386,6 +388,75 @@ function upgrade_debs() {
         fi
     done
 }
+
+function load_etc_includes() {
+    if [ -d /etc/deb-get.d ]; then
+        for INCLUDE_FILE in $(find /etc/deb-get.d -type f); do
+            . $INCLUDE_FILE
+        done
+    fi
+}
+
+function unload_etc_includes() {
+    for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
+        unset -f deb_${DEB_FUNC}
+    done
+}
+
+function print_etc_overrides()
+{
+    if [ ${#INCLUDE_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
+
+        DEB_GET_SCRIPT_FILE="${0}"
+
+        # turn on source line debugging for declare -F
+        shopt -s extdebug
+
+        NUM_OLDER_CONFLICTS=0
+        for DEB_FUNC in "${APP_CONFLICTS[@]}"; do
+            # Find where the conflict is in the user includes
+            DECLARE_F_DEBUG="$(declare -F deb_$DEB_FUNC)"
+            INC_FILE="$(echo $DECLARE_F_DEBUG | cut -d" " -f3)"
+            SRC_LINE="$(echo $DECLARE_F_DEBUG | cut -d" " -f2)"
+            FUNC_SRC_REF="$INC_FILE:$SRC_LINE: function deb_$DEB_FUNC()"
+            fancy_message warn "Conflict detected, duplicate declaration of function deb_$DEB_FUNC(), using custom override declared at $FUNC_SRC_REF"
+
+            if [ "$DEB_GET_SCRIPT_FILE" -nt "$INC_FILE" ]; then
+                let "NUM_OLDER_CONFLICTS+=1"
+            fi
+        done
+
+        if [ $NUM_OLDER_CONFLICTS -gt 0 ]; then
+            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get.d/* folder."
+        fi
+
+        for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
+            # Find where it was declared in the user includes
+            DECLARE_F_DEBUG="$(declare -F deb_$DEB_FUNC)"
+            INC_FILE="$(echo $DECLARE_F_DEBUG | cut -d" " -f3)"
+            SRC_LINE="$(echo $DECLARE_F_DEBUG | cut -d" " -f2)"
+            FUNC_SRC_REF="$INC_FILE:$SRC_LINE: function deb_$DEB_FUNC()"
+            fancy_message info "Including custom override $FUNC_SRC_REF"
+        done
+
+        if [ ${#INCLUDE_APPS[@]} -gt 0 ]; then
+            fancy_message recommend "Please consider contributing back new entries, an issue (or raise a PR) directly at https://github.com/wimpysworld/deb-get/pulls"
+        fi
+
+        # turn off source line debugging for declare -F
+        shopt -u extdebug
+    fi
+}
+
+# Import deb_ functions in /etc/deb-get.d/**/* (if exists)
+load_etc_includes
+
+# Make a seperate list of all deb_ functions loaded from /etc/deb-get.d/**/*
+INCLUDE_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
+
+# Immediately unload these custom includes before loading the official builtin deb_ functions
+# (since after this point, declare -F cannot distinguish for us which deb_ came from which source)
+unload_etc_includes
 
 function deb_tixati() {
     URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
@@ -1783,8 +1854,24 @@ function deb_youtube-music() {
     SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
 }
 
-# Create an array of all the deb_ functions
+# Create an array to track those deb_ functions being loaded by this script
+readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
+
+# Load any extra deb_ functions in /etc/deb-get.d/**/*, and also create ${INCLUDE_APPS[@]} array
+load_etc_includes
+
+# Create an array to track any duplicated conflicting / overriden deb_ functions
+readonly APP_CONFLICTS=($(echo ${DEB_GET_APPS[@]} ${INCLUDE_APPS[@]} | tr ' ' '\n' | sort | uniq --repeated))
+
+# Remove list of APP_CONFLICTS from INCLUDE_APPS array, so each list can be handled seperately
+for DEB_FUNC in "${APP_CONFLICTS[@]}"; do
+    INCLUDE_APPS=(${INCLUDE_APPS[@]//*$DEB_FUNC*})
+done
+# Conflict detection all finished
+
+# Now create the final array of all loaded / merged deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
+
 export CACHE_DIR="/var/cache/deb-get"
 if [ -d /var/cache/get-deb ]; then
     mv /var/cache/get-deb "${CACHE_DIR}"
@@ -1850,7 +1937,8 @@ case ${ACTION} in
             fancy_message error "You must specify an app:\n"
             list_debs
             exit 1
-        fi;;
+        fi
+        print_etc_overrides;;
 esac
 
 export ELEVATE=""
