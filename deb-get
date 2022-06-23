@@ -1783,6 +1783,13 @@ function deb_youtube-music() {
     SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
 }
 
+function deb_corectrl() {
+    PPA="ppa:ernstp/mesarc"
+    PRETTY_NAME="CoreCtrl"
+    WEBSITE="https://gitlab.com/corectrl/corectrl"
+    SUMMARY="A Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
