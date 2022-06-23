@@ -206,6 +206,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/direct.png" align="top" width="20" /> [ocenaudio](https://www.ocenaudio.com/) (`ocenaudio`) - <i>Easy, fast and powerful audio editor.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [ONLYOFFICE Desktop Editors](https://www.onlyoffice.com/en/desktop.aspx) (`onlyoffice-desktopeditors`) - <i>Free desktop office suite for document editing and collaboration.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [OpenRazer](https://openrazer.github.io/) (`openrazer-meta`) - <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i><br />
+<img src=".github/direct.png" align="top" width="20" /> [OpenRGB](https://openrgb.org/) (`openrgb`) - <i>Open source RGB lighting control that doesn't depend on manufacturer software.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Opera](https://www.opera.com/) (`opera-stable`) - <i>Faster, safer and smarter than default browsers.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [P3X OneNote](https://www.corifeus.com/onenote) (`p3x-onenote`) - <i>A Linux compatible version of OneNote.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Pandoc](https://pandoc.org/) (`pandoc`) - <i>A universal document converter.</i><br />

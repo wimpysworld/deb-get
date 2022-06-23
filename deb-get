@@ -1783,6 +1783,24 @@ function deb_youtube-music() {
     SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
 }
 
+function deb_openrgb() {
+    ARCHS_SUPPORTED="amd64 i386 armhf"
+
+    case "${UBUNTU_CODENAME}" in
+        focal)
+            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*buster_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
+        ;;
+        *)
+            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*bullseye_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
+        ;;
+    esac
+
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 3)"
+    PRETTY_NAME="OpenRGB"
+    WEBSITE="https://openrgb.org/"
+    SUMMARY="Open source RGB lighting control that doesn't depend on manufacturer software."
+}
+
 # Create an array of all the deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 export CACHE_DIR="/var/cache/deb-get"
