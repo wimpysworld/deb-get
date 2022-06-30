@@ -196,6 +196,7 @@ The software below can be installed, updated and removed using `deb-get`.
 <img src=".github/github.png" align="top" width="20" /> [micro](https://micro-editor.github.io/) (`micro`) - <i>A modern and intuitive terminal-based text editor.</i><br />
 <img src=".github/debian.png" align="top" width="20" /> [Microsoft Edge](https://www.microsoft.com/edge) (`microsoft-edge-stable`) - <i>Fast and secure browser that helps you protect your data and save time and money.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Minigalaxy](https://sharkwouter.github.io/minigalaxy/) (`minigalaxy`) - <i>A simple GOG client for Linux.</i><br />
+<img src=".github/github.png" align="top" width="20" /> [minikube](https://minikube.sigs.k8s.io/) (`minikube`) - <i>minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [mpdevil](https://github.com/SoongNoonien/mpdevil) (`mpdevil`) - <i>A simple music browser for MPD.</i><br />
 <img src=".github/github.png" align="top" width="20" /> [Office 365](https://agam778.github.io/MS-Office-Electron/) (`ms-office-electron`) - <i>A Microsoft Office Online Desktop Client made with Electron.</i><br />
 <img src=".github/launchpad.png" align="top" width="20" /> [Nextcloud Desktop](https://nextcloud.com/) (`nextcloud-desktop`) - <i>The self-hosted productivity platform that keeps you in control.</i><br />
