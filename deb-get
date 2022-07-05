@@ -1106,7 +1106,7 @@ function deb_mailspring() {
 
 function deb_mattermost-desktop() {
     get_github_releases "https://api.github.com/repos/mattermost/desktop/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's/v//')"
+    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_DIR}/${APP}.json" | grep -v -e rc | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's/v//')"
     URL="$(curl https://github.com/mattermost/desktop/releases/ | grep "//releases.*${VERSION_PUBLISHED}.*${HOST_ARCH}.deb" | head -n 1 | cut -d\" -f 2)"
     PRETTY_NAME="Mattermost Desktop"
     WEBSITE="https://mattermost.com/"
@@ -1368,7 +1368,10 @@ function deb_zoom() {
 }
 
 function deb_azuredatastudio() {
-    URL=$(unroll_url "https://go.microsoft.com/fwlink/?linkid=2193327")
+    local REDIR_URL=""
+    get_github_releases "https://api.github.com/repos/microsoft/azuredatastudio/releases/latest"
+    REDIR_URL="$(grep -o "\[linux-deb\]:.*linkid=[0-9]*" "${CACHE_DIR}/${APP}.json" | cut -d' ' -f2)"
+    URL=$(unroll_url "${REDIR_URL}")
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | sed 's/\.deb//')"
     PRETTY_NAME="Azure Data Studio"
     WEBSITE="https://docs.microsoft.com/en-us/sql/azure-data-studio/"
