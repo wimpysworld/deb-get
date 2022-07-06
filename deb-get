@@ -343,6 +343,8 @@ function list_debs() {
 
 function prettylist_debs() {
     local ICON=""
+    echo "| Source   | Package Name   | Description   |
+| :------: | :------------- | :------------ |"
     for APP in "${APPS[@]}"; do
         validate_deb "${APP}"
         case ${METHOD} in
@@ -351,7 +353,7 @@ function prettylist_debs() {
             ppa)    ICON="launchpad.png";;
             *)      ICON="direct.png";;
         esac
-        echo "<img src=\".github/${ICON}\" align=\"top\" width=\"20\" /> [${PRETTY_NAME}](${WEBSITE}) ("'`'"${APP}"'`'") - <i>${SUMMARY}</i><br />"
+        echo "| [<img src=\".github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
     done
 }
 
