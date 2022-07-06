@@ -1867,6 +1867,16 @@ function deb_youtube-music() {
     SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
 }
 
+function deb_minikube() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf ppc64el s390x"
+    get_github_releases "https://api.github.com/repos/kubernetes/minikube/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*minikube_.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
+    URL="$(grep "browser_download_url.*minikube_.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    PRETTY_NAME="minikube"
+    WEBSITE="https://minikube.sigs.k8s.io/"
+    SUMMARY="minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows."
+}
+
 function deb_fsearch() {
     PPA="ppa:christian-boxdoerfer/fsearch-stable"
     PRETTY_NAME="FSearch"
