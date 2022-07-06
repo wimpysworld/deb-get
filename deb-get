@@ -1857,6 +1857,18 @@ function deb_youtube-music() {
     SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
 }
 
+function deb_mergerfs() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf"
+    get_github_releases "https://api.github.com/repos/trapexit/mergerfs/releases/latest"
+    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${OS_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
+    # TODO When https://github.com/wimpysworld/deb-get/issues/125 shakes out should add the debian packages
+    CODENAMES_SUPPORTED=($(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json"| grep ${HOST_ARCH} | cut -d'"' -f4 | sed -n "s/^.*ubuntu-\(\S*\)_.*/\1/p"))
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UBUNTU_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
+    PRETTY_NAME="mergerfs"
+    WEBSITE="https://github.com/trapexit/mergerfs"
+    SUMMARY="A featureful union filesystem."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
@@ -1962,9 +1974,13 @@ case "${ACTION}" in
         for APP in "${@,,}"; do
             validate_deb "${APP}"
             if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
-                fancy_message error "${APP} is not supported on ${HOST_ARCH}."
-                return
+                fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
             fi
+
+            if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${OS_CODENAME}" ]]; then
+                fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${OS_CODENAME^}."
+            fi
+
             case ${METHOD} in
                 direct|github|website) install_deb "${URL}";;
                 apt) install_apt;;
