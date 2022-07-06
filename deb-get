@@ -1867,6 +1867,13 @@ function deb_youtube-music() {
     SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
 }
 
+function deb_corectrl() {
+    PPA="ppa:ernstp/mesarc"
+    PRETTY_NAME="CoreCtrl"
+    WEBSITE="https://gitlab.com/corectrl/corectrl"
+    SUMMARY="A Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles."
+}
+
 function deb_openrgb() {
     ARCHS_SUPPORTED="amd64 i386 armhf"
 
