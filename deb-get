@@ -1921,6 +1921,13 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_cryptomator() {
+    PPA="ppa:sebastian-stenzel/cryptomator"
+    PRETTY_NAME="Cryptomator"
+    WEBSITE="https://cryptomator.org/"
+    SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
