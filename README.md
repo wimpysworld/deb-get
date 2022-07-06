@@ -138,6 +138,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hsbasu/battery-monitor/) | `battery-monitor` | <i>An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://beersmith.com/) | `beersmith3` | <i>Home Brewing Software.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://bitwarden.com/) | `bitwarden` | <i>Open Source Password Manager.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/rafaelmardojai/blanket) | `blanket` | <i>Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.blockbench.net/) | `blockbench` | <i>A low-poly 3D model editor</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://brave.com/) | `brave-browser` | <i>Browse privately. Search privately. And ditch Big Tech.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://brisqi.com/) | `brisqi` | <i>An offline-first personal Kanban app.</i> |
@@ -246,6 +247,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.strawberrymusicplayer.org/) | `strawberry` | <i>Music player and music collection organizer aimed at music collectors and audiophiles.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.stremio.com/) | `stremio` | <i>Watch videos, movies, TV series and TV channels instantly.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimemerge.com/) | `sublime-merge` | <i>Git Client, done Sublime.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimetext.com/) | `sublime-text` | <i>Text Editing, Done Right.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://surfshark.com/) | `surfshark` | <i>Award-winning VPN service.</i> |
