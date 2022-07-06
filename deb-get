@@ -1920,6 +1920,14 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_stremio() {
+    URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64.deb" | cut -d "\"" -f 3)"
+    VERSION_PUBLISHED=""$(echo "${URL}" | cut -d "_" -f 2)""
+    PRETTY_NAME="Stremio"
+    WEBSITE="https://www.stremio.com/"
+    SUMMARY="Watch videos, movies, TV series and TV channels instantly."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
