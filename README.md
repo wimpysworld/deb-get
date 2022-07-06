@@ -246,6 +246,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.strawberrymusicplayer.org/) | `strawberry` | <i>Music player and music collection organizer aimed at music collectors and audiophiles.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.stremio.com/) | `stremio` | <i>Watch videos, movies, TV series and TV channels instantly.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimemerge.com/) | `sublime-merge` | <i>Git Client, done Sublime.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimetext.com/) | `sublime-text` | <i>Text Editing, Done Right.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://surfshark.com/) | `surfshark` | <i>Award-winning VPN service.</i> |
