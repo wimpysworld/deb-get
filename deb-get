@@ -1921,6 +1921,13 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_gpu-viewer() {
+    PPA="ppa:arunsivaraman/gpuviewer"
+    PRETTY_NAME="GPU-Viewer"
+    WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+    SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
