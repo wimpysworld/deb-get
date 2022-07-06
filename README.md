@@ -325,6 +325,30 @@ scope of the project in terms if what it is intended for.
   * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
   * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
 
+### Custom User Includes `/etc/deb-get.d`
+
+Being very careful, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
+
+There are 3-4 reasons for doing this:
+
+1. While waiting for your new package suggestion or contribution to get reviewed and merged upstream.
+2. To tweak or override an already existing `deb_<appname>()` entry. For example to install a different version from another github fork, (or other variations / customizations that differ from the default official software pkg, such as different builds that were compiled with custom compiler flags etc).
+3. For some obscure piece software (or for your own custom software) which you aboslutely require, but which nobody else has an interest in. That does not make any sense to merge upstream officially.
+4. For installing commercial or closed source software, (or other proprietary tools), which is not open source and/or has restrictive licensing or distribution term. For example within an organizational or corporate setting.
+
+How to use:
+
+* Manually create the folder `/etc/deb-get.d/` if not exist already. By default `deb-get` does not create this folder unless your specific distribution has packaged it that way.
+* Can also create any arbitrary nested sub-folder structure within `/etc/deb-get.d/**/*` main folder
+* Any files within this tree will be bash sourced in alphabetical order e.g. `. /etc/deb-get.d/01-pending-merge/10-appname1`
+* Your user custom `deb_*` functions are then loaded directly after the last `deb_*()` package declarations that officially come with `deb-get`
+* Recommendation message printed for any new user added deb_* functions. With a URL link to open a request.
+* Warning messages are then also printed for any conflicts detected. For overriden functions (of same name), which then take priority over existing official deb-get apps.
+
+For the last situation, this is most often meant as a helpful reminder to remove your custom declaration once it has been successfully merged upstream into the official `deb-get` tool. So after `deb-get` updates itself you are properly notified. And can avoid keeping lots of duplite functions around.
+
+We really hope that you will enjoy the convenience and flexibility of the new user overrides feature. So please consider in return to open new issues or pull requests (here on github), for any new `deb_*()` functions / packages you create! So that we can share those back with the wider community. Many thanks for your consideration!
+
 ## Related projects
 
   * [App Outlet](https://app-outlet.github.io/): *A Universal linux app store*
