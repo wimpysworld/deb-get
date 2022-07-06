@@ -318,7 +318,7 @@ scope of the project in terms if what it is intended for.
   * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
   * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
 
-### Custom User Includes `/etc/deb-get.d`
+### Custom User Includes `/etc/deb-get.d/`
 
 Being very careful, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
 
