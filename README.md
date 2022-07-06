@@ -124,8 +124,6 @@ The software below can be installed, updated and removed using `deb-get`.
 - `deb-get remove <packagename>`
 - `deb-get purge <packagename>`
 
-<br/>
-
 | Source   | Package Name   | Description   |
 | :------: | :------------- | :------------ |
 | [<img src=".github/debian.png" align="top" width="20" />](https://1password.com) | `1password` |  <i>The easiest way to store and use strong passwords.</i> |

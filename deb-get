@@ -1638,6 +1638,14 @@ function deb_tailscale() {
     SUMMARY="Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere."
 }
 
+function deb_portmaster() {
+    VERSION_PUBLISHED="$(curl -s https://api.github.com/repos/safing/portmaster/releases/latest | grep -E '"name":' | sed -E 's/[",]//g' | cut -d: -f2 | sed 's/ //g')"
+    URL="https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb"
+    PRETTY_NAME="Portmaster"
+    WEBSITE="https://safing.io/portmaster/"
+    SUMMARY="Portmaster is a free and open-source application that puts you back in charge over all your computer's network connections."
+}
+
 function deb_vuescan() {
     ARCHS_SUPPORTED="amd64 arm64 i386"
     local ARCH_VER
