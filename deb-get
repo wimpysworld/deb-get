@@ -1921,6 +1921,17 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_sleek() {
+    get_github_releases "https://api.github.com/repos/ransome1/sleek/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4 | cut -d'/' -f8 | tr -d v)"
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+    fi
+    PRETTY_NAME="Sleek"
+    WEBSITE="https://github.com/ransome1/sleek"
+    SUMMARY="Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS)."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
