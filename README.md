@@ -195,6 +195,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/debian.png" align="top" width="20" />](https://github.com/influxdata/kapacitor) | `kapacitor` | <i>Open source framework for processing, monitoring, and alerting on time series data.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://keepassxc.org/) | `keepassxc` | <i>Cross-Platform Password Manager.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://keybase.io/) | `keybase` | <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://kopia.io/) | `kopia-ui` | <i>Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ksnip/ksnip) | `ksnip` | <i>Cross-platform screenshot and annotation tool.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://ludo.libretro.com/) | `ludo` | <i>A minimalist frontend for emulators.</i> |

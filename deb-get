@@ -1921,6 +1921,15 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_kopia-ui() {
+    APT_KEY_URL="https://kopia.io/signing-key"
+    APT_LIST_NAME="kopia"
+    APT_REPO_URL="deb http://packages.kopia.io/apt/ stable main"
+    PRETTY_NAME="KopiaUI"
+    WEBSITE="https://kopia.io/"
+    SUMMARY="Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
