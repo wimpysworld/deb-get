@@ -327,14 +327,12 @@ scope of the project in terms if what it is intended for.
 
 ### Custom User Includes `/etc/deb-get.d/`
 
-Being very careful, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
+As a more advanced feature, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
 
-There are 3-4 reasons for doing this:
+Typically either because:
 
-1. While waiting for your new package suggestion or contribution to get reviewed and merged upstream.
-2. To tweak or override an already existing `deb_<appname>()` entry. For example to install a different version from another github fork, (or other variations / customizations that differ from the default official software pkg, such as different builds that were compiled with custom compiler flags etc).
-3. For some obscure piece software (or for your own custom software) which you aboslutely require, but which nobody else has an interest in. That does not make any sense to merge upstream officially.
-4. For installing commercial or closed source software, (or other proprietary tools), which is not open source and/or has restrictive licensing or distribution term. For example within an organizational or corporate setting.
+1. You are waiting on a pending request for a new software package. Which has been submitted for consideration. But which has not been reviewed / accepted / merged / released yet.
+2. Or because you need to add something which does not meet any of the general guidelines in the previous section ^^ detailed above, for whatever various reason(s).
 
 How to use:
 
