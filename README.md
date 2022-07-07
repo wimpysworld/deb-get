@@ -138,6 +138,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hsbasu/battery-monitor/) | `battery-monitor` | <i>An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://beersmith.com/) | `beersmith3` | <i>Home Brewing Software.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://bitwarden.com/) | `bitwarden` | <i>Open Source Password Manager.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.bitwig.com/) | `bitwig-studio` | <i>Modern music production and performance.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.blockbench.net/) | `blockbench` | <i>A low-poly 3D model editor</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://brave.com/) | `brave-browser` | <i>Browse privately. Search privately. And ditch Big Tech.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://brisqi.com/) | `brisqi` | <i>An offline-first personal Kanban app.</i> |

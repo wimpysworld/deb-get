@@ -1921,6 +1921,16 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_bitwig-studio() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(unroll_url "https://www.bitwig.com/dl/?id=481&os=installer_linux")"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d "/" -f 4)"
+    fi
+    PRETTY_NAME="BitWig Studio"
+    WEBSITE="https://www.bitwig.com/"
+    SUMMARY="Modern music production and performance."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
