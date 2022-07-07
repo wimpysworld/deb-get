@@ -1921,6 +1921,16 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_openaudible() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/openaudible/openaudible/releases/latest"
+    URL="$(grep "browser_download_url.*x86_64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo ${URL} | cut -d'_' -f2)"
+    PRETTY_NAME="OpenAudible"
+    WEBSITE="https://github.com/openaudible/openaudible"
+    SUMMARY="A cross-platform desktop application for downloading and managing your Audible audiobooks."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
