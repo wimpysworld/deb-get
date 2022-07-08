@@ -44,6 +44,15 @@ can search the available applications with `deb-get search <app>`.
 You can upgrade packages installed using `deb-get` by running
 `deb-get upgrade`.
 
+<!-- [[[cog
+import subprocess
+
+import cog
+result = subprocess.check_output(["./deb-get", "help"], encoding="utf-8")
+# strip the "Usage" header
+help = result.replace("Usage\n\n", "").rstrip()
+cog.out(f"```\n{help}\n```")
+]]] -->
 ```
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
 | purge pkg | search pkg | cache | clean | list | prettylist | help | version}
@@ -53,47 +62,48 @@ system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
 update
-        update is used to resynchronize the package index files from their sources.
+	update is used to resynchronize the package index files from their sources.
 
 upgrade
-        upgrade is used to install the newest versions of all packages currently installed on the system.
+	upgrade is used to install the newest versions of all packages currently installed on the system.
 
 install
-        install is followed by one package desired for installation or upgrading.
+	install is followed by one package desired for installation or upgrading.
 
 reinstall
-        reinstall is followed by one package desired for reinstallation.
+	reinstall is followed by one package desired for reinstallation.
 
 remove
-        remove is identical to install except that packages are removed instead of installed.
+	remove is identical to install except that packages are removed instead of installed.
 
 purge
-        purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+	purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
 
 clean
-        clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+	clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 search
-        search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+	search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-        show information about the given package including its install source and update mechanism.
+	show information about the given package including its install source and update mechanism.
 
 list
-        list the packages available via deb-get.
+	list the packages available via deb-get.
 
 prettylist
-        markdown formatted list the packages available via deb-get. Use this to update README.md
+	markdown formatted list the packages available via deb-get. Use this to update README.md
 
 cache
-        list the contents of the deb-get cache (/var/cache/deb-get)
+	list the contents of the deb-get cache (/var/cache/deb-get)
 
 help
-        show this help
+	show this help
 
 version
-        show deb-get version
+	show deb-get version
 ```
+<!-- [[[end]]] -->
 
 ### Why?
 
@@ -124,6 +134,10 @@ The software below can be installed, updated and removed using `deb-get`.
 - `deb-get remove <packagename>`
 - `deb-get purge <packagename>`
 
+<!-- [[[cog
+pretty_list = subprocess.check_output(["./deb-get", "prettylist"], encoding="utf-8")
+cog.out(pretty_list)
+]]] -->
 | Source   | Package Name   | Description   |
 | :------: | :------------- | :------------ |
 | [<img src=".github/debian.png" align="top" width="20" />](https://1password.com/) | `1password` | <i>The easiest way to store and use strong passwords.</i> |
@@ -286,6 +300,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://www.zettlr.com/) | `zettlr` | <i>A Markdown Editor for the 21st century.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://zoom.us/) | `zoom` | <i>Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.zotero.org/) | `zotero` | <i>A free, easy-to-use tool to help you collect, organize, cite, and share research.</i> |
+<!-- [[[end]]] -->
 
 
 **Legend**
