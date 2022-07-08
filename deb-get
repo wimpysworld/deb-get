@@ -26,7 +26,6 @@ cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 help\n\tshow this help\n
 version\n\tshow deb-get version\n
 "
-  exit 1
 }
 
 # https://github.com/wimpysworld/deb-get/issues/126
@@ -1996,6 +1995,7 @@ if [ -n "${1}" ]; then
 else
     fancy_message error "You must specify an action."
     usage
+    exit 1
 fi
 
 case ${ACTION} in
