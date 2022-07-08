@@ -235,6 +235,7 @@ cog.out(pretty_list)
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://obsproject.com/) | `obs-studio` | <i>Free and open source software for video recording and live streaming.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.ocenaudio.com/) | `ocenaudio` | <i>Easy, fast and powerful audio editor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://openrazer.github.io/) | `openrazer-meta` | <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://openrgb.org/) | `openrgb` | <i>Open source RGB lighting control that doesn't depend on manufacturer software.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.opera.com/) | `opera-stable` | <i>Faster, safer and smarter than default browsers.</i> |
