@@ -1920,6 +1920,15 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_typora() {
+    APT_KEY_URL="https://typora.io/linux/public-key.asc"
+    APT_LIST_NAME="typora"
+    APT_REPO_URL="deb https://typora.io/linux ./"
+    PRETTY_NAME="Typora"
+    WEBSITE="https://typora.io/"
+    SUMMARY="A minimal Markdown editor and reader."
+}
+
 function deb_kdiskmark() {
     PPA="ppa:jonmagon/kdiskmark"
     PRETTY_NAME="KDiskMark"
