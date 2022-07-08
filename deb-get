@@ -1920,6 +1920,17 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_sleek() {
+    get_github_releases "https://api.github.com/repos/ransome1/sleek/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Sleek"
+    WEBSITE="https://github.com/ransome1/sleek"
+    SUMMARY="Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS)."
+}
+
 function deb_kopia-ui() {
     APT_KEY_URL="https://kopia.io/signing-key"
     APT_LIST_NAME="kopia"
