@@ -134,6 +134,10 @@ The software below can be installed, updated and removed using `deb-get`.
 - `deb-get remove <packagename>`
 - `deb-get purge <packagename>`
 
+<!-- [[[cog
+pretty_list = subprocess.check_output(["./deb-get", "prettylist"], encoding="utf-8")
+cog.out(pretty_list)
+]]] -->
 | Source   | Package Name   | Description   |
 | :------: | :------------- | :------------ |
 | [<img src=".github/debian.png" align="top" width="20" />](https://1password.com/) | `1password` | <i>The easiest way to store and use strong passwords.</i> |
@@ -295,6 +299,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://www.zettlr.com/) | `zettlr` | <i>A Markdown Editor for the 21st century.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://zoom.us/) | `zoom` | <i>Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.zotero.org/) | `zotero` | <i>A free, easy-to-use tool to help you collect, organize, cite, and share research.</i> |
+<!-- [[[end]]] -->
 
 
 **Legend**
