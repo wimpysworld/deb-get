@@ -26,7 +26,6 @@ cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 help\n\tshow this help\n
 version\n\tshow deb-get version\n
 "
-  exit 1
 }
 
 # https://github.com/wimpysworld/deb-get/issues/126
@@ -1928,6 +1927,37 @@ function deb_kdiskmark() {
     SUMMARY="A simple open-source disk benchmark tool for Linux distros."
 }
 
+function deb_xemu() {
+    PPA="ppa:mborgerson/xemu"
+    PRETTY_NAME="Xemu"
+    WEBSITE="https://xemu.app/"
+    SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
+}
+
+function deb_cryptomator() {
+    PPA="ppa:sebastian-stenzel/cryptomator"
+    PRETTY_NAME="Cryptomator"
+    WEBSITE="https://cryptomator.org/"
+    SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
+}
+
+function deb_gpu-viewer() {
+    PPA="ppa:arunsivaraman/gpuviewer"
+    PRETTY_NAME="GPU-Viewer"
+    WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+    SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
+}
+
+function deb_stremio() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64.deb" | cut -d "\"" -f 3)"
+        VERSION_PUBLISHED=""$(echo "${URL}" | cut -d "_" -f 2)""
+    fi
+    PRETTY_NAME="Stremio"
+    WEBSITE="https://www.stremio.com/"
+    SUMMARY="Watch videos, movies, TV series and TV channels instantly."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
@@ -2003,6 +2033,7 @@ if [ -n "${1}" ]; then
 else
     fancy_message error "You must specify an action."
     usage
+    exit 1
 fi
 
 case ${ACTION} in
