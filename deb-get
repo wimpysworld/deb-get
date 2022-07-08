@@ -1920,6 +1920,15 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_kopia-ui() {
+    APT_KEY_URL="https://kopia.io/signing-key"
+    APT_LIST_NAME="kopia"
+    APT_REPO_URL="deb http://packages.kopia.io/apt/ stable main"
+    PRETTY_NAME="KopiaUI"
+    WEBSITE="https://kopia.io/"
+    SUMMARY="Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication."
+}
+
 function deb_typora() {
     APT_KEY_URL="https://typora.io/linux/public-key.asc"
     APT_LIST_NAME="typora"
