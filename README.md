@@ -62,46 +62,46 @@ system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
 update
-        update is used to resynchronize the package index files from their sources.
+	update is used to resynchronize the package index files from their sources.
 
 upgrade
-        upgrade is used to install the newest versions of all packages currently installed on the system.
+	upgrade is used to install the newest versions of all packages currently installed on the system.
 
 install
-        install is followed by one package desired for installation or upgrading.
+	install is followed by one package desired for installation or upgrading.
 
 reinstall
-        reinstall is followed by one package desired for reinstallation.
+	reinstall is followed by one package desired for reinstallation.
 
 remove
-        remove is identical to install except that packages are removed instead of installed.
+	remove is identical to install except that packages are removed instead of installed.
 
 purge
-        purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+	purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
 
 clean
-        clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+	clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 search
-        search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+	search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-        show information about the given package including its install source and update mechanism.
+	show information about the given package including its install source and update mechanism.
 
 list
-        list the packages available via deb-get.
+	list the packages available via deb-get.
 
 prettylist
-        markdown formatted list the packages available via deb-get. Use this to update README.md
+	markdown formatted list the packages available via deb-get. Use this to update README.md
 
 cache
-        list the contents of the deb-get cache (/var/cache/deb-get)
+	list the contents of the deb-get cache (/var/cache/deb-get)
 
 help
-        show this help
+	show this help
 
 version
-        show deb-get version
+	show deb-get version
 ```
 <!-- [[[end]]] -->
 
