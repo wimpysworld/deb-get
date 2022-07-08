@@ -26,7 +26,6 @@ cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 help\n\tshow this help\n
 version\n\tshow deb-get version\n
 "
-  exit 1
 }
 
 # https://github.com/wimpysworld/deb-get/issues/126
@@ -461,16 +460,20 @@ INCLUDE_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 unload_etc_includes
 
 function deb_tixati() {
-    URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Tixati"
     WEBSITE="https://www.tixati.com/"
     SUMMARY="A New and Powerful P2P System."
 }
 
 function deb_discord() {
-    URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
+    fi
     PRETTY_NAME="Discord"
     WEBSITE="https://discord.com/"
     SUMMARY="A place that makes it easy to talk every day and hang out more often."
@@ -537,16 +540,20 @@ function deb_code() {
 }
 
 function deb_rstudio() {
-    URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep "amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | sed s'/-/+/')"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep "amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"
+    fi
     PRETTY_NAME="RStudio"
     WEBSITE="https://www.rstudio.com/"
     SUMMARY="Professional software for data science teams."
 }
 
 function deb_beersmith3() {
-    URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "amd64.deb" | head -n1 | cut -d'"' -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)"
+    fi
     PRETTY_NAME="BeerSmith"
     WEBSITE="https://beersmith.com/"
     SUMMARY="Home Brewing Software."
@@ -554,7 +561,9 @@ function deb_beersmith3() {
 
 function deb_ocenaudio() {
     ARCHS_SUPPORTED="amd64 i386"
-    VERSION_PUBLISHED="$(curl -s "https://www.ocenaudio.com/en/download" | grep "<p>Version" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s "https://www.ocenaudio.com/en/download" | grep "<p>Version" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+    fi
     case ${HOST_ARCH} in
         amd64) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_64.deb";;
         i386) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_32.deb";;
@@ -566,8 +575,10 @@ function deb_ocenaudio() {
 
 function deb_github-desktop() {
     get_github_releases "https://api.github.com/repos/shiftkey/desktop/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|release-||')"
-    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
     PRETTY_NAME="GitHub Desktop"
     WEBSITE="https://desktop.github.com/"
     SUMMARY="Simple collaboration from your desktop."
@@ -576,8 +587,10 @@ function deb_github-desktop() {
 function deb_lsd() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Peltoche/lsd/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
     SUMMARY="The next gen 'ls' command."
@@ -586,8 +599,10 @@ function deb_lsd() {
 function deb_bat() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/sharkdp/bat/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="bat"
     WEBSITE="https://github.com/sharkdp/bat"
     SUMMARY="A 'cat' clone with wings."
@@ -596,8 +611,10 @@ function deb_bat() {
 function deb_git-delta() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/dandavison/delta/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="git-delta"
     WEBSITE="https://github.com/dandavison/delta"
     SUMMARY="A syntax-highlighting pager for 'git', 'diff', and 'grep' output."
@@ -606,8 +623,10 @@ function deb_git-delta() {
 function deb_fd() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/sharkdp/fd/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="fd"
     WEBSITE="https://github.com/sharkdp/fd"
     SUMMARY="A simple, fast and user-friendly alternative to 'find'."
@@ -616,14 +635,14 @@ function deb_fd() {
 function deb_duf() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/muesli/duf/releases/latest"
-    case "${HOST_ARCH}" in
-        armhf) VERSION_PUBLISHED="$(grep "browser_download_url.*armv7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-               URL=$(grep "browser_download_url.*armv7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-               ;;
-        *)     VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-               URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-               ;;
-    esac
+    if [ "${ACTION}" != "prettylist" ]; then
+        case "${HOST_ARCH}" in
+            armhf) URL=$(grep "browser_download_url.*armv7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+                   ;;
+            *)     URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        esac
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="duf"
     WEBSITE="https://github.com/muesli/duf"
     SUMMARY="Disk Usage/Free Utility - a better 'df' alternative."
@@ -631,8 +650,10 @@ function deb_duf() {
 
 function deb_zenith() {
     get_github_releases "https://api.github.com/repos/bvaisvil/zenith/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Zenith"
     WEBSITE="https://github.com/bvaisvil/zenith"
     SUMMARY="Sort of like 'top' or 'htop' but with zoom-able charts."
@@ -641,20 +662,20 @@ function deb_zenith() {
 function deb_rclone() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/rclone/rclone/releases/latest"
-    case ${HOST_ARCH} in
-        armhf)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*arm-v7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-            URL=$(grep "browser_download_url.*arm-v7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-            ;;
-        i386)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*386.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-            URL=$(grep "browser_download_url.*386.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-            ;;
-        *)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-            URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-            ;;
-    esac
+    if [ "${ACTION}" != "prettylist" ]; then
+        case ${HOST_ARCH} in
+            armhf)
+                URL=$(grep "browser_download_url.*arm-v7.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+                ;;
+            i386)
+                URL=$(grep "browser_download_url.*386.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+                ;;
+            *)
+                URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+                ;;
+        esac
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Rclone"
     WEBSITE="https://rclone.org/"
     SUMMARY="Syncs your files to cloud storage."
@@ -663,24 +684,23 @@ function deb_rclone() {
 function deb_hugo() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/gohugoio/hugo/releases/latest"
-    case ${HOST_ARCH} in
-        amd64)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-            URL=$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-            ;;
-        arm64)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-            URL=$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-            ;;
-        armhf)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-            URL=$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-            ;;
-        i386)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-            URL=$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-            ;;
-    esac
+    if [ "${ACTION}" != "prettylist" ]; then
+        case ${HOST_ARCH} in
+            amd64)
+                URL=$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4)
+                ;;
+            arm64)
+                URL=$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+                ;;
+            armhf)
+                URL=$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+                ;;
+            i386)
+                URL=$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+                ;;
+        esac
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Hugo"
     WEBSITE="https://gohugo.io/"
     SUMMARY="Open-source static site generator."
@@ -689,11 +709,13 @@ function deb_hugo() {
 function deb_simplenote() {
     ARCHS_SUPPORTED="amd64 armhf i386"
     get_github_releases "https://api.github.com/repos/Automattic/simplenote-electron/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    case ${HOST_ARCH} in
-        amd64|i386) URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
-        armhf) URL=$(grep "browser_download_url.*armhv7l.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
-    esac
+    if [ "${ACTION}" != "prettylist" ]; then
+        case ${HOST_ARCH} in
+            amd64|i386) URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
+            armhf) URL=$(grep "browser_download_url.*armhv7l.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4);;
+        esac
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Simplenote"
     WEBSITE="https://simplenote.com/"
     SUMMARY="The simplest way to keep notes."
@@ -701,8 +723,10 @@ function deb_simplenote() {
 
 function deb_peazip() {
     get_github_releases "https://api.github.com/repos/peazip/PeaZip/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep Qt5 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep Qt5 | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep Qt5 | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="PeaZip"
     WEBSITE="https://peazip.github.io"
     SUMMARY="PeaZip is a free file archiver utility and extractor."
@@ -827,8 +851,10 @@ function deb_docker-ce() {
 }
 
 function deb_docker-desktop() {
-    URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | head -n1 | cut -d'"' -f2 | cut -d'?' -f1)"
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | head -n1 | cut -d'"' -f2 | cut -d'?' -f1)"
+        VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
+    fi
     PRETTY_NAME="Docker Desktop"
     WEBSITE="https://www.docker.com/products/docker-desktop/"
     SUMMARY="The fastest way to containerize applications."
@@ -836,8 +862,10 @@ function deb_docker-desktop() {
 
 function deb_irccloud-desktop() {
     get_github_releases "https://api.github.com/repos/irccloud/irccloud-desktop/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="IRCCloud Desktop"
     WEBSITE="https://www.irccloud.com/"
     SUMMARY="IRCCloud desktop application."
@@ -846,8 +874,10 @@ function deb_irccloud-desktop() {
 function deb_system-monitoring-center() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/hakandundar34coding/system-monitoring-center/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f4)"
-    URL=$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f4)"
+    fi
     PRETTY_NAME="System Monitoring Center"
     WEBSITE="https://github.com/hakandundar34coding/system-monitoring-center"
     SUMMARY="Multi-featured system monitor."
@@ -856,8 +886,10 @@ function deb_system-monitoring-center() {
 function deb_minigalaxy() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/sharkwouter/minigalaxy/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Minigalaxy"
     WEBSITE="https://sharkwouter.github.io/minigalaxy/"
     SUMMARY="A simple GOG client for Linux."
@@ -865,8 +897,10 @@ function deb_minigalaxy() {
 
 function deb_gamehub() {
     get_github_releases "https://api.github.com/repos/tkashkin/GameHub/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v '\-dev' | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|-master||')"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v '\-dev' | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v '\-dev' | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|-master||')"
+    fi
     PRETTY_NAME="GameHub"
     WEBSITE="https://tkashkin.github.io/projects/gamehub"
     SUMMARY="Unified library for all your games."
@@ -875,8 +909,10 @@ function deb_gamehub() {
 function deb_codium() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/VSCodium/vscodium/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="VSCodium"
     WEBSITE="https://vscodium.com/"
     SUMMARY="Community-driven, freely-licensed binary distribution of Microsoft's Code editor."
@@ -884,8 +920,10 @@ function deb_codium() {
 
 function deb_micro() {
     get_github_releases "https://api.github.com/repos/zyedidia/micro/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="micro"
     WEBSITE="https://micro-editor.github.io/"
     SUMMARY="A modern and intuitive terminal-based text editor."
@@ -894,8 +932,10 @@ function deb_micro() {
 function deb_ludo() {
     ARCHS_SUPPORTED="amd64 armhf"
     get_github_releases "https://api.github.com/repos/libretro/ludo/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Ludo"
     WEBSITE="https://ludo.libretro.com/"
     SUMMARY="A minimalist frontend for emulators."
@@ -903,8 +943,10 @@ function deb_ludo() {
 
 function deb_obsidian() {
     get_github_releases "https://api.github.com/repos/obsidianmd/obsidian-releases/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Obsidian"
     WEBSITE="https://obsidian.md/"
     SUMMARY="A powerful knowledge base on top of a local folder of plain text Markdown files."
@@ -912,8 +954,10 @@ function deb_obsidian() {
 
 function deb_mpdevil() {
     get_github_releases "https://api.github.com/repos/SoongNoonien/mpdevil/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="mpdevil"
     WEBSITE="https://github.com/SoongNoonien/mpdevil"
     SUMMARY="A simple music browser for MPD."
@@ -921,8 +965,10 @@ function deb_mpdevil() {
 
 function deb_rambox() {
     get_github_releases "https://api.github.com/repos/ramboxapp/download/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Rambox"
     WEBSITE="https://rambox.app/"
     SUMMARY="Workspace simplifier."
@@ -930,8 +976,10 @@ function deb_rambox() {
 
 function deb_antimicrox() {
     get_github_releases "https://api.github.com/repos/AntiMicroX/antimicrox/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL=$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="AntiMicroX"
     WEBSITE="https://antimicrox.github.io/"
     SUMMARY="A graphical program used to map keyboard buttons and mouse controls to a gamepad."
@@ -939,8 +987,10 @@ function deb_antimicrox() {
 
 function deb_franz() {
     get_github_releases "https://api.github.com/repos/meetfranz/franz/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Franz"
     WEBSITE="https://meetfranz.com/"
     SUMMARY="A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more."
@@ -948,8 +998,10 @@ function deb_franz() {
 
 function deb_heroic() {
     get_github_releases "https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Heroic Games Launcher"
     WEBSITE="https://heroicgameslauncher.com/"
     SUMMARY="An Open Source GOG and Epic games launcher."
@@ -958,8 +1010,10 @@ function deb_heroic() {
 function deb_deb-get() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/wimpysworld/deb-get/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="deb-get"
     WEBSITE="https://github.com/wimpysworld/deb-get"
     SUMMARY="'apt-get' functionality for .debs published in 3rd party repositories or via direct download package."
@@ -1042,8 +1096,10 @@ function deb_jellyfin() {
 function deb_pandoc() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/jgm/pandoc/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'-' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
+    fi
     PRETTY_NAME="Pandoc"
     WEBSITE="https://pandoc.org/"
     SUMMARY="A universal document converter."
@@ -1077,7 +1133,9 @@ function deb_cawbird() {
 
 function deb_insync() {
     ARCHS_SUPPORTED="amd64"
-    APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
+    fi
     APT_LIST_NAME="insync"
     APT_REPO_URL="deb http://apt.insync.io/ubuntu ${UBUNTU_CODENAME} non-free contrib"
     PRETTY_NAME="Insync"
@@ -1088,8 +1146,10 @@ function deb_insync() {
 function deb_balena-etcher-electron() {
     ARCHS_SUPPORTED="amd64 i386"
     get_github_releases "https://api.github.com/repos/balena-io/etcher/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Etcher"
     WEBSITE="https://www.balena.io/etcher/"
     SUMMARY="Flash OS images to SD cards & USB drives, safely and easily."
@@ -1097,8 +1157,10 @@ function deb_balena-etcher-electron() {
 
 function deb_caprine() {
     get_github_releases "https://api.github.com/repos/sindresorhus/caprine/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Caprine"
     WEBSITE="https://sindresorhus.com/caprine"
     SUMMARY="Elegant Facebook Messenger desktop app."
@@ -1116,8 +1178,10 @@ function disable_sengi() {
 function deb_figma-linux() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Figma-Linux/figma-linux/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Figma Linux"
     WEBSITE="https://github.com/Figma-Linux/figma-linux"
     SUMMARY="Unofficial Electron-based Figma desktop app for Linux."
@@ -1125,8 +1189,10 @@ function deb_figma-linux() {
 
 function deb_rpi-imager() {
     get_github_releases "https://api.github.com/repos/raspberrypi/rpi-imager/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Raspberry Pi Imager"
     WEBSITE="https://github.com/raspberrypi/rpi-imager"
     SUMMARY="Raspberry Pi Imaging Utility."
@@ -1134,8 +1200,10 @@ function deb_rpi-imager() {
 
 function deb_bitwarden() {
     get_github_releases "https://api.github.com/repos/bitwarden/desktop/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Bitwarden"
     WEBSITE="https://bitwarden.com/"
     SUMMARY="Open Source Password Manager."
@@ -1143,8 +1211,10 @@ function deb_bitwarden() {
 
 function deb_insomnia() {
     get_github_releases "https://api.github.com/repos/Kong/insomnia/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4 | cut -d'-' -f2 | sed s'|\.deb||')"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2 | sed s'|\.deb||')"
+    fi
     PRETTY_NAME="Insomnia"
     WEBSITE="https://insomnia.rest/"
     SUMMARY="The API Design Platform and API Client."
@@ -1152,8 +1222,10 @@ function deb_insomnia() {
 
 function deb_onlyoffice-desktopeditors() {
     get_github_releases "https://api.github.com/repos/ONLYOFFICE/DesktopEditors/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="ONLYOFFICE Desktop Editors"
     WEBSITE="https://www.onlyoffice.com/en/desktop.aspx"
     SUMMARY="Free desktop office suite for document editing and collaboration."
@@ -1161,8 +1233,10 @@ function deb_onlyoffice-desktopeditors() {
 
 function deb_powershell() {
     get_github_releases "https://api.github.com/repos/PowerShell/PowerShell/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="PowerShell"
     WEBSITE="https://docs.microsoft.com/powershell/"
     SUMMARY="Cross-platform automation and configuration tool/framework and optimized for dealing with structured data."
@@ -1170,8 +1244,10 @@ function deb_powershell() {
 
 function deb_mailspring() {
     get_github_releases "https://api.github.com/repos/Foundry376/Mailspring/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="Mailspring"
     WEBSITE="https://getmailspring.com/"
     SUMMARY="Boost your productivity and send better email with the best mail client."
@@ -1179,8 +1255,10 @@ function deb_mailspring() {
 
 function deb_mattermost-desktop() {
     get_github_releases "https://api.github.com/repos/mattermost/desktop/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_DIR}/${APP}.json" | grep -v -e rc | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's/v//')"
-    URL="$(curl https://github.com/mattermost/desktop/releases/ | grep "//releases.*${VERSION_PUBLISHED}.*${HOST_ARCH}.deb" | head -n 1 | cut -d\" -f 2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_DIR}/${APP}.json" | grep -v -e rc | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | tr -d v)"
+        URL="$(curl https://github.com/mattermost/desktop/releases/ | grep "//releases.*${VERSION_PUBLISHED}.*${HOST_ARCH}.deb" | head -n 1 | cut -d\" -f 2)"
+    fi
     PRETTY_NAME="Mattermost Desktop"
     WEBSITE="https://mattermost.com/"
     SUMMARY="Open Source platform for developer collaboration."
@@ -1188,8 +1266,10 @@ function deb_mattermost-desktop() {
 
 function deb_rocketchat() {
     get_github_releases "https://api.github.com/repos/RocketChat/Rocket.Chat.Electron/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="Rocketchat Desktop"
     WEBSITE="https://rocket.chat/"
     SUMMARY="Official Desktop Client for Rocket.Chat."
@@ -1197,8 +1277,10 @@ function deb_rocketchat() {
 
 function deb_whatsapp-for-linux() {
     get_github_releases "https://api.github.com/repos/eneshecan/whatsapp-for-linux/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="WhatsApp for Linux"
     WEBSITE="https://github.com/eneshecan/whatsapp-for-linux"
     SUMMARY="An unofficial WhatsApp desktop application for Linux."
@@ -1206,8 +1288,10 @@ function deb_whatsapp-for-linux() {
 
 function deb_igdm() {
     get_github_releases "https://api.github.com/repos/igdmapps/igdm/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="IGdm Messenger"
     WEBSITE="https://github.com/igdmapps/igdm"
     SUMMARY="Continue your Instagram direct messages from your phone to your desktop."
@@ -1225,8 +1309,10 @@ function disabled_igdm-pro() {
 
 function deb_whalebird() {
     get_github_releases "https://api.github.com/repos/h3poteto/whalebird-desktop/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*x64.deb" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="Whalebird"
     WEBSITE="https://whalebird.social/"
     SUMMARY="A Mastodon, Pleroma, and Misskey client for desktop application."
@@ -1235,8 +1321,10 @@ function deb_whalebird() {
 function deb_syft() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/anchore/syft/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Syft"
     WEBSITE="https://github.com/anchore/syft"
     SUMMARY="CLI tool and library for generating a Software Bill of Materials from container images and filesystems."
@@ -1245,8 +1333,10 @@ function deb_syft() {
 function deb_grype() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/anchore/grype/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Grype"
     WEBSITE="https://github.com/anchore/grype"
     SUMMARY="A vulnerability scanner for container images and filesystems."
@@ -1255,35 +1345,36 @@ function deb_grype() {
 function deb_trivy() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/aquasecurity/trivy/releases"
-    case ${HOST_ARCH} in
-        amd64)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-            URL="$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-            ;;
-        arm64)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-            URL="$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-            ;;
-        armhf)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-            URL="$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-            ;;
-        i386)
-            VERSION_PUBLISHED="$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-            URL="$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-            ;;
-    esac
+    if [ "${ACTION}" != "prettylist" ]; then
+        case ${HOST_ARCH} in
+            amd64)
+                URL="$(grep "browser_download_url.*64bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+                ;;
+            arm64)
+                URL="$(grep "browser_download_url.*ARM64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+                ;;
+            armhf)
+                URL="$(grep "browser_download_url.*ARM.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+                ;;
+            i386)
+                URL="$(grep "browser_download_url.*32bit.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+                ;;
+        esac
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Trivy"
     WEBSITE="https://aquasecurity.github.io/trivy/"
     SUMMARY="A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts."
 }
 
 function deb_gitter() {
-    VERSION_PUBLISHED="$(curl -s "https://gitlab.com/gitterHQ/desktop/-/raw/master/CHANGELOG.md" | head -n1 | cut -d'`' -f2)"
-    case ${HOST_ARCH} in
-        amd64) URL="https://update.gitter.im/linux64/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
-        i386) URL="https://update.gitter.im/linux32/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
-    esac
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s "https://gitlab.com/gitterHQ/desktop/-/raw/master/CHANGELOG.md" | head -n1 | cut -d'`' -f2)"
+        case ${HOST_ARCH} in
+            amd64) URL="https://update.gitter.im/linux64/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+            i386) URL="https://update.gitter.im/linux32/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+        esac
+    fi
     PRETTY_NAME="Gitter"
     WEBSITE="https://gitter.im/"
     SUMMARY="A chat and networking platform to manage and connect communities through messaging, content and discovery."
@@ -1309,7 +1400,9 @@ function deb_vivaldi-stable() {
 }
 
 function deb_gitkraken() {
-    VERSION_PUBLISHED="$(curl -s "https://support.gitkraken.com/release-notes/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s "https://support.gitkraken.com/release-notes/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+    fi
     URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
     PRETTY_NAME="GitKraken"
     WEBSITE="https://www.gitkraken.com/invite/ieih1QR3"
@@ -1317,16 +1410,20 @@ function deb_gitkraken() {
 }
 
 function deb_sejda-desktop() {
-    URL="https://sejda-cdn.com/downloads/$(curl -s "https://www.sejda.com/desktop" | grep "linux:" | cut -d"'" -f2)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="https://sejda-cdn.com/downloads/$(curl -s "https://www.sejda.com/desktop" | grep "linux:" | cut -d"'" -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Sejda PDF Desktop"
     WEBSITE="https://www.sejda.com/"
     SUMMARY="Easy, pleasant and productive PDF editor."
 }
 
 function deb_webex() {
-    # Note: get version number from Release Notes
-    VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" | grep "<p class=\"p\">Linux—" | head -n1 | cut -d'>' -f2 | cut -d'<' -f1 | sed 's/Linux—//')"
+    if [ "${ACTION}" != "prettylist" ]; then
+        # Note: get version number from Release Notes
+        VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" | grep "<p class=\"p\">Linux—" | head -n1 | cut -d'>' -f2 | cut -d'<' -f1 | sed 's/Linux—//')"
+    fi
     URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
     PRETTY_NAME="Webex"
     WEBSITE="https://www.webex.com/"
@@ -1334,10 +1431,11 @@ function deb_webex() {
 }
 
 function deb_deadbeef() {
-    local REDIR_URL=""
-    REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep amd64.deb | cut -d'"' -f2)"
-    URL=$(unroll_url "${REDIR_URL}")
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep amd64.deb | cut -d'"' -f2)"
+        URL=$(unroll_url "${REDIR_URL}")
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="DeaDBeeF Player"
     WEBSITE="https://deadbeef.sourceforge.io/"
     SUMMARY="The ultimate music player"
@@ -1345,34 +1443,42 @@ function deb_deadbeef() {
 
 function deb_dropbox() {
     ARCHS_SUPPORTED="amd64 i386"
-    URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Dropbox"
     WEBSITE="https://www.dropbox.com/"
     SUMMARY="Securely share, store and do more with your content."
 }
 
 function deb_spotify-client() {
-    # NOTE: Using direct as the latest spotify-client .deb is not in the archive Packages index.
-    local VERSION_UPSTREAM="$(curl -s http://repository.spotify.com/pool/non-free/s/spotify-client/ | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep -v Index | cut -d'_' -f2 | sort -uVr | head -n1)"
-    VERSION_PUBLISHED="1:${VERSION_UPSTREAM}"
-    URL="http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VERSION_UPSTREAM}_amd64.deb"
+    if [ "${ACTION}" != "prettylist" ]; then
+        # NOTE: Using direct as the latest spotify-client .deb is not in the archive Packages index.
+        local VERSION_UPSTREAM="$(curl -s http://repository.spotify.com/pool/non-free/s/spotify-client/ | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep -v Index | cut -d'_' -f2 | sort -uVr | head -n1)"
+        VERSION_PUBLISHED="1:${VERSION_UPSTREAM}"
+        URL="http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VERSION_UPSTREAM}_amd64.deb"
+    fi
     PRETTY_NAME="Spotify"
     WEBSITE="https://www.spotify.com/"
     SUMMARY="Millions of songs and podcasts."
 }
 
 function deb_surfshark() {
-    VERSION_PUBLISHED="$(curl -s "https://ocean.surfshark.com/debian/pool/main/s/surfshark/"  | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep "${HOST_ARCH}" | sort -r | head -n1 | awk '{print $1}' | cut -d'_' -f2)"
-    URL="https://ocean.surfshark.com/debian/pool/main/s/surfshark/surfshark_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s "https://ocean.surfshark.com/debian/pool/main/s/surfshark/"  | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep "${HOST_ARCH}" | sort -r | head -n1 | awk '{print $1}' | cut -d'_' -f2)"
+        URL="https://ocean.surfshark.com/debian/pool/main/s/surfshark/surfshark_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    fi
     PRETTY_NAME="Surfshark VPN"
     WEBSITE="https://surfshark.com/"
     SUMMARY="Award-winning VPN service."
 }
 
 function deb_shutter-encoder() {
-    URL="https://www.shutterencoder.com/$(curl -s "https://www.shutterencoder.com/en/thanks.html" | grep 64bits.deb | cut -d'"' -f2 | sed 's|../||')"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d' ' -f3)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="https://www.shutterencoder.com/$(curl -s "https://www.shutterencoder.com/en/thanks.html" | grep 64bits.deb | cut -d'"' -f2 | sed 's|../||')"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d' ' -f3)"
+    fi
     PRETTY_NAME="shutter-encoder"
     WEBSITE="https://www.shutterencoder.com/"
     SUMMARY="Professional video, audio and image coversion and encoding tool."
@@ -1388,8 +1494,10 @@ function deb_parsec() {
 
 function deb_nordvpn() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
-    VERSION_PUBLISHED=$(curl -s "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/" | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep "${HOST_ARCH}" | sort -r | head -n1 | awk '{print $1}' | cut -d'_' -f2)
-    URL="https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED=$(curl -s "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/" | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep "${HOST_ARCH}" | sort -r | head -n1 | awk '{print $1}' | cut -d'_' -f2)
+        URL="https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    fi
     PRETTY_NAME="NordVPN"
     WEBSITE="https://nordvpn.com/"
     SUMMARY="VPN service for speed and security."
@@ -1433,27 +1541,32 @@ function deb_resilio-sync() {
 }
 
 function deb_zoom() {
-    URL=$(unroll_url "https://zoom.us/client/latest/zoom_amd64.deb")
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f5)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(unroll_url "https://zoom.us/client/latest/zoom_amd64.deb")
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f5)"
+    fi
     PRETTY_NAME="Zoom"
     WEBSITE="https://zoom.us/"
     SUMMARY="Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events."
 }
 
 function deb_azuredatastudio() {
-    local REDIR_URL=""
     get_github_releases "https://api.github.com/repos/microsoft/azuredatastudio/releases/latest"
-    REDIR_URL="$(grep -o "\[linux-deb\]:.*linkid=[0-9]*" "${CACHE_DIR}/${APP}.json" | cut -d' ' -f2)"
-    URL=$(unroll_url "${REDIR_URL}")
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | sed 's/\.deb//')"
+    if [ "${ACTION}" != "prettylist" ]; then
+        local REDIR_URL="$(grep -o "\[linux-deb\]:.*linkid=[0-9]*" "${CACHE_DIR}/${APP}.json" | cut -d' ' -f2)"
+        URL=$(unroll_url "${REDIR_URL}")
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | sed 's/\.deb//')"
+    fi
     PRETTY_NAME="Azure Data Studio"
     WEBSITE="https://docs.microsoft.com/en-us/sql/azure-data-studio/"
     SUMMARY="Data management tool for working with SQL Server, Azure SQL DB and SQL DW."
 }
 
 function deb_exodus() {
-    VERSION_PUBLISHED="$(curl -s https://www.exodus.com/download/|sed "s/.*https:\/\/downloads.exodus.com\/releases\/hashes-exodus-//"|sed "s/\.txt.*//")"
-    URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s https://www.exodus.com/download/|sed "s/.*https:\/\/downloads.exodus.com\/releases\/hashes-exodus-//"|sed "s/\.txt.*//")"
+        URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"
+    fi
     PRETTY_NAME="Exodus"
     WEBSITE="https://exodus.com/"
     SUMMARY="Bitcoin & Crypto Wallet."
@@ -1461,8 +1574,10 @@ function deb_exodus() {
 
 function deb_jabref() {
     get_github_releases "https://api.github.com/repos/jabref/jabref/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="JabRef"
     WEBSITE="https://www.jabref.org/"
     SUMMARY="The efficient way to collect, organize & discover."
@@ -1470,8 +1585,10 @@ function deb_jabref() {
 
 function deb_draw.io() {
     get_github_releases "https://api.github.com/repos/jgraph/drawio-desktop/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="draw.io"
     WEBSITE="https://www.diagrams.net"
     SUMMARY="Diagramming and whiteboarding app that wraps the core draw.io editor."
@@ -1480,8 +1597,10 @@ function deb_draw.io() {
 function deb_gh() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/cli/cli/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="GitHub CLI"
     WEBSITE="https://cli.github.com/"
     SUMMARY="GitHub CLI brings GitHub to your terminal. Free and open source."
@@ -1549,15 +1668,19 @@ function deb_telegraf() {
 
 function deb_brisqi() {
     get_github_releases "https://api.github.com/repos/Brisqi/releases/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Brisqi"
     WEBSITE="https://brisqi.com/"
     SUMMARY="An offline-first personal Kanban app."
 }
 
 function deb_teamviewer() {
-    VERSION_PUBLISHED="$(curl -s 'https://www.teamviewer.com/en/download/linux/' | grep -C 5 'Ubuntu, Debian' | grep '\*.deb package' | cut -d ' ' -f3 | sed 's/\([0-9\.]*\).*$/\1/')"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s 'https://www.teamviewer.com/en/download/linux/' | grep -C 5 'Ubuntu, Debian' | grep '\*.deb package' | cut -d ' ' -f3 | sed 's/\([0-9\.]*\).*$/\1/')"
+    fi
     URL="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
     PRETTY_NAME="TeamViewer"
     WEBSITE="https://www.teamviewer.com/"
@@ -1639,7 +1762,9 @@ function deb_tailscale() {
 }
 
 function deb_portmaster() {
-    VERSION_PUBLISHED="$(curl -s https://api.github.com/repos/safing/portmaster/releases/latest | grep -E '"name":' | sed -E 's/[",]//g' | cut -d: -f2 | sed 's/ //g')"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s https://api.github.com/repos/safing/portmaster/releases/latest | grep -E '"name":' | tr -d "\"," | cut -d: -f2 | tr -d " v")"
+    fi
     URL="https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb"
     PRETTY_NAME="Portmaster"
     WEBSITE="https://safing.io/portmaster/"
@@ -1648,16 +1773,18 @@ function deb_portmaster() {
 
 function deb_vuescan() {
     ARCHS_SUPPORTED="amd64 arm64 i386"
-    local ARCH_VER
-    case ${HOST_ARCH} in
-        amd64)   ARCH_VER=x64;;
-        aarch64) ARCH_VER=a64;;
-        i386)    ARCH_VER=x32;;
-    esac
-    VERSION_PUBLISHED="$(curl -s https://www.hamrick.com/alternate-versions.html | grep '<a href="files/vue'${ARCH_VER}'.*\.deb">.*</a>' | head -n 1 | cut -d'>' -f2 | cut -d'<' -f1).0-0"
-    local MAJOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f1)"
-    local MINOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f2)"
-    URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
+    if [ "${ACTION}" != "prettylist" ]; then
+        local ARCH_VER
+        case ${HOST_ARCH} in
+            amd64)   ARCH_VER=x64;;
+            aarch64) ARCH_VER=a64;;
+            i386)    ARCH_VER=x32;;
+        esac
+        VERSION_PUBLISHED="$(curl -s https://www.hamrick.com/alternate-versions.html | grep '<a href="files/vue'${ARCH_VER}'.*\.deb">.*</a>' | head -n 1 | cut -d'>' -f2 | cut -d'<' -f1).0-0"
+        local MAJOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f1)"
+        local MINOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f2)"
+        URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
+    fi
     PRETTY_NAME="VueScan"
     WEBSITE="https://www.hamrick.com/"
     SUMMARY="Scanner Software that supports over 6500 scanners."
@@ -1666,8 +1793,10 @@ function deb_vuescan() {
 function deb_hyper() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/vercel/hyper/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v canary | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v canary | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v canary | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Hyper"
     WEBSITE="https://hyper.is/"
     SUMMARY="A terminal built on web technologies."
@@ -1675,8 +1804,10 @@ function deb_hyper() {
 
 function deb_p3x-onenote() {
     get_github_releases "https://api.github.com/repos/patrikx3/onenote/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="P3X OneNote"
     WEBSITE="https://www.corifeus.com/onenote"
     SUMMARY="A Linux compatible version of OneNote."
@@ -1684,8 +1815,10 @@ function deb_p3x-onenote() {
 
 function deb_ms-office-electron() {
     get_github_releases "https://api.github.com/repos/agam778/MS-Office-Electron/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Office 365"
     WEBSITE="https://agam778.github.io/MS-Office-Electron/"
     SUMMARY="A Microsoft Office Online Desktop Client made with Electron."
@@ -1693,8 +1826,10 @@ function deb_ms-office-electron() {
 
 function deb_geforcenow-electron() {
     get_github_releases "https://api.github.com/repos/hmlendea/gfn-electron/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="GeForce NOW"
     WEBSITE="https://github.com/hmlendea/gfn-electron"
     SUMMARY="Desktop client for Nvidia's GeForce NOW game streaming service."
@@ -1703,8 +1838,10 @@ function deb_geforcenow-electron() {
 function deb_zettlr() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Zettlr/Zettlr/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Zettlr"
     WEBSITE="https://www.zettlr.com/"
     SUMMARY="A Markdown Editor for the 21st century."
@@ -1712,8 +1849,10 @@ function deb_zettlr() {
 
 function deb_ksnip() {
     get_github_releases "https://api.github.com/repos/ksnip/ksnip/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="ksnip"
     WEBSITE="https://github.com/ksnip/ksnip"
     SUMMARY="Cross-platform screenshot and annotation tool."
@@ -1721,8 +1860,10 @@ function deb_ksnip() {
 
 function deb_tidal-hifi() {
     get_github_releases "https://api.github.com/repos/Mastermindzh/tidal-hifi/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Tidal-hifi"
     WEBSITE="https://github.com/Mastermindzh/tidal-hifi"
     SUMMARY="Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine."
@@ -1730,8 +1871,10 @@ function deb_tidal-hifi() {
 
 function deb_dustracing2d() {
     get_github_releases "https://api.github.com/repos/juzzlin/DustRacing2D/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep "18.04" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep "18.04" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep "18.04" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="DustRacing2D"
     WEBSITE="http://juzzlin.github.io/DustRacing2D/index.html"
     SUMMARY="Dust Racing 2D is a traditional top-down car racing game including a level editor."
@@ -1740,8 +1883,10 @@ function deb_dustracing2d() {
 function deb_obs-cli() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/muesli/obs-cli/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="OBS-cli"
     WEBSITE="https://github.com/muesli/obs-cli"
     SUMMARY="OBS-cli is a command-line remote control for OBS."
@@ -1749,8 +1894,10 @@ function deb_obs-cli() {
 
 function deb_google-chat-electron() {
     get_github_releases "https://api.github.com/repos/ankurk91/google-chat-electron/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Google Chat"
     WEBSITE="https://github.com/ankurk91/google-chat-electron"
     SUMMARY="An unofficial desktop app for Google Chat."
@@ -1758,8 +1905,10 @@ function deb_google-chat-electron() {
 
 function deb_expressvpn() {
     ARCHS_SUPPORTED="amd64 i386 armhf"
-    VERSION_PUBLISHED="$(curl -s https://www.expressvpn.com/latest#linux | grep -o 'value="https://www.expressvpn.works/clients/linux/expressvpn_.*'${HOST_ARCH}'.deb"' | cut -d"_" -f2)"
-    URL="https://www.expressvpn.works/clients/linux/expressvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s "https://www.expressvpn.com/latest#linux" | grep -o 'value="https://www.expressvpn.works/clients/linux/expressvpn_.*'${HOST_ARCH}'.deb"' | cut -d"_" -f2)"
+        URL="https://www.expressvpn.works/clients/linux/expressvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    fi
     PRETTY_NAME="Expressvpn"
     WEBSITE="https://www.expressvpn.com/"
     SUMMARY="Popular VPN software"
@@ -1768,8 +1917,10 @@ function deb_expressvpn() {
 function deb_blockbench() {
     ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/JannisX11/blockbench/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="Blockbench"
     WEBSITE="https://www.blockbench.net/"
     SUMMARY="A low-poly 3D model editor"
@@ -1784,8 +1935,10 @@ function deb_copyq() {
 
 function deb_dbeaver-ce() {
     ARCHS_SUPPORTED="amd64 i386"
-    VERSION_PUBLISHED="$(curl -s https://dbeaver.io/debs/dbeaver-ce/ | grep -o '"dbeaver-ce_.*'${HOST_ARCH}'.deb"' | sort --version-sort | tail -n1 | cut -d"_" -f2)"
-    URL="https://dbeaver.io/debs/dbeaver-ce/dbeaver-ce_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s https://dbeaver.io/debs/dbeaver-ce/ | grep -o '"dbeaver-ce_.*'${HOST_ARCH}'.deb"' | sort --version-sort | tail -n1 | cut -d"_" -f2)"
+        URL="https://dbeaver.io/debs/dbeaver-ce/dbeaver-ce_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+    fi
     PRETTY_NAME="DBeaver"
     WEBSITE="https://dbeaver.io/"
     SUMMARY="Database GUI Client"
@@ -1808,8 +1961,10 @@ function deb_foliate() {
 function deb_rustdesk() {
     ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="Blockbench"
     WEBSITE="https://rustdesk.com/"
     SUMMARY="Open source virtual / remote desktop infrastructure for everyone!"
@@ -1818,8 +1973,10 @@ function deb_rustdesk() {
 function deb_picocrypt() {
     ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/HACKERALERT/Picocrypt/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="Picocrypt"
     WEBSITE="https://github.com/HACKERALERT/Picocrypt/"
     SUMMARY="A very small, very simple, yet very secure encryption tool."
@@ -1834,8 +1991,10 @@ function deb_ulauncher() {
 
 function deb_battery-monitor() {
     get_github_releases "https://api.github.com/repos/hsbasu/battery-monitor/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="Battery Monitor"
     WEBSITE="https://github.com/hsbasu/battery-monitor/"
     SUMMARY="An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop."
@@ -1843,8 +2002,10 @@ function deb_battery-monitor() {
 
 function deb_android-messages-desktop() {
     get_github_releases "https://api.github.com/repos/OrangeDrangon/android-messages-desktop/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="android-messages-desktop"
     WEBSITE="https://github.com/OrangeDrangon/android-messages-desktop/"
     SUMMARY="Run Android Messages as a desktop app."
@@ -1860,8 +2021,10 @@ function deb_yq() {
 function deb_youtube-music() {
     ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/th-ch/youtube-music/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="youtube-music"
     WEBSITE="https://th-ch.github.io/youtube-music/"
     SUMMARY="Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader."
@@ -1870,8 +2033,10 @@ function deb_youtube-music() {
 function deb_minikube() {
     ARCHS_SUPPORTED="amd64 arm64 armhf ppc64el s390x"
     get_github_releases "https://api.github.com/repos/kubernetes/minikube/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*minikube_.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | sed 's|v||')"
-    URL="$(grep "browser_download_url.*minikube_.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*minikube_.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
     PRETTY_NAME="minikube"
     WEBSITE="https://minikube.sigs.k8s.io/"
     SUMMARY="minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows."
@@ -1893,17 +2058,17 @@ function deb_corectrl() {
 
 function deb_openrgb() {
     ARCHS_SUPPORTED="amd64 i386 armhf"
-
-    case "${UBUNTU_CODENAME}" in
-        focal)
-            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*buster_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
-        ;;
-        *)
-            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*bullseye_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
-        ;;
-    esac
-
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 3)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        case "${UBUNTU_CODENAME}" in
+            focal)
+                URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*buster_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
+            ;;
+            *)
+                URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*bullseye_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
+            ;;
+        esac
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 3)"
+    fi
     PRETTY_NAME="OpenRGB"
     WEBSITE="https://openrgb.org/"
     SUMMARY="Open source RGB lighting control that doesn't depend on manufacturer software."
@@ -1912,23 +2077,113 @@ function deb_openrgb() {
 function deb_mergerfs() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/trapexit/mergerfs/releases/latest"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${OS_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
-    # TODO When https://github.com/wimpysworld/deb-get/issues/125 shakes out should add the debian packages
-    CODENAMES_SUPPORTED=($(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json"| grep ${HOST_ARCH} | cut -d'"' -f4 | sed -n "s/^.*ubuntu-\(\S*\)_.*/\1/p"))
-    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UBUNTU_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${OS_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
+        # TODO When https://github.com/wimpysworld/deb-get/issues/125 shakes out should add the debian packages
+        CODENAMES_SUPPORTED=($(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json"| grep ${HOST_ARCH} | cut -d'"' -f4 | sed -n "s/^.*ubuntu-\(\S*\)_.*/\1/p"))
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UBUNTU_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
+    fi
     PRETTY_NAME="mergerfs"
     WEBSITE="https://github.com/trapexit/mergerfs"
     SUMMARY="A featureful union filesystem."
 }
 
 function deb_openaudible() {
-    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/openaudible/openaudible/releases/latest"
-    URL="$(grep "browser_download_url.*x86_64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo ${URL} | cut -d'_' -f2)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*x86_64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo ${URL} | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="OpenAudible"
     WEBSITE="https://github.com/openaudible/openaudible"
     SUMMARY="A cross-platform desktop application for downloading and managing your Audible audiobooks."
+}
+
+function deb_deltachat-desktop() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s "$(unroll_url https://delta.chat/download)" | grep ".deb" | cut -d "\"" -f 2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d "/" -f 5 | tr -d v)"
+    fi
+    PRETTY_NAME="Delta Chat"
+    WEBSITE="https://delta.chat/"
+    SUMMARY="Email-based instant messaging for Desktop."
+}
+
+function deb_bitwig-studio() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(unroll_url "https://www.bitwig.com/dl/?id=481&os=installer_linux")"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d "/" -f 4)"
+    fi
+    PRETTY_NAME="BitWig Studio"
+    WEBSITE="https://www.bitwig.com/"
+    SUMMARY="Modern music production and performance."
+}
+
+function deb_sleek() {
+    get_github_releases "https://api.github.com/repos/ransome1/sleek/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Sleek"
+    WEBSITE="https://github.com/ransome1/sleek"
+    SUMMARY="Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS)."
+}
+
+function deb_kopia-ui() {
+    APT_KEY_URL="https://kopia.io/signing-key"
+    APT_LIST_NAME="kopia"
+    APT_REPO_URL="deb http://packages.kopia.io/apt/ stable main"
+    PRETTY_NAME="KopiaUI"
+    WEBSITE="https://kopia.io/"
+    SUMMARY="Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication."
+}
+
+function deb_typora() {
+    APT_KEY_URL="https://typora.io/linux/public-key.asc"
+    APT_LIST_NAME="typora"
+    APT_REPO_URL="deb https://typora.io/linux ./"
+    PRETTY_NAME="Typora"
+    WEBSITE="https://typora.io/"
+    SUMMARY="A minimal Markdown editor and reader."
+}
+
+function deb_kdiskmark() {
+    PPA="ppa:jonmagon/kdiskmark"
+    PRETTY_NAME="KDiskMark"
+    WEBSITE="https://github.com/JonMagon/KDiskMark"
+    SUMMARY="A simple open-source disk benchmark tool for Linux distros."
+}
+
+function deb_xemu() {
+    PPA="ppa:mborgerson/xemu"
+    PRETTY_NAME="Xemu"
+    WEBSITE="https://xemu.app/"
+    SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
+}
+
+function deb_cryptomator() {
+    PPA="ppa:sebastian-stenzel/cryptomator"
+    PRETTY_NAME="Cryptomator"
+    WEBSITE="https://cryptomator.org/"
+    SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
+}
+
+function deb_gpu-viewer() {
+    PPA="ppa:arunsivaraman/gpuviewer"
+    PRETTY_NAME="GPU-Viewer"
+    WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+    SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
+}
+
+function deb_stremio() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64.deb" | cut -d "\"" -f 3)"
+        VERSION_PUBLISHED=""$(echo "${URL}" | cut -d "_" -f 2)""
+    fi
+    PRETTY_NAME="Stremio"
+    WEBSITE="https://www.stremio.com/"
+    SUMMARY="Watch videos, movies, TV series and TV channels instantly."
 }
 
 # Create an array to track those deb_ functions being loaded by this script
@@ -2006,6 +2261,7 @@ if [ -n "${1}" ]; then
 else
     fancy_message error "You must specify an action."
     usage
+    exit 1
 fi
 
 case ${ACTION} in
