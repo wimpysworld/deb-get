@@ -26,7 +26,6 @@ cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 help\n\tshow this help\n
 version\n\tshow deb-get version\n
 "
-  exit 1
 }
 
 # https://github.com/wimpysworld/deb-get/issues/126
@@ -1926,6 +1925,15 @@ function deb_gpu-viewer() {
     PRETTY_NAME="GPU-Viewer"
     WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
     SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
+
+function deb_stremio() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64.deb" | cut -d "\"" -f 3)"
+        VERSION_PUBLISHED=""$(echo "${URL}" | cut -d "_" -f 2)""
+    fi
+    PRETTY_NAME="Stremio"
+    WEBSITE="https://www.stremio.com/"
+    SUMMARY="Watch videos, movies, TV series and TV channels instantly."
 }
 
 # Create an array to track those deb_ functions being loaded by this script
@@ -2003,6 +2011,7 @@ if [ -n "${1}" ]; then
 else
     fancy_message error "You must specify an action."
     usage
+    exit 1
 fi
 
 case ${ACTION} in
