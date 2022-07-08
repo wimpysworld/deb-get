@@ -148,6 +148,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://vscodium.com/) | `codium` | <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://hluk.github.io/CopyQ/) | `copyq` | <i>An advanced clipboard manager with editing and scripting features.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://gitlab.com/corectrl/corectrl) | `corectrl` | <i>A Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://cryptomator.org/) | `cryptomator` | <i>Multi-platform transparent client-side encryption of your files in the cloud.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://dbeaver.io/) | `dbeaver-ce` | <i>Database GUI Client</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://deadbeef.sourceforge.io/) | `deadbeef` | <i>The ultimate music player</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/wimpysworld/deb-get) | `deb-get` | <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i> |
@@ -178,6 +179,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/chrome/) | `google-chrome-stable` | <i>Fast, Secure Browser from Google.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/earth/versions/) | `google-earth-pro-stable` | <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/arunsivaramanneo/GPU-Viewer) | `gpu-viewer` | <i>A front-end to glxinfo, vulkaninfo, clinfo and es2_info.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/anchore/grype) | `grype` | <i>A vulnerability scanner for container images and filesystems.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://gohugo.io/) | `hugo` | <i>Open-source static site generator.</i> |
@@ -246,6 +248,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.strawberrymusicplayer.org/) | `strawberry` | <i>Music player and music collection organizer aimed at music collectors and audiophiles.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.stremio.com/) | `stremio` | <i>Watch videos, movies, TV series and TV channels instantly.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimemerge.com/) | `sublime-merge` | <i>Git Client, done Sublime.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimetext.com/) | `sublime-text` | <i>Text Editing, Done Right.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://surfshark.com/) | `surfshark` | <i>Award-winning VPN service.</i> |
@@ -325,6 +328,28 @@ scope of the project in terms if what it is intended for.
   * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
   * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
   * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
+
+### Custom User Includes `/etc/deb-get.d/`
+
+As a more advanced feature, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
+
+Typically either because:
+
+1. You are waiting on a pending request for a new software package. Which has been submitted for consideration. But which has not been reviewed / accepted / merged / released yet.
+2. Or because you need to add something which does not meet any of the general guidelines in the previous section ^^ detailed above, for whatever various reason(s).
+
+How to use:
+
+* Manually create the folder `/etc/deb-get.d/` if not exist already. By default `deb-get` does not create this folder unless your specific distribution has packaged it that way.
+* Can also create any arbitrary nested sub-folder structure within `/etc/deb-get.d/**/*` main folder
+* Any files within this tree will be bash sourced in alphabetical order e.g. `. /etc/deb-get.d/01-pending-merge/10-appname1`
+* Your user custom `deb_*` functions are then loaded directly after the last `deb_*()` package declarations that officially come with `deb-get`
+* Recommendation message printed for any new user added deb_* functions. With a URL link to open a request.
+* Warning messages are then also printed for any conflicts detected. For overriden functions (of same name), which then take priority over existing official deb-get apps.
+
+For the last situation, this is most often meant as a helpful reminder to remove your custom declaration once it has been successfully merged upstream into the official `deb-get` tool. So after `deb-get` updates itself you are properly notified. And can avoid keeping lots of duplite functions around.
+
+We really hope that you will enjoy the convenience and flexibility of the new user overrides feature. So please consider in return to open new issues or pull requests (here on github), for any new `deb_*()` functions / packages you create! So that we can share those back with the wider community. Many thanks for your consideration!
 
 ## Related projects
 
