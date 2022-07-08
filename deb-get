@@ -2088,6 +2088,17 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_openaudible() {
+    get_github_releases "https://api.github.com/repos/openaudible/openaudible/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*x86_64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo ${URL} | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="OpenAudible"
+    WEBSITE="https://github.com/openaudible/openaudible"
+    SUMMARY="A cross-platform desktop application for downloading and managing your Audible audiobooks."
+}
+
 function deb_deltachat-desktop() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(curl -s "$(unroll_url https://delta.chat/download)" | grep ".deb" | cut -d "\"" -f 2)"
