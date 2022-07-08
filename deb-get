@@ -1920,6 +1920,12 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_gpu-viewer() {
+    PPA="ppa:arunsivaraman/gpuviewer"
+    PRETTY_NAME="GPU-Viewer"
+    WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+    SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
+
 function deb_stremio() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64.deb" | cut -d "\"" -f 3)"
