@@ -1920,6 +1920,12 @@ function deb_mergerfs() {
     SUMMARY="A featureful union filesystem."
 }
 
+function deb_cryptomator() {
+    PPA="ppa:sebastian-stenzel/cryptomator"
+    PRETTY_NAME="Cryptomator"
+    WEBSITE="https://cryptomator.org/"
+    SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
+
 function deb_gpu-viewer() {
     PPA="ppa:arunsivaraman/gpuviewer"
     PRETTY_NAME="GPU-Viewer"
