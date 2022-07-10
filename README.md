@@ -44,6 +44,15 @@ can search the available applications with `deb-get search <app>`.
 You can upgrade packages installed using `deb-get` by running
 `deb-get upgrade`.
 
+<!-- [[[cog
+import subprocess
+
+import cog
+result = subprocess.check_output(["./deb-get", "help"], encoding="utf-8")
+# strip the "Usage" header
+help = result.replace("Usage\n\n", "").rstrip()
+cog.out(f"```\n{help}\n```")
+]]] -->
 ```
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
 | purge pkg | search pkg | cache | clean | list | prettylist | help | version}
@@ -53,47 +62,48 @@ system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
 update
-        update is used to resynchronize the package index files from their sources.
+	update is used to resynchronize the package index files from their sources.
 
 upgrade
-        upgrade is used to install the newest versions of all packages currently installed on the system.
+	upgrade is used to install the newest versions of all packages currently installed on the system.
 
 install
-        install is followed by one package desired for installation or upgrading.
+	install is followed by one package desired for installation or upgrading.
 
 reinstall
-        reinstall is followed by one package desired for reinstallation.
+	reinstall is followed by one package desired for reinstallation.
 
 remove
-        remove is identical to install except that packages are removed instead of installed.
+	remove is identical to install except that packages are removed instead of installed.
 
 purge
-        purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+	purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
 
 clean
-        clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+	clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 search
-        search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+	search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-        show information about the given package including its install source and update mechanism.
+	show information about the given package including its install source and update mechanism.
 
 list
-        list the packages available via deb-get.
+	list the packages available via deb-get.
 
 prettylist
-        markdown formatted list the packages available via deb-get. Use this to update README.md
+	markdown formatted list the packages available via deb-get. Use this to update README.md
 
 cache
-        list the contents of the deb-get cache (/var/cache/deb-get)
+	list the contents of the deb-get cache (/var/cache/deb-get)
 
 help
-        show this help
+	show this help
 
 version
-        show deb-get version
+	show deb-get version
 ```
+<!-- [[[end]]] -->
 
 ### Why?
 
@@ -124,6 +134,10 @@ The software below can be installed, updated and removed using `deb-get`.
 - `deb-get remove <packagename>`
 - `deb-get purge <packagename>`
 
+<!-- [[[cog
+pretty_list = subprocess.check_output(["./deb-get", "prettylist"], encoding="utf-8")
+cog.out(pretty_list)
+]]] -->
 | Source   | Package Name   | Description   |
 | :------: | :------------- | :------------ |
 | [<img src=".github/debian.png" align="top" width="20" />](https://1password.com/) | `1password` | <i>The easiest way to store and use strong passwords.</i> |
@@ -138,6 +152,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hsbasu/battery-monitor/) | `battery-monitor` | <i>An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://beersmith.com/) | `beersmith3` | <i>Home Brewing Software.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://bitwarden.com/) | `bitwarden` | <i>Open Source Password Manager.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.bitwig.com/) | `bitwig-studio` | <i>Modern music production and performance.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.blockbench.net/) | `blockbench` | <i>A low-poly 3D model editor</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://brave.com/) | `brave-browser` | <i>Browse privately. Search privately. And ditch Big Tech.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://brisqi.com/) | `brisqi` | <i>An offline-first personal Kanban app.</i> |
@@ -148,9 +163,11 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://vscodium.com/) | `codium` | <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://hluk.github.io/CopyQ/) | `copyq` | <i>An advanced clipboard manager with editing and scripting features.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://gitlab.com/corectrl/corectrl) | `corectrl` | <i>A Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://cryptomator.org/) | `cryptomator` | <i>Multi-platform transparent client-side encryption of your files in the cloud.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://dbeaver.io/) | `dbeaver-ce` | <i>Database GUI Client</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://deadbeef.sourceforge.io/) | `deadbeef` | <i>The ultimate music player</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/wimpysworld/deb-get) | `deb-get` | <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://delta.chat/) | `deltachat-desktop` | <i>Email-based instant messaging for Desktop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://discord.com/) | `discord` | <i>A place that makes it easy to talk every day and hang out more often.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.docker.com/) | `docker-ce` | <i>Open source containerization technology for building and containerizing your applications.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.docker.com/products/docker-desktop/) | `docker-desktop` | <i>The fastest way to containerize applications.</i> |
@@ -178,6 +195,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/chrome/) | `google-chrome-stable` | <i>Fast, Secure Browser from Google.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/earth/versions/) | `google-earth-pro-stable` | <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/arunsivaramanneo/GPU-Viewer) | `gpu-viewer` | <i>A front-end to glxinfo, vulkaninfo, clinfo and es2_info.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/anchore/grype) | `grype` | <i>A vulnerability scanner for container images and filesystems.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://gohugo.io/) | `hugo` | <i>Open-source static site generator.</i> |
@@ -193,8 +211,10 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/debian.png" align="top" width="20" />](https://jami.net/) | `jami` | <i>Share, freely and privately.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://jellyfin.org/) | `jellyfin` | <i>The Free Software Media System.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://github.com/influxdata/kapacitor) | `kapacitor` | <i>Open source framework for processing, monitoring, and alerting on time series data.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/JonMagon/KDiskMark) | `kdiskmark` | <i>A simple open-source disk benchmark tool for Linux distros.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://keepassxc.org/) | `keepassxc` | <i>Cross-Platform Password Manager.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://keybase.io/) | `keybase` | <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://kopia.io/) | `kopia-ui` | <i>Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ksnip/ksnip) | `ksnip` | <i>Cross-platform screenshot and annotation tool.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://librewolf.net/) | `librewolf` | <i>An independent fork of Firefox, with the primary goals of privacy, security and user freedom.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |
@@ -216,6 +236,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://obsproject.com/) | `obs-studio` | <i>Free and open source software for video recording and live streaming.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.ocenaudio.com/) | `ocenaudio` | <i>Easy, fast and powerful audio editor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://openrazer.github.io/) | `openrazer-meta` | <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://openrgb.org/) | `openrgb` | <i>Open source RGB lighting control that doesn't depend on manufacturer software.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.opera.com/) | `opera-stable` | <i>Faster, safer and smarter than default browsers.</i> |
@@ -244,9 +265,11 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://simplenote.com/) | `simplenote` | <i>The simplest way to keep notes.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.skype.com/) | `skypeforlinux` | <i>Stay connected with free video calls worldwide.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://slack.com/) | `slack-desktop` | <i>One platform for your team and your work.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/ransome1/sleek) | `sleek` | <i>Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS).</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.strawberrymusicplayer.org/) | `strawberry` | <i>Music player and music collection organizer aimed at music collectors and audiophiles.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.stremio.com/) | `stremio` | <i>Watch videos, movies, TV series and TV channels instantly.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimemerge.com/) | `sublime-merge` | <i>Git Client, done Sublime.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.sublimetext.com/) | `sublime-text` | <i>Text Editing, Done Right.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://surfshark.com/) | `surfshark` | <i>Award-winning VPN service.</i> |
@@ -261,6 +284,7 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Mastermindzh/tidal-hifi) | `tidal-hifi` | <i>Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.tixati.com/) | `tixati` | <i>A New and Powerful P2P System.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://aquasecurity.github.io/trivy/) | `trivy` | <i>A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
@@ -271,12 +295,14 @@ The software below can be installed, updated and removed using `deb-get`.
 | [<img src=".github/github.png" align="top" width="20" />](https://whalebird.social/) | `whalebird` | <i>A Mastodon, Pleroma, and Misskey client for desktop application.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/eneshecan/whatsapp-for-linux) | `whatsapp-for-linux` | <i>An unofficial WhatsApp desktop application for Linux.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wire.com/) | `wire-desktop` | <i>Secure collaboration platform.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://xemu.app/) | `xemu` | <i>A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://th-ch.github.io/youtube-music/) | `youtube-music` | <i>Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://mikefarah.gitbook.io/yq) | `yq` | <i>A lightweight and portable command-line YAML processor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/bvaisvil/zenith) | `zenith` | <i>Sort of like 'top' or 'htop' but with zoom-able charts.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.zettlr.com/) | `zettlr` | <i>A Markdown Editor for the 21st century.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://zoom.us/) | `zoom` | <i>Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.zotero.org/) | `zotero` | <i>A free, easy-to-use tool to help you collect, organize, cite, and share research.</i> |
+<!-- [[[end]]] -->
 
 
 **Legend**
@@ -325,6 +351,28 @@ scope of the project in terms if what it is intended for.
   * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
   * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
   * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
+
+### Custom User Includes `/etc/deb-get.d/`
+
+As a more advanced feature, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
+
+Typically either because:
+
+1. You are waiting on a pending request for a new software package. Which has been submitted for consideration. But which has not been reviewed / accepted / merged / released yet.
+2. Or because you need to add something which does not meet any of the general guidelines in the previous section ^^ detailed above, for whatever various reason(s).
+
+How to use:
+
+* Manually create the folder `/etc/deb-get.d/` if not exist already. By default `deb-get` does not create this folder unless your specific distribution has packaged it that way.
+* Can also create any arbitrary nested sub-folder structure within `/etc/deb-get.d/**/*` main folder
+* Any files within this tree will be bash sourced in alphabetical order e.g. `. /etc/deb-get.d/01-pending-merge/10-appname1`
+* Your user custom `deb_*` functions are then loaded directly after the last `deb_*()` package declarations that officially come with `deb-get`
+* Recommendation message printed for any new user added deb_* functions. With a URL link to open a request.
+* Warning messages are then also printed for any conflicts detected. For overriden functions (of same name), which then take priority over existing official deb-get apps.
+
+For the last situation, this is most often meant as a helpful reminder to remove your custom declaration once it has been successfully merged upstream into the official `deb-get` tool. So after `deb-get` updates itself you are properly notified. And can avoid keeping lots of duplite functions around.
+
+We really hope that you will enjoy the convenience and flexibility of the new user overrides feature. So please consider in return to open new issues or pull requests (here on github), for any new `deb_*()` functions / packages you create! So that we can share those back with the wider community. Many thanks for your consideration!
 
 ## Related projects
 
