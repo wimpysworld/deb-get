@@ -2186,6 +2186,16 @@ function deb_stremio() {
     SUMMARY="Watch videos, movies, TV series and TV channels instantly."
 }
 
+function deb_librewolf() {
+    CODENAMES_SUPPORTED="bullseye focal impish jammy uma una"
+    GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
+    APT_LIST_NAME="librewolf"
+    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] http://deb.librewolf.net ${OS_CODENAME} main"
+    PRETTY_NAME="LibreWolf"
+    WEBSITE="https://librewolf.net/"
+    SUMMARY="An independent fork of Firefox, with the primary goals of privacy, security and user freedom."
+}
+
 function deb_blanket() {
     PPA="ppa:apandada1/blanket"
     PRETTY_NAME="Blanket"
