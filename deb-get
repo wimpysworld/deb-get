@@ -2186,6 +2186,19 @@ function deb_stremio() {
     SUMMARY="Watch videos, movies, TV series and TV channels instantly."
 }
 
+function deb_standard-notes() {
+    ARCHS_SUPPORTED="amd64 i386 arm64"
+    get_github_releases "https://api.github.com/repos/standardnotes/app/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        local VERSION_TMP="${URL##*/standard-notes-}"
+        VERSION_PUBLISHED="${VERSION_TMP%%-linux*}"
+    fi
+    PRETTY_NAME="Standard Notes"
+    WEBSITE="https://standardnotes.com"
+    SUMMARY="Standard Notes is an end-to-end encrypted note-taking app for digitalists and professionals. Capture your notes, files, and life’s work all in one secure place."
+}
+
 function deb_crossover() {
     if [ "${ACTION}" != "prettylist" ]; then
         local VERSION_NAME="$(curl -s "https://media.codeweavers.com/pub/crossover/cxlinux/demo/?V=1;O=D;F=0;P=crossover_*.deb"| grep \.deb | head -n1 | cut -d"\"" -f 2)"
