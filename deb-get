@@ -2186,6 +2186,17 @@ function deb_stremio() {
     SUMMARY="Watch videos, movies, TV series and TV channels instantly."
 }
 
+function deb_motrix() {
+    get_github_releases "https://api.github.com/repos/agalwood/Motrix/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Motrix"
+    WEBSITE="https://motrix.app/"
+    SUMMARY="A full-featured download manager."
+}
+
 function deb_librewolf() {
     CODENAMES_SUPPORTED="bullseye focal impish jammy uma una"
     GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
