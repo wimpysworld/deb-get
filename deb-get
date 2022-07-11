@@ -895,7 +895,7 @@ function deb_minigalaxy() {
     SUMMARY="A simple GOG client for Linux."
 }
 
-function deb_gamehub() {
+function deb_com.github.tkashkin.gamehub() {
     get_github_releases "https://api.github.com/repos/tkashkin/GameHub/releases"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v '\-dev' | head -n1 | cut -d'"' -f4)
