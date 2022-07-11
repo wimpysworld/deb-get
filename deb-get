@@ -2197,6 +2197,34 @@ function deb_crossover() {
     SUMMARY="Run your Windows apps on Linux! CrossOver is a Microsoft Windows compatibility layer based on Wine."
 }
 
+function deb_motrix() {
+    get_github_releases "https://api.github.com/repos/agalwood/Motrix/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Motrix"
+    WEBSITE="https://motrix.app/"
+    SUMMARY="A full-featured download manager."
+}
+
+function deb_librewolf() {
+    CODENAMES_SUPPORTED="bullseye focal impish jammy uma una"
+    GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
+    APT_LIST_NAME="librewolf"
+    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] http://deb.librewolf.net ${OS_CODENAME} main"
+    PRETTY_NAME="LibreWolf"
+    WEBSITE="https://librewolf.net/"
+    SUMMARY="An independent fork of Firefox, with the primary goals of privacy, security and user freedom."
+}
+
+function deb_blanket() {
+    PPA="ppa:apandada1/blanket"
+    PRETTY_NAME="Blanket"
+    WEBSITE="https://github.com/rafaelmardojai/blanket"
+    SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
