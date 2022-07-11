@@ -2186,6 +2186,13 @@ function deb_stremio() {
     SUMMARY="Watch videos, movies, TV series and TV channels instantly."
 }
 
+function deb_blanket() {
+    PPA="ppa:apandada1/blanket"
+    PRETTY_NAME="Blanket"
+    WEBSITE="https://github.com/rafaelmardojai/blanket"
+    SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
