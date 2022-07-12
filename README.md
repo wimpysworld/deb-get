@@ -385,6 +385,7 @@ We really hope that you will enjoy the convenience and flexibility of the new us
   * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
   * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
   * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
+  * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
 
 ## In the media
 
