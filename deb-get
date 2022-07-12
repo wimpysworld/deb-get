@@ -2231,6 +2231,18 @@ function deb_blanket() {
     SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
 }
 
+function deb_flameshot() {
+    get_github_releases "https://api.github.com/repos/flameshot-org/flameshot/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*\.ubuntu-${UBUNTU_RELEASE}\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        local VERSION_TMP="${URL##*/flameshot-}"
+        VERSION_PUBLISHED="${VERSION_TMP%%-ubuntu*}"
+    fi
+    PRETTY_NAME="Flameshot"
+    WEBSITE="https://flameshot.org/"
+    SUMMARY="Flameshot is a free and open-source, cross-platform tool to take screenshots with many built-in features to save you time."
+}
+
 function deb_notable() {
     get_github_releases "https://api.github.com/repos/notable/notable/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
