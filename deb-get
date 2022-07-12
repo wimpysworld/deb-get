@@ -769,9 +769,9 @@ function deb_jami() {
 }
 
 function deb_google-chrome-stable() {
-    APT_KEY_URL="http://dl.google.com/linux/linux_signing_key.pub"
+    APT_KEY_URL="https://dl.google.com/linux/linux_signing_key.pub"
     APT_LIST_NAME="google-chrome"
-    APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+    APT_REPO_URL="deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
     EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
     PRETTY_NAME="Google Chrome"
     WEBSITE="https://www.google.com/chrome/"
@@ -1058,7 +1058,7 @@ function deb_signal-desktop() {
 function deb_syncthing() {
     APT_KEY_URL="https://syncthing.net/release-key.txt"
     APT_LIST_NAME="syncthing"
-    APT_REPO_URL="deb http://apt.syncthing.net/ syncthing release"
+    APT_REPO_URL="deb https://apt.syncthing.net/ syncthing release"
     PRETTY_NAME="Syncthing"
     WEBSITE="https://syncthing.net/"
     SUMMARY="Continuous file synchronization program."
@@ -1116,7 +1116,7 @@ function deb_sublime-merge() {
 function deb_google-earth-pro-stable() {
     APT_KEY_URL="https://dl-ssl.google.com/linux/linux_signing_key.pub"
     APT_LIST_NAME="google-earth-pro"
-    APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/earth/deb/ stable main"
+    APT_REPO_URL="deb [arch=amd64] https://dl.google.com/linux/earth/deb/ stable main"
     PRETTY_NAME="Google Earth Pro"
     WEBSITE="https://www.google.com/earth/versions/"
     SUMMARY="Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities."
@@ -1125,7 +1125,7 @@ function deb_google-earth-pro-stable() {
 function deb_cawbird() {
     APT_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/xUbuntu_22.04/Release.key"
     APT_LIST_NAME="home:IBBoard:cawbird"
-    APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/IBBoard:/cawbird/xUbuntu_${UBUNTU_RELEASE}/ /"
+    APT_REPO_URL="deb https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/xUbuntu_${UBUNTU_RELEASE}/ /"
     PRETTY_NAME="Cawbird"
     WEBSITE="https://ibboard.co.uk/cawbird/"
     SUMMARY="Twitter client for the Linux desktop."
@@ -1391,7 +1391,7 @@ function deb_slack-desktop() {
 
 function deb_vivaldi-stable() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
-    APT_KEY_URL="http://repo.vivaldi.com/stable/linux_signing_key.pub"
+    APT_KEY_URL="https://repo.vivaldi.com/stable/linux_signing_key.pub"
     APT_LIST_NAME="vivaldi"
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.vivaldi.com/stable/deb/ stable main"
     PRETTY_NAME="Vivaldi"
@@ -1507,7 +1507,7 @@ function deb_keybase() {
     ARCHS_SUPPORTED="amd64 i386"
     APT_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
     APT_LIST_NAME="keybase"
-    APT_REPO_URL="deb http://prerelease.keybase.io/deb stable main"
+    APT_REPO_URL="deb https://prerelease.keybase.io/deb stable main"
     PRETTY_NAME="Keybase"
     WEBSITE="https://keybase.io/"
     SUMMARY="End-to-end encryption for things that matter. Secure messaging and file-sharing."
@@ -1534,7 +1534,7 @@ function deb_softmaker-office-2021() {
 function deb_resilio-sync() {
     APT_KEY_URL="https://linux-packages.resilio.com/resilio-sync/key.asc"
     APT_LIST_NAME="resilio-sync"
-    APT_REPO_URL="deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
+    APT_REPO_URL="deb https://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
     PRETTY_NAME="Resilio Sync"
     WEBSITE="https://www.resilio.com/"
     SUMMARY="Fast, reliable, and simple file sync and share solution, powered by P2P technology"
@@ -1876,7 +1876,7 @@ function deb_dustracing2d() {
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
     fi
     PRETTY_NAME="DustRacing2D"
-    WEBSITE="http://juzzlin.github.io/DustRacing2D/index.html"
+    WEBSITE="https://juzzlin.github.io/DustRacing2D/index.html"
     SUMMARY="Dust Racing 2D is a traditional top-down car racing game including a level editor."
 }
 
@@ -2131,7 +2131,7 @@ function deb_sleek() {
 function deb_kopia-ui() {
     APT_KEY_URL="https://kopia.io/signing-key"
     APT_LIST_NAME="kopia"
-    APT_REPO_URL="deb http://packages.kopia.io/apt/ stable main"
+    APT_REPO_URL="deb https://packages.kopia.io/apt/ stable main"
     PRETTY_NAME="KopiaUI"
     WEBSITE="https://kopia.io/"
     SUMMARY="Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication."
@@ -2223,7 +2223,7 @@ function deb_librewolf() {
     CODENAMES_SUPPORTED="bullseye focal impish jammy uma una"
     GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
     APT_LIST_NAME="librewolf"
-    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] http://deb.librewolf.net ${OS_CODENAME} main"
+    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://deb.librewolf.net ${OS_CODENAME} main"
     PRETTY_NAME="LibreWolf"
     WEBSITE="https://librewolf.net/"
     SUMMARY="An independent fork of Firefox, with the primary goals of privacy, security and user freedom."
