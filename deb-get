@@ -267,7 +267,7 @@ function remove_deb() {
             fi
             ;;
         ppa)
-            rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
+            ${ELEVATE} rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
             if [ -n "${PPA}" ]; then
                 fancy_message info "Removing ${PPA}"
                 ${ELEVATE} apt-add-repository -y --remove "${PPA}"
@@ -2289,11 +2289,15 @@ done
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
 export CACHE_DIR="/var/cache/deb-get"
-if [ -d /var/cache/get-deb ]; then
-    mv /var/cache/get-deb "${CACHE_DIR}"
-fi
-mkdir -p "${CACHE_DIR}" 2>/dev/null
-chmod 755 "${CACHE_DIR}" 2>/dev/null
+
+function create_cache_dir() {
+    if [ -d /var/cache/get-deb ]; then
+        ${ELEVATE} mv /var/cache/get-deb "${CACHE_DIR}"
+    fi
+    ${ELEVATE} mkdir -p "${CACHE_DIR}" 2>/dev/null
+    ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
+}
+
 export VERSION="0.3.0"
 
 if ((BASH_VERSINFO[0] < 4)); then
@@ -2373,6 +2377,7 @@ case "${ACTION}" in
         done;;
     install|reinstall)
         elevate_privs
+        create_cache_dir
         for APP in "${@,,}"; do
             validate_deb "${APP}"
             if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
@@ -2410,9 +2415,11 @@ case "${ACTION}" in
         list_debs | grep "${1}";;
     update)
         elevate_privs
+        create_cache_dir
         update_debs;;
     upgrade)
         elevate_privs
+        create_cache_dir
         upgrade_debs;;
     version) echo "${VERSION}";;
     help) usage;;
