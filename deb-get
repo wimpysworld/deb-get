@@ -1132,7 +1132,6 @@ function deb_cawbird() {
 }
 
 function deb_insync() {
-    ARCHS_SUPPORTED="amd64"
     if [ "${ACTION}" != "prettylist" ]; then
         APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
     fi
@@ -1915,7 +1914,6 @@ function deb_expressvpn() {
 }
 
 function deb_blockbench() {
-    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/JannisX11/blockbench/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
@@ -1976,7 +1974,6 @@ function deb_rustdesk() {
 }
 
 function deb_picocrypt() {
-    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/HACKERALERT/Picocrypt/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
@@ -2024,7 +2021,6 @@ function deb_yq() {
 }
 
 function deb_youtube-music() {
-    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/th-ch/youtube-music/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
