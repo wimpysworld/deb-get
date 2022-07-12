@@ -349,7 +349,8 @@ scope of the project in terms if what it is intended for.
   * **Software must be actively maintained**.
   * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
   * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
-  * **Packages from the official Debian or Ubuntu apt archives will not be accepted**.
+  * **Packages that install directly from the official Debian or Ubuntu apt archives will not be accepted**.
+  * **Packages that replace components in the hardware enablement stack (HWE) such as the Linux kernel and Mesa will not be accepted.**
 
 ### Custom User Includes `/etc/deb-get.d/`
 
