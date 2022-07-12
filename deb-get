@@ -2231,6 +2231,17 @@ function deb_blanket() {
     SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
 }
 
+function deb_bluejeans-v2() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s "$(unroll_url https://www.bluejeans.com/downloads)" | grep "BlueJeans_.*\.deb" | head -n1 | cut -d"\"" -f 2)"
+        local VERSION_TMP="${URL##*/BlueJeans_}"
+        VERSION_PUBLISHED="${VERSION_TMP%%.deb}"
+    fi
+    PRETTY_NAME="BlueJeans Desktop App"
+    WEBSITE="https://www.bluejeans.com"
+    SUMMARY="The secure video conferencing platform that makes you more productive."
+}
+
 function deb_flameshot() {
     get_github_releases "https://api.github.com/repos/flameshot-org/flameshot/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
