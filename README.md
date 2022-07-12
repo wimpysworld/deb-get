@@ -162,6 +162,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.influxdata.com/time-series-platform/chronograf/) | `chronograf` | <i>Open source monitoring and visualization UI for the TICK stack.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://code.visualstudio.com/) | `code` | <i>Code editing. Redefined.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://vscodium.com/) | `codium` | <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://tkashkin.github.io/projects/gamehub) | `com.github.tkashkin.gamehub` | <i>Unified library for all your games.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://hluk.github.io/CopyQ/) | `copyq` | <i>An advanced clipboard manager with editing and scripting features.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.codeweavers.com/crossover) | `crossover` | <i>Run your Windows apps on Linux! CrossOver is a Microsoft Windows compatibility layer based on Wine.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://cryptomator.org/) | `cryptomator` | <i>Multi-platform transparent client-side encryption of your files in the cloud.</i> |
@@ -187,7 +188,6 @@ cog.out(pretty_list)
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://johnfactotum.github.io/foliate/) | `foliate` | <i>A simple and modern eBook viewer for Linux desktops.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://meetfranz.com/) | `franz` | <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/cboxdoerfer/fsearch) | `fsearch` | <i>Fast file search utility.</i> |
-| [<img src=".github/github.png" align="top" width="20" />](https://tkashkin.github.io/projects/gamehub) | `gamehub` | <i>Unified library for all your games.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hmlendea/gfn-electron) | `geforcenow-electron` | <i>Desktop client for Nvidia's GeForce NOW game streaming service.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://cli.github.com/) | `gh` | <i>GitHub CLI brings GitHub to your terminal. Free and open source.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/dandavison/delta) | `git-delta` | <i>A syntax-highlighting pager for 'git', 'diff', and 'grep' output.</i> |
