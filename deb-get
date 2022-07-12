@@ -267,7 +267,7 @@ function remove_deb() {
             fi
             ;;
         ppa)
-            ${ELEVATE} rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
+            rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
             if [ -n "${PPA}" ]; then
                 fancy_message info "Removing ${PPA}"
                 ${ELEVATE} apt-add-repository -y --remove "${PPA}"
@@ -769,9 +769,9 @@ function deb_jami() {
 }
 
 function deb_google-chrome-stable() {
-    APT_KEY_URL="https://dl.google.com/linux/linux_signing_key.pub"
+    APT_KEY_URL="http://dl.google.com/linux/linux_signing_key.pub"
     APT_LIST_NAME="google-chrome"
-    APT_REPO_URL="deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
+    APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
     EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
     PRETTY_NAME="Google Chrome"
     WEBSITE="https://www.google.com/chrome/"
@@ -895,7 +895,7 @@ function deb_minigalaxy() {
     SUMMARY="A simple GOG client for Linux."
 }
 
-function deb_com.github.tkashkin.gamehub() {
+function deb_gamehub() {
     get_github_releases "https://api.github.com/repos/tkashkin/GameHub/releases"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v '\-dev' | head -n1 | cut -d'"' -f4)
@@ -1058,7 +1058,7 @@ function deb_signal-desktop() {
 function deb_syncthing() {
     APT_KEY_URL="https://syncthing.net/release-key.txt"
     APT_LIST_NAME="syncthing"
-    APT_REPO_URL="deb https://apt.syncthing.net/ syncthing release"
+    APT_REPO_URL="deb http://apt.syncthing.net/ syncthing release"
     PRETTY_NAME="Syncthing"
     WEBSITE="https://syncthing.net/"
     SUMMARY="Continuous file synchronization program."
@@ -1116,7 +1116,7 @@ function deb_sublime-merge() {
 function deb_google-earth-pro-stable() {
     APT_KEY_URL="https://dl-ssl.google.com/linux/linux_signing_key.pub"
     APT_LIST_NAME="google-earth-pro"
-    APT_REPO_URL="deb [arch=amd64] https://dl.google.com/linux/earth/deb/ stable main"
+    APT_REPO_URL="deb [arch=amd64] http://dl.google.com/linux/earth/deb/ stable main"
     PRETTY_NAME="Google Earth Pro"
     WEBSITE="https://www.google.com/earth/versions/"
     SUMMARY="Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities."
@@ -1125,13 +1125,14 @@ function deb_google-earth-pro-stable() {
 function deb_cawbird() {
     APT_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/xUbuntu_22.04/Release.key"
     APT_LIST_NAME="home:IBBoard:cawbird"
-    APT_REPO_URL="deb https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/xUbuntu_${UBUNTU_RELEASE}/ /"
+    APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/IBBoard:/cawbird/xUbuntu_${UBUNTU_RELEASE}/ /"
     PRETTY_NAME="Cawbird"
     WEBSITE="https://ibboard.co.uk/cawbird/"
     SUMMARY="Twitter client for the Linux desktop."
 }
 
 function deb_insync() {
+    ARCHS_SUPPORTED="amd64"
     if [ "${ACTION}" != "prettylist" ]; then
         APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
     fi
@@ -1198,7 +1199,7 @@ function deb_rpi-imager() {
 }
 
 function deb_bitwarden() {
-    get_github_releases "https://api.github.com/repos/bitwarden/clients/releases"
+    get_github_releases "https://api.github.com/repos/bitwarden/desktop/releases"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
@@ -1390,7 +1391,7 @@ function deb_slack-desktop() {
 
 function deb_vivaldi-stable() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
-    APT_KEY_URL="https://repo.vivaldi.com/stable/linux_signing_key.pub"
+    APT_KEY_URL="http://repo.vivaldi.com/stable/linux_signing_key.pub"
     APT_LIST_NAME="vivaldi"
     APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.vivaldi.com/stable/deb/ stable main"
     PRETTY_NAME="Vivaldi"
@@ -1506,7 +1507,7 @@ function deb_keybase() {
     ARCHS_SUPPORTED="amd64 i386"
     APT_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
     APT_LIST_NAME="keybase"
-    APT_REPO_URL="deb https://prerelease.keybase.io/deb stable main"
+    APT_REPO_URL="deb http://prerelease.keybase.io/deb stable main"
     PRETTY_NAME="Keybase"
     WEBSITE="https://keybase.io/"
     SUMMARY="End-to-end encryption for things that matter. Secure messaging and file-sharing."
@@ -1533,7 +1534,7 @@ function deb_softmaker-office-2021() {
 function deb_resilio-sync() {
     APT_KEY_URL="https://linux-packages.resilio.com/resilio-sync/key.asc"
     APT_LIST_NAME="resilio-sync"
-    APT_REPO_URL="deb https://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
+    APT_REPO_URL="deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
     PRETTY_NAME="Resilio Sync"
     WEBSITE="https://www.resilio.com/"
     SUMMARY="Fast, reliable, and simple file sync and share solution, powered by P2P technology"
@@ -1875,7 +1876,7 @@ function deb_dustracing2d() {
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
     fi
     PRETTY_NAME="DustRacing2D"
-    WEBSITE="https://juzzlin.github.io/DustRacing2D/index.html"
+    WEBSITE="http://juzzlin.github.io/DustRacing2D/index.html"
     SUMMARY="Dust Racing 2D is a traditional top-down car racing game including a level editor."
 }
 
@@ -1914,6 +1915,7 @@ function deb_expressvpn() {
 }
 
 function deb_blockbench() {
+    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/JannisX11/blockbench/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
@@ -1957,23 +1959,19 @@ function deb_foliate() {
 }
 
 function deb_rustdesk() {
-    ARCHS_SUPPORTED="amd64 armhf"
+    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        case "${HOST_ARCH}" in
-            amd64) URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep -Ev "$(echo ${ARCHS_SUPPORTED} | tr " " "|")" | head -n1 | cut -d'"' -f4)"
-            ;;
-            *) URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-            ;;
-        esac
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
     fi
-    PRETTY_NAME="RustDesk"
+    PRETTY_NAME="Blockbench"
     WEBSITE="https://rustdesk.com/"
     SUMMARY="Open source virtual / remote desktop infrastructure for everyone!"
 }
 
 function deb_picocrypt() {
+    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/HACKERALERT/Picocrypt/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
@@ -2021,6 +2019,7 @@ function deb_yq() {
 }
 
 function deb_youtube-music() {
+    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/th-ch/youtube-music/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
@@ -2048,6 +2047,13 @@ function deb_fsearch() {
     PRETTY_NAME="FSearch"
     WEBSITE="https://github.com/cboxdoerfer/fsearch"
     SUMMARY="Fast file search utility."
+}
+
+function deb_corectrl() {
+    PPA="ppa:ernstp/mesarc"
+    PRETTY_NAME="CoreCtrl"
+    WEBSITE="https://gitlab.com/corectrl/corectrl"
+    SUMMARY="A Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles."
 }
 
 function deb_openrgb() {
@@ -2127,7 +2133,7 @@ function deb_sleek() {
 function deb_kopia-ui() {
     APT_KEY_URL="https://kopia.io/signing-key"
     APT_LIST_NAME="kopia"
-    APT_REPO_URL="deb https://packages.kopia.io/apt/ stable main"
+    APT_REPO_URL="deb http://packages.kopia.io/apt/ stable main"
     PRETTY_NAME="KopiaUI"
     WEBSITE="https://kopia.io/"
     SUMMARY="Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication."
@@ -2219,7 +2225,7 @@ function deb_librewolf() {
     CODENAMES_SUPPORTED="bullseye focal impish jammy uma una"
     GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
     APT_LIST_NAME="librewolf"
-    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://deb.librewolf.net ${OS_CODENAME} main"
+    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] http://deb.librewolf.net ${OS_CODENAME} main"
     PRETTY_NAME="LibreWolf"
     WEBSITE="https://librewolf.net/"
     SUMMARY="An independent fork of Firefox, with the primary goals of privacy, security and user freedom."
@@ -2232,39 +2238,18 @@ function deb_blanket() {
     SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
 }
 
-function deb_bluejeans-v2() {
-    if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(curl -s "$(unroll_url https://www.bluejeans.com/downloads)" | grep "BlueJeans_.*\.deb" | head -n1 | cut -d"\"" -f 2)"
-        local VERSION_TMP="${URL##*/BlueJeans_}"
-        VERSION_PUBLISHED="${VERSION_TMP%%.deb}"
-    fi
-    PRETTY_NAME="BlueJeans Desktop App"
-    WEBSITE="https://www.bluejeans.com"
-    SUMMARY="The secure video conferencing platform that makes you more productive."
-}
+function deb_xh() {
+    get_github_releases "https://api.github.com/repos/ducaale/xh/releases/latest"
 
-function deb_flameshot() {
-    get_github_releases "https://api.github.com/repos/flameshot-org/flameshot/releases/latest"
-    if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(grep "browser_download_url.*\.ubuntu-${UBUNTU_RELEASE}\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-        local VERSION_TMP="${URL##*/flameshot-}"
-        VERSION_PUBLISHED="${VERSION_TMP%%-ubuntu*}"
-    fi
-    PRETTY_NAME="Flameshot"
-    WEBSITE="https://flameshot.org/"
-    SUMMARY="Flameshot is a free and open-source, cross-platform tool to take screenshots with many built-in features to save you time."
-}
-
-function deb_notable() {
-    get_github_releases "https://api.github.com/repos/notable/notable/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
-    PRETTY_NAME="Notable"
-    WEBSITE="https://notable.app/"
-    SUMMARY="The Markdown-based note-taking app that doesn't suck."
+    PRETTY_NAME="xh"
+    WEBSITE="https://github.com/ducaale/xh/"
+    SUMMARY="A friendly and fast tool for sending HTTP requests."
 }
+
 
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
@@ -2285,15 +2270,11 @@ done
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
 export CACHE_DIR="/var/cache/deb-get"
-
-function create_cache_dir() {
-    if [ -d /var/cache/get-deb ]; then
-        ${ELEVATE} mv /var/cache/get-deb "${CACHE_DIR}"
-    fi
-    ${ELEVATE} mkdir -p "${CACHE_DIR}" 2>/dev/null
-    ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
-}
-
+if [ -d /var/cache/get-deb ]; then
+    mv /var/cache/get-deb "${CACHE_DIR}"
+fi
+mkdir -p "${CACHE_DIR}" 2>/dev/null
+chmod 755 "${CACHE_DIR}" 2>/dev/null
 export VERSION="0.3.0"
 
 if ((BASH_VERSINFO[0] < 4)); then
@@ -2373,7 +2354,6 @@ case "${ACTION}" in
         done;;
     install|reinstall)
         elevate_privs
-        create_cache_dir
         for APP in "${@,,}"; do
             validate_deb "${APP}"
             if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
@@ -2411,11 +2391,9 @@ case "${ACTION}" in
         list_debs | grep "${1}";;
     update)
         elevate_privs
-        create_cache_dir
         update_debs;;
     upgrade)
         elevate_privs
-        create_cache_dir
         upgrade_debs;;
     version) echo "${VERSION}";;
     help) usage;;
