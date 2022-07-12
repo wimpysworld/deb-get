@@ -233,6 +233,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/muesli/obs-cli) | `obs-cli` | <i>OBS-cli is a command-line remote control for OBS.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://obsidian.md/) | `obsidian` | <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://obsproject.com/) | `obs-studio` | <i>Free and open source software for video recording and live streaming.</i> |
