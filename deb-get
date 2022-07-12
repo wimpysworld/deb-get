@@ -2250,6 +2250,19 @@ function deb_xh() {
     SUMMARY="A friendly and fast tool for sending HTTP requests."
 }
 
+function deb_curlie() {
+    ARCHS_SUPPORTED="amd64 arm64"
+    get_github_releases "https://api.github.com/repos/rs/curlie/releases/latest"
+
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="curlie"
+    WEBSITE="https://github.com/rs/curlie/"
+    SUMMARY="The power of curl, the ease of use of httpie."
+}
+
 
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
