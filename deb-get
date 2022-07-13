@@ -2266,6 +2266,13 @@ function deb_notable() {
     SUMMARY="The Markdown-based note-taking app that doesn't suck."
 }
 
+function deb_audiorecorder() {
+    PPA="ppa:audio-recorder/ppa"
+    PRETTY_NAME="Audio-Recorder"
+    WEBSITE="https://launchpad.net/~audio-recorder"
+    SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
