@@ -2265,7 +2265,7 @@ function deb_motrix() {
 }
 
 function deb_librewolf() {
-    CODENAMES_SUPPORTED="bullseye focal impish jammy uma una"
+    CODENAMES_SUPPORTED="bullseye focal impish jammy"
     GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
     APT_LIST_NAME="librewolf"
     APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://deb.librewolf.net ${OS_CODENAME} main"
