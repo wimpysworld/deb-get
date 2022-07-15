@@ -2285,10 +2285,12 @@ function deb_audiorecorder() {
 }
 
 function deb_papirus-icon-theme() {
-    PPA="ppa:papirus/papirus"
-    PRETTY_NAME="Papirus Icon Theme"
-    WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
-    SUMMARY="A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons."
+    if [ "{$UPSTREAM_ID}" == "ubuntu" ]; then 
+        PPA="ppa:papirus/papirus"
+        PRETTY_NAME="Papirus Icon Theme"
+        WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
+        SUMMARY="A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons."
+    fi
 }
 
 # Create an array to track those deb_ functions being loaded by this script
