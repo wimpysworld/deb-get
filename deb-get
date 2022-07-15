@@ -498,31 +498,39 @@ function deb_firefox-esr() {
 }
 
 function deb_quickgui() {
-    PPA="ppa:yannick-mauray/quickgui"
-    PRETTY_NAME="Quickgui"
-    WEBSITE="https://github.com/quickemu-project/quickgui"
-    SUMMARY="A Flutter frontend for Quickemu."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:yannick-mauray/quickgui"
+        PRETTY_NAME="Quickgui"
+        WEBSITE="https://github.com/quickemu-project/quickgui"
+        SUMMARY="A Flutter frontend for Quickemu."
+    fi
 }
 
 function deb_nextcloud-desktop() {
-    PPA="ppa:nextcloud-devs/client"
-    PRETTY_NAME="Nextcloud Desktop"
-    WEBSITE="https://nextcloud.com/"
-    SUMMARY="The self-hosted productivity platform that keeps you in control."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:nextcloud-devs/client"
+        PRETTY_NAME="Nextcloud Desktop"
+        WEBSITE="https://nextcloud.com/"
+        SUMMARY="The self-hosted productivity platform that keeps you in control."
+    fi
 }
 
 function deb_keepassxc() {
-    PPA="ppa:phoerious/keepassxc"
-    PRETTY_NAME="KeePassXC"
-    WEBSITE="https://keepassxc.org/"
-    SUMMARY="Cross-Platform Password Manager."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:phoerious/keepassxc"
+        PRETTY_NAME="KeePassXC"
+        WEBSITE="https://keepassxc.org/"
+        SUMMARY="Cross-Platform Password Manager."
+    fi
 }
 
 function deb_ubuntu-make() {
-    PPA="ppa:lyzardking/ubuntu-make"
-    PRETTY_NAME="Ubuntu-Make"
-    WEBSITE="https://github.com/ubuntu/ubuntu-make/"
-    SUMMARY="Easy setup of common tools for developers on Ubuntu."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:lyzardking/ubuntu-make"
+        PRETTY_NAME="Ubuntu-Make"
+        WEBSITE="https://github.com/ubuntu/ubuntu-make/"
+        SUMMARY="Easy setup of common tools for developers on Ubuntu."
+    fi
 }
 
 function deb_atom() {
