@@ -2338,7 +2338,7 @@ function deb_audiorecorder() {
 }
 
 function deb_papirus-icon-theme() {
-    if [ "{$UPSTREAM_ID}" == "ubuntu" ]; then 
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
         PPA="ppa:papirus/papirus"
         PRETTY_NAME="Papirus Icon Theme"
         WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
