@@ -2454,6 +2454,7 @@ case "${ACTION}" in
     clean)
         elevate_privs
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
+        ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
             validate_deb "${APP}"
