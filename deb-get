@@ -753,7 +753,7 @@ function deb_1password() {
 function deb_weechat() {
     GPG_KEY_URL="https://weechat.org/dev/info/debian_repository_signing_key/"
     APT_LIST_NAME="weechat"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://weechat.org/ubuntu ${UBUNTU_CODENAME} main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://weechat.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="WeeChat"
     WEBSITE="https://weechat.org/"
     SUMMARY="The extensible chat client."
@@ -762,7 +762,7 @@ function deb_weechat() {
 function deb_jami() {
     GPG_KEY_URL="https://dl.jami.net/public-key.gpg"
     APT_LIST_NAME="jami"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://dl.jami.net/nightly/ubuntu_${UBUNTU_RELEASE}/ jami main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://dl.jami.net/nightly/${UPSTREAM_ID}_${UPSTREAM_RELEASE}/ jami main"
     PRETTY_NAME="Jami"
     WEBSITE="https://jami.net/"
     SUMMARY="Share, freely and privately."
@@ -780,7 +780,7 @@ function deb_google-chrome-stable() {
 
 function disabled_ungoogled-chromium() {
     APT_LIST_NAME="home-ungoogled_chromium.list"
-    case "${UBUNTU_CODENAME}" in
+    case "${UPSTREAM_CODENAME}" in
         focal)
             APT_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key"
             APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/ /"
@@ -844,7 +844,7 @@ function deb_docker-ce() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     APT_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
     APT_LIST_NAME="docker"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/ubuntu ${UBUNTU_CODENAME} stable"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/${UPSTREAM_ID} ${UPSTREAM_CODENAME} stable"
     PRETTY_NAME="Docker Engine"
     WEBSITE="https://www.docker.com/"
     SUMMARY="Open source containerization technology for building and containerizing your applications."
@@ -1087,7 +1087,7 @@ function deb_jellyfin() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     APT_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
     APT_LIST_NAME="jellyfin"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/ubuntu ${UBUNTU_CODENAME} main"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Jellyfin"
     WEBSITE="https://jellyfin.org/"
     SUMMARY="The Free Software Media System."
@@ -1123,9 +1123,15 @@ function deb_google-earth-pro-stable() {
 }
 
 function deb_cawbird() {
-    APT_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/xUbuntu_22.04/Release.key"
+    # Captialise first character of UPSTREAM_ID and prefeix with 'x' for Ubuntu
+    local OBS_UPSTREAM_ID="${UPSTREAM_ID^}"
+    if [ "${OBS_UPSTREAM_ID}" == "Ubuntu" ]; then
+        OBS_UPSTREAM_ID="x${OBS_UPSTREAM_ID}"
+    fi
+
+    APT_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/Release.key"
     APT_LIST_NAME="home:IBBoard:cawbird"
-    APT_REPO_URL="deb https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/xUbuntu_${UBUNTU_RELEASE}/ /"
+    APT_REPO_URL="deb https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/ /"
     PRETTY_NAME="Cawbird"
     WEBSITE="https://ibboard.co.uk/cawbird/"
     SUMMARY="Twitter client for the Linux desktop."
@@ -1136,7 +1142,7 @@ function deb_insync() {
         APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
     fi
     APT_LIST_NAME="insync"
-    APT_REPO_URL="deb http://apt.insync.io/ubuntu ${UBUNTU_CODENAME} non-free contrib"
+    APT_REPO_URL="deb http://apt.insync.io/${UPSTREAM_ID} ${UPSTREAM_CODENAME} non-free contrib"
     PRETTY_NAME="Insync"
     WEBSITE="https://www.insynchq.com/"
     SUMMARY="Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop."
@@ -1725,9 +1731,10 @@ function deb_strawberry() {
 
 
 function deb_azure-cli() {
+    # TODO: Test with Debian
     APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="azure-cli"
-    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ ${UBUNTU_CODENAME} main"
+    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Azure CLI"
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
     SUMMARY="Command-line interface used to create and manage Azure resources."
@@ -1745,16 +1752,17 @@ function deb_zotero() {
 function deb_terraform() {
     APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
     APT_LIST_NAME="terraform"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UBUNTU_CODENAME} main"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Terraform"
     WEBSITE="https://www.terraform.io/"
     SUMMARY="Automate Infrastructure on Any Cloud."
 }
 
 function deb_tailscale() {
-    GPG_KEY_URL="https://pkgs.tailscale.com/stable/ubuntu/${UBUNTU_CODENAME}.noarmor.gpg"
+    # TODO: Test with Debian
+    GPG_KEY_URL="https://pkgs.tailscale.com/stable/ubuntu/${UPSTREAM_CODENAME}.noarmor.gpg"
     APT_LIST_NAME="tailscale"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu ${UBUNTU_CODENAME} main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Tailscale"
     WEBSITE="https://tailscale.com/"
     SUMMARY="Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere."
@@ -2053,7 +2061,7 @@ function deb_fsearch() {
 function deb_openrgb() {
     ARCHS_SUPPORTED="amd64 i386 armhf"
     if [ "${ACTION}" != "prettylist" ]; then
-        case "${UBUNTU_CODENAME}" in
+        case "${UPSTREAM_CODENAME}" in
             focal)
                 URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*buster_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
             ;;
@@ -2069,13 +2077,14 @@ function deb_openrgb() {
 }
 
 function deb_mergerfs() {
+    # TODO: Test this with Debian
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/trapexit/mergerfs/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${OS_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
         # TODO When https://github.com/wimpysworld/deb-get/issues/125 shakes out should add the debian packages
         CODENAMES_SUPPORTED=($(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json"| grep ${HOST_ARCH} | cut -d'"' -f4 | sed -n "s/^.*ubuntu-\(\S*\)_.*/\1/p"))
-        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UBUNTU_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UPSTREAM_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
     fi
     PRETTY_NAME="mergerfs"
     WEBSITE="https://github.com/trapexit/mergerfs"
@@ -2246,7 +2255,7 @@ function deb_bluejeans-v2() {
 function deb_flameshot() {
     get_github_releases "https://api.github.com/repos/flameshot-org/flameshot/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(grep "browser_download_url.*\.ubuntu-${UBUNTU_RELEASE}\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        URL="$(grep "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
         local VERSION_TMP="${URL##*/flameshot-}"
         VERSION_PUBLISHED="${VERSION_TMP%%-ubuntu*}"
     fi
