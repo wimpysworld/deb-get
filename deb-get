@@ -2113,7 +2113,7 @@ function deb_mergerfs() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/trapexit/mergerfs/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${OS_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
+        VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UPSTREAM_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
         # TODO When https://github.com/wimpysworld/deb-get/issues/125 shakes out should add the debian packages
         CODENAMES_SUPPORTED=($(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json"| grep ${HOST_ARCH} | cut -d'"' -f4 | sed -n "s/^.*ubuntu-\(\S*\)_.*/\1/p"))
         URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UPSTREAM_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
@@ -2268,7 +2268,7 @@ function deb_librewolf() {
     CODENAMES_SUPPORTED="bullseye focal impish jammy"
     GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
     APT_LIST_NAME="librewolf"
-    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://deb.librewolf.net ${OS_CODENAME} main"
+    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://deb.librewolf.net ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="LibreWolf"
     WEBSITE="https://librewolf.net/"
     SUMMARY="An independent fork of Firefox, with the primary goals of privacy, security and user freedom."
@@ -2459,8 +2459,8 @@ case "${ACTION}" in
                 fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
             fi
 
-            if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${OS_CODENAME}" ]]; then
-                fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${OS_CODENAME^}."
+            if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${UPSTREAM_CODENAME}" ]]; then
+                fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
             fi
 
             case ${METHOD} in
