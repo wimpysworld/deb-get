@@ -2333,7 +2333,7 @@ readonly USER_HOME="${HOME}"
 
 OS_ID=$(lsb_release --id --short)
 case "${OS_ID}" in
-  Elementary) OS_ID_PRETTY="elementary OS";;
+  Debian) OS_ID_PRETTY="Debian";;
   Linuxmint) OS_ID_PRETTY="Linux Mint";;
   Neon) OS_ID_PRETTY="KDE Neon";;
   Pop) OS_ID_PRETTY="Pop!_OS";;
@@ -2344,17 +2344,25 @@ esac
 
 OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
-    UBUNTU_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2)
+    UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
+    case "${UPSTREAM_ID}" in
+        debian) UPSTREAM_CODENAME=$(grep DEBIAN_CODENAME /etc/os-release | cut -d'=' -f2);;
+        ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
+        *) UPSTREAM_CODENAME="";;
+    esac
 else
     fancy_message fatal "/etc/os-release not found. Quitting"
 fi
 
-case "${UBUNTU_CODENAME}" in
-    focal)   UBUNTU_RELEASE=20.04;;
-    impish)  UBUNTU_RELEASE=21.10;;
-    jammy)   UBUNTU_RELEASE=22.04;;
-    kinetic) UBUNTU_RELEASE=22.10;;
-    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Ubuntu release.";;
+case "${UPSTREAM_CODENAME}" in
+    buster)   UPSTREAM_RELEASE="10";;
+    bullseye) UPSTREAM_RELEASE="11";;
+    bookworm) UPSTREAM_RELEASE="12";;
+    focal)    UPSTREAM_RELEASE="20.04";;
+    impish)   UPSTREAM_RELEASE="21.10";;
+    jammy)    UPSTREAM_RELEASE="22.04";;
+    kinetic)  UPSTREAM_RELEASE="22.10";;
+    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 
 if [ -n "${1}" ]; then
