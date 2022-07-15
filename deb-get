@@ -480,17 +480,21 @@ function deb_discord() {
 }
 
 function deb_quickemu() {
-    PPA="ppa:flexiondotorg/quickemu"
-    PRETTY_NAME="Quickemu"
-    WEBSITE="https://github.com/quickemu-project/quickemu"
-    SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:flexiondotorg/quickemu"
+        PRETTY_NAME="Quickemu"
+        WEBSITE="https://github.com/quickemu-project/quickemu"
+        SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
+    fi
 }
 
 function deb_firefox-esr() {
-    PPA="ppa:mozillateam/ppa"
-    PRETTY_NAME="Firefox ESR"
-    WEBSITE="https://www.mozilla.org/firefox/enterprise/"
-    SUMMARY=" Firefox Extended Support Release."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:mozillateam/ppa"
+        PRETTY_NAME="Firefox ESR"
+        WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+        SUMMARY=" Firefox Extended Support Release."
+    fi
 }
 
 function deb_quickgui() {
@@ -1702,31 +1706,39 @@ function deb_anydesk() {
 }
 
 function deb_lutris() {
-    PPA="ppa:lutris-team/lutris"
-    PRETTY_NAME="Lutris"
-    WEBSITE="https://lutris.net/"
-    SUMMARY="Open Gaming Platform."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:lutris-team/lutris"
+        PRETTY_NAME="Lutris"
+        WEBSITE="https://lutris.net/"
+        SUMMARY="Open Gaming Platform."
+    fi
 }
 
 function deb_polychromatic() {
-    PPA="ppa:polychromatic/stable"
-    PRETTY_NAME="Polychromatic"
-    WEBSITE="https://polychromatic.app/"
-    SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:polychromatic/stable"
+        PRETTY_NAME="Polychromatic"
+        WEBSITE="https://polychromatic.app/"
+        SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."
+    fi
 }
 
 function deb_openrazer-meta() {
-    PPA="ppa:openrazer/stable"
-    PRETTY_NAME="OpenRazer"
-    WEBSITE="https://openrazer.github.io/"
-    SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:openrazer/stable"
+        PRETTY_NAME="OpenRazer"
+        WEBSITE="https://openrazer.github.io/"
+        SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
+    fi
 }
 
 function deb_strawberry() {
-    PPA="ppa:jonaski/strawberry "
-    PRETTY_NAME="Strawberry Music Player"
-    WEBSITE="https://www.strawberrymusicplayer.org/"
-    SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:jonaski/strawberry "
+        PRETTY_NAME="Strawberry Music Player"
+        WEBSITE="https://www.strawberrymusicplayer.org/"
+        SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
+    fi
 }
 
 
@@ -1933,10 +1945,12 @@ function deb_blockbench() {
 }
 
 function deb_copyq() {
-    PPA="ppa:hluk/copyq"
-    PRETTY_NAME="CopyQ"
-    WEBSITE="https://hluk.github.io/CopyQ/"
-    SUMMARY="An advanced clipboard manager with editing and scripting features."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:hluk/copyq"
+        PRETTY_NAME="CopyQ"
+        WEBSITE="https://hluk.github.io/CopyQ/"
+        SUMMARY="An advanced clipboard manager with editing and scripting features."
+    fi
 }
 
 function deb_dbeaver-ce() {
@@ -1951,17 +1965,21 @@ function deb_dbeaver-ce() {
 }
 
 function deb_obs-studio() {
-    PPA="ppa:flexiondotorg/obs-fully-loaded"
-    PRETTY_NAME="OBS Studio (Fully Loaded)"
-    WEBSITE="https://obsproject.com/"
-    SUMMARY="Free and open source software for video recording and live streaming."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:flexiondotorg/obs-fully-loaded"
+        PRETTY_NAME="OBS Studio (Fully Loaded)"
+        WEBSITE="https://obsproject.com/"
+        SUMMARY="Free and open source software for video recording and live streaming."
+    fi
 }
 
 function deb_foliate() {
-    PPA="ppa:apandada1/foliate"
-    PRETTY_NAME="Foliate"
-    WEBSITE="https://johnfactotum.github.io/foliate/"
-    SUMMARY="A simple and modern eBook viewer for Linux desktops."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:apandada1/foliate"
+        PRETTY_NAME="Foliate"
+        WEBSITE="https://johnfactotum.github.io/foliate/"
+        SUMMARY="A simple and modern eBook viewer for Linux desktops."
+    fi
 }
 
 function deb_rustdesk() {
@@ -1993,10 +2011,12 @@ function deb_picocrypt() {
 }
 
 function deb_ulauncher() {
-    PPA="ppa:agornostal/ulauncher"
-    PRETTY_NAME="Ulauncher"
-    WEBSITE="https://ulauncher.io/"
-    SUMMARY="Application launcher for Linux."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:agornostal/ulauncher"
+        PRETTY_NAME="Ulauncher"
+        WEBSITE="https://ulauncher.io/"
+        SUMMARY="Application launcher for Linux."
+    fi
 }
 
 function deb_battery-monitor() {
@@ -2022,10 +2042,12 @@ function deb_android-messages-desktop() {
 }
 
 function deb_yq() {
-    PPA="ppa:rmescandon/yq"
-    PRETTY_NAME="yq"
-    WEBSITE="https://mikefarah.gitbook.io/yq"
-    SUMMARY="A lightweight and portable command-line YAML processor."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:rmescandon/yq"
+        PRETTY_NAME="yq"
+        WEBSITE="https://mikefarah.gitbook.io/yq"
+        SUMMARY="A lightweight and portable command-line YAML processor."
+    fi
 }
 
 function deb_youtube-music() {
@@ -2052,10 +2074,12 @@ function deb_minikube() {
 }
 
 function deb_fsearch() {
-    PPA="ppa:christian-boxdoerfer/fsearch-stable"
-    PRETTY_NAME="FSearch"
-    WEBSITE="https://github.com/cboxdoerfer/fsearch"
-    SUMMARY="Fast file search utility."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:christian-boxdoerfer/fsearch-stable"
+        PRETTY_NAME="FSearch"
+        WEBSITE="https://github.com/cboxdoerfer/fsearch"
+        SUMMARY="Fast file search utility."
+    fi
 }
 
 function deb_openrgb() {
@@ -2152,31 +2176,39 @@ function deb_typora() {
 }
 
 function deb_kdiskmark() {
-    PPA="ppa:jonmagon/kdiskmark"
-    PRETTY_NAME="KDiskMark"
-    WEBSITE="https://github.com/JonMagon/KDiskMark"
-    SUMMARY="A simple open-source disk benchmark tool for Linux distros."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:jonmagon/kdiskmark"
+        PRETTY_NAME="KDiskMark"
+        WEBSITE="https://github.com/JonMagon/KDiskMark"
+        SUMMARY="A simple open-source disk benchmark tool for Linux distros."
+    fi
 }
 
 function deb_xemu() {
-    PPA="ppa:mborgerson/xemu"
-    PRETTY_NAME="Xemu"
-    WEBSITE="https://xemu.app/"
-    SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:mborgerson/xemu"
+        PRETTY_NAME="Xemu"
+        WEBSITE="https://xemu.app/"
+        SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
+    fi
 }
 
 function deb_cryptomator() {
-    PPA="ppa:sebastian-stenzel/cryptomator"
-    PRETTY_NAME="Cryptomator"
-    WEBSITE="https://cryptomator.org/"
-    SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:sebastian-stenzel/cryptomator"
+        PRETTY_NAME="Cryptomator"
+        WEBSITE="https://cryptomator.org/"
+        SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
+    fi
 }
 
 function deb_gpu-viewer() {
-    PPA="ppa:arunsivaraman/gpuviewer"
-    PRETTY_NAME="GPU-Viewer"
-    WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
-    SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:arunsivaraman/gpuviewer"
+        PRETTY_NAME="GPU-Viewer"
+        WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+        SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
+    fi
 }
 
 function deb_stremio() {
@@ -2235,10 +2267,12 @@ function deb_librewolf() {
 }
 
 function deb_blanket() {
-    PPA="ppa:apandada1/blanket"
-    PRETTY_NAME="Blanket"
-    WEBSITE="https://github.com/rafaelmardojai/blanket"
-    SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:apandada1/blanket"
+        PRETTY_NAME="Blanket"
+        WEBSITE="https://github.com/rafaelmardojai/blanket"
+        SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
+    fi
 }
 
 function deb_bluejeans-v2() {
@@ -2287,10 +2321,12 @@ function deb_protonmail-bridge() {
 }
 
 function deb_audiorecorder() {
-    PPA="ppa:audio-recorder/ppa"
-    PRETTY_NAME="Audio-Recorder"
-    WEBSITE="https://launchpad.net/~audio-recorder"
-    SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:audio-recorder/ppa"
+        PRETTY_NAME="Audio-Recorder"
+        WEBSITE="https://launchpad.net/~audio-recorder"
+        SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."
+    fi
 }
 
 # Create an array to track those deb_ functions being loaded by this script
