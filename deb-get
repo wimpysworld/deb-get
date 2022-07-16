@@ -2407,6 +2407,10 @@ esac
 OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
     UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
+    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
+    if [ ! -z "$UPSTREAM_ID_LIKE" ]; then
+        UPSTREAM_ID=$UPSTREAM_ID_LIKE
+    fi
     case "${UPSTREAM_ID}" in
         debian) UPSTREAM_CODENAME=$(grep DEBIAN_CODENAME /etc/os-release | cut -d'=' -f2);;
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
@@ -2453,7 +2457,7 @@ case "${ACTION}" in
         ls -lh "${CACHE_DIR}/";;
     clean)
         elevate_privs
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
+        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
