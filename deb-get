@@ -2346,6 +2346,15 @@ function deb_papirus-icon-theme() {
     fi
 }
 
+function deb_appimagelauncher() {
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:appimagelauncher-team/stable"
+        PRETTY_NAME="AppImage Launcher"
+        WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
+        SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there. "
+    fi
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
@@ -2453,7 +2462,7 @@ case "${ACTION}" in
         ls -lh "${CACHE_DIR}/";;
     clean)
         elevate_privs
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
+        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
