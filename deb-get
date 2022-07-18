@@ -493,7 +493,7 @@ function deb_firefox-stable() {
         PPA="ppa:ubuntu-mozilla-security/ppa"
         PRETTY_NAME="Firefox Stable"
         WEBSITE="https://www.mozilla.org/firefox/"
-        SUMMARY=" Safe and easy web browser from Mozilla "
+        SUMMARY="Safe and easy web browser from Mozilla."
     fi
 }
 
