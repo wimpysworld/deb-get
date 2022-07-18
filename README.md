@@ -20,7 +20,7 @@ release pages.
 
 ## Install
 
-Use `deb-get` to install `deb-get`.
+Use `dpkg` to install `deb-get`.
 
 ```bash
 sudo apt install curl
