@@ -24,7 +24,8 @@ Use `deb-get` to install `deb-get`.
 
 ```bash
 sudo apt install curl
-curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
+curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/$(wget -q https://api.github.com/repos/wimpysworld/deb-get/releases -O -  |grep "tag_name" | head -n1 | cut -d'"' -f4)/deb-get | sudo -E bash -s install deb-get
+
 ```
 
 Alternatively, you can [download the `.deb` of `deb-get` from the releases page](https://github.com/wimpysworld/deb-get/releases)
