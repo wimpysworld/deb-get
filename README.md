@@ -24,7 +24,9 @@ Use `deb-get` to install `deb-get`.
 
 ```bash
 sudo apt install curl
-curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
+url=$(curl https://api.github.com/repos/wimpysworld/deb-get/releases/latest | grep "browser_download_url" | cut -d '"' -f4)
+curl -L "${url}" -o "deb-get.deb"
+dpkg -i deb-get.deb
 ```
 
 Alternatively, you can [download the `.deb` of `deb-get` from the releases page](https://github.com/wimpysworld/deb-get/releases)
