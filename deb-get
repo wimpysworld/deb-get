@@ -2351,7 +2351,7 @@ function deb_appimagelauncher() {
         PPA="ppa:appimagelauncher-team/stable"
         PRETTY_NAME="AppImage Launcher"
         WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
-        SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there. "
+        SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
     fi
 }
 
@@ -2462,7 +2462,7 @@ case "${ACTION}" in
         ls -lh "${CACHE_DIR}/";;
     clean)
         elevate_privs
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb
+        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
