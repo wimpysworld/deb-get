@@ -5,7 +5,7 @@ function usage() {
   echo -e "Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-| purge pkg | search pkg | cache | clean | list | prettylist | help | version}
+| purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -22,6 +22,7 @@ search\n\tsearch for the given regex(7) term(s) from the list of available packa
 show\n\tshow information about the given package including its install source and update mechanism.\n
 list\n\tlist the packages available via deb-get.\n
 prettylist\n\tmarkdown formatted list the packages available via deb-get. Use this to update README.md\n
+csvlist\n\tcsv formatted list the packages available via deb-get. Use this with 3rd party wrappers.\n
 cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 help\n\tshow this help\n
 version\n\tshow deb-get version\n
