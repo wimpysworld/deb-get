@@ -94,6 +94,9 @@ list
 prettylist
 	markdown formatted list the packages available via deb-get. Use this to update README.md
 
+cvslist
+	csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+
 cache
 	list the contents of the deb-get cache (/var/cache/deb-get)
 
