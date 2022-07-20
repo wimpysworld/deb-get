@@ -2457,7 +2457,7 @@ case "${ACTION}" in
         ls -lh "${CACHE_DIR}/";;
     clean)
         elevate_privs
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
+        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
