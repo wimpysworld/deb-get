@@ -181,7 +181,12 @@ function install_apt() {
 }
 
 function install_ppa() {
-    if ${ELEVATE} apt-add-repository -y --no-update "${PPA}"; then
+    local AAR_PARAMS
+    AAR_PARAMS="-y"
+    if [ $(dpkg -S $(command -v apt-add-repository)|cut -d: -f1) == "software-properties-common" ] ; then
+        AAR_PARAMS+=" --no-update";
+    fi
+    if ${ELEVATE} apt-add-repository $AAR_PARAMS "${PPA}"; then
         update_apt
         if ! package_is_installed "${APP}"; then
             eula
