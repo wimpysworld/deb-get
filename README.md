@@ -238,6 +238,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://motrix.app/) | `motrix` | <i>A full-featured download manager.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/SoongNoonien/mpdevil) | `mpdevil` | <i>A simple music browser for MPD.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://mullvad.net/) | `mullvad vpn` | <i>VPN service for speed and security.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
