@@ -496,6 +496,15 @@ function deb_quickemu() {
     fi
 }
 
+function deb_firefox-stable() {
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:ubuntu-mozilla-security/ppa"
+        PRETTY_NAME="Firefox Stable"
+        WEBSITE="https://www.mozilla.org/firefox/"
+        SUMMARY="Safe and easy web browser from Mozilla."
+    fi
+}
+
 function deb_firefox-esr() {
     if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
         PPA="ppa:mozillateam/ppa"
