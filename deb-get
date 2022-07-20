@@ -5,7 +5,7 @@ function usage() {
   echo -e "Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-| purge pkg | search pkg | cache | clean | list | prettylist | help | version}
+| purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -22,6 +22,7 @@ search\n\tsearch for the given regex(7) term(s) from the list of available packa
 show\n\tshow information about the given package including its install source and update mechanism.\n
 list\n\tlist the packages available via deb-get.\n
 prettylist\n\tmarkdown formatted list the packages available via deb-get. Use this to update README.md\n
+csvlist\n\tcsv formatted list the packages available via deb-get. Use this with 3rd party wrappers.\n
 cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
 help\n\tshow this help\n
 version\n\tshow deb-get version\n
@@ -353,6 +354,13 @@ function prettylist_debs() {
             *)      ICON="direct.png";;
         esac
         echo "| [<img src=\".github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
+    done
+}
+
+function csvlist_debs() {
+    for APP in "${APPS[@]}"; do
+        validate_deb "${APP}"
+        echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
     done
 }
 
@@ -1427,7 +1435,7 @@ function deb_vivaldi-stable() {
 
 function deb_gitkraken() {
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(curl -s "https://support.gitkraken.com/release-notes/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+        VERSION_PUBLISHED="$(curl -s "https://help.gitkraken.com/gitkraken-client/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
     fi
     URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
     PRETTY_NAME="GitKraken"
@@ -1751,7 +1759,7 @@ function deb_openrazer-meta() {
 
 function deb_strawberry() {
     if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:jonaski/strawberry "
+        PPA="ppa:jonaski/strawberry"
         PRETTY_NAME="Strawberry Music Player"
         WEBSITE="https://www.strawberrymusicplayer.org/"
         SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
@@ -1789,9 +1797,9 @@ function deb_terraform() {
 
 function deb_tailscale() {
     # TODO: Test with Debian
-    GPG_KEY_URL="https://pkgs.tailscale.com/stable/ubuntu/${UPSTREAM_CODENAME}.noarmor.gpg"
+    GPG_KEY_URL="https://pkgs.tailscale.com/stable/${UPSTREAM_ID}/${UPSTREAM_CODENAME}.noarmor.gpg"
     APT_LIST_NAME="tailscale"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Tailscale"
     WEBSITE="https://tailscale.com/"
     SUMMARY="Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere."
@@ -2355,6 +2363,15 @@ function deb_papirus-icon-theme() {
     fi
 }
 
+function deb_appimagelauncher() {
+    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
+        PPA="ppa:appimagelauncher-team/stable"
+        PRETTY_NAME="AppImage Launcher"
+        WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
+        SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
+    fi
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
@@ -2383,7 +2400,7 @@ function create_cache_dir() {
     ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
 }
 
-export VERSION="0.3.1"
+export VERSION="0.3.2"
 
 if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
@@ -2415,9 +2432,14 @@ esac
 
 OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
+#Debian VERSION_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2 | sed 's/"//g')
     UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
+    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
+    if [ ! -z "${UPSTREAM_ID_LIKE}" ]; then
+        UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
+    fi
     case "${UPSTREAM_ID}" in
-        debian) UPSTREAM_CODENAME=$(grep DEBIAN_CODENAME /etc/os-release | cut -d'=' -f2);;
+        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
         *) UPSTREAM_CODENAME="";;
     esac
@@ -2429,6 +2451,7 @@ case "${UPSTREAM_CODENAME}" in
     buster)   UPSTREAM_RELEASE="10";;
     bullseye) UPSTREAM_RELEASE="11";;
     bookworm) UPSTREAM_RELEASE="12";;
+    sid)      UPSTREAM_RELEASE="unstable";;
     focal)    UPSTREAM_RELEASE="20.04";;
     impish)   UPSTREAM_RELEASE="21.10";;
     jammy)    UPSTREAM_RELEASE="22.04";;
@@ -2462,7 +2485,7 @@ case "${ACTION}" in
         ls -lh "${CACHE_DIR}/";;
     clean)
         elevate_privs
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb;;
+        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
@@ -2493,6 +2516,9 @@ case "${ACTION}" in
     pretty_list|prettylist)
         ACTION="prettylist"
         prettylist_debs;;
+    csv_list|csvlist|csv)
+        ACTION="prettylist"
+        csvlist_debs;;
     purge)
         elevate_privs
         for APP in "${@,,}"; do
