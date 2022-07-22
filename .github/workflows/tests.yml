@@ -31,3 +31,11 @@ jobs:
           ./deb-get install 1password
           ./deb-get install bitwarden
           ./deb-get install obs-studio
+
+      # All these commands should return a 0 status
+      - name: Test zero status
+        run: |
+          ./deb-get list >/dev/null
+          ./deb-get help >/dev/null
+          ./deb-get cache >/dev/null
+          ./deb-get version >/dev/null
