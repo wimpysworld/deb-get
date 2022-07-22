@@ -1,7 +1,6 @@
 name: Tests
 
 on:
-  push:
   pull_request:
     types: [opened, closed, synchronize]
   workflow_dispatch:
@@ -38,11 +37,11 @@ jobs:
           export DEBIAN_FRONTEND=noninteractive
           set -x
           # @todo fix firefox-esr see https://github.com/OhMyMndy/deb-get/runs/7467951397?check_suite_focus=true
-          ./deb-get install firefox-esr|| true
+          ./deb-get install firefox-esr || true
           ./deb-get install 1password >/dev/null
           ./deb-get install bitwarden >/dev/null
           # @todo fix obs-studio see https://github.com/OhMyMndy/deb-get/runs/7467973508?check_suite_focus=true
-          ./deb-get install obs-studio >/dev/null || true
+          ./deb-get install obs-studio  || true
 
 
       # All these commands should return a non 0 status
