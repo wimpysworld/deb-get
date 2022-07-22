@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 LC_ALL=C
+PACKAGE_INSTALLATION_TRIES=0
+PACKAGE_INSTALLATION_COUNT=0
 
 function usage() {
   echo -e "Usage
@@ -152,6 +154,7 @@ function upgrade_apt() {
 }
 
 function install_apt() {
+    let "PACKAGE_INSTALLATION_TRIES+=1"
     if [ -n "${APT_KEY_URL}" ]; then
         ${ELEVATE} wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
     fi
@@ -178,9 +181,11 @@ function install_apt() {
             fancy_message info "${APP} is up to date."
         fi
     fi
+    let "PACKAGE_INSTALLATION_COUNT+=1"
 }
 
 function install_ppa() {
+    let "PACKAGE_INSTALLATION_TRIES+=1"
     if ${ELEVATE} apt-add-repository -y --no-update "${PPA}"; then
         update_apt
         if ! package_is_installed "${APP}"; then
@@ -193,6 +198,7 @@ function install_ppa() {
                 fancy_message info "${APP} is up to date."
             fi
         fi
+        let "PACKAGE_INSTALLATION_COUNT+=1"
     else
         fancy_message error "Failed to add: ${PPA}. Deleting it."
         ${ELEVATE} apt-add-repository -y --remove "${PPA}"
@@ -203,6 +209,7 @@ function install_deb() {
     local URL="${1}"
     local FILE="${URL##*/}"
     local STATUS=""
+    let "PACKAGE_INSTALLATION_TRIES+=1"
 
     if [ -z "${URL}" ]; then
         fancy_message error "Download URL for ${APP} is empty. Skipping."
@@ -224,6 +231,7 @@ function install_deb() {
             fancy_message info "${FILE} is up to date."
         fi
     fi
+    let "PACKAGE_INSTALLATION_COUNT+=1"
     if [ -f "${CACHE_DIR}/${FILE}" ]; then
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
     fi
@@ -2536,3 +2544,7 @@ case "${ACTION}" in
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
 esac
+
+if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
+    exit 1
+fi
