@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  pull_request:
+    types: [opened, closed, synchronize]
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+
+          # Dependencies to build the deb
+          # sudo apt-get install build-essential devscripts debhelper -y
+
+          # Dependencies for deb-get itself
+          sudo apt-get install apt apt-transport-https bash coreutils curl dpkg grep libc-bin lsb-release sed software-properties-common sudo wget -y
+
+      # Install a couple of packages to see if they still install
+      - name: Test package installations
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          ./deb-get install firefox-esr
+          ./deb-get install 1password
+          ./deb-get install bitwarden
+          ./deb-get install obs-studio
