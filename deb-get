@@ -1227,7 +1227,7 @@ function deb_bitwarden() {
     get_github_releases "https://api.github.com/repos/bitwarden/clients/releases"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d desktop-v-)"
     fi
     PRETTY_NAME="Bitwarden"
     WEBSITE="https://bitwarden.com/"
