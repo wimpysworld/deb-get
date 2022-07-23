@@ -1013,7 +1013,7 @@ function deb_ludo() {
     ARCHS_SUPPORTED="amd64 armhf"
     get_github_releases "https://api.github.com/repos/libretro/ludo/releases"
     if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v altui | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
     PRETTY_NAME="Ludo"
