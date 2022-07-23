@@ -2185,14 +2185,12 @@ function deb_openrgb() {
 }
 
 function deb_mergerfs() {
-    # TODO: Test this with Debian
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/trapexit/mergerfs/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UPSTREAM_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
-        # TODO When https://github.com/wimpysworld/deb-get/issues/125 shakes out should add the debian packages
-        CODENAMES_SUPPORTED=($(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json"| grep ${HOST_ARCH} | cut -d'"' -f4 | sed -n "s/^.*ubuntu-\(\S*\)_.*/\1/p"))
-        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UPSTREAM_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
+        CODENAMES_SUPPORTED=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep "${HOST_ARCH}" | cut -d'-' -f2 | cut -d'_' -f1 | tr '\n' ' ')
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep "${UPSTREAM_CODENAME}_${HOST_ARCH}" | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
     fi
     PRETTY_NAME="mergerfs"
     WEBSITE="https://github.com/trapexit/mergerfs"
