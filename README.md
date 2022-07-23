@@ -304,6 +304,7 @@ cog.out(pretty_list)
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://waydro.id/) | `waydroid` | <i>A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wavebox.io/) | `wavebox` | <i>Rethink the Web. Productivity Browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.webex.com/) | `webex` | <i>Video Conferencing, Cloud Calling and Screen Sharing.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://weechat.org/) | `weechat` | <i>The extensible chat client.</i> |
