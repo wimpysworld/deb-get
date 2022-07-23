@@ -3,7 +3,7 @@ LC_ALL=C
 
 function usage() {
 cat <<HELP
-  
+
 Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
