@@ -2,31 +2,63 @@
 LC_ALL=C
 
 function usage() {
-  echo -e "Usage
+cat <<HELP
+  
+Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-| purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
-update\n\tupdate is used to resynchronize the package index files from their sources.\n
-upgrade\n\tupgrade is used to install the newest versions of all packages currently installed on the system.\n
-install\n\tinstall is followed by one package desired for installation or upgrading.\n
-reinstall\n\treinstall is followed by one package desired for reinstallation.\n
-remove\n\tremove is identical to install except that packages are removed instead of installed.\n
-purge\n\tpurge is identical to remove except that packages are removed and purged (any configuration files are deleted too).\n
-clean\n\tclean clears out the local repository (/var/cache/deb-get) of retrieved package files.\n
-search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.\n
-show\n\tshow information about the given package including its install source and update mechanism.\n
-list\n\tlist the packages available via deb-get.\n
-prettylist\n\tmarkdown formatted list the packages available via deb-get. Use this to update README.md\n
-csvlist\n\tcsv formatted list the packages available via deb-get. Use this with 3rd party wrappers.\n
-cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
-help\n\tshow this help\n
-version\n\tshow deb-get version\n
-"
+update
+    update is used to resynchronize the package index files from their sources.
+
+upgrade
+    upgrade is used to install the newest versions of all packages currently installed on the system.
+
+install
+    install is followed by one package desired for installation or upgrading.
+
+reinstall
+    reinstall is followed by one package desired for reinstallation.
+
+remove
+    remove is identical to install except that packages are removed instead of installed.
+
+purge
+    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+
+clean
+    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+
+search
+    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+
+show
+    show information about the given package including its install source and update mechanism.
+
+list
+    list the packages available via deb-get.
+
+prettylist
+    markdown formatted list the packages available via deb-get. Use this to update README.md
+
+csvlist
+    csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+
+cache
+    list the contents of the deb-get cache (/var/cache/deb-get)
+
+help
+    show this help
+
+version
+    show deb-get version
+
+HELP
 }
 
 # https://github.com/wimpysworld/deb-get/issues/126
@@ -181,7 +213,12 @@ function install_apt() {
 }
 
 function install_ppa() {
-    if ${ELEVATE} apt-add-repository -y --no-update "${PPA}"; then
+    local AAR_PARAMS
+    AAR_PARAMS="-y"
+    if [ $(dpkg -S $(command -v apt-add-repository)|cut -d: -f1) == "software-properties-common" ] ; then
+        AAR_PARAMS+=" --no-update";
+    fi
+    if ${ELEVATE} apt-add-repository $AAR_PARAMS "${PPA}"; then
         update_apt
         if ! package_is_installed "${APP}"; then
             eula
@@ -752,6 +789,28 @@ function deb_peazip() {
     SUMMARY="PeaZip is a free file archiver utility and extractor."
 }
 
+function deb_tribler() {
+    get_github_releases "https://api.github.com/repos/Tribler/tribler/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*_all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Tribler"
+    WEBSITE="https://www.tribler.org/"
+    SUMMARY="An encrypted torrent client."
+}
+
+function deb_bottom() {
+    get_github_releases "https://api.github.com/repos/ClementTsang/bottom/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
+    PRETTY_NAME="bottom"
+    WEBSITE="https://github.com/ClementTsang/bottom"
+    SUMMARY="Yet another cross-platform graphical process/system monitor."
+}
+
 function deb_element-desktop() {
     GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
     APT_LIST_NAME="element-io"
@@ -1046,6 +1105,15 @@ function deb_skypeforlinux() {
     PRETTY_NAME="Skype"
     WEBSITE="https://www.skype.com/"
     SUMMARY="Stay connected with free video calls worldwide."
+}
+
+function deb_waydroid() {
+    APT_KEY_URL="https://repo.waydro.id/waydroid.gpg"
+    APT_LIST_NAME="waydroid"
+    APT_REPO_URL="deb https://repo.waydro.id ${UBUNTU_CODENAME} main"
+    PRETTY_NAME="WayDroid"
+    WEBSITE="https://waydro.id/"
+    SUMMARY="A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu."
 }
 
 function deb_wavebox() {
@@ -2336,7 +2404,7 @@ function deb_protonmail-bridge() {
     SUMMARY="Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail."
 }
 
-function deb_audiorecorder() {
+function deb_audio-recorder() {
     if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
         PPA="ppa:audio-recorder/ppa"
         PRETTY_NAME="Audio-Recorder"
