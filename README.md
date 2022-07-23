@@ -269,7 +269,6 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rclone.org/) | `rclone` | <i>Syncs your files to cloud storage.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.resilio.com/) | `resilio-sync` | <i>Fast, reliable, and simple file sync and share solution, powered by P2P technology</i> |
-| [<img src=".github/launchpad.png" align="top" width="20" />](https://www.retroarch.com/) | `retroarch` | <i>RetroArch is a frontend for emulators, game engines and media players.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rocket.chat/) | `rocketchat` | <i>Official Desktop Client for Rocket.Chat.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/raspberrypi/rpi-imager) | `rpi-imager` | <i>Raspberry Pi Imaging Utility.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.rstudio.com/) | `rstudio` | <i>Professional software for data science teams.</i> |
