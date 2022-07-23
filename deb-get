@@ -2395,7 +2395,7 @@ function deb_protonmail-bridge() {
     SUMMARY="Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail."
 }
 
-function deb_audiorecorder() {
+function deb_audio-recorder() {
     if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
         PPA="ppa:audio-recorder/ppa"
         PRETTY_NAME="Audio-Recorder"
