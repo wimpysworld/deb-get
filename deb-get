@@ -2374,14 +2374,6 @@ function deb_mullvad() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
-function deb_retroarch() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:libretro/stable"
-        PRETTY_NAME="RetroArch"
-        WEBSITE="https://www.retroarch.com/index.php"
-        SUMMARY="RetroArch is a frontend for emulators, game engines and media players."
-    fi
-}
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
