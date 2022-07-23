@@ -2489,8 +2489,8 @@ OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
     UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
 
-    # Fallback to ID_LIKE if ID was not available
-    if [ -z "${UPSTREAM_ID}" ]; then
+    # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
+    if [ "${UPSTREAM_ID}" != "debian" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
         UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
         UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
     fi
