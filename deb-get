@@ -762,6 +762,18 @@ function deb_tribler() {
     WEBSITE="https://www.tribler.org/"
     SUMMARY="An encrypted torrent client."
 }
+
+function deb_bottom() {
+    get_github_releases "https://api.github.com/repos/ClementTsang/bottom/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
+    PRETTY_NAME="bottom"
+    WEBSITE="https://github.com/ClementTsang/bottom"
+    SUMMARY="Yet another cross-platform graphical process/system monitor."
+}
+
 function deb_element-desktop() {
     GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
     APT_LIST_NAME="element-io"
@@ -2433,15 +2445,17 @@ esac
 
 OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
-#Debian VERSION_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2 | sed 's/"//g')
     UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
-    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
-    if [ ! -z "${UPSTREAM_ID_LIKE}" ]; then
+
+    # Fallback to ID_LIKE if ID was not available
+    if [ -z "${UPSTREAM_ID}" ]; then
+        UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
         UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
     fi
+
     case "${UPSTREAM_ID}" in
-        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
+        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         *) UPSTREAM_CODENAME="";;
     esac
 else
