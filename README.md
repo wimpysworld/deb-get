@@ -297,6 +297,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.terraform.io/) | `terraform` | <i>Automate Infrastructure on Any Cloud.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Mastermindzh/tidal-hifi) | `tidal-hifi` | <i>Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.tixati.com/) | `tixati` | <i>A New and Powerful P2P System.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://www.tribler.org/) | `tribler` | <i>An encrypted torrent client.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://aquasecurity.github.io/trivy/) | `trivy` | <i>A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
