@@ -2423,15 +2423,17 @@ esac
 
 OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
-#Debian VERSION_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2 | sed 's/"//g')
     UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
-    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
-    if [ ! -z "${UPSTREAM_ID_LIKE}" ]; then
+
+    # Fallback to ID_LIKE if ID was not available
+    if [ -z "${UPSTREAM_ID}" ]; then
+        UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
         UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
     fi
+
     case "${UPSTREAM_ID}" in
-        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
+        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         *) UPSTREAM_CODENAME="";;
     esac
 else
