@@ -158,6 +158,11 @@ function download_deb() {
     local URL="${1}"
     local FILE="${URL##*/}"
 
+    if [ "${FILE}" != ".*deb$" ]; then
+        FILE=$(echo "${URL}" | sed 's/.deb?.*/.deb/g')
+        FILE="${FILE##*/}"
+    fi
+
     if ! ${ELEVATE} wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
@@ -247,6 +252,11 @@ function install_deb() {
         return
     fi
 
+    if [ "${FILE}" != ".*deb$" ]; then
+        FILE=$(echo "${URL}" | sed 's/deb?.*/deb/g')
+        FILE="${FILE##*/}"
+    fi
+
     if ! package_is_installed "${APP}"; then
         eula
         download_deb "${URL}"
@@ -272,6 +282,11 @@ function remove_deb() {
     local REMOVE="${2:-remove}"
     local FILE="${URL##*/}"
     local STATUS=""
+
+    if [ "${FILE}" != ".*deb$" ]; then
+        FILE=$(echo "${URL}" | sed 's/deb?.*/deb/g')
+        FILE="${FILE##*/}"
+    fi
 
     if package_is_installed "${APP}"; then
         STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
@@ -2428,6 +2443,15 @@ function deb_appimagelauncher() {
         WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
         SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
     fi
+}
+
+function deb_icaclient() {
+    URL_PRE=$(curl https://www.citrix.com/en-gb/downloads/workspace-app/ | grep "Citrix Workspace app.*Linux" | sort -r -k 5 | grep -v -i tech | head -n 1 | cut -d'"' -f2)
+    URL="http:$(curl https://www.citrix.com/${URL_PRE} | grep ctx-dl-lin | cut -d'"' -f10 | grep icaclient.*${HOST_ARCH}.*deb)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f 2)"
+    PRETTY_NAME="Citrix Workspace App"
+    WEBSITE="https://www.citrix.com/en-gb/downloads/workspace-app/linux"
+    SUMMARY="Enables users to access virtual desktops and hosted applications delivered by XenDesktop and XenApp."
 }
 
 # Create an array to track those deb_ functions being loaded by this script
