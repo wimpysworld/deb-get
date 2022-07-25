@@ -54,57 +54,58 @@ help = result.replace("Usage\n\n", "").rstrip()
 cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
+
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-| purge pkg | search pkg | cache | clean | list | prettylist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
 update
-	update is used to resynchronize the package index files from their sources.
+    update is used to resynchronize the package index files from their sources.
 
 upgrade
-	upgrade is used to install the newest versions of all packages currently installed on the system.
+    upgrade is used to install the newest versions of all packages currently installed on the system.
 
 install
-	install is followed by one package desired for installation or upgrading.
+    install is followed by one package desired for installation or upgrading.
 
 reinstall
-	reinstall is followed by one package desired for reinstallation.
+    reinstall is followed by one package desired for reinstallation.
 
 remove
-	remove is identical to install except that packages are removed instead of installed.
+    remove is identical to install except that packages are removed instead of installed.
 
 purge
-	purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
 
 clean
-	clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 search
-	search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-	show information about the given package including its install source and update mechanism.
+    show information about the given package including its install source and update mechanism.
 
 list
-	list the packages available via deb-get.
+    list the packages available via deb-get.
 
 prettylist
-	markdown formatted list the packages available via deb-get. Use this to update README.md
+    markdown formatted list the packages available via deb-get. Use this to update README.md
 
-cvslist
-	csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+csvlist
+    csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
 
 cache
-	list the contents of the deb-get cache (/var/cache/deb-get)
+    list the contents of the deb-get cache (/var/cache/deb-get)
 
 help
-	show this help
+    show this help
 
 version
-	show deb-get version
+    show deb-get version
 ```
 <!-- [[[end]]] -->
 
@@ -225,6 +226,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://keybase.io/) | `keybase` | <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://kopia.io/) | `kopia-ui` | <i>Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ksnip/ksnip) | `ksnip` | <i>Cross-platform screenshot and annotation tool.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://lbry.com/) | `lbry` | <i>Desktop client for the LBRY digital content network.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://librewolf.net/) | `librewolf` | <i>An independent fork of Firefox, with the primary goals of privacy, security and user freedom.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://ludo.libretro.com/) | `ludo` | <i>A minimalist frontend for emulators.</i> |
@@ -239,7 +241,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://motrix.app/) | `motrix` | <i>A full-featured download manager.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/SoongNoonien/mpdevil) | `mpdevil` | <i>A simple music browser for MPD.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
-| [<img src=".github/direct.png" align="top" width="20" />](https://mullvad.net/) | `mullvad vpn` | <i>VPN service for speed and security.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad` | <i>VPN Service based in Sweden that does not collect user data.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
