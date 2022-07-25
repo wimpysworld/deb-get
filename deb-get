@@ -2445,7 +2445,7 @@ function deb_mullvad() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
-function deb_master-pdf-editor() {
+function deb_master-pdf() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "href=\"https://code-industry.net/public/.*\.deb" | cut --complement -c -6)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
