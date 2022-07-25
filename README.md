@@ -54,57 +54,58 @@ help = result.replace("Usage\n\n", "").rstrip()
 cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
+
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-| purge pkg | search pkg | cache | clean | list | prettylist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
 update
-	update is used to resynchronize the package index files from their sources.
+    update is used to resynchronize the package index files from their sources.
 
 upgrade
-	upgrade is used to install the newest versions of all packages currently installed on the system.
+    upgrade is used to install the newest versions of all packages currently installed on the system.
 
 install
-	install is followed by one package desired for installation or upgrading.
+    install is followed by one package desired for installation or upgrading.
 
 reinstall
-	reinstall is followed by one package desired for reinstallation.
+    reinstall is followed by one package desired for reinstallation.
 
 remove
-	remove is identical to install except that packages are removed instead of installed.
+    remove is identical to install except that packages are removed instead of installed.
 
 purge
-	purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
 
 clean
-	clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 search
-	search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-	show information about the given package including its install source and update mechanism.
+    show information about the given package including its install source and update mechanism.
 
 list
-	list the packages available via deb-get.
+    list the packages available via deb-get.
 
 prettylist
-	markdown formatted list the packages available via deb-get. Use this to update README.md
+    markdown formatted list the packages available via deb-get. Use this to update README.md
 
-cvslist
-	csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+csvlist
+    csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
 
 cache
-	list the contents of the deb-get cache (/var/cache/deb-get)
+    list the contents of the deb-get cache (/var/cache/deb-get)
 
 help
-	show this help
+    show this help
 
 version
-	show deb-get version
+    show deb-get version
 ```
 <!-- [[[end]]] -->
 
@@ -239,7 +240,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://motrix.app/) | `motrix` | <i>A full-featured download manager.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/SoongNoonien/mpdevil) | `mpdevil` | <i>A simple music browser for MPD.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
-| [<img src=".github/direct.png" align="top" width="20" />](https://mullvad.net/) | `mullvad vpn` | <i>VPN service for speed and security.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad` | <i>VPN Service based in Sweden that does not collect user data.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
@@ -264,6 +265,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://docs.microsoft.com/powershell/) | `powershell` | <i>Cross-platform automation and configuration tool/framework and optimized for dealing with structured data.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://proton.me/mail/bridge) | `protonmail-bridge` | <i>Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
