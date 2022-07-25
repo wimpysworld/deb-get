@@ -2505,14 +2505,14 @@ else
 fi
 
 case "${UPSTREAM_CODENAME}" in
-    buster)   UPSTREAM_RELEASE="10";;
-    bullseye) UPSTREAM_RELEASE="11";;
-    bookworm) UPSTREAM_RELEASE="12";;
-    sid)      UPSTREAM_RELEASE="unstable";;
-    focal)    UPSTREAM_RELEASE="20.04";;
-    impish)   UPSTREAM_RELEASE="21.10";;
-    jammy)    UPSTREAM_RELEASE="22.04";;
-    kinetic)  UPSTREAM_RELEASE="22.10";;
+    [Bb]uster)   UPSTREAM_RELEASE="10";;
+    [Bb]ullseye) UPSTREAM_RELEASE="11";;
+    [Bb]ookworm) UPSTREAM_RELEASE="12";;
+    [Ss]id)      UPSTREAM_RELEASE="unstable";;
+    [Ff]ocal)    UPSTREAM_RELEASE="20.04";;
+    [Ii]mpish)   UPSTREAM_RELEASE="21.10";;
+    [Jj]ammy)    UPSTREAM_RELEASE="22.04";;
+    [Kk]inetic)  UPSTREAM_RELEASE="22.10";;
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 
