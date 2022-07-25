@@ -100,6 +100,10 @@ function elevate_privs() {
     fi
 }
 
+function pull_url_redirect() {
+    curl -s -S "${1}${2}" | grep -Eo "href=\"${1}public/.*\.deb" | cut --complement -c -6
+}
+
 function unroll_url() {
     curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null
 }
@@ -2439,6 +2443,16 @@ function deb_mullvad() {
     PRETTY_NAME="Mullvad VPN Client"
     WEBSITE="https://mullvad.net/"
     SUMMARY="VPN Service based in Sweden that does not collect user data."
+}
+
+function deb_master-pdf-editor() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "href=\"https://code-industry.net/public/.*\.deb" | cut --complement -c -6)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
+    fi
+    PRETTY_NAME="Master PDF Editor"
+    WEBSITE="https://code-industry.net/free-pdf-editor/"
+    SUMMARY="Edit PDF files in Linux. It enables you to create, edit, view and print interactive PDF documents."
 }
 
 # Create an array to track those deb_ functions being loaded by this script
