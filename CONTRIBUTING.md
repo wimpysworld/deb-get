@@ -1,7 +1,7 @@
 # Adding Software
 ## What is acceptable?
-This defines what software that can be added to `deb-get` and therefore the scope of the project in terms if what it is intended for:
-* Software **has to be published as a `.deb`**. Build from source, tarballs or other binaries releases will not be accepted.
+This defines what software can be added to `deb-get`, and therefore the scope of the project in terms of what it is intended for:
+* Software **has to be published as a `.deb`**. Build from source, tarballs or other binary releases will not be accepted.
 * Software **has to be published authoritatively by the upstream vendor, project or maintainer**. Packages published by unassociated community contributors will not be accepted.
 * Software **must be actively maintained**.
 * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
@@ -9,7 +9,11 @@ This defines what software that can be added to `deb-get` and therefore the scop
 * **Packages that install directly from the official Debian or Ubuntu apt archives will not be accepted**.
 * **Packages that replace components in the hardware enablement stack (HWE) such as the Linux kernel and Mesa will not be accepted**.
 
+If you found a package that fits the criteria above, have checked that it does not already have a pending request and has not previously been declined, please [open an issue](https://github.com/wimpysworld/deb-get/issues/new) following the template for requesting a new app.
+
 ## Creating the function
+**Before [opening a pull request](https://github.com/wimpysworld/deb-get/pulls) to add a new package, make sure an [issue is already open](https://github.com/wimpysworld/deb-get/issues) for it**. **This helps keep things organized**.
+
 Create a function in `deb-get` that is named `deb_<the-package-name>` where `<the-package-name>` is the `Package:` name shown using `apt show`. The `deb_` prefix is required so `deb-get` can dynamically build the list of available software.
 
 The fields defined in the functions are the following:
@@ -26,7 +30,9 @@ The fields defined in the functions are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-Use the following `deb_` function templates as reference for adding new packages to `deb-get`. `ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `"amd64"`.
+The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work).
+
+Use the following `deb_` function templates as reference for adding a new package to `deb-get`, depending on the installation method of the package. The functions already implemented in `deb-get` can serve as further reference. `ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `"amd64"`.
 
 ### APT repository
 If the keyring file is in the ASCII-armored format (extension `*.asc`), use this template:
