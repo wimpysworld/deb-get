@@ -1,0 +1,96 @@
+# Adding Software
+## What is acceptable?
+This defines what software that can be added to `deb-get` and therefore the scope of the project in terms if what it is intended for:
+* Software **has to be published as a `.deb`**. Build from source, tarballs or other binaries releases will not be accepted.
+* Software **has to be published authoritatively by the upstream vendor, project or maintainer**. Packages published by unassociated community contributors will not be accepted.
+* Software **must be actively maintained**.
+* **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
+* GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
+* **Packages that install directly from the official Debian or Ubuntu apt archives will not be accepted**.
+* **Packages that replace components in the hardware enablement stack (HWE) such as the Linux kernel and Mesa will not be accepted**.
+
+## Creating the function
+Create a function in `deb-get` that is named `deb_<the-package-name>` where `<the-package-name>` is the `Package:` name shown using `apt show`. The `deb_` prefix is required so `deb-get` can dynamically build the list of available software.
+
+The fields defined in the functions are the following:
+* `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`.
+* `APT_KEY_URL`: A URL to the ASCII-armored keyring file.
+* `GPG_KEY_URL`: A URL to the binary keyring file.
+* `APT_LIST_NAME`: The name of the `*.list` file, without the extension.
+* `APT_REPO_URL`: The line that will be printed to the `*.list` file, including `deb`, `[arch=]`, `[signed-by=]`, the repository URL, the distribution codename and any extra required components.
+* `PPA`: The PPA address, following the format used by `apt-add-repository`, including the `ppa:` prefix.
+* `URL`: The URL to the `*.deb` file that will be downloaded. The name of the file must be the last thing at the end of it.
+* `VERSION_PUBLISHED`: The version of the package.
+* `EULA`: An EULA message for packages that have them.
+* `PRETTY_NAME`: The brand name of the software.
+* `WEBSITE`: A URL to the official website for the software.
+* `SUMMARY`: A brief description of what the software is and does.
+
+Use the following `deb_` function templates as reference for adding new packages to `deb-get`. `ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `"amd64"`.
+
+### APT repository
+If the keyring file is in the ASCII-armored format (extension `*.asc`), use this template:
+```bash
+function deb_<the-package-name>() {
+    ARCHS_SUPPORTED=""
+    APT_KEY_URL=""
+    APT_LIST_NAME=""
+    APT_REPO_URL=""
+    EULA=""
+    PRETTY_NAME=""
+    WEBSITE=""
+    SUMMARY=""
+}
+```
+If the keyring file is in the binary format instead (extension `*.gpg`), use this template:
+```bash
+function deb_<the-package-name>() {
+    ARCHS_SUPPORTED=""
+    GPG_KEY_URL=""
+    APT_LIST_NAME=""
+    APT_REPO_URL=""
+    EULA=""
+    PRETTY_NAME=""
+    WEBSITE=""
+    SUMMARY=""
+}
+```
+
+### Launchpad PPA
+```bash
+function deb_<the-package-name>() {
+    PPA=""
+    EULA=""
+    PRETTY_NAME=""
+    WEBSITE=""
+    SUMMARY=""
+}
+```
+
+### GitHub releases
+Replace `<user-organization>` and `<repository>` with the correct values:
+```bash
+function deb_<the-package-name>() {
+    ARCHS_SUPPORTED=""
+    get_github_releases "https://api.github.com/repos/<user-organization>/<repository>/releases/latest"
+    URL=""
+    VERSION_PUBLISHED=""
+    EULA=""
+    PRETTY_NAME=""
+    WEBSITE=""
+    SUMMARY=""
+}
+```
+
+### Website/Direct download
+```bash
+function deb_<the-package-name>() {
+    ARCHS_SUPPORTED=""
+    URL=""
+    VERSION_PUBLISHED=""
+    EULA=""
+    PRETTY_NAME=""
+    WEBSITE=""
+    SUMMARY=""
+}
+```
