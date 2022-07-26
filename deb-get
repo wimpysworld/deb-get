@@ -429,7 +429,7 @@ function upgrade_debs() {
     for APP in "${APPS[@]}"; do
         # Only upgrade .debs that are installed
         if package_is_installed "${APP}"; then
-            validate_deb "${APP}" 1
+            validate_deb "${APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
@@ -530,57 +530,45 @@ function deb_discord() {
 }
 
 function deb_quickemu() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:flexiondotorg/quickemu"
-        PRETTY_NAME="Quickemu"
-        WEBSITE="https://github.com/quickemu-project/quickemu"
-        SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
-    fi
+    PPA="ppa:flexiondotorg/quickemu"
+    PRETTY_NAME="Quickemu"
+    WEBSITE="https://github.com/quickemu-project/quickemu"
+    SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
 }
 
 function deb_firefox-esr() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:mozillateam/ppa"
-        PRETTY_NAME="Firefox ESR"
-        WEBSITE="https://www.mozilla.org/firefox/enterprise/"
-        SUMMARY=" Firefox Extended Support Release."
-    fi
+    PPA="ppa:mozillateam/ppa"
+    PRETTY_NAME="Firefox ESR"
+    WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+    SUMMARY=" Firefox Extended Support Release."
 }
 
 function deb_quickgui() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:yannick-mauray/quickgui"
-        PRETTY_NAME="Quickgui"
-        WEBSITE="https://github.com/quickemu-project/quickgui"
-        SUMMARY="A Flutter frontend for Quickemu."
-    fi
+    PPA="ppa:yannick-mauray/quickgui"
+    PRETTY_NAME="Quickgui"
+    WEBSITE="https://github.com/quickemu-project/quickgui"
+    SUMMARY="A Flutter frontend for Quickemu."
 }
 
 function deb_nextcloud-desktop() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:nextcloud-devs/client"
-        PRETTY_NAME="Nextcloud Desktop"
-        WEBSITE="https://nextcloud.com/"
-        SUMMARY="The self-hosted productivity platform that keeps you in control."
-    fi
+    PPA="ppa:nextcloud-devs/client"
+    PRETTY_NAME="Nextcloud Desktop"
+    WEBSITE="https://nextcloud.com/"
+    SUMMARY="The self-hosted productivity platform that keeps you in control."
 }
 
 function deb_keepassxc() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:phoerious/keepassxc"
-        PRETTY_NAME="KeePassXC"
-        WEBSITE="https://keepassxc.org/"
-        SUMMARY="Cross-Platform Password Manager."
-    fi
+    PPA="ppa:phoerious/keepassxc"
+    PRETTY_NAME="KeePassXC"
+    WEBSITE="https://keepassxc.org/"
+    SUMMARY="Cross-Platform Password Manager."
 }
 
 function deb_ubuntu-make() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:lyzardking/ubuntu-make"
-        PRETTY_NAME="Ubuntu-Make"
-        WEBSITE="https://github.com/ubuntu/ubuntu-make/"
-        SUMMARY="Easy setup of common tools for developers on Ubuntu."
-    fi
+    PPA="ppa:lyzardking/ubuntu-make"
+    PRETTY_NAME="Ubuntu-Make"
+    WEBSITE="https://github.com/ubuntu/ubuntu-make/"
+    SUMMARY="Easy setup of common tools for developers on Ubuntu."
 }
 
 function deb_atom() {
@@ -1795,39 +1783,31 @@ function deb_anydesk() {
 }
 
 function deb_lutris() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:lutris-team/lutris"
-        PRETTY_NAME="Lutris"
-        WEBSITE="https://lutris.net/"
-        SUMMARY="Open Gaming Platform."
-    fi
+    PPA="ppa:lutris-team/lutris"
+    PRETTY_NAME="Lutris"
+    WEBSITE="https://lutris.net/"
+    SUMMARY="Open Gaming Platform."
 }
 
 function deb_polychromatic() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:polychromatic/stable"
-        PRETTY_NAME="Polychromatic"
-        WEBSITE="https://polychromatic.app/"
-        SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."
-    fi
+    PPA="ppa:polychromatic/stable"
+    PRETTY_NAME="Polychromatic"
+    WEBSITE="https://polychromatic.app/"
+    SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."
 }
 
 function deb_openrazer-meta() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:openrazer/stable"
-        PRETTY_NAME="OpenRazer"
-        WEBSITE="https://openrazer.github.io/"
-        SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
-    fi
+    PPA="ppa:openrazer/stable"
+    PRETTY_NAME="OpenRazer"
+    WEBSITE="https://openrazer.github.io/"
+    SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
 }
 
 function deb_strawberry() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:jonaski/strawberry"
-        PRETTY_NAME="Strawberry Music Player"
-        WEBSITE="https://www.strawberrymusicplayer.org/"
-        SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
-    fi
+    PPA="ppa:jonaski/strawberry"
+    PRETTY_NAME="Strawberry Music Player"
+    WEBSITE="https://www.strawberrymusicplayer.org/"
+    SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
 }
 
 
@@ -2034,12 +2014,10 @@ function deb_blockbench() {
 }
 
 function deb_copyq() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:hluk/copyq"
-        PRETTY_NAME="CopyQ"
-        WEBSITE="https://hluk.github.io/CopyQ/"
-        SUMMARY="An advanced clipboard manager with editing and scripting features."
-    fi
+    PPA="ppa:hluk/copyq"
+    PRETTY_NAME="CopyQ"
+    WEBSITE="https://hluk.github.io/CopyQ/"
+    SUMMARY="An advanced clipboard manager with editing and scripting features."
 }
 
 function deb_dbeaver-ce() {
@@ -2054,21 +2032,17 @@ function deb_dbeaver-ce() {
 }
 
 function deb_obs-studio() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:flexiondotorg/obs-fully-loaded"
-        PRETTY_NAME="OBS Studio (Fully Loaded)"
-        WEBSITE="https://obsproject.com/"
-        SUMMARY="Free and open source software for video recording and live streaming."
-    fi
+    PPA="ppa:flexiondotorg/obs-fully-loaded"
+    PRETTY_NAME="OBS Studio (Fully Loaded)"
+    WEBSITE="https://obsproject.com/"
+    SUMMARY="Free and open source software for video recording and live streaming."
 }
 
 function deb_foliate() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:apandada1/foliate"
-        PRETTY_NAME="Foliate"
-        WEBSITE="https://johnfactotum.github.io/foliate/"
-        SUMMARY="A simple and modern eBook viewer for Linux desktops."
-    fi
+    PPA="ppa:apandada1/foliate"
+    PRETTY_NAME="Foliate"
+    WEBSITE="https://johnfactotum.github.io/foliate/"
+    SUMMARY="A simple and modern eBook viewer for Linux desktops."
 }
 
 function deb_rustdesk() {
@@ -2100,12 +2074,10 @@ function deb_picocrypt() {
 }
 
 function deb_ulauncher() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:agornostal/ulauncher"
-        PRETTY_NAME="Ulauncher"
-        WEBSITE="https://ulauncher.io/"
-        SUMMARY="Application launcher for Linux."
-    fi
+    PPA="ppa:agornostal/ulauncher"
+    PRETTY_NAME="Ulauncher"
+    WEBSITE="https://ulauncher.io/"
+    SUMMARY="Application launcher for Linux."
 }
 
 function deb_battery-monitor() {
@@ -2131,12 +2103,10 @@ function deb_android-messages-desktop() {
 }
 
 function deb_yq() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:rmescandon/yq"
-        PRETTY_NAME="yq"
-        WEBSITE="https://mikefarah.gitbook.io/yq"
-        SUMMARY="A lightweight and portable command-line YAML processor."
-    fi
+    PPA="ppa:rmescandon/yq"
+    PRETTY_NAME="yq"
+    WEBSITE="https://mikefarah.gitbook.io/yq"
+    SUMMARY="A lightweight and portable command-line YAML processor."
 }
 
 function deb_youtube-music() {
@@ -2163,12 +2133,10 @@ function deb_minikube() {
 }
 
 function deb_fsearch() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:christian-boxdoerfer/fsearch-stable"
-        PRETTY_NAME="FSearch"
-        WEBSITE="https://github.com/cboxdoerfer/fsearch"
-        SUMMARY="Fast file search utility."
-    fi
+    PPA="ppa:christian-boxdoerfer/fsearch-stable"
+    PRETTY_NAME="FSearch"
+    WEBSITE="https://github.com/cboxdoerfer/fsearch"
+    SUMMARY="Fast file search utility."
 }
 
 function deb_openrgb() {
@@ -2263,39 +2231,31 @@ function deb_typora() {
 }
 
 function deb_kdiskmark() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:jonmagon/kdiskmark"
-        PRETTY_NAME="KDiskMark"
-        WEBSITE="https://github.com/JonMagon/KDiskMark"
-        SUMMARY="A simple open-source disk benchmark tool for Linux distros."
-    fi
+    PPA="ppa:jonmagon/kdiskmark"
+    PRETTY_NAME="KDiskMark"
+    WEBSITE="https://github.com/JonMagon/KDiskMark"
+    SUMMARY="A simple open-source disk benchmark tool for Linux distros."
 }
 
 function deb_xemu() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:mborgerson/xemu"
-        PRETTY_NAME="Xemu"
-        WEBSITE="https://xemu.app/"
-        SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
-    fi
+    PPA="ppa:mborgerson/xemu"
+    PRETTY_NAME="Xemu"
+    WEBSITE="https://xemu.app/"
+    SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
 }
 
 function deb_cryptomator() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:sebastian-stenzel/cryptomator"
-        PRETTY_NAME="Cryptomator"
-        WEBSITE="https://cryptomator.org/"
-        SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
-    fi
+    PPA="ppa:sebastian-stenzel/cryptomator"
+    PRETTY_NAME="Cryptomator"
+    WEBSITE="https://cryptomator.org/"
+    SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
 }
 
 function deb_gpu-viewer() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:arunsivaraman/gpuviewer"
-        PRETTY_NAME="GPU-Viewer"
-        WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
-        SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
-    fi
+    PPA="ppa:arunsivaraman/gpuviewer"
+    PRETTY_NAME="GPU-Viewer"
+    WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+    SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
 }
 
 function deb_stremio() {
@@ -2354,12 +2314,10 @@ function deb_librewolf() {
 }
 
 function deb_blanket() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:apandada1/blanket"
-        PRETTY_NAME="Blanket"
-        WEBSITE="https://github.com/rafaelmardojai/blanket"
-        SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
-    fi
+    PPA="ppa:apandada1/blanket"
+    PRETTY_NAME="Blanket"
+    WEBSITE="https://github.com/rafaelmardojai/blanket"
+    SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
 }
 
 function deb_bluejeans-v2() {
@@ -2408,30 +2366,35 @@ function deb_protonmail-bridge() {
 }
 
 function deb_audio-recorder() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:audio-recorder/ppa"
-        PRETTY_NAME="Audio-Recorder"
-        WEBSITE="https://launchpad.net/~audio-recorder"
-        SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."
-    fi
+    PPA="ppa:audio-recorder/ppa"
+    PRETTY_NAME="Audio-Recorder"
+    WEBSITE="https://launchpad.net/~audio-recorder"
+    SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."
 }
 
 function deb_papirus-icon-theme() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:papirus/papirus"
-        PRETTY_NAME="Papirus Icon Theme"
-        WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
-        SUMMARY="A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons."
-    fi
+    PPA="ppa:papirus/papirus"
+    PRETTY_NAME="Papirus Icon Theme"
+    WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
+    SUMMARY="A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons."
 }
 
 function deb_appimagelauncher() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:appimagelauncher-team/stable"
-        PRETTY_NAME="AppImage Launcher"
-        WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
-        SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
+    PPA="ppa:appimagelauncher-team/stable"
+    PRETTY_NAME="AppImage Launcher"
+    WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
+    SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
+}
+
+function deb_mullvad() {
+    get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
+    PRETTY_NAME="Mullvad VPN Client"
+    WEBSITE="https://mullvad.net/"
+    SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
 function deb_mullvad() {
@@ -2585,6 +2548,10 @@ case "${ACTION}" in
 
             if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${UPSTREAM_CODENAME}" ]]; then
                 fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
+            fi
+            
+            if [ "${METHOD}" = "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+                fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
             fi
 
             case ${METHOD} in
