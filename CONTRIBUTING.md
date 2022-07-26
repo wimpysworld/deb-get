@@ -16,7 +16,7 @@ If you found a package that fits the criteria above, have checked that it does n
 
 Create a function in `deb-get` that is named `deb_<the-package-name>` where `<the-package-name>` is the `Package:` name shown using `apt show`. The `deb_` prefix is required so `deb-get` can dynamically build the list of available software.
 
-The fields defined in the functions are the following:
+The variables defined in the functions are the following:
 * `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`.
 * `APT_KEY_URL`: A URL to the ASCII-armored keyring file.
 * `GPG_KEY_URL`: A URL to the binary keyring file.
@@ -30,9 +30,16 @@ The fields defined in the functions are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work).
+`ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `"amd64"`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). If more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
+```bash
+if [ "${ACTION}" != "prettylist" ]; then
+    # Code goes here
+fi
+```
 
-Use the following `deb_` function templates as reference for adding a new package to `deb-get`, depending on the installation method of the package. The functions already implemented in `deb-get` can serve as further reference. `ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `"amd64"`.
+`APT_REPO_URL`, `PPA`, `PRETTY_NAME`, `WEBSITE`, `SUMMARY` and the call to `get_github_releases` must never be wrapped by the condition above.
+
+Use the following `deb_` function templates as reference for adding a new package to `deb-get`, depending on the installation method of the package. The functions already implemented in `deb-get` can serve as further reference.
 
 ### APT repository
 If the keyring file is in the ASCII-armored format (extension `*.asc`), use this template:
