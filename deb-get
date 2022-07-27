@@ -127,6 +127,25 @@ function get_github_releases() {
     fi
 }
 
+function get_gitlab_releases() {
+    METHOD="github"
+    # like github, do not process info for prettylist
+    # this currently duplicates get_github_releases - it may not be necessary
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ]; then
+        fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
+        if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
+            if ! ${ELEVATE} wget -q "${1}" -O "${CACHE_DIR}/${APP}.json"; then
+                fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it."
+                ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+            fi
+            if [ -f "${CACHE_DIR}/${APP}.json" ] && grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
+                fancy_message warn "Updating ${CACHE_DIR}/${APP}.json exceed GitHub API limits. Deleting it."
+                ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+            fi
+        fi
+    fi
+}
+
 function fancy_message() {
     if [ -z "${1}" ] || [ -z "${2}" ]; then
       return
@@ -2405,13 +2424,14 @@ function deb_mullvad() {
 }
 
 function deb_nala() {
-    CODENAMES_SUPPORTED="bullseye bookworm jammy kinetic"
-    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
-    APT_LIST_NAME="nala"
-    APT_REPO_URL="deb http://deb.volian.org/volian/ scar main"
-    PRETTY_NAME="nala"
+    get_gitlab_releases "https://gitlab.com/api/v4/projects/31927362/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep -P -o -m 1 '"direct_asset_url": *\K"[^"]*_all.deb"' "${CACHE_DIR}/${APP}.json" | head -1 | sed -e 's/^"//' -e 's/"$//')
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Nala (APT Replacement)"
     WEBSITE="https://gitlab.com/volian/nala"
-    SUMMARY="Nala is a front-end for libapt-pkg. Specifically an interface using the python-apt api."
+    SUMMARY="Nala is a front-end for libapt-pkg. Specifically it interfaces using the python-apt api."
 }
 
 

@@ -241,7 +241,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/SoongNoonien/mpdevil) | `mpdevil` | <i>A simple music browser for MPD.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad` | <i>VPN Service based in Sweden that does not collect user data.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala` | <i>Nala is a front-end for libapt-pkg. Specifically an interface using the python-apt api.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala` | <i>Nala is a front-end for libapt-pkg. Specifically it interfaces using the python-apt api.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
