@@ -585,6 +585,26 @@ function deb_code() {
     SUMMARY="Code editing. Redefined."
 }
 
+function deb_nala() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] http://deb.volian.org/volian/ scar main"
+    PRETTY_NAME="Nala"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer."
+}
+
+function deb_nala-legacy() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala-legacy"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] http://deb.volian.org/volian/ scar main"
+    PRETTY_NAME="Nala Legacy"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older.
+}
+
 function deb_rstudio() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep "amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
@@ -2524,7 +2544,7 @@ case "${ACTION}" in
             if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${UPSTREAM_CODENAME}" ]]; then
                 fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
             fi
-            
+
             if [ "${METHOD}" = "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
                 fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
             fi
