@@ -30,7 +30,7 @@ The variables defined in the function are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-`ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `"amd64"`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
+`ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 ```bash
 if [ "${ACTION}" != "prettylist" ]; then
     # Code goes here
@@ -51,6 +51,10 @@ The environment variables available to the function are the following:
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge` and `prettylist`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
+
+The helper functions available to the function are the following:
+* `unroll_url`: Handles redirection and returns the final URL.
+* `get_github_releases`: Sets `METHOD` to `github` and saves the GitHub releases JSON file from GitHub API to `CACHE_DIR`.
 
 Use the following `deb_` function templates as reference for adding a new package to `deb-get`, according to the installation method of the package. The functions already implemented in `deb-get` can serve as further reference.
 
