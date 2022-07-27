@@ -533,18 +533,17 @@ function deb_quickemu() {
 }
 
 function deb_virtualbox() {
-    if [ ! -e  /usr/share/keyrings/oracle-virtualbox-2016.gp ] ; then
-        sudo gpg --dearmor oracle_vbox_2016.asc --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
+    ARCHS_SUPPORTED="amd64"
+    if [ ! -e  /usr/share/keyrings/oracle-virtualbox-2016.gpg ] ; then
+        curl -sL https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
     fi
     APT_KEY_URL="https://www.virtualbox.org/download/oracle_vbox_2016.asc"
     APT_LIST_NAME="virtualbox"
-    APT_REPO_URL="deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian ${OS_CODENAME} contrib"
+    APT_REPO_URL="deb [arch=${HOST_ARCH} signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian ${OS_CODENAME} contrib"
     PRETTY_NAME="VirtualBox"
     WEBSITE="https://www.virtualbox.org/"
     SUMMARY="VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
-
-
 
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
