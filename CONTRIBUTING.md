@@ -18,6 +18,7 @@ Create a function in `deb-get` that is named `deb_<the-package-name>` where `<th
 
 The variables defined in the function are the following:
 * `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`.
+* `CODENAMES_SUPPORTED`: A space-separated list of supported upstream codenames, supporting the values from `UPSTREAM_CODENAME`.
 * `APT_KEY_URL`: A URL to the ASCII-armored keyring file.
 * `GPG_KEY_URL`: A URL to the binary keyring file.
 * `APT_LIST_NAME`: The name of the `*.list` file, without the extension.
@@ -30,7 +31,7 @@ The variables defined in the function are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-`ARCHS_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
+`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 ```bash
 if [ "${ACTION}" != "prettylist" ]; then
     # Code goes here
@@ -63,6 +64,7 @@ If the keyring file is in the ASCII-armored format (extension `*.asc`), use this
 ```bash
 function deb_<the-package-name>() {
     ARCHS_SUPPORTED=""
+    CODENAMES_SUPPORTED=""
     APT_KEY_URL=""
     APT_LIST_NAME=""
     APT_REPO_URL=""
@@ -76,6 +78,7 @@ If the keyring file is in the binary format instead (extension `*.gpg`), use thi
 ```bash
 function deb_<the-package-name>() {
     ARCHS_SUPPORTED=""
+    CODENAMES_SUPPORTED=""
     GPG_KEY_URL=""
     APT_LIST_NAME=""
     APT_REPO_URL=""
@@ -102,6 +105,7 @@ Replace `<user-organization>` and `<repository>` with the correct values:
 ```bash
 function deb_<the-package-name>() {
     ARCHS_SUPPORTED=""
+    CODENAMES_SUPPORTED=""
     get_github_releases "https://api.github.com/repos/<user-organization>/<repository>/releases/latest"
     URL=""
     VERSION_PUBLISHED=""
@@ -116,6 +120,7 @@ function deb_<the-package-name>() {
 ```bash
 function deb_<the-package-name>() {
     ARCHS_SUPPORTED=""
+    CODENAMES_SUPPORTED=""
     URL=""
     VERSION_PUBLISHED=""
     EULA=""
