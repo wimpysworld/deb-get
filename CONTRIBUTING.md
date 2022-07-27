@@ -14,6 +14,8 @@ If you found a package that fits the criteria above, have checked that it does n
 ## Creating the function
 **Before [opening a pull request](../../pulls) to add a new package, make sure an [issue is already open](../../issues) for it**. **This helps keep things organized**.
 
+**Before submitting a PR, do not forget to [update README.md](#updating-readmemd)**.
+
 Create a function in `deb-get` that is named `deb_<the-package-name>` where `<the-package-name>` is the `Package:` name shown using `apt show`. The `deb_` prefix is required so `deb-get` can dynamically build the list of available software.
 
 The variables defined in the function are the following:
