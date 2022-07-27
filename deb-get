@@ -347,6 +347,7 @@ function validate_deb() {
     export APT_REPO_URL=""
     export PPA=""
     export ARCHS_SUPPORTED="amd64"
+    export CODENAMES_SUPPORTED=""
     export METHOD="website"
     export EULA=""
     export URL=""
