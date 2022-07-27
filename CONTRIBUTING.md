@@ -9,10 +9,10 @@ This defines what software can be added to `deb-get`, and therefore the scope of
 * **Packages that install directly from the official Debian or Ubuntu apt archives will not be accepted**.
 * **Packages that replace components in the hardware enablement stack (HWE) such as the Linux kernel and Mesa will not be accepted**.
 
-If you found a package that fits the criteria above, have checked that it does not already have a pending request and has not previously been declined, please [open an issue](https://github.com/wimpysworld/deb-get/issues/new) following the template for requesting a new app.
+If you found a package that fits the criteria above, have checked that it does not already have a pending request and has not previously been declined, please [open an issue](../../issues/new) following the template for requesting a new app.
 
 ## Creating the function
-**Before [opening a pull request](https://github.com/wimpysworld/deb-get/pulls) to add a new package, make sure an [issue is already open](https://github.com/wimpysworld/deb-get/issues) for it**. **This helps keep things organized**.
+**Before [opening a pull request](../../pulls) to add a new package, make sure an [issue is already open](../../issues) for it**. **This helps keep things organized**.
 
 Create a function in `deb-get` that is named `deb_<the-package-name>` where `<the-package-name>` is the `Package:` name shown using `apt show`. The `deb_` prefix is required so `deb-get` can dynamically build the list of available software.
 
