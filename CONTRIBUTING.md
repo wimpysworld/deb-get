@@ -126,7 +126,7 @@ function deb_<the-package-name>() {
 ```
 
 # Updating README.md
-**This needs to be done every time a package is added, the details of a package are changed or the `usage` function is changed**.
+**This needs to be done every time a package is added or removed, the details of a package are changed or the `usage` function is changed**.
 
 To update `README.md`, first install [cog](https://pypi.org/project/cogapp):
 ```bash
