@@ -349,7 +349,7 @@ can only be updated/upgrade by using `deb-get update` and `deb-get upgrade`.
 
 ## Adding Software
 
-For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package, head to [CONTRIBUTING.md].
+For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package, head to [CONTRIBUTING](CONTRIBUTING.md).
 
 ### Custom User Includes `/etc/deb-get.d/`
 
