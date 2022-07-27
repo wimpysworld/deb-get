@@ -2404,6 +2404,17 @@ function deb_mullvad() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
+function deb_nala() {
+    CODENAMES_SUPPORTED="bullseye bookworm jammy kinetic"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala"
+    APT_REPO_URL="deb http://deb.volian.org/volian/ scar main"
+    PRETTY_NAME="nala"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Nala is a front-end for libapt-pkg. Specifically an interface using the python-apt api."
+}
+
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
