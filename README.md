@@ -394,12 +394,12 @@ We really hope that you will enjoy the convenience and flexibility of the new us
 ## Related projects
 
   * [App Outlet](https://app-outlet.github.io/): *A Universal linux app store*
+  * [bin-get](https://github.com/OhMyMndy/bin-get): *Script to easily and safely fetch binaries from Github Releases/tags*
+  * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
+  * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
   * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
   * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
-  * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
-  * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
-
 ## In the media
 
   * [The deb-get tool helps Ubuntu (and derivative distro) fans grab extra apps](https://www.gamingonlinux.com/2022/05/the-deb-get-tool-helps-ubuntu-and-derivative-distro-fans-grab-extra-apps/) - **GamingOnLinux**
