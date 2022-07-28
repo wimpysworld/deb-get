@@ -921,7 +921,7 @@ function deb_docker-ce() {
 
 function deb_docker-desktop() {
     if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | head -n1 | cut -d'"' -f2 | cut -d'?' -f1)"
+        URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | grep -Eo 'https://[^ >]+' | cut -d'?' -f1 | tr -d '"' | head -n1)"
         VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
     fi
     PRETTY_NAME="Docker Desktop"
