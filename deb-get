@@ -127,6 +127,25 @@ function get_github_releases() {
     fi
 }
 
+function get_gitlab_releases() {
+    METHOD="github"
+    # like github, do not process info for prettylist
+    # this currently duplicates get_github_releases - it may not be necessary
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ]; then
+        fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
+        if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
+            if ! ${ELEVATE} wget -q "${1}" -O "${CACHE_DIR}/${APP}.json"; then
+                fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it."
+                ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+            fi
+            if [ -f "${CACHE_DIR}/${APP}.json" ] && grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
+                fancy_message warn "Updating ${CACHE_DIR}/${APP}.json exceed GitHub API limits. Deleting it."
+                ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+            fi
+        fi
+    fi
+}
+
 function fancy_message() {
     if [ -z "${1}" ] || [ -z "${2}" ]; then
       return
@@ -2392,6 +2411,29 @@ function deb_mullvad() {
     WEBSITE="https://mullvad.net/"
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
+
+function deb_mullvad() {
+    get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Mullvad VPN Client"
+    WEBSITE="https://mullvad.net/"
+    SUMMARY="VPN Service based in Sweden that does not collect user data."
+}
+
+function deb_nala() {
+    get_gitlab_releases "https://gitlab.com/api/v4/projects/31927362/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep -P -o -m 1 '"direct_asset_url": *\K"[^"]*_all.deb"' "${CACHE_DIR}/${APP}.json" | head -1 | sed -e 's/^"//' -e 's/"$//')
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Nala (APT Replacement)"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Nala is a front-end for libapt-pkg. Specifically it interfaces using the python-apt api."
+}
+
 
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
