@@ -3,32 +3,66 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
+readonly VERSION="0.3.3"
+
 function usage() {
-  echo -e "Usage
+cat <<HELP
+
+Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-| purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
-update\n\tupdate is used to resynchronize the package index files from their sources.\n
-upgrade\n\tupgrade is used to install the newest versions of all packages currently installed on the system.\n
-install\n\tinstall is followed by one package desired for installation or upgrading.\n
-reinstall\n\treinstall is followed by one package desired for reinstallation.\n
-remove\n\tremove is identical to install except that packages are removed instead of installed.\n
-purge\n\tpurge is identical to remove except that packages are removed and purged (any configuration files are deleted too).\n
-clean\n\tclean clears out the local repository (/var/cache/deb-get) of retrieved package files.\n
-search\n\tsearch for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.\n
-show\n\tshow information about the given package including its install source and update mechanism.\n
-list\n\tlist the packages available via deb-get.\n
-prettylist\n\tmarkdown formatted list the packages available via deb-get. Use this to update README.md\n
-csvlist\n\tcsv formatted list the packages available via deb-get. Use this with 3rd party wrappers.\n
-cache\n\tlist the contents of the deb-get cache (/var/cache/deb-get)\n
-help\n\tshow this help\n
-version\n\tshow deb-get version\n
-"
+update
+    update is used to resynchronize the package index files from their sources.
+
+upgrade
+    upgrade is used to install the newest versions of all packages currently installed on the system.
+
+install
+    install is followed by one package desired for installation or upgrading.
+
+reinstall
+    reinstall is followed by one package desired for reinstallation.
+
+remove
+    remove is identical to install except that packages are removed instead of installed.
+
+purge
+    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+
+clean
+    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+
+search
+    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+
+show
+    show information about the given package including its install source and update mechanism.
+
+list
+    list the packages available via deb-get.
+
+prettylist
+    markdown formatted list the packages available via deb-get. Use this to update README.md
+
+csvlist
+    csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+
+cache
+    list the contents of the deb-get cache (/var/cache/deb-get)
+
+help
+    show this help
+
+version
+    show deb-get version
+
+HELP
 }
 
 # https://github.com/wimpysworld/deb-get/issues/126
@@ -186,7 +220,11 @@ function install_apt() {
 
 function install_ppa() {
     let "PACKAGE_INSTALLATION_TRIES+=1"
-    if ${ELEVATE} apt-add-repository -y --no-update "${PPA}"; then
+    local AAR_PARAMS="-y"
+    if [ "$(dpkg -S "$(command -v apt-add-repository)" | cut -d':' -f1)" == "software-properties-common" ]; then
+        AAR_PARAMS+=" --no-update"
+    fi
+    if ${ELEVATE} apt-add-repository ${AAR_PARAMS} "${PPA}"; then
         update_apt
         if ! package_is_installed "${APP}"; then
             eula
@@ -395,7 +433,7 @@ function upgrade_debs() {
     for APP in "${APPS[@]}"; do
         # Only upgrade .debs that are installed
         if package_is_installed "${APP}"; then
-            validate_deb "${APP}" 1
+            validate_deb "${APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
@@ -496,57 +534,45 @@ function deb_discord() {
 }
 
 function deb_quickemu() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:flexiondotorg/quickemu"
-        PRETTY_NAME="Quickemu"
-        WEBSITE="https://github.com/quickemu-project/quickemu"
-        SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
-    fi
+    PPA="ppa:flexiondotorg/quickemu"
+    PRETTY_NAME="Quickemu"
+    WEBSITE="https://github.com/quickemu-project/quickemu"
+    SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
 }
 
 function deb_firefox-esr() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:mozillateam/ppa"
-        PRETTY_NAME="Firefox ESR"
-        WEBSITE="https://www.mozilla.org/firefox/enterprise/"
-        SUMMARY=" Firefox Extended Support Release."
-    fi
+    PPA="ppa:mozillateam/ppa"
+    PRETTY_NAME="Firefox ESR"
+    WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+    SUMMARY=" Firefox Extended Support Release."
 }
 
 function deb_quickgui() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:yannick-mauray/quickgui"
-        PRETTY_NAME="Quickgui"
-        WEBSITE="https://github.com/quickemu-project/quickgui"
-        SUMMARY="A Flutter frontend for Quickemu."
-    fi
+    PPA="ppa:yannick-mauray/quickgui"
+    PRETTY_NAME="Quickgui"
+    WEBSITE="https://github.com/quickemu-project/quickgui"
+    SUMMARY="A Flutter frontend for Quickemu."
 }
 
 function deb_nextcloud-desktop() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:nextcloud-devs/client"
-        PRETTY_NAME="Nextcloud Desktop"
-        WEBSITE="https://nextcloud.com/"
-        SUMMARY="The self-hosted productivity platform that keeps you in control."
-    fi
+    PPA="ppa:nextcloud-devs/client"
+    PRETTY_NAME="Nextcloud Desktop"
+    WEBSITE="https://nextcloud.com/"
+    SUMMARY="The self-hosted productivity platform that keeps you in control."
 }
 
 function deb_keepassxc() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:phoerious/keepassxc"
-        PRETTY_NAME="KeePassXC"
-        WEBSITE="https://keepassxc.org/"
-        SUMMARY="Cross-Platform Password Manager."
-    fi
+    PPA="ppa:phoerious/keepassxc"
+    PRETTY_NAME="KeePassXC"
+    WEBSITE="https://keepassxc.org/"
+    SUMMARY="Cross-Platform Password Manager."
 }
 
 function deb_ubuntu-make() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:lyzardking/ubuntu-make"
-        PRETTY_NAME="Ubuntu-Make"
-        WEBSITE="https://github.com/ubuntu/ubuntu-make/"
-        SUMMARY="Easy setup of common tools for developers on Ubuntu."
-    fi
+    PPA="ppa:lyzardking/ubuntu-make"
+    PRETTY_NAME="Ubuntu-Make"
+    WEBSITE="https://github.com/ubuntu/ubuntu-make/"
+    SUMMARY="Easy setup of common tools for developers on Ubuntu."
 }
 
 function deb_atom() {
@@ -760,6 +786,28 @@ function deb_peazip() {
     SUMMARY="PeaZip is a free file archiver utility and extractor."
 }
 
+function deb_tribler() {
+    get_github_releases "https://api.github.com/repos/Tribler/tribler/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*_all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Tribler"
+    WEBSITE="https://www.tribler.org/"
+    SUMMARY="An encrypted torrent client."
+}
+
+function deb_bottom() {
+    get_github_releases "https://api.github.com/repos/ClementTsang/bottom/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
+    PRETTY_NAME="bottom"
+    WEBSITE="https://github.com/ClementTsang/bottom"
+    SUMMARY="Yet another cross-platform graphical process/system monitor."
+}
+
 function deb_element-desktop() {
     GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
     APT_LIST_NAME="element-io"
@@ -880,7 +928,7 @@ function deb_docker-ce() {
 
 function deb_docker-desktop() {
     if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | head -n1 | cut -d'"' -f2 | cut -d'?' -f1)"
+        URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | grep -Eo 'https://[^ >]+' | cut -d'?' -f1 | tr -d '"' | head -n1)"
         VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
     fi
     PRETTY_NAME="Docker Desktop"
@@ -961,7 +1009,7 @@ function deb_ludo() {
     ARCHS_SUPPORTED="amd64 armhf"
     get_github_releases "https://api.github.com/repos/libretro/ludo/releases"
     if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        URL=$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | grep -v altui | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
     PRETTY_NAME="Ludo"
@@ -1054,6 +1102,15 @@ function deb_skypeforlinux() {
     PRETTY_NAME="Skype"
     WEBSITE="https://www.skype.com/"
     SUMMARY="Stay connected with free video calls worldwide."
+}
+
+function deb_waydroid() {
+    APT_KEY_URL="https://repo.waydro.id/waydroid.gpg"
+    APT_LIST_NAME="waydroid"
+    APT_REPO_URL="deb https://repo.waydro.id ${UPSTREAM_CODENAME} main"
+    PRETTY_NAME="WayDroid"
+    WEBSITE="https://waydro.id/"
+    SUMMARY="A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu."
 }
 
 function deb_wavebox() {
@@ -1235,7 +1292,7 @@ function deb_bitwarden() {
     get_github_releases "https://api.github.com/repos/bitwarden/clients/releases"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d desktop-v-)"
     fi
     PRETTY_NAME="Bitwarden"
     WEBSITE="https://bitwarden.com/"
@@ -1730,39 +1787,31 @@ function deb_anydesk() {
 }
 
 function deb_lutris() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:lutris-team/lutris"
-        PRETTY_NAME="Lutris"
-        WEBSITE="https://lutris.net/"
-        SUMMARY="Open Gaming Platform."
-    fi
+    PPA="ppa:lutris-team/lutris"
+    PRETTY_NAME="Lutris"
+    WEBSITE="https://lutris.net/"
+    SUMMARY="Open Gaming Platform."
 }
 
 function deb_polychromatic() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:polychromatic/stable"
-        PRETTY_NAME="Polychromatic"
-        WEBSITE="https://polychromatic.app/"
-        SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."
-    fi
+    PPA="ppa:polychromatic/stable"
+    PRETTY_NAME="Polychromatic"
+    WEBSITE="https://polychromatic.app/"
+    SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."
 }
 
 function deb_openrazer-meta() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:openrazer/stable"
-        PRETTY_NAME="OpenRazer"
-        WEBSITE="https://openrazer.github.io/"
-        SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
-    fi
+    PPA="ppa:openrazer/stable"
+    PRETTY_NAME="OpenRazer"
+    WEBSITE="https://openrazer.github.io/"
+    SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
 }
 
 function deb_strawberry() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:jonaski/strawberry"
-        PRETTY_NAME="Strawberry Music Player"
-        WEBSITE="https://www.strawberrymusicplayer.org/"
-        SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
-    fi
+    PPA="ppa:jonaski/strawberry"
+    PRETTY_NAME="Strawberry Music Player"
+    WEBSITE="https://www.strawberrymusicplayer.org/"
+    SUMMARY="Music player and music collection organizer aimed at music collectors and audiophiles."
 }
 
 
@@ -1969,12 +2018,10 @@ function deb_blockbench() {
 }
 
 function deb_copyq() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:hluk/copyq"
-        PRETTY_NAME="CopyQ"
-        WEBSITE="https://hluk.github.io/CopyQ/"
-        SUMMARY="An advanced clipboard manager with editing and scripting features."
-    fi
+    PPA="ppa:hluk/copyq"
+    PRETTY_NAME="CopyQ"
+    WEBSITE="https://hluk.github.io/CopyQ/"
+    SUMMARY="An advanced clipboard manager with editing and scripting features."
 }
 
 function deb_dbeaver-ce() {
@@ -1989,21 +2036,17 @@ function deb_dbeaver-ce() {
 }
 
 function deb_obs-studio() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:flexiondotorg/obs-fully-loaded"
-        PRETTY_NAME="OBS Studio (Fully Loaded)"
-        WEBSITE="https://obsproject.com/"
-        SUMMARY="Free and open source software for video recording and live streaming."
-    fi
+    PPA="ppa:flexiondotorg/obs-fully-loaded"
+    PRETTY_NAME="OBS Studio (Fully Loaded)"
+    WEBSITE="https://obsproject.com/"
+    SUMMARY="Free and open source software for video recording and live streaming."
 }
 
 function deb_foliate() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:apandada1/foliate"
-        PRETTY_NAME="Foliate"
-        WEBSITE="https://johnfactotum.github.io/foliate/"
-        SUMMARY="A simple and modern eBook viewer for Linux desktops."
-    fi
+    PPA="ppa:apandada1/foliate"
+    PRETTY_NAME="Foliate"
+    WEBSITE="https://johnfactotum.github.io/foliate/"
+    SUMMARY="A simple and modern eBook viewer for Linux desktops."
 }
 
 function deb_rustdesk() {
@@ -2035,12 +2078,10 @@ function deb_picocrypt() {
 }
 
 function deb_ulauncher() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:agornostal/ulauncher"
-        PRETTY_NAME="Ulauncher"
-        WEBSITE="https://ulauncher.io/"
-        SUMMARY="Application launcher for Linux."
-    fi
+    PPA="ppa:agornostal/ulauncher"
+    PRETTY_NAME="Ulauncher"
+    WEBSITE="https://ulauncher.io/"
+    SUMMARY="Application launcher for Linux."
 }
 
 function deb_battery-monitor() {
@@ -2066,12 +2107,10 @@ function deb_android-messages-desktop() {
 }
 
 function deb_yq() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:rmescandon/yq"
-        PRETTY_NAME="yq"
-        WEBSITE="https://mikefarah.gitbook.io/yq"
-        SUMMARY="A lightweight and portable command-line YAML processor."
-    fi
+    PPA="ppa:rmescandon/yq"
+    PRETTY_NAME="yq"
+    WEBSITE="https://mikefarah.gitbook.io/yq"
+    SUMMARY="A lightweight and portable command-line YAML processor."
 }
 
 function deb_youtube-music() {
@@ -2098,12 +2137,10 @@ function deb_minikube() {
 }
 
 function deb_fsearch() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:christian-boxdoerfer/fsearch-stable"
-        PRETTY_NAME="FSearch"
-        WEBSITE="https://github.com/cboxdoerfer/fsearch"
-        SUMMARY="Fast file search utility."
-    fi
+    PPA="ppa:christian-boxdoerfer/fsearch-stable"
+    PRETTY_NAME="FSearch"
+    WEBSITE="https://github.com/cboxdoerfer/fsearch"
+    SUMMARY="Fast file search utility."
 }
 
 function deb_openrgb() {
@@ -2125,14 +2162,12 @@ function deb_openrgb() {
 }
 
 function deb_mergerfs() {
-    # TODO: Test this with Debian
     ARCHS_SUPPORTED="amd64 arm64 armhf"
     get_github_releases "https://api.github.com/repos/trapexit/mergerfs/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UPSTREAM_CODENAME}_${HOST_ARCH} | cut -d'_' -f4 | sed -E "s/([0-9])\.ubuntu/\1~ubuntu/")"
-        # TODO When https://github.com/wimpysworld/deb-get/issues/125 shakes out should add the debian packages
-        CODENAMES_SUPPORTED=($(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json"| grep ${HOST_ARCH} | cut -d'"' -f4 | sed -n "s/^.*ubuntu-\(\S*\)_.*/\1/p"))
-        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep ${UPSTREAM_CODENAME}_${HOST_ARCH} | cut -d'"' -f4)"
+        CODENAMES_SUPPORTED=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep "${HOST_ARCH}" | cut -d'-' -f2 | cut -d'_' -f1 | tr '\n' ' ')
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep "${UPSTREAM_CODENAME}_${HOST_ARCH}" | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
     fi
     PRETTY_NAME="mergerfs"
     WEBSITE="https://github.com/trapexit/mergerfs"
@@ -2200,39 +2235,31 @@ function deb_typora() {
 }
 
 function deb_kdiskmark() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:jonmagon/kdiskmark"
-        PRETTY_NAME="KDiskMark"
-        WEBSITE="https://github.com/JonMagon/KDiskMark"
-        SUMMARY="A simple open-source disk benchmark tool for Linux distros."
-    fi
+    PPA="ppa:jonmagon/kdiskmark"
+    PRETTY_NAME="KDiskMark"
+    WEBSITE="https://github.com/JonMagon/KDiskMark"
+    SUMMARY="A simple open-source disk benchmark tool for Linux distros."
 }
 
 function deb_xemu() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:mborgerson/xemu"
-        PRETTY_NAME="Xemu"
-        WEBSITE="https://xemu.app/"
-        SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
-    fi
+    PPA="ppa:mborgerson/xemu"
+    PRETTY_NAME="Xemu"
+    WEBSITE="https://xemu.app/"
+    SUMMARY="A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems."
 }
 
 function deb_cryptomator() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:sebastian-stenzel/cryptomator"
-        PRETTY_NAME="Cryptomator"
-        WEBSITE="https://cryptomator.org/"
-        SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
-    fi
+    PPA="ppa:sebastian-stenzel/cryptomator"
+    PRETTY_NAME="Cryptomator"
+    WEBSITE="https://cryptomator.org/"
+    SUMMARY="Multi-platform transparent client-side encryption of your files in the cloud."
 }
 
 function deb_gpu-viewer() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:arunsivaraman/gpuviewer"
-        PRETTY_NAME="GPU-Viewer"
-        WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
-        SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
-    fi
+    PPA="ppa:arunsivaraman/gpuviewer"
+    PRETTY_NAME="GPU-Viewer"
+    WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+    SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."
 }
 
 function deb_stremio() {
@@ -2291,12 +2318,10 @@ function deb_librewolf() {
 }
 
 function deb_blanket() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:apandada1/blanket"
-        PRETTY_NAME="Blanket"
-        WEBSITE="https://github.com/rafaelmardojai/blanket"
-        SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
-    fi
+    PPA="ppa:apandada1/blanket"
+    PRETTY_NAME="Blanket"
+    WEBSITE="https://github.com/rafaelmardojai/blanket"
+    SUMMARY="Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment."
 }
 
 function deb_bluejeans-v2() {
@@ -2344,31 +2369,36 @@ function deb_protonmail-bridge() {
     SUMMARY="Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail."
 }
 
-function deb_audiorecorder() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:audio-recorder/ppa"
-        PRETTY_NAME="Audio-Recorder"
-        WEBSITE="https://launchpad.net/~audio-recorder"
-        SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."
-    fi
+function deb_audio-recorder() {
+    PPA="ppa:audio-recorder/ppa"
+    PRETTY_NAME="Audio-Recorder"
+    WEBSITE="https://launchpad.net/~audio-recorder"
+    SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."
 }
 
 function deb_papirus-icon-theme() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:papirus/papirus"
-        PRETTY_NAME="Papirus Icon Theme"
-        WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
-        SUMMARY="A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons."
-    fi
+    PPA="ppa:papirus/papirus"
+    PRETTY_NAME="Papirus Icon Theme"
+    WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
+    SUMMARY="A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons."
 }
 
 function deb_appimagelauncher() {
-    if [ "${UPSTREAM_ID}" == "ubuntu" ]; then
-        PPA="ppa:appimagelauncher-team/stable"
-        PRETTY_NAME="AppImage Launcher"
-        WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
-        SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
+    PPA="ppa:appimagelauncher-team/stable"
+    PRETTY_NAME="AppImage Launcher"
+    WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
+    SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
+}
+
+function deb_mullvad() {
+    get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
+    PRETTY_NAME="Mullvad VPN Client"
+    WEBSITE="https://mullvad.net/"
+    SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
 # Create an array to track those deb_ functions being loaded by this script
@@ -2388,7 +2418,6 @@ done
 
 # Now create the final array of all loaded / merged deb_ functions
 readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
-
 export CACHE_DIR="/var/cache/deb-get"
 
 function create_cache_dir() {
@@ -2398,8 +2427,6 @@ function create_cache_dir() {
     ${ELEVATE} mkdir -p "${CACHE_DIR}" 2>/dev/null
     ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
 }
-
-export VERSION="0.3.2"
 
 if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
@@ -2431,15 +2458,17 @@ esac
 
 OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
-#Debian VERSION_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2 | sed 's/"//g')
     UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
-    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
-    if [ ! -z "${UPSTREAM_ID_LIKE}" ]; then
+
+    # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
+    if [ "${UPSTREAM_ID}" != "debian" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+        UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
         UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
     fi
+
     case "${UPSTREAM_ID}" in
-        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
+        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         *) UPSTREAM_CODENAME="";;
     esac
 else
@@ -2502,6 +2531,10 @@ case "${ACTION}" in
 
             if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${UPSTREAM_CODENAME}" ]]; then
                 fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
+            fi
+
+            if [ "${METHOD}" = "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+                fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
             fi
 
             case ${METHOD} in
