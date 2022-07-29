@@ -3,7 +3,7 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.3.3"
+readonly VERSION="0.3.4"
 
 function usage() {
 cat <<HELP
