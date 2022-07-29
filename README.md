@@ -231,6 +231,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://ludo.libretro.com/) | `ludo` | <i>A minimalist frontend for emulators.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://getmailspring.com/) | `mailspring` | <i>Boost your productivity and send better email with the best mail client.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://code-industry.net/free-pdf-editor/) | `master-pdf-editor` | <i>Edit PDF files in Linux. It enables you to create, edit, view and print interactive PDF documents.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://mattermost.com/) | `mattermost-desktop` | <i>Open Source platform for developer collaboration.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/trapexit/mergerfs) | `mergerfs` | <i>A featureful union filesystem.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://micro-editor.github.io/) | `micro` | <i>A modern and intuitive terminal-based text editor.</i> |
