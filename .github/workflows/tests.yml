@@ -1,0 +1,52 @@
+name: Tests
+
+on:
+  pull_request:
+    types: [opened, closed, synchronize]
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+
+          # Dependencies to build the deb
+          # sudo apt-get install build-essential devscripts debhelper -y
+
+          # Dependencies for deb-get itself
+          sudo apt-get install apt apt-transport-https bash coreutils curl dpkg grep libc-bin lsb-release sed software-properties-common sudo wget -y
+
+
+      # All these commands should return a 0 status
+      - name: Test zero status
+        run: |
+          ./deb-get update >/dev/null
+          ./deb-get list >/dev/null
+          ./deb-get help >/dev/null
+          ./deb-get cache >/dev/null
+          ./deb-get version >/dev/null
+
+      # Install a couple of packages to see if they still install
+      - name: Test package installations
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          set -x
+          ./deb-get install firefox-esr >/dev/null
+          ./deb-get install 1password >/dev/null
+          ./deb-get install bitwarden >/dev/null
+          ./deb-get install obs-studio >/dev/null
+
+
+      # All these commands should return a non 0 status
+      - name: Test non zero status
+        run: |
+          if ./deb-get install unknown-package; then
+            echo "Installing a unknown package should return a non zero status" >&2
+            exit 1
+          fi
