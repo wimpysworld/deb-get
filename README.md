@@ -217,6 +217,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://insomnia.rest/) | `insomnia` | <i>The API Design Platform and API Client.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.insynchq.com/) | `insync` | <i>Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.irccloud.com/) | `irccloud-desktop` | <i>IRCCloud desktop application.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://www.ivpn.net/) | `ivpn` | <i>VPN Service that does not keep logs.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.jabref.org/) | `jabref` | <i>The efficient way to collect, organize & discover.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://jami.net/) | `jami` | <i>Share, freely and privately.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://jellyfin.org/) | `jellyfin` | <i>The Free Software Media System.</i> |
