@@ -351,26 +351,7 @@ can only be updated/upgrade by using `deb-get update` and `deb-get upgrade`.
 
 ## Adding Software
 
-Create a `function` in `deb-get` that is named `deb_the-package-name` where
-*"the-package-name"* is the `Package:` name shown using `apt show`. The `deb_`
-prefix is required so `deb-get` can dynamically build the list of available
-software.
-
-Take a look at the existing `deb_` functions as reference for adding new
-packages to `deb-get`.
-
-### What is acceptable?
-
-This defines what software that can be added to `deb-get` and therefore the
-scope of the project in terms if what it is intended for.
-
-  * Software **has to be published as a `.deb`**. Build from source, tarballs or other binaries releases will not be accepted.
-  * Software **has to be published authoritatively by the upstream vendor, project or maintainer**. Packages published by unassociated community contributors will not be accepted.
-  * **Software must be actively maintained**.
-  * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
-  * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
-  * **Packages that install directly from the official Debian or Ubuntu apt archives will not be accepted**.
-  * **Packages that replace components in the hardware enablement stack (HWE) such as the Linux kernel and Mesa will not be accepted.**
+For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package, head to [CONTRIBUTING](CONTRIBUTING.md).
 
 ### Custom User Includes `/etc/deb-get.d/`
 
