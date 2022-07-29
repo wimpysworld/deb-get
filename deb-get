@@ -2402,7 +2402,7 @@ function deb_appimagelauncher() {
     SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
 }
 
-function deb_mullvad() {
+function deb_mullvad-vpn() {
     get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
