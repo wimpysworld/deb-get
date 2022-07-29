@@ -157,6 +157,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/sharkdp/bat) | `bat` | <i>A 'cat' clone with wings.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hsbasu/battery-monitor/) | `battery-monitor` | <i>An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://beersmith.com/) | `beersmith3` | <i>Home Brewing Software.</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.scootersoftware.com/) | `beyond-compare` | <i>GUI Diff and Merge tool</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://bitwarden.com/) | `bitwarden` | <i>Open Source Password Manager.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.bitwig.com/) | `bitwig-studio` | <i>Modern music production and performance.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/rafaelmardojai/blanket) | `blanket` | <i>Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment.</i> |
