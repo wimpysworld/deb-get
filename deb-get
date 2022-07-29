@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 LC_ALL=C
 
-readonly VERSION="0.3.3"
+readonly VERSION="0.3.4" #version not verified
 
 function usage() {
 cat <<HELP
