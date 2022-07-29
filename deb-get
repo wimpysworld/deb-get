@@ -1578,7 +1578,7 @@ function deb_surfshark() {
 
 function deb_shutter-encoder() {
     if [ "${ACTION}" != "prettylist" ]; then
-        URL="https://www.shutterencoder.com/$(curl -s "https://www.shutterencoder.com/en/thanks.html" | grep "64bits\.deb\"" | cut -d'"' -f2 | sed 's|../||')"
+        URL="https://www.shutterencoder.com/$(curl -s "https://www.shutterencoder.com/en/thanks.html" | grep "64bits\.deb\"" | cut -d'"' -f2 | sed 's|\.\./||')"
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d' ' -f3)"
     fi
     PRETTY_NAME="shutter-encoder"
@@ -1666,7 +1666,7 @@ function deb_azuredatastudio() {
 
 function deb_exodus() {
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(curl -s https://www.exodus.com/download/|sed "s/.*https:\/\/downloads.exodus.com\/releases\/hashes-exodus-//"|sed "s/\.txt.*//")"
+        VERSION_PUBLISHED="$(curl -s https://www.exodus.com/download/|sed "s|.*https://downloads\.exodus\.com/releases/hashes-exodus-||"|sed "s/\.txt.*//")"
         URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"
     fi
     PRETTY_NAME="Exodus"
