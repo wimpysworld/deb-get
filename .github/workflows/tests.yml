@@ -26,6 +26,7 @@ jobs:
       # All these commands should return a 0 status
       - name: Test zero status
         run: |
+          ./deb-get update >/dev/null
           ./deb-get list >/dev/null
           ./deb-get help >/dev/null
           ./deb-get cache >/dev/null
@@ -36,12 +37,10 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive
           set -x
-          # @todo fix firefox-esr see https://github.com/OhMyMndy/deb-get/runs/7467951397?check_suite_focus=true
-          ./deb-get install firefox-esr || true
+          ./deb-get install firefox-esr >/dev/null
           ./deb-get install 1password >/dev/null
           ./deb-get install bitwarden >/dev/null
-          # @todo fix obs-studio see https://github.com/OhMyMndy/deb-get/runs/7467973508?check_suite_focus=true
-          ./deb-get install obs-studio  || true
+          ./deb-get install obs-studio >/dev/null
 
 
       # All these commands should return a non 0 status
