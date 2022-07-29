@@ -265,6 +265,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://docs.microsoft.com/powershell/) | `powershell` | <i>Cross-platform automation and configuration tool/framework and optimized for dealing with structured data.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://proton.me/mail/bridge) | `protonmail-bridge` | <i>Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
