@@ -2277,7 +2277,7 @@ function deb_gpu-viewer() {
 function deb_stremio() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64\.deb\"" | cut -d "\"" -f 3)"
-        VERSION_PUBLISHED=""$(echo "${URL}" | cut -d "_" -f 2)""
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 2)"
     fi
     PRETTY_NAME="Stremio"
     WEBSITE="https://www.stremio.com/"
@@ -2402,7 +2402,7 @@ function deb_appimagelauncher() {
     SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
 }
 
-function deb_mullvad() {
+function deb_mullvad-vpn() {
     get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
