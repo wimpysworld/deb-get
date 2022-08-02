@@ -217,6 +217,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://insomnia.rest/) | `insomnia` | <i>The API Design Platform and API Client.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.insynchq.com/) | `insync` | <i>Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.irccloud.com/) | `irccloud-desktop` | <i>IRCCloud desktop application.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://www.ivpn.net/) | `ivpn` | <i>VPN Service that does not keep logs.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.jabref.org/) | `jabref` | <i>The efficient way to collect, organize & discover.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://jami.net/) | `jami` | <i>Share, freely and privately.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://jellyfin.org/) | `jellyfin` | <i>The Free Software Media System.</i> |
@@ -304,7 +305,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wavebox.io/) | `wavebox` | <i>Rethink the Web. Productivity Browser.</i> |
