@@ -2413,6 +2413,13 @@ function deb_mullvad-vpn() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
+function deb_peek() {
+    PPA="ppa:peek-developers/stable"
+    PRETTY_NAME="Peek"
+    WEBSITE="https://github.com/phw/peek"
+    SUMMARY="Simple screen recorder with an easy to use interface"
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
