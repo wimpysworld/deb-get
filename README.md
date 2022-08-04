@@ -304,7 +304,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wavebox.io/) | `wavebox` | <i>Rethink the Web. Productivity Browser.</i> |
@@ -315,6 +315,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/eneshecan/whatsapp-for-linux) | `whatsapp-for-linux` | <i>An unofficial WhatsApp desktop application for Linux.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wire.com/) | `wire-desktop` | <i>Secure collaboration platform.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://xemu.app/) | `xemu` | <i>A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/xournalpp/xournalpp/) | `xournalpp` | <i>Xournal++ is a hand note-taking software written in C++ with the target of flexibility, functionality and speed</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://th-ch.github.io/youtube-music/) | `youtube-music` | <i>Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://mikefarah.gitbook.io/yq) | `yq` | <i>A lightweight and portable command-line YAML processor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/bvaisvil/zenith) | `zenith` | <i>Sort of like 'top' or 'htop' but with zoom-able charts.</i> |

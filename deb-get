@@ -2413,6 +2413,20 @@ function deb_mullvad-vpn() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
+function deb_xournalpp() {
+    CODENAMES_SUPPORTED="bionic bullseye focal"
+    get_github_releases "https://api.github.com/repos/xournalpp/xournalpp/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        if [[ "${UPSTREAM_CODENAME}" == *"${CODENAMES_SUPPORTED}"* ]]; then
+            URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+            VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+        fi
+    fi
+    PRETTY_NAME="Xournal++"
+    WEBSITE="https://github.com/xournalpp/xournalpp/"
+    SUMMARY="Xournal++ is a hand note-taking software written in C++ with the target of flexibility, functionality and speed"
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
