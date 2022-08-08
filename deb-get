@@ -1855,6 +1855,24 @@ function deb_terraform() {
     SUMMARY="Automate Infrastructure on Any Cloud."
 }
 
+function deb_nomad() {
+    APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    APT_LIST_NAME="nomad"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    PRETTY_NAME="Nomad"
+    WEBSITE="https://www.nomadproject.io/"
+    SUMMARY="Orchestration tool for deploying and managing applications."
+}
+
+function deb_consul() {
+    APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    APT_LIST_NAME="consul"
+    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    PRETTY_NAME="Consul"
+    WEBSITE="https://www.consul.io"
+    SUMMARY="Consul is a network service discovery tool."
+}
+
 function deb_tailscale() {
     # TODO: Test with Debian
     GPG_KEY_URL="https://pkgs.tailscale.com/stable/${UPSTREAM_ID}/${UPSTREAM_CODENAME}.noarmor.gpg"
