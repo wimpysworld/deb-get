@@ -27,8 +27,8 @@ sudo apt install curl
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
 ```
 
-Alternatively, you can [download the `.deb` of `deb-get` from the releases page](https://github.com/wimpysworld/deb-get/releases)
-and install it manually.
+Alternatively, you can [download the `.deb` of `deb-get` from the releases page](https://github.com/wimpysworld/deb-get/releases/latest)
+and install it manualy with `sudo apt-get install ./path/to/deb-get_<version>.deb`
 
 ## Usage
 
@@ -54,57 +54,58 @@ help = result.replace("Usage\n\n", "").rstrip()
 cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
+
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-| purge pkg | search pkg | cache | clean | list | prettylist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
 
 update
-	update is used to resynchronize the package index files from their sources.
+    update is used to resynchronize the package index files from their sources.
 
 upgrade
-	upgrade is used to install the newest versions of all packages currently installed on the system.
+    upgrade is used to install the newest versions of all packages currently installed on the system.
 
 install
-	install is followed by one package desired for installation or upgrading.
+    install is followed by one package desired for installation or upgrading.
 
 reinstall
-	reinstall is followed by one package desired for reinstallation.
+    reinstall is followed by one package desired for reinstallation.
 
 remove
-	remove is identical to install except that packages are removed instead of installed.
+    remove is identical to install except that packages are removed instead of installed.
 
 purge
-	purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
 
 clean
-	clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 search
-	search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-	show information about the given package including its install source and update mechanism.
+    show information about the given package including its install source and update mechanism.
 
 list
-	list the packages available via deb-get.
+    list the packages available via deb-get.
 
 prettylist
-	markdown formatted list the packages available via deb-get. Use this to update README.md
+    markdown formatted list the packages available via deb-get. Use this to update README.md
 
-cvslist
-	csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+csvlist
+    csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
 
 cache
-	list the contents of the deb-get cache (/var/cache/deb-get)
+    list the contents of the deb-get cache (/var/cache/deb-get)
 
 help
-	show this help
+    show this help
 
 version
-	show deb-get version
+    show deb-get version
 ```
 <!-- [[[end]]] -->
 
@@ -239,7 +240,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://motrix.app/) | `motrix` | <i>A full-featured download manager.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/SoongNoonien/mpdevil) | `mpdevil` | <i>A simple music browser for MPD.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
-| [<img src=".github/direct.png" align="top" width="20" />](https://mullvad.net/) | `mullvad vpn` | <i>VPN service for speed and security.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad-vpn` | <i>VPN Service based in Sweden that does not collect user data.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
@@ -303,6 +304,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wavebox.io/) | `wavebox` | <i>Rethink the Web. Productivity Browser.</i> |
@@ -349,26 +351,7 @@ can only be updated/upgrade by using `deb-get update` and `deb-get upgrade`.
 
 ## Adding Software
 
-Create a `function` in `deb-get` that is named `deb_the-package-name` where
-*"the-package-name"* is the `Package:` name shown using `apt show`. The `deb_`
-prefix is required so `deb-get` can dynamically build the list of available
-software.
-
-Take a look at the existing `deb_` functions as reference for adding new
-packages to `deb-get`.
-
-### What is acceptable?
-
-This defines what software that can be added to `deb-get` and therefore the
-scope of the project in terms if what it is intended for.
-
-  * Software **has to be published as a `.deb`**. Build from source, tarballs or other binaries releases will not be accepted.
-  * Software **has to be published authoritatively by the upstream vendor, project or maintainer**. Packages published by unassociated community contributors will not be accepted.
-  * **Software must be actively maintained**.
-  * **Only stable/production releases**. Daily/nightly, betas or pre-release versions will not be accepted.
-  * GitHub Releases and direct downloads **must have a reliable means to dynamically determine the current upstream published version**. Hardcoded versions will be not accepted.
-  * **Packages that install directly from the official Debian or Ubuntu apt archives will not be accepted**.
-  * **Packages that replace components in the hardware enablement stack (HWE) such as the Linux kernel and Mesa will not be accepted.**
+For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package, head to [CONTRIBUTING](CONTRIBUTING.md).
 
 ### Custom User Includes `/etc/deb-get.d/`
 
@@ -395,12 +378,12 @@ We really hope that you will enjoy the convenience and flexibility of the new us
 ## Related projects
 
   * [App Outlet](https://app-outlet.github.io/): *A Universal linux app store*
+  * [bin-get](https://github.com/OhMyMndy/bin-get): *Script to easily and safely fetch binaries from Github Releases/tags*
+  * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
+  * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
   * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
   * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
-  * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
-  * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
-
 ## In the media
 
   * [The deb-get tool helps Ubuntu (and derivative distro) fans grab extra apps](https://www.gamingonlinux.com/2022/05/the-deb-get-tool-helps-ubuntu-and-derivative-distro-fans-grab-extra-apps/) - **GamingOnLinux**

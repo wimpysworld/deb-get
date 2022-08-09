@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 LC_ALL=C
+PACKAGE_INSTALLATION_TRIES=0
+PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.3.3"
+readonly VERSION="0.3.4"
 
 function usage() {
 cat <<HELP
@@ -186,6 +188,7 @@ function upgrade_apt() {
 }
 
 function install_apt() {
+    let "PACKAGE_INSTALLATION_TRIES+=1"
     if [ -n "${APT_KEY_URL}" ]; then
         ${ELEVATE} wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
     fi
@@ -212,9 +215,11 @@ function install_apt() {
             fancy_message info "${APP} is up to date."
         fi
     fi
+    let "PACKAGE_INSTALLATION_COUNT+=1"
 }
 
 function install_ppa() {
+    let "PACKAGE_INSTALLATION_TRIES+=1"
     local AAR_PARAMS="-y"
     if [ "$(dpkg -S "$(command -v apt-add-repository)" | cut -d':' -f1)" == "software-properties-common" ]; then
         AAR_PARAMS+=" --no-update"
@@ -231,6 +236,7 @@ function install_ppa() {
                 fancy_message info "${APP} is up to date."
             fi
         fi
+        let "PACKAGE_INSTALLATION_COUNT+=1"
     else
         fancy_message error "Failed to add: ${PPA}. Deleting it."
         ${ELEVATE} apt-add-repository -y --remove "${PPA}"
@@ -241,6 +247,7 @@ function install_deb() {
     local URL="${1}"
     local FILE="${URL##*/}"
     local STATUS=""
+    let "PACKAGE_INSTALLATION_TRIES+=1"
 
     if [ -z "${URL}" ]; then
         fancy_message error "Download URL for ${APP} is empty. Skipping."
@@ -262,6 +269,7 @@ function install_deb() {
             fancy_message info "${FILE} is up to date."
         fi
     fi
+    let "PACKAGE_INSTALLATION_COUNT+=1"
     if [ -f "${CACHE_DIR}/${FILE}" ]; then
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
     fi
@@ -347,6 +355,7 @@ function validate_deb() {
     export APT_REPO_URL=""
     export PPA=""
     export ARCHS_SUPPORTED="amd64"
+    export CODENAMES_SUPPORTED=""
     export METHOD="website"
     export EULA=""
     export URL=""
@@ -531,6 +540,17 @@ function deb_quickemu() {
     WEBSITE="https://github.com/quickemu-project/quickemu"
     SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
 }
+
+function deb_virtualbox-6.1() {
+    ARCHS_SUPPORTED="amd64"
+    APT_KEY_URL="https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+    APT_LIST_NAME="virtualbox-6.1"
+    APT_REPO_URL="deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian ${UPSTREAM_CODENAME} contrib"
+    PRETTY_NAME="VirtualBox 6.1"
+    WEBSITE="https://www.virtualbox.org/"
+    SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
+}
+
 
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
@@ -940,7 +960,7 @@ function deb_docker-ce() {
 
 function deb_docker-desktop() {
     if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | head -n1 | cut -d'"' -f2 | cut -d'?' -f1)"
+        URL="$(curl -s "https://docs.docker.com/desktop/release-notes/" | grep amd64.deb | grep -Eo 'https://[^ >]+' | cut -d'?' -f1 | tr -d '"' | head -n1)"
         VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
     fi
     PRETTY_NAME="Docker Desktop"
@@ -1117,9 +1137,9 @@ function deb_skypeforlinux() {
 }
 
 function deb_waydroid() {
-    APT_KEY_URL="https://repo.waydro.id/waydroid.gpg"
+    GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
     APT_LIST_NAME="waydroid"
-    APT_REPO_URL="deb https://repo.waydro.id ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://repo.waydro.id ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="WayDroid"
     WEBSITE="https://waydro.id/"
     SUMMARY="A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu."
@@ -2277,7 +2297,7 @@ function deb_gpu-viewer() {
 function deb_stremio() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64.deb" | cut -d "\"" -f 3)"
-        VERSION_PUBLISHED=""$(echo "${URL}" | cut -d "_" -f 2)""
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 2)"
     fi
     PRETTY_NAME="Stremio"
     WEBSITE="https://www.stremio.com/"
@@ -2402,7 +2422,7 @@ function deb_appimagelauncher() {
     SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
 }
 
-function deb_mullvad() {
+function deb_mullvad-vpn() {
     get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
@@ -2589,3 +2609,7 @@ case "${ACTION}" in
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
 esac
+
+if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
+    exit 1
+fi
