@@ -2414,11 +2414,14 @@ function deb_mullvad-vpn() {
 }
 
 function deb_xournalpp() {
-    CODENAMES_SUPPORTED="bionic bullseye focal"
+    CODENAMES_SUPPORTED="bullseye focal"
     get_github_releases "https://api.github.com/repos/xournalpp/xournalpp/releases/latest"
-    if [ "${ACTION}" != "prettylist" ]; then 
+    if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+        echo -e "URL:\t${URL}"
+        echo -e "VERSION_PUBLISHED:\t:${VERSION_PUBLISHED}"
+        exit
     fi
     PRETTY_NAME="Xournal++"
     WEBSITE="https://github.com/xournalpp/xournalpp/"
