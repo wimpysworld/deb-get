@@ -622,7 +622,7 @@ function deb_nala-legacy() {
     APT_REPO_URL="deb [arch=${HOST_ARCH}, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] http://deb.volian.org/volian/ scar main"
     PRETTY_NAME="Nala Legacy"
     WEBSITE="https://gitlab.com/volian/nala"
-    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older.
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older."
 }
 
 function deb_rstudio() {
