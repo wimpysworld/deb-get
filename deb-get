@@ -2416,10 +2416,8 @@ function deb_mullvad-vpn() {
 function deb_master-pdf-editor() {
     CODENAMES_SUPPORTED="bionic bullseye buster focal jammy"
     if [ "${ACTION}" != "prettylist" ]; then
-        if [[ "${CODENAMES_SUPPORTED}" == *"${UPSTREAM_CODENAME}"* ]]; then
-                URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "href=\"https://code-industry.net/public/.*\.deb" | cut --complement -c -6)
-                VERSION_PUBLISHED="$(echo "${URL}" | sed 's/^.*editor-//;s/-qt5.x86_64.*$//')"
-        fi
+            URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "href=\"https://code-industry.net/public/.*\.deb" | cut --complement -c -6)
+            VERSION_PUBLISHED="$(echo "${URL}" | sed 's/^.*editor-//;s/-qt5.x86_64.*$//')"
     fi
     PRETTY_NAME="Master PDF Editor"
     WEBSITE="https://code-industry.net/free-pdf-editor/"
