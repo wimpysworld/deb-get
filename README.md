@@ -235,6 +235,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/trapexit/mergerfs) | `mergerfs` | <i>A featureful union filesystem.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://micro-editor.github.io/) | `micro` | <i>A modern and intuitive terminal-based text editor.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.microsoft.com/edge) | `microsoft-edge-stable` | <i>Fast and secure browser that helps you protect your data and save time and money.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://minbrowser.org/) | `min` | <i>A fast, minimal browser</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://sharkwouter.github.io/minigalaxy/) | `minigalaxy` | <i>A simple GOG client for Linux.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://minikube.sigs.k8s.io/) | `minikube` | <i>minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://motrix.app/) | `motrix` | <i>A full-featured download manager.</i> |
