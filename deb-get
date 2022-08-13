@@ -983,6 +983,19 @@ function deb_minigalaxy() {
     SUMMARY="A simple GOG client for Linux."
 }
 
+function deb_min() {
+    ARCHS_SUPPORTED="amd64 arm64 armv7l"
+    get_github_releases "https://api.github.com/repos/minbrowser/min/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*min.*-${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
+    fi
+    PRETTY_NAME="Min"
+    WEBSITE="https://minbrowser.org"
+    SUMMARY="A fast, minimal browser."
+}
+
+
 function deb_com.github.tkashkin.gamehub() {
     get_github_releases "https://api.github.com/repos/tkashkin/GameHub/releases"
     if [ "${ACTION}" != "prettylist" ]; then
