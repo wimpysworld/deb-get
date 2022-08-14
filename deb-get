@@ -2352,7 +2352,7 @@ function deb_flameshot() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
         local VERSION_TMP="${URL##*/flameshot-}"
-        VERSION_PUBLISHED="${VERSION_TMP%%-ubuntu*}"
+        VERSION_PUBLISHED="${VERSION_TMP%%[-.]ubuntu*}"
     fi
     PRETTY_NAME="Flameshot"
     WEBSITE="https://flameshot.org/"
