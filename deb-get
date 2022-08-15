@@ -5,6 +5,15 @@ PACKAGE_INSTALLATION_COUNT=0
 
 readonly VERSION="0.3.4"
 
+# set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
+if [[ ! -z ${DEBGET_TOKEN} ]]; then
+    export HEADERAUTH="\"Authorization: token ${DEBGET_TOKEN}\""
+    export HEADERPARAM="--header"
+else
+    unset HEADERAUTH
+    unset HEADERPARAM
+fi
+
 function usage() {
 cat <<HELP
 
@@ -117,7 +126,8 @@ function get_github_releases() {
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ]; then
         fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
         if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
-            if ! ${ELEVATE} wget -q "${1}" -O "${CACHE_DIR}/${APP}.json"; then
+            wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q "${1}" -O "${CACHE_DIR}/${APP}.json")
+            if [ ! ${ELEVATE} "${wgetcmdarray[@]}" ]; then
                 fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it."
                 ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
             fi
