@@ -2413,6 +2413,23 @@ function deb_mullvad-vpn() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
+function deb_neo4j() {
+    ARCHS_SUPPORTED="amd64"
+    APT_KEY_URL="https://debian.neo4j.com/neotechnology.gpg.key"
+    APT_LIST_NAME="neo4j"
+    APT_REPO_URL="deb https://debian.neo4j.com stable latest"
+    PRETTY_NAME="Neo4j"
+    WEBSITE="https://neo4j.com/"
+    SUMMARY="The Graph Data Platform for Today's Intelligent Applications."
+}
+
+function deb_qownnotes() {
+    PPA="ppa:pbek/qownnotes"
+    PRETTY_NAME="qownnotes"
+    WEBSITE="https://www.qownnotes.org"
+    SUMMARY="Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
