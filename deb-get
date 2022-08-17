@@ -607,7 +607,14 @@ function deb_code() {
 
 function deb_rstudio() {
     if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep "amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
+        case "${UPSTREAM_CODENAME}" in
+            bionic | focal)
+                URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep -e "bionic/.*amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
+                ;;
+            *)
+                URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep -e "jammy/.*amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
+                ;;
+        esac
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"
     fi
     PRETTY_NAME="RStudio"
