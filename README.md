@@ -263,6 +263,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://peazip.github.io) | `peazip` | <i>PeaZip is a free file archiver utility and extractor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/HACKERALERT/Picocrypt/) | `picocrypt` | <i>A very small, very simple, yet very secure encryption tool.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.plex.tv/) | `plexmediaserver` | <i>Stream Movies and TV Shows.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/six-ddc/plow) | `plow` | <i>A high-performance HTTP benchmarking tool with real-time web UI and terminal displaying</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://polychromatic.app/) | `polychromatic` | <i>Frontend for OpenRazer that enables Razer devices to control lighting effects and more.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://safing.io/portmaster/) | `portmaster` | <i>Portmaster is a free and open-source application that puts you back in charge over all your computer's network connections.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://docs.microsoft.com/powershell/) | `powershell` | <i>Cross-platform automation and configuration tool/framework and optimized for dealing with structured data.</i> |
