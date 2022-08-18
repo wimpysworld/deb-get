@@ -2413,6 +2413,17 @@ function deb_mullvad-vpn() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
+function deb_firejail() {
+    get_github_releases "https://api.github.com/repos/netblue30/firejail/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${ARCHS_SUPPORTED}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
+    PRETTY_NAME="Firejail"
+    WEBSITE="https://github.com/netblue30/firejail"
+    SUMMARY="Firejail is a SUID sandbox program that reduces the risk of security breaches by restricting the running environment of untrusted applications using Linux namespaces, seccomp-bpf and Linux capabilities."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
