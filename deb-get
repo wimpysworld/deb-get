@@ -2507,6 +2507,24 @@ function deb_retroarch() {
     SUMMARY="RetroArch is a frontend for emulators, game engines and media players."
 }
 
+function deb_texworks() {
+    PPA="ppa:texworks/stable"
+    PRETTY_NAME="TeXworks"
+    WEBSITE="https://tug.org/texworks/"
+    SUMMARY="Lowering the entry barrier to the TeX world."
+}
+
+function deb_lens() {
+    ARCHS_SUPPORTED="amd64"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(curl -s https://docs.k8slens.dev/main/getting-started/install-lens/ | grep amd64.deb | cut -d'"' -f2)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'"' -f2 | cut -d"-" -f2)"
+    fi
+    PRETTY_NAME="Lens"
+    WEBSITE="https://k8slens.dev/"
+    SUMMARY="The way the world runs Kubernetes."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
