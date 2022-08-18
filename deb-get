@@ -2413,6 +2413,17 @@ function deb_mullvad-vpn() {
     SUMMARY="VPN Service based in Sweden that does not collect user data."
 }
 
+function deb_eversticky() {
+    get_github_releases "https://api.github.com/repos/itsmejoeeey/eversticky/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Eversticky"
+    WEBSITE="https://github.com/itsmejoeeey/eversticky"
+    SUMMARY="A Linux open-source sticky note client that syncs to Evernote."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
