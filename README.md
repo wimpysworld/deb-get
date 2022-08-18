@@ -243,11 +243,12 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad-vpn` | <i>VPN Service based in Sweden that does not collect user data.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://neo4j.com/) | `neo4j` | <i>The Graph Data Platform for Today's Intelligent Applications.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.nomadproject.io/) | `nomad` | <i>Orchestration tool for deploying and managing applications.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/muesli/obs-cli) | `obs-cli` | <i>OBS-cli is a command-line remote control for OBS.</i> |
-| [<img src=".github/github.png" align="top" width="20" />](https://obsidian.md/) | `obsidian` | <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://obsproject.com/) | `obs-studio` | <i>Free and open source software for video recording and live streaming.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://obsidian.md/) | `obsidian` | <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.ocenaudio.com/) | `ocenaudio` | <i>Easy, fast and powerful audio editor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
@@ -267,11 +268,13 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://proton.me/mail/bridge) | `protonmail-bridge` | <i>Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.qownnotes.org) | `qownnotes` | <i>Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rclone.org/) | `rclone` | <i>Syncs your files to cloud storage.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.resilio.com/) | `resilio-sync` | <i>Fast, reliable, and simple file sync and share solution, powered by P2P technology</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://www.retroarch.com/) | `retroarch` | <i>RetroArch is a frontend for emulators, game engines and media players.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rocket.chat/) | `rocketchat` | <i>Official Desktop Client for Rocket.Chat.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/raspberrypi/rpi-imager) | `rpi-imager` | <i>Raspberry Pi Imaging Utility.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.rstudio.com/) | `rstudio` | <i>Professional software for data science teams.</i> |
@@ -306,7 +309,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wavebox.io/) | `wavebox` | <i>Rethink the Web. Productivity Browser.</i> |
