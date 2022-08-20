@@ -28,7 +28,11 @@ curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | su
 ```
 
 Alternatively, you can [download the `.deb` of `deb-get` from the releases page](https://github.com/wimpysworld/deb-get/releases/latest)
-and install it manualy with `sudo apt-get install ./path/to/deb-get_<version>.deb`
+and install it manually with
+
+``` bash
+sudo apt-get install ./path/to/deb-get_<version>.deb
+```
 
 ## Usage
 
