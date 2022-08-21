@@ -558,7 +558,6 @@ function deb_virtualbox-6.1() {
     SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
 
-
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
     PRETTY_NAME="Firefox ESR"
@@ -571,6 +570,13 @@ function deb_quickgui() {
     PRETTY_NAME="Quickgui"
     WEBSITE="https://github.com/quickemu-project/quickgui"
     SUMMARY="A Flutter frontend for Quickemu."
+}
+
+function deb_bashtop() {
+    PPA="ppa:bashtop-monitor/bashtop"
+    PRETTY_NAME="Bashtop"
+    WEBSITE="https://github.com/aristocratos"
+    SUMMARY="Resource monitor that shows usage and stats for processor, memory, disks, network and processes."
 }
 
 function deb_nextcloud-desktop() {
