@@ -2592,7 +2592,12 @@ if [ -e /etc/os-release ]; then
 
     case "${UPSTREAM_ID}" in
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
-        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
+        debian)
+            UPSTREAM_CODENAME=$(grep DEBIAN_CODENAME /etc/os-release | cut -d'=' -f2)
+            if [ -z "${UPSTREAM_CODENAME}" ]; then
+                UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2)
+            fi
+        ;;
         *) UPSTREAM_CODENAME="";;
     esac
 else
