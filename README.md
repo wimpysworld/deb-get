@@ -386,7 +386,7 @@ deb-get upgrade
 
 For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package, head to [CONTRIBUTING](CONTRIBUTING.md).
 
-### Custom User Includes `/etc/deb-get.d/`
+### Custom User Includes `/etc/deb-get/local.d/`
 
 As a more advanced feature, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
 
@@ -397,9 +397,9 @@ Typically either because:
 
 How to use:
 
-* Manually create the folder `/etc/deb-get.d/` if not exist already. By default `deb-get` does not create this folder unless your specific distribution has packaged it that way.
-* Can also create any arbitrary nested sub-folder structure within `/etc/deb-get.d/**/*` main folder
-* Any files within this tree will be bash sourced in alphabetical order e.g. `. /etc/deb-get.d/01-pending-merge/10-appname1`
+* Manually create the folder `/etc/deb-get/local.d/` if not exist already. By default `deb-get` does not create this folder unless your specific distribution has packaged it that way.
+* Can also create any arbitrary nested sub-folder structure within `/etc/deb-get/local.d/**/*` main folder
+* Any files within this tree will be bash sourced in alphabetical order e.g. `. /etc/deb-get/local.d/01-pending-merge/10-appname1`
 * Your user custom `deb_*` functions are then loaded directly after the last `deb_*()` package declarations that officially come with `deb-get`
 * Recommendation message printed for any new user added deb_* functions. With a URL link to open a request.
 * Warning messages are then also printed for any conflicts detected. For overriden functions (of same name), which then take priority over existing official deb-get apps.
