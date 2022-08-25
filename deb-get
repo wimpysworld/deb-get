@@ -470,23 +470,16 @@ function list_local_apps() {
 
 function print_etc_overrides()
 {
-    if [ ${#INCLUDE_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
+    if [ ${#LOCAL_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
 
         DEB_GET_SCRIPT_FILE="${0}"
 
-        # turn on source line debugging for declare -F
-        shopt -s extdebug
-
         NUM_OLDER_CONFLICTS=0
-        for DEB_FUNC in "${APP_CONFLICTS[@]}"; do
-            # Find where the conflict is in the user includes
-            DECLARE_F_DEBUG="$(declare -F deb_$DEB_FUNC)"
-            INC_FILE="$(echo $DECLARE_F_DEBUG | cut -d" " -f3)"
-            SRC_LINE="$(echo $DECLARE_F_DEBUG | cut -d" " -f2)"
-            FUNC_SRC_REF="$INC_FILE:$SRC_LINE: function deb_$DEB_FUNC()"
-            fancy_message warn "Conflict detected, duplicate declaration of function deb_$DEB_FUNC(), using custom override declared at $FUNC_SRC_REF"
-
-            if [ "$DEB_GET_SCRIPT_FILE" -nt "$INC_FILE" ]; then
+        for APP_CONFLICT in "${APP_CONFLICTS[@]}"; do
+            APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP_CONFLICT$")"
+            fancy_message warn "Conflict detected, duplicate declaration of package $APP_CONFLICT, using declaration from $(echo "$APP" | cut -d / -f 1)"
+            
+            if [[ " ${LOCAL_APPS[*]} " =~ " ${APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "/etc/deb-get/99-local.d/$APP_CONFLICT" ]; then
                 let "NUM_OLDER_CONFLICTS+=1"
             fi
         done
@@ -495,21 +488,13 @@ function print_etc_overrides()
             fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get/99-local.d/* folder."
         fi
 
-        for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
-            # Find where it was declared in the user includes
-            DECLARE_F_DEBUG="$(declare -F deb_$DEB_FUNC)"
-            INC_FILE="$(echo $DECLARE_F_DEBUG | cut -d" " -f3)"
-            SRC_LINE="$(echo $DECLARE_F_DEBUG | cut -d" " -f2)"
-            FUNC_SRC_REF="$INC_FILE:$SRC_LINE: function deb_$DEB_FUNC()"
-            fancy_message info "Including custom override $FUNC_SRC_REF"
+        for APP in "${LOCAL_APPS[@]}"; do
+            fancy_message info "Including local package $APP"
         done
 
-        if [ ${#INCLUDE_APPS[@]} -gt 0 ]; then
+        if [ ${#LOCAL_APPS[@]} -gt 0 ]; then
             fancy_message recommend "Please consider contributing back new entries, an issue (or raise a PR) directly at https://github.com/wimpysworld/deb-get/pulls"
         fi
-
-        # turn off source line debugging for declare -F
-        shopt -u extdebug
     fi
 }
 
@@ -2533,6 +2518,9 @@ for APP_CONFLICT in $APP_CONFLICTS; do
 done
 
 APPS="$(echo "$APPS" | sort)"
+LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
+APPS=($APPS)
+APP_CONFLICTS=($APP_CONFLICTS)
 
 export CACHE_DIR="/var/cache/deb-get"
 
