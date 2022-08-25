@@ -453,8 +453,8 @@ function upgrade_debs() {
 }
 
 function load_etc_includes() {
-    if [ -d /etc/deb-get.d ]; then
-        for INCLUDE_FILE in $(find /etc/deb-get.d -type f); do
+    if [ -d /etc/deb-get/local.d ]; then
+        for INCLUDE_FILE in $(find /etc/deb-get/local.d -type f); do
             . $INCLUDE_FILE
         done
     fi
@@ -490,7 +490,7 @@ function print_etc_overrides()
         done
 
         if [ $NUM_OLDER_CONFLICTS -gt 0 ]; then
-            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get.d/* folder."
+            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get/local.d/* folder."
         fi
 
         for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
@@ -511,10 +511,10 @@ function print_etc_overrides()
     fi
 }
 
-# Import deb_ functions in /etc/deb-get.d/**/* (if exists)
+# Import deb_ functions in /etc/deb-get/local.d/**/* (if exists)
 load_etc_includes
 
-# Make a seperate list of all deb_ functions loaded from /etc/deb-get.d/**/*
+# Make a seperate list of all deb_ functions loaded from /etc/deb-get/local.d/**/*
 INCLUDE_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
 # Immediately unload these custom includes before loading the official builtin deb_ functions
@@ -2528,7 +2528,7 @@ function deb_lens() {
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
-# Load any extra deb_ functions in /etc/deb-get.d/**/*, and also create ${INCLUDE_APPS[@]} array
+# Load any extra deb_ functions in /etc/deb-get/local.d/**/*, and also create ${INCLUDE_APPS[@]} array
 load_etc_includes
 
 # Create an array to track any duplicated conflicting / overriden deb_ functions
