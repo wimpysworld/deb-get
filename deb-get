@@ -452,18 +452,20 @@ function upgrade_debs() {
     done
 }
 
-function load_etc_includes() {
-    if [ -d /etc/deb-get/local.d ]; then
-        for INCLUDE_FILE in $(find /etc/deb-get/local.d -type f); do
-            . $INCLUDE_FILE
+function list_repo_apps() {
+    for REPO in $(find /etc/deb-get/ -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort); do
+        for APP in $(tail -n +2 "/etc/deb-get/$REPO.repo" | grep -v "^#" | sort -u); do
+            echo "$REPO/$APP"
         done
-    fi
+    done
 }
 
-function unload_etc_includes() {
-    for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
-        unset -f deb_${DEB_FUNC}
-    done
+function list_local_apps() {
+    if [ -d /etc/deb-get/99-local.d ]; then
+        for APP in $(find /etc/deb-get/99-local.d -maxdepth 1 -type f | sort); do
+            echo "99-local/$APP"
+        done
+    fi
 }
 
 function print_etc_overrides()
@@ -490,7 +492,7 @@ function print_etc_overrides()
         done
 
         if [ $NUM_OLDER_CONFLICTS -gt 0 ]; then
-            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get/local.d/* folder."
+            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get/99-local.d/* folder."
         fi
 
         for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
@@ -510,16 +512,6 @@ function print_etc_overrides()
         shopt -u extdebug
     fi
 }
-
-# Import deb_ functions in /etc/deb-get/local.d/**/* (if exists)
-load_etc_includes
-
-# Make a seperate list of all deb_ functions loaded from /etc/deb-get/local.d/**/*
-INCLUDE_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
-
-# Immediately unload these custom includes before loading the official builtin deb_ functions
-# (since after this point, declare -F cannot distinguish for us which deb_ came from which source)
-unload_etc_includes
 
 function deb_tixati() {
     if [ "${ACTION}" != "prettylist" ]; then
@@ -2525,23 +2517,23 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
-# Create an array to track those deb_ functions being loaded by this script
-readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
+APPS="$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g' | sort)"
 
-# Load any extra deb_ functions in /etc/deb-get/local.d/**/*, and also create ${INCLUDE_APPS[@]} array
-load_etc_includes
+APPS="$APPS
+$(list_repo_apps)"
 
-# Create an array to track any duplicated conflicting / overriden deb_ functions
-readonly APP_CONFLICTS=($(echo ${DEB_GET_APPS[@]} ${INCLUDE_APPS[@]} | tr ' ' '\n' | sort | uniq --repeated))
+APPS="$APPS
+$(list_local_apps)"
 
-# Remove list of APP_CONFLICTS from INCLUDE_APPS array, so each list can be handled seperately
-for DEB_FUNC in "${APP_CONFLICTS[@]}"; do
-    INCLUDE_APPS=(${INCLUDE_APPS[@]//*$DEB_FUNC*})
+APP_CONFLICTS="$(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated)"
+
+for APP_CONFLICT in $APP_CONFLICTS; do
+    APP="$(echo "$APPS" | grep "/$APP_CONFLICT$" | tail -n 1)"
+    APPS="$(echo "$APPS" | grep -v "/$APP_CONFLICT$"; echo "$APP")"
 done
-# Conflict detection all finished
 
-# Now create the final array of all loaded / merged deb_ functions
-readonly APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
+APPS="$(echo "$APPS" | sort)"
+
 export CACHE_DIR="/var/cache/deb-get"
 
 function create_cache_dir() {
