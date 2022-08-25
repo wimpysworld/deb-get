@@ -140,7 +140,7 @@ To update `README.md`, first install [cog](https://pypi.org/project/cogapp):
 sudo pip3 install cogapp
 ```
 
-Ensure any local Custom User Includes are removed from `/etc/deb-get.d/` (They can be replaced after the README.md is re-processed)
+Ensure any local Custom User Includes are removed from `/etc/deb-get/99-local.d/` (They can be replaced after the README.md is re-processed)
 
 Then run:
 ```bash
