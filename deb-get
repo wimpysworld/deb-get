@@ -351,13 +351,6 @@ function validate_deb() {
     local FULL_APP="${1}"
     local APP_SRC="$(echo "$FULL_APP" | cut -d / -f 1)"
     export APP="$(echo "$FULL_APP" | cut -d / -f 2)"
-
-    if [[ ! " ${APPS[*]} " =~ " ${FULL_APP} " ]]; then
-        fancy_message error "${APP} is not a supported application."
-        list_debs
-        exit 1
-    fi
-
     export APT_KEY_URL=""
     export GPG_KEY_URL=""
     export APT_LIST_NAME=""
@@ -460,7 +453,7 @@ function upgrade_debs() {
 }
 
 function list_repo_apps() {
-    for REPO in $(find /etc/deb-get/ -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort); do
+    for REPO in $(find /etc/deb-get/ -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
         for APP in $(tail -n +2 "/etc/deb-get/$REPO.repo" | grep -v "^#" | sort -u); do
             echo "$REPO/$APP"
         done
@@ -2507,22 +2500,17 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
-APPS="$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g' | sort)"
+APPS="$(list_local_apps)"
 
 APPS="$APPS
 $(list_repo_apps)"
 
 APPS="$APPS
-$(list_local_apps)"
+$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g' | sort)"
 
 APP_CONFLICTS="$(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated)"
 
-for APP in $APP_CONFLICTS; do
-    FULL_APP="$(echo "$APPS" | grep "/$APP$" | tail -n 1)"
-    APPS="$(echo "$APPS" | grep -v "/$APP$"; echo "$FULL_APP")"
-done
-
-APPS="$(echo "$APPS" | sort)"
+APPS="$(echo "$APPS" | sort -t / -k 2 -u)"
 LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
 APPS=($APPS)
 APP_CONFLICTS=($APP_CONFLICTS)
@@ -2627,7 +2615,12 @@ case "${ACTION}" in
     show)
         for APP in "${@,,}"; do
             FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
-            validate_deb "${FULL_APP:-$APP}"
+            if [ -z "$FULL_APP" ]; then
+                fancy_message error "${APP} is not a supported application."
+                list_debs
+                exit 1
+            fi
+            validate_deb "${FULL_APP}"
             info_deb
         done;;
     install|reinstall)
@@ -2635,7 +2628,12 @@ case "${ACTION}" in
         create_cache_dir
         for APP in "${@,,}"; do
             FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
-            validate_deb "${FULL_APP:-$APP}"
+            if [ -z "$FULL_APP" ]; then
+                fancy_message error "${APP} is not a supported application."
+                list_debs
+                exit 1
+            fi
+            validate_deb "${FULL_APP}"
             if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
                 fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
             fi
@@ -2666,14 +2664,24 @@ case "${ACTION}" in
         elevate_privs
         for APP in "${@,,}"; do
             FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
-            validate_deb "${FULL_APP:-$APP}"
+            if [ -z "$FULL_APP" ]; then
+                fancy_message error "${APP} is not a supported application."
+                list_debs
+                exit 1
+            fi
+            validate_deb "${FULL_APP}"
             remove_deb "${APP}" purge
         done;;
     remove)
         elevate_privs
         for APP in "${@,,}"; do
             FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
-            validate_deb "${FULL_APP:-$APP}"
+            if [ -z "$FULL_APP" ]; then
+                fancy_message error "${APP} is not a supported application."
+                list_debs
+                exit 1
+            fi
+            validate_deb "${FULL_APP}"
             remove_deb "${APP}"
         done;;
     search)
