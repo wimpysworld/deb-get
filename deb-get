@@ -348,9 +348,11 @@ function info_deb() {
 }
 
 function validate_deb() {
-    export APP="${1}"
+    local FULL_APP="${1}"
+    local APP_SRC="$(echo "$FULL_APP" | cut -d / -f 1)"
+    export APP="$(echo "$FULL_APP" | cut -d / -f 2)"
 
-    if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
+    if [[ ! " ${APPS[*]} " =~ " ${FULL_APP} " ]]; then
         fancy_message error "${APP} is not a supported application."
         list_debs
         exit 1
@@ -373,7 +375,11 @@ function validate_deb() {
     export WEBSITE=""
 
     # Source the variables
-    deb_${APP} 2>/dev/null
+    if [ "$APP_SRC" = "00-builtin" ]; then
+        deb_${APP} 2>/dev/null
+    else
+        . "/etc/deb-get/${APP_SRC}.d/$APP"
+    fi
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
@@ -385,7 +391,8 @@ function validate_deb() {
 function list_debs() {
     local PAD='                              '
     local STATUS=""
-    for APP in "${APPS[@]}"; do
+    for FULL_APP in "${APPS[@]}"; do
+        local APP="$(echo "$FULL_APP" | cut -d / -f 2)"
         if package_is_installed "${APP}"; then
             STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f4- )"
             printf "%s %s [ ${STATUS} ]\n" "${APP}" "${PAD:${#APP}}"
@@ -399,8 +406,8 @@ function prettylist_debs() {
     local ICON=""
     echo "| Source   | Package Name   | Description   |
 | :------: | :------------- | :------------ |"
-    for APP in "${APPS[@]}"; do
-        validate_deb "${APP}"
+    for FULL_APP in "${APPS[@]}"; do
+        validate_deb "${FULL_APP}"
         case ${METHOD} in
             apt)    ICON="debian.png";;
             github) ICON="github.png";;
@@ -412,8 +419,8 @@ function prettylist_debs() {
 }
 
 function csvlist_debs() {
-    for APP in "${APPS[@]}"; do
-        validate_deb "${APP}"
+    for FULL_APP in "${APPS[@]}"; do
+        validate_deb "${FULL_APP}"
         echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
     done
 }
@@ -421,10 +428,10 @@ function csvlist_debs() {
 function update_debs() {
     local STATUS=""
     update_apt
-    for APP in "${APPS[@]}"; do
+    for FULL_APP in "${APPS[@]}"; do
         # Only download .debs that are installed
-        if package_is_installed "${APP}"; then
-            validate_deb "${APP}"
+        if package_is_installed "$(echo "$FULL_APP" | cut -d / -f 2)"; then
+            validate_deb "${FULL_APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
@@ -438,10 +445,10 @@ function update_debs() {
 function upgrade_debs() {
     local STATUS=""
     upgrade_apt
-    for APP in "${APPS[@]}"; do
+    for FULL_APP in "${APPS[@]}"; do
         # Only upgrade .debs that are installed
-        if package_is_installed "${APP}"; then
-            validate_deb "${APP}"
+        if package_is_installed "$(echo "$FULL_APP" | cut -d / -f 2)"; then
+            validate_deb "${FULL_APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
                 if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
@@ -471,15 +478,13 @@ function list_local_apps() {
 function print_etc_overrides()
 {
     if [ ${#LOCAL_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
-
-        DEB_GET_SCRIPT_FILE="${0}"
-
-        NUM_OLDER_CONFLICTS=0
-        for APP_CONFLICT in "${APP_CONFLICTS[@]}"; do
-            APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP_CONFLICT$")"
-            fancy_message warn "Conflict detected, duplicate declaration of package $APP_CONFLICT, using declaration from $(echo "$APP" | cut -d / -f 1)"
+        local DEB_GET_SCRIPT_FILE="${0}"
+        local NUM_OLDER_CONFLICTS=0
+        for APP in "${APP_CONFLICTS[@]}"; do
+            local FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            fancy_message warn "Conflict detected, duplicate declaration of package $APP, using declaration from $(echo "$FULL_APP" | cut -d / -f 1)"
             
-            if [[ " ${LOCAL_APPS[*]} " =~ " ${APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "/etc/deb-get/99-local.d/$APP_CONFLICT" ]; then
+            if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "/etc/deb-get/99-local.d/$APP" ]; then
                 let "NUM_OLDER_CONFLICTS+=1"
             fi
         done
@@ -488,8 +493,8 @@ function print_etc_overrides()
             fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get/99-local.d/* folder."
         fi
 
-        for APP in "${LOCAL_APPS[@]}"; do
-            fancy_message info "Including local package $APP"
+        for FULL_APP in "${LOCAL_APPS[@]}"; do
+            fancy_message info "Including local package $(echo "$FULL_APP" | cut -d / -f 2)"
         done
 
         if [ ${#LOCAL_APPS[@]} -gt 0 ]; then
@@ -2512,9 +2517,9 @@ $(list_local_apps)"
 
 APP_CONFLICTS="$(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated)"
 
-for APP_CONFLICT in $APP_CONFLICTS; do
-    APP="$(echo "$APPS" | grep "/$APP_CONFLICT$" | tail -n 1)"
-    APPS="$(echo "$APPS" | grep -v "/$APP_CONFLICT$"; echo "$APP")"
+for APP in $APP_CONFLICTS; do
+    FULL_APP="$(echo "$APPS" | grep "/$APP$" | tail -n 1)"
+    APPS="$(echo "$APPS" | grep -v "/$APP$"; echo "$FULL_APP")"
 done
 
 APPS="$(echo "$APPS" | sort)"
@@ -2621,14 +2626,16 @@ case "${ACTION}" in
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
-            validate_deb "${APP}"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            validate_deb "${FULL_APP:-$APP}"
             info_deb
         done;;
     install|reinstall)
         elevate_privs
         create_cache_dir
         for APP in "${@,,}"; do
-            validate_deb "${APP}"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            validate_deb "${FULL_APP:-$APP}"
             if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
                 fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
             fi
@@ -2658,13 +2665,15 @@ case "${ACTION}" in
     purge)
         elevate_privs
         for APP in "${@,,}"; do
-            validate_deb "${APP}"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            validate_deb "${FULL_APP:-$APP}"
             remove_deb "${APP}" purge
         done;;
     remove)
         elevate_privs
         for APP in "${@,,}"; do
-            validate_deb "${APP}"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            validate_deb "${FULL_APP:-$APP}"
             remove_deb "${APP}"
         done;;
     search)
