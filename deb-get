@@ -20,7 +20,7 @@ cat <<HELP
 Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist [repo] | csvlist [repo] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -57,10 +57,10 @@ list
     list the packages available via deb-get.
 
 prettylist
-    markdown formatted list the packages available via deb-get. Use this to update README.md
+    markdown formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this to update README.md
 
 csvlist
-    csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+    csv formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this with 3rd party wrappers.
 
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
@@ -396,25 +396,31 @@ function list_debs() {
 }
 
 function prettylist_debs() {
+    local REPO="${1:-01-main}"
     local ICON=""
     echo "| Source   | Package Name   | Description   |
 | :------: | :------------- | :------------ |"
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
-        case ${METHOD} in
-            apt)    ICON="debian.png";;
-            github) ICON="github.png";;
-            ppa)    ICON="launchpad.png";;
-            *)      ICON="direct.png";;
-        esac
-        echo "| [<img src=\".github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
+        if [ "$APP_SRC" = "$REPO" ] || ([ "$REPO" = "01-main" ] && [ "$APP_SRC" = "00-builtin" ]); then
+            case ${METHOD} in
+                apt)    ICON="debian.png";;
+                github) ICON="github.png";;
+                ppa)    ICON="launchpad.png";;
+                *)      ICON="direct.png";;
+            esac
+            echo "| [<img src=\".github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
+        fi
     done
 }
 
 function csvlist_debs() {
+    local REPO="${1:-01-main}"
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
-        echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
+        if [ "$APP_SRC" = "$REPO" ] || ([ "$REPO" = "01-main" ] && [ "$APP_SRC" = "00-builtin" ]); then
+            echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
+        fi
     done
 }
 
@@ -2656,10 +2662,10 @@ case "${ACTION}" in
         list_debs;;
     pretty_list|prettylist)
         ACTION="prettylist"
-        prettylist_debs;;
+        prettylist_debs "${1}";;
     csv_list|csvlist|csv)
         ACTION="prettylist"
-        csvlist_debs;;
+        csvlist_debs "${1}";;
     purge)
         elevate_privs
         for APP in "${@,,}"; do
