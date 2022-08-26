@@ -371,7 +371,7 @@ function validate_deb() {
     if [ "$APP_SRC" = "00-builtin" ]; then
         deb_${APP} 2>/dev/null
     else
-        . "/etc/deb-get/${APP_SRC}.d/$APP"
+        . "/etc/deb-get/${APP_SRC}.d/$APP" 2>/dev/null
     fi
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
@@ -462,7 +462,7 @@ function list_repo_apps() {
 
 function list_local_apps() {
     if [ -d /etc/deb-get/99-local.d ]; then
-        for APP in $(find /etc/deb-get/99-local.d -maxdepth 1 -type f | sort); do
+        for APP in $(find /etc/deb-get/99-local.d -maxdepth 1 -type f -printf "%f\n" | sort); do
             echo "99-local/$APP"
         done
     fi
