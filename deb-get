@@ -2607,7 +2607,7 @@ case "${UPSTREAM_CODENAME}" in
     focal)    UPSTREAM_RELEASE="20.04";;
     impish)   UPSTREAM_RELEASE="21.10";;
     jammy)    UPSTREAM_RELEASE="22.04";;
-    kinetic)  UPSTREAM_RELEASE="22.10";;
+    kinetic|devel)  UPSTREAM_RELEASE="22.10";;
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 
