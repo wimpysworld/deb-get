@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090,SC2034,SC2076,SC2155,SC2207,SC2219
 LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
@@ -6,7 +7,7 @@ PACKAGE_INSTALLATION_COUNT=0
 readonly VERSION="0.3.5"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
-if [[ ! -z ${DEBGET_TOKEN} ]]; then
+if [[ -n ${DEBGET_TOKEN} ]]; then
     export HEADERAUTH="\"Authorization: token ${DEBGET_TOKEN}\""
     export HEADERPARAM="--header"
 else
@@ -102,7 +103,7 @@ function elevate_privs() {
     elif command -v sudo 1>/dev/null; then
         ELEVATE="sudo"
     else
-        fancy_message fatal "$(basename ${0}) requires sudo or doas to elevate permissions, neither were found."
+        fancy_message fatal "$(basename "${0}") requires sudo or doas to elevate permissions, neither were found."
     fi
 
     # Authenticate root context
@@ -126,7 +127,7 @@ function get_github_releases() {
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ]; then
         fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
         if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
-            wgetcmdarray=(${ELEVATE} wget  "${HEADERPARAM}" "${HEADERAUTH}" -q "${1}" -O "${CACHE_DIR}/${APP}.json")
+            wgetcmdarray=("${ELEVATE}" wget  "${HEADERPARAM}" "${HEADERAUTH}" -q "${1}" -O "${CACHE_DIR}/${APP}.json")
             echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it." ; ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null )
             if [ -f "${CACHE_DIR}/${APP}.json" ] && grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
                 fancy_message warn "Updating ${CACHE_DIR}/${APP}.json exceed GitHub API limits. Deleting it."
@@ -231,7 +232,7 @@ function install_ppa() {
     if [ "$(dpkg -S "$(command -v apt-add-repository)" | cut -d':' -f1)" == "software-properties-common" ]; then
         AAR_PARAMS+=" --no-update"
     fi
-    if ${ELEVATE} apt-add-repository ${AAR_PARAMS} "${PPA}"; then
+    if ${ELEVATE} apt-add-repository "${AAR_PARAMS}" "${PPA}"; then
         update_apt
         if ! package_is_installed "${APP}"; then
             eula
@@ -332,7 +333,7 @@ function remove_deb() {
 
 function version_deb() {
     if package_is_installed "${APP}"; then
-        echo "$(dpkg -s "${APP}" | grep ^Version: | cut -d' ' -f2)"
+        dpkg -s "${APP}" | grep ^Version: | cut -d' ' -f2
     else
         echo ""
     fi
@@ -373,7 +374,7 @@ function validate_deb() {
     export WEBSITE=""
 
     # Source the variables
-    deb_${APP} 2>/dev/null
+    deb_"${APP}" 2>/dev/null
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
@@ -454,15 +455,17 @@ function upgrade_debs() {
 
 function load_etc_includes() {
     if [ -d /etc/deb-get.d ]; then
-        for INCLUDE_FILE in $(find /etc/deb-get.d -type f); do
-            . $INCLUDE_FILE
-        done
+        while IFS= read -r -d '' file
+        do
+            . "$file"
+        done <   <(find /etc/deb-get.d -type f)
+
     fi
 }
 
 function unload_etc_includes() {
     for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
-        unset -f deb_${DEB_FUNC}
+        unset -f deb_"${DEB_FUNC}"
     done
 }
 
@@ -478,9 +481,9 @@ function print_etc_overrides()
         NUM_OLDER_CONFLICTS=0
         for DEB_FUNC in "${APP_CONFLICTS[@]}"; do
             # Find where the conflict is in the user includes
-            DECLARE_F_DEBUG="$(declare -F deb_$DEB_FUNC)"
-            INC_FILE="$(echo $DECLARE_F_DEBUG | cut -d" " -f3)"
-            SRC_LINE="$(echo $DECLARE_F_DEBUG | cut -d" " -f2)"
+            DECLARE_F_DEBUG="$(declare -F deb_"$DEB_FUNC")"
+            INC_FILE="$(echo "$DECLARE_F_DEBUG" | cut -d" " -f3)"
+            SRC_LINE="$(echo "$DECLARE_F_DEBUG" | cut -d" " -f2)"
             FUNC_SRC_REF="$INC_FILE:$SRC_LINE: function deb_$DEB_FUNC()"
             fancy_message warn "Conflict detected, duplicate declaration of function deb_$DEB_FUNC(), using custom override declared at $FUNC_SRC_REF"
 
@@ -489,15 +492,15 @@ function print_etc_overrides()
             fi
         done
 
-        if [ $NUM_OLDER_CONFLICTS -gt 0 ]; then
+        if [ "$NUM_OLDER_CONFLICTS" -gt 0 ]; then
             fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get.d/* folder."
         fi
 
         for DEB_FUNC in "${INCLUDE_APPS[@]}"; do
             # Find where it was declared in the user includes
-            DECLARE_F_DEBUG="$(declare -F deb_$DEB_FUNC)"
-            INC_FILE="$(echo $DECLARE_F_DEBUG | cut -d" " -f3)"
-            SRC_LINE="$(echo $DECLARE_F_DEBUG | cut -d" " -f2)"
+            DECLARE_F_DEBUG="$(declare -F deb_"$DEB_FUNC")"
+            INC_FILE="$(echo "$DECLARE_F_DEBUG" | cut -d" " -f3)"
+            SRC_LINE="$(echo "$DECLARE_F_DEBUG" | cut -d" " -f2)"
             FUNC_SRC_REF="$INC_FILE:$SRC_LINE: function deb_$DEB_FUNC()"
             fancy_message info "Including custom override $FUNC_SRC_REF"
         done
@@ -1921,8 +1924,8 @@ function deb_vuescan() {
             i386)    ARCH_VER=x32;;
         esac
         VERSION_PUBLISHED="$(curl -s https://www.hamrick.com/alternate-versions.html | grep '<a href="files/vue'${ARCH_VER}'.*\.deb">.*</a>' | head -n 1 | cut -d'>' -f2 | cut -d'<' -f1).0-0"
-        local MAJOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f1)"
-        local MINOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f2)"
+        local MAJOR_VER="$(echo "${VERSION_PUBLISHED}" | cut -d'.' -f1)"
+        local MINOR_VER="$(echo "${VERSION_PUBLISHED}" | cut -d'.' -f2)"
         URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
     fi
     PRETTY_NAME="VueScan"
@@ -2046,7 +2049,7 @@ function deb_google-chat-electron() {
 function deb_expressvpn() {
     ARCHS_SUPPORTED="amd64 i386 armhf"
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(curl -s "https://www.expressvpn.com/latest#linux" | grep -o 'value="https://www\.expressvpn\.works/clients/linux/expressvpn_.*'${HOST_ARCH}'\.deb"' | cut -d"_" -f2)"
+        VERSION_PUBLISHED="$(curl -s "https://www.expressvpn.com/latest#linux" | grep -o 'value="https://www\.expressvpn\.works/clients/linux/expressvpn_.*'"${HOST_ARCH}"'\.deb"' | cut -d"_" -f2)"
         URL="https://www.expressvpn.works/clients/linux/expressvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
     fi
     PRETTY_NAME="Expressvpn"
@@ -2075,7 +2078,7 @@ function deb_copyq() {
 function deb_dbeaver-ce() {
     ARCHS_SUPPORTED="amd64 i386"
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(curl -s https://dbeaver.io/debs/dbeaver-ce/ | grep -o '"dbeaver-ce_.*'${HOST_ARCH}'\.deb"' | sort --version-sort | tail -n1 | cut -d"_" -f2)"
+        VERSION_PUBLISHED="$(curl -s https://dbeaver.io/debs/dbeaver-ce/ | grep -o '"dbeaver-ce_.*'"${HOST_ARCH}"'\.deb"' | sort --version-sort | tail -n1 | cut -d"_" -f2)"
         URL="https://dbeaver.io/debs/dbeaver-ce/dbeaver-ce_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
     fi
     PRETTY_NAME="DBeaver"
@@ -2102,7 +2105,7 @@ function deb_rustdesk() {
     get_github_releases "https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         case "${HOST_ARCH}" in
-            amd64) URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -Ev "$(echo ${ARCHS_SUPPORTED} | tr " " "|")" | head -n1 | cut -d'"' -f4)"
+            amd64) URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -Ev "$(echo "${ARCHS_SUPPORTED}" | tr " " "|")" | head -n1 | cut -d'"' -f4)"
             ;;
             *) URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
             ;;
@@ -2226,7 +2229,7 @@ function deb_openaudible() {
     get_github_releases "https://api.github.com/repos/openaudible/openaudible/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(grep "browser_download_url.*x86_64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-        VERSION_PUBLISHED="$(echo ${URL} | cut -d'_' -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     fi
     PRETTY_NAME="OpenAudible"
     WEBSITE="https://github.com/openaudible/openaudible"
@@ -2532,11 +2535,11 @@ readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | s
 load_etc_includes
 
 # Create an array to track any duplicated conflicting / overriden deb_ functions
-readonly APP_CONFLICTS=($(echo ${DEB_GET_APPS[@]} ${INCLUDE_APPS[@]} | tr ' ' '\n' | sort | uniq --repeated))
+readonly APP_CONFLICTS=($(echo "${DEB_GET_APPS[@]}" "${INCLUDE_APPS[@]}" | tr ' ' '\n' | sort | uniq --repeated))
 
 # Remove list of APP_CONFLICTS from INCLUDE_APPS array, so each list can be handled seperately
 for DEB_FUNC in "${APP_CONFLICTS[@]}"; do
-    INCLUDE_APPS=(${INCLUDE_APPS[@]//*$DEB_FUNC*})
+    INCLUDE_APPS=("${INCLUDE_APPS[@]//*$DEB_FUNC*}")
 done
 # Conflict detection all finished
 
@@ -2553,7 +2556,7 @@ function create_cache_dir() {
 }
 
 if ((BASH_VERSINFO[0] < 4)); then
-    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
+    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename "${0}")."
 fi
 
 if ! command -v lsb_release 1>/dev/null; then
