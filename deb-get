@@ -232,7 +232,7 @@ function install_ppa() {
     if [ "$(dpkg -S "$(command -v apt-add-repository)" | cut -d':' -f1)" == "software-properties-common" ]; then
         AAR_PARAMS+=" --no-update"
     fi
-    if ${ELEVATE} apt-add-repository "${AAR_PARAMS}" "${PPA}"; then
+    if ${ELEVATE} apt-add-repository ${AAR_PARAMS} "${PPA}"; then
         update_apt
         if ! package_is_installed "${APP}"; then
             eula
