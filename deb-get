@@ -2525,6 +2525,15 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_makedeb() {
+    APT_KEY_URL="https://proget.makedeb.org/debian-feeds/makedeb.pub"
+    APT_LIST_NAME="makedeb"
+    APT_REPO_URL="deb [arch=all] https://proget.makedeb.org/ makedeb main"
+    PRETTY_NAME="makedeb"
+    WEBSITE="https://www.makedeb.org/"
+    SUMMARY="A simple to use deb packaging tool and the mpr repository, a AUR-like sister project for debian and derivatives."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
