@@ -688,6 +688,20 @@ function deb_bat() {
     SUMMARY="A 'cat' clone with wings."
 }
 
+
+function deb_du-dust() {
+    ARCHS_SUPPORTED="amd64 i386"
+    get_github_releases "https://api.github.com/repos/bootandy/dust/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="du-dust"
+    WEBSITE="https://github.com/bootandy/dust"
+    SUMMARY="du + rust = dust. Like du but more intuitive."
+}
+
+
 function deb_git-delta() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/dandavison/delta/releases/latest"
