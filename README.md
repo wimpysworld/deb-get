@@ -189,6 +189,7 @@ cog.out(pretty_list)
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.dropbox.com/) | `dropbox` | <i>Securely share, store and do more with your content.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/muesli/duf) | `duf` | <i>Disk Usage/Free Utility - a better 'df' alternative.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://juzzlin.github.io/DustRacing2D/index.html) | `dustracing2d` | <i>Dust Racing 2D is a traditional top-down car racing game including a level editor.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/vladimiry/ElectronMail) | `electron-mail` | <i>ElectronMail is an Electron-based unofficial desktop client for ProtonMail.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://element.io/) | `element-desktop` | <i>Secure and independent communication, connected via Matrix.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.enpass.io/) | `enpass` | <i>Remember one master password and let Enpass take care of the rest.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://exodus.com/) | `exodus` | <i>Bitcoin & Crypto Wallet.</i> |

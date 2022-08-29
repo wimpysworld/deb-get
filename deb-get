@@ -2525,6 +2525,18 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_electron-mail() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/vladimiry/ElectronMail/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="ElectronMail"
+    WEBSITE="https://github.com/vladimiry/ElectronMail"
+    SUMMARY="ElectronMail is an Electron-based unofficial desktop client for ProtonMail."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
