@@ -2525,6 +2525,17 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_quarto() {
+    get_github_releases "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's/v//')"
+    fi
+    PRETTY_NAME="Quarto CLI"
+    WEBSITE="https://quarto.org/"
+    SUMMARY="Quarto - an open-source scientific and technical publishing system built on Pandoc"
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
