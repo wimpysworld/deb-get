@@ -496,7 +496,7 @@ function list_repo_apps() {
 
 function list_local_apps() {
     if [ -d "${REPOS_DIR}/99-local.d" ]; then
-        for APP in $(find "${REPOS_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n" | sort); do
+        for APP in $(find "${REPOS_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n"); do
             echo "99-local/$APP"
         done
     fi
@@ -508,7 +508,7 @@ function print_etc_overrides()
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
-            local FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            local FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
             fancy_message warn "Conflict detected, duplicate declaration of package $APP, using declaration from $(echo "$FULL_APP" | cut -d / -f 1)"
             
             if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "${REPOS_DIR}/99-local.d/$APP" ]; then
@@ -2534,21 +2534,6 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
-APPS="$(list_local_apps)"
-
-APPS="$APPS
-$(list_repo_apps)"
-
-APPS="$APPS
-$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g' | sort)"
-
-APP_CONFLICTS="$(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated)"
-
-APPS="$(echo "$APPS" | sort -t / -k 2 -u)"
-LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
-APPS=($APPS)
-APP_CONFLICTS=($APP_CONFLICTS)
-
 export CACHE_DIR="/var/cache/deb-get"
 readonly REPOS_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL=""
@@ -2621,6 +2606,20 @@ else
     exit 1
 fi
 
+case "${ACTION}" in
+    update|upgrade|show|install|reinstall|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv)
+    APPS="$(list_local_apps)"
+    APPS="$APPS
+$(list_repo_apps)"
+    APPS="$APPS
+$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
+    readonly APP_CONFLICTS=($(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated))
+    APPS="$(echo "$APPS" | sort -t / -k 2 -u)"
+    readonly LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
+    APPS=($APPS)
+    ;;
+esac
+
 case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
@@ -2642,7 +2641,7 @@ case "${ACTION}" in
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs
@@ -2655,7 +2654,7 @@ case "${ACTION}" in
         elevate_privs
         create_cache_dir
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs
@@ -2691,7 +2690,7 @@ case "${ACTION}" in
     purge)
         elevate_privs
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs
@@ -2703,7 +2702,7 @@ case "${ACTION}" in
     remove)
         elevate_privs
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
+            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs
