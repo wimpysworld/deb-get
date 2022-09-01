@@ -111,6 +111,14 @@ function elevate_privs() {
     fi
 }
 
+function create_cache_dir() {
+    if [ -d /var/cache/get-deb ]; then
+        ${ELEVATE} mv /var/cache/get-deb "${CACHE_DIR}"
+    fi
+    ${ELEVATE} mkdir -p "${CACHE_DIR}" 2>/dev/null
+    ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
+}
+
 function unroll_url() {
     curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null
 }
@@ -371,7 +379,7 @@ function validate_deb() {
     if [ "$APP_SRC" = "00-builtin" ]; then
         deb_${APP} 2>/dev/null
     else
-        . "/etc/deb-get/${APP_SRC}.d/$APP" 2>/dev/null
+        . "${REPOS_DIR}/${APP_SRC}.d/$APP" 2>/dev/null
     fi
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
@@ -458,17 +466,37 @@ function upgrade_debs() {
     done
 }
 
-function list_repo_apps() {
-    for REPO in $(find /etc/deb-get/ -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
-        for APP in $(tail -n +2 "/etc/deb-get/$REPO.repo" | grep -v "^#" | sort -u); do
-            echo "$REPO/$APP"
-        done
+function init_repos() {
+    if [ ! -e "${REPOS_DIR}" ]; then
+        ${ELEVATE} mkdir "${REPOS_DIR}" 2>/dev/null
+        ${ELEVATE} chmod 755 "${REPOS_DIR}" 2>/dev/null
+    fi
+    
+    if [ ! -e "${REPOS_DIR}/01-main.repo" ]; then
+        echo "${MAIN_REPO_URL}" | ${ELEVATE} tee "${REPOS_DIR}/01-main.repo"
+    fi
+    
+    for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+        if [ ! -e "${REPOS_DIR}/${REPO}.d" ]; then
+            ${ELEVATE} mkdir "${REPOS_DIR}/${REPO}.d" 2>/dev/null
+            ${ELEVATE} chmod 755 "${REPOS_DIR}/${REPO}.d" 2>/dev/null
+        fi
     done
 }
 
+function list_repo_apps() {
+    if [ -d "${REPOS_DIR}" ]; then
+        for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+            for APP in $(tail -n +2 "${REPOS_DIR}/$REPO.repo" | grep -v "^#" | sort -u); do
+                echo "$REPO/$APP"
+            done
+        done
+    fi
+}
+
 function list_local_apps() {
-    if [ -d /etc/deb-get/99-local.d ]; then
-        for APP in $(find /etc/deb-get/99-local.d -maxdepth 1 -type f -printf "%f\n" | sort); do
+    if [ -d "${REPOS_DIR}/99-local.d" ]; then
+        for APP in $(find "${REPOS_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n" | sort); do
             echo "99-local/$APP"
         done
     fi
@@ -483,13 +511,13 @@ function print_etc_overrides()
             local FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep "/$APP$")"
             fancy_message warn "Conflict detected, duplicate declaration of package $APP, using declaration from $(echo "$FULL_APP" | cut -d / -f 1)"
             
-            if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "/etc/deb-get/99-local.d/$APP" ]; then
+            if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "${REPOS_DIR}/99-local.d/$APP" ]; then
                 let "NUM_OLDER_CONFLICTS+=1"
             fi
         done
 
         if [ $NUM_OLDER_CONFLICTS -gt 0 ]; then
-            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your /etc/deb-get/99-local.d/* folder."
+            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your ${REPOS_DIR}/99-local.d folder."
         fi
 
         for FULL_APP in "${LOCAL_APPS[@]}"; do
@@ -2522,14 +2550,8 @@ APPS=($APPS)
 APP_CONFLICTS=($APP_CONFLICTS)
 
 export CACHE_DIR="/var/cache/deb-get"
-
-function create_cache_dir() {
-    if [ -d /var/cache/get-deb ]; then
-        ${ELEVATE} mv /var/cache/get-deb "${CACHE_DIR}"
-    fi
-    ${ELEVATE} mkdir -p "${CACHE_DIR}" 2>/dev/null
-    ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
-}
+readonly REPOS_DIR="/etc/deb-get"
+readonly MAIN_REPO_URL=""
 
 if ((BASH_VERSINFO[0] < 4)); then
     fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
@@ -2695,6 +2717,7 @@ case "${ACTION}" in
     update)
         elevate_privs
         create_cache_dir
+        init_repos
         update_debs;;
     upgrade)
         elevate_privs
