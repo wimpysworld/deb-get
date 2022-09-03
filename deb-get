@@ -2577,6 +2577,7 @@ case "${OS_ID}" in
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
+  #Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling"
   *) fancy_message fatal "${OS_ID} is not supported.";;
 esac
 
@@ -2608,7 +2609,13 @@ case "${UPSTREAM_CODENAME}" in
     impish)   UPSTREAM_RELEASE="21.10";;
     jammy)    UPSTREAM_RELEASE="22.04";;
     kinetic)  UPSTREAM_RELEASE="22.10";;
-    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
+    *) 
+        if [ "$OS_ID_PRETTY" == "Kali GNU/Linux Rolling" ]; then
+            return 1
+        else
+        
+            fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release."
+        fi
 esac
 
 if [ -n "${1}" ]; then
