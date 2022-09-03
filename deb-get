@@ -1930,6 +1930,19 @@ function deb_vuescan() {
     SUMMARY="Scanner Software that supports over 6500 scanners."
 }
 
+function deb_tabby() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/Eugeny/tabby/releases/latest" 	 
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*x64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
+    fi
+    PRETTY_NAME="Tabby"
+    WEBSITE="https://tabby.sh/"
+    SUMMARY="A terminal for the more modern age."
+
+}
+
 function deb_hyper() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/vercel/hyper/releases/latest"
