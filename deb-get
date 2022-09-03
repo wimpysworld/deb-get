@@ -2577,7 +2577,7 @@ case "${OS_ID}" in
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
-  #Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling"
+  Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling";;
   *) fancy_message fatal "${OS_ID} is not supported.";;
 esac
 
