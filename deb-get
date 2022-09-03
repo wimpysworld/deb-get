@@ -2613,7 +2613,6 @@ case "${UPSTREAM_CODENAME}" in
         if [ "$OS_ID_PRETTY" == "Kali GNU/Linux Rolling" ]; then
             return 1
         else
-        
             fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release."
         fi
 esac
