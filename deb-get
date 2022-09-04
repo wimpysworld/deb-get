@@ -2525,6 +2525,17 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_superproductivity() {
+    get_github_releases "https://api.github.com/repos/johannesjo/super-productivity/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="Super Productivity"
+    WEBSITE="https://super-productivity.com/"
+    SUMMARY="Advanced todo list with integrated Timeboxing and time tracking capabilities."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
