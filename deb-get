@@ -74,24 +74,10 @@ version
 HELP
 }
 
-# https://github.com/wimpysworld/deb-get/issues/126
-## BEGIN package_is_installed {
-# Summary  : package_is_installed <package-name>;
-# Purpose  : Quickly check if a package is installed
-# Example  : package_is_installed kfocus-nvidia;
-# Returns  : 0 = package installed; 1 = not installed
-# Throws   : none
-#
-package_is_installed() {
-  declare _pkg_name _status_str;
-  _pkg_name="${1:-}";
-  _status_str="$( 2>&1 \
-    dpkg-query -f '${db:Status-abbrev}' -W "${_pkg_name}"
-  )";
-  if grep -qE '^.i ' <<< "${_status_str}"; then return 0; fi
-  return 1;
+function package_is_installed() {
+    if [[ " ${INSTALLED_APPS[*]} " =~ " ${1} " ]]; then return 0; fi
+    return 1;
 }
-## . END package_is_installed }
 
 function elevate_privs() {
     if [ "$(id -ru)" -eq 0 ]; then
@@ -391,12 +377,10 @@ function validate_deb() {
 
 function list_debs() {
     local PAD='                              '
-    local STATUS=""
     for FULL_APP in "${APPS[@]}"; do
         local APP="$(echo "$FULL_APP" | cut -d / -f 2)"
         if package_is_installed "${APP}"; then
-            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f4- )"
-            printf "%s %s [ ${STATUS} ]\n" "${APP}" "${PAD:${#APP}}"
+            printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
         else
             echo "${APP}"
         fi
@@ -435,15 +419,12 @@ function csvlist_debs() {
 function update_debs() {
     local STATUS=""
     update_apt
-    for FULL_APP in "${APPS[@]}"; do
-        # Only download .debs that are installed
-        if package_is_installed "$(echo "$FULL_APP" | cut -d / -f 2)"; then
-            validate_deb "${FULL_APP}"
-            if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-                STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-                if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
-                    fancy_message info "${APP} (${VERSION_INSTALLED}) has an update pending. ${VERSION_PUBLISHED} is available."
-                fi
+    for APP in "${INSTALLED_APPS[@]}"; do
+        validate_deb "$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/${APP}$")"
+        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+            if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
+                fancy_message info "${APP} (${VERSION_INSTALLED}) has an update pending. ${VERSION_PUBLISHED} is available."
             fi
         fi
     done
@@ -452,15 +433,12 @@ function update_debs() {
 function upgrade_debs() {
     local STATUS=""
     upgrade_apt
-    for FULL_APP in "${APPS[@]}"; do
-        # Only upgrade .debs that are installed
-        if package_is_installed "$(echo "$FULL_APP" | cut -d / -f 2)"; then
-            validate_deb "${FULL_APP}"
-            if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-                STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-                if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
-                    install_deb "${URL}"
-                fi
+    for APP in "${INSTALLED_APPS[@]}"; do
+        validate_deb "$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/${APP}$")"
+        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+            if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
+                install_deb "${URL}"
             fi
         fi
     done
@@ -2616,6 +2594,7 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     readonly APP_CONFLICTS=($(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated))
     APPS="$(echo "$APPS" | sort -t / -k 2 -u)"
     readonly LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
+    readonly INSTALLED_APPS=($(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(echo "$APPS" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2))
     APPS=($APPS)
     ;;
 esac
