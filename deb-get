@@ -2577,7 +2577,7 @@ case "${OS_ID}" in
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
-  Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling";;
+  Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling";;# add Kali support
   *) fancy_message fatal "${OS_ID} is not supported.";;
 esac
 
@@ -2596,6 +2596,12 @@ if [ -e /etc/os-release ]; then
         debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
         *) UPSTREAM_CODENAME="";;
     esac
+
+    # Set UPSTREAM_CODENAME to focal OS_ID_PRETTY is Kali GNU/Linux Rolling
+    # To emulate a Debian derived release
+    if [ "${OS_ID_PRETTY}" == "Kali GNU/Linux Rolling" ]; then
+        UPSTREAM_CODENAME="focal"
+    fi
 else
     fancy_message fatal "/etc/os-release not found. Quitting"
 fi
@@ -2609,12 +2615,7 @@ case "${UPSTREAM_CODENAME}" in
     impish)   UPSTREAM_RELEASE="21.10";;
     jammy)    UPSTREAM_RELEASE="22.04";;
     kinetic)  UPSTREAM_RELEASE="22.10";;
-    *) 
-        if [ "$OS_ID_PRETTY" == "Kali GNU/Linux Rolling" ]; then
-            return 1
-        else
-            fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release."
-        fi
+    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 
 if [ -n "${1}" ]; then
