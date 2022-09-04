@@ -2525,6 +2525,15 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_google-cloud-cli() {
+    GPG_KEY_URL="https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    APT_LIST_NAME="google-cloud-cli"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+    PRETTY_NAME="Google Cloud SDK"
+    WEBSITE="https://cloud.google.com/sdk"
+    SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 

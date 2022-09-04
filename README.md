@@ -208,6 +208,7 @@ cog.out(pretty_list)
 | [<img src=".github/direct.png" align="top" width="20" />](https://gitter.im/) | `gitter` | <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/chrome/) | `google-chrome-stable` | <i>Fast, Secure Browser from Google.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://cloud.google.com/sdk/gcloud) | `google-cloud-cli` | <i>The Google Cloud CLI is a set of tools to create and manage Google Cloud resources.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/earth/versions/) | `google-earth-pro-stable` | <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/arunsivaramanneo/GPU-Viewer) | `gpu-viewer` | <i>A front-end to glxinfo, vulkaninfo, clinfo and es2_info.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/anchore/grype) | `grype` | <i>A vulnerability scanner for container images and filesystems.</i> |
