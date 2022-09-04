@@ -325,6 +325,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://waydro.id/) | `waydroid` | <i>A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.webex.com/) | `webex` | <i>Video Conferencing, Cloud Calling and Screen Sharing.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://weechat.org/) | `weechat` | <i>The extensible chat client.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/H-M-H/Weylus) | `weylus` | <i>Turn your tablet or smart phone into a graphic tablet/touch screen for your computer.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://whalebird.social/) | `whalebird` | <i>A Mastodon, Pleroma, and Misskey client for desktop application.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/eneshecan/whatsapp-for-linux) | `whatsapp-for-linux` | <i>An unofficial WhatsApp desktop application for Linux.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wire.com/) | `wire-desktop` | <i>Secure collaboration platform.</i> |
