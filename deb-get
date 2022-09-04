@@ -2525,6 +2525,19 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_neovim() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/neovim/neovim/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*nvim-linux64\.deb[^.]" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Neovim"
+    WEBSITE="https://neovim.io/"
+    SUMMARY="Hyperextensible Vim-based text editor"
+}
+
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
