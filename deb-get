@@ -2617,6 +2617,21 @@ function deb_google-cloud-cli() {
     SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
 }
 
+function deb_cronopete() {
+    case ${UPSTREAM_ID} in
+        ubuntu) ARCHS_SUPPORTED="amd64";;
+        debian) ARCHS_SUPPORTED="amd64 i386";;
+    esac    
+    CODENAMES_SUPPORTED="sid bullseye impish jammy focal"
+    WEBSITE="https://www.rastersoft.com/programas/cronopete.html"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s $WEBSITE | grep "Current version" | cut -d ' ' -f3)"
+    fi
+    URL="https://www.rastersoft.com/descargas/cronopete/cronopete-${UPSTREAM_CODENAME}_${VERSION_PUBLISHED}-${UPSTREAM_ID}1_${HOST_ARCH}.deb"
+    PRETTY_NAME="Cronopete"
+    SUMMARY="A backup utility for Linux, modeled after Apple's Time Machine."
+}   
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
