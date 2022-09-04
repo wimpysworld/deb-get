@@ -2617,6 +2617,17 @@ function deb_google-cloud-cli() {
     SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
 }
 
+function deb_usbimager() {
+    ARCHS_SUPPORTED="amd64 armhf"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(basename "$(unroll_url https://gitlab.com/bztsrc/usbimager/-/releases/permalink/latest)")"
+        URL="https://gitlab.com/bztsrc/usbimager/-/raw/binaries/usbimager_${VERSION_PUBLISHED}-${HOST_ARCH}.deb"
+    fi
+    PRETTY_NAME="USBImager"
+    WEBSITE="https://bztsrc.gitlab.io/usbimager/"
+    SUMMARY="A very minimal GUI app to write compressed images to USB sticks and create backups."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
