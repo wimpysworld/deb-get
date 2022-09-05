@@ -2617,6 +2617,21 @@ function deb_google-cloud-cli() {
     SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
 }
 
+function deb_urserver() {
+    ARCHS_SUPPORTED="amd64 i386 armel"
+    if [ "${ACTION}" != "prettylist" ]; then
+        case ${HOST_ARCH} in
+            amd64) URL=$(unroll_url "https://www.unifiedremote.com/download/linux-x64-deb") ;;
+            i386) URL=$(unroll_url "https://www.unifiedremote.com/download/linux-x86-deb") ;;
+            armel) URL=$(unroll_url "https://www.unifiedremote.com/download/rpi-deb") ;;
+        esac    
+        VERSION_PUBLISHED=$(basename ${URL} .deb | cut -d '-' -f2)
+    fi
+    PRETTY_NAME="Unified Remote Server"
+    WEBSITE="https://www.unifiedremote.com/"
+    SUMMARY="Turn your smartphone into a universal remote control."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
