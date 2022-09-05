@@ -60,7 +60,7 @@ cog.out(f"```\n{help}\n```")
 ```
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist [repo] | csvlist [repo] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -97,10 +97,10 @@ list
     list the packages available via deb-get.
 
 prettylist
-    markdown formatted list the packages available via deb-get. Use this to update README.md
+    markdown formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this to update README.md
 
 csvlist
-    csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+    csv formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this with 3rd party wrappers.
 
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
@@ -134,7 +134,7 @@ since 2015.
 
 ## Supported Software
 
-The software below can be installed, updated and removed using `deb-get`.
+The software below can be installed, updated and removed using `deb-get`'s main repository.
 
 - `deb-get install <packagename>`
 - `deb-get update`
@@ -143,7 +143,7 @@ The software below can be installed, updated and removed using `deb-get`.
 - `deb-get purge <packagename>`
 
 <!-- [[[cog
-pretty_list = subprocess.check_output(["./deb-get", "prettylist"], encoding="utf-8")
+pretty_list = subprocess.check_output(["./deb-get", "prettylist", "01-main"], encoding="utf-8")
 cog.out(pretty_list)
 ]]] -->
 | Source   | Package Name   | Description   |
@@ -354,7 +354,7 @@ The icons above denote how `deb-get` installs/updates the packages.
 If packages are available via a 3rd party `apt` repository
 <img src=".github/debian.png" align="top" width="20" /> or a Launchpad PPA
 <img src=".github/launchpad.png" align="top" width="20" />, then those packages
-will be updated/upgraded when using `apt-get update` and `apt-get upgrade`.
+will be updated/upgraded when using `sudo apt-get update` and `sudo apt-get upgrade`.
 
 #### GitHub Releases and direct downloads
 
@@ -384,29 +384,45 @@ deb-get upgrade
 
 ## Adding Software
 
-For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package, head to [CONTRIBUTING](CONTRIBUTING.md).
+For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package to the main repository, head to [CONTRIBUTING](CONTRIBUTING.md).
 
-### Custom User Includes `/etc/deb-get/99-local.d/`
+### Adding external repositories
 
-As a more advanced feature, it's now possible to also add your own local customizations or overrides. And supplement the supplied list of official packages. This feature is especially useful to that your local copy of the `deb-get` tool can remain unmodified and always be kept fully up to date. By moving your customizations out in a seperate folder away from the main `deb-get` script.
+It is possible to also add a `deb-get`-compatible external repository, and supplement the list of supported packages, typically because you need to:
 
-Typically either because:
+1. Add something which does not meet any of the general guidelines of the main repository; or
+2. Change the definition of a package from the main repository.
 
-1. You are waiting on a pending request for a new software package. Which has been submitted for consideration. But which has not been reviewed / accepted / merged / released yet.
-2. Or because you need to add something which does not meet any of the general guidelines in the previous section ^^ detailed above, for whatever various reason(s).
+For information on how to create and maintain a `deb-get`-compatible external repository, head to [EXTREPO](EXTREPO.md).
 
 How to use:
 
-* Manually create the folder `/etc/deb-get/99-local.d/` if not exist already. By default `deb-get` does not create this folder unless your specific distribution has packaged it that way.
-* Can also create any arbitrary nested sub-folder structure within `/etc/deb-get/99-local.d/**/*` main folder
-* Any files within this tree will be bash sourced in alphabetical order e.g. `. /etc/deb-get/99-local.d/01-pending-merge/10-appname1`
-* Your user custom `deb_*` functions are then loaded directly after the last `deb_*()` package declarations that officially come with `deb-get`
-* Recommendation message printed for any new user added deb_* functions. With a URL link to open a request.
-* Warning messages are then also printed for any conflicts detected. For overriden functions (of same name), which then take priority over existing official deb-get apps.
+* Manually create the file `/etc/deb-get/<priority>-<repo>.repo`, containing in its first line the base URL of the repository.
+    * The `<priority>` value is a two-digit number between 00 and 99 that defines the order in which the repositories will be loaded (00 first, 99 last), so if any conflicting definitions are found, the one from the repository with the highest priority will be used (the builtin definitions from the `deb-get` script itself have priority 00, the main repository has priority 01 and the custom user includes have priority 99).
+    * The `<repo>` value can be anything, but it should preferably be unique and easy to remember.
+* Run `deb-get update`, so the manifest file and the package definition files are downloaded.
 
-For the last situation, this is most often meant as a helpful reminder to remove your custom declaration once it has been successfully merged upstream into the official `deb-get` tool. So after `deb-get` updates itself you are properly notified. And can avoid keeping lots of duplite functions around.
+### Custom User Includes
 
-We really hope that you will enjoy the convenience and flexibility of the new user overrides feature. So please consider in return to open new issues or pull requests (here on github), for any new `deb_*()` functions / packages you create! So that we can share those back with the wider community. Many thanks for your consideration!
+As a more advanced feature, it is possible to also add your own local customizations or overrides, and supplement the list of packages supported by the main repository. This feature is especially useful so that your local copy of the main repository can remain unmodified and always be kept fully up to date by moving your customizations out in a seperate folder away from the main repository.
+
+Typically because:
+
+1. You are waiting on a pending request for a new software package, which has been submitted for consideration but has not been reviewed / accepted / merged / released yet; or
+2. You need to add something which does not meet any of the general guidelines of the main repository, for whatever various reason(s).
+
+How to use:
+
+* Manually create the folder `/etc/deb-get/99-local.d/` if it does not exist already. By default, `deb-get` does not create this folder unless your specific distribution has packaged it that way.
+* Any files directly within this folder will be bash sourced e.g. `. /etc/deb-get/99-local.d/appname1`.
+* The name of the added file **must** match **exactly** the name of the package being defined.
+* Your user custom package definition files are then loaded after the package definitions from any added repository
+* A recommendation message is printed for any new user added definitions, with a URL link to open a request.
+* Warning messages are then also printed for any conflicts detected for overriden definitions (of same name), which then take priority over existing ones.
+
+For the last situation, this is most often meant as a helpful reminder to remove your custom definition once it has been successfully merged upstream into the main repository, so after the main repository updates itself you are properly notified. It also avoids keeping lots of duplicate definitions around.
+
+We really hope that you will enjoy the convenience and flexibility of the user overrides feature, so please consider in return to open new issues and pull requests, for any new package definitions you create, so that we can share those back with the wider community. Many thanks for your consideration!
 
 ## Related projects
 
