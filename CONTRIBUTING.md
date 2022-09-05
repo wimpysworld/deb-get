@@ -16,7 +16,7 @@ If you found a package that fits the criteria above, have checked that it does n
 
 **Before submitting a PR, do not forget to [update README.md](#updating-readmemd)**.
 
-Create a package definition file named `<the-package-name>` in the `packages` folder in the main repository, where `<the-package-name>` is the `Package:` name shown using `apt show`. Then add `<the-package-name>` to the `manifest` file.
+Create a package definition file named `<the-package-name>` in the `packages` folder in the main repository, where `<the-package-name>` is the `Package:` name shown using `apt show`. Then add `<the-package-name>` to the `manifest` file. **For information on how to create and maintain a `deb-get`-compatible external repository, head to [EXTREPO](EXTREPO.md)**.
 
 The variables defined in the package definition file are the following:
 * `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`.
