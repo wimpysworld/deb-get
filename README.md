@@ -181,6 +181,7 @@ cog.out(pretty_list)
 | [<img src=".github/direct.png" align="top" width="20" />](https://dbeaver.io/) | `dbeaver-ce` | <i>Database GUI Client</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://deadbeef.sourceforge.io/) | `deadbeef` | <i>The ultimate music player</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/wimpysworld/deb-get) | `deb-get` | <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/ymauray/deborah/) | `deborah` | <i>A Flutter front-end for deb-get.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://delta.chat/) | `deltachat-desktop` | <i>Email-based instant messaging for Desktop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://discord.com/) | `discord` | <i>A place that makes it easy to talk every day and hang out more often.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.docker.com/) | `docker-ce` | <i>Open source containerization technology for building and containerizing your applications.</i> |
@@ -209,12 +210,13 @@ cog.out(pretty_list)
 | [<img src=".github/direct.png" align="top" width="20" />](https://gitter.im/) | `gitter` | <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/chrome/) | `google-chrome-stable` | <i>Fast, Secure Browser from Google.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://cloud.google.com/sdk/gcloud) | `google-cloud-cli` | <i>The Google Cloud CLI is a set of tools to create and manage Google Cloud resources.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://cloud.google.com/sdk) | `google-cloud-cli` | <i>The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/earth/versions/) | `google-earth-pro-stable` | <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/arunsivaramanneo/GPU-Viewer) | `gpu-viewer` | <i>A front-end to glxinfo, vulkaninfo, clinfo and es2_info.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/anchore/grype) | `grype` | <i>A vulnerability scanner for container images and filesystems.</i> |
-| [<img src=".github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://headsetapp.co/) | `headset` | <i>A desktop music player powered by YouTube and Reddit.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://helio.fm/) | `helio-workstation` | <i>libre music composition software</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://gohugo.io/) | `hugo` | <i>Open-source static site generator.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://hyper.is/) | `hyper` | <i>A terminal built on web technologies.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/igdmapps/igdm) | `igdm` | <i>Continue your Instagram direct messages from your phone to your desktop.</i> |
@@ -312,7 +314,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hakandundar34coding/system-monitoring-center) | `system-monitoring-center` | <i>Multi-featured system monitor.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://tailscale.com/) | `tailscale` | <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.microsoft.com/microsoft-teams/group-chat-software) | `teams` | <i>Team chat and collaboration.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://github.com/IsmaelMartinez/teams-for-linux) | `teams-for-linux` | <i>unofficial Microsoft Teams for LInux</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/IsmaelMartinez/teams-for-linux) | `teams-for-linux` | <i>unofficial Microsoft Teams for LInux</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.teamviewer.com/) | `teamviewer` | <i>The Remote Desktop Software.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://github.com/influxdata/telegraf) | `telegraf` | <i>The plugin-driven server agent for collecting & reporting metrics.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.terraform.io/) | `terraform` | <i>Automate Infrastructure on Any Cloud.</i> |
