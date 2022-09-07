@@ -20,7 +20,9 @@ cat <<HELP
 Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist [repo] | csvlist [repo] | help | version}
+        | purge pkg | search pkg | cache | clean
+        | list [--raw|--installed|--not-installed] | prettylist [repo]
+        | csvlist [repo] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -30,7 +32,8 @@ update
     update is used to resynchronize the package index files from their sources.
 
 upgrade
-    upgrade is used to install the newest versions of all packages currently installed on the system.
+    upgrade is used to install the newest versions of all packages currently
+    installed on the system.
 
 install
     install is followed by one package desired for installation or upgrading.
@@ -39,37 +42,51 @@ reinstall
     reinstall is followed by one package desired for reinstallation.
 
 remove
-    remove is identical to install except that packages are removed instead of installed.
+    remove is identical to install except that packages are removed instead of
+    installed.
 
 purge
-    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+    purge is identical to remove except that packages are removed and purged
+    (any configuration files are deleted too).
 
 clean
-    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+    clean clears out the local repository (/var/cache/deb-get) of retrieved
+    package files.
 
 search
-    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+    search for the given regex(7) term(s) from the list of available packages
+    supported by deb-get and display matches.
 
 show
-    show information about the given package including its install source and update mechanism.
+    show information about the given package including its install source and
+    update mechanism.
 
 list
-    list the packages available via deb-get.
+    list the packages available via deb-get. When no option is provided, list
+    all packages and tell which ones are installed (slower). When --raw is
+    provided, list all packages and do not tell which ones are installed
+    (faster). When --installed is provided, only list the packages installed
+    (faster). When --not-installed is provided, only list the packages not
+    installed (faster).
 
 prettylist
-    markdown formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this to update README.md
+    markdown formatted list the packages available in repo. repo defaults to
+    01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are
+    included. Use this to update README.md.
 
 csvlist
-    csv formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this with 3rd party wrappers.
+    csv formatted list the packages available in repo. repo defaults to
+    01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are
+    included. Use this with 3rd party wrappers.
 
 cache
-    list the contents of the deb-get cache (/var/cache/deb-get)
+    list the contents of the deb-get cache (/var/cache/deb-get).
 
 help
-    show this help
+    show this help.
 
 version
-    show deb-get version
+    show deb-get version.
 
 HELP
 }
@@ -376,15 +393,38 @@ function validate_deb() {
 }
 
 function list_debs() {
-    local PAD='                              '
-    for FULL_APP in "${APPS[@]}"; do
-        local APP="$(echo "$FULL_APP" | cut -d / -f 2)"
-        if package_is_installed "${APP}"; then
-            printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
-        else
-            echo "${APP}"
-        fi
-    done
+    if [ "${1}" = --raw ]; then
+        local OLD_IFS="$IFS"
+        IFS=$'\n'
+        echo "${APPS[*]}" | cut -d / -f 2
+        IFS="$OLD_IFS"
+    elif [ "${1}" = --installed ]; then
+        local OLD_IFS="$IFS"
+        IFS=$'\n'
+        echo "${INSTALLED_APPS[*]}"
+        IFS="$OLD_IFS"
+    elif [ "${1}" = --not-installed ]; then
+        local NOT_INSTALLED_APPS=($(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2))
+        
+        for APP in ${INSTALLED_APPS[@]}; do
+            NOT_INSTALLED_APPS=(${NOT_INSTALLED_APPS[@]/$APP})
+        done
+        
+        local OLD_IFS="$IFS"
+        IFS=$'\n'
+        echo "${NOT_INSTALLED_APPS[*]}"
+        IFS="$OLD_IFS"
+    else
+        local PAD='                              '
+        for FULL_APP in "${APPS[@]}"; do
+            local APP="$(echo "$FULL_APP" | cut -d / -f 2)"
+            if package_is_installed "${APP}"; then
+                printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
+            else
+                echo "${APP}"
+            fi
+        done
+    fi
 }
 
 function prettylist_debs() {
@@ -420,7 +460,7 @@ function update_debs() {
     local STATUS=""
     update_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/${APP}$")"
+        validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
@@ -434,7 +474,7 @@ function upgrade_debs() {
     local STATUS=""
     upgrade_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/${APP}$")"
+        validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
@@ -514,7 +554,7 @@ function print_etc_overrides()
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
-            local FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
+            local FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             fancy_message warn "Conflict detected, duplicate declaration of package $APP, using declaration from $(echo "$FULL_APP" | cut -d / -f 1)"
             
             if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "${REPOS_DIR}/99-local.d/$APP" ]; then
@@ -2631,7 +2671,7 @@ case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
-            list_debs
+            list_debs --raw
             exit 1
         fi
         print_etc_overrides;;
@@ -2648,10 +2688,10 @@ case "${ACTION}" in
         ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs
+                list_debs --raw
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -2661,10 +2701,10 @@ case "${ACTION}" in
         elevate_privs
         create_cache_dir
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs
+                list_debs --raw
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -2687,7 +2727,7 @@ case "${ACTION}" in
             esac
         done;;
     list)
-        list_debs;;
+        list_debs "${1}";;
     pretty_list|prettylist)
         ACTION="prettylist"
         prettylist_debs "${1}";;
@@ -2697,10 +2737,10 @@ case "${ACTION}" in
     purge)
         elevate_privs
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs
+                list_debs --raw
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -2709,17 +2749,17 @@ case "${ACTION}" in
     remove)
         elevate_privs
         for APP in "${@,,}"; do
-            FULL_APP="$(echo "${APPS[@]}" | tr " " "\n" | grep -m 1 "/$APP$")"
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs
+                list_debs --raw
                 exit 1
             fi
             validate_deb "${FULL_APP}"
             remove_deb "${APP}"
         done;;
     search)
-        list_debs | grep "${1}";;
+        list_debs --raw | grep "${1}";;
     update)
         elevate_privs
         create_cache_dir
