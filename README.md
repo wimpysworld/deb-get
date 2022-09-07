@@ -60,7 +60,9 @@ cog.out(f"```\n{help}\n```")
 ```
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist [repo] | csvlist [repo] | help | version}
+        | purge pkg | search pkg | cache | clean
+        | list [--raw|--installed|--not-installed] | prettylist [repo]
+        | csvlist [repo] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -70,7 +72,8 @@ update
     update is used to resynchronize the package index files from their sources.
 
 upgrade
-    upgrade is used to install the newest versions of all packages currently installed on the system.
+    upgrade is used to install the newest versions of all packages currently
+    installed on the system.
 
 install
     install is followed by one package desired for installation or upgrading.
@@ -79,37 +82,51 @@ reinstall
     reinstall is followed by one package desired for reinstallation.
 
 remove
-    remove is identical to install except that packages are removed instead of installed.
+    remove is identical to install except that packages are removed instead of
+    installed.
 
 purge
-    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+    purge is identical to remove except that packages are removed and purged
+    (any configuration files are deleted too).
 
 clean
-    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+    clean clears out the local repository (/var/cache/deb-get) of retrieved
+    package files.
 
 search
-    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+    search for the given regex(7) term(s) from the list of available packages
+    supported by deb-get and display matches.
 
 show
-    show information about the given package including its install source and update mechanism.
+    show information about the given package including its install source and
+    update mechanism.
 
 list
-    list the packages available via deb-get.
+    list the packages available via deb-get. When no option is provided, list
+    all packages and tell which ones are installed (slower). When --raw is
+    provided, list all packages and do not tell which ones are installed
+    (faster). When --installed is provided, only list the packages installed
+    (faster). When --not-installed is provided, only list the packages not
+    installed (faster).
 
 prettylist
-    markdown formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this to update README.md
+    markdown formatted list the packages available in repo. repo defaults to
+    01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are
+    included. Use this to update README.md.
 
 csvlist
-    csv formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this with 3rd party wrappers.
+    csv formatted list the packages available in repo. repo defaults to
+    01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are
+    included. Use this with 3rd party wrappers.
 
 cache
-    list the contents of the deb-get cache (/var/cache/deb-get)
+    list the contents of the deb-get cache (/var/cache/deb-get).
 
 help
-    show this help
+    show this help.
 
 version
-    show deb-get version
+    show deb-get version.
 ```
 <!-- [[[end]]] -->
 
