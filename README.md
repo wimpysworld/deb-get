@@ -416,7 +416,7 @@ How to use:
 * Manually create the folder `/etc/deb-get/99-local.d/` if it does not exist already. By default, `deb-get` does not create this folder unless your specific distribution has packaged it that way.
 * Any files directly within this folder will be bash sourced e.g. `. /etc/deb-get/99-local.d/appname1`.
 * The name of the added file **must** match **exactly** the name of the package being defined.
-* For information on how to create a package definition file, head to [CONTRIBUTING](CONTRIBUTING.md#creating-the-package-definition-file).
+* For information on how to create a package definition file, head to [EXTREPO](EXTREPO.md#the-package-definition-files).
 * Your user custom package definition files are then loaded after the package definitions from any added repository.
 * A recommendation message is printed for any new user added definitions, with a URL link to open a request.
 * Warning messages are then also printed for any conflicts detected for overriden definitions (of same name), which then take priority over existing ones.
