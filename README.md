@@ -266,6 +266,7 @@ cog.out(pretty_list)
 | [<img src=".github/direct.png" align="top" width="20" />](https://openrgb.org/) | `openrgb` | <i>Open source RGB lighting control that doesn't depend on manufacturer software.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.opera.com/) | `opera-stable` | <i>Faster, safer and smarter than default browsers.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.corifeus.com/onenote) | `p3x-onenote` | <i>A Linux compatible version of OneNote.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.packer.io/) | `packer` | <i>Tool for creating identical machine images for multiple platforms.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://pandoc.org/) | `pandoc` | <i>A universal document converter.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) | `papirus-icon-theme` | <i>A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://parsec.app/) | `parsec` | <i>Simple, low-latency game streaming.</i> |
