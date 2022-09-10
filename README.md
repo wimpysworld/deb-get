@@ -295,6 +295,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.skype.com/) | `skypeforlinux` | <i>Stay connected with free video calls worldwide.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://slack.com/) | `slack-desktop` | <i>One platform for your team and your work.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ransome1/sleek) | `sleek` | <i>Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS).</i> |
+| [<img src=".github/direct.png" align="top" width="20" />](https://www.syntevo.com/) | `smartgit` | <i>A graphical Git client with support for pull requests for GitHub and Bitbucket.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://soundux.rocks) | `soundux` | <i>Soundux is a cross-platform soundboard compatible with both Pulseaudio and Pipewire. It has a universal architecture and works with a variety of applications such as Discord, Steam, and more.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
