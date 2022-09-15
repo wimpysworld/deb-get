@@ -309,6 +309,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hakandundar34coding/system-monitoring-center) | `system-monitoring-center` | <i>Multi-featured system monitor.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://tailscale.com/) | `tailscale` | <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.microsoft.com/microsoft-teams/group-chat-software) | `teams` | <i>Team chat and collaboration.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://github.com/IsmaelMartinez/teams-for-linux) | `teams-for-linux` | <i>unofficial Microsoft Teams for LInux</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.teamviewer.com/) | `teamviewer` | <i>The Remote Desktop Software.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://github.com/influxdata/telegraf) | `telegraf` | <i>The plugin-driven server agent for collecting & reporting metrics.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.terraform.io/) | `terraform` | <i>Automate Infrastructure on Any Cloud.</i> |
