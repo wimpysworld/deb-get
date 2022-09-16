@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+function _deb-get() {
+    if [ "${COMP_CWORD}" = 1 ]; then
+        COMPREPLY=($(compgen -W "update upgrade show install reinstall remove purge search cache clean list pretty_list prettylist csv_list csvlist csv help version" "${COMP_WORDS[1]}"))
+    elif [ "${COMP_CWORD}" -ge 2 ]; then
+        local command="${COMP_WORDS[1]}"
+        
+        if [ "${command}" = show ] || ([ "${COMP_CWORD}" = 2 ] && [ "${command}" = search ]); then
+            COMPREPLY=($(compgen -W "$(deb-get list --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+        elif [ "${command}" = install ]; then
+            COMPREPLY=($(compgen -W "$(deb-get list --not-installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+        elif [[ " reinstall remove purge " =~ " ${command} " ]]; then
+            COMPREPLY=($(compgen -W "$(deb-get list --installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+        elif [ "${COMP_CWORD}" = 2 ] && [ "${command}" = list ]; then
+            COMPREPLY=($(compgen -W "--raw --installed --not-installed" "\\${COMP_WORDS[2]}"))
+        elif [ "${COMP_CWORD}" = 2 ] && [[ " pretty_list prettylist csv_list csvlist csv " =~ " ${command} " ]]; then
+            COMPREPLY=($(compgen -W "$(find "/etc/deb-get" -maxdepth 1 \( -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f \) -o \( -name 99-local.d -type d \) -printf "%f\n" 2> /dev/null | sed "s/.repo$//; s/.d$//" | tr "\n" " ") 00-builtin 01-main" "${COMP_WORDS[2]}"))
+        fi
+    fi
+}
+
+complete -F _deb-get deb-get
