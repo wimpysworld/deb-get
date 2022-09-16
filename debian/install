@@ -1,1 +1,2 @@
 deb-get usr/bin
+deb-get_completion etc/bash_completion.d
