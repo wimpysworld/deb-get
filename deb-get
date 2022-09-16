@@ -743,6 +743,20 @@ function deb_bat() {
     SUMMARY="A 'cat' clone with wings."
 }
 
+
+function deb_du-dust() {
+    ARCHS_SUPPORTED="amd64 i386"
+    get_github_releases "https://api.github.com/repos/bootandy/dust/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="du-dust"
+    WEBSITE="https://github.com/bootandy/dust"
+    SUMMARY="du + rust = dust. Like du but more intuitive."
+}
+
+
 function deb_git-delta() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/dandavison/delta/releases/latest"
@@ -1616,7 +1630,7 @@ function deb_webex() {
 
 function deb_deadbeef() {
     if [ "${ACTION}" != "prettylist" ]; then
-        local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep "amd64\.deb\"" | cut -d'"' -f2)"
+        local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep "amd64\.deb" | cut -d'"' -f2)"
         URL=$(unroll_url "${REDIR_URL}")
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     fi
@@ -2580,6 +2594,18 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_neovim() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/neovim/neovim/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*nvim-linux64\.deb[^.]" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Neovim"
+    WEBSITE="https://neovim.io/"
+    SUMMARY="Hyperextensible Vim-based text editor"
+}
+
 export CACHE_DIR="/var/cache/deb-get"
 readonly REPOS_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL=""
@@ -2624,7 +2650,12 @@ if [ -e /etc/os-release ]; then
 
     case "${UPSTREAM_ID}" in
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
-        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
+        debian)
+            UPSTREAM_CODENAME=$(grep DEBIAN_CODENAME /etc/os-release | cut -d'=' -f2)
+            if [ -z "${UPSTREAM_CODENAME}" ]; then
+                UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2)
+            fi
+        ;;
         *) UPSTREAM_CODENAME="";;
     esac
 else
