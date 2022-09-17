@@ -664,6 +664,16 @@ function deb_github-desktop() {
     SUMMARY="Simple collaboration from your desktop."
 }
 
+function deb_helio-workstation() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s -f -L https://helio.fm |grep -o "https://..*\.deb"|grep -v dev)"
+        VERSION_PUBLISHED="$(echo "${URL}" |cut -d '-' -f2)"
+    fi
+    PRETTY_NAME="Helio Project"
+    WEBSITE="https://helio.fm/"
+    SUMMARY="libre music composition software"
+}
+
 function deb_lsd() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Peltoche/lsd/releases/latest"
