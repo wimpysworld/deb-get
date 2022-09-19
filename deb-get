@@ -1409,6 +1409,17 @@ function deb_onlyoffice-desktopeditors() {
     SUMMARY="Free desktop office suite for document editing and collaboration."
 }
 
+function deb_pomatez() {
+    get_github_releases "https://api.github.com/repos/roldanjr/pomatez/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2|tr -d 'v')"
+    fi
+    PRETTY_NAME="Pomatez"
+    WEBSITE="https://roldanjr.github.io/pomatez/"
+    SUMMARY="A pomodoro timer"
+}
+
 function deb_powershell() {
     get_github_releases "https://api.github.com/repos/PowerShell/PowerShell/releases"
     if [ "${ACTION}" != "prettylist" ]; then
