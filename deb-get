@@ -19,8 +19,8 @@ cat <<HELP
 
 Usage
 
-deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean
+deb-get {update [--repos-only] | upgrade | show pkg | install pkg
+        | reinstall pkg | remove pkg | purge pkg | search pkg | cache | clean
         | list [--raw|--installed|--not-installed] | prettylist [repo]
         | csvlist [repo] | help | version}
 
@@ -30,6 +30,9 @@ repositories or via direct download.
 
 update
     update is used to resynchronize the package index files from their sources.
+    When --repos-only is provided, only initialize and update deb-get's
+    external repositories, without updating apt or looking for updates of
+    installed packages.
 
 upgrade
     upgrade is used to install the newest versions of all packages currently
@@ -2843,6 +2846,9 @@ case "${ACTION}" in
             esac
         done;;
     list)
+        if [ -n "${1}" ] && [[ ! " --raw --installed --not-installed " =~ " ${1} " ]]; then
+            fancy_message fatal "Unknown option supplied: ${1}"
+        fi
         list_debs "${1}";;
     pretty_list|prettylist)
         ACTION="prettylist"
@@ -2877,11 +2883,16 @@ case "${ACTION}" in
     search)
         list_debs --raw | grep "${1}";;
     update)
+        if [ -n "${1}" ] && [ "${1}" != --repos-only ]; then
+            fancy_message fatal "Unknown option supplied: ${1}"
+        fi
         elevate_privs
         create_cache_dir
         init_repos
         update_repos
-        update_debs;;
+        if [ "${1}" != --repos-only ]; then
+            update_debs
+        fi;;
     upgrade)
         elevate_privs
         create_cache_dir

@@ -59,8 +59,8 @@ cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
 
-deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean
+deb-get {update [--repos-only] | upgrade | show pkg | install pkg
+        | reinstall pkg | remove pkg | purge pkg | search pkg | cache | clean
         | list [--raw|--installed|--not-installed] | prettylist [repo]
         | csvlist [repo] | help | version}
 
@@ -70,6 +70,9 @@ repositories or via direct download.
 
 update
     update is used to resynchronize the package index files from their sources.
+    When --repos-only is provided, only initialize and update deb-get's
+    external repositories, without updating apt or looking for updates of
+    installed packages.
 
 upgrade
     upgrade is used to install the newest versions of all packages currently

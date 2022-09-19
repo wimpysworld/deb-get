@@ -5,8 +5,10 @@ function _deb-get() {
         COMPREPLY=($(compgen -W "update upgrade show install reinstall remove purge search cache clean list pretty_list prettylist csv_list csvlist csv help version" "${COMP_WORDS[1]}"))
     elif [ "${COMP_CWORD}" -ge 2 ]; then
         local command="${COMP_WORDS[1]}"
-        
-        if [ "${command}" = show ] || ([ "${COMP_CWORD}" = 2 ] && [ "${command}" = search ]); then
+
+        if [ "${COMP_CWORD}" = 2 ] && [ "${command}" = update ]; then
+            COMPREPLY=($(compgen -W "--repos-only" "\\${COMP_WORDS[2]}"))
+        elif [ "${command}" = show ] || ([ "${COMP_CWORD}" = 2 ] && [ "${command}" = search ]); then
             COMPREPLY=($(compgen -W "$(deb-get list --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${command}" = install ]; then
             COMPREPLY=($(compgen -W "$(deb-get list --not-installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
