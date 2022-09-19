@@ -2617,6 +2617,17 @@ function deb_google-cloud-cli() {
     SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
 }
 
+function deb_xroachng() {
+    ARCHS_SUPPORTED="amd64 i386 arm64 armhf"
+    if [ "${ACTION}" != "prettylist" ]; then
+        VERSION_PUBLISHED="$(curl -s "https://sourceforge.net/projects/xroachng/files/latest/download" | grep "tar.gz" | sed 's/^.*xroachng-\(.*\)\.tar\.gz.*/\1/')"
+        URL="https://downloads.sourceforge.net/project/xroachng/xroachng_${VERSION_PUBLISHED}-1_${HOST_ARCH}.deb"
+    fi
+    PRETTY_NAME="Xroachng"
+    WEBSITE="https://www.ratrabbit.nl/ratrabbit/software/xroach_ng/"
+    SUMMARY="Cockroaches running over the desktop."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
