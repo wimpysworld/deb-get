@@ -6,7 +6,7 @@ PACKAGE_INSTALLATION_COUNT=0
 readonly VERSION="0.3.5"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
-if [[ ! -z ${DEBGET_TOKEN} ]]; then
+if [ -n "${DEBGET_TOKEN}" ]; then
     export HEADERAUTH="\"Authorization: token ${DEBGET_TOKEN}\""
     export HEADERPARAM="--header"
 else
