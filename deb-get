@@ -2576,6 +2576,16 @@ function deb_neovim() {
     SUMMARY="Hyperextensible Vim-based text editor"
 }
 
+function deb_smartgit() {
+    ARCHS_SUPPORTED="amd64"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="https://www.syntevo.com$(curl -s "https://www.syntevo.com/smartgit/download/" | grep "\.deb" | head -n1 | cut -d'"' -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2 | cut -d'.' -f1 | tr '_' '.')"
+    fi
+    PRETTY_NAME="SmartGit"
+    WEBSITE="https://www.syntevo.com/"
+    SUMMARY="A graphical Git client with support for pull requests for GitHub and Bitbucket."
+}
 
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
