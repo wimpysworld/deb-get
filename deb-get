@@ -591,7 +591,7 @@ function print_etc_overrides()
 
 function print_deprecated() {
     for APP in "${DEPRECATED_INSTALLED[@]}"; do
-        fancy_message warn "Deprecated package ${APP} detected. It will no longer receive updates, and keeping it installed is considered insecure."
+        fancy_message warn "Deprecated package ${APP} detected. It will no longer receive updates, and keeping it installed is considered unsafe."
         fancy_message recommend "Please remove it with: deb-get purge ${APP}"
     done
 }
@@ -991,8 +991,8 @@ function deb_google-chrome-stable() {
     SUMMARY="Fast, Secure Browser from Google."
 }
 
-function disabled_ungoogled-chromium() {
-    APT_LIST_NAME="home-ungoogled_chromium.list"
+function deprecated_ungoogled-chromium() {
+    APT_LIST_NAME="home-ungoogled_chromium"
     case "${UPSTREAM_CODENAME}" in
         focal)
             APT_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key"
@@ -1296,7 +1296,7 @@ function deb_wire-desktop() {
 
 function deb_signal-desktop() {
     APT_KEY_URL="https://updates.signal.org/desktop/apt/keys.asc"
-    APT_LIST_NAME="signal-xenial.list"
+    APT_LIST_NAME="signal-xenial"
     APT_REPO_URL="deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
     PRETTY_NAME="Signal"
     WEBSITE="https://signal.org/"
@@ -1419,10 +1419,12 @@ function deb_caprine() {
     SUMMARY="Elegant Facebook Messenger desktop app."
 }
 
-function disable_sengi() {
+function deprecated_sengi() {
     get_github_releases "https://api.github.com/repos/NicolasConstant/sengi/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*linux\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'/' -f8)"
-    URL=$(grep "browser_download_url.*linux\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*linux\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+    fi
     PRETTY_NAME="Sengi"
     WEBSITE="https://github.com/NicolasConstant/sengi"
     SUMMARY="Tweetdeck inspired Mastodon & Pleroma Multi-account Desktop Client."
@@ -1551,10 +1553,12 @@ function deb_igdm() {
 }
 
 # Upstream login bug
-function disabled_igdm-pro() {
+function deprecated_igdm-pro() {
     get_github_releases "https://api.github.com/repos/igdmapps/igdm-pro-release/releases"
-    VERSION_PUBLISHED="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4 | cut -d'_' -f2)"
-    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="IGdm Pro Messenger"
     WEBSITE="https://pro.igdm.me/"
     SUMMARY="Continue your Instagram direct messages from your phone to your desktop."
@@ -2088,8 +2092,8 @@ function deb_ms-office-electron() {
     SUMMARY="A Microsoft Office Online Desktop Client made with Electron."
 }
 
-function deb_geforcenow-electron() {
-    get_github_releases "https://api.github.com/repos/hmlendea/gfn-electron/releases/latest"
+function deprecated_geforcenow-electron() {
+    get_github_releases "https://api.github.com/repos/hmlendea/gfn-electron/releases"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
@@ -2313,6 +2317,13 @@ function deb_fsearch() {
     PRETTY_NAME="FSearch"
     WEBSITE="https://github.com/cboxdoerfer/fsearch"
     SUMMARY="Fast file search utility."
+}
+
+function deprecated_corectrl() {
+    PPA="ppa:ernstp/mesarc"
+    PRETTY_NAME="CoreCtrl"
+    WEBSITE="https://gitlab.com/corectrl/corectrl"
+    SUMMARY="A Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles."
 }
 
 function deb_openrgb() {
