@@ -1115,7 +1115,7 @@ function deb_mpdevil() {
 }
 
 function deb_rambox() {
-    get_github_releases "https://api.github.com/repos/ramboxapp/download/releases"
+    get_github_releases "https://api.github.com/repos/ramboxapp/download/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*x64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
