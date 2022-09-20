@@ -2578,31 +2578,57 @@ case "${OS_ID}" in
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
   Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling";;# add Kali support
-  *) fancy_message fatal "${OS_ID} is not supported.";;
+  *)
+    OS_ID_PRETTY="${OS_ID}"
+    fancy_message warn "${OS_ID} is not supported."
+  ;;
 esac
 
 OS_CODENAME=$(lsb_release --codename --short)
+
 if [ -e /etc/os-release ]; then
-    UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
-
-    # kali-rolling while debian based does no include a debian CODENAME
-    # so must check if UPSTREAM_ID is kali
-    # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian' or 'kali'
-    if [ "${UPSTREAM_ID}" != "kali" ] && [ "${UPSTREAM_ID}" != "debian" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
-        UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
-        UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
-    fi
-
-    case "${UPSTREAM_ID}" in
-        ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
-        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
-        # Set UPSTREAM_CODENAME to kali-rolling and strip out extra characters.
-        kali) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1);;
-        *) UPSTREAM_CODENAME="";;
-    esac
-
+    OS_RELEASE=/etc/os-release
+elif [ -e /usr/lib/os-release ]; then
+    OS_RELEASE=/usr/lib/os-release
 else
-    fancy_message fatal "/etc/os-release not found. Quitting"
+    fancy_message fatal "os-release not found. Quitting"
+fi
+
+UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
+
+# kali-rolling while debian based does no include a debian CODENAME
+# so must check if UPSTREAM_ID is kali
+# Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian' or 'kali'
+if [ "${UPSTREAM_ID}" != kali ] &&[ "${UPSTREAM_ID}" != ubuntu ] && [ "${UPSTREAM_ID}" != debian ]; then
+    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" ${OS_RELEASE} | cut -d'=' -f2 | cut -d \" -f 2)"
+
+    if [[ " ${UPSTREAM_ID_LIKE} " =~ " ubuntu " ]]; then
+        UPSTREAM_ID=ubuntu
+    elif [[ " ${UPSTREAM_ID_LIKE} " =~ " debian " ]]; then
+        UPSTREAM_ID=debian
+    else
+        fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release."
+    fi
+fi
+
+# if UPSTREAM_ID is kali then set UPSTREAM_CODENAME to kali-rolling otherwise set to UBUNTU_CODENAME
+if [ "${UPSTREAM_ID}" = kali ]; then
+    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)
+else
+    UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+fi
+
+if [ -z "${UPSTREAM_CODENAME}" ]; then
+    UPSTREAM_CODENAME=$(grep "^DEBIAN_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+fi
+
+if [ -z "${UPSTREAM_CODENAME}" ]; then
+    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)   
+fi
+
+# Debian 12+
+if [ -z "${UPSTREAM_CODENAME}" ] && [ -e /etc/debian_version ]; then
+    UPSTREAM_CODENAME=$(cut -d / -f 1 /etc/debian_version)
 fi
 
 case "${UPSTREAM_CODENAME}" in
