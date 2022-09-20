@@ -2585,8 +2585,10 @@ OS_CODENAME=$(lsb_release --codename --short)
 if [ -e /etc/os-release ]; then
     UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
 
-    # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
-    if [ "${UPSTREAM_ID}" != "debian" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+    # kali-rolling while debian based does no include a debian CODENAME
+    # so must check if UPSTREAM_ID is kali
+    # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian' or 'kali'
+    if [ "${UPSTREAM_ID}" != "kali" ] && [ "${UPSTREAM_ID}" != "debian" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
         UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
         UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
     fi
@@ -2594,14 +2596,11 @@ if [ -e /etc/os-release ]; then
     case "${UPSTREAM_ID}" in
         ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
         debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
+        # Set UPSTREAM_CODENAME to kali-rolling and strip out extra characters.
+        kali) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1);;
         *) UPSTREAM_CODENAME="";;
     esac
 
-    # Set UPSTREAM_CODENAME to focal OS_ID_PRETTY is Kali GNU/Linux Rolling
-    # To emulate a Debian derived release
-    if [ "${OS_ID_PRETTY}" == "Kali GNU/Linux Rolling" ]; then
-        UPSTREAM_CODENAME="focal"
-    fi
 else
     fancy_message fatal "/etc/os-release not found. Quitting"
 fi
@@ -2615,6 +2614,7 @@ case "${UPSTREAM_CODENAME}" in
     impish)   UPSTREAM_RELEASE="21.10";;
     jammy)    UPSTREAM_RELEASE="22.04";;
     kinetic)  UPSTREAM_RELEASE="22.10";;
+    kali-rolling)  UPSTREAM_RELEASE="2022.3";; # Add kali-rolling
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 
