@@ -302,7 +302,7 @@ function remove_deb() {
     local FILE="${URL##*/}"
     local STATUS=""
 
-    if package_is_installed "${APP}"; then
+    if package_is_installed "${APP}" || [[ " ${DEPRECATED_INSTALLED[*]} " =~ " ${APP} " ]]; then
         STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
         if [ "${STATUS}" == "deinstall ok config-files" ]; then
             REMOVE="purge"
@@ -510,7 +510,7 @@ function update_repos(){
         fancy_message info "Updating ${REPOS_DIR}/${REPO}"
         local REPO_URL="$(head -n 1 "${REPOS_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${REPOS_DIR}/${REPO}.repo"
-        tail -n +2 "${REPOS_DIR}/$REPO.repo" | grep -v "^#" | ${ELEVATE} sort -u -o "${REPOS_DIR}/$REPO.repo.tmp"
+        tail -n +2 "${REPOS_DIR}/$REPO.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${REPOS_DIR}/$REPO.repo.tmp"
         local ETAGS="$(wget -q --spider -S -B "${REPO_URL}/packages/" -i "${REPOS_DIR}/$REPO.repo.tmp" 2>&1 | grep -i etag: | sed "s/^  etag: //I")"
         if [ -n "$ETAGS" ]; then
             ETAGS="$(echo "$ETAGS" | paste -d " " "${REPOS_DIR}/$REPO.repo.tmp" - | ${ELEVATE} tee "${REPOS_DIR}/$REPO.etags.tmp")"
@@ -537,6 +537,16 @@ function list_repo_apps() {
     if [ -d "${REPOS_DIR}" ]; then
         for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
             for APP in $(tail -n +2 "${REPOS_DIR}/$REPO.repo" | grep -v "^#" | sort -u); do
+                echo "$REPO/$APP"
+            done
+        done
+    fi
+}
+
+function list_deprecated_apps() {
+    if [ -d "${REPOS_DIR}" ]; then
+        for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+            for APP in $(tail -n +2 "${REPOS_DIR}/$REPO.repo" | grep "^#" | sed "s/^#//" | sort -u); do
                 echo "$REPO/$APP"
             done
         done
@@ -577,6 +587,13 @@ function print_etc_overrides()
             fancy_message recommend "Please consider contributing back new entries, an issue (or raise a PR) directly at https://github.com/wimpysworld/deb-get/pulls"
         fi
     fi
+}
+
+function print_deprecated() {
+    for APP in "${DEPRECATED_INSTALLED[@]}"; do
+        fancy_message warn "Deprecated package ${APP} detected. It will no longer receive updates, and keeping it installed is considered insecure."
+        fancy_message recommend "Please remove it with: deb-get purge ${APP}"
+    done
 }
 
 function deb_tixati() {
@@ -2793,7 +2810,15 @@ case ${ACTION} in
             list_debs --raw
             exit 1
         fi
-        print_etc_overrides;;
+        print_etc_overrides
+        DEPRECATED_APPS="$(list_deprecated_apps | sort -t / -k 2 -u)"
+        if [ -n "${DEPRECATED_APPS}" ]; then
+            readonly DEPRECATED_INSTALLED=($(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(echo "$DEPRECATED_APPS" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2))
+        else
+            readonly DEPRECATED_INSTALLED=()
+        fi
+        DEPRECATED_APPS=($DEPRECATED_APPS)
+        print_deprecated;;
 esac
 
 export ELEVATE=""
@@ -2861,6 +2886,9 @@ case "${ACTION}" in
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
+                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/$APP$")"
+            fi
+            if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs --raw
                 exit 1
@@ -2872,6 +2900,9 @@ case "${ACTION}" in
         elevate_privs
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
+            if [ -z "$FULL_APP" ]; then
+                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/$APP$")"
+            fi
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs --raw
