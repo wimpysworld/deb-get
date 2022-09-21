@@ -2526,6 +2526,7 @@ function deb_lens() {
 }
 
 function deb_quarto() {
+    ARCHS_SUPPORTED="amd64"
     get_github_releases "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
