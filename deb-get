@@ -233,28 +233,13 @@ function install_apt() {
 }
 
 function install_ppa() {
-    let "PACKAGE_INSTALLATION_TRIES+=1"
-    local AAR_PARAMS="-y"
-    if [ "$(dpkg -S "$(command -v apt-add-repository)" | cut -d':' -f1)" == "software-properties-common" ]; then
-        AAR_PARAMS+=" --no-update"
-    fi
-    if ${ELEVATE} apt-add-repository ${AAR_PARAMS} "${PPA}"; then
-        update_apt
-        if ! package_is_installed "${APP}"; then
-            eula
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
-        else
-            if [ "${ACTION}" == "reinstall" ]; then
-                ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${APP}"
-            else
-                fancy_message info "${APP} is up to date."
-            fi
-        fi
-        let "PACKAGE_INSTALLATION_COUNT+=1"
-    else
-        fancy_message error "Failed to add: ${PPA}. Deleting it."
-        ${ELEVATE} apt-add-repository -y --remove "${PPA}"
-    fi
+    local PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
+    local PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
+    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+    install_apt
 }
 
 function install_deb() {
@@ -315,9 +300,14 @@ function remove_deb() {
             ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
             ;;
         ppa)
-            ${ELEVATE} rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
-            fancy_message info "Removing ${PPA}"
-            ${ELEVATE} apt-add-repository -y --remove "${PPA}"
+            local PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
+            local PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+            local PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+            local APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+            fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+            ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
             ;;
     esac
 }
