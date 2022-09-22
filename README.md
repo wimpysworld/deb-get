@@ -176,6 +176,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://vscodium.com/) | `codium` | <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://tkashkin.github.io/projects/gamehub) | `com.github.tkashkin.gamehub` | <i>Unified library for all your games.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://hluk.github.io/CopyQ/) | `copyq` | <i>An advanced clipboard manager with editing and scripting features.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/sigstore/cosign) | `cosign` | <i>Container Signing, Verification and Storage in an OCI registry.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.codeweavers.com/crossover) | `crossover` | <i>Run your Windows apps on Linux! CrossOver is a Microsoft Windows compatibility layer based on Wine.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://cryptomator.org/) | `cryptomator` | <i>Multi-platform transparent client-side encryption of your files in the cloud.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://dbeaver.io/) | `dbeaver-ce` | <i>Database GUI Client</i> |
@@ -325,6 +326,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.vagrantup.com/) | `vagrant` | <i>Building and maintaining virtual software development environments.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
