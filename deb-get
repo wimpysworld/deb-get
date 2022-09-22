@@ -2681,9 +2681,9 @@ function deb_cosign() {
 function deb_vagrant() {
     ARCHS_SUPPORTED="amd64"
     CODENAMES_SUPPORTED="buster bullseye focal jammy"
-    APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    ASC_KEY_URL="https://apt.releases.hashicorp.com/gpg"
     APT_LIST_NAME="hashicorp"
-    APT_REPO_URL="deb https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Vagrant"
     WEBSITE="https://www.vagrantup.com/"
     SUMMARY="Building and maintaining virtual software development environments."
