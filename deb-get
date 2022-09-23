@@ -20,7 +20,8 @@ cat <<HELP
 Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
+        | fix-installed [--old-apps] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -64,6 +65,11 @@ csvlist
 
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
+
+fix-installed
+    fix installed packages whose definitions were changed. When --old-apps is
+    provided, transition packages to new format. This command is only intended
+    for internal use.
 
 help
     show this help
@@ -196,27 +202,7 @@ function upgrade_apt() {
 
 function install_apt() {
     let "PACKAGE_INSTALLATION_TRIES+=1"
-    if [ ! -d /usr/share/keyrings ]; then
-        ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
-    fi
-    if [ -n "${ASC_KEY_URL}" ]; then
-        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} gpg --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-    else #GPG_KEY_URL
-        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-    fi
-
-    #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
-
-    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-
-    if [ -n "${APT_REPO_OPTIONS}" ]; then
-        APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
-    fi
-
-    APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+    add_apt_repo
     update_apt
 
     if ! package_is_installed "${APP}"; then
@@ -224,7 +210,7 @@ function install_apt() {
         ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
     else
         if [ "${ACTION}" == "reinstall" ]; then
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${APP}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"
         else
             fancy_message info "${APP} is up to date."
         fi
@@ -233,12 +219,7 @@ function install_apt() {
 }
 
 function install_ppa() {
-    local PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
-    local PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
-    local PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
-    export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
-    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
-    export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+    ppa_to_apt
     install_apt
 }
 
@@ -255,7 +236,7 @@ function install_deb() {
     else
         if [ "${ACTION}" == "reinstall" ]; then
             download_deb "${URL}"
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${CACHE_DIR}/${FILE}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
             download_deb "${URL}"
             ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
@@ -294,21 +275,9 @@ function remove_deb() {
             fi
             ;;
         apt)
-            fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ;;
+            remove_apt_repo "${APT_LIST_NAME}";;
         ppa)
-            local PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
-            local PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
-            local PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
-            local APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
-            fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ;;
+            remove_ppa_repo "${PPA}";;
     esac
 }
 
@@ -340,12 +309,15 @@ function validate_deb() {
 
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
+    export OLD_APT_LIST_NAME=""
     export APT_LIST_NAME=""
     export APT_REPO_URL=""
     export APT_REPO_OPTIONS=""
+    export OLD_PPA=""
     export PPA=""
     export ARCHS_SUPPORTED="amd64"
     export CODENAMES_SUPPORTED=""
+    export OLD_METHOD=""
     export METHOD="website"
     export EULA=""
     export URL=""
@@ -385,7 +357,7 @@ function validate_deb() {
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if [ "${ACTION}" != "prettylist" ] && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
+        if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || ([ "${METHOD}" != github ] && [ "${ACTION}" != "prettylist" ])) && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             echo "URL=${URL}"
             echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
@@ -521,6 +493,107 @@ function print_etc_overrides()
         # turn off source line debugging for declare -F
         shopt -u extdebug
     fi
+}
+
+readonly OLD_APPS=(quickemu firefox-esr quickgui nextcloud-desktop keepassxc ubuntu-make lutris polychromatic openrazer-meta strawberry copyq obs-studio foliate ulauncher yq fsearch kdiskmark xemu cryptomator gpu-viewer blanket audio-recorder papirus-icon-theme qownnotes retroarch texworks virtualbox-6.1 atom code 1password google-chrome-stable opera-stable teams enpass microsoft-edge-stable brave-browser docker-ce skypeforlinux wavebox wire-desktop signal-desktop syncthing sublime-text plexmediaserver jellyfin sublime-merge google-earth-pro-stable cawbird insync slack-desktop vivaldi-stable keybase protonvpn softmaker-office-2021 resilio-sync chronograf influxdb influxdb2 influxdb2-cli kapacitor telegraf anydesk azure-cli terraform nomad kopia-ui typora neo4j appimagelauncher)
+
+function fix_installed() {
+    if [ "${1}" = --old-apps ] && [[ " ${OLD_APPS[@]} " =~ " ${APP} " ]]; then
+        if [ -n "${OLD_APT_LIST_NAME}" ]; then
+            remove_old_apt_repo "${OLD_APT_LIST_NAME}"
+        elif [ "${METHOD}" = apt ]; then
+            remove_old_apt_repo "${APT_LIST_NAME}"
+        elif [ -n "${OLD_PPA}" ]; then
+            remove_old_ppa_repo "${OLD_PPA}"
+        elif [ "${METHOD}" = ppa ]; then
+            remove_old_ppa_repo "${PPA}"
+        fi
+        if [ "${METHOD}" = apt ]; then
+            add_apt_repo
+        elif [ "${METHOD}" = ppa ]; then
+            ppa_to_apt
+            add_apt_repo
+        fi
+    else
+        if [ -n "${OLD_APT_LIST_NAME}" ]; then
+            remove_apt_repo "${OLD_APT_LIST_NAME}"
+        elif [ -n "${OLD_PPA}" ]; then
+            remove_ppa_repo "${OLD_PPA}"
+        fi
+        if [ "${METHOD}" = apt ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
+            add_apt_repo
+        elif [ "${METHOD}" = ppa ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
+            ppa_to_apt
+            add_apt_repo
+        fi
+    fi
+}
+
+function remove_old_apt_repo() {
+    fancy_message info "Removing /etc/apt/trusted.gpg.d/${1}.asc"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${1}.asc"
+    fancy_message info "Removing /etc/apt/sources.list.d/${1}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${1}.list"
+}
+
+function remove_old_ppa_repo() {
+    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}"
+    fancy_message info "Removing /etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg~"
+    fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}-${UPSTREAM_CODENAME}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}-${UPSTREAM_CODENAME}.list"
+}
+
+function remove_apt_repo() {
+    fancy_message info "Removing /usr/share/keyrings/${1}-archive-keyring.gpg"
+    ${ELEVATE} rm -f "/usr/share/keyrings/${1}-archive-keyring.gpg"
+    fancy_message info "Removing /etc/apt/sources.list.d/${1}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${1}.list"
+}
+
+function remove_ppa_repo() {
+    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    remove_apt_repo "${APT_LIST_NAME}"
+}
+
+function add_apt_repo() {
+    if [ ! -d /usr/share/keyrings ]; then
+        ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
+    fi
+    if [ -n "${ASC_KEY_URL}" ]; then
+        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+    else #GPG_KEY_URL
+        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    fi
+
+    #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
+
+    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+
+    if [ -n "${APT_REPO_OPTIONS}" ]; then
+        APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
+    fi
+
+    APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
+    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+}
+
+function ppa_to_apt() {
+    local -r PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
+    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
 }
 
 # Import deb_ functions in /etc/deb-get.d/**/* (if exists)
@@ -2525,6 +2598,7 @@ function deb_papirus-icon-theme() {
 }
 
 function deb_appimagelauncher() {
+    OLD_PPA="ppa:appimagelauncher-team/stable"
     ARCHS_SUPPORTED="amd64 i386 armhf arm64"
     get_github_releases "https://api.github.com/repos/TheAssassin/AppImageLauncher/releases"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -2885,6 +2959,17 @@ case "${ACTION}" in
         elevate_privs
         create_cache_dir
         upgrade_debs;;
+    fix-installed)
+        if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
+            fancy_message fatal "Unknown option supplied: ${1}"
+        fi
+        elevate_privs
+        for APP in "${APPS[@]}"; do
+            if package_is_installed "${APP}"; then
+                validate_deb "${APP}"
+                fix_installed "${1}"
+            fi
+        done;;
     version) echo "${VERSION}";;
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;

@@ -60,7 +60,8 @@ cog.out(f"```\n{help}\n```")
 ```
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
+        | fix-installed [--old-apps] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -104,6 +105,11 @@ csvlist
 
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
+
+fix-installed
+    fix installed packages whose definitions were changed. When --old-apps is
+    provided, transition packages to new format. This command is only intended
+    for internal use.
 
 help
     show this help
