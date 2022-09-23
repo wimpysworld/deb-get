@@ -21,10 +21,11 @@ Create a function in `deb-get` that is named `deb_<the-package-name>` where `<th
 The variables defined in the function are the following:
 * `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`.
 * `CODENAMES_SUPPORTED`: A space-separated list of supported upstream codenames, supporting the values from `UPSTREAM_CODENAME`.
-* `APT_KEY_URL`: A URL to the ASCII-armored keyring file.
+* `ASC_KEY_URL`: A URL to the ASCII-armored keyring file.
 * `GPG_KEY_URL`: A URL to the binary keyring file.
 * `APT_LIST_NAME`: The name of the `*.list` file, without the extension.
-* `APT_REPO_URL`: The line that will be printed to the `*.list` file, including `deb`, `[arch=]`, `[signed-by=]`, the repository URL, the distribution codename and any extra required components.
+* `APT_REPO_URL`: The repository URL, the distribution codename and any following components for the line that will be printed to the `*.list` file.
+* `APT_REPO_OPTIONS`: The space-separated extra options, such as `arch=` or `by-hash=` for the line that will be printed to the `*.list` file.
 * `PPA`: The PPA address, following the format used by `apt-add-repository`, including the `ppa:` prefix.
 * `URL`: The URL to the `*.deb` file that will be downloaded. The name of the file must be the last thing at the end of it.
 * `VERSION_PUBLISHED`: The version of the package.
@@ -33,7 +34,7 @@ The variables defined in the function are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
+`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_REPO_OPTIONS` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 ```bash
 if [ "${ACTION}" != "prettylist" ]; then
     # Code goes here
@@ -67,9 +68,10 @@ If the keyring file is in the ASCII-armored format (extension `*.asc`), use this
 function deb_<the-package-name>() {
     ARCHS_SUPPORTED=""
     CODENAMES_SUPPORTED=""
-    APT_KEY_URL=""
+    ASC_KEY_URL=""
     APT_LIST_NAME=""
     APT_REPO_URL=""
+    APT_REPO_OPTIONS=""
     EULA=""
     PRETTY_NAME=""
     WEBSITE=""
@@ -84,6 +86,7 @@ function deb_<the-package-name>() {
     GPG_KEY_URL=""
     APT_LIST_NAME=""
     APT_REPO_URL=""
+    APT_REPO_OPTIONS=""
     EULA=""
     PRETTY_NAME=""
     WEBSITE=""
@@ -139,6 +142,9 @@ To update `README.md`, first install [cog](https://pypi.org/project/cogapp):
 ```bash
 sudo pip3 install cogapp
 ```
+
+Ensure any local Custom User Includes are removed from `/etc/deb-get.d/` (They can be replaced after the README.md is re-processed)
+
 Then run:
 ```bash
 cog -r README.md

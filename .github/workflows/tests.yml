@@ -41,6 +41,8 @@ jobs:
           ./deb-get install 1password >/dev/null
           ./deb-get install bitwarden >/dev/null
           ./deb-get install obs-studio >/dev/null
+          ./deb-get install neovim >/dev/null
+          ./deb-get install google-cloud-cli >/dev/null
 
 
       # All these commands should return a non 0 status
