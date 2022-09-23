@@ -758,7 +758,6 @@ function deb_github-desktop() {
     SUMMARY="Simple collaboration from your desktop."
 }
 
-<<<<<<< Updated upstream
 function deb_helio-workstation() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(curl -s -f -L https://helio.fm |grep -o "https://..*\.deb"|grep -v dev)"
@@ -767,17 +766,6 @@ function deb_helio-workstation() {
     PRETTY_NAME="Helio Project"
     WEBSITE="https://helio.fm/"
     SUMMARY="libre music composition software"
-=======
-function deb_wraith-master() {
-    get_github_releases "https://api.github.com/repos/serebit/wraith-master/releases/latest"
-    if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
-    fi
-    PRETTY_NAME="wraith-master"
-    WEBSITE="https://github.com/serebit/wraith-master"
-    SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
->>>>>>> Stashed changes
 }
 
 function deb_lsd() {
@@ -790,6 +778,17 @@ function deb_lsd() {
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
     SUMMARY="The next gen 'ls' command."
+}
+
+function deb_wraith-master() {
+    get_github_releases "https://api.github.com/repos/serebit/wraith-master/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
+    PRETTY_NAME="wraith-master"
+    WEBSITE="https://github.com/serebit/wraith-master"
+    SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
 }
 
 function deb_bat() {
@@ -2996,3 +2995,4 @@ esac
 if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
     exit 1
 fi
+
