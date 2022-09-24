@@ -357,7 +357,7 @@ function validate_deb() {
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || ([ "${METHOD}" != github ] && [ "${ACTION}" != "prettylist" ])) && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
+        if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || [ "${METHOD}" != github ]) && [ "${ACTION}" != "prettylist" ] && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             echo "URL=${URL}"
             echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
