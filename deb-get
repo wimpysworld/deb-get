@@ -644,7 +644,6 @@ function deb_virtualbox-6.1() {
     SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
 
-
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
     PRETTY_NAME="Firefox ESR"
@@ -772,6 +771,17 @@ function deb_lsd() {
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
     SUMMARY="The next gen 'ls' command."
+}
+
+function deb_wraith-master() {
+    get_github_releases "https://api.github.com/repos/serebit/wraith-master/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
+    PRETTY_NAME="wraith-master"
+    WEBSITE="https://github.com/serebit/wraith-master"
+    SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
 }
 
 function deb_bat() {
@@ -2978,3 +2988,4 @@ esac
 if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
     exit 1
 fi
+
