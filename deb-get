@@ -2725,7 +2725,8 @@ function deb_grub-customizer() {
     PRETTY_NAME="Grub Customizer"
     WEBSITE="https://launchpad.net/grub-customizer"
     SUMMARY="Grub Customizer is a graphical interface to configure the GRUB2/BURG settings and menuentries"
-    
+}
+
 function deb_smartgit() {
     ARCHS_SUPPORTED="amd64"
     if [ "${ACTION}" != "prettylist" ]; then
