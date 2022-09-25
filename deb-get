@@ -699,6 +699,28 @@ function deb_code() {
     SUMMARY="Code editing. Redefined."
 }
 
+function deb_nala() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer."
+}
+
+function deb_nala-legacy() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala-legacy"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala Legacy"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older."
+}
+
 function deb_rstudio() {
     if [ "${ACTION}" != "prettylist" ]; then
         case "${UPSTREAM_CODENAME}" in
