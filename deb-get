@@ -340,7 +340,7 @@ function validate_deb() {
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
         if [ "${ACTION}" != "prettylist" ]; then
-            if [ -z "${APT_LIST_NAME}" ] || ([ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]); then
+            if [ -z "${APT_LIST_NAME}" ] || { [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]; }; then
                 fancy_message error "Missing required information of apt package ${APP}:"
                 echo "APT_LIST_NAME=${APT_LIST_NAME}"
                 echo "ASC_KEY_URL=${ASC_KEY_URL}"
@@ -357,7 +357,7 @@ function validate_deb() {
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || [ "${METHOD}" != github ]) && [ "${ACTION}" != "prettylist" ] && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
+        if { { [ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || [ "${METHOD}" != github ]; } && [ "${ACTION}" != "prettylist" ] && { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             echo "URL=${URL}"
             echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
