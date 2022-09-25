@@ -7,7 +7,7 @@ function package_is_installed() {
 }
 
 if [ "${1}" = configure ]; then
-    if [ ! -e /etc/deb-get] || [ ! -e /etc/deb-get/01-main.repo ] || [ ! -e /etc/deb-get/01-main.d ] || [ -n "$(find /etc/deb-get/01-main.d -prune -empty 2> /dev/null)" ]; then
+    if [ ! -e /etc/deb-get ] || [ ! -e /etc/deb-get/01-main.repo ] || [ ! -e /etc/deb-get/01-main.d ] || [ -n "$(find /etc/deb-get/01-main.d -prune -empty 2> /dev/null)" ]; then
         deb-get update --repos-only
     fi
     if [ -n "${2}" ]; then
