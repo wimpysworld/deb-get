@@ -644,7 +644,6 @@ function deb_virtualbox-6.1() {
     SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
 
-
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
     PRETTY_NAME="Firefox ESR"
@@ -698,6 +697,28 @@ function deb_code() {
     PRETTY_NAME="Visual Studio Code"
     WEBSITE="https://code.visualstudio.com/"
     SUMMARY="Code editing. Redefined."
+}
+
+function deb_nala() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer."
+}
+
+function deb_nala-legacy() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala-legacy"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala Legacy"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older."
 }
 
 function deb_rstudio() {
@@ -772,6 +793,17 @@ function deb_lsd() {
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
     SUMMARY="The next gen 'ls' command."
+}
+
+function deb_wraith-master() {
+    get_github_releases "https://api.github.com/repos/serebit/wraith-master/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
+    PRETTY_NAME="wraith-master"
+    WEBSITE="https://github.com/serebit/wraith-master"
+    SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
 }
 
 function deb_bat() {
@@ -2985,3 +3017,4 @@ esac
 if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
     exit 1
 fi
+
