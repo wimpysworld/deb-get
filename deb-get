@@ -3,10 +3,10 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.3.5"
+readonly VERSION="0.3.6"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
-if [[ ! -z ${DEBGET_TOKEN} ]]; then
+if [ -n "${DEBGET_TOKEN}" ]; then
     export HEADERAUTH="\"Authorization: token ${DEBGET_TOKEN}\""
     export HEADERPARAM="--header"
 else
@@ -664,6 +664,16 @@ function deb_github-desktop() {
     SUMMARY="Simple collaboration from your desktop."
 }
 
+function deb_helio-workstation() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s -f -L https://helio.fm |grep -o "https://..*\.deb"|grep -v dev)"
+        VERSION_PUBLISHED="$(echo "${URL}" |cut -d '-' -f2)"
+    fi
+    PRETTY_NAME="Helio Project"
+    WEBSITE="https://helio.fm/"
+    SUMMARY="libre music composition software"
+}
+
 function deb_lsd() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Peltoche/lsd/releases/latest"
@@ -688,6 +698,20 @@ function deb_bat() {
     SUMMARY="A 'cat' clone with wings."
 }
 
+
+function deb_du-dust() {
+    ARCHS_SUPPORTED="amd64 i386"
+    get_github_releases "https://api.github.com/repos/bootandy/dust/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="du-dust"
+    WEBSITE="https://github.com/bootandy/dust"
+    SUMMARY="du + rust = dust. Like du but more intuitive."
+}
+
+
 function deb_git-delta() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/dandavison/delta/releases/latest"
@@ -698,6 +722,18 @@ function deb_git-delta() {
     PRETTY_NAME="git-delta"
     WEBSITE="https://github.com/dandavison/delta"
     SUMMARY="A syntax-highlighting pager for 'git', 'diff', and 'grep' output."
+}
+
+function deb_teams-for-linux() {
+    ARCHS_SUPPORTED="amd64 arm64 armv7l"
+    get_github_releases "https://api.github.com/repos/IsmaelMartinez/teams-for-linux/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="teams-for-linux"
+    WEBSITE="https://github.com/IsmaelMartinez/teams-for-linux"
+    SUMMARY="unofficial Microsoft Teams for LInux"
 }
 
 function deb_fd() {
@@ -1134,6 +1170,19 @@ function deb_deb-get() {
     SUMMARY="'apt-get' functionality for .debs published in 3rd party repositories or via direct download package."
 }
 
+function deb_deborah() {
+    CODENAMES_SUPPORTED="focal jammy kinetic"
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/ymauray/deborah/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${UPSTREAM_CODENAME}.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Deborah"
+    WEBSITE="https://github.com/ymauray/deborah/"
+    SUMMARY="A Flutter front-end for deb-get."
+}
+
 function deb_skypeforlinux() {
     APT_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
     APT_LIST_NAME="skype-stable"
@@ -1561,7 +1610,7 @@ function deb_webex() {
 
 function deb_deadbeef() {
     if [ "${ACTION}" != "prettylist" ]; then
-        local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep "amd64\.deb\"" | cut -d'"' -f2)"
+        local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep "amd64\.deb" | cut -d'"' -f2)"
         URL=$(unroll_url "${REDIR_URL}")
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     fi
@@ -2525,6 +2574,49 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_weylus() {
+    get_github_releases "https://api.github.com/repos/H-M-H/Weylus/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="Weylus"
+    WEBSITE="https://github.com/H-M-H/Weylus"
+    SUMMARY="Turn your tablet or smart phone into a graphic tablet/touch screen for your computer."
+}
+
+function deb_neovim() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/neovim/neovim/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*nvim-linux64\.deb[^.]" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Neovim"
+    WEBSITE="https://neovim.io/"
+    SUMMARY="Hyperextensible Vim-based text editor"
+}
+
+function deb_smartgit() {
+    ARCHS_SUPPORTED="amd64"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="https://www.syntevo.com$(curl -s "https://www.syntevo.com/smartgit/download/" | grep "\.deb" | head -n1 | cut -d'"' -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2 | cut -d'.' -f1 | tr '_' '.')"
+    fi
+    PRETTY_NAME="SmartGit"
+    WEBSITE="https://www.syntevo.com/"
+    SUMMARY="A graphical Git client with support for pull requests for GitHub and Bitbucket."
+}
+
+function deb_google-cloud-cli() {
+    GPG_KEY_URL="https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    APT_LIST_NAME="google-cloud-cli"
+    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+    PRETTY_NAME="Google Cloud SDK"
+    WEBSITE="https://cloud.google.com/sdk"
+    SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
@@ -2577,6 +2669,7 @@ case "${OS_ID}" in
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
+
   Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling";;# add Kali support
   *)
     OS_ID_PRETTY="${OS_ID}"
@@ -2593,6 +2686,7 @@ elif [ -e /usr/lib/os-release ]; then
 else
     fancy_message fatal "os-release not found. Quitting"
 fi
+
 
 UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
 
@@ -2664,8 +2758,8 @@ case "${ACTION}" in
         ls -lh "${CACHE_DIR}/";;
     clean)
         elevate_privs
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
+        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.deb
+        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
             validate_deb "${APP}"
