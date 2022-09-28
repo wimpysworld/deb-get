@@ -2596,10 +2596,8 @@ fi
 
 UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
 
-# kali-rolling while debian based does no include a debian CODENAME
-# so must check if UPSTREAM_ID is kali
-# Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian' or 'kali'
-if [ "${UPSTREAM_ID}" != kali ] &&[ "${UPSTREAM_ID}" != ubuntu ] && [ "${UPSTREAM_ID}" != debian ]; then
+# Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
+if [ "${UPSTREAM_ID}" != ubuntu ] && [ "${UPSTREAM_ID}" != debian ]; then
     UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" ${OS_RELEASE} | cut -d'=' -f2 | cut -d \" -f 2)"
 
     if [[ " ${UPSTREAM_ID_LIKE} " =~ " ubuntu " ]]; then
@@ -2611,19 +2609,15 @@ if [ "${UPSTREAM_ID}" != kali ] &&[ "${UPSTREAM_ID}" != ubuntu ] && [ "${UPSTREA
     fi
 fi
 
-# if UPSTREAM_ID is kali then set UPSTREAM_CODENAME to kali-rolling otherwise set to UBUNTU_CODENAME
-if [ "${UPSTREAM_ID}" = kali ]; then
-    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)
-else
-    UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
-fi
+UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
 
 if [ -z "${UPSTREAM_CODENAME}" ]; then
     UPSTREAM_CODENAME=$(grep "^DEBIAN_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
 fi
 
+# Strip extra spaces found in /etc/od-release for kali for proper function of UPSTREAM_CODENAME case
 if [ -z "${UPSTREAM_CODENAME}" ]; then
-    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)   
+    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)   
 fi
 
 # Debian 12+
