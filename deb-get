@@ -2669,7 +2669,6 @@ case "${OS_ID}" in
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
-
   Kali) OS_ID_PRETTY="Kali GNU/Linux Rolling";;# add Kali support
   *)
     OS_ID_PRETTY="${OS_ID}"
