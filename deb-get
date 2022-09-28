@@ -2795,6 +2795,18 @@ function deb_vagrant() {
     SUMMARY="Building and maintaining virtual software development environments."
 }
 
+function deb_sunshine {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|^v||')"
+    fi
+    PRETTY_NAME="Sunshine"
+    WEBSITE="https://docs.lizardbyte.dev/projects/sunshine/"
+    SUMMARY="Sunshine is a Gamestream host for Moonlight."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
