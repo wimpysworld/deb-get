@@ -357,7 +357,7 @@ function validate_deb() {
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || ([ "${METHOD}" != github ] && [ "${ACTION}" != "prettylist" ])) && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
+         if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || [ "${METHOD}" != github ]) && [ "${ACTION}" != "prettylist" ] && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             echo "URL=${URL}"
             echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
@@ -793,6 +793,17 @@ function deb_lsd() {
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
     SUMMARY="The next gen 'ls' command."
+}
+
+function deb_cider() {
+    get_github_releases "https://api.github.com/repos/ciderapp/cider-releases/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
+    PRETTY_NAME="cider"
+    WEBSITE="https://github.com/ciderapp/Cider"
+    SUMMARY="A new cross-platform Apple Music experience."
 }
 
 function deb_wraith-master() {
