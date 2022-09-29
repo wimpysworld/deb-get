@@ -2795,6 +2795,17 @@ function deb_vagrant() {
     SUMMARY="Building and maintaining virtual software development environments."
 }
 
+function deb_master-pdf-editor() {
+    CODENAMES_SUPPORTED="bionic bullseye buster focal jammy"
+    if [ "${ACTION}" != "prettylist" ]; then
+            URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "href=\"https://code-industry.net/public/.*\.deb" | cut --complement -c -6)
+            VERSION_PUBLISHED="$(echo "${URL}" | sed 's/^.*editor-//;s/-qt5.x86_64.*$//')"
+    fi
+    PRETTY_NAME="Master PDF Editor"
+    WEBSITE="https://code-industry.net/free-pdf-editor/"
+    SUMMARY="Edit PDF files in Linux. It enables you to create, edit, view and print interactive PDF documents."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
