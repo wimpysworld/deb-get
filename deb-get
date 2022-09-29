@@ -2798,7 +2798,7 @@ function deb_vagrant() {
 function deb_master-pdf-editor() {
     CODENAMES_SUPPORTED="bionic bullseye buster focal jammy"
     if [ "${ACTION}" != "prettylist" ]; then
-            URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "href=\"https://code-industry.net/public/.*\.deb" | cut --complement -c -6)
+            URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "https://code-industry.net/public/.*\.deb" | uniq)
             VERSION_PUBLISHED="$(echo "${URL}" | sed 's/^.*editor-//;s/-qt5.x86_64.*$//')"
     fi
     PRETTY_NAME="Master PDF Editor"
