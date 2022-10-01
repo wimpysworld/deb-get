@@ -217,7 +217,6 @@ google-cloud-cli
 google-earth-pro-stable
 gpu-viewer
 grype
-headset
 helio-workstation
 heroic
 hugo
