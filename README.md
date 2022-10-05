@@ -290,6 +290,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.qownnotes.org) | `qownnotes` | <i>Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://quarto.org/) | `quarto` | <i>Quarto - an open-source scientific and technical publishing system built on Pandoc</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
