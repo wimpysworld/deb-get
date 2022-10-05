@@ -3,10 +3,10 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.3.5"
+readonly VERSION="0.3.6"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
-if [[ ! -z ${DEBGET_TOKEN} ]]; then
+if [ -n "${DEBGET_TOKEN}" ]; then
     export HEADERAUTH="\"Authorization: token ${DEBGET_TOKEN}\""
     export HEADERPARAM="--header"
 else
@@ -20,7 +20,8 @@ cat <<HELP
 Usage
 
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist | help | version}
+        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
+        | fix-installed [--old-apps] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -64,6 +65,11 @@ csvlist
 
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
+
+fix-installed
+    fix installed packages whose definitions were changed. When --old-apps is
+    provided, transition packages to new format. This command is only intended
+    for internal use.
 
 help
     show this help
@@ -156,8 +162,8 @@ function fancy_message() {
       progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}";;
       recommend) echo -e "  [${MAGENTA}!${RESET}] ${MESSAGE}";;
       warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}";;
-      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}";;
-      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}"
+      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2;;
+      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2
              exit 1;;
       *) echo -e "  [?] UNKNOWN: ${MESSAGE}";;
     esac
@@ -196,20 +202,7 @@ function upgrade_apt() {
 
 function install_apt() {
     let "PACKAGE_INSTALLATION_TRIES+=1"
-    if [ -n "${APT_KEY_URL}" ]; then
-        ${ELEVATE} wget -q "${APT_KEY_URL}" -O "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
-    fi
-
-    if [ -n "${GPG_KEY_URL}" ]; then
-        if [ ! -d /usr/share/keyrings ]; then
-            ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
-        fi
-        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-    fi
-
-    #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
-
-    echo -e "${APT_REPO_URL}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+    add_apt_repo
     update_apt
 
     if ! package_is_installed "${APP}"; then
@@ -217,7 +210,7 @@ function install_apt() {
         ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
     else
         if [ "${ACTION}" == "reinstall" ]; then
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${APP}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"
         else
             fancy_message info "${APP} is up to date."
         fi
@@ -226,28 +219,8 @@ function install_apt() {
 }
 
 function install_ppa() {
-    let "PACKAGE_INSTALLATION_TRIES+=1"
-    local AAR_PARAMS="-y"
-    if [ "$(dpkg -S "$(command -v apt-add-repository)" | cut -d':' -f1)" == "software-properties-common" ]; then
-        AAR_PARAMS+=" --no-update"
-    fi
-    if ${ELEVATE} apt-add-repository ${AAR_PARAMS} "${PPA}"; then
-        update_apt
-        if ! package_is_installed "${APP}"; then
-            eula
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
-        else
-            if [ "${ACTION}" == "reinstall" ]; then
-                ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${APP}"
-            else
-                fancy_message info "${APP} is up to date."
-            fi
-        fi
-        let "PACKAGE_INSTALLATION_COUNT+=1"
-    else
-        fancy_message error "Failed to add: ${PPA}. Deleting it."
-        ${ELEVATE} apt-add-repository -y --remove "${PPA}"
-    fi
+    ppa_to_apt
+    install_apt
 }
 
 function install_deb() {
@@ -256,11 +229,6 @@ function install_deb() {
     local STATUS=""
     let "PACKAGE_INSTALLATION_TRIES+=1"
 
-    if [ -z "${URL}" ]; then
-        fancy_message error "Download URL for ${APP} is empty. Skipping."
-        return
-    fi
-
     if ! package_is_installed "${APP}"; then
         eula
         download_deb "${URL}"
@@ -268,7 +236,7 @@ function install_deb() {
     else
         if [ "${ACTION}" == "reinstall" ]; then
             download_deb "${URL}"
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${CACHE_DIR}/${FILE}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
             download_deb "${URL}"
             ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
@@ -307,26 +275,9 @@ function remove_deb() {
             fi
             ;;
         apt)
-            if [ -n "${APT_KEY_URL}" ]; then
-                fancy_message info "Removing /etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc"
-                ${ELEVATE} rm "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.asc" 2>/dev/null
-            fi
-            if [ -n "${GPG_KEY_URL}" ]; then
-                fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-                ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" 2>/dev/null
-            fi
-            if [ -n "${APT_LIST_NAME}" ] && [ -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
-                fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-                ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            fi
-            ;;
+            remove_apt_repo "${APT_LIST_NAME}";;
         ppa)
-            ${ELEVATE} rm "${CACHE_DIR}/${APP}"*.deb 2>/dev/null
-            if [ -n "${PPA}" ]; then
-                fancy_message info "Removing ${PPA}"
-                ${ELEVATE} apt-add-repository -y --remove "${PPA}"
-            fi
-            ;;
+            remove_ppa_repo "${PPA}";;
     esac
 }
 
@@ -352,17 +303,21 @@ function validate_deb() {
 
     if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
         fancy_message error "${APP} is not a supported application."
-        list_debs
+        list_debs >&2
         exit 1
     fi
 
-    export APT_KEY_URL=""
+    export ASC_KEY_URL=""
     export GPG_KEY_URL=""
+    export OLD_APT_LIST_NAME=""
     export APT_LIST_NAME=""
     export APT_REPO_URL=""
+    export APT_REPO_OPTIONS=""
+    export OLD_PPA=""
     export PPA=""
     export ARCHS_SUPPORTED="amd64"
     export CODENAMES_SUPPORTED=""
+    export OLD_METHOD=""
     export METHOD="website"
     export EULA=""
     export URL=""
@@ -374,11 +329,40 @@ function validate_deb() {
 
     # Source the variables
     deb_${APP} 2>/dev/null
+    if [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
+        fancy_message eror "Missing required information of package ${APP}:"
+        echo "PRETTY_NAME=${PRETTY_NAME}" >&2
+        echo "SUMMARY=${SUMMARY}" >&2
+        echo "WEBSITE=${WEBSITE}" >&2
+        exit 1
+    fi
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
+        if [ "${ACTION}" != "prettylist" ]; then
+            if [ -z "${APT_LIST_NAME}" ] || { [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]; }; then
+                fancy_message error "Missing required information of apt package ${APP}:"
+                echo "APT_LIST_NAME=${APT_LIST_NAME}" >&2
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                exit 1
+            fi
+            if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
+                fancy_message error "Conflicting repository key types for apt package ${APP}:"
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                exit 1
+            fi
+        fi
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
+    else
+        if { { [ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || [ "${METHOD}" != github ]; } && [ "${ACTION}" != "prettylist" ] && { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
+            fancy_message error "Missing required information of ${METHOD} package ${APP}:"
+            echo "URL=${URL}" >&2
+            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
+            exit 1
+        fi
     fi
 }
 
@@ -427,7 +411,7 @@ function update_debs() {
             validate_deb "${APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-                if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
+                if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
                     fancy_message info "${APP} (${VERSION_INSTALLED}) has an update pending. ${VERSION_PUBLISHED} is available."
                 fi
             fi
@@ -444,7 +428,7 @@ function upgrade_debs() {
             validate_deb "${APP}"
             if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
                 STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
-                if [ "${STATUS}" == "install ok installed" ] && [ -n "${VERSION_PUBLISHED}" ]; then
+                if [ "${STATUS}" == "install ok installed" ]; then
                     install_deb "${URL}"
                 fi
             fi
@@ -511,6 +495,107 @@ function print_etc_overrides()
     fi
 }
 
+readonly OLD_APPS=(quickemu firefox-esr quickgui nextcloud-desktop keepassxc ubuntu-make lutris polychromatic openrazer-meta strawberry copyq obs-studio foliate ulauncher yq fsearch kdiskmark xemu cryptomator gpu-viewer blanket audio-recorder papirus-icon-theme qownnotes retroarch texworks virtualbox-6.1 atom code 1password google-chrome-stable opera-stable teams enpass microsoft-edge-stable brave-browser docker-ce skypeforlinux wavebox wire-desktop signal-desktop syncthing sublime-text plexmediaserver jellyfin sublime-merge google-earth-pro-stable cawbird insync slack-desktop vivaldi-stable keybase protonvpn softmaker-office-2021 resilio-sync chronograf influxdb influxdb2 influxdb2-cli kapacitor telegraf anydesk azure-cli terraform nomad kopia-ui typora neo4j appimagelauncher)
+
+function fix_installed() {
+    if [ "${1}" = --old-apps ] && [[ " ${OLD_APPS[@]} " =~ " ${APP} " ]]; then
+        if [ -n "${OLD_APT_LIST_NAME}" ]; then
+            remove_old_apt_repo "${OLD_APT_LIST_NAME}"
+        elif [ "${METHOD}" = apt ]; then
+            remove_old_apt_repo "${APT_LIST_NAME}"
+        elif [ -n "${OLD_PPA}" ]; then
+            remove_old_ppa_repo "${OLD_PPA}"
+        elif [ "${METHOD}" = ppa ]; then
+            remove_old_ppa_repo "${PPA}"
+        fi
+        if [ "${METHOD}" = apt ]; then
+            add_apt_repo
+        elif [ "${METHOD}" = ppa ]; then
+            ppa_to_apt
+            add_apt_repo
+        fi
+    else
+        if [ -n "${OLD_APT_LIST_NAME}" ]; then
+            remove_apt_repo "${OLD_APT_LIST_NAME}"
+        elif [ -n "${OLD_PPA}" ]; then
+            remove_ppa_repo "${OLD_PPA}"
+        fi
+        if [ "${METHOD}" = apt ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
+            add_apt_repo
+        elif [ "${METHOD}" = ppa ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
+            ppa_to_apt
+            add_apt_repo
+        fi
+    fi
+}
+
+function remove_old_apt_repo() {
+    fancy_message info "Removing /etc/apt/trusted.gpg.d/${1}.asc"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${1}.asc"
+    fancy_message info "Removing /etc/apt/sources.list.d/${1}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${1}.list"
+}
+
+function remove_old_ppa_repo() {
+    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}"
+    fancy_message info "Removing /etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg~"
+    fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}-${UPSTREAM_CODENAME}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}-${UPSTREAM_CODENAME}.list"
+}
+
+function remove_apt_repo() {
+    fancy_message info "Removing /usr/share/keyrings/${1}-archive-keyring.gpg"
+    ${ELEVATE} rm -f "/usr/share/keyrings/${1}-archive-keyring.gpg"
+    fancy_message info "Removing /etc/apt/sources.list.d/${1}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${1}.list"
+}
+
+function remove_ppa_repo() {
+    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    remove_apt_repo "${APT_LIST_NAME}"
+}
+
+function add_apt_repo() {
+    if [ ! -d /usr/share/keyrings ]; then
+        ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
+    fi
+    if [ -n "${ASC_KEY_URL}" ]; then
+        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+    else #GPG_KEY_URL
+        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    fi
+
+    #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
+
+    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+
+    if [ -n "${APT_REPO_OPTIONS}" ]; then
+        APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
+    fi
+
+    APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
+    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+}
+
+function ppa_to_apt() {
+    local -r PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
+    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+}
+
 # Import deb_ functions in /etc/deb-get.d/**/* (if exists)
 load_etc_includes
 
@@ -550,14 +635,14 @@ function deb_quickemu() {
 
 function deb_virtualbox-6.1() {
     ARCHS_SUPPORTED="amd64"
-    APT_KEY_URL="https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+    ASC_KEY_URL="https://www.virtualbox.org/download/oracle_vbox_2016.asc"
     APT_LIST_NAME="virtualbox-6.1"
-    APT_REPO_URL="deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian ${UPSTREAM_CODENAME} contrib"
+    APT_REPO_URL="https://download.virtualbox.org/virtualbox/debian ${UPSTREAM_CODENAME} contrib"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="VirtualBox 6.1"
     WEBSITE="https://www.virtualbox.org/"
     SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
-
 
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
@@ -595,21 +680,45 @@ function deb_ubuntu-make() {
 }
 
 function deb_atom() {
-    APT_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
+    ASC_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
     APT_LIST_NAME="atom"
-    APT_REPO_URL="deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+    APT_REPO_URL="https://packagecloud.io/AtomEditor/atom/any/ any main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Atom"
     WEBSITE="https://atom.io/"
     SUMMARY="A hackable text editor for the 21st Century."
 }
 
 function deb_code() {
-    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="vscode"
-    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+    APT_REPO_URL="https://packages.microsoft.com/repos/vscode stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Visual Studio Code"
     WEBSITE="https://code.visualstudio.com/"
     SUMMARY="Code editing. Redefined."
+}
+
+function deb_nala() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer."
+}
+
+function deb_nala-legacy() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala-legacy"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala Legacy"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older."
 }
 
 function deb_rstudio() {
@@ -664,6 +773,16 @@ function deb_github-desktop() {
     SUMMARY="Simple collaboration from your desktop."
 }
 
+function deb_helio-workstation() {
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(curl -s -f -L https://helio.fm |grep -o "https://..*\.deb"|grep -v dev)"
+        VERSION_PUBLISHED="$(echo "${URL}" |cut -d '-' -f2)"
+    fi
+    PRETTY_NAME="Helio Project"
+    WEBSITE="https://helio.fm/"
+    SUMMARY="libre music composition software"
+}
+
 function deb_lsd() {
     ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/Peltoche/lsd/releases/latest"
@@ -674,6 +793,17 @@ function deb_lsd() {
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
     SUMMARY="The next gen 'ls' command."
+}
+
+function deb_wraith-master() {
+    get_github_releases "https://api.github.com/repos/serebit/wraith-master/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
+    PRETTY_NAME="wraith-master"
+    WEBSITE="https://github.com/serebit/wraith-master"
+    SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
 }
 
 function deb_bat() {
@@ -688,6 +818,20 @@ function deb_bat() {
     SUMMARY="A 'cat' clone with wings."
 }
 
+
+function deb_du-dust() {
+    ARCHS_SUPPORTED="amd64 i386"
+    get_github_releases "https://api.github.com/repos/bootandy/dust/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="du-dust"
+    WEBSITE="https://github.com/bootandy/dust"
+    SUMMARY="du + rust = dust. Like du but more intuitive."
+}
+
+
 function deb_git-delta() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/dandavison/delta/releases/latest"
@@ -698,6 +842,18 @@ function deb_git-delta() {
     PRETTY_NAME="git-delta"
     WEBSITE="https://github.com/dandavison/delta"
     SUMMARY="A syntax-highlighting pager for 'git', 'diff', and 'grep' output."
+}
+
+function deb_teams-for-linux() {
+    ARCHS_SUPPORTED="amd64 arm64 armv7l"
+    get_github_releases "https://api.github.com/repos/IsmaelMartinez/teams-for-linux/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="teams-for-linux"
+    WEBSITE="https://github.com/IsmaelMartinez/teams-for-linux"
+    SUMMARY="unofficial Microsoft Teams for LInux"
 }
 
 function deb_fd() {
@@ -837,16 +993,17 @@ function deb_bottom() {
 function deb_element-desktop() {
     GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
     APT_LIST_NAME="element-io"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://packages.element.io/debian/ default main"
+    APT_REPO_URL="https://packages.element.io/debian/ default main"
     PRETTY_NAME="Element"
     WEBSITE="https://element.io/"
     SUMMARY="Secure and independent communication, connected via Matrix."
 }
 
 function deb_1password() {
-    APT_KEY_URL="https://downloads.1password.com/linux/keys/1password.asc"
+    ASC_KEY_URL="https://downloads.1password.com/linux/keys/1password.asc"
     APT_LIST_NAME="1password"
-    APT_REPO_URL="deb [arch=amd64] https://downloads.1password.com/linux/debian/amd64 stable main"
+    APT_REPO_URL="https://downloads.1password.com/linux/debian/amd64 stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="1Password"
     WEBSITE="https://1password.com/"
     SUMMARY="The easiest way to store and use strong passwords."
@@ -855,7 +1012,7 @@ function deb_1password() {
 function deb_weechat() {
     GPG_KEY_URL="https://weechat.org/dev/info/debian_repository_signing_key/"
     APT_LIST_NAME="weechat"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://weechat.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://weechat.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="WeeChat"
     WEBSITE="https://weechat.org/"
     SUMMARY="The extensible chat client."
@@ -864,16 +1021,17 @@ function deb_weechat() {
 function deb_jami() {
     GPG_KEY_URL="https://dl.jami.net/public-key.gpg"
     APT_LIST_NAME="jami"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://dl.jami.net/nightly/${UPSTREAM_ID}_${UPSTREAM_RELEASE}/ jami main"
+    APT_REPO_URL="https://dl.jami.net/nightly/${UPSTREAM_ID}_${UPSTREAM_RELEASE}/ jami main"
     PRETTY_NAME="Jami"
     WEBSITE="https://jami.net/"
     SUMMARY="Share, freely and privately."
 }
 
 function deb_google-chrome-stable() {
-    APT_KEY_URL="https://dl.google.com/linux/linux_signing_key.pub"
+    ASC_KEY_URL="https://dl.google.com/linux/linux_signing_key.pub"
     APT_LIST_NAME="google-chrome"
-    APT_REPO_URL="deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
+    APT_REPO_URL="https://dl.google.com/linux/chrome/deb/ stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
     PRETTY_NAME="Google Chrome"
     WEBSITE="https://www.google.com/chrome/"
@@ -884,12 +1042,12 @@ function disabled_ungoogled-chromium() {
     APT_LIST_NAME="home-ungoogled_chromium.list"
     case "${UPSTREAM_CODENAME}" in
         focal)
-            APT_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key"
-            APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/ /"
+            ASC_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key"
+            APT_REPO_URL="http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/ /"
             ;;
         *)
-            APT_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Debian_Sid/Release.key"
-            APT_REPO_URL="deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Debian_Sid/ /"
+            ASC_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Debian_Sid/Release.key"
+            APT_REPO_URL="http://download.opensuse.org/repositories/home:/ungoogled_chromium/Debian_Sid/ /"
             ;;
     esac
     PRETTY_NAME="ungoogled-chromium"
@@ -898,45 +1056,48 @@ function disabled_ungoogled-chromium() {
 }
 
 function deb_opera-stable() {
-    APT_KEY_URL="https://deb.opera.com/archive.key"
+    ASC_KEY_URL="https://deb.opera.com/archive.key"
     APT_LIST_NAME="opera-stable"
-    APT_REPO_URL="deb https://deb.opera.com/opera-stable/ stable non-free"
+    APT_REPO_URL="https://deb.opera.com/opera-stable/ stable non-free"
     PRETTY_NAME="Opera"
     WEBSITE="https://www.opera.com/"
     SUMMARY="Faster, safer and smarter than default browsers."
 }
 
 function deb_teams() {
-    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="teams"
-    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main"
+    APT_REPO_URL="https://packages.microsoft.com/repos/ms-teams stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Microsoft Teams"
     WEBSITE="https://www.microsoft.com/microsoft-teams/group-chat-software"
     SUMMARY="Team chat and collaboration."
 }
 
 function deb_enpass() {
-    APT_KEY_URL="https://dl.sinew.in/keys/enpass-linux.key"
+    ASC_KEY_URL="https://dl.sinew.in/keys/enpass-linux.key"
     APT_LIST_NAME="enpass"
-    APT_REPO_URL="deb http://repo.sinew.in/ stable main"
+    APT_REPO_URL="http://repo.sinew.in/ stable main"
     PRETTY_NAME="Enpass"
     WEBSITE="https://www.enpass.io/"
     SUMMARY="Remember one master password and let Enpass take care of the rest."
 }
 
 function deb_microsoft-edge-stable() {
-    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="microsoft-edge"
-    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+    APT_REPO_URL="https://packages.microsoft.com/repos/edge stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Microsoft Edge"
     WEBSITE="https://www.microsoft.com/edge"
     SUMMARY="Fast and secure browser that helps you protect your data and save time and money."
 }
 
 function deb_brave-browser() {
-    APT_KEY_URL="https://brave-browser-apt-release.s3.brave.com/brave-core.asc"
+    ASC_KEY_URL="https://brave-browser-apt-release.s3.brave.com/brave-core.asc"
     APT_LIST_NAME="brave-browser-release"
-    APT_REPO_URL="deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
+    APT_REPO_URL="https://brave-browser-apt-release.s3.brave.com/ stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Brave"
     WEBSITE="https://brave.com/"
     SUMMARY="Browse privately. Search privately. And ditch Big Tech."
@@ -944,9 +1105,10 @@ function deb_brave-browser() {
 
 function deb_docker-ce() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
-    APT_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
+    ASC_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
     APT_LIST_NAME="docker"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://download.docker.com/linux/${UPSTREAM_ID} ${UPSTREAM_CODENAME} stable"
+    APT_REPO_URL="https://download.docker.com/linux/${UPSTREAM_ID} ${UPSTREAM_CODENAME} stable"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
     PRETTY_NAME="Docker Engine"
     WEBSITE="https://www.docker.com/"
     SUMMARY="Open source containerization technology for building and containerizing your applications."
@@ -1079,7 +1241,7 @@ function deb_mpdevil() {
 }
 
 function deb_rambox() {
-    get_github_releases "https://api.github.com/repos/ramboxapp/download/releases"
+    get_github_releases "https://api.github.com/repos/ramboxapp/download/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*x64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
@@ -1134,10 +1296,24 @@ function deb_deb-get() {
     SUMMARY="'apt-get' functionality for .debs published in 3rd party repositories or via direct download package."
 }
 
+function deb_deborah() {
+    CODENAMES_SUPPORTED="focal jammy kinetic"
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/ymauray/deborah/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${UPSTREAM_CODENAME}.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Deborah"
+    WEBSITE="https://github.com/ymauray/deborah/"
+    SUMMARY="A Flutter front-end for deb-get."
+}
+
 function deb_skypeforlinux() {
-    APT_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
+    ASC_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
     APT_LIST_NAME="skype-stable"
-    APT_REPO_URL="deb [arch=amd64] https://repo.skype.com/deb stable main"
+    APT_REPO_URL="https://repo.skype.com/deb stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Skype"
     WEBSITE="https://www.skype.com/"
     SUMMARY="Stay connected with free video calls worldwide."
@@ -1146,52 +1322,55 @@ function deb_skypeforlinux() {
 function deb_waydroid() {
     GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
     APT_LIST_NAME="waydroid"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://repo.waydro.id ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://repo.waydro.id ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="WayDroid"
     WEBSITE="https://waydro.id/"
     SUMMARY="A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu."
 }
 
 function deb_wavebox() {
-    APT_KEY_URL="https://wavebox.pro/dl/client/repo/archive.key"
+    ASC_KEY_URL="https://wavebox.pro/dl/client/repo/archive.key"
     APT_LIST_NAME="wavebox-stable"
-    APT_REPO_URL="deb [arch=amd64] https://download.wavebox.app/stable/linux/deb/ amd64/"
+    APT_REPO_URL="https://download.wavebox.app/stable/linux/deb/ amd64/"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Wavebox"
     WEBSITE="https://wavebox.io/"
     SUMMARY="Rethink the Web. Productivity Browser."
 }
 
 function deb_wire-desktop() {
-    APT_KEY_URL="https://wire-app.wire.com/linux/releases.key"
+    ASC_KEY_URL="https://wire-app.wire.com/linux/releases.key"
     APT_LIST_NAME="wire-desktop"
-    APT_REPO_URL="deb [arch=amd64] https://wire-app.wire.com/linux/debian stable main"
+    APT_REPO_URL="https://wire-app.wire.com/linux/debian stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Wire"
     WEBSITE="https://wire.com/"
     SUMMARY="Secure collaboration platform."
 }
 
 function deb_signal-desktop() {
-    APT_KEY_URL="https://updates.signal.org/desktop/apt/keys.asc"
+    ASC_KEY_URL="https://updates.signal.org/desktop/apt/keys.asc"
     APT_LIST_NAME="signal-xenial.list"
-    APT_REPO_URL="deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main"
+    APT_REPO_URL="https://updates.signal.org/desktop/apt xenial main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Signal"
     WEBSITE="https://signal.org/"
     SUMMARY="Private Messenger."
 }
 
 function deb_syncthing() {
-    APT_KEY_URL="https://syncthing.net/release-key.txt"
+    ASC_KEY_URL="https://syncthing.net/release-key.txt"
     APT_LIST_NAME="syncthing"
-    APT_REPO_URL="deb https://apt.syncthing.net/ syncthing release"
+    APT_REPO_URL="https://apt.syncthing.net/ syncthing release"
     PRETTY_NAME="Syncthing"
     WEBSITE="https://syncthing.net/"
     SUMMARY="Continuous file synchronization program."
 }
 
 function deb_sublime-text() {
-    APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
+    ASC_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
     APT_LIST_NAME="sublime-text"
-    APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
+    APT_REPO_URL="https://download.sublimetext.com/ apt/stable/"
     PRETTY_NAME="Sublime Text"
     WEBSITE="https://www.sublimetext.com/"
     SUMMARY="Text Editing, Done Right."
@@ -1199,9 +1378,9 @@ function deb_sublime-text() {
 
 function deb_plexmediaserver() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
-    APT_KEY_URL="https://downloads.plex.tv/plex-keys/PlexSign.key"
+    ASC_KEY_URL="https://downloads.plex.tv/plex-keys/PlexSign.key"
     APT_LIST_NAME="plexmediaserver"
-    APT_REPO_URL="deb https://downloads.plex.tv/repo/deb public main"
+    APT_REPO_URL="https://downloads.plex.tv/repo/deb public main"
     PRETTY_NAME="Plex"
     WEBSITE="https://www.plex.tv/"
     SUMMARY="Stream Movies and TV Shows."
@@ -1209,9 +1388,10 @@ function deb_plexmediaserver() {
 
 function deb_jellyfin() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
-    APT_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
+    ASC_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
     APT_LIST_NAME="jellyfin"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.jellyfin.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://repo.jellyfin.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
     PRETTY_NAME="Jellyfin"
     WEBSITE="https://jellyfin.org/"
     SUMMARY="The Free Software Media System."
@@ -1229,18 +1409,19 @@ function deb_pandoc() {
     SUMMARY="A universal document converter."
 }
 function deb_sublime-merge() {
-    APT_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
+    ASC_KEY_URL="https://download.sublimetext.com/sublimehq-pub.gpg"
     APT_LIST_NAME="sublime-text"
-    APT_REPO_URL="deb https://download.sublimetext.com/ apt/stable/"
+    APT_REPO_URL="https://download.sublimetext.com/ apt/stable/"
     PRETTY_NAME="Sublime Merge"
     WEBSITE="https://www.sublimemerge.com/"
     SUMMARY="Git Client, done Sublime."
 }
 
 function deb_google-earth-pro-stable() {
-    APT_KEY_URL="https://dl-ssl.google.com/linux/linux_signing_key.pub"
+    ASC_KEY_URL="https://dl-ssl.google.com/linux/linux_signing_key.pub"
     APT_LIST_NAME="google-earth-pro"
-    APT_REPO_URL="deb [arch=amd64] https://dl.google.com/linux/earth/deb/ stable main"
+    APT_REPO_URL="https://dl.google.com/linux/earth/deb/ stable main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Google Earth Pro"
     WEBSITE="https://www.google.com/earth/versions/"
     SUMMARY="Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities."
@@ -1253,9 +1434,9 @@ function deb_cawbird() {
         OBS_UPSTREAM_ID="x${OBS_UPSTREAM_ID}"
     fi
 
-    APT_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/Release.key"
+    ASC_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/Release.key"
     APT_LIST_NAME="home:IBBoard:cawbird"
-    APT_REPO_URL="deb https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/ /"
+    APT_REPO_URL="https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/ /"
     PRETTY_NAME="Cawbird"
     WEBSITE="https://ibboard.co.uk/cawbird/"
     SUMMARY="Twitter client for the Linux desktop."
@@ -1263,10 +1444,10 @@ function deb_cawbird() {
 
 function deb_insync() {
     if [ "${ACTION}" != "prettylist" ]; then
-        APT_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
+        ASC_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
     fi
     APT_LIST_NAME="insync"
-    APT_REPO_URL="deb http://apt.insync.io/${UPSTREAM_ID} ${UPSTREAM_CODENAME} non-free contrib"
+    APT_REPO_URL="http://apt.insync.io/${UPSTREAM_ID} ${UPSTREAM_CODENAME} non-free contrib"
     PRETTY_NAME="Insync"
     WEBSITE="https://www.insynchq.com/"
     SUMMARY="Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop."
@@ -1510,9 +1691,9 @@ function deb_gitter() {
 }
 
 function deb_slack-desktop() {
-    APT_KEY_URL="https://packagecloud.io/slacktechnologies/slack/gpgkey"
+    ASC_KEY_URL="https://packagecloud.io/slacktechnologies/slack/gpgkey"
     APT_LIST_NAME="slack"
-    APT_REPO_URL="deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
+    APT_REPO_URL="https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
     PRETTY_NAME="Slack"
     WEBSITE="https://slack.com/"
     SUMMARY="One platform for your team and your work."
@@ -1520,9 +1701,10 @@ function deb_slack-desktop() {
 
 function deb_vivaldi-stable() {
     ARCHS_SUPPORTED="amd64 arm64 armhf"
-    APT_KEY_URL="https://repo.vivaldi.com/stable/linux_signing_key.pub"
+    ASC_KEY_URL="https://repo.vivaldi.com/stable/linux_signing_key.pub"
     APT_LIST_NAME="vivaldi"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://repo.vivaldi.com/stable/deb/ stable main"
+    APT_REPO_URL="https://repo.vivaldi.com/stable/deb/ stable main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
     PRETTY_NAME="Vivaldi"
     WEBSITE="https://vivaldi.com/"
     SUMMARY="The most feature-packaged, customisable browser."
@@ -1561,7 +1743,7 @@ function deb_webex() {
 
 function deb_deadbeef() {
     if [ "${ACTION}" != "prettylist" ]; then
-        local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep "amd64\.deb\"" | cut -d'"' -f2)"
+        local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep "amd64\.deb" | cut -d'"' -f2)"
         URL=$(unroll_url "${REDIR_URL}")
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     fi
@@ -1634,36 +1816,36 @@ function deb_nordvpn() {
 
 function deb_keybase() {
     ARCHS_SUPPORTED="amd64 i386"
-    APT_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
+    ASC_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
     APT_LIST_NAME="keybase"
-    APT_REPO_URL="deb https://prerelease.keybase.io/deb stable main"
+    APT_REPO_URL="https://prerelease.keybase.io/deb stable main"
     PRETTY_NAME="Keybase"
     WEBSITE="https://keybase.io/"
     SUMMARY="End-to-end encryption for things that matter. Secure messaging and file-sharing."
 }
 
 function deb_protonvpn() {
-    APT_KEY_URL="https://protonvpn.com/download/public_key.asc"
+    ASC_KEY_URL="https://protonvpn.com/download/public_key.asc"
     APT_LIST_NAME="protonvpn-stable"
-    APT_REPO_URL="deb https://repo.protonvpn.com/debian stable main"
+    APT_REPO_URL="https://repo.protonvpn.com/debian stable main"
     PRETTY_NAME="Proton VPN"
     WEBSITE="https://protonvpn.com/"
     SUMMARY="High-speed Swiss VPN that safeguards your privacy."
 }
 
 function deb_softmaker-office-2021() {
-    APT_KEY_URL="https://shop.softmaker.com/repo/linux-repo-public.key"
+    ASC_KEY_URL="https://shop.softmaker.com/repo/linux-repo-public.key"
     APT_LIST_NAME="softmaker"
-    APT_REPO_URL="deb https://shop.softmaker.com/repo/apt stable non-free"
+    APT_REPO_URL="https://shop.softmaker.com/repo/apt stable non-free"
     PRETTY_NAME="SoftMaker Office 2021"
     WEBSITE="https://www.softmaker.com/en/softmaker-office"
     SUMMARY="Create impressive documents with ease."
 }
 
 function deb_resilio-sync() {
-    APT_KEY_URL="https://linux-packages.resilio.com/resilio-sync/key.asc"
+    ASC_KEY_URL="https://linux-packages.resilio.com/resilio-sync/key.asc"
     APT_LIST_NAME="resilio-sync"
-    APT_REPO_URL="deb https://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
+    APT_REPO_URL="https://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
     PRETTY_NAME="Resilio Sync"
     WEBSITE="https://www.resilio.com/"
     SUMMARY="Fast, reliable, and simple file sync and share solution, powered by P2P technology"
@@ -1737,9 +1919,9 @@ function deb_gh() {
 
 function deb_chronograf() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
-    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    ASC_KEY_URL="https://repos.influxdata.com/influxdb.key"
     APT_LIST_NAME="influxdata"
-    APT_REPO_URL="deb https://repos.influxdata.com/debian stable main"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
     PRETTY_NAME="Chronograf"
     WEBSITE="https://www.influxdata.com/time-series-platform/chronograf/"
     SUMMARY="Open source monitoring and visualization UI for the TICK stack."
@@ -1747,9 +1929,9 @@ function deb_chronograf() {
 
 function deb_influxdb() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
-    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    ASC_KEY_URL="https://repos.influxdata.com/influxdb.key"
     APT_LIST_NAME="influxdata"
-    APT_REPO_URL="deb https://repos.influxdata.com/debian stable main"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
     PRETTY_NAME="InfluxDB"
     WEBSITE="https://www.influxdata.com/products/influxdb-overview/"
     SUMMARY="Scalable datastore for metrics, events, and real-time analytics."
@@ -1757,9 +1939,9 @@ function deb_influxdb() {
 
 function deb_influxdb2() {
     ARCHS_SUPPORTED="amd64 arm64"
-    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    ASC_KEY_URL="https://repos.influxdata.com/influxdb.key"
     APT_LIST_NAME="influxdata"
-    APT_REPO_URL="deb https://repos.influxdata.com/debian stable main"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
     PRETTY_NAME="InfluxDB2"
     WEBSITE="https://www.influxdata.com/products/influxdb-overview/"
     SUMMARY="Scalable datastore for metrics, events, and real-time analytics."
@@ -1767,9 +1949,9 @@ function deb_influxdb2() {
 
 function deb_influxdb2-cli() {
     ARCHS_SUPPORTED="amd64 arm64"
-    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    ASC_KEY_URL="https://repos.influxdata.com/influxdb.key"
     APT_LIST_NAME="influxdata"
-    APT_REPO_URL="deb https://repos.influxdata.com/debian stable main"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
     PRETTY_NAME="InfluxDB2 CLI"
     WEBSITE="https://www.influxdata.com/products/influxdb-overview/"
     SUMMARY="CLI for managing resources in InfluxDB v2"
@@ -1777,9 +1959,9 @@ function deb_influxdb2-cli() {
 
 function deb_kapacitor() {
     ARCHS_SUPPORTED="amd64 arm64"
-    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    ASC_KEY_URL="https://repos.influxdata.com/influxdb.key"
     APT_LIST_NAME="influxdata"
-    APT_REPO_URL="deb https://repos.influxdata.com/debian stable main"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
     PRETTY_NAME="Kapacitor"
     WEBSITE="https://github.com/influxdata/kapacitor"
     SUMMARY="Open source framework for processing, monitoring, and alerting on time series data."
@@ -1787,9 +1969,9 @@ function deb_kapacitor() {
 
 function deb_telegraf() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
-    APT_KEY_URL="https://repos.influxdata.com/influxdb.key"
+    ASC_KEY_URL="https://repos.influxdata.com/influxdb.key"
     APT_LIST_NAME="influxdata"
-    APT_REPO_URL="deb https://repos.influxdata.com/debian stable main"
+    APT_REPO_URL="https://repos.influxdata.com/debian stable main"
     PRETTY_NAME="Telegraf"
     WEBSITE="https://github.com/influxdata/telegraf"
     SUMMARY="The plugin-driven server agent for collecting & reporting metrics."
@@ -1817,9 +1999,9 @@ function deb_teamviewer() {
 }
 
 function deb_anydesk() {
-    APT_KEY_URL="https://keys.anydesk.com/repos/DEB-GPG-KEY"
+    ASC_KEY_URL="https://keys.anydesk.com/repos/DEB-GPG-KEY"
     APT_LIST_NAME="anydesk-stable"
-    APT_REPO_URL="deb http://deb.anydesk.com/ all main"
+    APT_REPO_URL="http://deb.anydesk.com/ all main"
     PRETTY_NAME="AnyDesk"
     WEBSITE="https://anydesk.com/"
     SUMMARY="Access any device at any time. From anywhere. Always secure and fast."
@@ -1856,9 +2038,10 @@ function deb_strawberry() {
 
 function deb_azure-cli() {
     # TODO: Test with Debian
-    APT_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="azure-cli"
-    APT_REPO_URL="deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://packages.microsoft.com/repos/azure-cli/ ${UPSTREAM_CODENAME} main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="Azure CLI"
     WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
     SUMMARY="Command-line interface used to create and manage Azure resources."
@@ -1867,25 +2050,28 @@ function deb_azure-cli() {
 function deb_zotero() {
     GPG_KEY_URL="https://raw.githubusercontent.com/retorquere/zotero-deb/master/zotero-archive-keyring.gpg"
     APT_LIST_NAME="zotero"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg by-hash=force] https://zotero.retorque.re/file/apt-package-archive ./"
+    APT_REPO_URL="https://zotero.retorque.re/file/apt-package-archive ./"
+    APT_REPO_OPTIONS="by-hash=force"
     PRETTY_NAME="Zotero"
     WEBSITE="https://www.zotero.org/"
     SUMMARY="A free, easy-to-use tool to help you collect, organize, cite, and share research."
 }
 
 function deb_terraform() {
-    APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    ASC_KEY_URL="https://apt.releases.hashicorp.com/gpg"
     APT_LIST_NAME="terraform"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
     PRETTY_NAME="Terraform"
     WEBSITE="https://www.terraform.io/"
     SUMMARY="Automate Infrastructure on Any Cloud."
 }
 
 function deb_nomad() {
-    APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    ASC_KEY_URL="https://apt.releases.hashicorp.com/gpg"
     APT_LIST_NAME="nomad"
-    APT_REPO_URL="deb [arch=${HOST_ARCH}] https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
     PRETTY_NAME="Nomad"
     WEBSITE="https://www.nomadproject.io/"
     SUMMARY="Orchestration tool for deploying and managing applications."
@@ -1895,7 +2081,7 @@ function deb_tailscale() {
     # TODO: Test with Debian
     GPG_KEY_URL="https://pkgs.tailscale.com/stable/${UPSTREAM_ID}/${UPSTREAM_CODENAME}.noarmor.gpg"
     APT_LIST_NAME="tailscale"
-    APT_REPO_URL="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://pkgs.tailscale.com/stable/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://pkgs.tailscale.com/stable/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Tailscale"
     WEBSITE="https://tailscale.com/"
     SUMMARY="Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere."
@@ -2184,6 +2370,17 @@ function deb_minikube() {
     SUMMARY="minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows."
 }
 
+function deb_limoji() {
+    get_github_releases "https://api.github.com/repos/GEROGIANNIS/limoji/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*limoji.*_all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="limoji"
+    WEBSITE="https://github.com/GEROGIANNIS/Limoji"
+    SUMMARY="Turning your favorite emojis into the world of ASCII."
+}
+
 function deb_fsearch() {
     PPA="ppa:christian-boxdoerfer/fsearch-stable"
     PRETTY_NAME="FSearch"
@@ -2265,18 +2462,18 @@ function deb_sleek() {
 }
 
 function deb_kopia-ui() {
-    APT_KEY_URL="https://kopia.io/signing-key"
+    ASC_KEY_URL="https://kopia.io/signing-key"
     APT_LIST_NAME="kopia"
-    APT_REPO_URL="deb https://packages.kopia.io/apt/ stable main"
+    APT_REPO_URL="https://packages.kopia.io/apt/ stable main"
     PRETTY_NAME="KopiaUI"
     WEBSITE="https://kopia.io/"
     SUMMARY="Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication."
 }
 
 function deb_typora() {
-    APT_KEY_URL="https://typora.io/linux/public-key.asc"
+    ASC_KEY_URL="https://typora.io/linux/public-key.asc"
     APT_LIST_NAME="typora"
-    APT_REPO_URL="deb https://typora.io/linux ./"
+    APT_REPO_URL="https://typora.io/linux ./"
     PRETTY_NAME="Typora"
     WEBSITE="https://typora.io/"
     SUMMARY="A minimal Markdown editor and reader."
@@ -2359,7 +2556,8 @@ function deb_librewolf() {
     CODENAMES_SUPPORTED="bullseye focal impish jammy"
     GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
     APT_LIST_NAME="librewolf"
-    APT_REPO_URL="deb [arch=amd64, signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg] https://deb.librewolf.net ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://deb.librewolf.net ${UPSTREAM_CODENAME} main"
+    APT_REPO_OPTIONS="arch=amd64"
     PRETTY_NAME="LibreWolf"
     WEBSITE="https://librewolf.net/"
     SUMMARY="An independent fork of Firefox, with the primary goals of privacy, security and user freedom."
@@ -2432,7 +2630,13 @@ function deb_papirus-icon-theme() {
 }
 
 function deb_appimagelauncher() {
-    PPA="ppa:appimagelauncher-team/stable"
+    OLD_PPA="ppa:appimagelauncher-team/stable"
+    ARCHS_SUPPORTED="amd64 i386 armhf arm64"
+    get_github_releases "https://api.github.com/repos/TheAssassin/AppImageLauncher/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v xenial | head -n1 | cut -d '"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d '_' -f2 | cut -d '-' -f1)"
+    fi
     PRETTY_NAME="AppImage Launcher"
     WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
     SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."
@@ -2462,9 +2666,9 @@ function deb_soundux() {
 
 function deb_neo4j() {
     ARCHS_SUPPORTED="amd64"
-    APT_KEY_URL="https://debian.neo4j.com/neotechnology.gpg.key"
+    ASC_KEY_URL="https://debian.neo4j.com/neotechnology.gpg.key"
     APT_LIST_NAME="neo4j"
-    APT_REPO_URL="deb https://debian.neo4j.com stable latest"
+    APT_REPO_URL="https://debian.neo4j.com stable latest"
     PRETTY_NAME="Neo4j"
     WEBSITE="https://neo4j.com/"
     SUMMARY="The Graph Data Platform for Today's Intelligent Applications."
@@ -2537,6 +2741,85 @@ function deb_quarto() {
     SUMMARY="Quarto - an open-source scientific and technical publishing system built on Pandoc"
 }
 
+function deb_weylus() {
+    get_github_releases "https://api.github.com/repos/H-M-H/Weylus/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="Weylus"
+    WEBSITE="https://github.com/H-M-H/Weylus"
+    SUMMARY="Turn your tablet or smart phone into a graphic tablet/touch screen for your computer."
+}
+
+function deb_neovim() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/neovim/neovim/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*nvim-linux64\.deb[^.]" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Neovim"
+    WEBSITE="https://neovim.io/"
+    SUMMARY="Hyperextensible Vim-based text editor"
+}
+
+function deb_smartgit() {
+    ARCHS_SUPPORTED="amd64"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="https://www.syntevo.com$(curl -s "https://www.syntevo.com/smartgit/download/" | grep "\.deb" | head -n1 | cut -d'"' -f2)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2 | cut -d'.' -f1 | tr '_' '.')"
+    fi
+    PRETTY_NAME="SmartGit"
+    WEBSITE="https://www.syntevo.com/"
+    SUMMARY="A graphical Git client with support for pull requests for GitHub and Bitbucket."
+}
+
+function deb_google-cloud-cli() {
+    GPG_KEY_URL="https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    APT_LIST_NAME="google-cloud-cli"
+    APT_REPO_URL="https://packages.cloud.google.com/apt cloud-sdk main"
+    PRETTY_NAME="Google Cloud SDK"
+    WEBSITE="https://cloud.google.com/sdk"
+    SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
+}
+
+function deb_cosign() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf ppc64el s390x"
+    get_github_releases "https://api.github.com/repos/sigstore/cosign/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="Cosign"
+    WEBSITE="https://github.com/sigstore/cosign"
+    SUMMARY="Container Signing, Verification and Storage in an OCI registry."
+}
+
+function deb_vagrant() {
+    ARCHS_SUPPORTED="amd64"
+    CODENAMES_SUPPORTED="buster bullseye focal jammy"
+    ASC_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    APT_LIST_NAME="hashicorp"
+    APT_REPO_URL="https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    PRETTY_NAME="Vagrant"
+    WEBSITE="https://www.vagrantup.com/"
+    SUMMARY="Building and maintaining virtual software development environments."
+}
+
+function deb_tabby-terminal() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/Eugeny/tabby/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*-linux-x64\.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 )"
+        VERSION_PUBLISHED=${VERSION_PUBLISHED/v}
+    fi
+    PRETTY_NAME="Tabby"
+    WEBSITE="https://tabby.sh/"
+    SUMMARY="A terminal for the modern age"
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
@@ -2589,26 +2872,50 @@ case "${OS_ID}" in
   Pop) OS_ID_PRETTY="Pop!_OS";;
   Ubuntu) OS_ID_PRETTY="Ubuntu";;
   Zorin) OS_ID_PRETTY="Zorin OS";;
-  *) fancy_message fatal "${OS_ID} is not supported.";;
+  *)
+    OS_ID_PRETTY="${OS_ID}"
+    fancy_message warn "${OS_ID} is not supported."
+  ;;
 esac
 
 OS_CODENAME=$(lsb_release --codename --short)
+
 if [ -e /etc/os-release ]; then
-    UPSTREAM_ID="$(grep "^ID=" /etc/os-release | cut -d'=' -f2)"
-
-    # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
-    if [ "${UPSTREAM_ID}" != "debian" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
-        UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" /etc/os-release | cut -d'=' -f2 | sed s/\"//g | cut -d' ' -f1)"
-        UPSTREAM_ID="${UPSTREAM_ID_LIKE}"
-    fi
-
-    case "${UPSTREAM_ID}" in
-        ubuntu) UPSTREAM_CODENAME=$(grep UBUNTU_CODENAME /etc/os-release | cut -d'=' -f2);;
-        debian) UPSTREAM_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2);;
-        *) UPSTREAM_CODENAME="";;
-    esac
+    OS_RELEASE=/etc/os-release
+elif [ -e /usr/lib/os-release ]; then
+    OS_RELEASE=/usr/lib/os-release
 else
-    fancy_message fatal "/etc/os-release not found. Quitting"
+    fancy_message fatal "os-release not found. Quitting"
+fi
+
+UPSTREAM_ID="$(grep "^ID=" ${OS_RELEASE} | cut -d'=' -f2)"
+
+# Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
+if [ "${UPSTREAM_ID}" != ubuntu ] && [ "${UPSTREAM_ID}" != debian ]; then
+    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" ${OS_RELEASE} | cut -d'=' -f2 | cut -d \" -f 2)"
+
+    if [[ " ${UPSTREAM_ID_LIKE} " =~ " ubuntu " ]]; then
+        UPSTREAM_ID=ubuntu
+    elif [[ " ${UPSTREAM_ID_LIKE} " =~ " debian " ]]; then
+        UPSTREAM_ID=debian
+    else
+        fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release."
+    fi
+fi
+
+UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+
+if [ -z "${UPSTREAM_CODENAME}" ]; then
+    UPSTREAM_CODENAME=$(grep "^DEBIAN_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+fi
+
+if [ -z "${UPSTREAM_CODENAME}" ]; then
+    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+fi
+
+# Debian 12+
+if [ -z "${UPSTREAM_CODENAME}" ] && [ -e /etc/debian_version ]; then
+    UPSTREAM_CODENAME=$(cut -d / -f 1 /etc/debian_version)
 fi
 
 case "${UPSTREAM_CODENAME}" in
@@ -2628,7 +2935,7 @@ if [ -n "${1}" ]; then
     shift
 else
     fancy_message error "You must specify an action."
-    usage
+    usage >&2
     exit 1
 fi
 
@@ -2636,7 +2943,7 @@ case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
-            list_debs
+            list_debs >&2
             exit 1
         fi
         print_etc_overrides;;
@@ -2649,8 +2956,8 @@ case "${ACTION}" in
         ls -lh "${CACHE_DIR}/";;
     clean)
         elevate_privs
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.deb
-        ${ELEVATE} rm -v "${CACHE_DIR}"/*.json;;
+        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.deb
+        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
             validate_deb "${APP}"
@@ -2709,6 +3016,17 @@ case "${ACTION}" in
         elevate_privs
         create_cache_dir
         upgrade_debs;;
+    fix-installed)
+        if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
+            fancy_message fatal "Unknown option supplied: ${1}"
+        fi
+        elevate_privs
+        for APP in "${APPS[@]}"; do
+            if package_is_installed "${APP}"; then
+                validate_deb "${APP}"
+                fix_installed "${1}"
+            fi
+        done;;
     version) echo "${VERSION}";;
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
@@ -2717,3 +3035,4 @@ esac
 if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
     exit 1
 fi
+
