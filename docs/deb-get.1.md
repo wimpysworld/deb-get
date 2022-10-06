@@ -143,218 +143,7 @@ since 2015.
 
 ## Supported Software
 
-The software below can be installed, updated and removed using `deb-get`'s main repository.
-
-- `deb-get install <packagename>`
-- `deb-get update`
-- `deb-get upgrade`
-- `deb-get remove <packagename>`
-- `deb-get purge <packagename>`
-
-```
-1password
-android-messages-desktop
-antimicrox
-anydesk
-appimagelauncher
-atom
-audio-recorder
-azure-cli
-azuredatastudio
-balena-etcher-electron
-bat
-battery-monitor
-beersmith3
-bitwarden
-bitwig-studio
-blanket
-blockbench
-bluejeans-v2
-bottom
-brave-browser
-brisqi
-caprine
-cawbird
-chronograf
-code
-codium
-com.github.tkashkin.gamehub
-copyq
-cosign
-crossover
-cryptomator
-dbeaver-ce
-deadbeef
-deb-get
-deborah
-deltachat-desktop
-discord
-docker-ce
-docker-desktop
-draw.io
-dropbox
-du-dust
-duf
-dustracing2d
-element-desktop
-enpass
-exodus
-expressvpn
-fd
-figma-linux
-firefox-esr
-flameshot
-foliate
-franz
-fsearch
-gh
-git-delta
-github-desktop
-gitkraken
-gitter
-google-chat-electron
-google-chrome-stable
-google-cloud-cli
-google-earth-pro-stable
-gpu-viewer
-grype
-helio-workstation
-heroic
-hugo
-hyper
-igdm
-influxdb
-influxdb2
-influxdb2-cli
-insomnia
-insync
-irccloud-desktop
-jabref
-jami
-jellyfin
-kapacitor
-kdiskmark
-keepassxc
-keybase
-kopia-ui
-ksnip
-lens
-librewolf
-limoji
-lsd
-ludo
-lutris
-mailspring
-mattermost-desktop
-mergerfs
-micro
-microsoft-edge-stable
-min
-minigalaxy
-minikube
-motrix
-mpdevil
-ms-office-electron
-mullvad-vpn
-nala
-nala-legacy
-neo4j
-neovim
-nextcloud-desktop
-nomad
-nordvpn
-notable
-obs-cli
-obsidian
-obs-studio
-ocenaudio
-onlyoffice-desktopeditors
-openaudible
-openrazer-meta
-openrgb
-opera-stable
-p3x-onenote
-pandoc
-papirus-icon-theme
-parsec
-peazip
-picocrypt
-plexmediaserver
-plow
-polychromatic
-portmaster
-powershell
-protonmail-bridge
-protonvpn
-pulse-sms
-qownnotes
-quarto
-quickemu
-quickgui
-rambox
-rclone
-resilio-sync
-retroarch
-rocketchat
-rpi-imager
-rstudio
-rustdesk
-sejda-desktop
-shutter-encoder
-signal-desktop
-simplenote
-skypeforlinux
-slack-desktop
-sleek
-smartgit
-softmaker-office-2021
-soundux
-spotify-client
-standard-notes
-strawberry
-stremio
-sublime-merge
-sublime-text
-surfshark
-syft
-syncthing
-system-monitoring-center
-tabby-terminal
-tailscale
-teams
-teams-for-linux
-teamviewer
-telegraf
-terraform
-texworks
-tidal-hifi
-tixati
-tribler
-trivy
-typora
-ubuntu-make
-ulauncher
-vagrant
-virtualbox-6.1
-vivaldi-stable
-vuescan
-wavebox
-waydroid
-webex
-weechat
-weylus
-whalebird
-whatsapp-for-linux
-wire-desktop
-wraith-master
-xemu
-youtube-music
-yq
-zenith
-zettlr
-zoom
-zotero
-```
+The list of the software that can be installed, updated and removed using `deb-get`'s main repository is available at [01-main/README](https://github.com/wimpysworld/deb-get/blob/main/01-main/README.md).
 
 ### How do package updates work?
 
@@ -373,7 +162,7 @@ download, then those packages can only be updated/upgraded by using
 #### GitHub API Rate Limits
 
 `deb-get` uses the [GitHub REST API](https://docs.github.com/en/rest) for some functionality when applications are provided via  GitHub Releases
-and for unauthenticated interactions this API is [rate-limited](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting) to 60 calls per hour per source (IP Address). This is vital for keeping the API responsive and available to all users, but can be inconvenient if you have a lot of GitHub releases being handled by `deb-get` (or need to update several times in a short period to test your [contribution](CONTRIBUTING.md)) and will result in, for example, temporary failures to be able to upgrade or install applications via  GitHub Releases.
+and for unauthenticated interactions this API is [rate-limited](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting) to 60 calls per hour per source (IP Address). This is vital for keeping the API responsive and available to all users, but can be inconvenient if you have a lot of GitHub releases being handled by `deb-get` (or need to update several times in a short period to test your [contribution](https://github.com/wimpysworld/deb-get/blob/main/01-main/CONTRIBUTING.md)) and will result in, for example, temporary failures to be able to upgrade or install applications via  GitHub Releases.
 
 If you have a GitHub account you can authenticate your GitHub API usage to increase your rate-limit to 5000 requests per hour per authenticated user.  To do this you will need to use a [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Once you have created a token within GitHub (or identified an appropriate existing token) you should insert it into an environment variable (`DEBGET_TOKEN`) for `deb-get` to pick up and use to authenticate to the GitHub API.
 
@@ -389,7 +178,7 @@ deb-get upgrade
 
 ## Adding Software
 
-For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package to the main repository, head to [CONTRIBUTING](https://github.com/wimpysworld/deb-get/blob/main/CONTRIBUTING.md).
+For information on what is acceptable as suggestion for new packages and instructions on how to open a PR to add a new package to the main repository, head to [01-main/CONTRIBUTING](https://github.com/wimpysworld/deb-get/blob/main/01-main/CONTRIBUTING.md).
 
 ### Adding external repositories
 
