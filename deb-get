@@ -430,7 +430,7 @@ function prettylist_debs() {
                 ppa)    ICON="launchpad.png";;
                 *)      ICON="direct.png";;
             esac
-            echo "| [<img src=\".github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
+            echo "| [<img src=\"../.github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
         fi
     done
 }
