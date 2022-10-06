@@ -20,17 +20,26 @@ jobs:
           # sudo apt-get install build-essential devscripts debhelper -y
 
           # Dependencies for deb-get itself
-          sudo apt-get install apt apt-transport-https bash coreutils curl dpkg grep libc-bin lsb-release sed software-properties-common sudo wget -y
+          sudo apt-get install apt apt-transport-https bash coreutils curl dpkg gpg grep libc-bin lsb-release sed software-properties-common sudo wget -y
 
 
       # All these commands should return a 0 status
       - name: Test zero status
         run: |
-          ./deb-get update >/dev/null
-          ./deb-get list >/dev/null
+          chmod a+x ./deb-get
+          ./deb-get list --raw >/dev/null
+          ./deb-get prettylist >/dev/null
+          ./deb-get csvlist >/dev/null
+          ./deb-get show deb-get >/dev/null
           ./deb-get help >/dev/null
           ./deb-get cache >/dev/null
           ./deb-get version >/dev/null
+          ./deb-get clean >/dev/null
+
+      # update is skipped for now, as it depends on the 01-main subfolder being present
+      # upgrade is skipped because of full system upgrade and otherwise testing package installs
+      # covers most of that. Seperate job/workflow for occassional upgrade validation
+      # say when tagging for release might be good.
 
       # Install a couple of packages to see if they still install
       - name: Test package installations

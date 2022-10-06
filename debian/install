@@ -1,2 +1,3 @@
 deb-get usr/bin
+docs/deb-get.1 usr/local/share/man/man1
 deb-get_completion etc/bash_completion.d

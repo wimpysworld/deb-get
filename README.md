@@ -59,10 +59,11 @@ cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
 
-deb-get {update [--repos-only] | upgrade | show pkg | install pkg
-        | reinstall pkg | remove pkg | purge pkg | search pkg | cache | clean
-        | list [--raw|--installed|--not-installed] | prettylist [repo]
-        | csvlist [repo] | help | version}
+deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
+        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
+        | search <regex> | cache | clean
+        | list [--raw|--installed|--not-installed] | prettylist [<repo>]
+        | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -79,10 +80,12 @@ upgrade
     installed on the system.
 
 install
-    install is followed by one package desired for installation or upgrading.
+    install is followed by one package (or a space-separated list of packages)
+    desired for installation or upgrading.
 
 reinstall
-    reinstall is followed by one package desired for reinstallation.
+    reinstall is followed by one package (or a space-separated list of
+    packages) desired for reinstallation.
 
 remove
     remove is identical to install except that packages are removed instead of
@@ -101,8 +104,8 @@ search
     supported by deb-get and display matches.
 
 show
-    show information about the given package including its install source and
-    update mechanism.
+    show information about the given package (or a space-separated list of
+    packages) including their install source and update mechanism.
 
 list
     list the packages available via deb-get. When no option is provided, list
@@ -124,6 +127,11 @@ csvlist
 
 cache
     list the contents of the deb-get cache (/var/cache/deb-get).
+
+fix-installed
+    fix installed packages whose definitions were changed. When --old-apps is
+    provided, transition packages to new format. This command is only intended
+    for internal use.
 
 help
     show this help.
@@ -172,7 +180,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/OrangeDrangon/android-messages-desktop/) | `android-messages-desktop` | <i>Run Android Messages as a desktop app.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://antimicrox.github.io/) | `antimicrox` | <i>A graphical program used to map keyboard buttons and mouse controls to a gamepad.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://anydesk.com/) | `anydesk` | <i>Access any device at any time. From anywhere. Always secure and fast.</i> |
-| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/TheAssassin/AppImageLauncher) | `appimagelauncher` | <i>A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/TheAssassin/AppImageLauncher) | `appimagelauncher` | <i>A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://atom.io/) | `atom` | <i>A hackable text editor for the 21st Century.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://launchpad.net/~audio-recorder) | `audio-recorder` | <i>Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) | `azure-cli` | <i>Command-line interface used to create and manage Azure resources.</i> |
@@ -202,6 +210,7 @@ cog.out(pretty_list)
 | [<img src=".github/direct.png" align="top" width="20" />](https://dbeaver.io/) | `dbeaver-ce` | <i>Database GUI Client</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://deadbeef.sourceforge.io/) | `deadbeef` | <i>The ultimate music player</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/wimpysworld/deb-get) | `deb-get` | <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/ymauray/deborah/) | `deborah` | <i>A Flutter front-end for deb-get.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://delta.chat/) | `deltachat-desktop` | <i>Email-based instant messaging for Desktop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://discord.com/) | `discord` | <i>A place that makes it easy to talk every day and hang out more often.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.docker.com/) | `docker-ce` | <i>Open source containerization technology for building and containerizing your applications.</i> |
@@ -222,7 +231,6 @@ cog.out(pretty_list)
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://johnfactotum.github.io/foliate/) | `foliate` | <i>A simple and modern eBook viewer for Linux desktops.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://meetfranz.com/) | `franz` | <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/cboxdoerfer/fsearch) | `fsearch` | <i>Fast file search utility.</i> |
-| [<img src=".github/github.png" align="top" width="20" />](https://github.com/hmlendea/gfn-electron) | `geforcenow-electron` | <i>Desktop client for Nvidia's GeForce NOW game streaming service.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://cli.github.com/) | `gh` | <i>GitHub CLI brings GitHub to your terminal. Free and open source.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/dandavison/delta) | `git-delta` | <i>A syntax-highlighting pager for 'git', 'diff', and 'grep' output.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://desktop.github.com/) | `github-desktop` | <i>Simple collaboration from your desktop.</i> |
@@ -230,12 +238,12 @@ cog.out(pretty_list)
 | [<img src=".github/direct.png" align="top" width="20" />](https://gitter.im/) | `gitter` | <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/chrome/) | `google-chrome-stable` | <i>Fast, Secure Browser from Google.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://cloud.google.com/sdk/gcloud) | `google-cloud-cli` | <i>The Google Cloud CLI is a set of tools to create and manage Google Cloud resources.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://cloud.google.com/sdk) | `google-cloud-cli` | <i>The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/earth/versions/) | `google-earth-pro-stable` | <i>Explore worldwide satellite imagery and 3D buildings and terrain for hundreds of cities.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/arunsivaramanneo/GPU-Viewer) | `gpu-viewer` | <i>A front-end to glxinfo, vulkaninfo, clinfo and es2_info.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/anchore/grype) | `grype` | <i>A vulnerability scanner for container images and filesystems.</i> |
-| [<img src=".github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://helio.fm/) | `helio-workstation` | <i>libre music composition software</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://gohugo.io/) | `hugo` | <i>Open-source static site generator.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://hyper.is/) | `hyper` | <i>A terminal built on web technologies.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/igdmapps/igdm) | `igdm` | <i>Continue your Instagram direct messages from your phone to your desktop.</i> |
@@ -256,7 +264,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ksnip/ksnip) | `ksnip` | <i>Cross-platform screenshot and annotation tool.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://k8slens.dev/) | `lens` | <i>The way the world runs Kubernetes.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://librewolf.net/) | `librewolf` | <i>An independent fork of Firefox, with the primary goals of privacy, security and user freedom.</i> |
-| [<img src=".github/github.png" align="top" width="20" />](https://github.com/bootandy/dust) | `limoji` | <i>Turning your favorite emojis into the world of ASCII.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/GEROGIANNIS/Limoji) | `limoji` | <i>Turning your favorite emojis into the world of ASCII.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://ludo.libretro.com/) | `ludo` | <i>A minimalist frontend for emulators.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
@@ -272,6 +280,8 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/SoongNoonien/mpdevil) | `mpdevil` | <i>A simple music browser for MPD.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad-vpn` | <i>VPN Service based in Sweden that does not collect user data.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala` | <i>Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala-legacy` | <i>Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://neo4j.com/) | `neo4j` | <i>The Graph Data Platform for Today's Intelligent Applications.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://neovim.io/) | `neovim` | <i>Hyperextensible Vim-based text editor</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
@@ -302,6 +312,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.qownnotes.org) | `qownnotes` | <i>Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://quarto.org/) | `quarto` | <i>Quarto - an open-source scientific and technical publishing system built on Pandoc</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
@@ -332,9 +343,10 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/anchore/syft) | `syft` | <i>CLI tool and library for generating a Software Bill of Materials from container images and filesystems.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://syncthing.net/) | `syncthing` | <i>Continuous file synchronization program.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hakandundar34coding/system-monitoring-center) | `system-monitoring-center` | <i>Multi-featured system monitor.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://tabby.sh/) | `tabby-terminal` | <i>A terminal for the modern age</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://tailscale.com/) | `tailscale` | <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.microsoft.com/microsoft-teams/group-chat-software) | `teams` | <i>Team chat and collaboration.</i> |
-| [<img src=".github/debian.png" align="top" width="20" />](https://github.com/IsmaelMartinez/teams-for-linux) | `teams-for-linux` | <i>unofficial Microsoft Teams for LInux</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/IsmaelMartinez/teams-for-linux) | `teams-for-linux` | <i>unofficial Microsoft Teams for LInux</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.teamviewer.com/) | `teamviewer` | <i>The Remote Desktop Software.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://github.com/influxdata/telegraf) | `telegraf` | <i>The plugin-driven server agent for collecting & reporting metrics.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.terraform.io/) | `terraform` | <i>Automate Infrastructure on Any Cloud.</i> |
@@ -358,6 +370,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://whalebird.social/) | `whalebird` | <i>A Mastodon, Pleroma, and Misskey client for desktop application.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/eneshecan/whatsapp-for-linux) | `whatsapp-for-linux` | <i>An unofficial WhatsApp desktop application for Linux.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wire.com/) | `wire-desktop` | <i>Secure collaboration platform.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/serebit/wraith-master) | `wraith-master` | <i>An application for controlling the RGB LEDs on AMD's Wraith stock coolers</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://xemu.app/) | `xemu` | <i>A free and open-source application that emulates the original Microsoft Xbox game console, enabling people to play their original Xbox games on Windows, macOS, and Linux systems.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://th-ch.github.io/youtube-music/) | `youtube-music` | <i>Open source, cross-platform, unofficial YouTube Music Desktop App with built-in ad blocker and downloader.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://mikefarah.gitbook.io/yq) | `yq` | <i>A lightweight and portable command-line YAML processor.</i> |
@@ -391,7 +404,7 @@ will be updated/upgraded when using `sudo apt-get update` and `sudo apt-get upgr
 For `.deb` packages that are only available via GitHub Releases
 <img src=".github/github.png" align="top" width="20" /> or direct download
 <img src=".github/direct.png" align="top" width="20" />, then those packages
-can only be updated/upgrade by using `deb-get update` and `deb-get upgrade`.
+can only be updated/upgraded by using `deb-get update` and `deb-get upgrade`.
 
 #### GitHub API Rate Limits
 

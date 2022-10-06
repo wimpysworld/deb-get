@@ -2,9 +2,23 @@
 
 set -e
 
+function package_is_installed() {
+    deb-get list --installed | grep -q "^${1}$"
+}
+
 if [ "${1}" = configure ]; then
     if [ ! -e /etc/deb-get] || [ ! -e /etc/deb-get/01-main.repo ] || [ ! -e /etc/deb-get/01-main.d ] || [ -n "$(find /etc/deb-get/01-main.d -prune -empty 2> /dev/null)" ]; then
         deb-get update --repos-only
+    fi
+    if [ -n "${2}" ]; then
+        if dpkg --compare-versions "${2}" le "0.3.6-1"; then
+            deb-get fix-installed --old-apps
+            if package_is_installed appimagelauncher; then
+                deb-get reinstall appimagelauncher
+            fi
+        else
+            deb-get fix-installed
+        fi
     fi
 fi
 

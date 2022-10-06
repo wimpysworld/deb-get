@@ -19,10 +19,11 @@ cat <<HELP
 
 Usage
 
-deb-get {update [--repos-only] | upgrade | show pkg | install pkg
-        | reinstall pkg | remove pkg | purge pkg | search pkg | cache | clean
-        | list [--raw|--installed|--not-installed] | prettylist [repo]
-        | csvlist [repo] | help | version}
+deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
+        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
+        | search <regex> | cache | clean
+        | list [--raw|--installed|--not-installed] | prettylist [<repo>]
+        | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -39,10 +40,12 @@ upgrade
     installed on the system.
 
 install
-    install is followed by one package desired for installation or upgrading.
+    install is followed by one package (or a space-separated list of packages)
+    desired for installation or upgrading.
 
 reinstall
-    reinstall is followed by one package desired for reinstallation.
+    reinstall is followed by one package (or a space-separated list of
+    packages) desired for reinstallation.
 
 remove
     remove is identical to install except that packages are removed instead of
@@ -61,8 +64,8 @@ search
     supported by deb-get and display matches.
 
 show
-    show information about the given package including its install source and
-    update mechanism.
+    show information about the given package (or a space-separated list of
+    packages) including their install source and update mechanism.
 
 list
     list the packages available via deb-get. When no option is provided, list
@@ -84,6 +87,11 @@ csvlist
 
 cache
     list the contents of the deb-get cache (/var/cache/deb-get).
+
+fix-installed
+    fix installed packages whose definitions were changed. When --old-apps is
+    provided, transition packages to new format. This command is only intended
+    for internal use.
 
 help
     show this help.
@@ -170,8 +178,8 @@ function fancy_message() {
       progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}";;
       recommend) echo -e "  [${MAGENTA}!${RESET}] ${MESSAGE}";;
       warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}";;
-      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}";;
-      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}"
+      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2;;
+      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2
              exit 1;;
       *) echo -e "  [?] UNKNOWN: ${MESSAGE}";;
     esac
@@ -210,27 +218,7 @@ function upgrade_apt() {
 
 function install_apt() {
     let "PACKAGE_INSTALLATION_TRIES+=1"
-    if [ ! -d /usr/share/keyrings ]; then
-        ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
-    fi
-    if [ -n "${ASC_KEY_URL}" ]; then
-        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} gpg --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-    else #GPG_KEY_URL
-        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-    fi
-
-    #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
-
-    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-
-    if [ -n "${APT_REPO_OPTIONS}" ]; then
-        APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
-    fi
-
-    APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+    add_apt_repo
     update_apt
 
     if ! package_is_installed "${APP}"; then
@@ -238,7 +226,7 @@ function install_apt() {
         ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
     else
         if [ "${ACTION}" == "reinstall" ]; then
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${APP}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"
         else
             fancy_message info "${APP} is up to date."
         fi
@@ -247,12 +235,7 @@ function install_apt() {
 }
 
 function install_ppa() {
-    local PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
-    local PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
-    local PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
-    export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
-    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
-    export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+    ppa_to_apt
     install_apt
 }
 
@@ -269,7 +252,7 @@ function install_deb() {
     else
         if [ "${ACTION}" == "reinstall" ]; then
             download_deb "${URL}"
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall install "${CACHE_DIR}/${FILE}"
+            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
             download_deb "${URL}"
             ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
@@ -308,21 +291,9 @@ function remove_deb() {
             fi
             ;;
         apt)
-            fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ;;
+            remove_apt_repo "${APT_LIST_NAME}";;
         ppa)
-            local PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
-            local PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
-            local PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
-            local APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
-            fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ;;
+            remove_ppa_repo "${PPA}";;
     esac
 }
 
@@ -349,12 +320,15 @@ function validate_deb() {
     export APP="$(echo "$FULL_APP" | cut -d / -f 2)"
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
+    export OLD_APT_LIST_NAME=""
     export APT_LIST_NAME=""
     export APT_REPO_URL=""
     export APT_REPO_OPTIONS=""
+    export OLD_PPA=""
     export PPA=""
     export ARCHS_SUPPORTED="amd64"
     export CODENAMES_SUPPORTED=""
+    export OLD_METHOD=""
     export METHOD="website"
     export EULA=""
     export URL=""
@@ -372,36 +346,36 @@ function validate_deb() {
     fi
     if [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
         fancy_message eror "Missing required information of package ${APP}:"
-        echo "PRETTY_NAME=${PRETTY_NAME}"
-        echo "SUMMARY=${SUMMARY}"
-        echo "WEBSITE=${WEBSITE}"
+        echo "PRETTY_NAME=${PRETTY_NAME}" >&2
+        echo "SUMMARY=${SUMMARY}" >&2
+        echo "WEBSITE=${WEBSITE}" >&2
         exit 1
     fi
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
         if [ "${ACTION}" != "prettylist" ]; then
-            if [ -z "${APT_LIST_NAME}" ] || ([ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]); then
+            if [ -z "${APT_LIST_NAME}" ] || { [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]; }; then
                 fancy_message error "Missing required information of apt package ${APP}:"
-                echo "APT_LIST_NAME=${APT_LIST_NAME}"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}"
-                echo "GPG_KEY_URL=${GPG_KEY_URL}"
+                echo "APT_LIST_NAME=${APT_LIST_NAME}" >&2
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
                 exit 1
             fi
             if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
                 fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}"
-                echo "GPG_KEY_URL=${GPG_KEY_URL}"
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
                 exit 1
             fi
         fi
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if [ "${ACTION}" != "prettylist" ] && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
+        if { { [ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || [ "${METHOD}" != github ]; } && [ "${ACTION}" != "prettylist" ] && { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
-            echo "URL=${URL}"
-            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
+            echo "URL=${URL}" >&2
+            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
             exit 1
         fi
     fi
@@ -608,6 +582,107 @@ function print_deprecated() {
     done
 }
 
+readonly OLD_APPS=(quickemu firefox-esr quickgui nextcloud-desktop keepassxc ubuntu-make lutris polychromatic openrazer-meta strawberry copyq obs-studio foliate ulauncher yq fsearch kdiskmark xemu cryptomator gpu-viewer blanket audio-recorder papirus-icon-theme qownnotes retroarch texworks virtualbox-6.1 atom code 1password google-chrome-stable opera-stable teams enpass microsoft-edge-stable brave-browser docker-ce skypeforlinux wavebox wire-desktop signal-desktop syncthing sublime-text plexmediaserver jellyfin sublime-merge google-earth-pro-stable cawbird insync slack-desktop vivaldi-stable keybase protonvpn softmaker-office-2021 resilio-sync chronograf influxdb influxdb2 influxdb2-cli kapacitor telegraf anydesk azure-cli terraform nomad kopia-ui typora neo4j appimagelauncher)
+
+function fix_installed() {
+    if [ "${1}" = --old-apps ] && [[ " ${OLD_APPS[@]} " =~ " ${APP} " ]]; then
+        if [ -n "${OLD_APT_LIST_NAME}" ]; then
+            remove_old_apt_repo "${OLD_APT_LIST_NAME}"
+        elif [ "${METHOD}" = apt ]; then
+            remove_old_apt_repo "${APT_LIST_NAME}"
+        elif [ -n "${OLD_PPA}" ]; then
+            remove_old_ppa_repo "${OLD_PPA}"
+        elif [ "${METHOD}" = ppa ]; then
+            remove_old_ppa_repo "${PPA}"
+        fi
+        if [ "${METHOD}" = apt ]; then
+            add_apt_repo
+        elif [ "${METHOD}" = ppa ]; then
+            ppa_to_apt
+            add_apt_repo
+        fi
+    else
+        if [ -n "${OLD_APT_LIST_NAME}" ]; then
+            remove_apt_repo "${OLD_APT_LIST_NAME}"
+        elif [ -n "${OLD_PPA}" ]; then
+            remove_ppa_repo "${OLD_PPA}"
+        fi
+        if [ "${METHOD}" = apt ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
+            add_apt_repo
+        elif [ "${METHOD}" = ppa ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
+            ppa_to_apt
+            add_apt_repo
+        fi
+    fi
+}
+
+function remove_old_apt_repo() {
+    fancy_message info "Removing /etc/apt/trusted.gpg.d/${1}.asc"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${1}.asc"
+    fancy_message info "Removing /etc/apt/sources.list.d/${1}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${1}.list"
+}
+
+function remove_old_ppa_repo() {
+    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}"
+    fancy_message info "Removing /etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
+    ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg~"
+    fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}-${UPSTREAM_CODENAME}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}-${UPSTREAM_CODENAME}.list"
+}
+
+function remove_apt_repo() {
+    fancy_message info "Removing /usr/share/keyrings/${1}-archive-keyring.gpg"
+    ${ELEVATE} rm -f "/usr/share/keyrings/${1}-archive-keyring.gpg"
+    fancy_message info "Removing /etc/apt/sources.list.d/${1}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${1}.list"
+}
+
+function remove_ppa_repo() {
+    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    remove_apt_repo "${APT_LIST_NAME}"
+}
+
+function add_apt_repo() {
+    if [ ! -d /usr/share/keyrings ]; then
+        ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
+    fi
+    if [ -n "${ASC_KEY_URL}" ]; then
+        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+    else #GPG_KEY_URL
+        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    fi
+
+    #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
+
+    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+
+    if [ -n "${APT_REPO_OPTIONS}" ]; then
+        APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
+    fi
+
+    APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
+    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+}
+
+function ppa_to_apt() {
+    local -r PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
+    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
+    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
+    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+}
+
 function deb_tixati() {
     if [ "${ACTION}" != "prettylist" ]; then
         URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
@@ -645,7 +720,6 @@ function deb_virtualbox-6.1() {
     WEBSITE="https://www.virtualbox.org/"
     SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
-
 
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
@@ -700,6 +774,28 @@ function deb_code() {
     PRETTY_NAME="Visual Studio Code"
     WEBSITE="https://code.visualstudio.com/"
     SUMMARY="Code editing. Redefined."
+}
+
+function deb_nala() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer."
+}
+
+function deb_nala-legacy() {
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+    APT_LIST_NAME="nala-legacy"
+    APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+    APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+    PRETTY_NAME="Nala Legacy"
+    WEBSITE="https://gitlab.com/volian/nala"
+    SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older."
 }
 
 function deb_rstudio() {
@@ -774,6 +870,17 @@ function deb_lsd() {
     PRETTY_NAME="LSDeluxe"
     WEBSITE="https://github.com/Peltoche/lsd"
     SUMMARY="The next gen 'ls' command."
+}
+
+function deb_wraith-master() {
+    get_github_releases "https://api.github.com/repos/serebit/wraith-master/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
+    PRETTY_NAME="wraith-master"
+    WEBSITE="https://github.com/serebit/wraith-master"
+    SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
 }
 
 function deb_bat() {
@@ -888,23 +995,10 @@ function deb_rclone() {
 }
 
 function deb_hugo() {
-    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/gohugoio/hugo/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        case ${HOST_ARCH} in
-            amd64)
-                URL=$(grep "browser_download_url.*64bit\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4)
-                ;;
-            arm64)
-                URL=$(grep "browser_download_url.*ARM64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-            armhf)
-                URL=$(grep "browser_download_url.*ARM\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-            i386)
-                URL=$(grep "browser_download_url.*32bit\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-        esac
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
     PRETTY_NAME="Hugo"
@@ -2611,6 +2705,7 @@ function deb_papirus-icon-theme() {
 }
 
 function deb_appimagelauncher() {
+    OLD_PPA="ppa:appimagelauncher-team/stable"
     ARCHS_SUPPORTED="amd64 i386 armhf arm64"
     get_github_releases "https://api.github.com/repos/TheAssassin/AppImageLauncher/releases"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -2709,6 +2804,18 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_quarto() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's/v//')"
+    fi
+    PRETTY_NAME="Quarto CLI"
+    WEBSITE="https://quarto.org/"
+    SUMMARY="Quarto - an open-source scientific and technical publishing system built on Pandoc"
+}
+
 function deb_weylus() {
     get_github_releases "https://api.github.com/repos/H-M-H/Weylus/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -2767,12 +2874,25 @@ function deb_cosign() {
 function deb_vagrant() {
     ARCHS_SUPPORTED="amd64"
     CODENAMES_SUPPORTED="buster bullseye focal jammy"
-    APT_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+    ASC_KEY_URL="https://apt.releases.hashicorp.com/gpg"
     APT_LIST_NAME="hashicorp"
-    APT_REPO_URL="deb https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+    APT_REPO_URL="https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
     PRETTY_NAME="Vagrant"
     WEBSITE="https://www.vagrantup.com/"
     SUMMARY="Building and maintaining virtual software development environments."
+}
+
+function deb_tabby-terminal() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/Eugeny/tabby/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*-linux-x64\.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 )"
+        VERSION_PUBLISHED=${VERSION_PUBLISHED/v}
+    fi
+    PRETTY_NAME="Tabby"
+    WEBSITE="https://tabby.sh/"
+    SUMMARY="A terminal for the modern age"
 }
 
 export CACHE_DIR="/var/cache/deb-get"
@@ -2867,12 +2987,12 @@ if [ -n "${1}" ]; then
     shift
 else
     fancy_message error "You must specify an action."
-    usage
+    usage >&2
     exit 1
 fi
 
 case "${ACTION}" in
-    update|upgrade|show|install|reinstall|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv)
+    update|upgrade|show|install|reinstall|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
     APPS="$(list_local_apps)"
     APPS="$APPS
 $(list_repo_apps)"
@@ -2890,7 +3010,7 @@ case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
-            list_debs --raw
+            list_debs --raw >&2
             exit 1
         fi
         print_etc_overrides
@@ -2918,7 +3038,7 @@ case "${ACTION}" in
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw
+                list_debs --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -2931,7 +3051,7 @@ case "${ACTION}" in
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw
+                list_debs --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -2973,7 +3093,7 @@ case "${ACTION}" in
             fi
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw
+                list_debs --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -2988,7 +3108,7 @@ case "${ACTION}" in
             fi
             if [ -z "$FULL_APP" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw
+                list_debs --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -3005,12 +3125,25 @@ case "${ACTION}" in
         init_repos
         update_repos
         if [ "${1}" != --repos-only ]; then
+            for APP in "${INSTALLED_APPS[@]}"; do
+                validate_deb "${APP}"
+                fix_installed "${1}"
+            done;;
             update_debs
         fi;;
     upgrade)
         elevate_privs
         create_cache_dir
         upgrade_debs;;
+    fix-installed)
+        if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
+            fancy_message fatal "Unknown option supplied: ${1}"
+        fi
+        elevate_privs
+        for APP in "${INSTALLED_APPS[@]}"; do
+            validate_deb "${APP}"
+            fix_installed "${1}"
+        done;;
     version) echo "${VERSION}";;
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
