@@ -59,8 +59,8 @@ cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
 
-deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
-        | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
+deb-get {update | upgrade | show <pkg list> | install <pkg list> | reinstall <pkg list> | remove <pkg list>
+        | purge <pkg list> | search <regex> | cache | clean | list | prettylist | csvlist
         | fix-installed [--old-apps] | help | version}
 
 deb-get provides a high-level commandline interface for the package management
@@ -74,10 +74,10 @@ upgrade
     upgrade is used to install the newest versions of all packages currently installed on the system.
 
 install
-    install is followed by one package desired for installation or upgrading.
+    install is followed by one package (or a space-separated list of packages) desired for installation or upgrading.
 
 reinstall
-    reinstall is followed by one package desired for reinstallation.
+    reinstall is followed by one package (or a space-separated list of packages) desired for reinstallation.
 
 remove
     remove is identical to install except that packages are removed instead of installed.
@@ -92,7 +92,7 @@ search
     search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
 
 show
-    show information about the given package including its install source and update mechanism.
+    show information about the given package (or a space-separated list of packages) including their install source and update mechanism.
 
 list
     list the packages available via deb-get.
@@ -291,6 +291,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.qownnotes.org) | `qownnotes` | <i>Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://quarto.org/) | `quarto` | <i>Quarto - an open-source scientific and technical publishing system built on Pandoc</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
@@ -321,6 +322,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/anchore/syft) | `syft` | <i>CLI tool and library for generating a Software Bill of Materials from container images and filesystems.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://syncthing.net/) | `syncthing` | <i>Continuous file synchronization program.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hakandundar34coding/system-monitoring-center) | `system-monitoring-center` | <i>Multi-featured system monitor.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://tabby.sh/) | `tabby-terminal` | <i>A terminal for the modern age</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://tailscale.com/) | `tailscale` | <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.microsoft.com/microsoft-teams/group-chat-software) | `teams` | <i>Team chat and collaboration.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://github.com/IsmaelMartinez/teams-for-linux) | `teams-for-linux` | <i>unofficial Microsoft Teams for LInux</i> |

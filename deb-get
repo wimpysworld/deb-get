@@ -162,8 +162,8 @@ function fancy_message() {
       progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}";;
       recommend) echo -e "  [${MAGENTA}!${RESET}] ${MESSAGE}";;
       warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}";;
-      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}";;
-      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}"
+      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2;;
+      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2
              exit 1;;
       *) echo -e "  [?] UNKNOWN: ${MESSAGE}";;
     esac
@@ -303,7 +303,7 @@ function validate_deb() {
 
     if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
         fancy_message error "${APP} is not a supported application."
-        list_debs
+        list_debs >&2
         exit 1
     fi
 
@@ -331,36 +331,36 @@ function validate_deb() {
     deb_${APP} 2>/dev/null
     if [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
         fancy_message eror "Missing required information of package ${APP}:"
-        echo "PRETTY_NAME=${PRETTY_NAME}"
-        echo "SUMMARY=${SUMMARY}"
-        echo "WEBSITE=${WEBSITE}"
+        echo "PRETTY_NAME=${PRETTY_NAME}" >&2
+        echo "SUMMARY=${SUMMARY}" >&2
+        echo "WEBSITE=${WEBSITE}" >&2
         exit 1
     fi
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
         if [ "${ACTION}" != "prettylist" ]; then
-            if [ -z "${APT_LIST_NAME}" ] || ([ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]); then
+            if [ -z "${APT_LIST_NAME}" ] || { [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]; }; then
                 fancy_message error "Missing required information of apt package ${APP}:"
-                echo "APT_LIST_NAME=${APT_LIST_NAME}"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}"
-                echo "GPG_KEY_URL=${GPG_KEY_URL}"
+                echo "APT_LIST_NAME=${APT_LIST_NAME}" >&2
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
                 exit 1
             fi
             if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
                 fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}"
-                echo "GPG_KEY_URL=${GPG_KEY_URL}"
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
                 exit 1
             fi
         fi
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || ([ "${METHOD}" != github ] && [ "${ACTION}" != "prettylist" ])) && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
+        if { { [ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || [ "${METHOD}" != github ]; } && [ "${ACTION}" != "prettylist" ] && { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
-            echo "URL=${URL}"
-            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
+            echo "URL=${URL}" >&2
+            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
             exit 1
         fi
     fi
@@ -918,23 +918,10 @@ function deb_rclone() {
 }
 
 function deb_hugo() {
-    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/gohugoio/hugo/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        case ${HOST_ARCH} in
-            amd64)
-                URL=$(grep "browser_download_url.*64bit\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4)
-                ;;
-            arm64)
-                URL=$(grep "browser_download_url.*ARM64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-            armhf)
-                URL=$(grep "browser_download_url.*ARM\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-            i386)
-                URL=$(grep "browser_download_url.*32bit\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-        esac
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
     PRETTY_NAME="Hugo"
@@ -2729,6 +2716,18 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_quarto() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's/v//')"
+    fi
+    PRETTY_NAME="Quarto CLI"
+    WEBSITE="https://quarto.org/"
+    SUMMARY="Quarto - an open-source scientific and technical publishing system built on Pandoc"
+}
+
 function deb_weylus() {
     get_github_releases "https://api.github.com/repos/H-M-H/Weylus/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -2800,6 +2799,19 @@ function deb_vagrant() {
     PRETTY_NAME="Vagrant"
     WEBSITE="https://www.vagrantup.com/"
     SUMMARY="Building and maintaining virtual software development environments."
+}
+
+function deb_tabby-terminal() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/Eugeny/tabby/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*-linux-x64\.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 )"
+        VERSION_PUBLISHED=${VERSION_PUBLISHED/v}
+    fi
+    PRETTY_NAME="Tabby"
+    WEBSITE="https://tabby.sh/"
+    SUMMARY="A terminal for the modern age"
 }
 
 # Create an array to track those deb_ functions being loaded by this script
@@ -2917,7 +2929,7 @@ if [ -n "${1}" ]; then
     shift
 else
     fancy_message error "You must specify an action."
-    usage
+    usage >&2
     exit 1
 fi
 
@@ -2925,7 +2937,7 @@ case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
-            list_debs
+            list_debs >&2
             exit 1
         fi
         print_etc_overrides;;
@@ -3017,4 +3029,3 @@ esac
 if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
     exit 1
 fi
-
