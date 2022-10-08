@@ -1,0 +1,8 @@
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+ASC_KEY_URL="https://download.docker.com/linux/ubuntu/gpg"
+APT_LIST_NAME="docker"
+APT_REPO_URL="https://download.docker.com/linux/${UPSTREAM_ID} ${UPSTREAM_CODENAME} stable"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="Docker Engine"
+WEBSITE="https://www.docker.com/"
+SUMMARY="Open source containerization technology for building and containerizing your applications."

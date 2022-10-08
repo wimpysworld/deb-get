@@ -1,0 +1,8 @@
+# TODO: Test with Debian
+ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+APT_LIST_NAME="azure-cli"
+APT_REPO_URL="https://packages.microsoft.com/repos/azure-cli/ ${UPSTREAM_CODENAME} main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Azure CLI"
+WEBSITE="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"
+SUMMARY="Command-line interface used to create and manage Azure resources."

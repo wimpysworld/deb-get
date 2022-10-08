@@ -1,0 +1,11 @@
+ARCHS_SUPPORTED="amd64 i386"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(curl -s "https://www.ocenaudio.com/en/download" | grep "<p>Version" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+fi
+case ${HOST_ARCH} in
+    amd64) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_64.deb";;
+    i386) URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_32.deb";;
+esac
+PRETTY_NAME="ocenaudio"
+WEBSITE="https://www.ocenaudio.com/"
+SUMMARY="Easy, fast and powerful audio editor."

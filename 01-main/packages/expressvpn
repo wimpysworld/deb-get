@@ -1,0 +1,8 @@
+ARCHS_SUPPORTED="amd64 i386 armhf"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(curl -s "https://www.expressvpn.com/latest#linux" | grep -o 'value="https://www\.expressvpn\.works/clients/linux/expressvpn_.*'${HOST_ARCH}'\.deb"' | cut -d"_" -f2)"
+    URL="https://www.expressvpn.works/clients/linux/expressvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+fi
+PRETTY_NAME="Expressvpn"
+WEBSITE="https://www.expressvpn.com/"
+SUMMARY="Popular VPN software"

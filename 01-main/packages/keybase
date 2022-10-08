@@ -1,0 +1,7 @@
+ARCHS_SUPPORTED="amd64 i386"
+ASC_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
+APT_LIST_NAME="keybase"
+APT_REPO_URL="https://prerelease.keybase.io/deb stable main"
+PRETTY_NAME="Keybase"
+WEBSITE="https://keybase.io/"
+SUMMARY="End-to-end encryption for things that matter. Secure messaging and file-sharing."

@@ -1,0 +1,8 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    local VERSION_NAME="$(curl -s "https://media.codeweavers.com/pub/crossover/cxlinux/demo/?V=1;O=D;F=0;P=crossover_*.deb"| grep "\.deb\"" | head -n1 | cut -d"\"" -f 2)"
+    VERSION_PUBLISHED="${VERSION_NAME:10:-4}"
+    URL="https://media.codeweavers.com/pub/crossover/cxlinux/demo/${VERSION_NAME}"
+fi
+PRETTY_NAME="CrossOver"
+WEBSITE="https://www.codeweavers.com/crossover"
+SUMMARY="Run your Windows apps on Linux! CrossOver is a Microsoft Windows compatibility layer based on Wine."

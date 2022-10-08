@@ -1,0 +1,6 @@
+GPG_KEY_URL="https://weechat.org/dev/info/debian_repository_signing_key/"
+APT_LIST_NAME="weechat"
+APT_REPO_URL="https://weechat.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+PRETTY_NAME="WeeChat"
+WEBSITE="https://weechat.org/"
+SUMMARY="The extensible chat client."

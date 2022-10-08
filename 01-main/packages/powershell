@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/PowerShell/PowerShell/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v -e preview -e lts | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="PowerShell"
+WEBSITE="https://docs.microsoft.com/powershell/"
+SUMMARY="Cross-platform automation and configuration tool/framework and optimized for dealing with structured data."

@@ -1,0 +1,6 @@
+GPG_KEY_URL="https://packages.element.io/debian/element-io-archive-keyring.gpg"
+APT_LIST_NAME="element-io"
+APT_REPO_URL="https://packages.element.io/debian/ default main"
+PRETTY_NAME="Element"
+WEBSITE="https://element.io/"
+SUMMARY="Secure and independent communication, connected via Matrix."

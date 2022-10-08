@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/hsbasu/battery-monitor/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+fi
+PRETTY_NAME="Battery Monitor"
+WEBSITE="https://github.com/hsbasu/battery-monitor/"
+SUMMARY="An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop."

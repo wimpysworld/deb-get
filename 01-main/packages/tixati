@@ -1,0 +1,7 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(curl -s "https://www.tixati.com/download/linux.html" | grep "amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Tixati"
+WEBSITE="https://www.tixati.com/"
+SUMMARY="A New and Powerful P2P System."

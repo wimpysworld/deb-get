@@ -1,0 +1,9 @@
+ARCHS_SUPPORTED="amd64 arm64 armhf ppc64el s390x"
+get_github_releases "https://api.github.com/repos/kubernetes/minikube/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*minikube_.*_${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="minikube"
+WEBSITE="https://minikube.sigs.k8s.io/"
+SUMMARY="minikube quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows."

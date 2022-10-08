@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/igdmapps/igdm-pro-release/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="IGdm Pro Messenger"
+WEBSITE="https://pro.igdm.me/"
+SUMMARY="Continue your Instagram direct messages from your phone to your desktop."

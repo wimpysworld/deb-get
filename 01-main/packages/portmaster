@@ -1,0 +1,7 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(curl -s https://api.github.com/repos/safing/portmaster/releases/latest | grep -E '"name":' | tr -d "\"," | cut -d: -f2 | tr -d " v")"
+fi
+URL="https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb"
+PRETTY_NAME="Portmaster"
+WEBSITE="https://safing.io/portmaster/"
+SUMMARY="Portmaster is a free and open-source application that puts you back in charge over all your computer's network connections."

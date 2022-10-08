@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="Mullvad VPN Client"
+WEBSITE="https://mullvad.net/"
+SUMMARY="VPN Service based in Sweden that does not collect user data."

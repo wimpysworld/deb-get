@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/ProtonMail/proton-bridge/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="Proton Mail Bridge"
+WEBSITE="https://proton.me/mail/bridge"
+SUMMARY="Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail."

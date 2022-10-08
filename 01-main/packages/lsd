@@ -1,0 +1,9 @@
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "https://api.github.com/repos/Peltoche/lsd/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="LSDeluxe"
+WEBSITE="https://github.com/Peltoche/lsd"
+SUMMARY="The next gen 'ls' command."

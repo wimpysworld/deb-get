@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/obsidianmd/obsidian-releases/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Obsidian"
+WEBSITE="https://obsidian.md/"
+SUMMARY="A powerful knowledge base on top of a local folder of plain text Markdown files."

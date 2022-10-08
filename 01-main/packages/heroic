@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Heroic Games Launcher"
+WEBSITE="https://heroicgameslauncher.com/"
+SUMMARY="An Open Source GOG and Epic games launcher."

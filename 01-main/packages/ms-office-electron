@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/agam778/MS-Office-Electron/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="Office 365"
+WEBSITE="https://agam778.github.io/MS-Office-Electron/"
+SUMMARY="A Microsoft Office Online Desktop Client made with Electron."

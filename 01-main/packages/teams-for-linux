@@ -1,0 +1,9 @@
+ARCHS_SUPPORTED="amd64 arm64 armv7l"
+get_github_releases "https://api.github.com/repos/IsmaelMartinez/teams-for-linux/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="teams-for-linux"
+WEBSITE="https://github.com/IsmaelMartinez/teams-for-linux"
+SUMMARY="unofficial Microsoft Teams for LInux"

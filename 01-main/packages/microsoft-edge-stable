@@ -1,0 +1,7 @@
+ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+APT_LIST_NAME="microsoft-edge"
+APT_REPO_URL="https://packages.microsoft.com/repos/edge stable main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Microsoft Edge"
+WEBSITE="https://www.microsoft.com/edge"
+SUMMARY="Fast and secure browser that helps you protect your data and save time and money."

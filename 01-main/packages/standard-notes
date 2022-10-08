@@ -1,0 +1,10 @@
+ARCHS_SUPPORTED="amd64 i386 arm64"
+get_github_releases "https://api.github.com/repos/standardnotes/app/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    local VERSION_TMP="${URL##*/standard-notes-}"
+    VERSION_PUBLISHED="${VERSION_TMP%%-linux*}"
+fi
+PRETTY_NAME="Standard Notes"
+WEBSITE="https://standardnotes.com"
+SUMMARY="Standard Notes is an end-to-end encrypted note-taking app for digitalists and professionals. Capture your notes, files, and life’s work all in one secure place."

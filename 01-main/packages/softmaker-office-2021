@@ -1,0 +1,6 @@
+ASC_KEY_URL="https://shop.softmaker.com/repo/linux-repo-public.key"
+APT_LIST_NAME="softmaker"
+APT_REPO_URL="https://shop.softmaker.com/repo/apt stable non-free"
+PRETTY_NAME="SoftMaker Office 2021"
+WEBSITE="https://www.softmaker.com/en/softmaker-office"
+SUMMARY="Create impressive documents with ease."

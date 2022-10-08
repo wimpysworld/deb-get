@@ -1,0 +1,7 @@
+ASC_KEY_URL="https://wavebox.pro/dl/client/repo/archive.key"
+APT_LIST_NAME="wavebox-stable"
+APT_REPO_URL="https://download.wavebox.app/stable/linux/deb/ amd64/"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Wavebox"
+WEBSITE="https://wavebox.io/"
+SUMMARY="Rethink the Web. Productivity Browser."

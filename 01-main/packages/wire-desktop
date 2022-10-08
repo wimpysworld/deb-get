@@ -1,0 +1,7 @@
+ASC_KEY_URL="https://wire-app.wire.com/linux/releases.key"
+APT_LIST_NAME="wire-desktop"
+APT_REPO_URL="https://wire-app.wire.com/linux/debian stable main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Wire"
+WEBSITE="https://wire.com/"
+SUMMARY="Secure collaboration platform."

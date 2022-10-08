@@ -1,0 +1,9 @@
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "https://api.github.com/repos/Figma-Linux/figma-linux/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Figma Linux"
+WEBSITE="https://github.com/Figma-Linux/figma-linux"
+SUMMARY="Unofficial Electron-based Figma desktop app for Linux."

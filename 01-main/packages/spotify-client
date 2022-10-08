@@ -1,0 +1,9 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    # NOTE: Using direct as the latest spotify-client .deb is not in the archive Packages index.
+    local VERSION_UPSTREAM="$(curl -s http://repository.spotify.com/pool/non-free/s/spotify-client/ | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep -v Index | cut -d'_' -f2 | sort -uVr | head -n1)"
+    VERSION_PUBLISHED="1:${VERSION_UPSTREAM}"
+    URL="http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VERSION_UPSTREAM}_amd64.deb"
+fi
+PRETTY_NAME="Spotify"
+WEBSITE="https://www.spotify.com/"
+SUMMARY="Millions of songs and podcasts."

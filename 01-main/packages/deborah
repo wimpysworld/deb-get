@@ -1,0 +1,10 @@
+CODENAMES_SUPPORTED="focal jammy kinetic"
+ARCHS_SUPPORTED="amd64"
+get_github_releases "https://api.github.com/repos/ymauray/deborah/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${UPSTREAM_CODENAME}.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="Deborah"
+WEBSITE="https://github.com/ymauray/deborah/"
+SUMMARY="A Flutter front-end for deb-get."

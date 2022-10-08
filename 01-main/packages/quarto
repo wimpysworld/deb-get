@@ -1,0 +1,9 @@
+ARCHS_SUPPORTED="amd64"
+get_github_releases "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's/v//')"
+fi
+PRETTY_NAME="Quarto CLI"
+WEBSITE="https://quarto.org/"
+SUMMARY="Quarto - an open-source scientific and technical publishing system built on Pandoc"

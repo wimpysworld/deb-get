@@ -1,0 +1,7 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="https://sejda-cdn.com/downloads/$(curl -s "https://www.sejda.com/desktop" | grep "linux:" | cut -d"'" -f2)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Sejda PDF Desktop"
+WEBSITE="https://www.sejda.com/"
+SUMMARY="Easy, pleasant and productive PDF editor."

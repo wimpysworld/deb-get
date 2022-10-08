@@ -1,0 +1,8 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    local REDIR_URL="$(curl -s "https://deadbeef.sourceforge.io/download.html" | grep "amd64\.deb" | cut -d'"' -f2)"
+    URL=$(unroll_url "${REDIR_URL}")
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="DeaDBeeF Player"
+WEBSITE="https://deadbeef.sourceforge.io/"
+SUMMARY="The ultimate music player"

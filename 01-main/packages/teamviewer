@@ -1,0 +1,7 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(curl -s 'https://www.teamviewer.com/en/download/linux/' | grep -C 5 'Ubuntu, Debian' | grep '\*\.deb package' | cut -d ' ' -f3 | sed 's/\([0-9\.]*\).*$/\1/')"
+fi
+URL="https://download.teamviewer.com/download/linux/teamviewer_amd64.deb"
+PRETTY_NAME="TeamViewer"
+WEBSITE="https://www.teamviewer.com/"
+SUMMARY="The Remote Desktop Software."

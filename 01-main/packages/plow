@@ -1,0 +1,9 @@
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "https://api.github.com/repos/six-ddc/plow/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Plow"
+WEBSITE="https://github.com/six-ddc/plow"
+SUMMARY="A high-performance HTTP benchmarking tool with real-time web UI and terminal displaying"

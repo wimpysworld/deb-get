@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/H-M-H/Weylus/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Weylus"
+WEBSITE="https://github.com/H-M-H/Weylus"
+SUMMARY="Turn your tablet or smart phone into a graphic tablet/touch screen for your computer."

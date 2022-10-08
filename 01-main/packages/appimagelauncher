@@ -1,0 +1,10 @@
+OLD_PPA="ppa:appimagelauncher-team/stable"
+ARCHS_SUPPORTED="amd64 i386 armhf arm64"
+get_github_releases "https://api.github.com/repos/TheAssassin/AppImageLauncher/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v xenial | head -n1 | cut -d '"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d '_' -f2 | cut -d '-' -f1)"
+fi
+PRETTY_NAME="AppImage Launcher"
+WEBSITE="https://github.com/TheAssassin/AppImageLauncher"
+SUMMARY="A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there."

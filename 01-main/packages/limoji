@@ -1,0 +1,8 @@
+get_github_releases "https://api.github.com/repos/GEROGIANNIS/limoji/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*limoji.*_all.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="limoji"
+WEBSITE="https://github.com/GEROGIANNIS/Limoji"
+SUMMARY="Turning your favorite emojis into the world of ASCII."

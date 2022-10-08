@@ -1,0 +1,6 @@
+ASC_KEY_URL="https://kopia.io/signing-key"
+APT_LIST_NAME="kopia"
+APT_REPO_URL="https://packages.kopia.io/apt/ stable main"
+PRETTY_NAME="KopiaUI"
+WEBSITE="https://kopia.io/"
+SUMMARY="Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication."

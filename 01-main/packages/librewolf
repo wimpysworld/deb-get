@@ -1,0 +1,8 @@
+CODENAMES_SUPPORTED="bullseye focal impish jammy"
+GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
+APT_LIST_NAME="librewolf"
+APT_REPO_URL="https://deb.librewolf.net ${UPSTREAM_CODENAME} main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="LibreWolf"
+WEBSITE="https://librewolf.net/"
+SUMMARY="An independent fork of Firefox, with the primary goals of privacy, security and user freedom."

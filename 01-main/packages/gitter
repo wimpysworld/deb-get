@@ -1,0 +1,10 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(curl -s "https://gitlab.com/gitterHQ/desktop/-/raw/master/CHANGELOG.md" | head -n1 | cut -d'`' -f2)"
+    case ${HOST_ARCH} in
+        amd64) URL="https://update.gitter.im/linux64/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+        i386) URL="https://update.gitter.im/linux32/gitter_${VERSION_PUBLISHED}_${HOST_ARCH}.deb";;
+    esac
+fi
+PRETTY_NAME="Gitter"
+WEBSITE="https://gitter.im/"
+SUMMARY="A chat and networking platform to manage and connect communities through messaging, content and discovery."

@@ -1,0 +1,7 @@
+ASC_KEY_URL="https://brave-browser-apt-release.s3.brave.com/brave-core.asc"
+APT_LIST_NAME="brave-browser-release"
+APT_REPO_URL="https://brave-browser-apt-release.s3.brave.com/ stable main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Brave"
+WEBSITE="https://brave.com/"
+SUMMARY="Browse privately. Search privately. And ditch Big Tech."

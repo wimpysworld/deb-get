@@ -1,0 +1,8 @@
+if [ "${ACTION}" != "prettylist" ]; then
+    # Note: get version number from Release Notes
+    VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" | grep "<p class=\"p\">Linux—" | head -n1 | cut -d'>' -f2 | cut -d'<' -f1 | sed 's/Linux—//')"
+fi
+URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
+PRETTY_NAME="Webex"
+WEBSITE="https://www.webex.com/"
+SUMMARY="Video Conferencing, Cloud Calling and Screen Sharing."
