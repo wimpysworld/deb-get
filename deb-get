@@ -145,7 +145,7 @@ function get_github_releases() {
     #   curl -I https://api.github.com/users/flexiondotorg
 
     # Do not process github releases while generating a pretty list or upgrading
-    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ]; then
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
         fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
         if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
             wgetcmdarray=(${ELEVATE} wget  "${HEADERPARAM}" "${HEADERAUTH}" -q "${1}" -O "${CACHE_DIR}/${APP}.json")
@@ -345,7 +345,7 @@ function validate_deb() {
         . "${REPOS_DIR}/${APP_SRC}.d/$APP" 2>/dev/null
     fi
     if [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
-        fancy_message eror "Missing required information of package ${APP}:"
+        fancy_message error "Missing required information of package ${APP}:"
         echo "PRETTY_NAME=${PRETTY_NAME}" >&2
         echo "SUMMARY=${SUMMARY}" >&2
         echo "WEBSITE=${WEBSITE}" >&2
@@ -926,7 +926,7 @@ case "${ACTION}" in
         update_repos
         if [ "${1}" != --repos-only ]; then
             for APP in "${INSTALLED_APPS[@]}"; do
-                validate_deb "${APP}"
+                validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
                 fix_installed "${1}"
             done
             update_debs
@@ -941,7 +941,7 @@ case "${ACTION}" in
         fi
         elevate_privs
         for APP in "${INSTALLED_APPS[@]}"; do
-            validate_deb "${APP}"
+            validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             fix_installed "${1}"
         done;;
     version) echo "${VERSION}";;

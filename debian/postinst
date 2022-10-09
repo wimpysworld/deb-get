@@ -13,9 +13,6 @@ if [ "${1}" = configure ]; then
     if [ -n "${2}" ]; then
         if dpkg --compare-versions "${2}" le "0.3.6-1"; then
             deb-get fix-installed --old-apps
-            if package_is_installed appimagelauncher; then
-                deb-get reinstall appimagelauncher
-            fi
         else
             deb-get fix-installed
         fi
