@@ -1224,7 +1224,7 @@ case "${ACTION}" in
         if [ "${1}" != --repos-only ]; then
             for APP in "${INSTALLED_APPS[@]}"; do
                 validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                fix_installed "${1}"
+                fix_installed
             done
             update_debs
         fi;;
