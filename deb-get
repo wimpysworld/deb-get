@@ -305,7 +305,7 @@ function remove_deb() {
 
 function version_deb() {
     if package_is_installed "${APP}"; then
-        echo "$(dpkg -s "${APP}" | grep ^Version: | cut -d' ' -f2)"
+        echo "$(dpkg -s "${APP}" 2> /dev/null | grep ^Version: | cut -d' ' -f2)"
     else
         echo ""
     fi
