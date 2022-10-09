@@ -1,3 +1,4 @@
+DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(curl -s "https://help.gitkraken.com/gitkraken-client/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
 fi

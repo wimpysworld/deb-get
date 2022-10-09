@@ -1,6 +1,6 @@
+DEFVER=1
 # TODO: Test with Debian
 ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
-APT_LIST_NAME="azure-cli"
 APT_REPO_URL="https://packages.microsoft.com/repos/azure-cli/ ${UPSTREAM_CODENAME} main"
 APT_REPO_OPTIONS="arch=amd64"
 PRETTY_NAME="Azure CLI"

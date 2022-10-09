@@ -1,3 +1,4 @@
+DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf ppc64el s390x"
 get_github_releases "https://api.github.com/repos/sigstore/cosign/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then

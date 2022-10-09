@@ -1,3 +1,4 @@
+DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf i386"
 get_github_releases "https://api.github.com/repos/aquasecurity/trivy/releases"
 if [ "${ACTION}" != "prettylist" ]; then

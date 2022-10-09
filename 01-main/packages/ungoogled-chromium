@@ -1,4 +1,4 @@
-APT_LIST_NAME="home-ungoogled_chromium"
+DEFVER=1
 case "${UPSTREAM_CODENAME}" in
     focal)
         ASC_KEY_URL="https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key"

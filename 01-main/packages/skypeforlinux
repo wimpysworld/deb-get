@@ -1,5 +1,5 @@
+DEFVER=1
 ASC_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
-APT_LIST_NAME="skype-stable"
 APT_REPO_URL="https://repo.skype.com/deb stable main"
 APT_REPO_OPTIONS="arch=amd64"
 PRETTY_NAME="Skype"

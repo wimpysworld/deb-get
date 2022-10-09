@@ -1,5 +1,5 @@
+DEFVER=1
 ASC_KEY_URL="https://deb.opera.com/archive.key"
-APT_LIST_NAME="opera-stable"
 APT_REPO_URL="https://deb.opera.com/opera-stable/ stable non-free"
 PRETTY_NAME="Opera"
 WEBSITE="https://www.opera.com/"

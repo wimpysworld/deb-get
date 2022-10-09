@@ -1,3 +1,4 @@
+DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     URL="https://www.shutterencoder.com/$(curl -s "https://www.shutterencoder.com/en/thanks.html" | grep "64bits\.deb\"" | cut -d'"' -f2 | sed 's|\.\./||')"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d' ' -f3)"

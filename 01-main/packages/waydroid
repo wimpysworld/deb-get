@@ -1,5 +1,5 @@
+DEFVER=1
 GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
-APT_LIST_NAME="waydroid"
 APT_REPO_URL="https://repo.waydro.id ${UPSTREAM_CODENAME} main"
 PRETTY_NAME="WayDroid"
 WEBSITE="https://waydro.id/"

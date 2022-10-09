@@ -1,3 +1,4 @@
+DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(curl -s -f -L https://helio.fm |grep -o "https://..*\.deb"|grep -v dev)"
     VERSION_PUBLISHED="$(echo "${URL}" |cut -d '-' -f2)"

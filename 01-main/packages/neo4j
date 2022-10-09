@@ -1,6 +1,6 @@
+DEFVER=1
 ARCHS_SUPPORTED="amd64"
 ASC_KEY_URL="https://debian.neo4j.com/neotechnology.gpg.key"
-APT_LIST_NAME="neo4j"
 APT_REPO_URL="https://debian.neo4j.com stable latest"
 PRETTY_NAME="Neo4j"
 WEBSITE="https://neo4j.com/"

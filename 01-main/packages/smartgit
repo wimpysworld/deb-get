@@ -1,3 +1,4 @@
+DEFVER=1
 ARCHS_SUPPORTED="amd64"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="https://www.syntevo.com$(curl -s "https://www.syntevo.com/smartgit/download/" | grep "\.deb" | head -n1 | cut -d'"' -f2)"

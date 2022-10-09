@@ -1,3 +1,4 @@
+DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)"

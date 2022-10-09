@@ -1,3 +1,4 @@
+DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(curl -s "$(unroll_url https://www.bluejeans.com/downloads)" | grep "BlueJeans_.*\.deb\"" | head -n1 | cut -d"\"" -f 2)"
     local VERSION_TMP="${URL##*/BlueJeans_}"

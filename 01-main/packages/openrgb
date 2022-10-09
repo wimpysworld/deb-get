@@ -1,3 +1,4 @@
+DEFVER=1
 ARCHS_SUPPORTED="amd64 i386 armhf"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in

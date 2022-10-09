@@ -1,3 +1,4 @@
+DEFVER=1
 ARCHS_SUPPORTED="amd64 i386"
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(curl -s https://dbeaver.io/debs/dbeaver-ce/ | grep -o '"dbeaver-ce_.*'${HOST_ARCH}'\.deb"' | sort --version-sort | tail -n1 | cut -d"_" -f2)"

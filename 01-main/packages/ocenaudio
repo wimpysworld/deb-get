@@ -1,3 +1,4 @@
+DEFVER=1
 ARCHS_SUPPORTED="amd64 i386"
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(curl -s "https://www.ocenaudio.com/en/download" | grep "<p>Version" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"

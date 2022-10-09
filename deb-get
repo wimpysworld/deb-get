@@ -133,6 +133,11 @@ function create_cache_dir() {
     ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
 }
 
+function create_etc_dir() {
+    ${ELEVATE} mkdir -p "${ETC_DIR}" 2>/dev/null
+    ${ELEVATE} chmod 755 "${ETC_DIR}" 2>/dev/null
+}
+
 function unroll_url() {
     curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null
 }
@@ -224,6 +229,7 @@ function install_apt() {
     if ! package_is_installed "${APP}"; then
         eula
         ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
+        add_installed
     else
         if [ "${ACTION}" == "reinstall" ]; then
             ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"
@@ -249,6 +255,7 @@ function install_deb() {
         eula
         download_deb "${URL}"
         ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
+        add_installed
     else
         if [ "${ACTION}" == "reinstall" ]; then
             download_deb "${URL}"
@@ -278,6 +285,7 @@ function remove_deb() {
             REMOVE="purge"
         fi
         ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
+        remove_installed
     else
         fancy_message info "${APP} is not installed."
     fi
@@ -290,10 +298,8 @@ function remove_deb() {
                 ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
             fi
             ;;
-        apt)
-            remove_apt_repo "${APT_LIST_NAME}";;
-        ppa)
-            remove_ppa_repo "${PPA}";;
+        apt|ppa)
+            remove_repo;;
     esac
 }
 
@@ -318,17 +324,14 @@ function validate_deb() {
     local FULL_APP="${1}"
     export APP_SRC="$(echo "$FULL_APP" | cut -d / -f 1)"
     export APP="$(echo "$FULL_APP" | cut -d / -f 2)"
+    export DEFVER=""
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
-    export OLD_APT_LIST_NAME=""
-    export APT_LIST_NAME=""
     export APT_REPO_URL=""
     export APT_REPO_OPTIONS=""
-    export OLD_PPA=""
     export PPA=""
     export ARCHS_SUPPORTED="amd64"
     export CODENAMES_SUPPORTED=""
-    export OLD_METHOD=""
     export METHOD="website"
     export EULA=""
     export URL=""
@@ -342,7 +345,7 @@ function validate_deb() {
     if [ "$APP_SRC" = "00-builtin" ]; then
         deb_${APP} 2>/dev/null
     else
-        . "${REPOS_DIR}/${APP_SRC}.d/$APP" 2>/dev/null
+        . "${ETC_DIR}/${APP_SRC}.d/$APP" 2>/dev/null
     fi
     if [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
         fancy_message error "Missing required information of package ${APP}:"
@@ -355,9 +358,8 @@ function validate_deb() {
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
         if [ "${ACTION}" != "prettylist" ]; then
-            if [ -z "${APT_LIST_NAME}" ] || { [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]; }; then
+            if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]; then
                 fancy_message error "Missing required information of apt package ${APP}:"
-                echo "APT_LIST_NAME=${APT_LIST_NAME}" >&2
                 echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
                 echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
                 exit 1
@@ -474,55 +476,50 @@ function upgrade_debs() {
 }
 
 function init_repos() {
-    if [ ! -e "${REPOS_DIR}" ]; then
-        ${ELEVATE} mkdir "${REPOS_DIR}" 2>/dev/null
-        ${ELEVATE} chmod 755 "${REPOS_DIR}" 2>/dev/null
+    if [ ! -e "${ETC_DIR}/01-main.repo" ]; then
+        echo "${MAIN_REPO_URL}" | ${ELEVATE} tee "${ETC_DIR}/01-main.repo" > /dev/null
     fi
 
-    if [ ! -e "${REPOS_DIR}/01-main.repo" ]; then
-        echo "${MAIN_REPO_URL}" | ${ELEVATE} tee "${REPOS_DIR}/01-main.repo" > /dev/null
-    fi
-
-    for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
-        if [ ! -e "${REPOS_DIR}/${REPO}.d" ]; then
-            ${ELEVATE} mkdir "${REPOS_DIR}/${REPO}.d" 2>/dev/null
-            ${ELEVATE} chmod 755 "${REPOS_DIR}/${REPO}.d" 2>/dev/null
+    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+        if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
+            ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
+            ${ELEVATE} chmod 755 "${ETC_DIR}/${REPO}.d" 2>/dev/null
         fi
     done
 }
 
 function update_repos(){
-    for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
-        fancy_message info "Updating ${REPOS_DIR}/${REPO}"
-        local REPO_URL="$(head -n 1 "${REPOS_DIR}/${REPO}.repo")"
-        ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${REPOS_DIR}/${REPO}.repo"
-        tail -n +2 "${REPOS_DIR}/$REPO.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${REPOS_DIR}/$REPO.repo.tmp"
-        local ETAGS="$(wget -q --spider -S -B "${REPO_URL}/packages/" -i "${REPOS_DIR}/$REPO.repo.tmp" 2>&1 | grep -i etag: | sed "s/^  etag: //I")"
+    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+        fancy_message info "Updating ${ETC_DIR}/${REPO}"
+        local REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
+        ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
+        tail -n +2 "${ETC_DIR}/$REPO.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/$REPO.repo.tmp"
+        local ETAGS="$(wget -q --spider -S -B "${REPO_URL}/packages/" -i "${ETC_DIR}/$REPO.repo.tmp" 2>&1 | grep -i etag: | sed "s/^  etag: //I")"
         if [ -n "$ETAGS" ]; then
-            ETAGS="$(echo "$ETAGS" | paste -d " " "${REPOS_DIR}/$REPO.repo.tmp" - | ${ELEVATE} tee "${REPOS_DIR}/$REPO.etags.tmp")"
+            ETAGS="$(echo "$ETAGS" | paste -d " " "${ETC_DIR}/$REPO.repo.tmp" - | ${ELEVATE} tee "${ETC_DIR}/$REPO.etags.tmp")"
 
-            if [ -f "${REPOS_DIR}/$REPO.etags" ]; then
-                ETAGS="$(comm --nocheck-order -1 -3 "${REPOS_DIR}/$REPO.etags" "${REPOS_DIR}/$REPO.etags.tmp")"
+            if [ -f "${ETC_DIR}/$REPO.etags" ]; then
+                ETAGS="$(comm --nocheck-order -1 -3 "${ETC_DIR}/$REPO.etags" "${ETC_DIR}/$REPO.etags.tmp")"
             fi
 
             if [ -z "$ETAGS" ]; then
-                ${ELEVATE} rm "${REPOS_DIR}/$REPO.etags.tmp"
+                ${ELEVATE} rm "${ETC_DIR}/$REPO.etags.tmp"
             else
-                ${ELEVATE} mv "${REPOS_DIR}/$REPO.etags.tmp" "${REPOS_DIR}/$REPO.etags"
-                echo "$ETAGS" | cut -d " " -f 1 | ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i - -P "${REPOS_DIR}/$REPO.d"
+                ${ELEVATE} mv "${ETC_DIR}/$REPO.etags.tmp" "${ETC_DIR}/$REPO.etags"
+                echo "$ETAGS" | cut -d " " -f 1 | ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i - -P "${ETC_DIR}/$REPO.d"
             fi
         else
-            ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${REPOS_DIR}/$REPO.repo.tmp" -P "${REPOS_DIR}/$REPO.d"
+            ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/$REPO.repo.tmp" -P "${ETC_DIR}/$REPO.d"
         fi
 
-        ${ELEVATE} rm "${REPOS_DIR}/$REPO.repo.tmp"
+        ${ELEVATE} rm "${ETC_DIR}/$REPO.repo.tmp"
     done
 }
 
 function list_repo_apps() {
-    if [ -d "${REPOS_DIR}" ]; then
-        for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
-            for APP in $(tail -n +2 "${REPOS_DIR}/$REPO.repo" | grep -v "^#" | sort -u); do
+    if [ -d "${ETC_DIR}" ]; then
+        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+            for APP in $(tail -n +2 "${ETC_DIR}/$REPO.repo" | grep -v "^#" | sort -u); do
                 echo "$REPO/$APP"
             done
         done
@@ -530,9 +527,9 @@ function list_repo_apps() {
 }
 
 function list_deprecated_apps() {
-    if [ -d "${REPOS_DIR}" ]; then
-        for REPO in $(find "${REPOS_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
-            for APP in $(tail -n +2 "${REPOS_DIR}/$REPO.repo" | grep "^#" | sed "s/^#//" | sort -u); do
+    if [ -d "${ETC_DIR}" ]; then
+        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+            for APP in $(tail -n +2 "${ETC_DIR}/$REPO.repo" | grep "^#" | sed "s/^#//" | sort -u); do
                 echo "$REPO/$APP"
             done
         done
@@ -540,8 +537,8 @@ function list_deprecated_apps() {
 }
 
 function list_local_apps() {
-    if [ -d "${REPOS_DIR}/99-local.d" ]; then
-        for APP in $(find "${REPOS_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n"); do
+    if [ -d "${ETC_DIR}/99-local.d" ]; then
+        for APP in $(find "${ETC_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n"); do
             echo "99-local/$APP"
         done
     fi
@@ -556,13 +553,13 @@ function print_etc_overrides()
             local FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             fancy_message warn "Conflict detected, duplicate declaration of package $APP, using declaration from $(echo "$FULL_APP" | cut -d / -f 1)"
 
-            if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "${REPOS_DIR}/99-local.d/$APP" ]; then
+            if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "${ETC_DIR}/99-local.d/$APP" ]; then
                 let "NUM_OLDER_CONFLICTS+=1"
             fi
         done
 
         if [ $NUM_OLDER_CONFLICTS -gt 0 ]; then
-            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your ${REPOS_DIR}/99-local.d folder."
+            fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your ${ETC_DIR}/99-local.d folder."
         fi
 
         for FULL_APP in "${LOCAL_APPS[@]}"; do
@@ -582,18 +579,316 @@ function print_deprecated() {
     done
 }
 
-readonly OLD_APPS=(quickemu firefox-esr quickgui nextcloud-desktop keepassxc ubuntu-make lutris polychromatic openrazer-meta strawberry copyq obs-studio foliate ulauncher yq fsearch kdiskmark xemu cryptomator gpu-viewer blanket audio-recorder papirus-icon-theme qownnotes retroarch texworks virtualbox-6.1 atom code 1password google-chrome-stable opera-stable teams enpass microsoft-edge-stable brave-browser docker-ce skypeforlinux wavebox wire-desktop signal-desktop syncthing sublime-text plexmediaserver jellyfin sublime-merge google-earth-pro-stable cawbird insync slack-desktop vivaldi-stable keybase protonvpn softmaker-office-2021 resilio-sync chronograf influxdb influxdb2 influxdb2-cli kapacitor telegraf anydesk azure-cli terraform nomad kopia-ui typora neo4j appimagelauncher)
+function fix_old_apps() {
+    local OLD_METHOD=""
+    local OLD_APT_LIST_NAME=""
+    local OLD_PPA=""
+    case "${APP}" in
+        1password)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="1password"
+        ;;
+        anydesk)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="anydesk-stable"
+        ;;
+        appimagelauncher)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:appimagelauncher-team/stable"
+        ;;
+        atom)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="atom"
+        ;;
+        audio-recorder)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:audio-recorder/ppa"
+        ;;
+        azure-cli)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="azure-cli"
+        ;;
+        blanket)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:apandada1/blanket"
+        ;;
+        brave-browser)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="brave-browser-release"
+        ;;
+        cawbird)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="home:IBBoard:cawbird"
+        ;;
+        chronograf)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="influxdata"
+        ;;
+        code)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="vscode"
+        ;;
+        copyq)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:hluk/copyq"
+        ;;
+        cryptomator)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:sebastian-stenzel/cryptomator"
+        ;;
+        docker-ce)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="docker"
+        ;;
+        enpass)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="enpass"
+        ;;
+        firefox-esr)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:mozillateam/ppa"
+        ;;
+        foliate)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:apandada1/foliate"
+        ;;
+        fsearch)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:christian-boxdoerfer/fsearch-stable"
+        ;;
+        google-chrome-stable)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="google-chrome"
+        ;;
+        google-earth-pro-stable)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="google-earth-pro"
+        ;;
+        gpu-viewer)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:arunsivaraman/gpuviewer"
+        ;;
+        influxdb)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="influxdata"
+        ;;
+        influxdb2)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="influxdata"
+        ;;
+        influxdb2-cli)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="influxdata"
+        ;;
+        insync)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="insync"
+        ;;
+        jellyfin)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="jellyfin"
+        ;;
+        kapacitor)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="influxdata"
+        ;;
+        kdiskmark)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:jonmagon/kdiskmark"
+        ;;
+        keepassxc)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:phoerious/keepassxc"
+        ;;
+        keybase)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="keybase"
+        ;;
+        kopia-ui)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="kopia"
+        ;;
+        lutris)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:lutris-team/lutris"
+        ;;
+        microsoft-edge-stable)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="microsoft-edge"
+        ;;
+        neo4j)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="neo4j"
+        ;;
+        nextcloud-desktop)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:nextcloud-devs/client"
+        ;;
+        nomad)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="nomad"
+        ;;
+        obs-studio)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:flexiondotorg/obs-fully-loaded"
+        ;;
+        openrazer-meta)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:openrazer/stable"
+        ;;
+        opera-stable)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="opera-stable"
+        ;;
+        papirus-icon-theme)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:papirus/papirus"
+        ;;
+        plexmediaserver)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="plexmediaserver"
+        ;;
+        polychromatic)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:polychromatic/stable"
+        ;;
+        protonvpn)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="protonvpn-stable"
+        ;;
+        qownnotes)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:pbek/qownnotes"
+        ;;
+        quickemu)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:flexiondotorg/quickemu"
+        ;;
+        quickgui)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:yannick-mauray/quickgui"
+        ;;
+        resilio-sync)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="resilio-sync"
+        ;;
+        retroarch)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:libretro/stable"
+        ;;
+        signal-desktop)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="signal-xenial"
+        ;;
+        skypeforlinux)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="skype-stable"
+        ;;
+        slack-desktop)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="slack"
+        ;;
+        softmaker-office-2021)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="softmaker"
+        ;;
+        strawberry)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:jonaski/strawberry"
+        ;;
+        sublime-merge)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="sublime-text"
+        ;;
+        sublime-text)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="sublime-text"
+        ;;
+        syncthing)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="syncthing"
+        ;;
+        teams)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="teams"
+        ;;
+        telegraf)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="influxdata"
+        ;;
+        terraform)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="terraform"
+        ;;
+        texworks)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:texworks/stable"
+        ;;
+        typora)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="typora"
+        ;;
+        ubuntu-make)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:lyzardking/ubuntu-make"
+        ;;
+        ulauncher)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:agornostal/ulauncher"
+        ;;
+        virtualbox-6.1)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="virtualbox-6.1"
+        ;;
+        vivaldi-stable)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="vivaldi"
+        ;;
+        wavebox)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="wavebox-stable"
+        ;;
+        wire-desktop)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="wire-desktop"
+        ;;
+        xemu)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:mborgerson/xemu"
+        ;;
+        yq)
+            OLD_METHOD="ppa"
+            OLD_PPA="ppa:rmescandon/yq"
+        ;;
+    esac
+    if [ -n "${OLD_METHOD}" ]; then
+        if [ "${OLD_METHOD}" = apt ]; then
+            remove_old_apt_repo "${OLD_APT_LIST_NAME}"
+        else # ppa
+            remove_old_ppa_repo "${OLD_PPA}"
+        fi
+    fi
+    if [ "${METHOD}" = apt ]; then
+        add_apt_repo
+    elif [ "${METHOD}" = ppa ]; then
+        ppa_to_apt
+        add_apt_repo
+    fi
+    add_installed
+
+    if [ "${DEFVER}" != 1 ]; then
+        fancy_message warn "${APP} must be manually reinstalled with \"deb-get reinstall ${APP}\", otherwise it will not be updated properly"
+    fi
+}
 
 function fix_installed() {
-    if [ "${1}" = --old-apps ] && [[ " ${OLD_APPS[@]} " =~ " ${APP} " ]]; then
-        if [ -n "${OLD_APT_LIST_NAME}" ]; then
-            remove_old_apt_repo "${OLD_APT_LIST_NAME}"
-        elif [ "${METHOD}" = apt ]; then
-            remove_old_apt_repo "${APT_LIST_NAME}"
-        elif [ -n "${OLD_PPA}" ]; then
-            remove_old_ppa_repo "${OLD_PPA}"
-        elif [ "${METHOD}" = ppa ]; then
-            remove_old_ppa_repo "${PPA}"
+    local line="$(grep -m 1 "^${APP} " "${ETC_DIR}/installed")"
+    local OLD_DEFVER="$(echo ${line} | cut -d " " -f 2)"
+    local OLD_METHOD="$(echo ${line} | cut -d " " -f 3)"
+    if [ "${DEFVER}" != "${OLD_DEFVER}" ]; then
+        remove_installed
+        if [[ " apt ppa " =~ " ${OLD_METHOD} " ]]; then
+            remove_repo
         fi
         if [ "${METHOD}" = apt ]; then
             add_apt_repo
@@ -601,18 +896,8 @@ function fix_installed() {
             ppa_to_apt
             add_apt_repo
         fi
-    else
-        if [ -n "${OLD_APT_LIST_NAME}" ]; then
-            remove_apt_repo "${OLD_APT_LIST_NAME}"
-        elif [ -n "${OLD_PPA}" ]; then
-            remove_ppa_repo "${OLD_PPA}"
-        fi
-        if [ "${METHOD}" = apt ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
-            add_apt_repo
-        elif [ "${METHOD}" = ppa ] && [ -n "${OLD_APT_LIST_NAME}${OLD_PPA}${OLD_METHOD}" ]; then
-            ppa_to_apt
-            add_apt_repo
-        fi
+        add_installed
+        fancy_message warn "${APP} must be manually reinstalled with \"deb-get reinstall ${APP}\", otherwise it will not be updated properly"
     fi
 }
 
@@ -635,19 +920,11 @@ function remove_old_ppa_repo() {
     ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}-${UPSTREAM_CODENAME}.list"
 }
 
-function remove_apt_repo() {
-    fancy_message info "Removing /usr/share/keyrings/${1}-archive-keyring.gpg"
-    ${ELEVATE} rm -f "/usr/share/keyrings/${1}-archive-keyring.gpg"
-    fancy_message info "Removing /etc/apt/sources.list.d/${1}.list"
-    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${1}.list"
-}
-
-function remove_ppa_repo() {
-    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
-    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
-    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
-    local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
-    remove_apt_repo "${APT_LIST_NAME}"
+function remove_repo() {
+    fancy_message info "Removing /usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
+    ${ELEVATE} rm -f "/usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
+    fancy_message info "Removing /etc/apt/sources.list.d/deb-get-${APP}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/deb-get-${APP}.list"
 }
 
 function add_apt_repo() {
@@ -655,23 +932,23 @@ function add_apt_repo() {
         ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
     fi
     if [ -n "${ASC_KEY_URL}" ]; then
-        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/deb-get-${APP}-archive-keyring"
+        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/deb-get-${APP}-archive-keyring"
+        ${ELEVATE} rm "/usr/share/keyrings/deb-get-${APP}-archive-keyring"
     else #GPG_KEY_URL
-        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
     fi
 
     #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
 
-    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
 
     if [ -n "${APT_REPO_OPTIONS}" ]; then
         APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
     fi
 
     APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/deb-get-${APP}.list" > /dev/null
 }
 
 function ppa_to_apt() {
@@ -679,11 +956,25 @@ function ppa_to_apt() {
     local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
     local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
     export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
-    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
     export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
 }
 
+function add_installed() {
+    local line="${APP} ${DEFVER} ${METHOD}"
+    if [ ! -e "${ETC_DIR}/installed" ]; then
+        echo "deb-get 1 github" | ${ELEVATE} tee "${ETC_DIR}/installed" > /dev/null
+    fi
+    cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
+}
+
+function remove_installed() {
+    if [ -e "${ETC_DIR}/installed" ]; then
+        ${ELEVATE} sed -i "s/^${APP} .*$//" "${ETC_DIR}/installed"
+    fi
+}
+
 function deb_deb-get() {
+    DEFVER=1
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     get_github_releases "https://api.github.com/repos/wimpysworld/deb-get/releases"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -696,7 +987,7 @@ function deb_deb-get() {
 }
 
 export CACHE_DIR="/var/cache/deb-get"
-readonly REPOS_DIR="/etc/deb-get"
+readonly ETC_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
 
 if ((BASH_VERSINFO[0] < 4)); then
@@ -801,7 +1092,11 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     readonly APP_CONFLICTS=($(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated))
     APPS="$(echo "$APPS" | sort -t / -k 2 -u)"
     readonly LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
-    readonly INSTALLED_APPS=($(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(echo "$APPS" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2))
+    if [ -e "${ETC_DIR}/installed" ]; then
+        readonly INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
+    else
+        readonly INSTALLED_APPS=(deb-get)
+    fi
     APPS=($APPS)
     ;;
 esac
@@ -847,6 +1142,7 @@ case "${ACTION}" in
     install|reinstall)
         elevate_privs
         create_cache_dir
+        create_etc_dir
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
             if [ -z "$FULL_APP" ]; then
@@ -922,6 +1218,7 @@ case "${ACTION}" in
         fi
         elevate_privs
         create_cache_dir
+        create_etc_dir
         init_repos
         update_repos
         if [ "${1}" != --repos-only ]; then
@@ -940,10 +1237,17 @@ case "${ACTION}" in
             fancy_message fatal "Unknown option supplied: ${1}"
         fi
         elevate_privs
-        for APP in "${INSTALLED_APPS[@]}"; do
-            validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-            fix_installed "${1}"
-        done;;
+        if [ "${1}" = --old-apps ]; then
+            for APP in "$(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2)"; do
+                validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+                fix_old_apps
+            done
+        else
+            for APP in "${INSTALLED_APPS[@]}"; do
+                validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+                fix_installed
+            done
+        fi;;
     version) echo "${VERSION}";;
     help) usage;;
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;

@@ -1,3 +1,4 @@
+DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(curl -s https://api.github.com/repos/safing/portmaster/releases/latest | grep -E '"name":' | tr -d "\"," | cut -d: -f2 | tr -d " v")"
 fi

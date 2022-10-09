@@ -1,3 +1,4 @@
+DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(curl -s https://www.exodus.com/download/|sed "s|.*https://downloads\.exodus\.com/releases/hashes-exodus-||"|sed "s/\.txt.*//")"
     URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"

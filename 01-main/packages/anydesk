@@ -1,5 +1,5 @@
+DEFVER=1
 ASC_KEY_URL="https://keys.anydesk.com/repos/DEB-GPG-KEY"
-APT_LIST_NAME="anydesk-stable"
 APT_REPO_URL="http://deb.anydesk.com/ all main"
 PRETTY_NAME="AnyDesk"
 WEBSITE="https://anydesk.com/"

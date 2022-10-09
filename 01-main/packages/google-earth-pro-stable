@@ -1,5 +1,5 @@
+DEFVER=1
 ASC_KEY_URL="https://dl-ssl.google.com/linux/linux_signing_key.pub"
-APT_LIST_NAME="google-earth-pro"
 APT_REPO_URL="https://dl.google.com/linux/earth/deb/ stable main"
 APT_REPO_OPTIONS="arch=amd64"
 PRETTY_NAME="Google Earth Pro"

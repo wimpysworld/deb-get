@@ -1,5 +1,5 @@
+DEFVER=1
 ASC_KEY_URL="https://linux-packages.resilio.com/resilio-sync/key.asc"
-APT_LIST_NAME="resilio-sync"
 APT_REPO_URL="https://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free"
 PRETTY_NAME="Resilio Sync"
 WEBSITE="https://www.resilio.com/"
