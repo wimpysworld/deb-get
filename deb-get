@@ -969,7 +969,7 @@ function add_installed() {
 
 function remove_installed() {
     if [ -e "${ETC_DIR}/installed" ]; then
-        ${ELEVATE} sed -i "s/^${APP} .*$//" "${ETC_DIR}/installed"
+        ${ELEVATE} sed -i "/^${APP} /d" "${ETC_DIR}/installed"
     fi
 }
 
@@ -1238,7 +1238,7 @@ case "${ACTION}" in
         fi
         elevate_privs
         if [ "${1}" = --old-apps ]; then
-            for APP in "$(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2)"; do
+            for APP in $(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2); do
                 validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
                 fix_old_apps
             done
