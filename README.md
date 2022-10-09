@@ -241,6 +241,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://kopia.io/) | `kopia-ui` | <i>Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ksnip/ksnip) | `ksnip` | <i>Cross-platform screenshot and annotation tool.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://k8slens.dev/) | `lens` | <i>The way the world runs Kubernetes.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://www.libreoffice.org/) | `libreoffice-fresh` | <i>LibreOffice Fresh is the latest (non-alpha/beta) release of the newest series of LibreOffice - a free and powerful office suite.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://librewolf.net/) | `librewolf` | <i>An independent fork of Firefox, with the primary goals of privacy, security and user freedom.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/bootandy/dust) | `limoji` | <i>Turning your favorite emojis into the world of ASCII.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |

@@ -2807,6 +2807,13 @@ function deb_tabby-terminal() {
     SUMMARY="A terminal for the modern age"
 }
 
+function deb_libreoffice-fresh() {
+    PPA="ppa:libreoffice/ppa"
+    PRETTY_NAME="LibreOffice Fresh"
+    WEBSITE="https://www.libreoffice.org/"
+    SUMMARY="LibreOffice Fresh is the latest (non-alpha/beta) release of the newest series of LibreOffice - a free and powerful office suite."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
