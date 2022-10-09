@@ -2807,6 +2807,18 @@ function deb_tabby-terminal() {
     SUMMARY="A terminal for the modern age"
 }
 
+function deb_git-credential-manager() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/GitCredentialManager/git-credential-manager/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="Git Credential Manager"
+    WEBSITE="https://github.com/GitCredentialManager/git-credential-manager"
+    SUMMARY="Git Credential Manager (GCM) is a secure Git credential helper built on .NET that runs on Windows, macOS, and Linux."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 

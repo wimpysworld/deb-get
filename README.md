@@ -211,6 +211,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hmlendea/gfn-electron) | `geforcenow-electron` | <i>Desktop client for Nvidia's GeForce NOW game streaming service.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://cli.github.com/) | `gh` | <i>GitHub CLI brings GitHub to your terminal. Free and open source.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/dandavison/delta) | `git-delta` | <i>A syntax-highlighting pager for 'git', 'diff', and 'grep' output.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/GitCredentialManager/git-credential-manager/) | ` git-credential-manager` | <i>Git Credential Manager (GCM) is a secure Git credential helper built on .NET that runs on Windows, macOS, and Linux.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://desktop.github.com/) | `github-desktop` | <i>Simple collaboration from your desktop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.gitkraken.com/invite/ieih1QR3) | `gitkraken` | <i>Intuitive Git GUI & powerful Git CLI.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://gitter.im/) | `gitter` | <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i> |
