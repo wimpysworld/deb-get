@@ -689,6 +689,16 @@ function deb_atom() {
     SUMMARY="A hackable text editor for the 21st Century."
 }
 
+function deb_atom_beta() {
+    ASC_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
+    APT_LIST_NAME="atom-beta"
+    APT_REPO_URL="https://packagecloud.io/AtomEditor/atom/any/ any main"
+    APT_REPO_OPTIONS="arch=amd64"
+    PRETTY_NAME="Atom Beta"
+    WEBSITE="https://atom.io/"
+    SUMMARY="Beta version - A hackable text editor for the 21st Century."
+}
+
 function deb_code() {
     ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
     APT_LIST_NAME="vscode"
@@ -1343,6 +1353,16 @@ function deb_signal-desktop() {
     PRETTY_NAME="Signal"
     WEBSITE="https://signal.org/"
     SUMMARY="Private Messenger."
+}
+
+function deb_signal-desktop-beta() {
+    ASC_KEY_URL="https://updates.signal.org/desktop/apt/keys.asc"
+    APT_LIST_NAME="signal-xenial.list"
+    APT_REPO_URL="https://updates.signal.org/desktop/apt xenial main"
+    APT_REPO_OPTIONS="arch=amd64"
+    PRETTY_NAME="Signal Beta"
+    WEBSITE="https://signal.org/"
+    SUMMARY="Beta version - Private Messenger."
 }
 
 function deb_syncthing() {
