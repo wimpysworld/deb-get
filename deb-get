@@ -2807,6 +2807,15 @@ function deb_tabby-terminal() {
     SUMMARY="A terminal for the modern age"
 }
 
+function deb_glow() {
+    ASC_KEY_URL="https://repo.charm.sh/apt/gpg.key"
+    APT_LIST_NAME="charm"
+    APT_REPO_URL="https://repo.charm.sh/apt/ * *"
+    PRETTY_NAME="Glow"
+    WEBSITE="https://github.com/charmbracelet/glow"
+    SUMMARY="Glow is a terminal based markdown reader designed from the ground up to bring out the beauty—and power—of the CLI."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 

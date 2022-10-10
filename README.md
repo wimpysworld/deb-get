@@ -214,6 +214,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://desktop.github.com/) | `github-desktop` | <i>Simple collaboration from your desktop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.gitkraken.com/invite/ieih1QR3) | `gitkraken` | <i>Intuitive Git GUI & powerful Git CLI.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://gitter.im/) | `gitter` | <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://github.com/charmbracelet/glow) | `glow` | <i>Glow is a terminal based markdown reader designed from the ground up to bring out the beauty—and power—of the CLI.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.google.com/chrome/) | `google-chrome-stable` | <i>Fast, Secure Browser from Google.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://cloud.google.com/sdk/gcloud) | `google-cloud-cli` | <i>The Google Cloud CLI is a set of tools to create and manage Google Cloud resources.</i> |
