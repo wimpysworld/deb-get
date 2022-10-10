@@ -651,6 +651,13 @@ function deb_firefox-esr() {
     SUMMARY=" Firefox Extended Support Release."
 }
 
+function deb_firefox() {
+    PPA="ppa:mozillateam/ppa"
+    PRETTY_NAME="Firefox"
+    WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+    SUMMARY="Firefox Stable Release."
+}
+
 function deb_quickgui() {
     PPA="ppa:yannick-mauray/quickgui"
     PRETTY_NAME="Quickgui"
