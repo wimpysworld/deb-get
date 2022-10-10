@@ -205,6 +205,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/sharkdp/fd) | `fd` | <i>A simple, fast and user-friendly alternative to 'find'.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Figma-Linux/figma-linux) | `figma-linux` | <i>Unofficial Electron-based Figma desktop app for Linux.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.mozilla.org/firefox/enterprise/) | `firefox-esr` | <i> Firefox Extended Support Release.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://www.mozilla.org/firefox/enterprise/) | `firefox` | <i> Firefox Stable Release.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://flameshot.org/) | `flameshot` | <i>Flameshot is a free and open-source, cross-platform tool to take screenshots with many built-in features to save you time.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://johnfactotum.github.io/foliate/) | `foliate` | <i>A simple and modern eBook viewer for Linux desktops.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://meetfranz.com/) | `franz` | <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i> |
