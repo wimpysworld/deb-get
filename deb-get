@@ -1296,6 +1296,19 @@ function deb_deborah() {
     SUMMARY="A Flutter front-end for deb-get."
 }
 
+function deb_quickobs() {
+    CODENAMES_SUPPORTED="focal jammy kinetic"
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/ymauray/quickobs/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${UPSTREAM_CODENAME}.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="quickobs"
+    WEBSITE="https://github.com/ymauray/quickobs/"
+    SUMMARY="A tool to quickly download and run Martin Wimpress' OBS Studio Portable."
+}
+
 function deb_skypeforlinux() {
     ASC_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
     APT_LIST_NAME="skype-stable"
