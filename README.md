@@ -280,6 +280,9 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://www.corifeus.com/onenote) | `p3x-onenote` | <i>A Linux compatible version of OneNote.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://pandoc.org/) | `pandoc` | <i>A universal document converter.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) | `papirus-icon-theme` | <i>A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-filezilla-themes) | `filezilla-theme-papirus` | <i>Papirus icons for filezilla.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-libreoffice-theme) | `libreoffice-style-papirus` | <i>Papirus theme for LibreOffice.</i> |
+| [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-folders) | `papirus-folders` | <i>Papirus theme for folders.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://parsec.app/) | `parsec` | <i>Simple, low-latency game streaming.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://peazip.github.io) | `peazip` | <i>PeaZip is a free file archiver utility and extractor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/HACKERALERT/Picocrypt/) | `picocrypt` | <i>A very small, very simple, yet very secure encryption tool.</i> |
