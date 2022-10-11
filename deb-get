@@ -2643,6 +2643,27 @@ function deb_papirus-icon-theme() {
     SUMMARY="A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons."
 }
 
+function deb_filezilla-theme-papirus() {
+    PPA="ppa:papirus/papirus"
+    PRETTY_NAME="Firefox Papirus icon theme"
+    WEBSITE="https://github.com/PapirusDevelopmentTeam/firefox-papirus-icon-theme"
+    SUMMARY="Papirus icons for Firefox."
+}
+
+function deb_libreoffice-style-papirus() {
+    PPA="ppa:papirus/papirus"
+    PRETTY_NAME="LibreOffice Papirus icon theme"
+    WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-libreoffice-theme"
+    SUMMARY="Papirus theme for LibreOffice."
+}
+
+function deb_papirus-folders() {
+    PPA="ppa:papirus/papirus"
+    PRETTY_NAME="Papirus icon theme for folders"
+    WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-folders"
+    SUMMARY="Papirus theme for folders."
+}
+
 function deb_appimagelauncher() {
     OLD_PPA="ppa:appimagelauncher-team/stable"
     ARCHS_SUPPORTED="amd64 i386 armhf arm64"
