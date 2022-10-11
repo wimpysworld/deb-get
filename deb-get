@@ -2645,9 +2645,9 @@ function deb_papirus-icon-theme() {
 
 function deb_filezilla-theme-papirus() {
     PPA="ppa:papirus/papirus"
-    PRETTY_NAME="Firefox Papirus icon theme"
-    WEBSITE="https://github.com/PapirusDevelopmentTeam/firefox-papirus-icon-theme"
-    SUMMARY="Papirus icons for Firefox."
+    PRETTY_NAME="Filezilla Papirus icon theme"
+    WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-filezilla-themes"
+    SUMMARY="Papirus icons for filezilla."
 }
 
 function deb_libreoffice-style-papirus() {
