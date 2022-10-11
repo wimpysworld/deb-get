@@ -16,67 +16,47 @@ fi
 
 function usage() {
 cat <<HELP
-
 Usage
-
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
         | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
         | fix-installed [--old-apps] | help | version}
-
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
-
 update
     update is used to resynchronize the package index files from their sources.
-
 upgrade
     upgrade is used to install the newest versions of all packages currently installed on the system.
-
 install
     install is followed by one package desired for installation or upgrading.
-
 reinstall
     reinstall is followed by one package desired for reinstallation.
-
 remove
     remove is identical to install except that packages are removed instead of installed.
-
 purge
     purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
-
 clean
     clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
-
 search
     search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
-
 show
     show information about the given package including its install source and update mechanism.
-
 list
     list the packages available via deb-get.
-
 prettylist
     markdown formatted list the packages available via deb-get. Use this to update README.md
-
 csvlist
     csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
-
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
-
 fix-installed
     fix installed packages whose definitions were changed. When --old-apps is
     provided, transition packages to new format. This command is only intended
     for internal use.
-
 help
     show this help
-
 version
     show deb-get version
-
 HELP
 }
 
@@ -162,8 +142,8 @@ function fancy_message() {
       progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}";;
       recommend) echo -e "  [${MAGENTA}!${RESET}] ${MESSAGE}";;
       warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}";;
-      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}";;
-      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}"
+      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2;;
+      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2
              exit 1;;
       *) echo -e "  [?] UNKNOWN: ${MESSAGE}";;
     esac
@@ -303,7 +283,7 @@ function validate_deb() {
 
     if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
         fancy_message error "${APP} is not a supported application."
-        list_debs
+        list_debs >&2
         exit 1
     fi
 
@@ -331,36 +311,36 @@ function validate_deb() {
     deb_${APP} 2>/dev/null
     if [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
         fancy_message eror "Missing required information of package ${APP}:"
-        echo "PRETTY_NAME=${PRETTY_NAME}"
-        echo "SUMMARY=${SUMMARY}"
-        echo "WEBSITE=${WEBSITE}"
+        echo "PRETTY_NAME=${PRETTY_NAME}" >&2
+        echo "SUMMARY=${SUMMARY}" >&2
+        echo "WEBSITE=${WEBSITE}" >&2
         exit 1
     fi
     VERSION_INSTALLED=$(version_deb)
     if [ -n "${APT_REPO_URL}" ]; then
         METHOD="apt"
         if [ "${ACTION}" != "prettylist" ]; then
-            if [ -z "${APT_LIST_NAME}" ] || ([ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]); then
+            if [ -z "${APT_LIST_NAME}" ] || { [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ]; }; then
                 fancy_message error "Missing required information of apt package ${APP}:"
-                echo "APT_LIST_NAME=${APT_LIST_NAME}"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}"
-                echo "GPG_KEY_URL=${GPG_KEY_URL}"
+                echo "APT_LIST_NAME=${APT_LIST_NAME}" >&2
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
                 exit 1
             fi
             if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
                 fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}"
-                echo "GPG_KEY_URL=${GPG_KEY_URL}"
+                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
                 exit 1
             fi
         fi
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-         if (([ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]) || [ "${METHOD}" != github ]) && [ "${ACTION}" != "prettylist" ] && ([ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]); then
+        if { { [ "${METHOD}" = github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || [ "${METHOD}" != github ]; } && [ "${ACTION}" != "prettylist" ] && { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
-            echo "URL=${URL}"
-            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
+            echo "URL=${URL}" >&2
+            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
             exit 1
         fi
     fi
@@ -795,17 +775,6 @@ function deb_lsd() {
     SUMMARY="The next gen 'ls' command."
 }
 
-function deb_cider() {
-    get_github_releases "https://api.github.com/repos/ciderapp/cider-releases/releases/latest"
-    if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
-    fi
-    PRETTY_NAME="cider"
-    WEBSITE="https://github.com/ciderapp/Cider"
-    SUMMARY="A new cross-platform Apple Music experience."
-}
-
 function deb_wraith-master() {
     get_github_releases "https://api.github.com/repos/serebit/wraith-master/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -815,6 +784,17 @@ function deb_wraith-master() {
     PRETTY_NAME="wraith-master"
     WEBSITE="https://github.com/serebit/wraith-master"
     SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
+}
+
+function deb_cider() {
+    get_github_releases "https://api.github.com/repos/ciderapp/cider-releases/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|release-||')"
+    fi
+    PRETTY_NAME="cider"
+    WEBSITE="https://github.com/ciderapp/Cider"
+    SUMMARY="A new cross-platform Apple Music experience."
 }
 
 function deb_bat() {
@@ -929,23 +909,10 @@ function deb_rclone() {
 }
 
 function deb_hugo() {
-    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    ARCHS_SUPPORTED="amd64 arm64"
     get_github_releases "https://api.github.com/repos/gohugoio/hugo/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        case ${HOST_ARCH} in
-            amd64)
-                URL=$(grep "browser_download_url.*64bit\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4)
-                ;;
-            arm64)
-                URL=$(grep "browser_download_url.*ARM64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-            armhf)
-                URL=$(grep "browser_download_url.*ARM\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-            i386)
-                URL=$(grep "browser_download_url.*32bit\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-                ;;
-        esac
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v extended | head -n1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
     PRETTY_NAME="Hugo"
@@ -2740,6 +2707,18 @@ function deb_lens() {
     SUMMARY="The way the world runs Kubernetes."
 }
 
+function deb_quarto() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/quarto-dev/quarto-cli/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's/v//')"
+    fi
+    PRETTY_NAME="Quarto CLI"
+    WEBSITE="https://quarto.org/"
+    SUMMARY="Quarto - an open-source scientific and technical publishing system built on Pandoc"
+}
+
 function deb_weylus() {
     get_github_releases "https://api.github.com/repos/H-M-H/Weylus/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -2804,6 +2783,19 @@ function deb_vagrant() {
     PRETTY_NAME="Vagrant"
     WEBSITE="https://www.vagrantup.com/"
     SUMMARY="Building and maintaining virtual software development environments."
+}
+
+function deb_tabby-terminal() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/Eugeny/tabby/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*-linux-x64\.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 )"
+        VERSION_PUBLISHED=${VERSION_PUBLISHED/v}
+    fi
+    PRETTY_NAME="Tabby"
+    WEBSITE="https://tabby.sh/"
+    SUMMARY="A terminal for the modern age"
 }
 
 # Create an array to track those deb_ functions being loaded by this script
@@ -2921,7 +2913,7 @@ if [ -n "${1}" ]; then
     shift
 else
     fancy_message error "You must specify an action."
-    usage
+    usage >&2
     exit 1
 fi
 
@@ -2929,7 +2921,7 @@ case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
-            list_debs
+            list_debs >&2
             exit 1
         fi
         print_etc_overrides;;
@@ -3021,4 +3013,3 @@ esac
 if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
     exit 1
 fi
-
