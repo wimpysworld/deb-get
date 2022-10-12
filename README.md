@@ -166,6 +166,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://docs.microsoft.com/en-us/sql/azure-data-studio/) | `azuredatastudio` | <i>Data management tool for working with SQL Server, Azure SQL DB and SQL DW.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://www.balena.io/etcher/) | `balena-etcher-electron` | <i>Flash OS images to SD cards & USB drives, safely and easily.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/sharkdp/bat) | `bat` | <i>A 'cat' clone with wings.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/crow-translate/crow-translate) | `crow-translate` | <i>A simple and lightweight translator that allows you to translate and speak text using Google, Yandex Bing, LibreTranslate and Lingva.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/hsbasu/battery-monitor/) | `battery-monitor` | <i>An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://beersmith.com/) | `beersmith3` | <i>Home Brewing Software.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://bitwarden.com/) | `bitwarden` | <i>Open Source Password Manager.</i> |
@@ -180,6 +181,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://ibboard.co.uk/cawbird/) | `cawbird` | <i>Twitter client for the Linux desktop.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.influxdata.com/time-series-platform/chronograf/) | `chronograf` | <i>Open source monitoring and visualization UI for the TICK stack.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://code.visualstudio.com/) | `code` | <i>Code editing. Redefined.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://code.visualstudio.com/) | `code-insiders` | <i>Beta version - Code editing. Redefined.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://vscodium.com/) | `codium` | <i>Community-driven, freely-licensed binary distribution of Microsoft's Code editor.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://tkashkin.github.io/projects/gamehub) | `com.github.tkashkin.gamehub` | <i>Unified library for all your games.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://hluk.github.io/CopyQ/) | `copyq` | <i>An advanced clipboard manager with editing and scripting features.</i> |
@@ -202,6 +204,7 @@ cog.out(pretty_list)
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.enpass.io/) | `enpass` | <i>Remember one master password and let Enpass take care of the rest.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://exodus.com/) | `exodus` | <i>Bitcoin & Crypto Wallet.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.expressvpn.com/) | `expressvpn` | <i>Popular VPN software</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/szTheory/exifcleaner) | `exifcleaner` | <i>Cross-platform desktop GUI app to clean file metadata.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/sharkdp/fd) | `fd` | <i>A simple, fast and user-friendly alternative to 'find'.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Figma-Linux/figma-linux) | `figma-linux` | <i>Unofficial Electron-based Figma desktop app for Linux.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.mozilla.org/firefox/enterprise/) | `firefox-esr` | <i> Firefox Extended Support Release.</i> |
@@ -236,6 +239,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://www.jabref.org/) | `jabref` | <i>The efficient way to collect, organize & discover.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://jami.net/) | `jami` | <i>Share, freely and privately.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://jellyfin.org/) | `jellyfin` | <i>The Free Software Media System.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/hvdwolf/jExifToolGUI/) | `jexiftoolgui` | <i>jExifToolGUI is a multi-platform java, Swing graphical frontend for the excellent command-line ExifTool application by Phil Harvey.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://github.com/influxdata/kapacitor) | `kapacitor` | <i>Open source framework for processing, monitoring, and alerting on time series data.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/JonMagon/KDiskMark) | `kdiskmark` | <i>A simple open-source disk benchmark tool for Linux distros.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://keepassxc.org/) | `keepassxc` | <i>Cross-Platform Password Manager.</i> |
@@ -294,6 +298,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://proton.me/mail/bridge) | `protonmail-bridge` | <i>Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/popcorn-official/popcorn-desktop) | `popcorn-time` | <i>Popcorn Time is a multi-platform, free software BitTorrent client that includes an integrated media player ( Windows / Mac / Linux ) A Butter-Project Fork.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://www.qownnotes.org) | `qownnotes` | <i>Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://quarto.org/) | `quarto` | <i>Quarto - an open-source scientific and technical publishing system built on Pandoc</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
