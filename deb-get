@@ -716,6 +716,16 @@ function deb_code() {
     SUMMARY="Code editing. Redefined."
 }
 
+function deb_code-insiders() {
+    ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+    APT_LIST_NAME="vscode beta"
+    APT_REPO_URL="https://packages.microsoft.com/repos/vscode stable main"
+    APT_REPO_OPTIONS="arch=amd64"
+    PRETTY_NAME="Visual Studio Code beta"
+    WEBSITE="https://code.visualstudio.com/"
+    SUMMARY="Beta version - Code editing. Redefined."
+}
+
 function deb_nala() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
     GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
@@ -2817,6 +2827,65 @@ function deb_google-cloud-cli() {
     PRETTY_NAME="Google Cloud SDK"
     WEBSITE="https://cloud.google.com/sdk"
     SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."
+}
+
+function deb_exifcleaner() {
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/szTheory/exifcleaner/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="exifcleaner"
+    WEBSITE="https://github.com/szTheory/exifcleaner"
+    SUMMARY="Cross-platform desktop GUI app to clean file metadata"
+}
+
+function deb_jexiftoolgui() {
+    get_github_releases "https://api.github.com/repos/hvdwolf/jExifToolGUI/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="jExifToolGUI"
+    WEBSITE="https://github.com/hvdwolf/jExifToolGUI"
+    SUMMARY="jExifToolGUI is a multi-platform java, Swing graphical frontend for the excellent command-line ExifTool application by Phil Harvey"
+}
+
+function deb_crow-translate() {
+	ARCHS_SUPPORTED="amd64 arm64 armhf"
+	get_github_releases "https://api.github.com/repos/crow-translate/crow-translate/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+		URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="crow-translate"
+    WEBSITE="https://github.com/crow-translate/crow-translate"
+    SUMMARY="A simple and lightweight translator that allows you to translate and speak text using Google, Yandex Bing, LibreTranslate and Lingva."
+}
+
+function deb_powershell() {
+	ARCHS_SUPPORTED="amd64"
+	get_github_releases "https://api.github.com/repos/PowerShell/PowerShell/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+		URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | grep -v lts | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="PowerShell"
+    WEBSITE="https://github.com/PowerShell/PowerShell"
+    SUMMARY="PowerShell for every system!"
+}
+
+function deb_popcorn-time() {
+	ARCHS_SUPPORTED="amd64 i386"
+	get_github_releases "https://api.github.com/repos/popcorn-official/popcorn-desktop/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+		URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | grep -v lts | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
+    PRETTY_NAME="popcorn-time"
+    WEBSITE="https://github.com/popcorn-official/popcorn-desktop"
+    SUMMARY="Popcorn Time is a multi-platform, free software BitTorrent client that includes an integrated media player ( Windows / Mac / Linux ) A Butter-Project Fork"
 }
 
 function deb_cosign() {
