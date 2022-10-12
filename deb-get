@@ -613,15 +613,15 @@ function deb_quickemu() {
     SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."
 }
 
-function deb_virtualbox-6.1() {
+function deb_virtualbox-7.0() {
     ARCHS_SUPPORTED="amd64"
     ASC_KEY_URL="https://www.virtualbox.org/download/oracle_vbox_2016.asc"
-    APT_LIST_NAME="virtualbox-6.1"
+    APT_LIST_NAME="virtualbox-7.0"
     APT_REPO_URL="https://download.virtualbox.org/virtualbox/debian ${UPSTREAM_CODENAME} contrib"
     APT_REPO_OPTIONS="arch=amd64"
-    PRETTY_NAME="VirtualBox 6.1"
+    PRETTY_NAME="VirtualBox 7.0"
     WEBSITE="https://www.virtualbox.org/"
-    SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
+    SUMMARY="VirtualBox 7.0 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
 
 function deb_firefox-esr() {
