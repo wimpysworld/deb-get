@@ -696,7 +696,7 @@ function deb_atom() {
     SUMMARY="A hackable text editor for the 21st Century."
 }
 
-function deb_atom_beta() {
+function deb_atom-beta() {
     ASC_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
     APT_LIST_NAME="atom-beta"
     APT_REPO_URL="https://packagecloud.io/AtomEditor/atom/any/ any main"
