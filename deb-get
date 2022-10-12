@@ -285,7 +285,7 @@ function remove_deb() {
             REMOVE="purge"
         fi
         ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
-        remove_installed
+        remove_installed "${APP}"
     else
         fancy_message info "${APP} is not installed."
     fi
@@ -886,7 +886,7 @@ function fix_installed() {
     local OLD_DEFVER="$(echo ${line} | cut -d " " -f 2)"
     local OLD_METHOD="$(echo ${line} | cut -d " " -f 3)"
     if [ "${DEFVER}" != "${OLD_DEFVER}" ]; then
-        remove_installed
+        remove_installed "${APP}"
         if [[ " apt ppa " =~ " ${OLD_METHOD} " ]]; then
             remove_repo
         fi
@@ -961,16 +961,11 @@ function ppa_to_apt() {
 
 function add_installed() {
     local line="${APP} ${DEFVER} ${METHOD}"
-    if [ ! -e "${ETC_DIR}/installed" ]; then
-        echo "deb-get 1 github" | ${ELEVATE} tee "${ETC_DIR}/installed" > /dev/null
-    fi
     cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
 }
 
 function remove_installed() {
-    if [ -e "${ETC_DIR}/installed" ]; then
-        ${ELEVATE} sed -i "/^${APP} /d" "${ETC_DIR}/installed"
-    fi
+    ${ELEVATE} sed -i "/^${1} /d" "${ETC_DIR}/installed"
 }
 
 function deb_deb-get() {
@@ -1093,9 +1088,9 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     APPS="$(echo "$APPS" | sort -t / -k 2 -u)"
     readonly LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
     if [ -e "${ETC_DIR}/installed" ]; then
-        readonly INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
+        INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
     else
-        readonly INSTALLED_APPS=(deb-get)
+        INSTALLED_APPS=()
     fi
     APPS=($APPS)
     ;;
@@ -1222,10 +1217,22 @@ case "${ACTION}" in
         init_repos
         update_repos
         if [ "${1}" != --repos-only ]; then
+            APPS="$(list_local_apps)"
+            APPS="$APPS
+$(list_repo_apps)"
+            APPS="$APPS
+$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
+            APPS=($(echo "$APPS" | sort -t / -k 2 -u))
             for APP in "${INSTALLED_APPS[@]}"; do
-                validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                fix_installed
+                FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+                if [ -n "$FULL_APP" ]; then
+                    validate_deb "${FULL_APP}"
+                    fix_installed
+                else
+                    remove_installed "${APP}"
+                fi
             done
+            INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
             update_debs
         fi;;
     upgrade)
@@ -1244,8 +1251,13 @@ case "${ACTION}" in
             done
         else
             for APP in "${INSTALLED_APPS[@]}"; do
-                validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                fix_installed
+                FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+                if [ -n "$FULL_APP" ]; then
+                    validate_deb "${FULL_APP}"
+                    fix_installed
+                else
+                    remove_installed "${APP}"
+                fi
             done
         fi;;
     version) echo "${VERSION}";;
