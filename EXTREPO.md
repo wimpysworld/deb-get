@@ -27,11 +27,11 @@ Create a package definition file named `<the-package-name>` in the `packages` pa
 
 The variables defined in the package definition file are the following:
 
+* `DEFVER`: An integer greater than or equal to `1` that represents the version of the package definition. It must be incremented every time `ASC_KEY_URL`, `GPG_KEY_URL`, `APT_REPO_URL`, `APT_REPO_OPTIONS` or `PPA` are added, changed or removed, or the package installation method changes.
 * `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`.
 * `CODENAMES_SUPPORTED`: A space-separated list of supported upstream codenames, supporting the values from `UPSTREAM_CODENAME`.
 * `ASC_KEY_URL`: A URL to the ASCII-armored keyring file.
 * `GPG_KEY_URL`: A URL to the binary keyring file.
-* `APT_LIST_NAME`: The name of the `*.list` file, without the extension.
 * `APT_REPO_URL`: The repository URL, the distribution codename and any following components for the line that will be printed to the `*.list` file.
 * `APT_REPO_OPTIONS`: The space-separated extra options, such as `arch=` or `by-hash=` for the line that will be printed to the `*.list` file.
 * `PPA`: The PPA address, following the format used by `apt-add-repository`, including the `ppa:` prefix.
@@ -45,7 +45,7 @@ The variables defined in the package definition file are the following:
 `ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_REPO_OPTIONS` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 
 ```bash
-if [ "${ACTION}" != "prettylist" ]; then
+if [ "${ACTION}" != prettylist ]; then
     # Code goes here
 fi
 ```
@@ -61,9 +61,9 @@ The environment variables available to the package definition file are the follo
 * `OS_ID_PRETTY`: The brand name of the OS.
 * `OS_CODENAME`: The codename of the OS, as output by `lsb_release --codename --short`.
 * `UPSTREAM_ID`: The id of the upstream distribution. Supported values are `ubuntu` and `debian`.
-* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster`, `bullseye`, `bookworm`, `sid`, `focal`, `impish`, `jammy` and `kinetic`.
+* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster`, `bullseye`, `bookworm`, `sid`, `focal`, `jammy` and `kinetic`.
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
-* `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge` and `prettylist`. `ACTION` for `csvlist` is `prettylist`.
+* `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
 
 The helper functions available to the package definition file are the following:
@@ -78,12 +78,12 @@ Use the following package definition templates as reference for adding a new pac
 If the keyring file is in the ASCII-armored format (extension `*.asc`), use this template:
 
 ```bash
-ARCHS_SUPPORTED=""
-CODENAMES_SUPPORTED=""
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
 ASC_KEY_URL=""
-APT_LIST_NAME=""
 APT_REPO_URL=""
-APT_REPO_OPTIONS=""
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
 EULA=""
 PRETTY_NAME=""
 WEBSITE=""
@@ -93,12 +93,12 @@ SUMMARY=""
 If the keyring file is in the binary format instead (extension `*.gpg`), use this template:
 
 ```bash
-ARCHS_SUPPORTED=""
-CODENAMES_SUPPORTED=""
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
 GPG_KEY_URL=""
-APT_LIST_NAME=""
 APT_REPO_URL=""
-APT_REPO_OPTIONS=""
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
 EULA=""
 PRETTY_NAME=""
 WEBSITE=""
@@ -108,7 +108,8 @@ SUMMARY=""
 ## Launchpad PPA
 
 ```bash
-PPA=""
+DEFVER=1
+PPA="ppa:<person>/<archive>"
 EULA=""
 PRETTY_NAME=""
 WEBSITE=""
@@ -120,11 +121,14 @@ SUMMARY=""
 Replace `<user-organization>` and `<repository>` with the correct values:
 
 ```bash
-ARCHS_SUPPORTED=""
-CODENAMES_SUPPORTED=""
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
 get_github_releases "https://api.github.com/repos/<user-organization>/<repository>/releases/latest"
-URL=""
-VERSION_PUBLISHED=""
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+fi
 EULA=""
 PRETTY_NAME=""
 WEBSITE=""
@@ -134,10 +138,13 @@ SUMMARY=""
 ## Website/Direct download
 
 ```bash
-ARCHS_SUPPORTED=""
-CODENAMES_SUPPORTED=""
-URL=""
-VERSION_PUBLISHED=""
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(curl -s "<website>" | grep "<pattern>" | head -n1 | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+fi
 EULA=""
 PRETTY_NAME=""
 WEBSITE=""

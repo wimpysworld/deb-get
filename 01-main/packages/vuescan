@@ -1,11 +1,10 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 arm64 i386"
+ARCHS_SUPPORTED="amd64 arm64"
 if [ "${ACTION}" != "prettylist" ]; then
     local ARCH_VER
     case ${HOST_ARCH} in
         amd64)   ARCH_VER=x64;;
-        aarch64) ARCH_VER=a64;;
-        i386)    ARCH_VER=x32;;
+        arm64) ARCH_VER=a64;;
     esac
     VERSION_PUBLISHED="$(curl -s https://www.hamrick.com/alternate-versions.html | grep '<a href="files/vue'${ARCH_VER}'.*\.deb">.*</a>' | head -n 1 | cut -d'>' -f2 | cut -d'<' -f1).0-0"
     local MAJOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f1)"

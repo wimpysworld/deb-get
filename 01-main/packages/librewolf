@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bullseye focal impish jammy"
+CODENAMES_SUPPORTED="bullseye focal jammy"
 GPG_KEY_URL="https://deb.librewolf.net/keyring.gpg"
 APT_REPO_URL="https://deb.librewolf.net ${UPSTREAM_CODENAME} main"
 APT_REPO_OPTIONS="arch=amd64"

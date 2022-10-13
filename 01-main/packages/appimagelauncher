@@ -1,6 +1,5 @@
 DEFVER=2
-OLD_PPA="ppa:appimagelauncher-team/stable"
-ARCHS_SUPPORTED="amd64 i386 armhf arm64"
+ARCHS_SUPPORTED="amd64 armhf arm64"
 get_github_releases "https://api.github.com/repos/TheAssassin/AppImageLauncher/releases"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v xenial | head -n1 | cut -d '"' -f4)"

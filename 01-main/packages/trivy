@@ -1,5 +1,5 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "https://api.github.com/repos/aquasecurity/trivy/releases"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${HOST_ARCH} in
@@ -11,9 +11,6 @@ if [ "${ACTION}" != "prettylist" ]; then
             ;;
         armhf)
             URL="$(grep "browser_download_url.*ARM\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
-            ;;
-        i386)
-            URL="$(grep "browser_download_url.*32bit\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
             ;;
     esac
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"

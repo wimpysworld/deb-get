@@ -1,7 +1,7 @@
 DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
-        bionic | focal)
+        focal)
             URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep -e "bionic/.*amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
             ;;
         *)

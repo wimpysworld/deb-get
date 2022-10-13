@@ -1,8 +1,15 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 arm64 armv7l"
+ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "https://api.github.com/repos/minbrowser/min/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*min.*-${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    case ${HOST_ARCH} in
+        armhf)
+            URL=$(grep "browser_download_url.*min.*-${HOST_CPU}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        ;;
+        *)
+            URL=$(grep "browser_download_url.*min.*-${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        ;;
+    esac
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
 fi
 PRETTY_NAME="Min"

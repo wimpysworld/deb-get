@@ -1,5 +1,5 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 i386 armhf"
+ARCHS_SUPPORTED="amd64 armhf"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         focal)

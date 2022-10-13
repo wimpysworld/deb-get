@@ -1,8 +1,7 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 i386"
 get_github_releases "https://api.github.com/repos/bootandy/dust/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*amd64\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v musl | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
 fi
 PRETTY_NAME="du-dust"

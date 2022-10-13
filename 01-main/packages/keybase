@@ -1,5 +1,4 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 i386"
 ASC_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
 APT_REPO_URL="https://prerelease.keybase.io/deb stable main"
 PRETTY_NAME="Keybase"

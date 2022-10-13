@@ -1,7 +1,6 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 i386"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "${HOST_ARCH}\.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
+    URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "amd64\.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
 fi
 PRETTY_NAME="Dropbox"
