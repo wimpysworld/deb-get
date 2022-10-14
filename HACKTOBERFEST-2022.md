@@ -23,6 +23,10 @@ appreciated and acknowledged by this mini-event.
 
 ### Template documentation change
 
+Here's a template for the documentation change to submit to your chosen
+project(s), make sure you change `<project>` and `<packagename>` accordingly in
+your pull requests.
+
 ```markdown
 ## Debian and Ubuntu based distros
 
@@ -38,11 +42,10 @@ Then install <project> using the following command in terminal:
 
     deb-get install <package-name>
 
-Once <packagename> is installed it can be kept upto date using:
+Once <package-name> is installed it can be kept upto date using:
 
     deb-get update
     deb-get upgrade
-
 ```
 
 ### Applicable Projects
