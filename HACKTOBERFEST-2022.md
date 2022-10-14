@@ -69,7 +69,6 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
   - https://vscodium.com/
   - https://tkashkin.github.io/projects/gamehub
   - https://github.com/sigstore/cosign
-  - https://github.com/wimpysworld/deb-get
   - https://github.com/ymauray/deborah/
   - https://www.diagrams.net
   - https://github.com/bootandy/dust
