@@ -42,7 +42,7 @@ jobs:
           APPS="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||")"
           for APP in ${APPS}; do
             if grep -q -m 1 "^${APP}$" ./01-main/manifest; then
-              ./deb-get install "${APP}" > /dev/null
+              ./deb-get install "${APP}"
               if ./deb-get show "${APP}" | grep -q "Installed:	No"; then
                 echo "Failed to detect ${APP} as installed" >&2
                 exit 1
