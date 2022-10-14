@@ -31,7 +31,6 @@ repositories or via direct download.
 
 # COMMANDS
 
-
 **update**
 :    update is used to resynchronize the package index files from their sources. When --repos-only is provided, only initialize and update deb-get's external repositories, without updating apt or looking for updates of installed packages.
 
@@ -80,8 +79,6 @@ repositories or via direct download.
 **version**
 :    show deb-get version.
 
-
-
 # EXAMPLES
 
 ## Introduction
@@ -119,8 +116,6 @@ can search the available applications with `deb-get search <app>`.
 
 You can upgrade packages installed using `deb-get` by running
 `deb-get upgrade`.
-
-
 
 ### Why?
 
@@ -173,8 +168,6 @@ export DEBGET_TOKEN=<my-secret-token>
 deb-get update
 deb-get upgrade
 ```
-
-
 
 ## Adding Software
 
@@ -238,7 +231,6 @@ We really hope that you will enjoy the convenience and flexibility of the user o
   * [Easily Get 3rd-Party Software on Ubuntu With Deb-Get](https://fosspost.org/deb-get-install-3rd-party-software-ubuntu/) - **FOSS Post**
   * [deb-get, an "apt-get" to install third-party software on Ubuntu](https://ubunlog.com/en/deb-get-un-apt-get-para-instalar-software-de-terceros-en-ubuntu/) - **ubunlog**
   * [deb-get, a utility for installing third-party software](https://www.linuxadictos.com/en/deb-get-una-utilidad-para-instalar-software-de-terceros.html) - **Linux Addicted**
-
 
 # BUGS
 
