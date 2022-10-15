@@ -1995,7 +1995,12 @@ function deb_anydesk() {
 }
 
 function deb_lutris() {
-    PPA="ppa:lutris-team/lutris"
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/lutris/lutris/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Lutris"
     WEBSITE="https://lutris.net/"
     SUMMARY="Open Gaming Platform."
