@@ -197,6 +197,7 @@ function download_deb() {
     if ! ${ELEVATE} wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+        return 1
     fi
 }
 
@@ -206,8 +207,8 @@ function eula() {
         echo -e "\nDo you agree to the ${APP} EULA?"
         select yn in "Yes" "No"; do
             case $yn in
-                Yes) break;;
-                No) exit;;
+                Yes) return 0;;
+                No) return 1;;
             esac
         done
     fi
@@ -224,10 +225,16 @@ function upgrade_apt() {
 function install_apt() {
     let "PACKAGE_INSTALLATION_TRIES+=1"
     add_apt_repo
-    update_apt
+    if ! update_apt; then
+        remove_repo
+        return
+    fi
 
     if ! package_is_installed "${APP}"; then
-        eula
+        if ! eula; then
+            remove_repo
+            return
+        fi
         if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"; then
             remove_repo
             return
@@ -257,20 +264,28 @@ function install_deb() {
     let "PACKAGE_INSTALLATION_TRIES+=1"
 
     if ! package_is_installed "${APP}"; then
-        eula
-        download_deb "${URL}"
+        if ! eula; then
+            return
+        fi
+        if ! download_deb "${URL}"; then
+            return
+        fi
         if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
             return
         fi
         add_installed
     else
         if [ "${ACTION}" == "reinstall" ]; then
-            download_deb "${URL}"
+            if ! download_deb "${URL}"; then
+                return
+            fi
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"; then
                 return
             fi
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
-            download_deb "${URL}"
+            if ! download_deb "${URL}"; then
+                return
+            fi
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
                 return
             fi
