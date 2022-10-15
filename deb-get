@@ -2807,6 +2807,13 @@ function deb_tabby-terminal() {
     SUMMARY="A terminal for the modern age"
 }
 
+function deb_songrec() {
+    PPA="ppa:marin-m/songrec"
+    PRETTY_NAME="SongRec"
+    WEBSITE="https://github.com/marin-m/SongRec"
+    SUMMARY="This app is used to recognise songs and audios around us."
+}
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
