@@ -32,6 +32,7 @@ The variables defined in the package definition file are the following:
 * `CODENAMES_SUPPORTED`: A space-separated list of supported upstream codenames, supporting the values from `UPSTREAM_CODENAME`.
 * `ASC_KEY_URL`: A URL to the ASCII-armored keyring file.
 * `GPG_KEY_URL`: A URL to the binary keyring file.
+* `APT_LIST_NAME`: The name of the `*.list` file, without the extension. It should only be used when not doing so would cause problems.
 * `APT_REPO_URL`: The repository URL, the distribution codename and any following components for the line that will be printed to the `*.list` file.
 * `APT_REPO_OPTIONS`: The space-separated extra options, such as `arch=` or `by-hash=` for the line that will be printed to the `*.list` file.
 * `PPA`: The PPA address, following the format used by `apt-add-repository`, including the `ppa:` prefix.
@@ -42,7 +43,7 @@ The variables defined in the package definition file are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_REPO_OPTIONS` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
+`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_LIST_NAME`, `APT_REPO_OPTIONS` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`, and `APT_LIST_NAME` defaults to `deb-get-${APP}`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 
 ```bash
 if [ "${ACTION}" != prettylist ]; then
@@ -82,6 +83,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
 ASC_KEY_URL=""
+APT_LIST_NAME=""
 APT_REPO_URL=""
 APT_REPO_OPTIONS="arch=${HOST_ARCH}"
 EULA=""
@@ -97,6 +99,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
 GPG_KEY_URL=""
+APT_LIST_NAME=""
 APT_REPO_URL=""
 APT_REPO_OPTIONS="arch=${HOST_ARCH}"
 EULA=""

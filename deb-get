@@ -228,11 +228,16 @@ function install_apt() {
 
     if ! package_is_installed "${APP}"; then
         eula
-        ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"
+        if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"; then
+            remove_repo
+            return
+        fi
         add_installed
     else
         if [ "${ACTION}" == "reinstall" ]; then
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"
+            if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"; then
+                return
+            fi
         else
             fancy_message info "${APP} is up to date."
         fi
@@ -254,15 +259,21 @@ function install_deb() {
     if ! package_is_installed "${APP}"; then
         eula
         download_deb "${URL}"
-        ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
+        if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
+            return
+        fi
         add_installed
     else
         if [ "${ACTION}" == "reinstall" ]; then
             download_deb "${URL}"
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"
+            if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"; then
+                return
+            fi
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
             download_deb "${URL}"
-            ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"
+            if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
+                return
+            fi
         else
             fancy_message info "${FILE} is up to date."
         fi
@@ -327,6 +338,7 @@ function validate_deb() {
     export DEFVER=""
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
+    export APT_LIST_NAME="deb-get-${APP}"
     export APT_REPO_URL=""
     export APT_REPO_OPTIONS=""
     export PPA=""
@@ -347,8 +359,9 @@ function validate_deb() {
     else
         . "${ETC_DIR}/${APP_SRC}.d/$APP" 2>/dev/null
     fi
-    if [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
+    if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
         fancy_message error "Missing required information of package ${APP}:"
+        echo "DEFVER=${DEFVER}" >&2
         echo "PRETTY_NAME=${PRETTY_NAME}" >&2
         echo "SUMMARY=${SUMMARY}" >&2
         echo "WEBSITE=${WEBSITE}" >&2
@@ -921,10 +934,10 @@ function remove_old_ppa_repo() {
 }
 
 function remove_repo() {
-    fancy_message info "Removing /usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
-    ${ELEVATE} rm -f "/usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
-    fancy_message info "Removing /etc/apt/sources.list.d/deb-get-${APP}.list"
-    ${ELEVATE} rm -f "/etc/apt/sources.list.d/deb-get-${APP}.list"
+    fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
 }
 
 function add_apt_repo() {
@@ -932,23 +945,23 @@ function add_apt_repo() {
         ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
     fi
     if [ -n "${ASC_KEY_URL}" ]; then
-        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/deb-get-${APP}-archive-keyring"
-        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/deb-get-${APP}-archive-keyring"
-        ${ELEVATE} rm "/usr/share/keyrings/deb-get-${APP}-archive-keyring"
+        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
     else #GPG_KEY_URL
-        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
+        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
     fi
 
     #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
 
-    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/deb-get-${APP}-archive-keyring.gpg"
+    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
 
     if [ -n "${APT_REPO_OPTIONS}" ]; then
         APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
     fi
 
     APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/deb-get-${APP}.list" > /dev/null
+    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
 }
 
 function ppa_to_apt() {
