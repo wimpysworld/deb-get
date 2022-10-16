@@ -54,9 +54,7 @@ These projects are hosted on GitHub and are already supported by `deb-get`.
 They're good candidates for this mini-event, but do check the projects pull
 requests and our [mini-event activity tracker](https://github.com/wimpysworld/deb-get/issues/579) to make sure someone else hasn't already beaten you to it 😄
 
----
   - [X] <--  these already have PRs awaiting approval
----
 
 - [ ]  https://github.com/OrangeDrangon/android-messages-desktop/
 - [ ]   https://antimicrox.github.io/
@@ -149,7 +147,6 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]   https://th-ch.github.io/youtube-music/
 - [X]   https://github.com/bvaisvil/zenith
 - [X]   https://www.zettlr.com/
-
 
 ## Merged pull requests
 
