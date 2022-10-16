@@ -2807,6 +2807,46 @@ function deb_tabby-terminal() {
     SUMMARY="A terminal for the modern age"
 }
 
+#  sudo dpkg --add-architecture i386  # required of user
+#  Only ONE of these, but again - user issue
+
+function deb_winehq-stable() {
+    ARCHS_SUPPORTED="amd64 i386"
+    CODENAMES_SUPPORTED="buster bullseye bookworm bionic focal jammy"
+    ASC_KEY_URL="https://dl.winehq.org/wine-builds/winehq.key"
+    APT_LIST_NAME="winehq"
+    APT_REPO_URL="https://dl.winehq.org/wine-builds/${UPSTREAM_ID} ${UPSTREAM_CODENAME}  main"
+    PRETTY_NAME="Wine-HQ Stable"
+    WEBSITE="https://winehq.org/"
+    SUMMARY="the windows compatibility layer"
+    }
+
+function deb_winehq-devel() {
+    ARCHS_SUPPORTED="amd64 i386"
+    CODENAMES_SUPPORTED="buster bullseye bookworm bionic focal jammy"
+    ASC_KEY_URL="https://dl.winehq.org/wine-builds/winehq.key"
+    APT_LIST_NAME="winehq"
+    APT_REPO_URL="https://dl.winehq.org/wine-builds/${UPSTREAM_ID} ${UPSTREAM_CODENAME}  main"
+    PRETTY_NAME="Wine-HQ Devel"
+    WEBSITE="https://winehq.org/"
+    SUMMARY="the windows compatibility layer"
+    }
+
+function deb_winehq-staging() {
+    ARCHS_SUPPORTED="amd64 i386"
+    CODENAMES_SUPPORTED="buster bullseye bookworm bionic focal jammy"
+    ASC_KEY_URL="https://dl.winehq.org/wine-builds/winehq.key"
+    APT_LIST_NAME="winehq"
+    APT_REPO_URL="https://dl.winehq.org/wine-builds/${UPSTREAM_ID} ${UPSTREAM_CODENAME}  main"
+    PRETTY_NAME="Wine-HQ Staging"
+    WEBSITE="https://winehq.org/"
+    SUMMARY="the windows compatibility layer"
+    }
+
+#
+
+
+
 # Create an array to track those deb_ functions being loaded by this script
 readonly DEB_GET_APPS=($(declare -F | grep deb_ | sed 's|declare -f deb_||g' | sort))
 
