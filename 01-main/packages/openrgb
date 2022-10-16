@@ -1,15 +1,16 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 armhf"
+CODENAMES_SUPPORTED="buster bullseye focal"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
-        focal)
-            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*buster_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
+        buster|focal)
+            URL="https://openrgb.org$(curl -s https://openrgb.org/releases.html | grep -o "\"/up_/up_/static/releases/release_[^\"]*${HOST_ARCH}[^\"]*buster[^\"]*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
         ;;
         *)
-            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html | grep -o "\"releases/.*/openrgb_.*_${HOST_ARCH}.*bullseye_.*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
+            URL="https://openrgb.org$(curl -s https://openrgb.org/releases.html | grep -o "\"/up_/up_/static/releases/release_[^\"]*${HOST_ARCH}[^\"]*bullseye[^\"]*\.deb\"" | sort --version-sort | tail -n1 | cut -d "\"" -f 2)"
         ;;
     esac
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 3)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 5)"
 fi
 PRETTY_NAME="OpenRGB"
 WEBSITE="https://openrgb.org/"
