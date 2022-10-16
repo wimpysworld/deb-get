@@ -1699,7 +1699,7 @@ function deb_vivaldi-stable() {
 
 function deb_gitkraken() {
     if [ "${ACTION}" != "prettylist" ]; then
-        VERSION_PUBLISHED="$(curl -s "https://help.gitkraken.com/gitkraken-client/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+        VERSION_PUBLISHED="$(curl -s "https://help.gitkraken.com/gitkraken-client/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2|sed 's/8.10.0/8.9.1/')"
     fi
     URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
     PRETTY_NAME="GitKraken"
