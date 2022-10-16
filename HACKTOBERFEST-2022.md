@@ -98,6 +98,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]   https://github.com/GEROGIANNIS/Limoji
 - [ ]   https://github.com/Peltoche/lsd
 - [ ]   https://ludo.libretro.com/
+- [X]   https://github.com/lutris/website
 - [ ]   https://getmailspring.com/
 - [ ]   https://mattermost.com/
 - [ ]   https://github.com/trapexit/mergerfs
