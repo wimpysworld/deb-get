@@ -202,7 +202,7 @@ function download_deb() {
 }
 
 function eula() {
-    if [ -n "${EULA}" ]; then
+    if [ -n "${EULA}" ] && [ "${DEBIAN_FRONTEND}" != noninteractive ]; then
         echo -e "${EULA}"
         echo -e "\nDo you agree to the ${APP} EULA?"
         select yn in "Yes" "No"; do
