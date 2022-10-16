@@ -303,7 +303,6 @@ function validate_deb() {
 
     if [[ ! " ${APPS[*]} " =~ " ${APP} " ]]; then
         fancy_message error "${APP} is not a supported application."
-        list_debs >&2
         exit 1
     fi
 
