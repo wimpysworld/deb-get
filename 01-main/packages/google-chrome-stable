@@ -6,3 +6,8 @@ EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome
 PRETTY_NAME="Google Chrome"
 WEBSITE="https://www.google.com/chrome/"
 SUMMARY="Fast, Secure Browser from Google."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/sources.list.d/google-chrome.list
+    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/google-chrome.gpg
+}
