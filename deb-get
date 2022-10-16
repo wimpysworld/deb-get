@@ -240,10 +240,16 @@ function install_apt() {
             return
         fi
         add_installed
+        if [ "$(type -t postinst)" = function ]; then
+            postinst
+        fi
     else
         if [ "${ACTION}" == "reinstall" ]; then
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"; then
                 return
+            fi
+            if [ "$(type -t postinst)" = function ]; then
+                postinst
             fi
         else
             fancy_message info "${APP} is up to date."
@@ -274,6 +280,9 @@ function install_deb() {
             return
         fi
         add_installed
+        if [ "$(type -t postinst)" = function ]; then
+            postinst
+        fi
     else
         if [ "${ACTION}" == "reinstall" ]; then
             if ! download_deb "${URL}"; then
@@ -282,12 +291,18 @@ function install_deb() {
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"; then
                 return
             fi
+            if [ "$(type -t postinst)" = function ]; then
+                postinst
+            fi
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
             if ! download_deb "${URL}"; then
                 return
             fi
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
                 return
+            fi
+            if [ "$(type -t postinst)" = function ]; then
+                postinst
             fi
         else
             fancy_message info "${FILE} is up to date."
@@ -367,6 +382,7 @@ function validate_deb() {
     export PRETTY_NAME=""
     export SUMMARY=""
     export WEBSITE=""
+    unset -f postinst
 
     # Source the variables
     if [ "$APP_SRC" = "00-builtin" ]; then
@@ -499,6 +515,8 @@ function upgrade_debs() {
             if [ "${STATUS}" == "install ok installed" ]; then
                 install_deb "${URL}"
             fi
+        elif [ "$(type -t postinst)" = function ]; then
+            postinst
         fi
     done
 }
