@@ -5,3 +5,8 @@ APT_REPO_OPTIONS="arch=amd64"
 PRETTY_NAME="Wavebox"
 WEBSITE="https://wavebox.io/"
 SUMMARY="Rethink the Web. Productivity Browser."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/sources.list.d/wavebox-stable.list
+    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/wavebox.gpg
+}
