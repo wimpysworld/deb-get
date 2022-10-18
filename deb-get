@@ -16,47 +16,67 @@ fi
 
 function usage() {
 cat <<HELP
+
 Usage
+
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
         | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
         | fix-installed [--old-apps] | help | version}
+
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
+
 update
     update is used to resynchronize the package index files from their sources.
+
 upgrade
     upgrade is used to install the newest versions of all packages currently installed on the system.
+
 install
     install is followed by one package desired for installation or upgrading.
+
 reinstall
     reinstall is followed by one package desired for reinstallation.
+
 remove
     remove is identical to install except that packages are removed instead of installed.
+
 purge
     purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+
 clean
     clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+
 search
     search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+
 show
     show information about the given package including its install source and update mechanism.
+
 list
     list the packages available via deb-get.
+
 prettylist
     markdown formatted list the packages available via deb-get. Use this to update README.md
+
 csvlist
     csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
+
 fix-installed
     fix installed packages whose definitions were changed. When --old-apps is
     provided, transition packages to new format. This command is only intended
     for internal use.
+
 help
     show this help
+
 version
     show deb-get version
+
 HELP
 }
 
@@ -753,6 +773,17 @@ function deb_ocenaudio() {
     SUMMARY="Easy, fast and powerful audio editor."
 }
 
+function deb_cider() {
+    get_github_releases "https://api.github.com/repos/ciderapp/cider-releases/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|^v||')"
+    fi
+    PRETTY_NAME="cider"
+    WEBSITE="https://github.com/ciderapp/Cider"
+    SUMMARY="A new cross-platform Apple Music experience."
+}
+
 function deb_github-desktop() {
     get_github_releases "https://api.github.com/repos/shiftkey/desktop/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
@@ -795,17 +826,6 @@ function deb_wraith-master() {
     PRETTY_NAME="wraith-master"
     WEBSITE="https://github.com/serebit/wraith-master"
     SUMMARY="An application for controlling the RGB LEDs on AMD's Wraith stock coolers"
-}
-
-function deb_cider() {
-    get_github_releases "https://api.github.com/repos/ciderapp/cider-releases/releases/latest"
-    if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|^v||')"
-    fi
-    PRETTY_NAME="cider"
-    WEBSITE="https://github.com/ciderapp/Cider"
-    SUMMARY="A new cross-platform Apple Music experience."
 }
 
 function deb_bat() {

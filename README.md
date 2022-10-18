@@ -66,45 +66,62 @@ help = result.replace("Usage\n\n", "").rstrip()
 cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
-Usage
+
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
         | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
         | fix-installed [--old-apps] | help | version}
+
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
 repositories or via direct download.
+
 update
     update is used to resynchronize the package index files from their sources.
+
 upgrade
     upgrade is used to install the newest versions of all packages currently installed on the system.
+
 install
     install is followed by one package desired for installation or upgrading.
+
 reinstall
     reinstall is followed by one package desired for reinstallation.
+
 remove
     remove is identical to install except that packages are removed instead of installed.
+
 purge
     purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+
 clean
     clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
+
 search
     search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+
 show
     show information about the given package including its install source and update mechanism.
+
 list
     list the packages available via deb-get.
+
 prettylist
     markdown formatted list the packages available via deb-get. Use this to update README.md
+
 csvlist
     csv formatted list the packages available via deb-get. Use this with 3rd party wrappers.
+
 cache
     list the contents of the deb-get cache (/var/cache/deb-get)
+
 fix-installed
     fix installed packages whose definitions were changed. When --old-apps is
     provided, transition packages to new format. This command is only intended
     for internal use.
+
 help
     show this help
+
 version
     show deb-get version
 ```
@@ -238,7 +255,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/GEROGIANNIS/Limoji) | `limoji` | <i>Turning your favorite emojis into the world of ASCII.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://ludo.libretro.com/) | `ludo` | <i>A minimalist frontend for emulators.</i> |
-| [<img src=".github/launchpad.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://getmailspring.com/) | `mailspring` | <i>Boost your productivity and send better email with the best mail client.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://mattermost.com/) | `mattermost-desktop` | <i>Open Source platform for developer collaboration.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://github.com/trapexit/mergerfs) | `mergerfs` | <i>A featureful union filesystem.</i> |
@@ -286,6 +303,7 @@ cog.out(pretty_list)
 | [<img src=".github/github.png" align="top" width="20" />](https://quarto.org/) | `quarto` | <i>Quarto - an open-source scientific and technical publishing system built on Pandoc</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
+| [<img src=".github/github.png" align="top" width="20" />](https://github.com/ymauray/quickobs/) | `quickobs` | <i>A tool to quickly download and run Martin Wimpress' OBS Studio Portable.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
 | [<img src=".github/github.png" align="top" width="20" />](https://rclone.org/) | `rclone` | <i>Syncs your files to cloud storage.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.resilio.com/) | `resilio-sync` | <i>Fast, reliable, and simple file sync and share solution, powered by P2P technology</i> |
@@ -331,6 +349,7 @@ cog.out(pretty_list)
 | [<img src=".github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.vagrantup.com/) | `vagrant` | <i>Building and maintaining virtual software development environments.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
+| [<img src=".github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-7.0` | <i>VirtualBox 7.0 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src=".github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
 | [<img src=".github/debian.png" align="top" width="20" />](https://wavebox.io/) | `wavebox` | <i>Rethink the Web. Productivity Browser.</i> |
