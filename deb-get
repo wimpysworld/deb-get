@@ -624,6 +624,17 @@ function deb_virtualbox-6.1() {
     SUMMARY="VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
 }
 
+function deb_virtualbox-7.0() {
+    ARCHS_SUPPORTED="amd64"
+    ASC_KEY_URL="https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+    APT_LIST_NAME="virtualbox"
+    APT_REPO_URL="https://download.virtualbox.org/virtualbox/debian ${UPSTREAM_CODENAME} contrib"
+    APT_REPO_OPTIONS="arch=amd64"
+    PRETTY_NAME="VirtualBox 7.0"
+    WEBSITE="https://www.virtualbox.org/"
+    SUMMARY="VirtualBox 7.0 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use."
+}
+
 function deb_firefox-esr() {
     PPA="ppa:mozillateam/ppa"
     PRETTY_NAME="Firefox ESR"
@@ -1285,6 +1296,19 @@ function deb_deborah() {
     PRETTY_NAME="Deborah"
     WEBSITE="https://github.com/ymauray/deborah/"
     SUMMARY="A Flutter front-end for deb-get."
+}
+
+function deb_quickobs() {
+    CODENAMES_SUPPORTED="focal jammy kinetic"
+    ARCHS_SUPPORTED="amd64"
+    get_github_releases "https://api.github.com/repos/ymauray/quickobs/releases"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*${UPSTREAM_CODENAME}.*_${HOST_ARCH}.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    fi
+    PRETTY_NAME="quickobs"
+    WEBSITE="https://github.com/ymauray/quickobs/"
+    SUMMARY="A tool to quickly download and run Martin Wimpress' OBS Studio Portable."
 }
 
 function deb_skypeforlinux() {
@@ -1986,7 +2010,12 @@ function deb_anydesk() {
 }
 
 function deb_lutris() {
-    PPA="ppa:lutris-team/lutris"
+    ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+    get_github_releases "https://api.github.com/repos/lutris/lutris/releases/latest"
+    if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+        VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    fi
     PRETTY_NAME="Lutris"
     WEBSITE="https://lutris.net/"
     SUMMARY="Open Gaming Platform."
@@ -2623,7 +2652,7 @@ function deb_appimagelauncher() {
 function deb_mullvad-vpn() {
     get_github_releases "https://api.github.com/repos/mullvad/mullvadvpn-app/releases/latest"
     if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -1 | cut -d'"' -f4)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
     fi
     PRETTY_NAME="Mullvad VPN Client"
