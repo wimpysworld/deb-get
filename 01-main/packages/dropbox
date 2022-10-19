@@ -1,8 +1,28 @@
 DEFVER=1
-if [ "${ACTION}" != "prettylist" ]; then
-    URL="https://linux.dropbox.com/packages/ubuntu/$(curl -s "https://linux.dropbox.com/packages/ubuntu/" | grep "amd64\.deb" | sed -e 's/<[^>]*>//g' | grep -v nautilus | cut -d' ' -f1 | tail -n1)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
-fi
+ASC_KEY_URL="https://linux.dropbox.com/fedora/rpm-public-key.asc"
+case "${UPSTREAM_ID}" in
+    debian)
+        case "${UPSTREAM_CODENAME}" in
+            buster)
+                APT_REPO_URL="http://linux.dropbox.com/debian buster main"
+            ;;
+            *)
+                APT_REPO_URL="http://linux.dropbox.com/debian sid main"
+            ;;
+        esac
+    ;;
+    ubuntu)
+        APT_REPO_URL="http://linux.dropbox.com/ubuntu disco main"
+    ;;
+esac
+APT_REPO_OPTIONS="arch=amd64"
 PRETTY_NAME="Dropbox"
 WEBSITE="https://www.dropbox.com/"
 SUMMARY="Securely share, store and do more with your content."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/sources.list.d/dropbox.list
+    if which apt-key > /dev/null; then
+        ${ELEVATE} apt-key del "1C61 A265 6FB5 7B7E 4DE0  F4C1 FC91 8B33 5044 912E" >& /dev/null
+    fi
+}
