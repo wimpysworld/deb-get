@@ -1,10 +1,10 @@
 DEFVER=1
-if [ "${ACTION}" != "prettylist" ]; then
-    # NOTE: Using direct as the latest spotify-client .deb is not in the archive Packages index.
-    local VERSION_UPSTREAM="$(curl -s http://repository.spotify.com/pool/non-free/s/spotify-client/ | sed -e 's/<[^>]*>//g' | sed '/^[[:space:]]*$/d' | grep -v Index | cut -d'_' -f2 | sort -uVr | head -n1)"
-    VERSION_PUBLISHED="1:${VERSION_UPSTREAM}"
-    URL="http://repository.spotify.com/pool/non-free/s/spotify-client/spotify-client_${VERSION_UPSTREAM}_amd64.deb"
-fi
+ASC_KEY_URL="https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg"
+APT_REPO_URL="http://repository.spotify.com stable non-free"
 PRETTY_NAME="Spotify"
 WEBSITE="https://www.spotify.com/"
 SUMMARY="Millions of songs and podcasts."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/spotify-2021-10-27-5E3C45D7B312C643.gpg
+}
