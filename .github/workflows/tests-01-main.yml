@@ -46,6 +46,8 @@ jobs:
               if ./deb-get show "${APP}" | grep -q "Installed:	No"; then
                 echo "Failed to detect ${APP} as installed" >&2
                 exit 1
+              else
+                ./deb-get purge "${APP}"
               fi
             fi
           done
