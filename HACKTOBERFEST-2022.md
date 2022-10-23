@@ -74,7 +74,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]   https://github.com/wimpysworld/deb-get
 - [ ]   https://github.com/ymauray/deborah/
 - [ ]   https://www.diagrams.net
-- [ ]   https://github.com/bootandy/dust
+- [X]   https://github.com/bootandy/dust
 - [ ]   https://github.com/muesli/duf
 - [ ]   https://juzzlin.github.io/DustRacing2D/index.html
 - [ ]   https://github.com/sharkdp/fd
