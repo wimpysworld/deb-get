@@ -1138,7 +1138,7 @@ function deb_system-monitoring-center() {
     get_github_releases "https://api.github.com/repos/hakandundar34coding/system-monitoring-center/releases"
     if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep "browser_download_url.*all\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
-        VERSION_PUBLISHED="$(echo "${URL}" | grep -o -E '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' )"
+        VERSION_PUBLISHED="$(echo "${URL}" | grep -o -E '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |sort -u)"
     fi
     PRETTY_NAME="System Monitoring Center"
     WEBSITE="https://github.com/hakandundar34coding/system-monitoring-center"
