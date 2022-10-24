@@ -2409,7 +2409,7 @@ function disabled_deb_openrgb() {
     # due to uninstallable dependencies
     ARCHS_SUPPORTED="amd64 i386 armhf"
     if [ "${ACTION}" != "prettylist" ]; then
-            case "${UPSTREAM_CODENAME}" in
+        case "${UPSTREAM_CODENAME}" in
             focal)
                 URL="https://openrgb.org/up_/up_/static/$(curl -s https://openrgb.org/releases.html | grep -o -e "/releases/release_.\../openrgb_.*_${HOST_ARCH}_.*buster_.*\.deb\""|cut -d"\"" -f 1)"
             ;;
@@ -2417,7 +2417,7 @@ function disabled_deb_openrgb() {
                 URL="https://openrgb.org/up_/up_/static/$(curl -s https://openrgb.org/releases.html | grep -o -e "/releases/release_.\../openrgb_.*_${HOST_ARCH}_.*bullseye_.*\.deb\""|cut -d"\"" -f 5 | cut -d "/" -f 5-)"
             ;;
         esac
-        VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 3)"
+        VERSION_PUBLISHED="$(echo "${URL}" | grep -o -E '[[:digit:]]+\.[[:digit:]]+'|sort -u)"
     fi
     PRETTY_NAME="OpenRGB"
     WEBSITE="https://openrgb.org/"
