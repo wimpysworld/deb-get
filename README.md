@@ -55,18 +55,7 @@ can search the available applications with `deb-get search <app>`.
 
 You can upgrade packages installed using `deb-get` by running
 `deb-get upgrade`.
-
-<!-- [[[cog
-import subprocess
-
-import cog
-result = subprocess.check_output(["./deb-get", "help"], encoding="utf-8")
-# strip the "Usage" header
-help = result.replace("Usage\n\n", "").rstrip()
-cog.out(f"```\n{help}\n```")
-]]] -->
 ```
-
 deb-get {update | upgrade | show pkg | install pkg | reinstall pkg | remove pkg
         | purge pkg | search pkg | cache | clean | list | prettylist | csvlist
         | fix-installed [--old-apps] | help | version}
