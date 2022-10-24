@@ -2740,7 +2740,7 @@ function deb_texworks() {
 function deb_lens() {
     ARCHS_SUPPORTED="amd64"
     if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(curl -s https://docs.k8slens.dev/main/getting-started/install-lens/ | grep amd64.deb | cut -d'"' -f2)
+        URL=$(curl -s https://docs.k8slens.dev/getting-started/install-lens/ | grep amd64.deb | cut -d'"' -f2)
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'"' -f2 | cut -d"-" -f2)"
     fi
     PRETTY_NAME="Lens"
