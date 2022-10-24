@@ -1806,15 +1806,6 @@ function deb_shutter-encoder() {
     SUMMARY="Professional video, audio and image coversion and encoding tool."
 }
 
-# No version information available
-#disable to pass testing
-function disabled_deb_parsec() {
-    URL="https://builds.parsecgaming.com/package/parsec-linux.deb"
-    VERSION_PUBLISHED=""
-    PRETTY_NAME="Parsec"
-    WEBSITE="https://parsec.app/"
-    SUMMARY="Simple, low-latency game streaming."
-}
 
 function deb_nordvpn() {
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
