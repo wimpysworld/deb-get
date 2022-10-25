@@ -153,3 +153,5 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 As your pull requests get merged in the upstream projects, add a link to the
 pull request below so we can track the changes in our Hacktoberfest mini-event
 and awards your magic Internet points 🪄 to Hacktoberfest 🎃
+
+* [du-dust](https://github.com/bootandy/dust/pull/271)
