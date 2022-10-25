@@ -59,7 +59,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]  https://github.com/OrangeDrangon/android-messages-desktop/
 - [ ]   https://antimicrox.github.io/
 - [ ]   https://github.com/TheAssassin/AppImageLauncher
-- [ ]   https://docs.microsoft.com/en-us/sql/azure-data-studio/
+- [X]   https://docs.microsoft.com/en-us/sql/azure-data-studio/
 - [ ]   https://www.balena.io/etcher/
 - [ ]   https://github.com/sharkdp/bat
 - [ ]   https://github.com/hsbasu/battery-monitor/
