@@ -1744,7 +1744,7 @@ function deb_sejda-desktop() {
 function deb_webex() {
     if [ "${ACTION}" != "prettylist" ]; then
         # Note: get version number from Release Notes
-        VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" |grep -o -E '[[:digit:]]{2,}\.[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'|sort -u --version-sort |tail -1 )"
+        VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" | grep -o -E 'Linux—[[:digit:]]{2,}\.[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' | sort -u --version-sort | sed 's/Linux—//'| tail -1 )"
     fi
     URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
     PRETTY_NAME="Webex"
