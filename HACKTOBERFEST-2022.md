@@ -82,7 +82,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]   https://flameshot.org/
 - [ ]   https://meetfranz.com/
 - [ ]   https://github.com/hmlendea/gfn-electron
-- [ ]   https://cli.github.com/
+- [X]   https://cli.github.com/
 - [ ]   https://github.com/dandavison/delta
 - [ ]   https://desktop.github.com/
 - [ ]   https://github.com/ankurk91/google-chat-electron
