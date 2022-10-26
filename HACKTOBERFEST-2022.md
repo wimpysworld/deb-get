@@ -59,7 +59,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]  https://github.com/OrangeDrangon/android-messages-desktop/
 - [ ]   https://antimicrox.github.io/
 - [ ]   https://github.com/TheAssassin/AppImageLauncher
-- [ ]   https://docs.microsoft.com/en-us/sql/azure-data-studio/
+- [X]   https://docs.microsoft.com/en-us/sql/azure-data-studio/
 - [ ]   https://www.balena.io/etcher/
 - [ ]   https://github.com/sharkdp/bat
 - [ ]   https://github.com/hsbasu/battery-monitor/
@@ -74,7 +74,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]   https://github.com/wimpysworld/deb-get
 - [ ]   https://github.com/ymauray/deborah/
 - [ ]   https://www.diagrams.net
-- [ ]   https://github.com/bootandy/dust
+- [X]   https://github.com/bootandy/dust
 - [ ]   https://github.com/muesli/duf
 - [ ]   https://juzzlin.github.io/DustRacing2D/index.html
 - [ ]   https://github.com/sharkdp/fd
@@ -153,3 +153,5 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 As your pull requests get merged in the upstream projects, add a link to the
 pull request below so we can track the changes in our Hacktoberfest mini-event
 and awards your magic Internet points 🪄 to Hacktoberfest 🎃
+
+* [du-dust](https://github.com/bootandy/dust/pull/271)
