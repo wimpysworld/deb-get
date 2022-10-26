@@ -14,7 +14,7 @@ If you found a package that fits the criteria above, have checked that it does n
 ## Creating the package definition file
 **Before [opening a pull request](../../../pulls) to add a new package, make sure an [issue is already open](../../../issues) for it**. **This helps keep things organized**.
 
-**Before submitting a PR, do not forget to [update README.md](#updating-readmemd)**.
+**When submitting a PR, do not manually update README.md**. **It will be updated by the maintainers**.
 
 For information on how to create a package definition file, head to [EXTREPO](../EXTREPO.md#the-package-definition-files).
 
