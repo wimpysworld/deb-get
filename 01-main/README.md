@@ -43,7 +43,7 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.codeweavers.com/crossover) | `crossover` | <i>Run your Windows apps on Linux! CrossOver is a Microsoft Windows compatibility layer based on Wine.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://cryptomator.org/) | `cryptomator` | <i>Multi-platform transparent client-side encryption of your files in the cloud.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://dbeaver.io/) | `dbeaver-ce` | <i>Database GUI Client</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://deadbeef.sourceforge.io/) | `deadbeef` | <i>The ultimate music player</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://deadbeef.sourceforge.io/) | `deadbeef-static` | <i>The ultimate music player</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/wimpysworld/deb-get) | `deb-get` | <i>'apt-get' functionality for .debs published in 3rd party repositories or via direct download package.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ymauray/deborah/) | `deborah` | <i>A Flutter front-end for deb-get.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://delta.chat/) | `deltachat-desktop` | <i>Email-based instant messaging for Desktop.</i> |
@@ -51,7 +51,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.docker.com/) | `docker-ce` | <i>Open source containerization technology for building and containerizing your applications.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.docker.com/products/docker-desktop/) | `docker-desktop` | <i>The fastest way to containerize applications.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.diagrams.net) | `draw.io` | <i>Diagramming and whiteboarding app that wraps the core draw.io editor.</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://www.dropbox.com/) | `dropbox` | <i>Securely share, store and do more with your content.</i> |
+| [<img src="../.github/debian.png" align="top" width="20" />](https://www.dropbox.com/) | `dropbox` | <i>Securely share, store and do more with your content.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/bootandy/dust) | `du-dust` | <i>du + rust = dust. Like du but more intuitive.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/muesli/duf) | `duf` | <i>Disk Usage/Free Utility - a better 'df' alternative.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://juzzlin.github.io/DustRacing2D/index.html) | `dustracing2d` | <i>Dust Racing 2D is a traditional top-down car racing game including a level editor.</i> |
@@ -102,7 +102,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/GEROGIANNIS/Limoji) | `limoji` | <i>Turning your favorite emojis into the world of ASCII.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://ludo.libretro.com/) | `ludo` | <i>A minimalist frontend for emulators.</i> |
-| [<img src="../.github/launchpad.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://getmailspring.com/) | `mailspring` | <i>Boost your productivity and send better email with the best mail client.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://mattermost.com/) | `mattermost-desktop` | <i>Open Source platform for developer collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/trapexit/mergerfs) | `mergerfs` | <i>A featureful union filesystem.</i> |
@@ -135,9 +135,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.corifeus.com/onenote) | `p3x-onenote` | <i>A Linux compatible version of OneNote.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://pandoc.org/) | `pandoc` | <i>A universal document converter.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) | `papirus-icon-theme` | <i>A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons.</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://parsec.app/) | `parsec` | <i>Simple, low-latency game streaming.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://peazip.github.io) | `peazip` | <i>PeaZip is a free file archiver utility and extractor.</i> |
-| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/HACKERALERT/Picocrypt/) | `picocrypt` | <i>A very small, very simple, yet very secure encryption tool.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.plex.tv/) | `plexmediaserver` | <i>Stream Movies and TV Shows.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/six-ddc/plow) | `plow` | <i>A high-performance HTTP benchmarking tool with real-time web UI and terminal displaying</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://polychromatic.app/) | `polychromatic` | <i>Frontend for OpenRazer that enables Razer devices to control lighting effects and more.</i> |
@@ -150,6 +148,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://quarto.org/) | `quarto` | <i>Quarto - an open-source scientific and technical publishing system built on Pandoc</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickemu) | `quickemu` | <i>Quickly create and run optimised Windows, macOS and Linux desktop virtual machines.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/quickemu-project/quickgui) | `quickgui` | <i>A Flutter frontend for Quickemu.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ymauray/quickobs/) | `quickobs` | <i>A tool to quickly download and run Martin Wimpress' OBS Studio Portable.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://rambox.app/) | `rambox` | <i>Workspace simplifier.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://rclone.org/) | `rclone` | <i>Syncs your files to cloud storage.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.resilio.com/) | `resilio-sync` | <i>Fast, reliable, and simple file sync and share solution, powered by P2P technology</i> |
@@ -168,7 +167,7 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.syntevo.com/) | `smartgit` | <i>A graphical Git client with support for pull requests for GitHub and Bitbucket.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://soundux.rocks) | `soundux` | <i>Soundux is a cross-platform soundboard compatible with both Pulseaudio and Pipewire. It has a universal architecture and works with a variety of applications such as Discord, Steam, and more.</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
+| [<img src="../.github/debian.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://standardnotes.com) | `standard-notes` | <i>Standard Notes is an end-to-end encrypted note-taking app for digitalists and professionals. Capture your notes, files, and life’s work all in one secure place.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://www.strawberrymusicplayer.org/) | `strawberry` | <i>Music player and music collection organizer aimed at music collectors and audiophiles.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.stremio.com/) | `stremio` | <i>Watch videos, movies, TV series and TV channels instantly.</i> |
@@ -182,7 +181,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://tailscale.com/) | `tailscale` | <i>Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.microsoft.com/microsoft-teams/group-chat-software) | `teams` | <i>Team chat and collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/IsmaelMartinez/teams-for-linux) | `teams-for-linux` | <i>unofficial Microsoft Teams for LInux</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://www.teamviewer.com/) | `teamviewer` | <i>The Remote Desktop Software.</i> |
+| [<img src="../.github/debian.png" align="top" width="20" />](https://www.teamviewer.com/) | `teamviewer` | <i>The Remote Desktop Software.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/influxdata/telegraf) | `telegraf` | <i>The plugin-driven server agent for collecting & reporting metrics.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.terraform.io/) | `terraform` | <i>Automate Infrastructure on Any Cloud.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://tug.org/texworks/) | `texworks` | <i>Lowering the entry barrier to the TeX world.</i> |
@@ -195,6 +194,7 @@ cog.out(pretty_list)
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://ulauncher.io/) | `ulauncher` | <i>Application launcher for Linux.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.vagrantup.com/) | `vagrant` | <i>Building and maintaining virtual software development environments.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-6.1` | <i>VirtualBox 6.1 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
+| [<img src="../.github/debian.png" align="top" width="20" />](https://www.virtualbox.org/) | `virtualbox-7.0` | <i>VirtualBox 7.0 is a general-purpose full virtualizer for x86 hardware, targeted at server, desktop and embedded use.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://vivaldi.com/) | `vivaldi-stable` | <i>The most feature-packaged, customisable browser.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.hamrick.com/) | `vuescan` | <i>Scanner Software that supports over 6500 scanners.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://wavebox.io/) | `wavebox` | <i>Rethink the Web. Productivity Browser.</i> |
