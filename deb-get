@@ -686,6 +686,10 @@ function fix_old_apps() {
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="docker"
         ;;
+        element-desktop)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="element-io"
+        ;;
         enpass)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="enpass"
@@ -705,6 +709,10 @@ function fix_old_apps() {
         google-chrome-stable)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="google-chrome"
+        ;;
+        google-cloud-cli)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="google-cloud-cli"
         ;;
         google-earth-pro-stable)
             OLD_METHOD="apt"
@@ -730,6 +738,10 @@ function fix_old_apps() {
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="insync"
         ;;
+        jami)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="jami"
+        ;;
         jellyfin)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="jellyfin"
@@ -753,6 +765,10 @@ function fix_old_apps() {
         kopia-ui)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="kopia"
+        ;;
+        librewolf)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="librewolf"
         ;;
         lutris)
             OLD_METHOD="ppa"
@@ -824,7 +840,7 @@ function fix_old_apps() {
         ;;
         signal-desktop)
             OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="signal-xenial"
+            OLD_APT_LIST_NAME="signal-xenial.list"
         ;;
         skypeforlinux)
             OLD_METHOD="apt"
@@ -853,6 +869,10 @@ function fix_old_apps() {
         syncthing)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="syncthing"
+        ;;
+        tailscale)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="tailscale"
         ;;
         teams)
             OLD_METHOD="apt"
@@ -894,6 +914,14 @@ function fix_old_apps() {
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="wavebox-stable"
         ;;
+        waydroid)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="waydroid"
+        ;;
+        weechat)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="weechat"
+        ;;
         wire-desktop)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="wire-desktop"
@@ -905,6 +933,10 @@ function fix_old_apps() {
         yq)
             OLD_METHOD="ppa"
             OLD_PPA="ppa:rmescandon/yq"
+        ;;
+        zotero)
+            OLD_METHOD="apt"
+            OLD_APT_LIST_NAME="zotero"
         ;;
     esac
     if [ -n "${OLD_METHOD}" ]; then

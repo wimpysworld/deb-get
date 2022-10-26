@@ -1,3 +1,11 @@
+# Hacktoberfest 2022 mini-event
+
+**We want you!** 💪
+
+> We're running a Hacktoberfest 🎃 mini-event. The idea is simple. Land documentation 📝 in projects that `deb-get` already supports that explain how users of Debian and Ubuntu based distros can install and update the packages published by those projects.
+
+  - [**Hacktoberfest 2022 mini-event participation guide**](https://github.com/wimpysworld/deb-get/blob/main/HACKTOBERFEST-2022.md)
+
 <h1 align="center">
   <img src=".github/deb-get-logo.png" alt="deb-get">
   <br />

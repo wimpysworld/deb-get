@@ -1,4 +1,4 @@
-DEFVER=1
+DEFVER=2
 ASC_KEY_URL="https://linux.dropbox.com/fedora/rpm-public-key.asc"
 case "${UPSTREAM_ID}" in
     debian)

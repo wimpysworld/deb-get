@@ -1,4 +1,4 @@
-DEFVER=1
+DEFVER=2
 GPG_KEY_URL="https://weechat.org/dev/info/debian_repository_signing_key/"
 APT_REPO_URL="https://weechat.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
 APT_REPO_OPTIONS="arch=amd64"
