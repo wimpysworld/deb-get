@@ -1,9 +1,10 @@
-DEFVER=1
+DEFVER=3
+CODENAMES_SUPPORTED="buster bullseye focal jammy kinetic"
 get_github_releases "https://api.github.com/repos/flameshot-org/flameshot/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    URL="$(grep  -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE:0:2}\.[[:digit:]]+\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | tail -n1 | cut -d'"' -f4)"
     local VERSION_TMP="${URL##*/flameshot-}"
-    VERSION_PUBLISHED="${VERSION_TMP%%[-.]ubuntu*}"
+    VERSION_PUBLISHED="${VERSION_TMP%%[-.]${UPSTREAM_ID}*}"
 fi
 PRETTY_NAME="Flameshot"
 WEBSITE="https://flameshot.org/"
