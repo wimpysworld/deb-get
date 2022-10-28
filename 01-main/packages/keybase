@@ -1,0 +1,13 @@
+DEFVER=1
+ASC_KEY_URL="https://keybase.io/docs/server_security/code_signing_key.asc"
+APT_REPO_URL="https://prerelease.keybase.io/deb stable main"
+PRETTY_NAME="Keybase"
+WEBSITE="https://keybase.io/"
+SUMMARY="End-to-end encryption for things that matter. Secure messaging and file-sharing."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/sources.list.d/keybase.list
+    if which apt-key > /dev/null; then
+        ${ELEVATE} apt-key del "222B 85B0 F90B E2D2 4CFE  B93F 4748 4E50 656D 16C7" >& /dev/null
+    fi
+}

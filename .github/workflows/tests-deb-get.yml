@@ -1,8 +1,10 @@
-name: Tests
+name: deb-get Tests
 
 on:
   pull_request:
     types: [opened, closed, synchronize]
+    paths:
+      - "deb-get"
   workflow_dispatch:
 
 jobs:
@@ -20,15 +22,20 @@ jobs:
           # sudo apt-get install build-essential devscripts debhelper -y
 
           # Dependencies for deb-get itself
-          sudo apt-get install apt apt-transport-https bash coreutils curl dpkg grep libc-bin lsb-release sed software-properties-common sudo wget -y
+          sudo apt-get install apt apt-transport-https bash coreutils curl dpkg gpg grep libc-bin lsb-release sed software-properties-common sudo wget -y
 
+      - name: Initialize /etc/deb-get
+        run: |
+          sudo mkdir /etc/deb-get
+          echo "deb-get 1 github" | sudo tee /etc/deb-get/installed > /dev/null
+          sudo cp ./01-main/manifest /etc/deb-get/01-main.repo
+          sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
 
       # All these commands should return a 0 status
       - name: Test zero status
         run: |
           chmod a+x ./deb-get
-          ./deb-get update >/dev/null
-          ./deb-get list >/dev/null
+          ./deb-get list --raw >/dev/null
           ./deb-get prettylist >/dev/null
           ./deb-get csvlist >/dev/null
           ./deb-get show deb-get >/dev/null
@@ -37,22 +44,10 @@ jobs:
           ./deb-get version >/dev/null
           ./deb-get clean >/dev/null
 
+      # update is skipped for now, as it depends on the 01-main subfolder being present
       # upgrade is skipped because of full system upgrade and otherwise testing package installs
       # covers most of that. Seperate job/workflow for occassional upgrade validation
       # say when tagging for release might be good.
-
-      # Install a couple of packages to see if they still install
-      - name: Test package installations
-        run: |
-          export DEBIAN_FRONTEND=noninteractive
-          set -x
-          ./deb-get install firefox-esr >/dev/null
-          ./deb-get install 1password >/dev/null
-          ./deb-get install bitwarden >/dev/null
-          ./deb-get install obs-studio >/dev/null
-          ./deb-get install neovim >/dev/null
-          ./deb-get install google-cloud-cli >/dev/null
-
 
       # All these commands should return a non 0 status
       - name: Test non zero status

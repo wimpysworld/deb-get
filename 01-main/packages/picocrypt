@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "https://api.github.com/repos/HACKERALERT/Picocrypt/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+fi
+PRETTY_NAME="Picocrypt"
+WEBSITE="https://github.com/HACKERALERT/Picocrypt/"
+SUMMARY="A very small, very simple, yet very secure encryption tool."

@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:libretro/stable"
+PRETTY_NAME="Retro Arch"
+WEBSITE="https://www.retroarch.com/"
+SUMMARY="RetroArch is a frontend for emulators, game engines and media players."

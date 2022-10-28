@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="buster bullseye focal jammy"
+get_github_releases "https://api.github.com/repos/trapexit/mergerfs/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep "${UPSTREAM_CODENAME}_${HOST_ARCH}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d _ -f2 | sed -E "s/([0-9])\\.([a-z])/\1~\2/")"
+fi
+PRETTY_NAME="mergerfs"
+WEBSITE="https://github.com/trapexit/mergerfs"
+SUMMARY="A featureful union filesystem."

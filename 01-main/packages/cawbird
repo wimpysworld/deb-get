@@ -1,0 +1,12 @@
+DEFVER=1
+# Captialise first character of UPSTREAM_ID and prefeix with 'x' for Ubuntu
+local OBS_UPSTREAM_ID="${UPSTREAM_ID^}"
+if [ "${OBS_UPSTREAM_ID}" == "Ubuntu" ]; then
+    OBS_UPSTREAM_ID="x${OBS_UPSTREAM_ID}"
+fi
+
+ASC_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/Release.key"
+APT_REPO_URL="https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/ /"
+PRETTY_NAME="Cawbird"
+WEBSITE="https://ibboard.co.uk/cawbird/"
+SUMMARY="Twitter client for the Linux desktop."

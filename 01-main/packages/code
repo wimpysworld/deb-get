@@ -1,0 +1,8 @@
+DEFVER=1
+ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+APT_LIST_NAME="vscode"
+APT_REPO_URL="https://packages.microsoft.com/repos/vscode stable main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Visual Studio Code"
+WEBSITE="https://code.visualstudio.com/"
+SUMMARY="Code editing. Redefined."

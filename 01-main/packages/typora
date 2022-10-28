@@ -1,0 +1,6 @@
+DEFVER=1
+ASC_KEY_URL="https://typora.io/linux/public-key.asc"
+APT_REPO_URL="https://typora.io/linux ./"
+PRETTY_NAME="Typora"
+WEBSITE="https://typora.io/"
+SUMMARY="A minimal Markdown editor and reader."

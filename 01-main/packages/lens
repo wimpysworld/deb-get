@@ -1,0 +1,8 @@
+DEFVER=1
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(unroll_url https://api.k8slens.dev/binaries/latest.amd64.deb)
+    VERSION_PUBLISHED="$(echo "${URL}"| cut -d"-" -f2)"
+fi
+PRETTY_NAME="Lens"
+WEBSITE="https://k8slens.dev/"
+SUMMARY="The way the world runs Kubernetes."

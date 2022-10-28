@@ -1,0 +1,15 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 armhf"
+get_github_releases "https://api.github.com/repos/rustdesk/rustdesk/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${HOST_ARCH}" in
+        amd64) URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -Ev "$(echo ${ARCHS_SUPPORTED} | tr " " "|")" | head -n1 | cut -d'"' -f4)"
+        ;;
+        *) URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        ;;
+    esac
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+fi
+PRETTY_NAME="RustDesk"
+WEBSITE="https://rustdesk.com/"
+SUMMARY="Open source virtual / remote desktop infrastructure for everyone!"

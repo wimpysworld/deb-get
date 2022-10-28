@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:flexiondotorg/quickemu"
+PRETTY_NAME="Quickemu"
+WEBSITE="https://github.com/quickemu-project/quickemu"
+SUMMARY="Quickly create and run optimised Windows, macOS and Linux desktop virtual machines."

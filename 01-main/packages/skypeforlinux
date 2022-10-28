@@ -1,0 +1,14 @@
+DEFVER=1
+ASC_KEY_URL="https://repo.skype.com/data/SKYPE-GPG-KEY"
+APT_REPO_URL="https://repo.skype.com/deb stable main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Skype"
+WEBSITE="https://www.skype.com/"
+SUMMARY="Stay connected with free video calls worldwide."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/sources.list.d/skype-stable.list
+    if which apt-key > /dev/null; then
+        ${ELEVATE} apt-key del "D404 0146 BE39 7250 9FD5  7FC7 1F30 45A5 DF75 87C3" >& /dev/null
+    fi
+}

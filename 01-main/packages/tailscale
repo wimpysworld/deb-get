@@ -1,0 +1,7 @@
+DEFVER=1
+# TODO: Test with Debian
+GPG_KEY_URL="https://pkgs.tailscale.com/stable/${UPSTREAM_ID}/${UPSTREAM_CODENAME}.noarmor.gpg"
+APT_REPO_URL="https://pkgs.tailscale.com/stable/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+PRETTY_NAME="Tailscale"
+WEBSITE="https://tailscale.com/"
+SUMMARY="Zero config VPN. Works on any device, manages firewall rules for you, and works from anywhere."

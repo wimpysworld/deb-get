@@ -1,0 +1,7 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ASC_KEY_URL="https://repos.influxdata.com/influxdb.key"
+APT_REPO_URL="https://repos.influxdata.com/debian stable main"
+PRETTY_NAME="InfluxDB2"
+WEBSITE="https://www.influxdata.com/products/influxdb-overview/"
+SUMMARY="Scalable datastore for metrics, events, and real-time analytics."

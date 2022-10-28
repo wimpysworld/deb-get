@@ -1,0 +1,6 @@
+DEFVER=1
+GPG_KEY_URL="https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+APT_REPO_URL="https://packages.cloud.google.com/apt cloud-sdk main"
+PRETTY_NAME="Google Cloud SDK"
+WEBSITE="https://cloud.google.com/sdk"
+SUMMARY="The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation."

@@ -1,0 +1,6 @@
+DEFVER=1
+ASC_KEY_URL="https://debian.neo4j.com/neotechnology.gpg.key"
+APT_REPO_URL="https://debian.neo4j.com stable latest"
+PRETTY_NAME="Neo4j"
+WEBSITE="https://neo4j.com/"
+SUMMARY="The Graph Data Platform for Today's Intelligent Applications."

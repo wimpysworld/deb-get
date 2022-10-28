@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:arunsivaraman/gpuviewer"
+PRETTY_NAME="GPU-Viewer"
+WEBSITE="https://github.com/arunsivaramanneo/GPU-Viewer"
+SUMMARY="A front-end to glxinfo, vulkaninfo, clinfo and es2_info."

@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "https://api.github.com/repos/Tribler/tribler/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*_all\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="Tribler"
+WEBSITE="https://www.tribler.org/"
+SUMMARY="An encrypted torrent client."

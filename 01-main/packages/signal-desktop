@@ -1,0 +1,7 @@
+DEFVER=1
+ASC_KEY_URL="https://updates.signal.org/desktop/apt/keys.asc"
+APT_REPO_URL="https://updates.signal.org/desktop/apt xenial main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Signal"
+WEBSITE="https://signal.org/"
+SUMMARY="Private Messenger."

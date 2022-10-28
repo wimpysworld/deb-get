@@ -1,0 +1,6 @@
+DEFVER=1
+URL="https://builds.parsecgaming.com/package/parsec-linux.deb"
+VERSION_PUBLISHED=""
+PRETTY_NAME="Parsec"
+WEBSITE="https://parsec.app/"
+SUMMARY="Simple, low-latency game streaming."

@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:jonmagon/kdiskmark"
+PRETTY_NAME="KDiskMark"
+WEBSITE="https://github.com/JonMagon/KDiskMark"
+SUMMARY="A simple open-source disk benchmark tool for Linux distros."

@@ -1,0 +1,6 @@
+DEFVER=1
+ASC_KEY_URL="https://syncthing.net/release-key.txt"
+APT_REPO_URL="https://apt.syncthing.net/ syncthing release"
+PRETTY_NAME="Syncthing"
+WEBSITE="https://syncthing.net/"
+SUMMARY="Continuous file synchronization program."

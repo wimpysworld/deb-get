@@ -1,0 +1,7 @@
+DEFVER=1
+ASC_KEY_URL="https://packagecloud.io/AtomEditor/atom/gpgkey"
+APT_REPO_URL="https://packagecloud.io/AtomEditor/atom/any/ any main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Atom"
+WEBSITE="https://atom.io/"
+SUMMARY="A hackable text editor for the 21st Century."

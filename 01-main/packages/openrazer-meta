@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:openrazer/stable"
+PRETTY_NAME="OpenRazer"
+WEBSITE="https://openrazer.github.io/"
+SUMMARY="Open source driver and user-space daemon that allows you to manage Razer peripherals."
