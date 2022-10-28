@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "https://api.github.com/repos/frostwire/frostwire/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*amd64\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3)"
+fi
+PRETTY_NAME="FrostWire"
+WEBSITE="https://www.frostwire.com/"
+SUMMARY="An easy to use Cloud Downloader, BitTorrent Client and Media Player. Search, Download, Play, Share"
