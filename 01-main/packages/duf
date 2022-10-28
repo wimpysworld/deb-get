@@ -1,0 +1,14 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "https://api.github.com/repos/muesli/duf/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${HOST_ARCH}" in
+        armhf) URL=$(grep "browser_download_url.*armv7\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+               ;;
+        *)     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    esac
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="duf"
+WEBSITE="https://github.com/muesli/duf"
+SUMMARY="Disk Usage/Free Utility - a better 'df' alternative."

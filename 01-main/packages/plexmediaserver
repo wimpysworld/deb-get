@@ -1,0 +1,12 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+ASC_KEY_URL="https://downloads.plex.tv/plex-keys/PlexSign.key"
+APT_LIST_NAME="plexmediaserver"
+APT_REPO_URL="https://downloads.plex.tv/repo/deb public main"
+PRETTY_NAME="Plex"
+WEBSITE="https://www.plex.tv/"
+SUMMARY="Stream Movies and TV Shows."
+
+function postinst() {
+    ${ELEVATE} rm -f /usr/share/keyrings/plexmediaserver.gpg
+}

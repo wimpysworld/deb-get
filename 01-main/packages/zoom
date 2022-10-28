@@ -1,0 +1,8 @@
+DEFVER=1
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(unroll_url "https://zoom.us/client/latest/zoom_amd64.deb")
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f5)"
+fi
+PRETTY_NAME="Zoom"
+WEBSITE="https://zoom.us/"
+SUMMARY="Video Conferencing, Cloud Phone, Webinars, Chat, Virtual Events."

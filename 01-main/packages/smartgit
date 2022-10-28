@@ -1,0 +1,8 @@
+DEFVER=1
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="https://www.syntevo.com$(curl -s "https://www.syntevo.com/smartgit/download/" | grep "\.deb" | head -n1 | cut -d'"' -f2)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2 | cut -d'.' -f1 | tr '_' '.')"
+fi
+PRETTY_NAME="SmartGit"
+WEBSITE="https://www.syntevo.com/"
+SUMMARY="A graphical Git client with support for pull requests for GitHub and Bitbucket."

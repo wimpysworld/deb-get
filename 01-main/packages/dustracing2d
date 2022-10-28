@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "https://api.github.com/repos/juzzlin/DustRacing2D/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep "18\.04" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+fi
+PRETTY_NAME="DustRacing2D"
+WEBSITE="https://juzzlin.github.io/DustRacing2D/index.html"
+SUMMARY="Dust Racing 2D is a traditional top-down car racing game including a level editor."

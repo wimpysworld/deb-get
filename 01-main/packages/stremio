@@ -1,0 +1,9 @@
+DEFVER=1
+CODENAMES_SUPPORTED="buster bullseye focal"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64\.deb\"" | cut -d "\"" -f 3)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 2)"
+fi
+PRETTY_NAME="Stremio"
+WEBSITE="https://www.stremio.com/"
+SUMMARY="Watch videos, movies, TV series and TV channels instantly."

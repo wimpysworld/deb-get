@@ -1,0 +1,12 @@
+DEFVER=2
+ASC_KEY_URL="https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc"
+APT_LIST_NAME="teamviewer"
+APT_REPO_URL="https://linux.teamviewer.com/deb stable main"
+PRETTY_NAME="TeamViewer"
+WEBSITE="https://www.teamviewer.com/"
+SUMMARY="The Remote Desktop Software."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/sources.list.d/teamviewer.list.dpkg-dist
+    ${ELEVATE} rm -f /usr/share/keyrings/teamviewer-keyring.gpg
+}

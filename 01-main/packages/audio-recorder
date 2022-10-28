@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:audio-recorder/ppa"
+PRETTY_NAME="Audio-Recorder"
+WEBSITE="https://launchpad.net/~audio-recorder"
+SUMMARY="Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats."

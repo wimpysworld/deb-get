@@ -1,0 +1,53 @@
+name: 01-main Tests
+
+on:
+  pull_request:
+    types: [opened, closed, synchronize]
+    paths:
+      - "01-main/packages/*"
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+
+          # Dependencies to build the deb
+          # sudo apt-get install build-essential devscripts debhelper -y
+
+          # Dependencies for deb-get itself
+          sudo apt-get install apt apt-transport-https bash coreutils curl dpkg gpg grep libc-bin lsb-release sed software-properties-common sudo wget -y
+
+      - name: Initialize /etc/deb-get
+        run: |
+          sudo mkdir /etc/deb-get
+          echo "deb-get 1 github" | sudo tee /etc/deb-get/installed > /dev/null
+          sudo cp ./01-main/manifest /etc/deb-get/01-main.repo
+          sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
+
+      # Install added/changed packages to see if they install properly and are detected as such
+      - name: Test package installations
+        run: |
+          chmod a+x ./deb-get
+          export DEBIAN_FRONTEND=noninteractive
+          set -x
+          APPS="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||")"
+          for APP in ${APPS}; do
+            if grep -q -m 1 "^${APP}$" ./01-main/manifest; then
+              ./deb-get install "${APP}"
+              if ./deb-get show "${APP}" | grep -q "Installed:	No"; then
+                echo "Failed to detect ${APP} as installed" >&2
+                exit 1
+              else
+                ./deb-get purge "${APP}"
+              fi
+            fi
+          done

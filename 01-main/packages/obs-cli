@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "https://api.github.com/repos/muesli/obs-cli/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="OBS-cli"
+WEBSITE="https://github.com/muesli/obs-cli"
+SUMMARY="OBS-cli is a command-line remote control for OBS."

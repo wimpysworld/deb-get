@@ -1,0 +1,6 @@
+DEFVER=1
+ASC_KEY_URL="https://dl.sinew.in/keys/enpass-linux.key"
+APT_REPO_URL="http://repo.sinew.in/ stable main"
+PRETTY_NAME="Enpass"
+WEBSITE="https://www.enpass.io/"
+SUMMARY="Remember one master password and let Enpass take care of the rest."

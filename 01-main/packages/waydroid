@@ -1,0 +1,6 @@
+DEFVER=1
+GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
+APT_REPO_URL="https://repo.waydro.id ${UPSTREAM_CODENAME} main"
+PRETTY_NAME="WayDroid"
+WEBSITE="https://waydro.id/"
+SUMMARY="A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu."

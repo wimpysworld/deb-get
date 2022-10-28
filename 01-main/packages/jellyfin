@@ -1,0 +1,8 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+ASC_KEY_URL="https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key"
+APT_REPO_URL="https://repo.jellyfin.org/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="Jellyfin"
+WEBSITE="https://jellyfin.org/"
+SUMMARY="The Free Software Media System."

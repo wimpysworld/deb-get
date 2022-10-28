@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:yannick-mauray/quickgui"
+PRETTY_NAME="Quickgui"
+WEBSITE="https://github.com/quickemu-project/quickgui"
+SUMMARY="A Flutter frontend for Quickemu."

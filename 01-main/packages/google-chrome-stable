@@ -1,0 +1,13 @@
+DEFVER=1
+ASC_KEY_URL="https://dl.google.com/linux/linux_signing_key.pub"
+APT_REPO_URL="https://dl.google.com/linux/chrome/deb/ stable main"
+APT_REPO_OPTIONS="arch=amd64"
+EULA="By downloading Chrome, you agree to the Google Terms of Service and Chrome and Chrome OS Additional Terms of Service\n - https://policies.google.com/terms\n - https://www.google.co.uk/intl/en/chrome/terms/"
+PRETTY_NAME="Google Chrome"
+WEBSITE="https://www.google.com/chrome/"
+SUMMARY="Fast, Secure Browser from Google."
+
+function postinst() {
+    ${ELEVATE} rm -f /etc/apt/sources.list.d/google-chrome.list
+    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/google-chrome.gpg
+}

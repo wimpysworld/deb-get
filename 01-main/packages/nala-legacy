@@ -1,0 +1,9 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="buster bullseye focal"
+GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
+APT_REPO_URL="http://deb.volian.org/volian/ scar main"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="Nala Legacy"
+WEBSITE="https://gitlab.com/volian/nala"
+SUMMARY="Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older."

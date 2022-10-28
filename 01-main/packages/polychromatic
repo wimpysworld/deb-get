@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:polychromatic/stable"
+PRETTY_NAME="Polychromatic"
+WEBSITE="https://polychromatic.app/"
+SUMMARY="Frontend for OpenRazer that enables Razer devices to control lighting effects and more."

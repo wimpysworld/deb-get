@@ -25,9 +25,11 @@ deb-get - An installation manager for 3rd-Party deb packages
 .IP
 .nf
 \f[C]
-deb-get {update | upgrade | show <pkg list> | install <pkg list> | reinstall <pkg list> | remove <pkg list>
-        | purge <pkg list> | search <regex> | cache | clean | list | prettylist | csvlist
-        | fix-installed [--old-apps] | help | version}
+deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
+        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
+        | search <regex> | cache | clean
+        | list [--raw|--installed|--not-installed] | prettylist [<repo>]
+        | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
 \f[R]
 .fi
 .SH DESCRIPTION
@@ -40,17 +42,21 @@ party apt repositories or via direct download.
 \f[B]update\f[R]
 update is used to resynchronize the package index files from their
 sources.
+When \[en]repos-only is provided, only initialize and update
+deb-get\[cq]s external repositories, without updating apt or looking for
+updates of installed packages.
 .TP
 \f[B]upgrade\f[R]
 upgrade is used to install the newest versions of all packages currently
 installed on the system.
 .TP
 \f[B]install\f[R]
-install is followed by a list of packages desired for installation or
-upgrading.
+install is followed by one package (or a space-separated list of
+packages) desired for installation or upgrading.
 .TP
 \f[B]reinstall\f[R]
-reinstall is followed by a list of packages desired for reinstallation.
+reinstall is followed by one package (or a space-separated list of
+packages) desired for reinstallation.
 .TP
 \f[B]remove\f[R]
 remove is identical to install except that packages are removed instead
@@ -69,22 +75,36 @@ search for the given regex(7) term(s) from the list of available
 packages supported by deb-get and display matches.
 .TP
 \f[B]show\f[R]
-show information about the given packages including their install source
-and update mechanism.
+show information about the given package (or a space-separated list of
+packages) including their install source and update mechanism.
 .TP
 \f[B]list\f[R]
 list the packages available via deb-get.
+When no option is provided, list all packages and tell which ones are
+installed (slower).
+When \[en]raw is provided, list all packages and do not tell which ones
+are installed (faster).
+When \[en]installed is provided, only list the packages installed
+(faster).
+When \[en]not-installed is provided, only list the packages not
+installed (faster).
 .TP
 \f[B]prettylist\f[R]
-markdown formatted list the packages available via deb-get.
-Use this to update README.md
+markdown formatted list the packages available in repo.
+repo defaults to 01-main.
+If repo is 00-builtin or 01-main the packages from 00-builtin are
+included.
+Use this to update README.md.
 .TP
 \f[B]csvlist\f[R]
-csv formatted list the packages available via deb-get.
+csv formatted list the packages available in repo.
+repo defaults to 01-main.
+If repo is 00-builtin or 01-main the packages from 00-builtin are
+included.
 Use this with 3rd party wrappers.
 .TP
 \f[B]cache\f[R]
-list the contents of the deb-get cache (/var/cache/deb-get)
+list the contents of the deb-get cache (/var/cache/deb-get).
 .TP
 \f[B]fix-installed\f[R]
 fix installed packages whose definitions were changed.
@@ -92,10 +112,10 @@ When \[en]old-apps is provided, transition packages to new format.
 This command is only intended for internal use.
 .TP
 \f[B]help\f[R]
-show this help
+show this help.
 .TP
 \f[B]version\f[R]
-show deb-get version
+show deb-get version.
 .SH EXAMPLES
 .SS Introduction
 .PP
@@ -167,842 +187,19 @@ application I co-authored that does much the same thing and has been
 included in Ubuntu MATE (https://ubuntu-mate.org) since 2015.
 .SS Supported Software
 .PP
-The software below can be installed, updated and removed using
-\f[V]deb-get\f[R].
-.IP \[bu] 2
-\f[V]deb-get install <packagename>\f[R]
-.IP \[bu] 2
-\f[V]deb-get update\f[R]
-.IP \[bu] 2
-\f[V]deb-get upgrade\f[R]
-.IP \[bu] 2
-\f[V]deb-get remove <packagename>\f[R]
-.IP \[bu] 2
-\f[V]deb-get purge <packagename>\f[R]
-.PP
-1password
-.PD 0
-.P
-.PD
-android-messages-desktop
-.PD 0
-.P
-.PD
-antimicrox
-.PD 0
-.P
-.PD
-anydesk
-.PD 0
-.P
-.PD
-appimagelauncher
-.PD 0
-.P
-.PD
-atom
-.PD 0
-.P
-.PD
-audio-recorder
-.PD 0
-.P
-.PD
-azure-cli
-.PD 0
-.P
-.PD
-azuredatastudio
-.PD 0
-.P
-.PD
-balena-etcher-electron
-.PD 0
-.P
-.PD
-bat
-.PD 0
-.P
-.PD
-battery-monitor
-.PD 0
-.P
-.PD
-beersmith3
-.PD 0
-.P
-.PD
-bitwarden
-.PD 0
-.P
-.PD
-bitwig-studio
-.PD 0
-.P
-.PD
-blanket
-.PD 0
-.P
-.PD
-blockbench
-.PD 0
-.P
-.PD
-bluejeans-v2
-.PD 0
-.P
-.PD
-bottom
-.PD 0
-.P
-.PD
-brave-browser
-.PD 0
-.P
-.PD
-brisqi
-.PD 0
-.P
-.PD
-caprine
-.PD 0
-.P
-.PD
-cawbird
-.PD 0
-.P
-.PD
-chronograf
-.PD 0
-.P
-.PD
-code
-.PD 0
-.P
-.PD
-codium
-.PD 0
-.P
-.PD
-com.github.tkashkin.gamehub
-.PD 0
-.P
-.PD
-copyq
-.PD 0
-.P
-.PD
-cosign
-.PD 0
-.P
-.PD
-crossover
-.PD 0
-.P
-.PD
-cryptomator
-.PD 0
-.P
-.PD
-dbeaver-ce
-.PD 0
-.P
-.PD
-deadbeef
-.PD 0
-.P
-.PD
-deb-get
-.PD 0
-.P
-.PD
-deborah
-.PD 0
-.P
-.PD
-deltachat-desktop
-.PD 0
-.P
-.PD
-discord
-.PD 0
-.P
-.PD
-docker-ce
-.PD 0
-.P
-.PD
-docker-desktop
-.PD 0
-.P
-.PD
-draw.io
-.PD 0
-.P
-.PD
-dropbox
-.PD 0
-.P
-.PD
-du-dust
-.PD 0
-.P
-.PD
-duf
-.PD 0
-.P
-.PD
-dustracing2d
-.PD 0
-.P
-.PD
-element-desktop
-.PD 0
-.P
-.PD
-enpass
-.PD 0
-.P
-.PD
-exodus
-.PD 0
-.P
-.PD
-expressvpn
-.PD 0
-.P
-.PD
-fd
-.PD 0
-.P
-.PD
-figma-linux
-.PD 0
-.P
-.PD
-firefox-esr
-.PD 0
-.P
-.PD
-flameshot
-.PD 0
-.P
-.PD
-foliate
-.PD 0
-.P
-.PD
-franz
-.PD 0
-.P
-.PD
-fsearch
-.PD 0
-.P
-.PD
-geforcenow-electron
-.PD 0
-.P
-.PD
-gh
-.PD 0
-.P
-.PD
-git-delta
-.PD 0
-.P
-.PD
-github-desktop
-.PD 0
-.P
-.PD
-gitkraken
-.PD 0
-.P
-.PD
-gitter
-.PD 0
-.P
-.PD
-google-chat-electron
-.PD 0
-.P
-.PD
-google-chrome-stable
-.PD 0
-.P
-.PD
-google-cloud-cli
-.PD 0
-.P
-.PD
-google-earth-pro-stable
-.PD 0
-.P
-.PD
-gpu-viewer
-.PD 0
-.P
-.PD
-grype
-.PD 0
-.P
-.PD
-headset
-.PD 0
-.P
-.PD
-helio-workstation
-.PD 0
-.P
-.PD
-heroic
-.PD 0
-.P
-.PD
-hugo
-.PD 0
-.P
-.PD
-hyper
-.PD 0
-.P
-.PD
-igdm
-.PD 0
-.P
-.PD
-influxdb
-.PD 0
-.P
-.PD
-influxdb2
-.PD 0
-.P
-.PD
-influxdb2-cli
-.PD 0
-.P
-.PD
-insomnia
-.PD 0
-.P
-.PD
-insync
-.PD 0
-.P
-.PD
-irccloud-desktop
-.PD 0
-.P
-.PD
-jabref
-.PD 0
-.P
-.PD
-jami
-.PD 0
-.P
-.PD
-jellyfin
-.PD 0
-.P
-.PD
-kapacitor
-.PD 0
-.P
-.PD
-kdiskmark
-.PD 0
-.P
-.PD
-keepassxc
-.PD 0
-.P
-.PD
-keybase
-.PD 0
-.P
-.PD
-kopia-ui
-.PD 0
-.P
-.PD
-ksnip
-.PD 0
-.P
-.PD
-lens
-.PD 0
-.P
-.PD
-librewolf
-.PD 0
-.P
-.PD
-limoji
-.PD 0
-.P
-.PD
-lsd
-.PD 0
-.P
-.PD
-ludo
-.PD 0
-.P
-.PD
-lutris
-.PD 0
-.P
-.PD
-mailspring
-.PD 0
-.P
-.PD
-mattermost-desktop
-.PD 0
-.P
-.PD
-mergerfs
-.PD 0
-.P
-.PD
-micro
-.PD 0
-.P
-.PD
-microsoft-edge-stable
-.PD 0
-.P
-.PD
-min
-.PD 0
-.P
-.PD
-minigalaxy
-.PD 0
-.P
-.PD
-minikube
-.PD 0
-.P
-.PD
-motrix
-.PD 0
-.P
-.PD
-mpdevil
-.PD 0
-.P
-.PD
-ms-office-electron
-.PD 0
-.P
-.PD
-mullvad-vpn
-.PD 0
-.P
-.PD
-nala
-.PD 0
-.P
-.PD
-nala-legacy
-.PD 0
-.P
-.PD
-neo4j
-.PD 0
-.P
-.PD
-neovim
-.PD 0
-.P
-.PD
-nextcloud-desktop
-.PD 0
-.P
-.PD
-nomad
-.PD 0
-.P
-.PD
-nordvpn
-.PD 0
-.P
-.PD
-notable
-.PD 0
-.P
-.PD
-obs-cli
-.PD 0
-.P
-.PD
-obsidian
-.PD 0
-.P
-.PD
-obs-studio
-.PD 0
-.P
-.PD
-ocenaudio
-.PD 0
-.P
-.PD
-onlyoffice-desktopeditors
-.PD 0
-.P
-.PD
-openaudible
-.PD 0
-.P
-.PD
-openrazer-meta
-.PD 0
-.P
-.PD
-openrgb
-.PD 0
-.P
-.PD
-opera-stable
-.PD 0
-.P
-.PD
-p3x-onenote
-.PD 0
-.P
-.PD
-pandoc
-.PD 0
-.P
-.PD
-papirus-icon-theme
-.PD 0
-.P
-.PD
-parsec
-.PD 0
-.P
-.PD
-peazip
-.PD 0
-.P
-.PD
-picocrypt
-.PD 0
-.P
-.PD
-plexmediaserver
-.PD 0
-.P
-.PD
-plow
-.PD 0
-.P
-.PD
-polychromatic
-.PD 0
-.P
-.PD
-portmaster
-.PD 0
-.P
-.PD
-powershell
-.PD 0
-.P
-.PD
-protonmail-bridge
-.PD 0
-.P
-.PD
-protonvpn
-.PD 0
-.P
-.PD
-pulse-sms
-.PD 0
-.P
-.PD
-qownnotes
-.PD 0
-.P
-.PD
-quarto
-.PD 0
-.P
-.PD
-quickemu
-.PD 0
-.P
-.PD
-quickgui
-.PD 0
-.P
-.PD
-rambox
-.PD 0
-.P
-.PD
-rclone
-.PD 0
-.P
-.PD
-resilio-sync
-.PD 0
-.P
-.PD
-retroarch
-.PD 0
-.P
-.PD
-rocketchat
-.PD 0
-.P
-.PD
-rpi-imager
-.PD 0
-.P
-.PD
-rstudio
-.PD 0
-.P
-.PD
-rustdesk
-.PD 0
-.P
-.PD
-sejda-desktop
-.PD 0
-.P
-.PD
-shutter-encoder
-.PD 0
-.P
-.PD
-signal-desktop
-.PD 0
-.P
-.PD
-simplenote
-.PD 0
-.P
-.PD
-skypeforlinux
-.PD 0
-.P
-.PD
-slack-desktop
-.PD 0
-.P
-.PD
-sleek
-.PD 0
-.P
-.PD
-smartgit
-.PD 0
-.P
-.PD
-softmaker-office-2021
-.PD 0
-.P
-.PD
-soundux
-.PD 0
-.P
-.PD
-spotify-client
-.PD 0
-.P
-.PD
-standard-notes
-.PD 0
-.P
-.PD
-strawberry
-.PD 0
-.P
-.PD
-stremio
-.PD 0
-.P
-.PD
-sublime-merge
-.PD 0
-.P
-.PD
-sublime-text
-.PD 0
-.P
-.PD
-surfshark
-.PD 0
-.P
-.PD
-syft
-.PD 0
-.P
-.PD
-syncthing
-.PD 0
-.P
-.PD
-system-monitoring-center
-.PD 0
-.P
-.PD
-tabby-terminal
-.PD 0
-.P
-.PD
-tailscale
-.PD 0
-.P
-.PD
-teams
-.PD 0
-.P
-.PD
-teams-for-linux
-.PD 0
-.P
-.PD
-teamviewer
-.PD 0
-.P
-.PD
-telegraf
-.PD 0
-.P
-.PD
-terraform
-.PD 0
-.P
-.PD
-texworks
-.PD 0
-.P
-.PD
-tidal-hifi
-.PD 0
-.P
-.PD
-tixati
-.PD 0
-.P
-.PD
-tribler
-.PD 0
-.P
-.PD
-trivy
-.PD 0
-.P
-.PD
-typora
-.PD 0
-.P
-.PD
-ubuntu-make
-.PD 0
-.P
-.PD
-ulauncher
-.PD 0
-.P
-.PD
-vagrant
-.PD 0
-.P
-.PD
-virtualbox-6.1
-.PD 0
-.P
-.PD
-vivaldi-stable
-.PD 0
-.P
-.PD
-vuescan
-.PD 0
-.P
-.PD
-wavebox
-.PD 0
-.P
-.PD
-waydroid
-.PD 0
-.P
-.PD
-webex
-.PD 0
-.P
-.PD
-weechat
-.PD 0
-.P
-.PD
-weylus
-.PD 0
-.P
-.PD
-whalebird
-.PD 0
-.P
-.PD
-whatsapp-for-linux
-.PD 0
-.P
-.PD
-wire-desktop
-.PD 0
-.P
-.PD
-wraith-master
-.PD 0
-.P
-.PD
-xemu
-.PD 0
-.P
-.PD
-youtube-music
-.PD 0
-.P
-.PD
-yq
-.PD 0
-.P
-.PD
-zenith
-.PD 0
-.P
-.PD
-zettlr
-.PD 0
-.P
-.PD
-zoom
-.PD 0
-.P
-.PD
-zotero
+The list of the software that can be installed, updated and removed
+using \f[V]deb-get\f[R]\[cq]s main repository is available at
+01-main/README (https://github.com/wimpysworld/deb-get/blob/main/01-main/README.md).
 .SS How do package updates work?
 .SS 3rd party apt repositories and PPAs
 .PP
 If packages are available via a 3rd party \f[V]apt\f[R] repository or a
-Launchpad PPA , then those packages will be updated/upgraded when using
-\f[V]apt-get update\f[R] and \f[V]apt-get upgrade\f[R].
+Launchpad PPA, then those packages will be updated/upgraded when using
+\f[V]sudo apt-get update\f[R] and \f[V]sudo apt-get upgrade\f[R].
 .SS GitHub Releases and direct downloads
 .PP
 For \f[V].deb\f[R] packages that are only available via GitHub Releases
-or direct download , then those packages can only be updated/upgrade by
+or direct download, then those packages can only be updated/upgraded by
 using \f[V]deb-get update\f[R] and \f[V]deb-get upgrade\f[R].
 .SS GitHub API Rate Limits
 .PP
@@ -1015,9 +212,10 @@ to 60 calls per hour per source (IP Address).
 This is vital for keeping the API responsive and available to all users,
 but can be inconvenient if you have a lot of GitHub releases being
 handled by \f[V]deb-get\f[R] (or need to update several times in a short
-period to test your contribution) and will result in, for example,
-temporary failures to be able to upgrade or install applications via
-GitHub Releases .
+period to test your
+contribution (https://github.com/wimpysworld/deb-get/blob/main/01-main/CONTRIBUTING.md))
+and will result in, for example, temporary failures to be able to
+upgrade or install applications via GitHub Releases.
 .PP
 If you have a GitHub account you can authenticate your GitHub API usage
 to increase your rate-limit to 5000 requests per hour per authenticated
@@ -1041,65 +239,99 @@ deb-get upgrade
 .SS Adding Software
 .PP
 For information on what is acceptable as suggestion for new packages and
-instructions on how to open a PR to add a new package, head to
-CONTRIBUTING.
-.SS Custom User Includes \f[V]/etc/deb-get.d/\f[R]
+instructions on how to open a PR to add a new package to the main
+repository, head to
+01-main/CONTRIBUTING (https://github.com/wimpysworld/deb-get/blob/main/01-main/CONTRIBUTING.md).
+.SS Adding external repositories
 .PP
-As a more advanced feature, it\[cq]s now possible to also add your own
-local customizations or overrides.
-And supplement the supplied list of official packages.
-This feature is especially useful to that your local copy of the
-\f[V]deb-get\f[R] tool can remain unmodified and always be kept fully up
-to date.
-By moving your customizations out in a seperate folder away from the
-main \f[V]deb-get\f[R] script.
-.PP
-Typically either because:
+It is possible to also add a \f[V]deb-get\f[R]-compatible external
+repository, and supplement the list of supported packages, typically
+because you need to:
 .IP "1." 3
-You are waiting on a pending request for a new software package.
-Which has been submitted for consideration.
-But which has not been reviewed / accepted / merged / released yet.
+Add something which does not meet any of the general guidelines of the
+main repository; or
 .IP "2." 3
-Or because you need to add something which does not meet any of the
-general guidelines in the previous section \[ha]\[ha] detailed above,
-for whatever various reason(s).
+Change the definition of a package from the main repository.
+.PP
+For information on how to create and maintain a
+\f[V]deb-get\f[R]-compatible external repository, head to
+EXTREPO (https://github.com/wimpysworld/deb-get/blob/main/EXTREPO.md).
 .PP
 How to use:
 .IP \[bu] 2
-Manually create the folder \f[V]/etc/deb-get.d/\f[R] if not exist
-already.
-By default \f[V]deb-get\f[R] does not create this folder unless your
+Manually create the file \f[V]/etc/deb-get/<priority>-<repo>.repo\f[R],
+containing in its first line the base URL of the repository.
+.RS 2
+.IP \[bu] 2
+The \f[V]<priority>\f[R] value is a two-digit number between 00 and 99
+that defines the order in which the repositories will be loaded (00
+first, 99 last), so if any conflicting definitions are found, the one
+from the repository with the highest priority will be used (the builtin
+definitions from the \f[V]deb-get\f[R] script itself have priority 00,
+the main repository has priority 01 and the custom user includes have
+priority 99).
+.IP \[bu] 2
+The \f[V]<repo>\f[R] value can be anything, but it should preferably be
+unique and easy to remember.
+.RE
+.IP \[bu] 2
+Run \f[V]deb-get update\f[R], so the manifest file and the package
+definition files are downloaded.
+.SS Custom User Includes
+.PP
+As a more advanced feature, it is possible to also add your own local
+customizations or overrides, and supplement the list of packages
+supported by the main repository.
+This feature is especially useful so that your local copy of the main
+repository can remain unmodified and always be kept fully up to date by
+moving your customizations out in a seperate folder away from the main
+repository.
+.PP
+Typically because:
+.IP "1." 3
+You are waiting on a pending request for a new software package, which
+has been submitted for consideration but has not been reviewed /
+accepted / merged / released yet; or
+.IP "2." 3
+You need to add something which does not meet any of the general
+guidelines of the main repository, for whatever various reason(s).
+.PP
+How to use:
+.IP \[bu] 2
+Manually create the folder \f[V]/etc/deb-get/99-local.d/\f[R] if it does
+not exist already.
+By default, \f[V]deb-get\f[R] does not create this folder unless your
 specific distribution has packaged it that way.
 .IP \[bu] 2
-Can also create any arbitrary nested sub-folder structure within
-\f[V]/etc/deb-get.d/**/*\f[R] main folder
+Any files directly within this folder will be bash sourced
+e.g.\ \f[V]. /etc/deb-get/99-local.d/appname1\f[R].
 .IP \[bu] 2
-Any files within this tree will be bash sourced in alphabetical order
-e.g.\ \f[V]. /etc/deb-get.d/01-pending-merge/10-appname1\f[R]
+The name of the added file \f[B]must\f[R] match \f[B]exactly\f[R] the
+name of the package being defined.
 .IP \[bu] 2
-Your user custom \f[V]deb_*\f[R] functions are then loaded directly
-after the last \f[V]deb_*()\f[R] package declarations that officially
-come with \f[V]deb-get\f[R]
+For information on how to create a package definition file, head to
+EXTREPO (https://github.com/wimpysworld/deb-get/blob/main/EXTREPO.md#the-package-definition-files).
 .IP \[bu] 2
-Recommendation message printed for any new user added deb_* functions.
-With a URL link to open a request.
+Your user custom package definition files are then loaded after the
+package definitions from any added repository.
 .IP \[bu] 2
-Warning messages are then also printed for any conflicts detected.
-For overriden functions (of same name), which then take priority over
-existing official deb-get apps.
+A recommendation message is printed for any new user added definitions,
+with a URL link to open a request.
+.IP \[bu] 2
+Warning messages are then also printed for any conflicts detected for
+overriden definitions (of same name), which then take priority over
+existing ones.
 .PP
 For the last situation, this is most often meant as a helpful reminder
-to remove your custom declaration once it has been successfully merged
-upstream into the official \f[V]deb-get\f[R] tool.
-So after \f[V]deb-get\f[R] updates itself you are properly notified.
-And can avoid keeping lots of duplite functions around.
+to remove your custom definition once it has been successfully merged
+upstream into the main repository, so after the main repository updates
+itself you are properly notified.
+It also avoids keeping lots of duplicate definitions around.
 .PP
 We really hope that you will enjoy the convenience and flexibility of
-the new user overrides feature.
-So please consider in return to open new issues or pull requests (here
-on github), for any new \f[V]deb_*()\f[R] functions / packages you
-create!
-So that we can share those back with the wider community.
+the user overrides feature, so please consider in return to open new
+issues and pull requests, for any new package definitions you create, so
+that we can share those back with the wider community.
 Many thanks for your consideration!
 .SS Related projects
 .IP \[bu] 2

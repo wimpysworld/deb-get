@@ -1,0 +1,8 @@
+DEFVER=1
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f6)"
+fi
+PRETTY_NAME="Discord"
+WEBSITE="https://discord.com/"
+SUMMARY="A place that makes it easy to talk every day and hang out more often."

@@ -1,0 +1,6 @@
+DEFVER=1
+ASC_KEY_URL="https://packagecloud.io/slacktechnologies/slack/gpgkey"
+APT_REPO_URL="https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
+PRETTY_NAME="Slack"
+WEBSITE="https://slack.com/"
+SUMMARY="One platform for your team and your work."

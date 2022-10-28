@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:lyzardking/ubuntu-make"
+PRETTY_NAME="Ubuntu-Make"
+WEBSITE="https://github.com/ubuntu/ubuntu-make/"
+SUMMARY="Easy setup of common tools for developers on Ubuntu."

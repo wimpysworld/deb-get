@@ -1,0 +1,6 @@
+DEFVER=1
+GPG_KEY_URL="https://dl.jami.net/public-key.gpg"
+APT_REPO_URL="https://dl.jami.net/nightly/${UPSTREAM_ID}_${UPSTREAM_RELEASE}/ jami main"
+PRETTY_NAME="Jami"
+WEBSITE="https://jami.net/"
+SUMMARY="Share, freely and privately."

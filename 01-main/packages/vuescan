@@ -1,0 +1,16 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+if [ "${ACTION}" != "prettylist" ]; then
+    local ARCH_VER
+    case ${HOST_ARCH} in
+        amd64)   ARCH_VER=x64;;
+        arm64) ARCH_VER=a64;;
+    esac
+    VERSION_PUBLISHED="$(curl -s https://www.hamrick.com/alternate-versions.html | grep '<a href="files/vue'${ARCH_VER}'.*\.deb">.*</a>' | head -n 1 | cut -d'>' -f2 | cut -d'<' -f1).0-0"
+    local MAJOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f1)"
+    local MINOR_VER="$(echo ${VERSION_PUBLISHED} | cut -d'.' -f2)"
+    URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
+fi
+PRETTY_NAME="VueScan"
+WEBSITE="https://www.hamrick.com/"
+SUMMARY="Scanner Software that supports over 6500 scanners."
