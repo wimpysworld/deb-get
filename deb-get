@@ -530,7 +530,7 @@ function init_repos() {
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
-            ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
+            ${ELEVATE} mkdir -p "${ETC_DIR}/${REPO}.d" 2>/dev/null
             ${ELEVATE} chmod 755 "${ETC_DIR}/${REPO}.d" 2>/dev/null
         fi
     done
