@@ -84,7 +84,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]   https://github.com/hmlendea/gfn-electron
 - [ ]   https://cli.github.com/
 - [ ]   https://github.com/dandavison/delta
-- [ ]   https://desktop.github.com/
+- [X]   https://desktop.github.com/
 - [ ]   https://github.com/ankurk91/google-chat-electron
 - [ ]   https://github.com/anchore/grype
 - [ ]   https://heroicgameslauncher.com/
