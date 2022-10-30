@@ -88,7 +88,7 @@ requests and our [mini-event activity tracker](https://github.com/wimpysworld/de
 - [ ]   https://github.com/ankurk91/google-chat-electron
 - [ ]   https://github.com/anchore/grype
 - [ ]   https://heroicgameslauncher.com/
-- [ ]   https://gohugo.io/
+- [X]   https://gohugo.io/
 - [ ]   https://hyper.is/
 - [ ]   https://github.com/igdmapps/igdm
 - [ ]   https://insomnia.rest/
