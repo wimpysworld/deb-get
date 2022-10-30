@@ -536,7 +536,7 @@ function init_repos() {
     done
 }
 
-function update_repos(){
+function update_repos() {
     local ETAGS=""
     local REPO_URL=""
 
@@ -595,8 +595,7 @@ function list_local_apps() {
     fi
 }
 
-function print_etc_overrides()
-{
+function print_etc_overrides() {
     if [ ${#LOCAL_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
