@@ -1,4 +1,5 @@
-DEFVER=1
+DEFVER=2
+CODENAMES_SUPPORTED="focal jammy kinetic"
 get_github_releases "https://api.github.com/repos/hsbasu/battery-monitor/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
