@@ -1,4 +1,5 @@
-DEFVER=1
+DEFVER=2
+CODENAMES_SUPPORTED="focal jammy kinetic"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(unroll_url "$(curl -s "https://www.bitwig.com/download/" | grep -o "https://www\.bitwig\.com/dl/?id=[^&]*&amp;os=installer_linux")")"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d "/" -f 4)"

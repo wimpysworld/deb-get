@@ -1,5 +1,5 @@
-DEFVER=1
-CODENAMES_SUPPORTED="buster bullseye focal"
+DEFVER=2
+CODENAMES_SUPPORTED="buster focal"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64\.deb\"" | cut -d "\"" -f 3)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 2)"
