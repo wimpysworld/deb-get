@@ -30,7 +30,7 @@ your pull requests.
 ```markdown
 ## Debian and Ubuntu based distros
 
-For users of Debian and Ubuntu based distributions, you can also install and
+Users of Debian and Ubuntu based distros can also install and
 update the `.deb` packages we publish in our GitHub releases page using [deb-get](https://github.com/wimpysworld/deb-get).
 
 First install `deb-get` using these commands in a terminal:
@@ -42,7 +42,7 @@ Then install <project> using the following command in terminal:
 
     deb-get install <package-name>
 
-Once <package-name> is installed it can be kept upto date using:
+Once <package-name> is installed it can be kept up to date using:
 
     deb-get update
     deb-get upgrade
