@@ -385,7 +385,7 @@ function validate_deb() {
     unset -f postinst
 
     # Source the variables
-    if [ "${APP_SRC}" = "00-builtin" ]; then
+    if [ "${APP_SRC}" == "00-builtin" ]; then
         deb_${APP} 2>/dev/null
     else
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
@@ -471,7 +471,7 @@ function prettylist_debs() {
 | :------: | :------------- | :------------ |"
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
-        if [ "$APP_SRC" = "$REPO" ] || ([ "$REPO" = "01-main" ] && [ "$APP_SRC" = "00-builtin" ]); then
+        if [ "${APP_SRC}" == "${REPO}" ] || ([ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]); then
             case ${METHOD} in
                 apt)    ICON="debian.png";;
                 github) ICON="github.png";;
@@ -487,7 +487,7 @@ function csvlist_debs() {
     local REPO="${1:-01-main}"
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
-        if [ "$APP_SRC" = "$REPO" ] || ([ "$REPO" = "01-main" ] && [ "$APP_SRC" = "00-builtin" ]); then
+        if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
             echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
         fi
     done
@@ -1237,7 +1237,7 @@ case "${ACTION}" in
                 fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
             fi
 
-            if [ "${METHOD}" = "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+            if [ "${METHOD}" == "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
                 fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
             fi
 
