@@ -223,7 +223,7 @@ function upgrade_apt() {
 }
 
 function install_apt() {
-    let "PACKAGE_INSTALLATION_TRIES+=1"
+    ((PACKAGE_INSTALLATION_TRIES++))
     add_apt_repo
     if ! update_apt; then
         remove_repo
@@ -255,7 +255,7 @@ function install_apt() {
             fancy_message info "${APP} is up to date."
         fi
     fi
-    let "PACKAGE_INSTALLATION_COUNT+=1"
+    ((PACKAGE_INSTALLATION_COUNT++))
 }
 
 function install_ppa() {
@@ -267,7 +267,7 @@ function install_deb() {
     local URL="${1}"
     local FILE="${URL##*/}"
     local STATUS=""
-    let "PACKAGE_INSTALLATION_TRIES+=1"
+    ((PACKAGE_INSTALLATION_TRIES++))
 
     if ! package_is_installed "${APP}"; then
         if ! eula; then
@@ -308,7 +308,7 @@ function install_deb() {
             fancy_message info "${FILE} is up to date."
         fi
     fi
-    let "PACKAGE_INSTALLATION_COUNT+=1"
+    ((PACKAGE_INSTALLATION_COUNT++))
     if [ -f "${CACHE_DIR}/${FILE}" ]; then
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
     fi
@@ -604,7 +604,7 @@ function print_etc_overrides() {
             fancy_message warn "Conflict detected, duplicate declaration of package ${APP}, using declaration from $(echo "${FULL_APP}" | cut -d / -f 1)"
 
             if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "${DEB_GET_SCRIPT_FILE}" -nt "${ETC_DIR}/99-local.d/${APP}" ]; then
-                let "NUM_OLDER_CONFLICTS+=1"
+                ((NUM_OLDER_CONFLICTS++))
             fi
         done
 
