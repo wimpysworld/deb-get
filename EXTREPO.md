@@ -46,7 +46,7 @@ The variables defined in the package definition file are the following:
 `ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_LIST_NAME`, `APT_REPO_OPTIONS` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`, and `APT_LIST_NAME` defaults to `deb-get-${APP}`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 
 ```bash
-if [ "${ACTION}" != prettylist ]; then
+if [ "${ACTION}" != "prettylist" ]; then
     # Code goes here
 fi
 ```
@@ -128,7 +128,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
 get_github_releases "https://api.github.com/repos/<user-organization>/<repository>/releases/latest"
-if [ "${ACTION}" != prettylist ]; then
+if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d <delimiter> -f <field>)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
 fi
@@ -144,7 +144,7 @@ SUMMARY=""
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
-if [ "${ACTION}" != prettylist ]; then
+if [ "${ACTION}" != "prettylist" ]; then
     URL="$(curl -s "<website>" | grep "<pattern>" | head -n1 | cut -d <delimiter> -f <field>)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
 fi
