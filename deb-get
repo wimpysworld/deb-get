@@ -116,7 +116,7 @@ function elevate_privs() {
     elif command -v sudo 1>/dev/null; then
         ELEVATE="sudo"
     else
-        fancy_message fatal "$(basename ${0}) requires sudo or doas to elevate permissions, neither were found."
+        fancy_message fatal "$(basename "${0}") requires sudo or doas to elevate permissions, neither were found."
     fi
 
     # Authenticate root context
@@ -153,7 +153,7 @@ function get_github_releases() {
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
         if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
             fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
-            wgetcmdarray=(${ELEVATE} wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${1}" -O "${CACHE_DIR}/${APP}.json")
+            wgetcmdarray=("${ELEVATE}" wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${1}" -O "${CACHE_DIR}/${APP}.json")
             echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it." ; ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null )
             if [ -f "${CACHE_DIR}/${APP}.json" ] && grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
                 fancy_message warn "Updating ${CACHE_DIR}/${APP}.json exceed GitHub API limits. Deleting it."
@@ -346,7 +346,7 @@ function remove_deb() {
 
 function version_deb() {
     if package_is_installed "${APP}"; then
-        echo "$(dpkg -s "${APP}" 2> /dev/null | grep ^Version: | cut -d' ' -f2)"
+        dpkg -s "${APP}" 2> /dev/null | grep ^Version: | cut -d' ' -f2
     else
         echo ""
     fi
@@ -386,7 +386,7 @@ function validate_deb() {
 
     # Source the variables
     if [ "${APP_SRC}" == "00-builtin" ]; then
-        deb_${APP} 2>/dev/null
+        deb_"${APP}" 2>/dev/null
     else
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
@@ -608,7 +608,7 @@ function print_etc_overrides() {
             fi
         done
 
-        if [ ${NUM_OLDER_CONFLICTS} -gt 0 ]; then
+        if [ "${NUM_OLDER_CONFLICTS}" -gt 0 ]; then
             fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your ${ETC_DIR}/99-local.d folder."
         fi
 
@@ -965,8 +965,8 @@ function fix_old_apps() {
 
 function fix_installed() {
     local line="$(grep -m 1 "^${APP} " "${ETC_DIR}/installed")"
-    local OLD_DEFVER="$(echo ${line} | cut -d " " -f 2)"
-    local OLD_METHOD="$(echo ${line} | cut -d " " -f 3)"
+    local OLD_DEFVER="$(echo "${line}" | cut -d " " -f 2)"
+    local OLD_METHOD="$(echo "${line}" | cut -d " " -f 3)"
     if [ "${DEFVER}" != "${OLD_DEFVER}" ]; then
         remove_installed "${APP}"
         if [[ " apt ppa " =~ " ${OLD_METHOD} " ]]; then
@@ -1068,7 +1068,7 @@ readonly ETC_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
 
 if ((BASH_VERSINFO[0] < 4)); then
-    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
+    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename "${0}")."
 fi
 
 if ! command -v lsb_release 1>/dev/null; then
