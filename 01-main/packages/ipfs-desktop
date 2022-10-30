@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "https://api.github.com/repos/ipfs/ipfs-desktop/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+EULA=""
+PRETTY_NAME="IPFS Desktop"
+WEBSITE="https://ipfs.tech/"
+SUMMARY="A peer-to-peer hypermedia protocol designed to preserve and grow humanity's knowledge by making the web upgradeable, resilient, and more open."
