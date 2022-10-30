@@ -1162,9 +1162,8 @@ fi
 case "${ACTION}" in
     update|upgrade|show|install|reinstall|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
     APPS="$(list_local_apps)"
-    APPS="$APPS
-$(list_repo_apps)"
-    APPS="$APPS
+    APPS+="$(list_repo_apps)"
+    APPS="${APPS}
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     readonly APP_CONFLICTS=($(echo "${APPS}" | cut -d / -f 2 | sort | uniq --repeated))
     APPS="$(echo "${APPS}" | sort -t / -k 2 -u)"
@@ -1300,9 +1299,8 @@ case "${ACTION}" in
         update_repos
         if [ "${1}" != --repos-only ]; then
             APPS="$(list_local_apps)"
-            APPS="$APPS
-$(list_repo_apps)"
-            APPS="$APPS
+            APPS+="$(list_repo_apps)"
+            APPS="${APPS}
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
             APPS=($(echo "${APPS}" | sort -t / -k 2 -u))
             for APP in "${INSTALLED_APPS[@]}"; do
