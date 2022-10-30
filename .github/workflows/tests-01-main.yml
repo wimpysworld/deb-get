@@ -5,6 +5,11 @@ on:
     types: [opened, closed, synchronize]
     paths:
       - "01-main/packages/*"
+  push:
+    branches:
+      - 'main'
+    paths:
+      - "01-main/packages/*"
   workflow_dispatch:
 
 jobs:

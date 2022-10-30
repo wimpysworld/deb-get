@@ -6,6 +6,11 @@ on:
     paths:
       - "deb-get"
   workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - "deb-get"
 
 jobs:
   tests:
