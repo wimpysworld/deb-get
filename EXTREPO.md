@@ -128,7 +128,7 @@ Replace `<user-organization>` and `<repository>` with the correct values:
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
-get_github_releases "https://api.github.com/repos/<user-organization>/<repository>/releases/latest"
+get_github_releases "<user-organization>/<repository>" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
