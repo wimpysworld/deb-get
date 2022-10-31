@@ -116,7 +116,7 @@ function elevate_privs() {
     elif command -v sudo 1>/dev/null; then
         ELEVATE="sudo"
     else
-        fancy_message fatal "$(basename ${0}) requires sudo or doas to elevate permissions, neither were found."
+        fancy_message fatal "$(basename "${0}") requires sudo or doas to elevate permissions, neither were found."
     fi
 
     # Authenticate root context
@@ -153,7 +153,7 @@ function get_github_releases() {
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
         if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
             fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
-            wgetcmdarray=(${ELEVATE} wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${1}" -O "${CACHE_DIR}/${APP}.json")
+            wgetcmdarray=("${ELEVATE}" wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${1}" -O "${CACHE_DIR}/${APP}.json")
             echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it." ; ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null )
             if [ -f "${CACHE_DIR}/${APP}.json" ] && grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
                 fancy_message warn "Updating ${CACHE_DIR}/${APP}.json exceed GitHub API limits. Deleting it."
@@ -223,7 +223,7 @@ function upgrade_apt() {
 }
 
 function install_apt() {
-    let "PACKAGE_INSTALLATION_TRIES+=1"
+    ((PACKAGE_INSTALLATION_TRIES++))
     add_apt_repo
     if ! update_apt; then
         remove_repo
@@ -255,7 +255,7 @@ function install_apt() {
             fancy_message info "${APP} is up to date."
         fi
     fi
-    let "PACKAGE_INSTALLATION_COUNT+=1"
+    ((PACKAGE_INSTALLATION_COUNT++))
 }
 
 function install_ppa() {
@@ -267,7 +267,7 @@ function install_deb() {
     local URL="${1}"
     local FILE="${URL##*/}"
     local STATUS=""
-    let "PACKAGE_INSTALLATION_TRIES+=1"
+    ((PACKAGE_INSTALLATION_TRIES++))
 
     if ! package_is_installed "${APP}"; then
         if ! eula; then
@@ -308,7 +308,7 @@ function install_deb() {
             fancy_message info "${FILE} is up to date."
         fi
     fi
-    let "PACKAGE_INSTALLATION_COUNT+=1"
+    ((PACKAGE_INSTALLATION_COUNT++))
     if [ -f "${CACHE_DIR}/${FILE}" ]; then
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
     fi
@@ -346,7 +346,7 @@ function remove_deb() {
 
 function version_deb() {
     if package_is_installed "${APP}"; then
-        echo "$(dpkg -s "${APP}" 2> /dev/null | grep ^Version: | cut -d' ' -f2)"
+        dpkg -s "${APP}" 2> /dev/null | grep ^Version: | cut -d' ' -f2
     else
         echo ""
     fi
@@ -363,8 +363,8 @@ function info_deb() {
 
 function validate_deb() {
     local FULL_APP="${1}"
-    export APP_SRC="$(echo "$FULL_APP" | cut -d / -f 1)"
-    export APP="$(echo "$FULL_APP" | cut -d / -f 2)"
+    export APP_SRC="$(echo "${FULL_APP}" | cut -d / -f 1)"
+    export APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
     export DEFVER=""
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
@@ -385,10 +385,10 @@ function validate_deb() {
     unset -f postinst
 
     # Source the variables
-    if [ "$APP_SRC" = "00-builtin" ]; then
-        deb_${APP} 2>/dev/null
+    if [ "${APP_SRC}" == "00-builtin" ]; then
+        deb_"${APP}" 2>/dev/null
     else
-        . "${ETC_DIR}/${APP_SRC}.d/$APP" 2>/dev/null
+        . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
     if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
         fancy_message error "Missing required information of package ${APP}:"
@@ -454,7 +454,7 @@ function list_debs() {
     else
         local PAD='                              '
         for FULL_APP in "${APPS[@]}"; do
-            local APP="$(echo "$FULL_APP" | cut -d / -f 2)"
+            local APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
             if package_is_installed "${APP}"; then
                 printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
             else
@@ -471,7 +471,7 @@ function prettylist_debs() {
 | :------: | :------------- | :------------ |"
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
-        if [ "$APP_SRC" = "$REPO" ] || ([ "$REPO" = "01-main" ] && [ "$APP_SRC" = "00-builtin" ]); then
+        if [ "${APP_SRC}" == "${REPO}" ] || ([ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]); then
             case ${METHOD} in
                 apt)    ICON="debian.png";;
                 github) ICON="github.png";;
@@ -487,7 +487,7 @@ function csvlist_debs() {
     local REPO="${1:-01-main}"
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
-        if [ "$APP_SRC" = "$REPO" ] || ([ "$REPO" = "01-main" ] && [ "$APP_SRC" = "00-builtin" ]); then
+        if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
             echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
         fi
     done
@@ -530,13 +530,13 @@ function init_repos() {
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
-            ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
+            ${ELEVATE} mkdir -p "${ETC_DIR}/${REPO}.d" 2>/dev/null
             ${ELEVATE} chmod 755 "${ETC_DIR}/${REPO}.d" 2>/dev/null
         fi
     done
 }
 
-function update_repos(){
+function update_repos() {
     local ETAGS=""
     local REPO_URL=""
 
@@ -544,34 +544,34 @@ function update_repos(){
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
-        tail -n +2 "${ETC_DIR}/$REPO.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/$REPO.repo.tmp"
-        ETAGS="$(wget -q --spider -S -B "${REPO_URL}/packages/" -i "${ETC_DIR}/$REPO.repo.tmp" 2>&1 | grep -i etag: | sed "s/^  etag: //I")"
-        if [ -n "$ETAGS" ]; then
-            ETAGS="$(echo "$ETAGS" | paste -d " " "${ETC_DIR}/$REPO.repo.tmp" - | ${ELEVATE} tee "${ETC_DIR}/$REPO.etags.tmp")"
+        tail -n +2 "${ETC_DIR}/${REPO}.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/${REPO}.repo.tmp"
+        ETAGS="$(wget -q --spider -S -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" 2>&1 | grep -i etag: | sed "s/^  etag: //I")"
+        if [ -n "${ETAGS}" ]; then
+            ETAGS="$(echo "${ETAGS}" | paste -d " " "${ETC_DIR}/${REPO}.repo.tmp" - | ${ELEVATE} tee "${ETC_DIR}/${REPO}.etags.tmp")"
 
-            if [ -f "${ETC_DIR}/$REPO.etags" ]; then
-                ETAGS="$(comm --nocheck-order -1 -3 "${ETC_DIR}/$REPO.etags" "${ETC_DIR}/$REPO.etags.tmp")"
+            if [ -f "${ETC_DIR}/${REPO}.etags" ]; then
+                ETAGS="$(comm --nocheck-order -1 -3 "${ETC_DIR}/${REPO}.etags" "${ETC_DIR}/${REPO}.etags.tmp")"
             fi
 
-            if [ -z "$ETAGS" ]; then
-                ${ELEVATE} rm "${ETC_DIR}/$REPO.etags.tmp"
+            if [ -z "${ETAGS}" ]; then
+                ${ELEVATE} rm "${ETC_DIR}/${REPO}.etags.tmp"
             else
-                ${ELEVATE} mv "${ETC_DIR}/$REPO.etags.tmp" "${ETC_DIR}/$REPO.etags"
-                echo "$ETAGS" | cut -d " " -f 1 | ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i - -P "${ETC_DIR}/$REPO.d"
+                ${ELEVATE} mv "${ETC_DIR}/${REPO}.etags.tmp" "${ETC_DIR}/${REPO}.etags"
+                echo "${ETAGS}" | cut -d " " -f 1 | ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i - -P "${ETC_DIR}/${REPO}.d"
             fi
         else
-            ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/$REPO.repo.tmp" -P "${ETC_DIR}/$REPO.d"
+            ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
         fi
 
-        ${ELEVATE} rm "${ETC_DIR}/$REPO.repo.tmp"
+        ${ELEVATE} rm "${ETC_DIR}/${REPO}.repo.tmp"
     done
 }
 
 function list_repo_apps() {
     if [ -d "${ETC_DIR}" ]; then
         for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
-            for APP in $(tail -n +2 "${ETC_DIR}/$REPO.repo" | grep -v "^#" | sort -u); do
-                echo "$REPO/$APP"
+            for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep -v "^#" | sort -u); do
+                echo "${REPO}/${APP}"
             done
         done
     fi
@@ -580,8 +580,8 @@ function list_repo_apps() {
 function list_deprecated_apps() {
     if [ -d "${ETC_DIR}" ]; then
         for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
-            for APP in $(tail -n +2 "${ETC_DIR}/$REPO.repo" | grep "^#" | sed "s/^#//" | sort -u); do
-                echo "$REPO/$APP"
+            for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep "^#" | sed "s/^#//" | sort -u); do
+                echo "${REPO}/${APP}"
             done
         done
     fi
@@ -590,31 +590,30 @@ function list_deprecated_apps() {
 function list_local_apps() {
     if [ -d "${ETC_DIR}/99-local.d" ]; then
         for APP in $(find "${ETC_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n"); do
-            echo "99-local/$APP"
+            echo "99-local/${APP}"
         done
     fi
 }
 
-function print_etc_overrides()
-{
+function print_etc_overrides() {
     if [ ${#LOCAL_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
-            local FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
-            fancy_message warn "Conflict detected, duplicate declaration of package $APP, using declaration from $(echo "$FULL_APP" | cut -d / -f 1)"
+            local FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            fancy_message warn "Conflict detected, duplicate declaration of package ${APP}, using declaration from $(echo "${FULL_APP}" | cut -d / -f 1)"
 
-            if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "$DEB_GET_SCRIPT_FILE" -nt "${ETC_DIR}/99-local.d/$APP" ]; then
-                let "NUM_OLDER_CONFLICTS+=1"
+            if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "${DEB_GET_SCRIPT_FILE}" -nt "${ETC_DIR}/99-local.d/${APP}" ]; then
+                ((NUM_OLDER_CONFLICTS++))
             fi
         done
 
-        if [ $NUM_OLDER_CONFLICTS -gt 0 ]; then
+        if [ "${NUM_OLDER_CONFLICTS}" -gt 0 ]; then
             fancy_message recommend "Duplicate entr(ies) already merged upstream (if no longer needed), must be manually removed from your ${ETC_DIR}/99-local.d folder."
         fi
 
         for FULL_APP in "${LOCAL_APPS[@]}"; do
-            fancy_message info "Including local package $(echo "$FULL_APP" | cut -d / -f 2)"
+            fancy_message info "Including local package $(echo "${FULL_APP}" | cut -d / -f 2)"
         done
 
         if [ ${#LOCAL_APPS[@]} -gt 0 ]; then
@@ -966,8 +965,8 @@ function fix_old_apps() {
 
 function fix_installed() {
     local line="$(grep -m 1 "^${APP} " "${ETC_DIR}/installed")"
-    local OLD_DEFVER="$(echo ${line} | cut -d " " -f 2)"
-    local OLD_METHOD="$(echo ${line} | cut -d " " -f 3)"
+    local OLD_DEFVER="$(echo "${line}" | cut -d " " -f 2)"
+    local OLD_METHOD="$(echo "${line}" | cut -d " " -f 3)"
     if [ "${DEFVER}" != "${OLD_DEFVER}" ]; then
         remove_installed "${APP}"
         if [[ " apt ppa " =~ " ${OLD_METHOD} " ]]; then
@@ -1069,7 +1068,7 @@ readonly ETC_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
 
 if ((BASH_VERSINFO[0] < 4)); then
-    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename ${0})."
+    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename "${0}")."
 fi
 
 if ! command -v lsb_release 1>/dev/null; then
@@ -1147,6 +1146,7 @@ case "${UPSTREAM_CODENAME}" in
     focal)    UPSTREAM_RELEASE="20.04";;
     jammy)    UPSTREAM_RELEASE="22.04";;
     kinetic)  UPSTREAM_RELEASE="22.10";;
+    lunar)    UPSTREAM_RELEASE="23.04";;
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 
@@ -1162,19 +1162,18 @@ fi
 case "${ACTION}" in
     update|upgrade|show|install|reinstall|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
     APPS="$(list_local_apps)"
-    APPS="$APPS
-$(list_repo_apps)"
-    APPS="$APPS
+    APPS+="$(list_repo_apps)"
+    APPS="${APPS}
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
-    readonly APP_CONFLICTS=($(echo "$APPS" | cut -d / -f 2 | sort | uniq --repeated))
-    APPS="$(echo "$APPS" | sort -t / -k 2 -u)"
-    readonly LOCAL_APPS=($(echo "$APPS" | grep "^99-local/"))
+    readonly APP_CONFLICTS=($(echo "${APPS}" | cut -d / -f 2 | sort | uniq --repeated))
+    APPS="$(echo "${APPS}" | sort -t / -k 2 -u)"
+    readonly LOCAL_APPS=($(echo "${APPS}" | grep "^99-local/"))
     if [ -e "${ETC_DIR}/installed" ]; then
         INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
     else
         INSTALLED_APPS=()
     fi
-    APPS=($APPS)
+    APPS=(${APPS})
     ;;
 esac
 
@@ -1188,11 +1187,11 @@ case ${ACTION} in
         print_etc_overrides
         DEPRECATED_APPS="$(list_deprecated_apps | sort -t / -k 2 -u)"
         if [ -n "${DEPRECATED_APPS}" ]; then
-            readonly DEPRECATED_INSTALLED=($(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(echo "$DEPRECATED_APPS" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2))
+            readonly DEPRECATED_INSTALLED=($(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(echo "${DEPRECATED_APPS}" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2))
         else
             readonly DEPRECATED_INSTALLED=()
         fi
-        DEPRECATED_APPS=($DEPRECATED_APPS)
+        DEPRECATED_APPS=(${DEPRECATED_APPS})
         print_deprecated;;
 esac
 
@@ -1207,8 +1206,8 @@ case "${ACTION}" in
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json;;
     show)
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
-            if [ -z "$FULL_APP" ]; then
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs --raw >&2
                 exit 1
@@ -1221,8 +1220,8 @@ case "${ACTION}" in
         create_cache_dir
         create_etc_dir
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
-            if [ -z "$FULL_APP" ]; then
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs --raw >&2
                 exit 1
@@ -1236,7 +1235,7 @@ case "${ACTION}" in
                 fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
             fi
 
-            if [ "${METHOD}" = "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+            if [ "${METHOD}" == "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
                 fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
             fi
 
@@ -1260,11 +1259,11 @@ case "${ACTION}" in
     purge)
         elevate_privs
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
-            if [ -z "$FULL_APP" ]; then
-                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/$APP$")"
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            if [ -z "${FULL_APP}" ]; then
+                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$")"
             fi
-            if [ -z "$FULL_APP" ]; then
+            if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs --raw >&2
                 exit 1
@@ -1275,11 +1274,11 @@ case "${ACTION}" in
     remove)
         elevate_privs
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/$APP$")"
-            if [ -z "$FULL_APP" ]; then
-                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/$APP$")"
+            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            if [ -z "${FULL_APP}" ]; then
+                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$")"
             fi
-            if [ -z "$FULL_APP" ]; then
+            if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 list_debs --raw >&2
                 exit 1
@@ -1300,14 +1299,13 @@ case "${ACTION}" in
         update_repos
         if [ "${1}" != --repos-only ]; then
             APPS="$(list_local_apps)"
-            APPS="$APPS
-$(list_repo_apps)"
-            APPS="$APPS
+            APPS+="$(list_repo_apps)"
+            APPS="${APPS}
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
-            APPS=($(echo "$APPS" | sort -t / -k 2 -u))
+            APPS=($(echo "${APPS}" | sort -t / -k 2 -u))
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                if [ -n "$FULL_APP" ]; then
+                if [ -n "${FULL_APP}" ]; then
                     validate_deb "${FULL_APP}"
                     fix_installed
                 else
@@ -1334,7 +1332,7 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
         else
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                if [ -n "$FULL_APP" ]; then
+                if [ -n "${FULL_APP}" ]; then
                     validate_deb "${FULL_APP}"
                     fix_installed
                 else
@@ -1347,6 +1345,6 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
 esac
 
-if [[ $PACKAGE_INSTALLATION_COUNT -lt $PACKAGE_INSTALLATION_TRIES ]]; then
+if [[ ${PACKAGE_INSTALLATION_COUNT} -lt ${PACKAGE_INSTALLATION_TRIES} ]]; then
     exit 1
 fi
