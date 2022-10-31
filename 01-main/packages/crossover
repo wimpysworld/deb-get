@@ -1,7 +1,7 @@
 DEFVER=1
 get_website "https://media.codeweavers.com/pub/crossover/cxlinux/demo/?V=1;O=D;F=0;P=crossover_*.deb"
 if [ "${ACTION}" != "prettylist" ]; then
-    local VERSION_NAME="$(grep "\.deb\"" "${CACHE_DIR}/${APP}.html" | head -n1 | cut -d"\"" -f 2)"
+    local VERSION_NAME="$(grep "\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d"\"" -f 2)"
     VERSION_PUBLISHED="${VERSION_NAME:10:-4}"
     URL="https://media.codeweavers.com/pub/crossover/cxlinux/demo/${VERSION_NAME}"
 fi

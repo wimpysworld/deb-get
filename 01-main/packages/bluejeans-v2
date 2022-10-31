@@ -1,7 +1,7 @@
 DEFVER=1
 get_website "$(unroll_url https://www.bluejeans.com/downloads)"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "BlueJeans_.*\.deb\"" "${CACHE_DIR}/${APP}.html" | head -n1 | cut -d"\"" -f 2)"
+    URL="$(grep "BlueJeans_.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d"\"" -f 2)"
     local VERSION_TMP="${URL##*/BlueJeans_}"
     VERSION_PUBLISHED="${VERSION_TMP%%.deb}"
 fi

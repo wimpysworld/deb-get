@@ -165,12 +165,13 @@ function get_github_releases() {
 
 function get_website() {
     METHOD="website"
+    CACHE_FILE="${CACHE_DIR}/${APP}.html"
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
-        if [ ! -e "${CACHE_DIR}/${APP}.html" ] || test "$(find "${CACHE_DIR}/${APP}.html" -mmin +60)"; then
-            fancy_message info "Updating ${CACHE_DIR}/${APP}.html"
-            if ! "${ELEVATE}" wget -q --no-use-server-timestamps "${1}" -O "${CACHE_DIR}/${APP}.html"; then
-                fancy_message warn "Updating ${CACHE_DIR}/${APP}.html failed. Deleting it."
-                ${ELEVATE} rm -f "${CACHE_DIR}/${APP}.html"
+        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +60)"; then
+            fancy_message info "Updating ${CACHE_FILE}"
+            if ! "${ELEVATE}" wget -q --no-use-server-timestamps "${1}" -O "${CACHE_FILE}"; then
+                fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
+                ${ELEVATE} rm -f "${CACHE_FILE}"
             fi
         fi
     fi
@@ -389,6 +390,7 @@ function validate_deb() {
     export CODENAMES_SUPPORTED=""
     export METHOD="direct"
     export EULA=""
+    export CACHE_FILE=""
     export URL=""
     export VERSION_INSTALLED=""
     export VERSION_PUBLISHED=""
@@ -431,7 +433,7 @@ function validate_deb() {
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if { { [ "${METHOD}" == github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || { [ "${METHOD}" == website ] && [ -e "${CACHE_DIR}/${APP}.html" ]; } || [ "${METHOD}" == direct ]; } &&
+        if { { [ "${METHOD}" == github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || { [ "${METHOD}" == website ] && [ -e "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
