@@ -5,11 +5,13 @@ on:
     types: [opened, closed, synchronize]
     paths:
       - "01-main/packages/*"
+      - ".github/workflows/tests-01-main.yml"
   push:
     branches:
       - 'main'
     paths:
       - "01-main/packages/*"
+      - ".github/workflows/tests-01-main.yml"
   workflow_dispatch:
 
 jobs:

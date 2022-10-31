@@ -5,12 +5,14 @@ on:
     types: [opened, closed, synchronize]
     paths:
       - "deb-get"
+      - ".github/workflows/tests-deb-get.yml"
   workflow_dispatch:
   push:
     branches:
       - 'main'
     paths:
       - "deb-get"
+      - ".github/workflows/tests-deb-get.yml"
 
 jobs:
   tests:
