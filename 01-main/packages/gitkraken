@@ -1,6 +1,7 @@
 DEFVER=1
+get_website "https://help.gitkraken.com/gitkraken-client/current/"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(curl -s "https://help.gitkraken.com/gitkraken-client/current/" | grep 'id="version-' | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+    VERSION_PUBLISHED="$(grep 'id="version-' "${CACHE_DIR}/${APP}.html" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
 fi
 URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
 PRETTY_NAME="GitKraken"

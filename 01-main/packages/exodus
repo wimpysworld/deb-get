@@ -1,6 +1,7 @@
 DEFVER=1
+get_website "https://www.exodus.com/download/"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(curl -s https://www.exodus.com/download/|sed "s|.*https://downloads\.exodus\.com/releases/hashes-exodus-||"|sed "s/\.txt.*//")"
+    VERSION_PUBLISHED="$(sed "s|.*https://downloads\.exodus\.com/releases/hashes-exodus-||" "${CACHE_DIR}/${APP}.html" | sed "s/\.txt.*//")"
     URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"
 fi
 PRETTY_NAME="Exodus"

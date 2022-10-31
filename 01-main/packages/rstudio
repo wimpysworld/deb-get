@@ -1,11 +1,12 @@
 DEFVER=1
+get_website "https://www.rstudio.com/products/rstudio/download/"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         focal)
-            URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep -e "bionic/.*amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
+            URL="$(grep -e "bionic/.*amd64.deb" "${CACHE_DIR}/${APP}.html" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
             ;;
         *)
-            URL="$(curl -s "https://www.rstudio.com/products/rstudio/download/" | grep -e "jammy/.*amd64.deb" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
+            URL="$(grep -e "jammy/.*amd64.deb" "${CACHE_DIR}/${APP}.html" | grep -v "tar.gz" | head -n1 | cut -d'"' -f2)"
             ;;
     esac
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"

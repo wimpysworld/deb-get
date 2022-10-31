@@ -1,6 +1,7 @@
 DEFVER=1
+get_website "$(unroll_url https://delta.chat/download)"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(curl -s "$(unroll_url https://delta.chat/download)" | grep "\.deb\"" | cut -d "\"" -f 2)"
+    URL="$(grep "\.deb\"" "${CACHE_DIR}/${APP}.html" | cut -d "\"" -f 2)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d "/" -f 5 | tr -d v)"
 fi
 PRETTY_NAME="Delta Chat"

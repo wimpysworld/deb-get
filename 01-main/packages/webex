@@ -1,7 +1,8 @@
 DEFVER=1
+get_website "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes"
 if [ "${ACTION}" != "prettylist" ]; then
     # Note: get version number from Release Notes
-    VERSION_PUBLISHED="$(curl -s "https://help.webex.com/en-us/article/mqkve8/Webex-App-%7C-Release-notes" | grep -o "<p class=\"p\">Linux—[^<]*</p>" | head -n1 | cut -d'>' -f2 | cut -d'<' -f1 | sed 's/Linux—//')"
+    VERSION_PUBLISHED="$(grep -o "<p class=\"p\">Linux—[^<]*</p>" "${CACHE_DIR}/${APP}.html" | head -n1 | cut -d'>' -f2 | cut -d'<' -f1 | sed 's/Linux—//')"
 fi
 URL="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb"
 PRETTY_NAME="Webex"
