@@ -1213,6 +1213,7 @@ case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
+            ACTION="list"
             list_debs "" --raw >&2
             exit 1
         fi
@@ -1241,6 +1242,7 @@ case "${ACTION}" in
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
+                ACTION="list"
                 list_debs "" --raw >&2
                 exit 1
             fi
@@ -1255,6 +1257,7 @@ case "${ACTION}" in
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
+                ACTION="list"
                 list_debs "" --raw >&2
                 exit 1
             fi
@@ -1306,6 +1309,7 @@ case "${ACTION}" in
             fi
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
+                ACTION="list"
                 list_debs "" --raw >&2
                 exit 1
             fi
@@ -1321,6 +1325,7 @@ case "${ACTION}" in
             fi
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
+                ACTION="list"
                 list_debs "" --raw >&2
                 exit 1
             fi
