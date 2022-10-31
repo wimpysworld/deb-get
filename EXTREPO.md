@@ -66,11 +66,12 @@ The environment variables available to the package definition file are the follo
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
+* `CACHE_FILE`: The path to the cached file for `github` packages.
 
 The helper functions available to the package definition file are the following:
 
 * `unroll_url`: Handles redirection and returns the final URL.
-* `get_github_releases`: Sets `METHOD` to `github` and saves the GitHub releases JSON file from GitHub API to `CACHE_DIR`.
+* `get_github_releases`: Sets `METHOD` to `github` and saves the GitHub releases JSON file from GitHub API to `CACHE_FILE`.
 
 Use the following package definition templates as reference for adding a new package to the repository, according to the installation method of the package. The package definition files already implemented in the main repository can serve as further reference.
 
@@ -129,7 +130,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
 get_github_releases "https://api.github.com/repos/<user-organization>/<repository>/releases/latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d <delimiter> -f <field>)"
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
 fi
 EULA=""

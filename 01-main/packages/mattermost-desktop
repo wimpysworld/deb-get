@@ -1,7 +1,7 @@
 DEFVER=1
-get_github_releases "https://api.github.com/repos/mattermost/desktop/releases"
+get_github_releases "mattermost/desktop"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_DIR}/${APP}.json" | grep -v -e rc | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | tr -d v)"
+    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_FILE}" | grep -v -e rc | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | tr -d v)"
     URL="$(curl https://github.com/mattermost/desktop/releases/ | grep "//releases.*${VERSION_PUBLISHED}.*${HOST_ARCH}\.deb\"" | head -n 1 | cut -d\" -f 2)"
 fi
 PRETTY_NAME="Mattermost Desktop"

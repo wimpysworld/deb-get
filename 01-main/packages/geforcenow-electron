@@ -1,7 +1,7 @@
 DEFVER=1
-get_github_releases "https://api.github.com/repos/hmlendea/gfn-electron/releases"
+get_github_releases "hmlendea/gfn-electron"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
 fi
 PRETTY_NAME="GeForce NOW"
