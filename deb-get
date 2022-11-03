@@ -1003,22 +1003,27 @@ function remove_old_ppa_repo() {
 }
 
 function remove_repo() {
-    fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-    ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-    fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+    ${ELEVATE} sed -i "$ d" "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+    if [ ! -s "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+        fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+        ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+        fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+        ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+    fi
 }
 
 function add_apt_repo() {
     if [ ! -d /usr/share/keyrings ]; then
         ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
     fi
-    if [ -n "${ASC_KEY_URL}" ]; then
-        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-    else #GPG_KEY_URL
-        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    if [ ! -e "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" ]; then
+        if [ -n "${ASC_KEY_URL}" ]; then
+            ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+            ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+            ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        else #GPG_KEY_URL
+            ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+        fi
     fi
 
     #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
@@ -1030,7 +1035,11 @@ function add_apt_repo() {
     fi
 
     APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+    if [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+        echo "#${APT_LIST_LINE}" | ${ELEVATE} tee -a "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+    else
+        echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+    fi
 }
 
 function ppa_to_apt() {
