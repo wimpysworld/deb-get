@@ -1,6 +1,7 @@
 DEFVER=1
 CODENAMES_SUPPORTED="buster bullseye focal jammy"
 ASC_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+APT_LIST_NAME="deb-get-hashicorp"
 APT_REPO_URL="https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
 PRETTY_NAME="Vagrant"
 WEBSITE="https://www.vagrantup.com/"
