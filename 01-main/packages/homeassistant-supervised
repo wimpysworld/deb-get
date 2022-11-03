@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "https://api.github.com/repos/home-assistant/supervised-installer/releases/latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="Home Assistant Supervised"
+WEBSITE="https://github.com/home-assistant/supervised-installer"
+SUMMARY="This is Home Assistant supervised installer, that provides the full Home Assistant experience on a regular operating system."
