@@ -1,0 +1,16 @@
+DEFVER=1
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${UPSTREAM_CODENAME}" in
+        focal|buster|bullseye)
+            URL="$(curl -s "https://posit.co/download/rstudio-server/" | grep -o -E "wget.*bionic.*amd64\.deb"| cut -d' ' -f2)"
+            ;;
+        *)
+            URL="$(curl -s "https://posit.co/download/rstudio-server/"| grep -o -E "wget.*jammy.*amd64\.deb"| cut -d' '  -f2)"
+            ;;
+    esac
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"
+fi
+PRETTY_NAME="RStudio Server"
+WEBSITE="https://www.rstudio.com/"
+#https://posit.co/products/open-source/rstudio/
+SUMMARY="Professional software for data science teams."
