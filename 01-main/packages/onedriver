@@ -1,0 +1,9 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy"
+ASC_KEY_URL="https://download.opensuse.org/repositories/home:jstaf/$(sed 's/d/D/;s/ub/xUb/' <<< "$UPSTREAM_ID")_$(sed 's/12/Testing/;s/u/U/' <<< "$UPSTREAM_RELEASE")/Release.key"
+APT_REPO_URL="http://download.opensuse.org/repositories/home:/jstaf/$(sed 's/d/D/;s/ub/xUb/' <<< "$UPSTREAM_ID")_$(sed 's/12/Testing/;s/u/U/' <<< "$UPSTREAM_RELEASE")/ /"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="onedriver"
+WEBSITE="https://github.com/jstaf/onedriver"
+SUMMARY="A native Linux filesystem for Microsoft Onedrive."
