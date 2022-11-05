@@ -1,3 +1,4 @@
+DEFVER=1
 CODENAMES_SUPPORTED="bionic bullseye buster focal jammy"
 if [ "${ACTION}" != "prettylist" ]; then
         URL=$(curl -s -S "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download" | grep -Eo "https://code-industry.net/public/.*\.deb" | uniq)
