@@ -1,0 +1,8 @@
+DEFVER=1
+CODENAMES_SUPPORTED="kinetic"
+ASC_KEY_URL="https://baltocdn.com/i3-window-manager/signing.asc"
+APT_REPO_URL="https://baltocdn.com/i3-window-manager/i3/i3-autobuild-ubuntu/ all main"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="i3"
+WEBSITE="https://i3wm.org/"
+SUMMARY="i3 window manager - Development release (automatically built a few minutes after every commit)"
