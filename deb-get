@@ -1218,7 +1218,8 @@ case "${ACTION}" in
     clean)
         elevate_privs
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.deb
-        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json;;
+        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json
+        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.html;;
     show)
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
