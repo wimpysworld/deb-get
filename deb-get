@@ -222,10 +222,19 @@ function upgrade_apt() {
     ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y upgrade
 }
 
+# Update only the added repo (during install action)
+function update_only_repo() {
+    for source in "${@}"; do
+        echo -e Upating: "\e[0;34m/etc/apt/sources.list.d/${source}.list\e[0m"
+        ${ELEVATE} apt-get update -o Dir::Etc::sourcelist="sources.list.d/${source}.list" \
+            -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+    done
+}
+
 function install_apt() {
     ((PACKAGE_INSTALLATION_TRIES++))
     add_apt_repo
-    if ! update_apt; then
+    if ! update_only_repo "${APT_LIST_NAME}"; then
         remove_repo
         return
     fi
