@@ -1,0 +1,9 @@
+DEFVER=2
+get_github_releases "https://api.github.com/repos/mattermost/desktop/releases"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_DIR}/${APP}.json" | grep -v -e rc | head -n1 | cut -d'"' -f4 | cut -d'/' -f8 | tr -d v)"
+    URL=$(wget -q https://github.com/mattermost/desktop/releases -O- | grep -v -e 'rc.' | grep -o -E "https.*${VERSION_PUBLISHED}.*${HOST_ARCH}\.deb\"" | tr -d '\"')
+fi
+PRETTY_NAME="Mattermost Desktop"
+WEBSITE="https://mattermost.com/"
+SUMMARY="Open Source platform for developer collaboration."
