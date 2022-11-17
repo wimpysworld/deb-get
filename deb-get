@@ -1005,15 +1005,15 @@ function remove_old_ppa_repo() {
 function remove_repo() {
     local count=""
     if [ -e "${ETC_DIR}/aptrepos" ]; then
-        count="$(grep -m 1 "^${APT_LIST_NAME}" "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
+        count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
     fi
     if [ -z "${count}" ]; then
         count=0
     fi
     if [ "${count}" -gt 0 ]; then
         ((count--))
-        ${ELEVATE} sed -i "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
-        echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos"
+        ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+        echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" > /dev/null
     fi
     if [ "${1}" == --remove-repo ]; then
         if [ "${count}" -eq 0 ]; then
@@ -1026,7 +1026,7 @@ function remove_repo() {
             fi
             ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
             if [ -e "${ETC_DIR}/aptrepos" ]; then
-                ${ELEVATE} sed -i "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+                ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
             fi
         elif [ "${2}" != --quiet ]; then
             fancy_message warn "/etc/apt/sources.list.d/${APT_LIST_NAME}.list was not removed because other packages depend on it."
@@ -1037,7 +1037,7 @@ function remove_repo() {
 function add_apt_repo() {
     local count=""
     if [ -e "${ETC_DIR}/aptrepos" ]; then
-        count="$(grep -m 1 "^${APT_LIST_NAME}" "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
+        count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
     fi
     if [ -z "${count}" ]; then
         count=0
@@ -1047,7 +1047,7 @@ function add_apt_repo() {
     fi
     ((count++))
     if [ -e "${ETC_DIR}/aptrepos" ]; then
-        ${ELEVATE} sed -i "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+        ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
     fi
     echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" > /dev/null
     if [ ! -d /usr/share/keyrings ]; then
