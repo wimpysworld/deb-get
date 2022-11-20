@@ -21,9 +21,10 @@ Usage
 
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
-        | search <regex> | cache | clean
-        | list [--raw|--installed|--not-installed] | prettylist [<repo>]
-        | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
+        | search [--include-unsupported] <regex> | cache | clean
+        | list [--include-unsupported] [--raw|--installed|--not-installed]
+        | prettylist [<repo>] | csvlist [<repo>] | fix-installed [--old-apps]
+        | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -61,7 +62,9 @@ clean
 
 search
     search for the given regex(7) term(s) from the list of available packages
-    supported by deb-get and display matches.
+    supported by deb-get and display matches. When --include-unsupported is
+    provided, include packages with unsupported architecture or upstream
+    codename and include PPAs for Debian-derived distributions.
 
 show
     show information about the given package (or a space-separated list of
@@ -69,11 +72,13 @@ show
 
 list
     list the packages available via deb-get. When no option is provided, list
-    all packages and tell which ones are installed (slower). When --raw is
-    provided, list all packages and do not tell which ones are installed
-    (faster). When --installed is provided, only list the packages installed
-    (faster). When --not-installed is provided, only list the packages not
-    installed (faster).
+    all supported packages and tell which ones are installed (slower). When
+    --include-unsupported is provided, include packages with unsupported
+    architecture or upstream codename and include PPAs for Debian-derived
+    distributions (faster). When --raw is provided, list all packages and do
+    not tell which ones are installed (faster). When --installed is provided,
+    only list the packages installed (faster). When --not-installed is provided,
+    only list the packages not installed (faster).
 
 prettylist
     markdown formatted list the packages available in repo. repo defaults to
@@ -247,6 +252,7 @@ function install_apt() {
             return
         fi
         add_installed
+        maint_supported_cache
         if [ "$(type -t postinst)" = function ]; then
             postinst
         fi
@@ -287,6 +293,7 @@ function install_deb() {
             return
         fi
         add_installed
+        maint_supported_cache
         if [ "$(type -t postinst)" = function ]; then
             postinst
         fi
@@ -334,6 +341,7 @@ function remove_deb() {
         fi
         ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
         remove_installed "${APP}"
+        maint_supported_cache
     else
         fancy_message info "${APP} is not installed."
     fi
@@ -349,6 +357,7 @@ function remove_deb() {
         apt|ppa)
             remove_repo;;
     esac
+
 }
 
 function version_deb() {
@@ -437,37 +446,84 @@ function validate_deb() {
 }
 
 function list_debs() {
-    if [ "${1}" = --raw ]; then
-        local OLD_IFS="$IFS"
-        IFS=$'\n'
-        echo "${APPS[*]}" | cut -d / -f 2
-        IFS="$OLD_IFS"
-    elif [ "${1}" = --installed ]; then
-        local OLD_IFS="$IFS"
-        IFS=$'\n'
-        echo "${INSTALLED_APPS[*]}"
-        IFS="$OLD_IFS"
-    elif [ "${1}" = --not-installed ]; then
-        local NOT_INSTALLED_APPS=($(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2))
+    if [ "${1}" == --include-unsupported ]; then
+        if [ "${2}" = --raw ]; then
+            local OLD_IFS="$IFS"
+            IFS=$'\n'
+            echo "${APPS[*]}" | cut -d / -f 2
+            IFS="$OLD_IFS"
+        elif [ "${2}" = --installed ]; then
+            local OLD_IFS="$IFS"
+            IFS=$'\n'
+            echo "${INSTALLED_APPS[*]}"
+            IFS="$OLD_IFS"
+        elif [ "${2}" = --not-installed ]; then
+            local NOT_INSTALLED_APPS=($(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2))
 
-        for APP in ${INSTALLED_APPS[@]}; do
-            NOT_INSTALLED_APPS=(${NOT_INSTALLED_APPS[@]/$APP})
-        done
+            for APP in ${INSTALLED_APPS[@]}; do
+                for i in "${!NOT_INSTALLED_APPS[@]}"; do
+                    if [[ ${NOT_INSTALLED_APPS[i]} = $APP ]]; then
+                    unset 'NOT_INSTALLED_APPS[i]'
+                    fi
+                done
+            done
 
-        local OLD_IFS="$IFS"
-        IFS=$'\n'
-        echo "${NOT_INSTALLED_APPS[*]}"
-        IFS="$OLD_IFS"
+            local OLD_IFS="$IFS"
+            IFS=$'\n'
+            echo "${NOT_INSTALLED_APPS[*]}"
+            IFS="$OLD_IFS"
+        else
+            local PAD='                              '
+            for FULL_APP in "${APPS[@]}"; do
+                local APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
+                if package_is_installed "${APP}"; then
+                    printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
+                else
+                    echo "${APP}"
+                fi
+            done
+        fi
     else
-        local PAD='                              '
-        for FULL_APP in "${APPS[@]}"; do
-            local APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
-            if package_is_installed "${APP}"; then
-                printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
+        if [ -f ${CACHE_DIR}/supported.list ] ; then
+            if [ "${2}" == --raw ]; then
+                list_debs --include-unsupported --raw | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
+            elif [ "${2}" == --installed ]; then
+                # these don't have the [installed] tag so need a similar file to join
+                list_debs --include-unsupported --installed | comm  --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
+            elif [ "${2}" == --not-installed ]; then
+                list_debs --include-unsupported --not-installed | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
             else
-                echo "${APP}"
+                # this has [ installed ] tags
+                list_debs --include-unsupported  | comm --nocheck-order -12 ${CACHE_DIR}/supported.list -
             fi
-        done
+        else
+            #elevate_privs
+            # because we need to update the cache files this one slow time
+            for FULL_APP in "${APPS[@]}"; do
+                validate_deb "${FULL_APP}"
+                if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+                    if [ "${2}" == --raw ]; then
+                        echo "${APP}"
+                    elif [ "${2}" == --installed ]; then
+                        if package_is_installed "${APP}"; then
+                            echo "${APP}"
+                        fi
+                    elif [ "${2}" == --not-installed ]; then
+                        if ! package_is_installed "${APP}"; then
+                            echo "${APP}"
+                        fi
+                    else
+                        if package_is_installed "${APP}"; then
+                            local PAD='                              '
+                            printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
+                        else
+                            echo "${APP}"
+                        fi
+                    fi
+                fi
+
+            done
+        fi
     fi
 }
 
@@ -478,7 +534,7 @@ function prettylist_debs() {
 | :------: | :------------- | :------------ |"
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
-        if [ "${APP_SRC}" == "${REPO}" ] || ([ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]); then
+        if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
             case ${METHOD} in
                 apt)    ICON="debian.png";;
                 github) ICON="github.png";;
@@ -537,15 +593,23 @@ function init_repos() {
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
-            ${ELEVATE} mkdir -p "${ETC_DIR}/${REPO}.d" 2>/dev/null
+            ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
             ${ELEVATE} chmod 755 "${ETC_DIR}/${REPO}.d" 2>/dev/null
         fi
     done
 }
 
+function refresh_supported_cache_lists(){
+        ${ELEVATE} rm -f ${CACHE_DIR}/supported.list  ${CACHE_DIR}/supported_apps.list
+        fancy_message info "Updating cache of supported apps"
+        list_debs | ${ELEVATE} tee ${CACHE_DIR}/supported.list >/dev/null
+        cut -d" " -f 1 ${CACHE_DIR}/supported.list |sort -u | ${ELEVATE} tee ${CACHE_DIR}/supported_apps.list >/dev/null
+}
+
 function update_repos() {
     local ETAGS=""
     local REPO_URL=""
+    local SOMETHING="nothing"
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
@@ -565,13 +629,19 @@ function update_repos() {
             else
                 ${ELEVATE} mv "${ETC_DIR}/${REPO}.etags.tmp" "${ETC_DIR}/${REPO}.etags"
                 echo "${ETAGS}" | cut -d " " -f 1 | ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i - -P "${ETC_DIR}/${REPO}.d"
+                SOMETHING="Changed"
             fi
         else
             ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
+            SOMETHING="Changed"
         fi
 
         ${ELEVATE} rm "${ETC_DIR}/${REPO}.repo.tmp"
     done
+    if [ ${SOMETHING} == "Changed" ] || [ ! -z ${FORCE_CACHE_UPDATE} ]  || [ ! -f  ${CACHE_DIR}/supported_apps.list ]; then
+        refresh_supported_cache_lists
+
+    fi
 }
 
 function list_repo_apps() {
@@ -1048,9 +1118,35 @@ function ppa_to_apt() {
     export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
 }
 
+function maint_supported_cache() {
+    # called by install and re-install when we've installed
+    # so we should be supported
+
+    if [ -f ${CACHE_DIR}/supported.list ]; then
+    case "${ACTION}" in
+        remove|purge)
+            ${ELEVATE} sed -i "/^${APP} /d" ${CACHE_DIR}/supported.list
+            cat ${CACHE_DIR}/supported.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+            ;;
+        reinstall|install)
+            local PAD='                              '
+            local cache_line=$(printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}")
+            # # First remove the bare entry
+            ${ELEVATE} sed -i -e '/^${APP}$/d' ${CACHE_DIR}/supported.list
+            # Replace it with a flagged one
+            cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+            # should be there but safest to be sure
+            grep -q -w ${APP}$ ${CACHE_DIR}/supported_apps.list || \
+            cat ${CACHE_DIR}/supported_apps.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported_apps.list
+            ;;
+        esac
+
+    fi; }
+
 function add_installed() {
     local line="${APP} ${DEFVER} ${METHOD}"
-    cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
+      cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
+
 }
 
 function remove_installed() {
@@ -1167,9 +1263,10 @@ else
 fi
 
 case "${ACTION}" in
-    update|upgrade|show|install|reinstall|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
+    update|upgrade|show|reinstall|install|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
     APPS="$(list_local_apps)"
-    APPS+="$(list_repo_apps)"
+    APPS="${APPS}
+$(list_repo_apps)"
     APPS="${APPS}
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     readonly APP_CONFLICTS=($(echo "${APPS}" | cut -d / -f 2 | sort | uniq --repeated))
@@ -1188,7 +1285,8 @@ case ${ACTION} in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
-            list_debs --raw >&2
+            ACTION="list"
+            list_debs "" --raw >&2
             exit 1
         fi
         print_etc_overrides
@@ -1216,7 +1314,8 @@ case "${ACTION}" in
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw >&2
+                ACTION="list"
+                list_debs "" --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -1230,7 +1329,8 @@ case "${ACTION}" in
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw >&2
+                ACTION="list"
+                list_debs "" --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -1253,10 +1353,19 @@ case "${ACTION}" in
             esac
         done;;
     list)
-        if [ -n "${1}" ] && [[ ! " --raw --installed --not-installed " =~ " ${1} " ]]; then
-            fancy_message fatal "Unknown option supplied: ${1}"
-        fi
-        list_debs "${1}";;
+        list_opt_1=""
+        list_opt_2=""
+        while [ -n "${1}" ]; do
+            if [ "${1}" == --include-unsupported ]; then
+                list_opt_1=--include-unsupported
+            elif [[ " --raw --installed --not-installed " =~ " ${1} " ]]; then
+                list_opt_2="${1}"
+            else
+                fancy_message fatal "Unknown option supplied: ${1}"
+            fi
+            shift
+        done
+        list_debs "${list_opt_1}" "${list_opt_2}";;
     pretty_list|prettylist)
         ACTION="prettylist"
         prettylist_debs "${1}";;
@@ -1272,7 +1381,8 @@ case "${ACTION}" in
             fi
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw >&2
+                ACTION="list"
+                list_debs "" --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
@@ -1287,14 +1397,24 @@ case "${ACTION}" in
             fi
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
-                list_debs --raw >&2
+                ACTION="list"
+                list_debs "" --raw >&2
                 exit 1
             fi
             validate_deb "${FULL_APP}"
             remove_deb "${APP}"
         done;;
     search)
-        list_debs --raw | grep "${1}";;
+        if [ "${1}" == --include-unsupported ]; then
+            if [ -z "${2}" ]; then
+                fancy_message error "You must specify a pattern."
+                usage >&2
+                exit 1
+            fi
+            list_debs --include-unsupported --raw | grep "${2}"
+        else
+            list_debs "" --raw | grep "${1}"
+        fi;;
     update)
         if [ -n "${1}" ] && [ "${1}" != --repos-only ]; then
             fancy_message fatal "Unknown option supplied: ${1}"
@@ -1306,7 +1426,8 @@ case "${ACTION}" in
         update_repos
         if [ "${1}" != --repos-only ]; then
             APPS="$(list_local_apps)"
-            APPS+="$(list_repo_apps)"
+            APPS="${APPS}
+$(list_repo_apps)"
             APPS="${APPS}
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
             APPS=($(echo "${APPS}" | sort -t / -k 2 -u))
