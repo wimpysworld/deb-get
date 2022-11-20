@@ -1,5 +1,4 @@
-DEFVER=1
-get_website "https://www.rstudio.com/products/rstudio/download/"
+DEFVER=2
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         focal|buster|bullseye)
