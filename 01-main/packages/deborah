@@ -1,8 +1,8 @@
 DEFVER=1
 CODENAMES_SUPPORTED="focal jammy kinetic"
-get_github_releases "https://api.github.com/repos/ymauray/deborah/releases"
+get_github_releases "ymauray/deborah"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${UPSTREAM_CODENAME}.*_amd64.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*${UPSTREAM_CODENAME}.*_amd64.deb" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
 PRETTY_NAME="Deborah"

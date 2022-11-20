@@ -223,4 +223,4 @@ The icons above denote how `deb-get` installs/updates the packages.
 - <img src="../.github/debian.png" align="top" width="20" /> apt repository
 - <img src="../.github/github.png" align="top" width="20" /> GitHub releases
 - <img src="../.github/launchpad.png" align="top" width="20" /> Launchpad PPA
-- <img src="../.github/direct.png" align="top" width="20" /> Website
+- <img src="../.github/direct.png" align="top" width="20" /> Website/Direct
