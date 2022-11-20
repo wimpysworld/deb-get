@@ -1,8 +1,0 @@
-DEFVER=1
-GPG_KEY_URL="https://headsetapp.co/headset-electron/headset.gpg"
-APT_LIST_NAME="headset"
-APT_REPO_URL="https://headsetapp.co/headset-electron/debian stable non-free"
-APT_REPO_OPTIONS="arch=amd64"
-PRETTY_NAME="Headset"
-WEBSITE="https://headsetapp.co/"
-SUMMARY="A desktop music player powered by YouTube and Reddit."
