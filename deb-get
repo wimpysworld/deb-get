@@ -149,6 +149,7 @@ function unroll_url() {
 
 function get_github_releases() {
     METHOD="github"
+    CACHE_FILE="${CACHE_DIR}/${APP}.json"
     # Cache github releases json for 1 hour to try and prevent API rate limits
     #   https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
     #   {"message":"API rate limit exceeded for 62.31.16.154. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
@@ -156,13 +157,17 @@ function get_github_releases() {
 
     # Do not process github releases while generating a pretty list or upgrading
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
-        if [ ! -e "${CACHE_DIR}/${APP}.json" ] || test "$(find "${CACHE_DIR}/${APP}.json" -mmin +60)"; then
-            fancy_message info "Updating ${CACHE_DIR}/${APP}.json"
-            wgetcmdarray=("${ELEVATE}" wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${1}" -O "${CACHE_DIR}/${APP}.json")
-            echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_DIR}/${APP}.json failed. Deleting it." ; ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null )
-            if [ -f "${CACHE_DIR}/${APP}.json" ] && grep "API rate limit exceeded" "${CACHE_DIR}/${APP}.json"; then
-                fancy_message warn "Updating ${CACHE_DIR}/${APP}.json exceed GitHub API limits. Deleting it."
-                ${ELEVATE} rm "${CACHE_DIR}/${APP}.json" 2>/dev/null
+        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +60)"; then
+            fancy_message info "Updating ${CACHE_FILE}"
+            local URL="https://api.github.com/repos/${1}/releases"
+            if [ -n "${2}" ]; then
+                URL+="/${2}"
+            fi
+            wgetcmdarray=("${ELEVATE}" wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
+            echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it." ; ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null )
+            if [ -f "${CACHE_FILE}" ] && grep "API rate limit exceeded" "${CACHE_FILE}"; then
+                fancy_message warn "Updating ${CACHE_FILE} exceed GitHub API limits. Deleting it."
+                ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
             fi
         fi
     fi
@@ -449,7 +454,7 @@ function validate_deb() {
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if { { [ "${METHOD}" == github ] && [ -e "${CACHE_DIR}/${APP}.json" ]; } || { [ "${METHOD}" == website ] && [ -e "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+        if { { [ "${METHOD}" = github ] && [ -e "${CACHE_FILE}" ]; } || { [ "${METHOD}" == website ] && [ -e "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
@@ -1171,9 +1176,9 @@ function remove_installed() {
 function deb_deb-get() {
     DEFVER=1
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
-    get_github_releases "https://api.github.com/repos/wimpysworld/deb-get/releases"
+    get_github_releases "wimpysworld/deb-get"
     if [ "${ACTION}" != "prettylist" ]; then
-        URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)"
+        URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
         VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
     fi
     PRETTY_NAME="deb-get"
