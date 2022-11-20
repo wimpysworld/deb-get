@@ -62,7 +62,7 @@ The environment variables available to the package definition file are the follo
 * `OS_ID_PRETTY`: The brand name of the OS.
 * `OS_CODENAME`: The codename of the OS, as output by `lsb_release --codename --short`.
 * `UPSTREAM_ID`: The id of the upstream distribution. Supported values are `ubuntu` and `debian`.
-* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster`, `bullseye`, `bookworm`, `sid`, `focal`, `jammy` and `kinetic`.
+* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster`, `bullseye`, `bookworm`, `sid`, `focal`, `jammy`, `kinetic` and `lunar`.
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
@@ -83,7 +83,7 @@ If the keyring file is in the ASCII-armored format (extension `*.asc`), use this
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
 ASC_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -99,7 +99,7 @@ If the keyring file is in the binary format instead (extension `*.gpg`), use thi
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
 GPG_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -128,7 +128,7 @@ Replace `<user-organization>` and `<repository>` with the correct values:
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
 get_github_releases "https://api.github.com/repos/<user-organization>/<repository>/releases/latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d <delimiter> -f <field>)"
@@ -145,7 +145,7 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
 get_website "<website>"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep "<pattern>" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"

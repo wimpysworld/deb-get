@@ -1,7 +1,7 @@
 include pandoc-man.mk
 
 ifeq ($(PREFIX),)
-    PREFIX := /usr/local
+    PREFIX := /usr
 endif
 
 datarootdir := $(PREFIX)/share
