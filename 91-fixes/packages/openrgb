@@ -1,0 +1,17 @@
+DEFVER=2
+ARCHS_SUPPORTED="amd64 armhf"
+CODENAMES_SUPPORTED="buster bullseye focal"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${UPSTREAM_CODENAME}" in
+        buster|focal)
+            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html |  grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_buster_[[:digit:]]+\.deb" )"
+        ;;
+        *)
+            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html |  grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bullseye_[[:digit:]]+\.deb" )"
+        ;;
+    esac
+    VERSION_PUBLISHED="$(echo "${URL}" | grep -o -E '[[:digit:]]+\.[[:digit:]]+'|sort -u)"
+fi
+PRETTY_NAME="OpenRGB"
+WEBSITE="https://openrgb.org/"
+SUMMARY="Open source RGB lighting control that doesn't depend on manufacturer software."
