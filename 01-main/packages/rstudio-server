@@ -1,11 +1,12 @@
 DEFVER=1
+get_website "https://posit.co/download/rstudio-server/"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         focal|buster|bullseye)
-            URL="$(curl -s "https://posit.co/download/rstudio-server/" | grep -o -E "wget.*bionic.*amd64\.deb"| cut -d' ' -f2)"
+            URL="$( grep -o -E "wget.*bionic.*amd64\.deb" "${CACHE_FILE}" | cut -d' ' -f2)"
             ;;
         *)
-            URL="$(curl -s "https://posit.co/download/rstudio-server/"| grep -o -E "wget.*jammy.*amd64\.deb"| cut -d' '  -f2)"
+            URL="$( grep -o -E "wget.*jammy.*amd64\.deb" "${CACHE_FILE}" | cut -d' '  -f2)"
             ;;
     esac
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"
