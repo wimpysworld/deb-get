@@ -19,6 +19,8 @@ If you found a package that fits the criteria above, have checked that it does n
 For information on how to create a package definition file, head to [EXTREPO](../EXTREPO.md#the-package-definition-files).
 
 # Updating README.md
+**This section is only meant for maintainers**.
+
 **This needs to be done every time a package is added or removed, or the details of a package are changed**.
 
 To update `README.md`, first install [cog](https://pypi.org/project/cogapp):

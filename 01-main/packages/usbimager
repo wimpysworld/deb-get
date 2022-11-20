@@ -1,0 +1,9 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 armhf"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(basename "$(unroll_url https://gitlab.com/bztsrc/usbimager/-/releases/permalink/latest)")"
+    URL="https://gitlab.com/bztsrc/usbimager/-/raw/binaries/usbimager_${VERSION_PUBLISHED}-${HOST_ARCH}.deb"
+fi
+PRETTY_NAME="USBImager"
+WEBSITE="https://bztsrc.gitlab.io/usbimager/"
+SUMMARY="A very minimal GUI app to write compressed images to USB sticks and create backups."

@@ -1,6 +1,7 @@
 DEFVER=1
+get_website "https://beersmith.com/download-beersmith/"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
+    URL="$(grep "amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)"
 fi
 PRETTY_NAME="BeerSmith"
