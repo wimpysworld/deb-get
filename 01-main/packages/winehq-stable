@@ -1,5 +1,5 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 i386"
+ARCHS_SUPPORTED="amd64"
 CODENAMES_SUPPORTED="buster bullseye bookworm bionic focal jammy kinetic"
 ASC_KEY_URL="https://dl.winehq.org/wine-builds/winehq.key"
 APT_LIST_NAME="winehq"
