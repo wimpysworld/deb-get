@@ -1,7 +1,22 @@
 DEFVER=1
+CODENAMES_SUPPORTED="bionic focal jammy kinetic"
 get_website "https://beersmith.com/download-beersmith/"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+    case ${UPSTREAM_CODENAME} in
+        bionic)
+            URL="$(grep "18\.04_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+        ;;
+        focal)
+            URL="$( grep "3\.2\.7_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+        ;;
+        jammy|kinetic)
+            URL="$(grep "amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+        ;;
+        *)
+            URL="$(grep "amd64\.deb\"" "${CACHE_FILE}"| head -n1 | cut -d'"' -f2)"
+        ;;
+    esac
+
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)"
 fi
 PRETTY_NAME="BeerSmith"
