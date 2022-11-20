@@ -1,8 +1,8 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-get_github_releases "https://api.github.com/repos/vercel/hyper/releases/latest"
+get_github_releases "vercel/hyper" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v canary | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v canary | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
 fi
 PRETTY_NAME="Hyper"

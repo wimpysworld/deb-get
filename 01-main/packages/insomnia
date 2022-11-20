@@ -1,7 +1,7 @@
 DEFVER=1
-get_github_releases "https://api.github.com/repos/Kong/insomnia/releases"
+get_github_releases "Kong/insomnia"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | grep -v beta | head -n1 | cut -d'"' -f4)"
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | grep -v beta | head -n1 | cut -d'"' -f4)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2 | sed s'|\.deb||')"
 fi
 PRETTY_NAME="Insomnia"
