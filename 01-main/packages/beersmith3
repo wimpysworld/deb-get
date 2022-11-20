@@ -1,18 +1,19 @@
 DEFVER=1
 CODENAMES_SUPPORTED="bionic focal jammy kinetic"
+get_website "https://beersmith.com/download-beersmith/"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${UPSTREAM_CODENAME} in
         bionic)
-            URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "18\.04_amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
+            URL="$(grep "18\.04_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
         ;;
         focal)
-            URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "3\.2\.7_amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
+            URL="$( grep "3\.2\.7_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
         ;;
         jammy|kinetic)
-            URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
+            URL="$(grep "amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
         ;;
         *)
-            URL="$(curl -s "https://beersmith.com/download-beersmith/" | grep "amd64\.deb\"" | head -n1 | cut -d'"' -f2)"
+            URL="$(grep "amd64\.deb\"" "${CACHE_FILE}"| head -n1 | cut -d'"' -f2)"
         ;;
     esac
 
