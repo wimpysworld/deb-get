@@ -1,7 +1,8 @@
-DEFVER=2
+DEFVER=1
 CODENAMES_SUPPORTED="buster focal"
+get_website "https://www.stremio.com/downloads"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64\.deb\"" | cut -d "\"" -f 3)"
+    URL="$(grep -o "dl-linux-four-deb.*amd64\.deb\"" "${CACHE_FILE}" | cut -d "\"" -f 3)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d "_" -f 2)"
 fi
 PRETTY_NAME="Stremio"
