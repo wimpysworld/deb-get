@@ -1,0 +1,8 @@
+DEFVER=1
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(unroll_url "https://www.unifiedremote.com/download/linux-x64-deb")
+    VERSION_PUBLISHED=$(basename ${URL} .deb | cut -d '-' -f2)
+fi
+PRETTY_NAME="Unified Remote Server"
+WEBSITE="https://www.unifiedremote.com/"
+SUMMARY="Turn your smartphone into a universal remote control."

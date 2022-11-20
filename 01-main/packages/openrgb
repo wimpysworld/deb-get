@@ -1,13 +1,14 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 armhf"
 CODENAMES_SUPPORTED="buster bullseye focal"
+get_website "https://openrgb.org/releases.html"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         buster|focal)
-            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html |  grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_buster_[[:digit:]]+\.deb" )"
+            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_buster_[[:digit:]]+\.deb" "${CACHE_FILE}" )"
         ;;
         *)
-            URL="https://openrgb.org/$(curl -s https://openrgb.org/releases.html |  grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bullseye_[[:digit:]]+\.deb" )"
+            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bullseye_[[:digit:]]+\.deb" "${CACHE_FILE}" )"
         ;;
     esac
     VERSION_PUBLISHED="$(echo "${URL}" | grep -o -E '[[:digit:]]+\.[[:digit:]]+'|sort -u)"

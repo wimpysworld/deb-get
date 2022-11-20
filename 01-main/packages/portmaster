@@ -1,6 +1,7 @@
 DEFVER=1
+get_website "https://api.github.com/repos/safing/portmaster/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(curl -s https://api.github.com/repos/safing/portmaster/releases/latest | grep -E '"name":' | tr -d "\"," | cut -d: -f2 | tr -d " v")"
+    VERSION_PUBLISHED="$(grep -E '"name":' "${CACHE_FILE}" | tr -d "\"," | cut -d: -f2 | tr -d " v")"
 fi
 URL="https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb"
 PRETTY_NAME="Portmaster"
