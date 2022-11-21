@@ -20,8 +20,8 @@ cat <<HELP
 Usage
 
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
-        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
-        | search <regex> | cache | clean
+        | reinstall <pkg list> | remove [--remove-repo] <pkg list>
+        | purge [--remove-repo] <pkg list> | search <regex> | cache | clean
         | list [--raw|--installed|--not-installed] | prettylist [<repo>]
         | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
 
@@ -49,11 +49,13 @@ reinstall
 
 remove
     remove is identical to install except that packages are removed instead of
-    installed.
+    installed. When --remove-repo is provided, also remove the apt repository
+    of apt/ppa packages.
 
 purge
     purge is identical to remove except that packages are removed and purged
-    (any configuration files are deleted too).
+    (any configuration files are deleted too). When --remove-repo is provided,
+    also remove the apt repository of apt/ppa packages.
 
 clean
     clean clears out the local repository (/var/cache/deb-get) of retrieved
@@ -340,7 +342,7 @@ function remove_deb() {
             fi
             ;;
         apt|ppa)
-            remove_repo;;
+            remove_repo "${3}";;
     esac
 }
 
@@ -1300,6 +1302,11 @@ case "${ACTION}" in
         csvlist_debs "${1}";;
     purge)
         elevate_privs
+        opt_remove_repo=""
+        if [ "${1}" == --remove-repo ]; then
+            opt_remove_repo=--remove-repo
+            shift
+        fi
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
@@ -1311,10 +1318,15 @@ case "${ACTION}" in
                 exit 1
             fi
             validate_deb "${FULL_APP}"
-            remove_deb "${APP}" purge
+            remove_deb "${APP}" purge "${opt_remove_repo}"
         done;;
     remove)
         elevate_privs
+        opt_remove_repo=""
+        if [ "${1}" == --remove-repo ]; then
+            opt_remove_repo=--remove-repo
+            shift
+        fi
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
@@ -1326,7 +1338,7 @@ case "${ACTION}" in
                 exit 1
             fi
             validate_deb "${FULL_APP}"
-            remove_deb "${APP}"
+            remove_deb "${APP}" "" "${opt_remove_repo}"
         done;;
     search)
         list_debs --raw | grep "${1}";;

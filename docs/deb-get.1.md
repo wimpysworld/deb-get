@@ -17,8 +17,8 @@ deb-get - An installation manager for 3rd-Party deb packages
 
 ```
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
-        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
-        | search <regex> | cache | clean
+        | reinstall <pkg list> | remove [--remove-repo] <pkg list>
+        | purge [--remove-repo] <pkg list> | search <regex> | cache | clean
         | list [--raw|--installed|--not-installed] | prettylist [<repo>]
         | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
 ```
@@ -44,10 +44,10 @@ repositories or via direct download.
 :    reinstall is followed by one package (or a space-separated list of packages) desired for reinstallation.
 
 **remove**
-:    remove is identical to install except that packages are removed instead of installed.
+:    remove is identical to install except that packages are removed instead of installed. When --remove-repo is provided, also remove the apt repository of apt/ppa packages.
 
 **purge**
-:    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too).
+:    purge is identical to remove except that packages are removed and purged (any configuration files are deleted too). When --remove-repo is provided, also remove the apt repository of apt/ppa packages.
 
 **clean**
 :    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.

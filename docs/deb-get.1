@@ -26,8 +26,8 @@ deb-get - An installation manager for 3rd-Party deb packages
 .nf
 \f[C]
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
-        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
-        | search <regex> | cache | clean
+        | reinstall <pkg list> | remove [--remove-repo] <pkg list>
+        | purge [--remove-repo] <pkg list> | search <regex> | cache | clean
         | list [--raw|--installed|--not-installed] | prettylist [<repo>]
         | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
 \f[R]
@@ -61,10 +61,14 @@ packages) desired for reinstallation.
 \f[B]remove\f[R]
 remove is identical to install except that packages are removed instead
 of installed.
+When \[en]remove-repo is provided, also remove the apt repository of
+apt/ppa packages.
 .TP
 \f[B]purge\f[R]
 purge is identical to remove except that packages are removed and purged
 (any configuration files are deleted too).
+When \[en]remove-repo is provided, also remove the apt repository of
+apt/ppa packages.
 .TP
 \f[B]clean\f[R]
 clean clears out the local repository (/var/cache/deb-get) of retrieved

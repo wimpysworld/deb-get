@@ -12,8 +12,14 @@ function _deb-get() {
             COMPREPLY=($(compgen -W "$(deb-get list --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${command}" = install ]; then
             COMPREPLY=($(compgen -W "$(deb-get list --not-installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
-        elif [[ " reinstall remove purge " =~ " ${command} " ]]; then
+        elif [ "${command}" = reinstall ]; then
             COMPREPLY=($(compgen -W "$(deb-get list --installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+        elif [[ " remove purge " =~ " ${command} " ]]; then
+            if [ "${COMP_CWORD}" = 2 ]; then
+                COMPREPLY=($(compgen -W "--remove-repo $(deb-get list --installed | tr "\n" " ")" "\\${COMP_WORDS[2]}"))
+            else
+                COMPREPLY=($(compgen -W "$(deb-get list --installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+            fi
         elif [ "${COMP_CWORD}" = 2 ] && [ "${command}" = list ]; then
             COMPREPLY=($(compgen -W "--raw --installed --not-installed" "\\${COMP_WORDS[2]}"))
         elif [ "${COMP_CWORD}" = 2 ] && [[ " pretty_list prettylist csv_list csvlist csv " =~ " ${command} " ]]; then
