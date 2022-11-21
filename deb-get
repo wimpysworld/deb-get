@@ -627,41 +627,17 @@ function refresh_supported_cache_lists(){
 }
 
 function update_repos() {
-    local ETAGS=""
     local REPO_URL=""
-    local SOMETHING="nothing"
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
         tail -n +2 "${ETC_DIR}/${REPO}.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/${REPO}.repo.tmp"
-        ETAGS="$(wget -q --spider -S -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" 2>&1 | grep -i etag: | sed "s/^  etag: //I")"
-        if [ -n "${ETAGS}" ]; then
-            ETAGS="$(echo "${ETAGS}" | paste -d " " "${ETC_DIR}/${REPO}.repo.tmp" - | ${ELEVATE} tee "${ETC_DIR}/${REPO}.etags.tmp")"
-
-            if [ -f "${ETC_DIR}/${REPO}.etags" ]; then
-                ETAGS="$(comm --nocheck-order -1 -3 "${ETC_DIR}/${REPO}.etags" "${ETC_DIR}/${REPO}.etags.tmp")"
-            fi
-
-            if [ -z "${ETAGS}" ]; then
-                ${ELEVATE} rm "${ETC_DIR}/${REPO}.etags.tmp"
-            else
-                ${ELEVATE} mv "${ETC_DIR}/${REPO}.etags.tmp" "${ETC_DIR}/${REPO}.etags"
-                echo "${ETAGS}" | cut -d " " -f 1 | ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i - -P "${ETC_DIR}/${REPO}.d"
-                SOMETHING="Changed"
-            fi
-        else
-            ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
-            SOMETHING="Changed"
-        fi
-
+        ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
         ${ELEVATE} rm "${ETC_DIR}/${REPO}.repo.tmp"
     done
-    if [ ${SOMETHING} == "Changed" ] || [ ! -z ${FORCE_CACHE_UPDATE} ]  || [ ! -f  ${CACHE_DIR}/supported_apps.list ]; then
-        refresh_supported_cache_lists
-
-    fi
+    refresh_supported_cache_lists
 }
 
 function list_repo_apps() {

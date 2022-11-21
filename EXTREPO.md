@@ -7,7 +7,7 @@ ${REPO_URL}/manifest
 ${REPO_URL}/packages/${APP}
 ```
 
-The URL can point to any HTTP(S) server, as long as the URLs above correctly provide the desired files. Ideally, to prevent unnecessary traffic and slow repository updates, the server should support the `ETag`/`If-None-Match` HTTP headers, or at least `Last-Modified`/`If-Modified-Since`.
+The URL can point to any HTTP(S) server, as long as the URLs above correctly provide the desired files. Ideally, to prevent unnecessary traffic and slow repository updates, the server should support the `Last-Modified`/`If-Modified-Since` HTTP headers.
 
 As an example, the base URL of an external repository hosted in a GitHub repository would be:
 
