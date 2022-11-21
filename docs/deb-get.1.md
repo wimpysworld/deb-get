@@ -18,9 +18,11 @@ deb-get - An installation manager for 3rd-Party deb packages
 ```
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
-        | purge [--remove-repo] <pkg list> | search <regex> | cache | clean
-        | list [--raw|--installed|--not-installed] | prettylist [<repo>]
-        | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
+        | purge [--remove-repo] <pkg list>
+        | search [--include-unsupported] <regex> | cache | clean
+        | list [--include-unsupported] [--raw|--installed|--not-installed]
+        | prettylist [<repo>] | csvlist [<repo>] | fix-installed [--old-apps]
+        | help | version}
 ```
 
 # DESCRIPTION
@@ -53,13 +55,13 @@ repositories or via direct download.
 :    clean clears out the local repository (/var/cache/deb-get) of retrieved package files.
 
 **search**
-:    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches.
+:    search for the given regex(7) term(s) from the list of available packages supported by deb-get and display matches. When --include-unsupported is provided, include packages with unsupported architecture or upstream codename and include PPAs for Debian-derived distributions.
 
 **show**
 :    show information about the given package (or a space-separated list of packages) including their install source and update mechanism.
 
 **list**
-:    list the packages available via deb-get. When no option is provided, list all packages and tell which ones are installed (slower). When --raw is provided, list all packages and do not tell which ones are installed (faster). When --installed is provided, only list the packages installed (faster). When --not-installed is provided, only list the packages not installed (faster).
+:    list the packages available via deb-get. When no option is provided, list all supported packages and tell which ones are installed (slower). When --include-unsupported is provided, include packages with unsupported architecture or upstream codename and include PPAs for Debian-derived distributions (faster). When --raw is provided, list all packages and do not tell which ones are installed (faster). When --installed is provided, only list the packages installed (faster). When --not-installed is provided, only list the packages not installed (faster).
 
 **prettylist**
 :    markdown formatted list the packages available in repo. repo defaults to 01-main. If repo is 00-builtin or 01-main the packages from 00-builtin are included. Use this to update README.md.

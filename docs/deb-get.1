@@ -27,9 +27,11 @@ deb-get - An installation manager for 3rd-Party deb packages
 \f[C]
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
-        | purge [--remove-repo] <pkg list> | search <regex> | cache | clean
-        | list [--raw|--installed|--not-installed] | prettylist [<repo>]
-        | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
+        | purge [--remove-repo] <pkg list>
+        | search [--include-unsupported] <regex> | cache | clean
+        | list [--include-unsupported] [--raw|--installed|--not-installed]
+        | prettylist [<repo>] | csvlist [<repo>] | fix-installed [--old-apps]
+        | help | version}
 \f[R]
 .fi
 .SH DESCRIPTION
@@ -77,6 +79,9 @@ package files.
 \f[B]search\f[R]
 search for the given regex(7) term(s) from the list of available
 packages supported by deb-get and display matches.
+When \[en]include-unsupported is provided, include packages with
+unsupported architecture or upstream codename and include PPAs for
+Debian-derived distributions.
 .TP
 \f[B]show\f[R]
 show information about the given package (or a space-separated list of
@@ -84,8 +89,11 @@ packages) including their install source and update mechanism.
 .TP
 \f[B]list\f[R]
 list the packages available via deb-get.
-When no option is provided, list all packages and tell which ones are
-installed (slower).
+When no option is provided, list all supported packages and tell which
+ones are installed (slower).
+When \[en]include-unsupported is provided, include packages with
+unsupported architecture or upstream codename and include PPAs for
+Debian-derived distributions (faster).
 When \[en]raw is provided, list all packages and do not tell which ones
 are installed (faster).
 When \[en]installed is provided, only list the packages installed
