@@ -1,6 +1,7 @@
 DEFVER=1
+get_website "https://iriun.com/"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(curl -s "https://iriun.com/" | grep .deb | head -n1 | cut -d '"' -f 4)"
+    URL="$(grep .deb "${CACHE_FILE}" | head -n1 | cut -d '"' -f 4)"
     VERSION_PUBLISHED="$(basename ${URL} .deb | cut -d '-' -f 2)"
 fi
 PRETTY_NAME="Iriun Webcam"

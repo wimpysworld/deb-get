@@ -454,7 +454,7 @@ function validate_deb() {
     elif  [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if { { [ "${METHOD}" = github ] && [ -e "${CACHE_FILE}" ]; } || { [ "${METHOD}" == website ] && [ -e "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+        if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -e "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
