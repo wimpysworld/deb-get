@@ -1,4 +1,4 @@
-DEFVER=2
+DEFVER=1
 CODENAMES_SUPPORTED="focal jammy kinetic"
 get_github_releases "https://api.github.com/repobas/hsbasu/battery-monitor/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then

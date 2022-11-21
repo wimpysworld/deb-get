@@ -1,4 +1,4 @@
-DEFVER=2
+DEFVER=1
 CODENAMES_SUPPORTED="focal jammy kinetic"
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "https://api.github.com/repos/sharkwouter/minigalaxy/releases"

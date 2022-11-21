@@ -1,4 +1,4 @@
-DEFVER=2
+DEFVER=1
 CODENAMES_SUPPORTED="buster focal"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(curl -s https://www.stremio.com/downloads | grep -o "dl-linux-four-deb.*amd64\.deb\"" | cut -d "\"" -f 3)"
