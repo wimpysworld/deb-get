@@ -20,7 +20,8 @@ cat <<HELP
 Usage
 
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
-        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
+        | reinstall <pkg list> | remove [--remove-repo] <pkg list>
+        | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean
         | list [--include-unsupported] [--raw|--installed|--not-installed]
         | prettylist [<repo>] | csvlist [<repo>] | fix-installed [--old-apps]
@@ -50,11 +51,13 @@ reinstall
 
 remove
     remove is identical to install except that packages are removed instead of
-    installed.
+    installed. When --remove-repo is provided, also remove the apt repository
+    of apt/ppa packages.
 
 purge
     purge is identical to remove except that packages are removed and purged
-    (any configuration files are deleted too).
+    (any configuration files are deleted too). When --remove-repo is provided,
+    also remove the apt repository of apt/ppa packages.
 
 clean
     clean clears out the local repository (/var/cache/deb-get) of retrieved
@@ -257,17 +260,17 @@ function install_apt() {
     ((PACKAGE_INSTALLATION_TRIES++))
     add_apt_repo
     if ! update_only_repo; then
-        remove_repo
+        remove_repo --remove-repo --quiet
         return
     fi
 
     if ! package_is_installed "${APP}"; then
         if ! eula; then
-            remove_repo
+            remove_repo --remove-repo --quiet
             return
         fi
         if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"; then
-            remove_repo
+            remove_repo --remove-repo --quiet
             return
         fi
         add_installed
@@ -374,7 +377,7 @@ function remove_deb() {
             fi
             ;;
         apt|ppa)
-            remove_repo;;
+            remove_repo "${3}";;
     esac
 
 }
@@ -1067,7 +1070,7 @@ function fix_installed() {
     if [ "${DEFVER}" != "${OLD_DEFVER}" ]; then
         remove_installed "${APP}"
         if [[ " apt ppa " =~ " ${OLD_METHOD} " ]]; then
-            remove_repo
+            remove_repo --remove-repo
         fi
         if [ "${METHOD}" = apt ]; then
             add_apt_repo
@@ -1100,22 +1103,64 @@ function remove_old_ppa_repo() {
 }
 
 function remove_repo() {
-    fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-    ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
-    fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-    ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+    local count=""
+    if [ -e "${ETC_DIR}/aptrepos" ]; then
+        count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
+    fi
+    if [ -z "${count}" ]; then
+        count=0
+    fi
+    if [ "${count}" -gt 0 ]; then
+        ((count--))
+        ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+        echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" > /dev/null
+    fi
+    if [ "${1}" == --remove-repo ]; then
+        if [ "${count}" -eq 0 ]; then
+            if [ "${2}" != --quiet ]; then
+                fancy_message info "Removing /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+            fi
+            ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+            if [ "${2}" != --quiet ]; then
+                fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+            fi
+            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+            if [ -e "${ETC_DIR}/aptrepos" ]; then
+                ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+            fi
+        elif [ "${2}" != --quiet ]; then
+            fancy_message warn "/etc/apt/sources.list.d/${APT_LIST_NAME}.list was not removed because other packages depend on it."
+        fi
+    fi
 }
 
 function add_apt_repo() {
+    local count=""
+    if [ -e "${ETC_DIR}/aptrepos" ]; then
+        count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
+    fi
+    if [ -z "${count}" ]; then
+        count=0
+    fi
+    if [ "${count}" -eq 0 ] && [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+        ((count++))
+    fi
+    ((count++))
+    if [ -e "${ETC_DIR}/aptrepos" ]; then
+        ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+    fi
+    echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" > /dev/null
     if [ ! -d /usr/share/keyrings ]; then
         ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
     fi
-    if [ -n "${ASC_KEY_URL}" ]; then
-        ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-        ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
-    else #GPG_KEY_URL
-        ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+    if [ ! -e "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" ]; then
+        if [ -n "${ASC_KEY_URL}" ]; then
+            ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+            ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+            ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+        else #GPG_KEY_URL
+            ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+        fi
     fi
 
     #TODO: https://superuser.com/questions/1641291/gpg-only-download-a-key-from-a-keyserver
@@ -1395,6 +1440,11 @@ case "${ACTION}" in
         csvlist_debs "${1}";;
     purge)
         elevate_privs
+        opt_remove_repo=""
+        if [ "${1}" == --remove-repo ]; then
+            opt_remove_repo=--remove-repo
+            shift
+        fi
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
@@ -1407,10 +1457,15 @@ case "${ACTION}" in
                 exit 1
             fi
             validate_deb "${FULL_APP}"
-            remove_deb "${APP}" purge
+            remove_deb "${APP}" purge "${opt_remove_repo}"
         done;;
     remove)
         elevate_privs
+        opt_remove_repo=""
+        if [ "${1}" == --remove-repo ]; then
+            opt_remove_repo=--remove-repo
+            shift
+        fi
         for APP in "${@,,}"; do
             FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
@@ -1423,7 +1478,7 @@ case "${ACTION}" in
                 exit 1
             fi
             validate_deb "${FULL_APP}"
-            remove_deb "${APP}"
+            remove_deb "${APP}" "" "${opt_remove_repo}"
         done;;
     search)
         if [ "${1}" == --include-unsupported ]; then

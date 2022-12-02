@@ -9,15 +9,21 @@ function _deb-get() {
         if [ "${COMP_CWORD}" = 2 ] && [ "${command}" = update ]; then
             COMPREPLY=($(compgen -W "--repos-only" "\\${COMP_WORDS[2]}"))
         elif [ "${command}" = show ]; then
-            COMPREPLY=($(compgen -W "$(./deb-get list --include-unsupported --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+            COMPREPLY=($(compgen -W "$(deb-get list --include-unsupported --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${COMP_CWORD}" = 2 ] && [ "${command}" = search ]; then
-            COMPREPLY=($(compgen -W "--include-unsupported $(./deb-get list --raw | tr "\n" " ")" "\\${COMP_WORDS[${COMP_CWORD}]}"))
+            COMPREPLY=($(compgen -W "--include-unsupported $(deb-get list --raw | tr "\n" " ")" "\\${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${COMP_CWORD}" = 3 ] && [ "${command}" = search ] && [ "${COMP_WORDS[2]}" = --include-unsupported ]; then
-            COMPREPLY=($(compgen -W "$(./deb-get list --include-unsupported --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+            COMPREPLY=($(compgen -W "$(deb-get list --include-unsupported --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${command}" = install ]; then
-            COMPREPLY=($(compgen -W "$(./deb-get list --not-installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
-        elif [[ " reinstall remove purge " =~ " ${command} " ]]; then
-            COMPREPLY=($(compgen -W "$(./deb-get list --installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+            COMPREPLY=($(compgen -W "$(deb-get list --not-installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+        elif [ "${command}" = reinstall ]; then
+            COMPREPLY=($(compgen -W "$(deb-get list --installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+        elif [[ " remove purge " =~ " ${command} " ]]; then
+            if [ "${COMP_CWORD}" = 2 ]; then
+                COMPREPLY=($(compgen -W "--remove-repo $(deb-get list --installed | tr "\n" " ")" "\\${COMP_WORDS[2]}"))
+            else
+                COMPREPLY=($(compgen -W "$(deb-get list --installed | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
+            fi
         elif [ "${command}" = list ]; then
             COMPREPLY=($(compgen -W "--include-unsupported --raw --installed --not-installed" "\\${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${COMP_CWORD}" = 2 ] && [[ " pretty_list prettylist csv_list csvlist csv " =~ " ${command} " ]]; then
