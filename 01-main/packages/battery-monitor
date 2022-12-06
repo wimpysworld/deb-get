@@ -1,4 +1,5 @@
 DEFVER=1
+CODENAMES_SUPPORTED="focal jammy kinetic"
 get_github_releases "hsbasu/battery-monitor" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"

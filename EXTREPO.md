@@ -7,7 +7,7 @@ ${REPO_URL}/manifest
 ${REPO_URL}/packages/${APP}
 ```
 
-The URL can point to any HTTP(S) server, as long as the URLs above correctly provide the desired files. Ideally, to prevent unnecessary traffic and slow repository updates, the server should support the `ETag`/`If-None-Match` HTTP headers, or at least `Last-Modified`/`If-Modified-Since`.
+The URL can point to any HTTP(S) server, as long as the URLs above correctly provide the desired files. Ideally, to prevent unnecessary traffic and slow repository updates, the server should support the `Last-Modified`/`If-Modified-Since` HTTP headers.
 
 As an example, the base URL of an external repository hosted in a GitHub repository would be:
 
@@ -66,7 +66,7 @@ The environment variables available to the package definition file are the follo
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
-* `CACHE_FILE`: The path to the cached file for `github` packages.
+* `CACHE_FILE`: The path to the cached file for `website` and `github` packages.
 
 The helper functions available to the package definition file are the following:
 
@@ -162,7 +162,7 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(unroll_url "<website>")"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"

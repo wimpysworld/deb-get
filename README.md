@@ -60,7 +60,8 @@ cog.out(f"```\n{help}\n```")
 ```
 
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
-        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
+        | reinstall <pkg list> | remove [--remove-repo] <pkg list>
+        | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean
         | list [--include-unsupported] [--raw|--installed|--not-installed]
         | prettylist [<repo>] | csvlist [<repo>] | fix-installed [--old-apps]
@@ -90,11 +91,13 @@ reinstall
 
 remove
     remove is identical to install except that packages are removed instead of
-    installed.
+    installed. When --remove-repo is provided, also remove the apt repository
+    of apt/ppa packages.
 
 purge
     purge is identical to remove except that packages are removed and purged
-    (any configuration files are deleted too).
+    (any configuration files are deleted too). When --remove-repo is provided,
+    also remove the apt repository of apt/ppa packages.
 
 clean
     clean clears out the local repository (/var/cache/deb-get) of retrieved

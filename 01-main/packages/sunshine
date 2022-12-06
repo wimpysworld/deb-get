@@ -1,7 +1,7 @@
 DEFVER=1
-get_github_releases "https://api.github.com/repos/LizardByte/Sunshine/releases/latest"
+get_github_releases "LizardByte/Sunshine" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|^v||')"
 fi
 PRETTY_NAME="Sunshine"
