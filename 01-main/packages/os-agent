@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "home-assistant/os-agent" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*x86_64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo ${URL} | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Agent for Home Assistant OS"
+WEBSITE="https://github.com/home-assistant/os-agent"
+SUMMARY="This is the OS Agent for Home Assistant. It is used for Home Assistant OS and Home Assistant Supervised installation types and it allows the Home Assistant Supervisor to communicate with the host operating system."

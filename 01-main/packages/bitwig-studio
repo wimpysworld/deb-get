@@ -1,6 +1,7 @@
 DEFVER=1
+get_website "https://www.bitwig.com/download/"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(unroll_url "$(curl -s "https://www.bitwig.com/download/" | grep -o "https://www\.bitwig\.com/dl/?id=[^&]*&amp;os=installer_linux")")"
+    URL="$(unroll_url "$(grep -o "https://www\.bitwig\.com/dl/?id=[^&]*&amp;os=installer_linux" "${CACHE_FILE}")")"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d "/" -f 4)"
 fi
 PRETTY_NAME="BitWig Studio"

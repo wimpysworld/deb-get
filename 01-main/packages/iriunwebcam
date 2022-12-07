@@ -1,0 +1,9 @@
+DEFVER=1
+get_website "https://iriun.com/"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep .deb "${CACHE_FILE}" | head -n1 | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(basename ${URL} .deb | cut -d '-' -f 2)"
+fi
+PRETTY_NAME="Iriun Webcam"
+WEBSITE="https://iriun.com/"
+SUMMARY="Use your phone's camera as a wireless webcam."

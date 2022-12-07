@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bionic bullseye buster focal jammy"
+get_website "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download"
+if [ "${ACTION}" != "prettylist" ]; then
+        URL=$(grep -Eo "https://code-industry.net/public/.*\.deb" "${CACHE_FILE}" | uniq)
+        VERSION_PUBLISHED="$(echo "${URL}" | sed 's/^.*editor-//;s/-qt5.x86_64.*$//')"
+fi
+PRETTY_NAME="Master PDF Editor"
+WEBSITE="https://code-industry.net/free-pdf-editor/"
+SUMMARY="Edit PDF files in Linux. It enables you to create, edit, view and print interactive PDF documents."

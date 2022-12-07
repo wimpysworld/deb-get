@@ -1,6 +1,6 @@
 DEFVER=1
 CODENAMES_SUPPORTED="buster bullseye focal jammy kinetic"
-get_github_releases "https://api.github.com/repos/flameshot-org/flameshot/releases/latest"
+get_github_releases "flameshot-org/flameshot" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${UPSTREAM_RELEASE} in
         22.10) ONLY_ONE="tail -1" ;;

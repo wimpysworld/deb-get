@@ -1,0 +1,13 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 armhf"
+get_website "https://mediathekview.de/changelog/"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(grep \>Version "${CACHE_FILE}" | head -n1 | cut -d ' ' -f5 | cut -d '<' -f1)"
+fi
+case ${HOST_ARCH} in
+    amd64) URL="https://download.mediathekview.de/stabil/MediathekView-latest-linux.deb";;
+    armhf) URL="https://download.mediathekview.de/stabil/MediathekView-latest-linux-armhf.deb";;
+esac
+PRETTY_NAME="MediathekView"
+WEBSITE="https://mediathekview.de/"
+SUMMARY="View streams from German public television stations."

@@ -1,7 +1,7 @@
 DEFVER=1
-get_github_releases "https://api.github.com/repos/Eugeny/tabby/releases"
+get_github_releases "Eugeny/tabby"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*-linux-x64\.deb" "${CACHE_DIR}/${APP}.json" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*-linux-x64\.deb" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 )"
     VERSION_PUBLISHED=${VERSION_PUBLISHED/v}
 fi

@@ -1,11 +1,3 @@
-# Hacktoberfest 2022 mini-event
-
-**We want you!** 💪
-
-> We're running a Hacktoberfest 🎃 mini-event. The idea is simple. Land documentation 📝 in projects that `deb-get` already supports that explain how users of Debian and Ubuntu based distros can install and update the packages published by those projects.
-
-  - [**Hacktoberfest 2022 mini-event participation guide**](https://github.com/wimpysworld/deb-get/blob/main/HACKTOBERFEST-2022.md)
-
 <h1 align="center">
   <img src=".github/deb-get-logo.png" alt="deb-get">
   <br />
@@ -68,10 +60,12 @@ cog.out(f"```\n{help}\n```")
 ```
 
 deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
-        | reinstall <pkg list> | remove <pkg list> | purge <pkg list>
-        | search <regex> | cache | clean
-        | list [--raw|--installed|--not-installed] | prettylist [<repo>]
-        | csvlist [<repo>] | fix-installed [--old-apps] | help | version}
+        | reinstall <pkg list> | remove [--remove-repo] <pkg list>
+        | purge [--remove-repo] <pkg list>
+        | search [--include-unsupported] <regex> | cache | clean
+        | list [--include-unsupported] [--raw|--installed|--not-installed]
+        | prettylist [<repo>] | csvlist [<repo>] | fix-installed [--old-apps]
+        | help | version}
 
 deb-get provides a high-level commandline interface for the package management
 system to easily install and update packages published in 3rd party apt
@@ -97,11 +91,13 @@ reinstall
 
 remove
     remove is identical to install except that packages are removed instead of
-    installed.
+    installed. When --remove-repo is provided, also remove the apt repository
+    of apt/ppa packages.
 
 purge
     purge is identical to remove except that packages are removed and purged
-    (any configuration files are deleted too).
+    (any configuration files are deleted too). When --remove-repo is provided,
+    also remove the apt repository of apt/ppa packages.
 
 clean
     clean clears out the local repository (/var/cache/deb-get) of retrieved
@@ -109,7 +105,9 @@ clean
 
 search
     search for the given regex(7) term(s) from the list of available packages
-    supported by deb-get and display matches.
+    supported by deb-get and display matches. When --include-unsupported is
+    provided, include packages with unsupported architecture or upstream
+    codename and include PPAs for Debian-derived distributions.
 
 show
     show information about the given package (or a space-separated list of
@@ -117,11 +115,13 @@ show
 
 list
     list the packages available via deb-get. When no option is provided, list
-    all packages and tell which ones are installed (slower). When --raw is
-    provided, list all packages and do not tell which ones are installed
-    (faster). When --installed is provided, only list the packages installed
-    (faster). When --not-installed is provided, only list the packages not
-    installed (faster).
+    all supported packages and tell which ones are installed (slower). When
+    --include-unsupported is provided, include packages with unsupported
+    architecture or upstream codename and include PPAs for Debian-derived
+    distributions (faster). When --raw is provided, list all packages and do
+    not tell which ones are installed (faster). When --installed is provided,
+    only list the packages installed (faster). When --not-installed is provided,
+    only list the packages not installed (faster).
 
 prettylist
     markdown formatted list the packages available in repo. repo defaults to
