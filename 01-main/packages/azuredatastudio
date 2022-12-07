@@ -8,10 +8,3 @@ fi
 PRETTY_NAME="Azure Data Studio"
 WEBSITE="https://docs.microsoft.com/en-us/sql/azure-data-studio/"
 SUMMARY="Data management tool for working with SQL Server, Azure SQL DB and SQL DW."
-
-function postinst() {
-    if ! grep -m 1 -q "^code " /etc/deb-get/installed; then
-        ${ELEVATE} rm -f /etc/apt/sources.list.d/vscode.list
-    fi
-    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/microsoft.gpg
-}

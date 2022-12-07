@@ -19,10 +19,3 @@ APT_REPO_OPTIONS="arch=amd64"
 PRETTY_NAME="Dropbox"
 WEBSITE="https://www.dropbox.com/"
 SUMMARY="Securely share, store and do more with your content."
-
-function postinst() {
-    ${ELEVATE} rm -f /etc/apt/sources.list.d/dropbox.list
-    if which apt-key > /dev/null; then
-        ${ELEVATE} apt-key del "1C61 A265 6FB5 7B7E 4DE0  F4C1 FC91 8B33 5044 912E" >& /dev/null
-    fi
-}

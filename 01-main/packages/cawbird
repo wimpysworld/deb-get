@@ -6,6 +6,7 @@ if [ "${OBS_UPSTREAM_ID}" == "Ubuntu" ]; then
 fi
 
 ASC_KEY_URL="https://download.opensuse.org/repositories/home:IBBoard:cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/Release.key"
+APT_LIST_NAME="home:IBBoard:cawbird"
 APT_REPO_URL="https://download.opensuse.org/repositories/home:/IBBoard:/cawbird/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/ /"
 PRETTY_NAME="Cawbird"
 WEBSITE="https://ibboard.co.uk/cawbird/"
