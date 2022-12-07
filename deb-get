@@ -614,7 +614,7 @@ function init_repos() {
         echo "${MAIN_REPO_URL}" | ${ELEVATE} tee "${ETC_DIR}/01-main.repo" > /dev/null
     fi
 
-    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
             ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
             ${ELEVATE} chmod 755 "${ETC_DIR}/${REPO}.d" 2>/dev/null
@@ -632,7 +632,7 @@ function refresh_supported_cache_lists(){
 function update_repos() {
     local REPO_URL=""
 
-    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
@@ -645,7 +645,7 @@ function update_repos() {
 
 function list_repo_apps() {
     if [ -d "${ETC_DIR}" ]; then
-        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
             for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep -v "^#" | sort -u); do
                 echo "${REPO}/${APP}"
             done
@@ -655,7 +655,7 @@ function list_repo_apps() {
 
 function list_deprecated_apps() {
     if [ -d "${ETC_DIR}" ]; then
-        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
             for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep "^#" | sed "s/^#//" | sort -u); do
                 echo "${REPO}/${APP}"
             done
