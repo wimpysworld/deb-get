@@ -6,7 +6,3 @@ APT_REPO_URL="http://apt.insync.io/${UPSTREAM_ID} ${UPSTREAM_CODENAME} non-free 
 PRETTY_NAME="Insync"
 WEBSITE="https://www.insynchq.com/"
 SUMMARY="Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop."
-
-function postinst() {
-    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/insynchq.gpg
-}
