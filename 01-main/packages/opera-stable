@@ -1,12 +1,6 @@
 DEFVER=1
 ASC_KEY_URL="https://deb.opera.com/archive.key"
-APT_LIST_NAME="opera-stable"
 APT_REPO_URL="https://deb.opera.com/opera-stable/ stable non-free"
 PRETTY_NAME="Opera"
 WEBSITE="https://www.opera.com/"
 SUMMARY="Faster, safer and smarter than default browsers."
-
-function postinst() {
-    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/opera.archive.key.2019.gpg
-    ${ELEVATE} rm -f /etc/apt/trusted.gpg.d/opera.archive.key.2021.gpg
-}

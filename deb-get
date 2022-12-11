@@ -406,7 +406,7 @@ function validate_deb() {
     export DEFVER=""
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
-    export APT_LIST_NAME="deb-get-${APP}"
+    export APT_LIST_NAME="${APP}"
     export APT_REPO_URL=""
     export APT_REPO_OPTIONS=""
     export PPA=""
@@ -614,7 +614,7 @@ function init_repos() {
         echo "${MAIN_REPO_URL}" | ${ELEVATE} tee "${ETC_DIR}/01-main.repo" > /dev/null
     fi
 
-    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
             ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
             ${ELEVATE} chmod 755 "${ETC_DIR}/${REPO}.d" 2>/dev/null
@@ -632,7 +632,7 @@ function refresh_supported_cache_lists(){
 function update_repos() {
     local REPO_URL=""
 
-    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+    for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
@@ -645,7 +645,7 @@ function update_repos() {
 
 function list_repo_apps() {
     if [ -d "${ETC_DIR}" ]; then
-        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
             for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep -v "^#" | sort -u); do
                 echo "${REPO}/${APP}"
             done
@@ -655,7 +655,7 @@ function list_repo_apps() {
 
 function list_deprecated_apps() {
     if [ -d "${ETC_DIR}" ]; then
-        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name *.repo ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
+        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
             for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep "^#" | sed "s/^#//" | sort -u); do
                 echo "${REPO}/${APP}"
             done
@@ -766,10 +766,6 @@ function fix_old_apps() {
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="docker"
         ;;
-        element-desktop)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="element-io"
-        ;;
         enpass)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="enpass"
@@ -789,10 +785,6 @@ function fix_old_apps() {
         google-chrome-stable)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="google-chrome"
-        ;;
-        google-cloud-cli)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="google-cloud-cli"
         ;;
         google-earth-pro-stable)
             OLD_METHOD="apt"
@@ -818,10 +810,6 @@ function fix_old_apps() {
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="insync"
         ;;
-        jami)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="jami"
-        ;;
         jellyfin)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="jellyfin"
@@ -845,10 +833,6 @@ function fix_old_apps() {
         kopia-ui)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="kopia"
-        ;;
-        librewolf)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="librewolf"
         ;;
         lutris)
             OLD_METHOD="ppa"
@@ -950,10 +934,6 @@ function fix_old_apps() {
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="syncthing"
         ;;
-        tailscale)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="tailscale"
-        ;;
         teams)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="teams"
@@ -994,10 +974,6 @@ function fix_old_apps() {
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="wavebox-stable"
         ;;
-        waydroid)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="waydroid"
-        ;;
         weechat)
             OLD_METHOD="apt"
             OLD_APT_LIST_NAME="weechat"
@@ -1013,10 +989,6 @@ function fix_old_apps() {
         yq)
             OLD_METHOD="ppa"
             OLD_PPA="ppa:rmescandon/yq"
-        ;;
-        zotero)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="zotero"
         ;;
     esac
     if [ -n "${OLD_METHOD}" ]; then
@@ -1157,6 +1129,7 @@ function ppa_to_apt() {
     local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
     export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
     export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+    export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
 }
 
 function maint_supported_cache() {
