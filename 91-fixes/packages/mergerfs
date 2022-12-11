@@ -2,14 +2,14 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye focal jammy"
 # kinetic"
-get_github_releases "trapexit/mergerfs" "latest"
+get_github_releases "trapexit/mergerfs" 
 if [ "${ACTION}" != "prettylist" ]; then
     case ${UPSTREAM_CODENAME} in
 	kinetic)
-           URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep "jammy_${HOST_ARCH}" | cut -d'"' -f4)"
+           URL="$(grep "browser_download_url.*.deb" "${CACHE_FILE}" | grep "jammy_${HOST_ARCH}" | cut -d'"' -f4)"
 	;;
 	*)
-          URL="$(grep "browser_download_url.*.deb" "${CACHE_DIR}/${APP}.json" | grep "${UPSTREAM_CODENAME}_${HOST_ARCH}" | cut -d'"' -f4)"
+          URL="$(grep "browser_download_url.*.deb" "${CACHE_FILE}" | grep "${UPSTREAM_CODENAME}_${HOST_ARCH}" | cut -d'"' -f4)"
 	;;
    esac
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d _ -f2 | sed -E "s/([0-9])\\.([a-z])/\1~\2/")"
