@@ -623,10 +623,10 @@ function init_repos() {
 }
 
 function refresh_supported_cache_lists(){
-        ${ELEVATE} rm -f ${CACHE_DIR}/supported.list  ${CACHE_DIR}/supported_apps.list
-        fancy_message info "Updating cache of supported apps"
-        list_debs | ${ELEVATE} tee ${CACHE_DIR}/supported.list >/dev/null
-        cut -d" " -f 1 ${CACHE_DIR}/supported.list |sort -u | ${ELEVATE} tee ${CACHE_DIR}/supported_apps.list >/dev/null
+    ${ELEVATE} rm -f ${CACHE_DIR}/supported.list  ${CACHE_DIR}/supported_apps.list
+    fancy_message info "Updating cache of supported apps"
+    list_debs | ${ELEVATE} tee ${CACHE_DIR}/supported.list >/dev/null
+    cut -d" " -f 1 ${CACHE_DIR}/supported.list |sort -u | ${ELEVATE} tee ${CACHE_DIR}/supported_apps.list >/dev/null
 }
 
 function update_repos() {
@@ -1137,30 +1137,29 @@ function maint_supported_cache() {
     # so we should be supported
 
     if [ -f ${CACHE_DIR}/supported.list ]; then
-    case "${ACTION}" in
-        remove|purge)
-            ${ELEVATE} sed -i "/^${APP} /d" ${CACHE_DIR}/supported.list
-            cat ${CACHE_DIR}/supported.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
-            ;;
-        reinstall|install)
-            local PAD='                              '
-            local cache_line=$(printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}")
-            # # First remove the bare entry
-            ${ELEVATE} sed -i -e '/^${APP}$/d' ${CACHE_DIR}/supported.list
-            # Replace it with a flagged one
-            cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
-            # should be there but safest to be sure
-            grep -q -w ${APP}$ ${CACHE_DIR}/supported_apps.list || \
-            cat ${CACHE_DIR}/supported_apps.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported_apps.list
-            ;;
+        case "${ACTION}" in
+            remove|purge)
+                ${ELEVATE} sed -i "/^${APP} /d" ${CACHE_DIR}/supported.list
+                cat ${CACHE_DIR}/supported.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+                ;;
+            reinstall|install)
+                local PAD='                              '
+                local cache_line=$(printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}")
+                # # First remove the bare entry
+                ${ELEVATE} sed -i -e '/^${APP}$/d' ${CACHE_DIR}/supported.list
+                # Replace it with a flagged one
+                cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+                # should be there but safest to be sure
+                grep -q -w ${APP}$ ${CACHE_DIR}/supported_apps.list || \
+                cat ${CACHE_DIR}/supported_apps.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported_apps.list
+                ;;
         esac
-
-    fi; }
+    fi
+}
 
 function add_installed() {
     local line="${APP} ${DEFVER} ${METHOD}"
-      cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
-
+    cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
 }
 
 function remove_installed() {
