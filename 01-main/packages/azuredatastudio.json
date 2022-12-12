@@ -1,0 +1,41 @@
+{
+  "url": "https://api.github.com/repos/microsoft/azuredatastudio/releases/83927198",
+  "assets_url": "https://api.github.com/repos/microsoft/azuredatastudio/releases/83927198/assets",
+  "upload_url": "https://uploads.github.com/repos/microsoft/azuredatastudio/releases/83927198/assets{?name,label}",
+  "html_url": "https://github.com/microsoft/azuredatastudio/releases/tag/1.40.1",
+  "id": 83927198,
+  "author": {
+    "login": "Charles-Gagnon",
+    "id": 28519865,
+    "node_id": "MDQ6VXNlcjI4NTE5ODY1",
+    "avatar_url": "https://avatars.githubusercontent.com/u/28519865?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Charles-Gagnon",
+    "html_url": "https://github.com/Charles-Gagnon",
+    "followers_url": "https://api.github.com/users/Charles-Gagnon/followers",
+    "following_url": "https://api.github.com/users/Charles-Gagnon/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Charles-Gagnon/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Charles-Gagnon/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Charles-Gagnon/subscriptions",
+    "organizations_url": "https://api.github.com/users/Charles-Gagnon/orgs",
+    "repos_url": "https://api.github.com/users/Charles-Gagnon/repos",
+    "events_url": "https://api.github.com/users/Charles-Gagnon/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Charles-Gagnon/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "node_id": "RE_kwDOBoJF084FAKCe",
+  "tag_name": "1.40.1",
+  "target_commitish": "release/1.40",
+  "name": "November 2022 Release Hotfix 1 (version 1.40.1)",
+  "draft": false,
+  "prerelease": false,
+  "created_at": "2022-11-22T17:16:10Z",
+  "published_at": "2022-11-23T17:27:28Z",
+  "assets": [
+
+  ],
+  "tarball_url": "https://api.github.com/repos/microsoft/azuredatastudio/tarball/1.40.1",
+  "zipball_url": "https://api.github.com/repos/microsoft/azuredatastudio/zipball/1.40.1",
+  "body": "## Version 1.40.1\r\n* Release date: November 22, 2022\r\n* Release status: General Availability\r\n## What's new in 1.40.1\r\n* Bug fixes in 1.40.1\r\n    * Fixed bug that caused folders in the servers tree to display incorrect contents (https://github.com/microsoft/azuredatastudio/issues/21245)\r\n\r\n\r\n|Platform |Type             |Download |\r\n| --------|-----------------|----------------------- |\r\n|Windows  |User Installer   |[64 bit][win-user] |\r\n|         |System Installer |[64 bit][win-system] |\r\n|         |.zip             |[64 bit][win-zip] |\r\n|Linux    |.tar.gz          |[64 bit][linux-zip] |\r\n|         |.deb             |[64 bit][linux-deb] |\r\n|         |.rpm             |[64 bit][linux-rpm] |\r\n|Mac      |.zip             |[Universal][osx-universal]&emsp;[Intel Chip][osx-zip]&emsp;[Apple Silicon][osx-arm64] |\r\n\r\n[win-user]: https://go.microsoft.com/fwlink/?linkid=2215273\r\n[win-system]: https://go.microsoft.com/fwlink/?linkid=2215525\r\n[win-zip]: https://go.microsoft.com/fwlink/?linkid=2215526\r\n[osx-universal]: https://go.microsoft.com/fwlink/?linkid=2215527\r\n[osx-zip]: https://go.microsoft.com/fwlink/?linkid=2215420\r\n[osx-arm64]: https://go.microsoft.com/fwlink/?linkid=2215346\r\n[linux-zip]: https://go.microsoft.com/fwlink/?linkid=2215421\r\n[linux-rpm]: https://go.microsoft.com/fwlink/?linkid=2215347\r\n[linux-deb]: https://go.microsoft.com/fwlink/?linkid=2215528\r\n\r\n"
+}

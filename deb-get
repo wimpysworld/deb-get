@@ -629,7 +629,8 @@ function update_repos() {
         awk -F/ '/github/  {print "# fetching github repo";
                             print "REPO="$4"/"$5;\
                             print "BRANCH="$6;\
-                            print "curl -L https://api.github.com/repos/${REPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${EXTREPO}*/packages/*\"   --strip-components=3"}
+                            print "curl -L https://api.github.com/repos/${REPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${EXTREPO}*/packages/*\"   --strip-components=3";\
+                            print "${ELEVATE} mv -f *json *html /var/cache/deb-get/ "}
                 ! /github/ {print "# fetching non-github repo";
                             print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
                             print "${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
