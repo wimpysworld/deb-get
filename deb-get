@@ -618,9 +618,26 @@ function update_repos() {
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
-        tail -n +2 "${ETC_DIR}/${REPO}.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/${REPO}.repo.tmp"
-        ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
-        ${ELEVATE} rm "${ETC_DIR}/${REPO}.repo.tmp"
+
+        # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
+        # although so long as manifest is good we are OK
+        # Faster by some margin if we are hitting github
+        # Otherwise revert to old-style for a bespoke hosted repo
+
+        cd ${ETC_DIR}/${REPO}.d
+
+        awk -F/ '/github/  {print "# fetching github repo";
+                            print "REPO="$4"/"$5;\
+                            print "BRANCH="$6;\
+                            print "curl -L https://api.github.com/repos/${REPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${EXTREPO}*/packages/*\"   --strip-components=3"}
+                ! /github/ {print "# fetching non-github repo";
+                            print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
+                            print "${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
+                            print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
+                } '\
+                <<<${REPO_URL} | bash -
+
+        cd -
     done
     refresh_supported_cache_lists
 }
