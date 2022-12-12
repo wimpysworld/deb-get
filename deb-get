@@ -605,10 +605,18 @@ function init_repos() {
 }
 
 function refresh_supported_cache_lists(){
+    if [ -f ${CACHE_DIR}/updating_supported.lock ] ; then
+      return 0
+    else
+    ${ELEVATE} touch ${CACHE_DIR}/updating_supported.lock
     ${ELEVATE} rm -f ${CACHE_DIR}/supported.list  ${CACHE_DIR}/supported_apps.list
-    fancy_message info "Updating cache of supported apps"
-    list_debs | ${ELEVATE} tee ${CACHE_DIR}/supported.list >/dev/null
-    cut -d" " -f 1 ${CACHE_DIR}/supported.list |sort -u | ${ELEVATE} tee ${CACHE_DIR}/supported_apps.list >/dev/null
+    fancy_message info "Updating cache of supported apps in the background"
+    list_debs | ${ELEVATE} tee ${CACHE_DIR}/supported.list.tmp >/dev/null
+    cut -d" " -f 1 ${CACHE_DIR}/supported.list.tmp |sort -u | ${ELEVATE} tee ${CACHE_DIR}/supported_apps.list.tmp >/dev/null
+    ${ELEVATE} mv ${CACHE_DIR}/supported.list.tmp ${CACHE_DIR}/supported.list
+    ${ELEVATE} mv ${CACHE_DIR}/supported_apps.list.tmp ${CACHE_DIR}/supported_apps.list
+    ${ELEVATE} rm  ${CACHE_DIR}/updating_supported.lock
+    fi
 }
 
 function update_repos() {
@@ -641,7 +649,7 @@ function update_repos() {
 
         cd -
     done
-    refresh_supported_cache_lists
+    refresh_supported_cache_lists &
 }
 
 function list_repo_apps() {
