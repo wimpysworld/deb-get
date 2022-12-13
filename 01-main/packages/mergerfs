@@ -2,7 +2,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye focal jammy"
 # kinetic"
-get_github_releases "trapexit/mergerfs" 
+get_github_releases "trapexit/mergerfs" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${UPSTREAM_CODENAME} in
 	kinetic)
