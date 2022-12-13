@@ -623,6 +623,7 @@ function update_repos() {
     local REPO_URL=""
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+        export REPO
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
@@ -635,9 +636,9 @@ function update_repos() {
         cd ${ETC_DIR}/${REPO}.d
 
         awk -F/ '/github/  {print "# fetching github repo";
-                            print "REPO="$4"/"$5;\
+                            print "GITREPO="$4"/"$5;\
                             print "BRANCH="$6;\
-                            print "curl -L https://api.github.com/repos/${REPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${EXTREPO}*/packages/*\"   --strip-components=3";\
+                            print "curl -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3";\
                             print "${ELEVATE} mv -f *json *html /var/cache/deb-get/  >/dev/null 2>&1 ||true ";
                             print "${ELEVATE} touch /var/cache/deb-get/*" }
                 ! /github/ {print "# fetching non-github repo";
