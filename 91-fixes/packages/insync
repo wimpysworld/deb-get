@@ -1,0 +1,9 @@
+DEFVER=1
+# key gone from website
+# this key is not enough to install but at least keeps _us_ happy
+# # while they sort themselves out
+GPG_KEY_URL="https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key"
+APT_REPO_URL="http://apt.insync.io/${UPSTREAM_ID} ${UPSTREAM_CODENAME} non-free contrib"
+PRETTY_NAME="Insync"
+WEBSITE="https://www.insynchq.com/"
+SUMMARY="Manage your Google Drive, OneDrive, and Dropbox files straight from your Desktop."
