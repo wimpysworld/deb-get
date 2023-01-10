@@ -1,8 +1,7 @@
 DEFVER=1
-HOST_ARCHX=$(uname -m)
 get_github_releases "ClementTsang/bottom" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCHX}.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*${HOST_CPU}.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
 fi
 PRETTY_NAME="bottom"
