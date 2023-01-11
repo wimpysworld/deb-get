@@ -1,0 +1,10 @@
+DEFVER=1
+get_website "https://www.tonelib.net/downloads.html"
+TLAPP=$(echo ${APP^^} |cut -d-  -f2)
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(unroll_url "$(grep -o "https://www\.tonelib\.net/download/ToneLib-${TLAPP}[[:alpha:]]*-amd64\.deb" "${CACHE_FILE}")")"
+    VERSION_PUBLISHED="$(echo $(grep  -A4 "ToneLib ${TLAPP}" ${CACHE_FILE} |grep Version |grep -o "[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*") | sed 's/\./-/2' )"
+fi
+PRETTY_NAME="ToneLib GFX"
+WEBSITE="https://tonelib.net"
+SUMMARY="A complete guitar studio in one app."
