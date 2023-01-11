@@ -1,0 +1,188 @@
+# `5.0.1` - 2020-6-16
+
+- Fix update notification to show every 72 hours (was annoying people every 30 minutes), https://gitlab.com/gitlab-org/gitter/desktop/-/merge_requests/222
+
+# `5.0.0` - 2020-6-10
+
+- Fix GitLab sign in (Update to NW.js v0.46.0), https://gitlab.com/gitlab-org/gitter/desktop/-/merge_requests/217
+
+Developer facing:
+
+- Add prettier config for automatic formatting, https://gitlab.com/gitlab-org/gitter/desktop/-/merge_requests/218
+- Update to `gitter-realtime-client@1.7.0` which adds access token failure extension to play nicer with the Gitter WebSocket servers, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/212
+  - Context, https://gitlab.com/gitlab-org/gitter/desktop/issues/253, https://gitlab.com/gitlab-org/gitter/webapp/issues/1937#solution
+- Update to latest `gitter-realtime-client@2.2.0` (just managing technical debt), https://gitlab.com/gitlab-org/gitter/desktop/-/merge_requests/220
+
+# `4.1.0` - 2018-6-2
+
+- Fix links to open in default browser instead of NW.js frame, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/210
+
+Known issues:
+
+- All platforms: `window.gitterLoader is not a function` error/exception when restoring the window from tray icon, https://gitlab.com/gitlab-org/gitter/desktop/issues/252
+- macOS: Menu creation error/exception on startup
+  (`ReferenceError: nw is not defined`)https://gitlab.com/gitlab-org/gitter/desktop/issues/244
+- Linux(Ubuntu): Tray icon on Ubuntu 18 is only visible after locking and signing back in, https://gitlab.com/gitlab-org/gitter/desktop/issues/247
+
+# `4.0.0` - 2018-5-18
+
+- Update to [`nw@0.30.2`](https://www.npmjs.com/package/nw), https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/203
+  - Add user preferences migration from v3.x to v4.x to accommodate new `nw.App.dataPath`
+    - Windows Example: `C:\Users\USERNAME\AppData\Local\Gitter\gitter_preferences.json` -> `C:\Users\USERNAME\AppData\Local\Gitter\User Data\Default\gitter_preferences.json`
+  - Fix broken embeds because of old SSL, https://gitlab.com/gitlab-org/gitter/desktop/issues/139
+  - Fix GitHub sign in goes to blank page, https://gitlab.com/gitlab-org/gitter/desktop/issues/231
+  - Fix painting bugs causing messages to be invisible until mouse-over, https://gitlab.com/gitlab-org/gitter/desktop/issues/174
+  - Fix painting bug on chat header when app is maximized, https://gitlab.com/gitlab-org/gitter/desktop/issues/209
+  - Fix overlapping project name and home item layout bug, https://gitlab.com/gitlab-org/gitter/desktop/issues/213
+  - Fix file upload not working on Linux, https://gitlab.com/gitlab-org/gitter/desktop/issues/163
+  - Fix window position/size not being saved when app launches, https://gitlab.com/gitlab-org/gitter/desktop/issues/92
+  - Fix text selection on Linux, https://gitlab.com/gitlab-org/gitter/desktop/issues/109
+  - Fix copy/paste not working on Linux, https://gitlab.com/gitlab-org/gitter/desktop/issues/63
+  - Fix blank text in system tray menu on Linux, https://gitlab.com/gitlab-org/gitter/desktop/issues/68
+  - Fix window not maximizing after `Windows + D`, https://gitlab.com/gitlab-org/gitter/desktop/issues/84
+  - Fix "Open in GitHub" and "Open profile" not opening window, https://gitlab.com/gitlab-org/gitter/desktop/issues/22
+  - Fix desktop app crashing whenever play/pause media key pressed, https://gitlab.com/gitlab-org/gitter/desktop/issues/166
+  - Fix high DPI support (retina), https://gitlab.com/gitlab-org/gitter/desktop/issues/207
+- Remove auto-update process, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/203
+  - We now only notify on update and the user needs to manually download the new version from https://gitter.im/apps
+  - https://gitlab.com/gitlab-org/gitter/desktop/issues/75
+- Use native [Notification API](https://developer.mozilla.org/en-US/docs/Web/API/notification) (remove `node-notifier` -> `toast.exe`), https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/203
+  - Remove temp file creation for each avatar (use URL), https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/207
+- Add menu item to open the devtools for the NW.js background page, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/203
+- Add `Gitter vX.X (update available)` clickable menu item when a new version of the desktop app is available, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/205
+- Add notification for desktop app `uncaughtException`(errors) instead of exiting the app, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/207
+- Fix Gitter app title showing as "Unknown" in Gnome Shell (Linux)
+  - Thanks to [@bil-elmoussaoui](https://gitlab.com/bil-elmoussaoui) for the contribution, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/176
+- Add `--log-level` CLI parameter to specify the level of log messages to show, https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/203
+- Add `--base-url` CLI parameter to specify a Gitter instance (good for testing against localhost dev instance), https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/203
+- Add `--faye-url` CLI parameter to specify Gitter faye/bayeux instance (good for testing against localhost dev instance), https://gitlab.com/gitlab-org/gitter/desktop/merge_requests/203
+
+Known issues
+
+- Links open inside NW.js frame instead of default browser, https://gitlab.com/gitlab-org/gitter/desktop/issues/248
+- macOS: Menu creation error/exception on startup
+  (`ReferenceError: nw is not defined`)https://gitlab.com/gitlab-org/gitter/desktop/issues/244
+- Linux(Ubuntu): Tray icon on Ubuntu 18 is only visible after locking and signing back in, https://gitlab.com/gitlab-org/gitter/desktop/issues/247
+
+# `3.1.0` - 2016-8-16
+
+- Add launch hidden feature to only appear in task bar/menu bar when started: #107 - Thanks @nicolas33
+
+# `3.0.3` - 2016-2-28
+
+- Fix app launch crash for non-logged in users on non-OSX platforms: #118
+
+# `3.0.2` - 2016-2-26
+
+- Fix copy/paste issue on GitHub login-view: #116
+- Remove duplicate Windows startup file (now handled in registry): #114
+
+# `3.0.1` - 2016-2-23
+
+- Update auto-update logic to check on start and every 24-hours after that
+- Add `packages -> osx` `package.json` manifest check entry to play more nicely with our platform checks.
+- Split out `linux32` `linux64` package manifest checks
+
+# `3.0.0` - 2016-2-23
+
+This was released but quickly pulled down due to not being happy with the legacy auto-update 5 minute polling notification when there is an update.
+
+- Update docs to add more detail on how to build
+- Upgrade to nw.js v0.12.3
+  - Fixes issue where the org overview pages had an infinite loading spinner: https://github.com/gitterHQ/desktop/issues/102
+  - Fixes `Cmd+M` shortcut to minimize: https://github.com/gitterHQ/desktop/issues/91
+  - Fixes tray icon missing on Ubuntu: https://github.com/gitterHQ/desktop/issues/101
+- Fix focus issue on initial load with mac. Mac apps do not have focus when they start up
+- Update `notifier.js` so that it no longer plays the native sound, fixes https://github.com/gitterHQ/desktop/issues/99
+- Add avatars to notifications for Windows
+- I assume this covers as the official release of the nw.js version of the mac app: https://github.com/gitterHQ/desktop/issues/47
+- Generalize windows desktop build, see `./windows/README.md` and `./windows/build.js`. `./windows/build.bat` has also gotten some love but is deprecated and is only there until we are confident and settled with the node script.
+- Remove startup option from Windows installer because it did not obey whatever you set it to(always enabled launch at startup): https://github.com/gitterHQ/desktop/issues/106
+- Add context menu option to toggle launch on startup (tested on Mac and Windows): https://github.com/gitterHQ/desktop/issues/45
+- Add "Show in Menu bar" toggle (this option existed previously but didn't do anything)
+- Add `gulp check-path-safety-for-windows` to build flow so you don't get [unexpected blank screen when developing on Windows](https://github.com/gitterHQ/desktop/issues/59)
+- Update `auto-update` params/logic so we can actually use cli params outside of the autoupdate process.
+  - `--update-url`: Specify custom URL to check and download updates from
+  - `--passthrough-remote-debugging-url`: So you can debug the new instances we pop throughout the update process
+
+Here is the v3 PR (note that it also has v3.0.1 changes): https://github.com/gitterHQ/desktop/pull/100
+
+# `2.4.0` - 2015-09-04
+
+fixes for the autoupdate process
+
+# `2.3.3` - 2015-09-01
+
+fix for windows startup sometimes showing node-webkit ascii art
+
+# `2.3.2` - 2015-04-08
+
+updated realtime client
+
+# `2.3.1` - 2015-03-10
+
+fix for hard websocket crash
+
+# `2.3.0` - 2015-03-06
+
+stabilty fixes and first open source release
+
+# `2.2.5` - 2015-02-20
+
+realtime connection stabilty fixes
+
+# `2.2.4` - 2015-02-12
+
+fixes issues with tray and badge disconnecting
+
+# `2.2.3` - 2015-02-09
+
+fix Ubuntu libudev symlinking
+
+# `2.2.2` - 2015-02-04
+
+oauth fixes
+
+# `2.2.1` - 2015-02-04
+
+oauth fixes
+
+# `2.2.0` - 2015-02-04
+
+fixed autoupdater trashing the uninstaller
+
+# `2.1.3` - 2015-02-03
+
+autoupdate caching fixes
+
+# `2.1.2` - 2015-02-03
+
+autoupdate tweaks
+
+# `2.1.1` - 2015-02-03
+
+file menu tweaks
+
+# `2.1.0` - 2015-02-02
+
+added auto update
+
+# `2.0.4` - 2015-01-22
+
+alpha release for windows
+
+# `2.0.3` - 2015-01-22
+
+internal windows release
+
+# `2.0.2` - 2015-01-21
+
+internal windows release
+
+# `2.0.1` - 2015-01-21
+
+internal windows release
+
+# `2.0.0` - 2015-01-21
+
+internal windows release
