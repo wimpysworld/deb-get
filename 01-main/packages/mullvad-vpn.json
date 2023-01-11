@@ -303,7 +303,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 86979968,
-        "download_count": 9814,
+        "download_count": 9831,
         "created_at": "2022-10-14T11:27:03Z",
         "updated_at": "2022-10-14T11:27:49Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2022.5/MullvadVPN-2022.5.exe"
@@ -371,7 +371,7 @@
         "content_type": "application/x-xar",
         "state": "uploaded",
         "size": 188711026,
-        "download_count": 6202,
+        "download_count": 6207,
         "created_at": "2022-10-14T11:27:50Z",
         "updated_at": "2022-10-14T11:29:38Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2022.5/MullvadVPN-2022.5.pkg"
@@ -507,7 +507,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 72979080,
-        "download_count": 9610,
+        "download_count": 9623,
         "created_at": "2022-10-14T11:30:23Z",
         "updated_at": "2022-10-14T11:31:11Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2022.5/MullvadVPN-2022.5_amd64.deb"
@@ -541,7 +541,7 @@
         "content_type": "text/plain",
         "state": "uploaded",
         "size": 833,
-        "download_count": 8394,
+        "download_count": 8400,
         "created_at": "2022-10-14T11:31:11Z",
         "updated_at": "2022-10-14T11:31:11Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2022.5/MullvadVPN-2022.5_amd64.deb.asc"
@@ -1871,7 +1871,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 71545197,
-        "download_count": 381,
+        "download_count": 382,
         "created_at": "2022-08-19T14:03:29Z",
         "updated_at": "2022-08-19T14:04:10Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2022.4/MullvadVPN-2022.4_x86_64.rpm"
@@ -4379,7 +4379,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84410840,
-        "download_count": 5581,
+        "download_count": 5582,
         "created_at": "2022-03-01T12:07:02Z",
         "updated_at": "2022-03-01T12:07:45Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2022.1/MullvadVPN-2022.1.exe"
@@ -4703,7 +4703,7 @@
         "content_type": "application/vnd.android.package-archive",
         "state": "uploaded",
         "size": 23352061,
-        "download_count": 1988,
+        "download_count": 1989,
         "created_at": "2022-03-01T12:11:53Z",
         "updated_at": "2022-03-01T12:12:03Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/android/2022.1/MullvadVPN-2022.1.apk"
@@ -5795,7 +5795,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 94699432,
-        "download_count": 11938,
+        "download_count": 11939,
         "created_at": "2021-11-18T08:40:21Z",
         "updated_at": "2021-11-18T08:41:10Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2021.6/MullvadVPN-2021.6.exe"
@@ -5863,7 +5863,7 @@
         "content_type": "application/x-xar",
         "state": "uploaded",
         "size": 209866058,
-        "download_count": 4096,
+        "download_count": 4097,
         "created_at": "2021-11-18T08:41:11Z",
         "updated_at": "2021-11-18T08:42:57Z",
         "browser_download_url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2021.6/MullvadVPN-2021.6.pkg"

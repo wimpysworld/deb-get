@@ -62,7 +62,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 10698252,
-      "download_count": 22108,
+      "download_count": 22137,
       "created_at": "2022-07-03T18:02:23Z",
       "updated_at": "2022-07-03T18:02:25Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1-lp15.2.x86_64.rpm"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 147,
-      "download_count": 1444,
+      "download_count": 1445,
       "created_at": "2022-07-03T18:02:25Z",
       "updated_at": "2022-07-03T18:02:25Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1-lp15.2.x86_64.rpm.sha256sum"
@@ -130,7 +130,7 @@
       "content_type": "application/vnd.snap",
       "state": "uploaded",
       "size": 76115968,
-      "download_count": 4520,
+      "download_count": 4522,
       "created_at": "2022-07-03T18:02:25Z",
       "updated_at": "2022-07-03T18:02:36Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1.amd64.snap"
@@ -198,7 +198,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 698932,
-      "download_count": 11857,
+      "download_count": 11864,
       "created_at": "2022-07-03T18:02:36Z",
       "updated_at": "2022-07-03T18:02:36Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1.debian-10.amd64.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 651568,
-      "download_count": 2102,
+      "download_count": 2103,
       "created_at": "2022-07-03T18:02:38Z",
       "updated_at": "2022-07-03T18:02:38Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1.debian-11.amd64.deb"
@@ -742,7 +742,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 698872,
-      "download_count": 6238,
+      "download_count": 6243,
       "created_at": "2022-07-03T18:02:41Z",
       "updated_at": "2022-07-03T18:02:41Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1.ubuntu-20.04.amd64.deb"
@@ -810,7 +810,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 626636,
-      "download_count": 8328,
+      "download_count": 8332,
       "created_at": "2022-07-03T18:02:41Z",
       "updated_at": "2022-07-03T18:02:41Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1.ubuntu-22.04.amd64.deb"
@@ -878,7 +878,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 43585536,
-      "download_count": 103699,
+      "download_count": 103804,
       "created_at": "2022-07-03T18:02:42Z",
       "updated_at": "2022-07-03T18:02:48Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/Flameshot-12.1.0-win64.msi"
@@ -912,7 +912,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 93,
-      "download_count": 913,
+      "download_count": 915,
       "created_at": "2022-07-03T18:02:48Z",
       "updated_at": "2022-07-03T18:02:48Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/Flameshot-12.1.0-win64.msi.sha256sum"
@@ -946,7 +946,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 46043249,
-      "download_count": 28650,
+      "download_count": 28694,
       "created_at": "2022-07-03T18:02:48Z",
       "updated_at": "2022-07-03T18:02:55Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-win64.zip"
@@ -1014,7 +1014,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 52195672,
-      "download_count": 4819,
+      "download_count": 4822,
       "created_at": "2022-07-03T18:02:56Z",
       "updated_at": "2022-07-03T18:03:03Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/Flameshot-12.1.0.x86_64.AppImage"
@@ -1082,7 +1082,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 22118868,
-      "download_count": 33638,
+      "download_count": 33681,
       "created_at": "2022-07-03T18:03:04Z",
       "updated_at": "2022-07-03T18:03:07Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot.dmg"

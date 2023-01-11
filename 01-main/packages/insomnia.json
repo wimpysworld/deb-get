@@ -131,7 +131,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 51151379,
-        "download_count": 99,
+        "download_count": 105,
         "created_at": "2023-01-09T14:54:48Z",
         "updated_at": "2023-01-09T14:54:50Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/lib%403.8.0/inso-macos-3.8.0.zip"
@@ -199,7 +199,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 44773400,
-        "download_count": 45,
+        "download_count": 49,
         "created_at": "2023-01-09T14:54:58Z",
         "updated_at": "2023-01-09T14:55:00Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/lib%403.8.0/inso-windows-3.8.0.zip"
@@ -273,7 +273,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 138986740,
-        "download_count": 15120,
+        "download_count": 15984,
         "created_at": "2023-01-09T14:55:38Z",
         "updated_at": "2023-01-09T14:55:42Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/insomnia-2022.7.1-full.nupkg"
@@ -307,7 +307,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81912552,
-        "download_count": 67,
+        "download_count": 76,
         "created_at": "2023-01-09T14:55:30Z",
         "updated_at": "2023-01-09T14:55:33Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1-portable.exe"
@@ -341,7 +341,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 138219082,
-        "download_count": 93,
+        "download_count": 101,
         "created_at": "2023-01-09T14:55:13Z",
         "updated_at": "2023-01-09T14:55:16Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.AppImage"
@@ -375,7 +375,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 86785664,
-        "download_count": 2296,
+        "download_count": 2443,
         "created_at": "2023-01-09T14:55:16Z",
         "updated_at": "2023-01-09T14:55:19Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.deb"
@@ -409,7 +409,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 203717431,
-        "download_count": 3248,
+        "download_count": 3502,
         "created_at": "2023-01-09T14:55:02Z",
         "updated_at": "2023-01-09T14:55:06Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.dmg"
@@ -443,7 +443,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 139870240,
-        "download_count": 4421,
+        "download_count": 4865,
         "created_at": "2023-01-09T14:55:33Z",
         "updated_at": "2023-01-09T14:55:37Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.exe"
@@ -477,7 +477,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 87318717,
-        "download_count": 41,
+        "download_count": 48,
         "created_at": "2023-01-09T14:55:19Z",
         "updated_at": "2023-01-09T14:55:22Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.rpm"
@@ -511,7 +511,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 117817344,
-        "download_count": 8,
+        "download_count": 10,
         "created_at": "2023-01-09T14:55:22Z",
         "updated_at": "2023-01-09T14:55:26Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.snap"
@@ -545,7 +545,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 129999875,
-        "download_count": 15,
+        "download_count": 19,
         "created_at": "2023-01-09T14:55:26Z",
         "updated_at": "2023-01-09T14:55:30Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.tar.gz"
@@ -579,7 +579,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 196045419,
-        "download_count": 18034,
+        "download_count": 19046,
         "created_at": "2023-01-09T14:55:07Z",
         "updated_at": "2023-01-09T14:55:12Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/Insomnia.Core-2022.7.1.zip"
@@ -613,7 +613,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 82,
-        "download_count": 26062,
+        "download_count": 27788,
         "created_at": "2023-01-09T14:55:38Z",
         "updated_at": "2023-01-09T14:55:38Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.1/RELEASES"
@@ -733,7 +733,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 30494372,
-        "download_count": 449,
+        "download_count": 453,
         "created_at": "2022-12-15T15:04:51Z",
         "updated_at": "2022-12-15T15:04:55Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/lib%403.7.0/inso-linux-3.7.0.tar.xz"
@@ -835,7 +835,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 44772849,
-        "download_count": 375,
+        "download_count": 376,
         "created_at": "2022-12-15T15:04:56Z",
         "updated_at": "2022-12-15T15:04:58Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/lib%403.7.0/inso-windows-3.7.0.zip"
@@ -909,7 +909,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 138972097,
-        "download_count": 81595,
+        "download_count": 81597,
         "created_at": "2022-12-15T15:06:06Z",
         "updated_at": "2022-12-15T15:06:14Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.0/insomnia-2022.7.0-full.nupkg"
@@ -1045,7 +1045,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 203757433,
-        "download_count": 20269,
+        "download_count": 20271,
         "created_at": "2022-12-15T15:05:01Z",
         "updated_at": "2022-12-15T15:05:09Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.0/Insomnia.Core-2022.7.0.dmg"
@@ -1079,7 +1079,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 139856576,
-        "download_count": 44803,
+        "download_count": 44863,
         "created_at": "2022-12-15T15:05:57Z",
         "updated_at": "2022-12-15T15:06:04Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.0/Insomnia.Core-2022.7.0.exe"
@@ -1215,7 +1215,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 196038526,
-        "download_count": 135927,
+        "download_count": 135929,
         "created_at": "2022-12-15T15:05:10Z",
         "updated_at": "2022-12-15T15:05:21Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.0/Insomnia.Core-2022.7.0.zip"
@@ -1579,7 +1579,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81316224,
-        "download_count": 12,
+        "download_count": 13,
         "created_at": "2022-12-12T18:48:15Z",
         "updated_at": "2022-12-12T18:48:19Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.7.0-alpha.0/Insomnia.Core-2022.7.0-alpha.0-portable.exe"
@@ -5761,7 +5761,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 33349000,
-        "download_count": 1708,
+        "download_count": 1711,
         "created_at": "2022-09-27T13:38:05Z",
         "updated_at": "2022-09-27T13:38:08Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/lib%403.6.0/inso-linux-3.6.0.tar.xz"
@@ -6005,7 +6005,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 130147511,
-        "download_count": 1503,
+        "download_count": 1506,
         "created_at": "2022-09-27T13:38:35Z",
         "updated_at": "2022-09-27T13:38:39Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.6.0/Insomnia.Core-2022.6.0.AppImage"
@@ -6039,7 +6039,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 78093728,
-        "download_count": 36679,
+        "download_count": 36680,
         "created_at": "2022-09-27T13:38:40Z",
         "updated_at": "2022-09-27T13:38:43Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.6.0/Insomnia.Core-2022.6.0.deb"
@@ -6073,7 +6073,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 193947042,
-        "download_count": 79545,
+        "download_count": 79549,
         "created_at": "2022-09-27T13:38:12Z",
         "updated_at": "2022-09-27T13:38:29Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.6.0/Insomnia.Core-2022.6.0.dmg"
@@ -6107,7 +6107,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 134078472,
-        "download_count": 157638,
+        "download_count": 157639,
         "created_at": "2022-09-27T13:38:57Z",
         "updated_at": "2022-09-27T13:39:00Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.6.0/Insomnia.Core-2022.6.0.exe"
@@ -6175,7 +6175,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 111525888,
-        "download_count": 1027,
+        "download_count": 1028,
         "created_at": "2022-09-27T13:38:47Z",
         "updated_at": "2022-09-27T13:38:50Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.6.0/Insomnia.Core-2022.6.0.snap"
@@ -8627,7 +8627,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 133496344,
-        "download_count": 85441,
+        "download_count": 85442,
         "created_at": "2022-08-17T12:11:51Z",
         "updated_at": "2022-08-17T12:11:55Z",
         "browser_download_url": "https://github.com/Kong/insomnia/releases/download/core%402022.5.1/Insomnia.Core-2022.5.1.exe"

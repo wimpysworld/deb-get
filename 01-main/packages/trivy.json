@@ -63,7 +63,7 @@
         "content_type": "application/json",
         "state": "uploaded",
         "size": 488918,
-        "download_count": 11,
+        "download_count": 12,
         "created_at": "2023-01-05T11:23:39Z",
         "updated_at": "2023-01-05T11:23:40Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/bom.json"
@@ -97,7 +97,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2221,
-        "download_count": 14417,
+        "download_count": 14896,
         "created_at": "2023-01-05T11:24:02Z",
         "updated_at": "2023-01-05T11:24:02Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_checksums.txt"
@@ -131,7 +131,7 @@
         "content_type": "application/x-x509-ca-cert",
         "state": "uploaded",
         "size": 1760,
-        "download_count": 15,
+        "download_count": 16,
         "created_at": "2023-01-05T11:24:11Z",
         "updated_at": "2023-01-05T11:24:11Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_checksums.txt.pem"
@@ -165,7 +165,7 @@
         "content_type": "application/pgp-signature",
         "state": "uploaded",
         "size": 96,
-        "download_count": 16,
+        "download_count": 17,
         "created_at": "2023-01-05T11:24:11Z",
         "updated_at": "2023-01-05T11:24:11Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_checksums.txt.sig"
@@ -709,7 +709,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 48604626,
-        "download_count": 1039,
+        "download_count": 1086,
         "created_at": "2023-01-05T11:23:57Z",
         "updated_at": "2023-01-05T11:23:59Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-64bit.deb"
@@ -811,7 +811,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 48397794,
-        "download_count": 852,
+        "download_count": 874,
         "created_at": "2023-01-05T11:23:53Z",
         "updated_at": "2023-01-05T11:23:55Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-64bit.rpm"
@@ -913,7 +913,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 48407769,
-        "download_count": 30950,
+        "download_count": 31982,
         "created_at": "2023-01-05T11:23:40Z",
         "updated_at": "2023-01-05T11:23:41Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-64bit.tar.gz"
@@ -947,7 +947,7 @@
         "content_type": "application/x-x509-ca-cert",
         "state": "uploaded",
         "size": 1760,
-        "download_count": 75,
+        "download_count": 77,
         "created_at": "2023-01-05T11:24:03Z",
         "updated_at": "2023-01-05T11:24:03Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-64bit.tar.gz.pem"
@@ -981,7 +981,7 @@
         "content_type": "application/pgp-signature",
         "state": "uploaded",
         "size": 96,
-        "download_count": 77,
+        "download_count": 79,
         "created_at": "2023-01-05T11:24:03Z",
         "updated_at": "2023-01-05T11:24:03Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-64bit.tar.gz.sig"
@@ -1117,7 +1117,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 44430856,
-        "download_count": 2,
+        "download_count": 3,
         "created_at": "2023-01-05T11:23:52Z",
         "updated_at": "2023-01-05T11:23:54Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-ARM.rpm"
@@ -1321,7 +1321,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 43770744,
-        "download_count": 14,
+        "download_count": 15,
         "created_at": "2023-01-05T11:23:59Z",
         "updated_at": "2023-01-05T11:24:01Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-ARM64.deb"
@@ -1355,7 +1355,7 @@
         "content_type": "application/x-x509-ca-cert",
         "state": "uploaded",
         "size": 1760,
-        "download_count": 1,
+        "download_count": 2,
         "created_at": "2023-01-05T11:24:09Z",
         "updated_at": "2023-01-05T11:24:09Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-ARM64.deb.pem"
@@ -1525,7 +1525,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 43630298,
-        "download_count": 179,
+        "download_count": 180,
         "created_at": "2023-01-05T11:23:42Z",
         "updated_at": "2023-01-05T11:23:43Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_Linux-ARM64.tar.gz"
@@ -2239,7 +2239,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 50415582,
-        "download_count": 1077,
+        "download_count": 1099,
         "created_at": "2023-01-05T11:23:42Z",
         "updated_at": "2023-01-05T11:23:43Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_macOS-64bit.tar.gz"
@@ -2341,7 +2341,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 47933542,
-        "download_count": 748,
+        "download_count": 765,
         "created_at": "2023-01-05T11:23:49Z",
         "updated_at": "2023-01-05T11:23:50Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_macOS-ARM64.tar.gz"
@@ -2443,7 +2443,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 48774672,
-        "download_count": 104,
+        "download_count": 108,
         "created_at": "2023-01-05T11:23:40Z",
         "updated_at": "2023-01-05T11:23:41Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.1/trivy_0.36.1_windows-64bit.zip"
@@ -2632,7 +2632,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2221,
-        "download_count": 11848,
+        "download_count": 11867,
         "created_at": "2022-12-30T13:01:04Z",
         "updated_at": "2022-12-30T13:01:04Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_checksums.txt"
@@ -3244,7 +3244,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 48560836,
-        "download_count": 1126,
+        "download_count": 1145,
         "created_at": "2022-12-30T13:01:23Z",
         "updated_at": "2022-12-30T13:01:24Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.deb"
@@ -3346,7 +3346,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 48358187,
-        "download_count": 676,
+        "download_count": 678,
         "created_at": "2022-12-30T13:01:23Z",
         "updated_at": "2022-12-30T13:01:24Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.rpm"
@@ -3380,7 +3380,7 @@
         "content_type": "application/x-x509-ca-cert",
         "state": "uploaded",
         "size": 1760,
-        "download_count": 25,
+        "download_count": 26,
         "created_at": "2022-12-30T13:01:10Z",
         "updated_at": "2022-12-30T13:01:10Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.rpm.pem"
@@ -3448,7 +3448,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 48363295,
-        "download_count": 24838,
+        "download_count": 24881,
         "created_at": "2022-12-30T13:01:21Z",
         "updated_at": "2022-12-30T13:01:23Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz"
@@ -5167,7 +5167,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 85195,
+        "download_count": 85253,
         "created_at": "2022-11-27T17:00:17Z",
         "updated_at": "2022-11-27T17:00:17Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.35.0/trivy_0.35.0_checksums.txt"
@@ -5677,7 +5677,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 43464701,
-        "download_count": 142,
+        "download_count": 143,
         "created_at": "2022-11-27T16:59:57Z",
         "updated_at": "2022-11-27T17:00:00Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.35.0/trivy_0.35.0_Linux-32bit.tar.gz"
@@ -5779,7 +5779,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 48357026,
-        "download_count": 11159,
+        "download_count": 11218,
         "created_at": "2022-11-27T17:00:00Z",
         "updated_at": "2022-11-27T17:00:03Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.35.0/trivy_0.35.0_Linux-64bit.deb"
@@ -5881,7 +5881,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 48159801,
-        "download_count": 6323,
+        "download_count": 6324,
         "created_at": "2022-11-27T17:00:10Z",
         "updated_at": "2022-11-27T17:00:12Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.35.0/trivy_0.35.0_Linux-64bit.rpm"
@@ -5983,7 +5983,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 48168933,
-        "download_count": 177920,
+        "download_count": 178072,
         "created_at": "2022-11-27T16:59:58Z",
         "updated_at": "2022-11-27T17:00:01Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.35.0/trivy_0.35.0_Linux-64bit.tar.gz"
@@ -6459,7 +6459,7 @@
         "content_type": "application/pgp-signature",
         "state": "uploaded",
         "size": 96,
-        "download_count": 4,
+        "download_count": 5,
         "created_at": "2022-11-27T17:00:22Z",
         "updated_at": "2022-11-27T17:00:22Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.35.0/trivy_0.35.0_Linux-ARM64.deb.sig"
@@ -7600,7 +7600,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 81959,
+        "download_count": 82030,
         "created_at": "2022-10-31T10:12:27Z",
         "updated_at": "2022-10-31T10:12:27Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.34.0/trivy_0.34.0_checksums.txt"
@@ -8212,7 +8212,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 52130850,
-        "download_count": 8923,
+        "download_count": 8939,
         "created_at": "2022-10-31T10:12:19Z",
         "updated_at": "2022-10-31T10:12:22Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.34.0/trivy_0.34.0_Linux-64bit.deb"
@@ -8314,7 +8314,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 51931132,
-        "download_count": 4708,
+        "download_count": 4845,
         "created_at": "2022-10-31T10:12:25Z",
         "updated_at": "2022-10-31T10:12:27Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.34.0/trivy_0.34.0_Linux-64bit.rpm"
@@ -8416,7 +8416,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 51934938,
-        "download_count": 168643,
+        "download_count": 168798,
         "created_at": "2022-10-31T10:12:41Z",
         "updated_at": "2022-10-31T10:12:43Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.34.0/trivy_0.34.0_Linux-64bit.tar.gz"
@@ -11019,7 +11019,7 @@
         "content_type": "application/pgp-signature",
         "state": "uploaded",
         "size": 96,
-        "download_count": 2,
+        "download_count": 3,
         "created_at": "2022-10-25T22:16:56Z",
         "updated_at": "2022-10-25T22:16:56Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.33.0/trivy_0.33.0_Linux-ARM.deb.sig"
@@ -12466,7 +12466,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 68542,
+        "download_count": 68600,
         "created_at": "2022-09-28T13:32:26Z",
         "updated_at": "2022-09-28T13:32:26Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.1/trivy_0.32.1_checksums.txt"
@@ -13078,7 +13078,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 51834112,
-        "download_count": 22874,
+        "download_count": 22914,
         "created_at": "2022-09-28T13:32:18Z",
         "updated_at": "2022-09-28T13:32:21Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.1/trivy_0.32.1_Linux-64bit.deb"
@@ -13282,7 +13282,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 51650841,
-        "download_count": 175542,
+        "download_count": 175692,
         "created_at": "2022-09-28T13:32:02Z",
         "updated_at": "2022-09-28T13:32:05Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.1/trivy_0.32.1_Linux-64bit.tar.gz"
@@ -14710,7 +14710,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 51205955,
-        "download_count": 1991,
+        "download_count": 1992,
         "created_at": "2022-09-28T13:31:56Z",
         "updated_at": "2022-09-28T13:31:59Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.1/trivy_0.32.1_macOS-ARM64.tar.gz"
@@ -14899,7 +14899,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 45458,
+        "download_count": 45497,
         "created_at": "2022-09-16T14:16:25Z",
         "updated_at": "2022-09-16T14:16:25Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.0/trivy_0.32.0_checksums.txt"
@@ -15511,7 +15511,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 51760708,
-        "download_count": 17135,
+        "download_count": 17160,
         "created_at": "2022-09-16T14:16:23Z",
         "updated_at": "2022-09-16T14:16:24Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.0/trivy_0.32.0_Linux-64bit.deb"
@@ -15613,7 +15613,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 51561484,
-        "download_count": 2184,
+        "download_count": 2196,
         "created_at": "2022-09-16T14:16:19Z",
         "updated_at": "2022-09-16T14:16:21Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.0/trivy_0.32.0_Linux-64bit.rpm"
@@ -15715,7 +15715,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 51575149,
-        "download_count": 80858,
+        "download_count": 80904,
         "created_at": "2022-09-16T14:16:04Z",
         "updated_at": "2022-09-16T14:16:07Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.32.0/trivy_0.32.0_Linux-64bit.tar.gz"
@@ -17332,7 +17332,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 43894,
+        "download_count": 43896,
         "created_at": "2022-08-29T06:46:57Z",
         "updated_at": "2022-08-29T06:46:57Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.31.3/trivy_0.31.3_checksums.txt"
@@ -17536,7 +17536,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 49916708,
-        "download_count": 14264,
+        "download_count": 14270,
         "created_at": "2022-08-29T06:46:55Z",
         "updated_at": "2022-08-29T06:46:57Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.31.3/trivy_0.31.3_Linux-64bit.deb"
@@ -17570,7 +17570,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 49734928,
-        "download_count": 4042,
+        "download_count": 4043,
         "created_at": "2022-08-29T06:46:50Z",
         "updated_at": "2022-08-29T06:46:51Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.31.3/trivy_0.31.3_Linux-64bit.rpm"
@@ -17604,7 +17604,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 49731203,
-        "download_count": 137755,
+        "download_count": 137897,
         "created_at": "2022-08-29T06:46:42Z",
         "updated_at": "2022-08-29T06:46:43Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.31.3/trivy_0.31.3_Linux-64bit.tar.gz"
@@ -18201,7 +18201,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 40490,
+        "download_count": 40537,
         "created_at": "2022-08-16T15:57:11Z",
         "updated_at": "2022-08-16T15:57:12Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.31.2/trivy_0.31.2_checksums.txt"
@@ -18405,7 +18405,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 49909162,
-        "download_count": 11428,
+        "download_count": 11443,
         "created_at": "2022-08-16T15:57:01Z",
         "updated_at": "2022-08-16T15:57:03Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.31.2/trivy_0.31.2_Linux-64bit.deb"
@@ -18473,7 +18473,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 49728161,
-        "download_count": 74319,
+        "download_count": 74387,
         "created_at": "2022-08-16T15:56:59Z",
         "updated_at": "2022-08-16T15:57:01Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.31.2/trivy_0.31.2_Linux-64bit.tar.gz"
@@ -20796,7 +20796,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 49787,
+        "download_count": 49805,
         "created_at": "2022-07-26T19:37:59Z",
         "updated_at": "2022-07-26T19:37:59Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.4/trivy_0.30.4_checksums.txt"
@@ -21000,7 +21000,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 34109518,
-        "download_count": 21557,
+        "download_count": 21581,
         "created_at": "2022-07-26T19:37:53Z",
         "updated_at": "2022-07-26T19:37:55Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.4/trivy_0.30.4_Linux-64bit.deb"
@@ -21034,7 +21034,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 33991870,
-        "download_count": 4534,
+        "download_count": 4539,
         "created_at": "2022-07-26T19:37:51Z",
         "updated_at": "2022-07-26T19:37:53Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.4/trivy_0.30.4_Linux-64bit.rpm"
@@ -21068,7 +21068,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 34002070,
-        "download_count": 99042,
+        "download_count": 99053,
         "created_at": "2022-07-26T19:37:45Z",
         "updated_at": "2022-07-26T19:37:46Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.4/trivy_0.30.4_Linux-64bit.tar.gz"
@@ -21903,7 +21903,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 33992274,
-        "download_count": 1794,
+        "download_count": 1808,
         "created_at": "2022-07-25T15:06:13Z",
         "updated_at": "2022-07-25T15:06:14Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.3/trivy_0.30.3_Linux-64bit.rpm"
@@ -21937,7 +21937,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 34002055,
-        "download_count": 10238,
+        "download_count": 10239,
         "created_at": "2022-07-25T15:06:04Z",
         "updated_at": "2022-07-25T15:06:05Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.3/trivy_0.30.3_Linux-64bit.tar.gz"
@@ -22794,7 +22794,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 33999712,
-        "download_count": 62516,
+        "download_count": 62538,
         "created_at": "2022-07-21T12:24:06Z",
         "updated_at": "2022-07-21T12:24:07Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.2/trivy_0.30.2_Linux-64bit.tar.gz"
@@ -24464,7 +24464,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 34147932,
-        "download_count": 9313,
+        "download_count": 9323,
         "created_at": "2022-07-15T12:08:09Z",
         "updated_at": "2022-07-15T12:08:11Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.0/trivy_0.30.0_Linux-64bit.deb"
@@ -24532,7 +24532,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 34040728,
-        "download_count": 23005,
+        "download_count": 23006,
         "created_at": "2022-07-15T12:07:44Z",
         "updated_at": "2022-07-15T12:07:47Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.30.0/trivy_0.30.0_Linux-64bit.tar.gz"
@@ -25117,7 +25117,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 63734,
+        "download_count": 63760,
         "created_at": "2022-06-22T08:03:02Z",
         "updated_at": "2022-06-22T08:03:02Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.2/trivy_0.29.2_checksums.txt"
@@ -25321,7 +25321,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 29536830,
-        "download_count": 19295,
+        "download_count": 19320,
         "created_at": "2022-06-22T08:03:01Z",
         "updated_at": "2022-06-22T08:03:02Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.2/trivy_0.29.2_Linux-64bit.deb"
@@ -25355,7 +25355,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 29437323,
-        "download_count": 6269,
+        "download_count": 6270,
         "created_at": "2022-06-22T08:02:58Z",
         "updated_at": "2022-06-22T08:02:59Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.2/trivy_0.29.2_Linux-64bit.rpm"
@@ -25389,7 +25389,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 29432004,
-        "download_count": 147340,
+        "download_count": 147480,
         "created_at": "2022-06-22T08:02:54Z",
         "updated_at": "2022-06-22T08:02:55Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.2/trivy_0.29.2_Linux-64bit.tar.gz"
@@ -25695,7 +25695,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 25941272,
-        "download_count": 346,
+        "download_count": 347,
         "created_at": "2022-06-22T08:02:49Z",
         "updated_at": "2022-06-22T08:02:50Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.2/trivy_0.29.2_Linux-PPC64LE.tar.gz"
@@ -25986,7 +25986,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 6960,
+        "download_count": 6965,
         "created_at": "2022-06-20T11:12:35Z",
         "updated_at": "2022-06-20T11:12:35Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.1/trivy_0.29.1_checksums.txt"
@@ -26258,7 +26258,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 29431259,
-        "download_count": 31495,
+        "download_count": 31535,
         "created_at": "2022-06-20T11:12:27Z",
         "updated_at": "2022-06-20T11:12:28Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.1/trivy_0.29.1_Linux-64bit.tar.gz"
@@ -26855,7 +26855,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 2124,
-        "download_count": 6351,
+        "download_count": 6365,
         "created_at": "2022-06-16T10:54:22Z",
         "updated_at": "2022-06-16T10:54:22Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.0/trivy_0.29.0_checksums.txt"
@@ -27059,7 +27059,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 29536776,
-        "download_count": 2631,
+        "download_count": 2632,
         "created_at": "2022-06-16T10:54:18Z",
         "updated_at": "2022-06-16T10:54:19Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.0/trivy_0.29.0_Linux-64bit.deb"
@@ -27127,7 +27127,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 29431629,
-        "download_count": 38108,
+        "download_count": 38159,
         "created_at": "2022-06-16T10:54:25Z",
         "updated_at": "2022-06-16T10:54:26Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.29.0/trivy_0.29.0_Linux-64bit.tar.gz"
@@ -27724,7 +27724,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1830,
-        "download_count": 36878,
+        "download_count": 36886,
         "created_at": "2022-05-26T05:23:33Z",
         "updated_at": "2022-05-26T05:23:33Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.28.1/trivy_0.28.1_checksums.txt"
@@ -27928,7 +27928,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 24017144,
-        "download_count": 18710,
+        "download_count": 18725,
         "created_at": "2022-05-26T05:23:32Z",
         "updated_at": "2022-05-26T05:23:33Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.28.1/trivy_0.28.1_Linux-64bit.deb"
@@ -27996,7 +27996,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 23933153,
-        "download_count": 93872,
+        "download_count": 93881,
         "created_at": "2022-05-26T05:23:27Z",
         "updated_at": "2022-05-26T05:23:27Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.28.1/trivy_0.28.1_Linux-64bit.tar.gz"
@@ -28695,7 +28695,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 24014910,
-        "download_count": 6658,
+        "download_count": 6663,
         "created_at": "2022-05-16T16:32:44Z",
         "updated_at": "2022-05-16T16:32:45Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.28.0/trivy_0.28.0_Linux-64bit.deb"
@@ -28729,7 +28729,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 23932368,
-        "download_count": 5711,
+        "download_count": 5715,
         "created_at": "2022-05-16T16:32:48Z",
         "updated_at": "2022-05-16T16:32:49Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.28.0/trivy_0.28.0_Linux-64bit.rpm"
@@ -28763,7 +28763,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 23932231,
-        "download_count": 72497,
+        "download_count": 72503,
         "created_at": "2022-05-16T16:32:35Z",
         "updated_at": "2022-05-16T16:32:36Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.28.0/trivy_0.28.0_Linux-64bit.tar.gz"
@@ -29246,7 +29246,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1830,
-        "download_count": 11505,
+        "download_count": 11508,
         "created_at": "2022-05-10T12:49:38Z",
         "updated_at": "2022-05-10T12:49:38Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.27.1/trivy_0.27.1_checksums.txt"
@@ -29450,7 +29450,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 16498508,
-        "download_count": 15507,
+        "download_count": 15516,
         "created_at": "2022-05-10T12:49:36Z",
         "updated_at": "2022-05-10T12:49:37Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.27.1/trivy_0.27.1_Linux-64bit.deb"
@@ -29518,7 +29518,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 16448109,
-        "download_count": 35246,
+        "download_count": 35255,
         "created_at": "2022-05-10T12:49:31Z",
         "updated_at": "2022-05-10T12:49:32Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.27.1/trivy_0.27.1_Linux-64bit.tar.gz"
@@ -30013,7 +30013,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1830,
-        "download_count": 259215,
+        "download_count": 259314,
         "created_at": "2022-04-25T14:07:55Z",
         "updated_at": "2022-04-25T14:07:56Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.27.0/trivy_0.27.0_checksums.txt"
@@ -30285,7 +30285,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 16447634,
-        "download_count": 265042,
+        "download_count": 265138,
         "created_at": "2022-04-25T14:07:46Z",
         "updated_at": "2022-04-25T14:07:47Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.27.0/trivy_0.27.0_Linux-64bit.tar.gz"
@@ -30984,7 +30984,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 16453366,
-        "download_count": 9030,
+        "download_count": 9032,
         "created_at": "2022-04-15T21:41:49Z",
         "updated_at": "2022-04-15T21:41:51Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.26.0/trivy_0.26.0_Linux-64bit.deb"
@@ -31052,7 +31052,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 16407937,
-        "download_count": 87582,
+        "download_count": 87700,
         "created_at": "2022-04-15T21:41:51Z",
         "updated_at": "2022-04-15T21:41:52Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.26.0/trivy_0.26.0_Linux-64bit.tar.gz"
@@ -31751,7 +31751,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 16403442,
-        "download_count": 10550,
+        "download_count": 10563,
         "created_at": "2022-04-11T16:30:05Z",
         "updated_at": "2022-04-11T16:30:05Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.25.4/trivy_0.25.4_Linux-64bit.deb"
@@ -32314,7 +32314,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1830,
-        "download_count": 14842,
+        "download_count": 14876,
         "created_at": "2022-04-06T07:16:56Z",
         "updated_at": "2022-04-06T07:16:57Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.25.3/trivy_0.25.3_checksums.txt"
@@ -32586,7 +32586,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 16348941,
-        "download_count": 46436,
+        "download_count": 46469,
         "created_at": "2022-04-06T07:17:00Z",
         "updated_at": "2022-04-06T07:17:01Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.25.3/trivy_0.25.3_Linux-64bit.tar.gz"
@@ -34795,7 +34795,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 16207308,
-        "download_count": 9535,
+        "download_count": 9538,
         "created_at": "2022-03-31T11:39:20Z",
         "updated_at": "2022-03-31T11:39:22Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.25.0/trivy_0.25.0_Linux-64bit.deb"
@@ -34863,7 +34863,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 16155086,
-        "download_count": 23462,
+        "download_count": 23470,
         "created_at": "2022-03-31T11:39:29Z",
         "updated_at": "2022-03-31T11:39:30Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.25.0/trivy_0.25.0_Linux-64bit.tar.gz"
@@ -35346,7 +35346,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1830,
-        "download_count": 30666,
+        "download_count": 30668,
         "created_at": "2022-03-17T19:49:21Z",
         "updated_at": "2022-03-17T19:49:21Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.24.4/trivy_0.24.4_checksums.txt"
@@ -35550,7 +35550,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 15529662,
-        "download_count": 9846,
+        "download_count": 9856,
         "created_at": "2022-03-17T19:49:20Z",
         "updated_at": "2022-03-17T19:49:21Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.24.4/trivy_0.24.4_Linux-64bit.deb"
@@ -35584,7 +35584,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 15477562,
-        "download_count": 2740,
+        "download_count": 2742,
         "created_at": "2022-03-17T19:49:16Z",
         "updated_at": "2022-03-17T19:49:17Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.24.4/trivy_0.24.4_Linux-64bit.rpm"
@@ -35618,7 +35618,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 15488044,
-        "download_count": 86906,
+        "download_count": 86913,
         "created_at": "2022-03-17T19:49:24Z",
         "updated_at": "2022-03-17T19:49:25Z",
         "browser_download_url": "https://github.com/aquasecurity/trivy/releases/download/v0.24.4/trivy_0.24.4_Linux-64bit.tar.gz"

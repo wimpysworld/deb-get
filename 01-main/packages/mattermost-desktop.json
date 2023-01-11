@@ -199,7 +199,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 420,
-        "download_count": 11,
+        "download_count": 12,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:02Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/latest-linux.yml"
@@ -743,7 +743,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 188509327,
-        "download_count": 4107,
+        "download_count": 4119,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:19Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-mac-universal.dmg"
@@ -7421,7 +7421,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 78257140,
-        "download_count": 5,
+        "download_count": 6,
         "created_at": "2022-11-10T16:14:49Z",
         "updated_at": "2022-11-10T16:14:57Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.1-rc1/mattermost-desktop_5.2.1-rc1-1_amd64.deb"

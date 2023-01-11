@@ -62,7 +62,7 @@
       "content_type": "text/plain",
       "state": "uploaded",
       "size": 900,
-      "download_count": 65985,
+      "download_count": 71116,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:16Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/SHA256SUMS.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 79105408,
-      "download_count": 110,
+      "download_count": 121,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:20Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-aarch64.rpm"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 78843768,
-      "download_count": 6304,
+      "download_count": 7118,
       "created_at": "2022-06-08T13:26:16Z",
       "updated_at": "2022-06-08T13:26:22Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-amd64.deb"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 125995118,
-      "download_count": 696,
+      "download_count": 777,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:23Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-arm64.AppImage"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 79217856,
-      "download_count": 596,
+      "download_count": 657,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:21Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-arm64.deb"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 126378379,
-      "download_count": 7112,
+      "download_count": 8077,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:26Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-arm64.dmg"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 81296408,
-      "download_count": 2546,
+      "download_count": 2863,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:21Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-arm64.exe"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 125600169,
-      "download_count": 9090,
+      "download_count": 10039,
       "created_at": "2022-06-08T13:26:16Z",
       "updated_at": "2022-06-08T13:26:23Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-x64.dmg"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 90091256,
-      "download_count": 37108,
+      "download_count": 41493,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:21Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-x64.exe"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 118117920,
-      "download_count": 3266,
+      "download_count": 3673,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:20Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-x86_64.AppImage"
@@ -402,7 +402,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 78799836,
-      "download_count": 1189,
+      "download_count": 1401,
       "created_at": "2022-06-08T13:26:15Z",
       "updated_at": "2022-06-08T13:26:21Z",
       "browser_download_url": "https://github.com/Zettlr/Zettlr/releases/download/v2.3.0/Zettlr-2.3.0-x86_64.rpm"
@@ -413,11 +413,11 @@
   "body": "**Customizable Toolbar | Filetree Navigation | Quality of Life**\r\n\r\nThis update introduces a few new features that had been long in demand. Firstly, now you can customize the toolbar and display or hide most elements depending on your preferences. To do so, head over into the new tab in the preferences window. Secondly, you can now navigate the file tree as well with your arrow keys. To collapse or uncollapse directories, you can use the left and right arrow keys. Thirdly, we have added scroll buttons which will come in handy for those of you who cannot or do not want to scroll through the tabbar horizontally.\r\n\r\nBesides these new features, we have again fixed a bunch of bugs and improved working with the app considerably. As always, make sure to read the changelog so you're up to speed!\r\n\r\n# Changelog\r\n\r\n## GUI and Functionality\r\n\r\n- **New Feature**: You can now customize the toolbar and add or remove buttons\r\n  as you see fit\r\n- **New Feature**: You can now navigate the file tree with the arrow buttons\r\n  after activating the quick filter; use up and down to visually move through\r\n  the visible items and left/right to collapse/uncollapse a directory; use Enter\r\n  to \"click\" that item\r\n- **New Feature**: The document tabbar now features buttons so you can easily\r\n  scroll horizontally through many tabs\r\n- Added \"Copy filename\", \"Copy path\", and \"Copy ID\" items to document tabs\r\n  context menus (thanks to @kyaso)\r\n- Added \"New File\", \"Next File\", and \"Previous File\" buttons to the toolbar\r\n- The query input now gets blurred when starting a global search in order to\r\n  prevent the dropdown from showing up, especially during auto-searches\r\n- Added keyword/tag CSS class names to YAML frontmatter tags\r\n- Added the last modification date to the file list, even if the additional info\r\n  setting is turned off\r\n- The \"restrict to directory\" field will now be empty by default\r\n- Pressing `Tab` while the query input is focused will now directly focus the\r\n  restrict-to-dir input\r\n- The table of contents in the sidebar now shows the title of the currently\r\n  active file, if applicable\r\n- Removed the less-than-helpful file and folder removal shortcuts\r\n- Fixed the recent documents menu on Windows\r\n- Fixed wrong character count if counting without spaces\r\n- Fixed wrong word count for indented lists\r\n- Fixed wrong keyword/tag CSS class names\r\n- Fixed jumping of the code editor in the assets manager\r\n- Fixed wrongly positioned tabstops during snippets autocomplete\r\n- Fixed an error that would erroneously render citations in footnote previews or\r\n  copied text with styling\r\n\r\n## Under the Hood\r\n\r\n- Ignore `IDEA`-related files\r\n- Update Pandoc to `2.18`\r\n- Refactored the main window's store to be more modular for the upcoming\r\n  additional changes\r\n- Added an additional check for frontmatter values in code files",
   "reactions": {
     "url": "https://api.github.com/repos/Zettlr/Zettlr/releases/68950900/reactions",
-    "total_count": 17,
+    "total_count": 18,
     "+1": 9,
     "-1": 0,
     "laugh": 0,
-    "hooray": 8,
+    "hooray": 9,
     "confused": 0,
     "heart": 0,
     "rocket": 0,

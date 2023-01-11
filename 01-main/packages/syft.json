@@ -63,7 +63,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 11673,
+        "download_count": 11966,
         "created_at": "2023-01-04T17:23:42Z",
         "updated_at": "2023-01-04T17:23:42Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_checksums.txt"
@@ -97,7 +97,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 21429760,
-        "download_count": 383,
+        "download_count": 392,
         "created_at": "2023-01-04T17:23:20Z",
         "updated_at": "2023-01-04T17:23:21Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_darwin_amd64.tar.gz"
@@ -131,7 +131,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20108480,
-        "download_count": 381,
+        "download_count": 388,
         "created_at": "2023-01-04T17:23:22Z",
         "updated_at": "2023-01-04T17:23:23Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_darwin_arm64.tar.gz"
@@ -165,7 +165,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 20855106,
-        "download_count": 166,
+        "download_count": 170,
         "created_at": "2023-01-04T17:23:35Z",
         "updated_at": "2023-01-04T17:23:36Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_linux_amd64.deb"
@@ -199,7 +199,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 20905011,
-        "download_count": 105,
+        "download_count": 108,
         "created_at": "2023-01-04T17:23:28Z",
         "updated_at": "2023-01-04T17:23:30Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_linux_amd64.rpm"
@@ -233,7 +233,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20041317,
-        "download_count": 11928,
+        "download_count": 12247,
         "created_at": "2023-01-04T17:23:11Z",
         "updated_at": "2023-01-04T17:23:13Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_linux_amd64.tar.gz"
@@ -267,7 +267,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 19007932,
-        "download_count": 59,
+        "download_count": 61,
         "created_at": "2023-01-04T17:23:37Z",
         "updated_at": "2023-01-04T17:23:38Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_linux_arm64.deb"
@@ -301,7 +301,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 19025909,
-        "download_count": 63,
+        "download_count": 65,
         "created_at": "2023-01-04T17:23:30Z",
         "updated_at": "2023-01-04T17:23:32Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_linux_arm64.rpm"
@@ -335,7 +335,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 18317867,
-        "download_count": 260,
+        "download_count": 272,
         "created_at": "2023-01-04T17:23:13Z",
         "updated_at": "2023-01-04T17:23:15Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_linux_arm64.tar.gz"
@@ -471,7 +471,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 20340084,
-        "download_count": 0,
+        "download_count": 1,
         "created_at": "2023-01-04T17:23:41Z",
         "updated_at": "2023-01-04T17:23:42Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_linux_s390x.deb"
@@ -573,7 +573,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20078676,
-        "download_count": 111,
+        "download_count": 116,
         "created_at": "2023-01-04T17:23:24Z",
         "updated_at": "2023-01-04T17:23:26Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.65.0/syft_0.65.0_windows_amd64.zip"
@@ -1231,7 +1231,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 25850,
+        "download_count": 25853,
         "created_at": "2022-12-12T21:22:12Z",
         "updated_at": "2022-12-12T21:22:12Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.63.0/syft_0.63.0_checksums.txt"
@@ -1401,7 +1401,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20027888,
-        "download_count": 26892,
+        "download_count": 26895,
         "created_at": "2022-12-12T21:21:53Z",
         "updated_at": "2022-12-12T21:21:54Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.63.0/syft_0.63.0_linux_amd64.tar.gz"
@@ -1815,7 +1815,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 31031,
+        "download_count": 31044,
         "created_at": "2022-11-30T19:22:43Z",
         "updated_at": "2022-11-30T19:22:43Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.62.3/syft_0.62.3_checksums.txt"
@@ -1917,7 +1917,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 20883642,
-        "download_count": 324,
+        "download_count": 325,
         "created_at": "2022-11-30T19:22:36Z",
         "updated_at": "2022-11-30T19:22:37Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.62.3/syft_0.62.3_linux_amd64.deb"
@@ -1985,7 +1985,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20017143,
-        "download_count": 31228,
+        "download_count": 31246,
         "created_at": "2022-11-30T19:22:16Z",
         "updated_at": "2022-11-30T19:22:18Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.62.3/syft_0.62.3_linux_amd64.tar.gz"
@@ -2399,7 +2399,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 7092,
+        "download_count": 7103,
         "created_at": "2022-11-28T17:02:49Z",
         "updated_at": "2022-11-28T17:02:49Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.62.2/syft_0.62.2_checksums.txt"
@@ -2569,7 +2569,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20015899,
-        "download_count": 7222,
+        "download_count": 7233,
         "created_at": "2022-11-28T17:02:33Z",
         "updated_at": "2022-11-28T17:02:35Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.62.2/syft_0.62.2_linux_amd64.tar.gz"
@@ -3017,7 +3017,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 22550,
+        "download_count": 22578,
         "created_at": "2022-11-21T15:10:48Z",
         "updated_at": "2022-11-21T15:10:49Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.62.1/syft_0.62.1_checksums.txt"
@@ -3187,7 +3187,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20014858,
-        "download_count": 171831,
+        "download_count": 172601,
         "created_at": "2022-11-21T15:10:29Z",
         "updated_at": "2022-11-21T15:10:30Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.62.1/syft_0.62.1_linux_amd64.tar.gz"
@@ -4837,7 +4837,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 69520,
+        "download_count": 69603,
         "created_at": "2022-11-03T15:30:40Z",
         "updated_at": "2022-11-03T15:30:41Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.60.3/syft_0.60.3_checksums.txt"
@@ -5007,7 +5007,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20032089,
-        "download_count": 127973,
+        "download_count": 128093,
         "created_at": "2022-11-03T15:30:20Z",
         "updated_at": "2022-11-03T15:30:21Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.60.3/syft_0.60.3_linux_amd64.tar.gz"
@@ -5211,7 +5211,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 17746905,
-        "download_count": 25,
+        "download_count": 26,
         "created_at": "2022-11-03T15:30:23Z",
         "updated_at": "2022-11-03T15:30:24Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.60.3/syft_0.60.3_linux_ppc64le.tar.gz"
@@ -6141,7 +6141,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 20897975,
-        "download_count": 617,
+        "download_count": 620,
         "created_at": "2022-11-01T17:19:22Z",
         "updated_at": "2022-11-01T17:19:23Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.60.1/syft_0.60.1_linux_amd64.rpm"
@@ -6589,7 +6589,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 120108,
+        "download_count": 120373,
         "created_at": "2022-10-17T16:35:57Z",
         "updated_at": "2022-10-17T16:35:58Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.59.0/syft_0.59.0_checksums.txt"
@@ -6759,7 +6759,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20188072,
-        "download_count": 185139,
+        "download_count": 185412,
         "created_at": "2022-10-17T16:35:44Z",
         "updated_at": "2022-10-17T16:35:45Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.59.0/syft_0.59.0_linux_amd64.tar.gz"
@@ -7173,7 +7173,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 57667,
+        "download_count": 57690,
         "created_at": "2022-09-29T20:21:05Z",
         "updated_at": "2022-09-29T20:21:05Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.58.0/syft_0.58.0_checksums.txt"
@@ -7207,7 +7207,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 22074478,
-        "download_count": 924,
+        "download_count": 925,
         "created_at": "2022-09-29T20:20:43Z",
         "updated_at": "2022-09-29T20:20:44Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.58.0/syft_0.58.0_darwin_amd64.tar.gz"
@@ -7241,7 +7241,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20467379,
-        "download_count": 738,
+        "download_count": 739,
         "created_at": "2022-09-29T20:20:45Z",
         "updated_at": "2022-09-29T20:20:47Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.58.0/syft_0.58.0_darwin_arm64.tar.gz"
@@ -7343,7 +7343,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20333565,
-        "download_count": 57500,
+        "download_count": 57528,
         "created_at": "2022-09-29T20:20:35Z",
         "updated_at": "2022-09-29T20:20:37Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.58.0/syft_0.58.0_linux_amd64.tar.gz"
@@ -7445,7 +7445,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 18587705,
-        "download_count": 1960,
+        "download_count": 1963,
         "created_at": "2022-09-29T20:20:38Z",
         "updated_at": "2022-09-29T20:20:39Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.58.0/syft_0.58.0_linux_arm64.tar.gz"
@@ -7757,7 +7757,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 36466,
+        "download_count": 36468,
         "created_at": "2022-09-19T21:04:19Z",
         "updated_at": "2022-09-19T21:04:19Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.57.0/syft_0.57.0_checksums.txt"
@@ -7927,7 +7927,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20286854,
-        "download_count": 143508,
+        "download_count": 143549,
         "created_at": "2022-09-19T21:04:00Z",
         "updated_at": "2022-09-19T21:04:01Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.57.0/syft_0.57.0_linux_amd64.tar.gz"
@@ -8353,7 +8353,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 88144,
+        "download_count": 88280,
         "created_at": "2022-09-12T16:59:26Z",
         "updated_at": "2022-09-12T16:59:26Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.56.0/syft_0.56.0_checksums.txt"
@@ -8523,7 +8523,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20251385,
-        "download_count": 123077,
+        "download_count": 123225,
         "created_at": "2022-09-12T16:58:44Z",
         "updated_at": "2022-09-12T16:58:46Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.56.0/syft_0.56.0_linux_amd64.tar.gz"
@@ -8937,7 +8937,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 39556,
+        "download_count": 39564,
         "created_at": "2022-08-29T20:26:28Z",
         "updated_at": "2022-08-29T20:26:28Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.55.0/syft_0.55.0_checksums.txt"
@@ -9107,7 +9107,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20234501,
-        "download_count": 91665,
+        "download_count": 91674,
         "created_at": "2022-08-29T20:26:11Z",
         "updated_at": "2022-08-29T20:26:12Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.55.0/syft_0.55.0_linux_amd64.tar.gz"
@@ -9521,7 +9521,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 29558,
+        "download_count": 29559,
         "created_at": "2022-08-17T19:17:40Z",
         "updated_at": "2022-08-17T19:17:40Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.54.0/syft_0.54.0_checksums.txt"
@@ -9691,7 +9691,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20441091,
-        "download_count": 75478,
+        "download_count": 75482,
         "created_at": "2022-08-17T19:17:05Z",
         "updated_at": "2022-08-17T19:17:07Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.54.0/syft_0.54.0_linux_amd64.tar.gz"
@@ -10031,7 +10031,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20468759,
-        "download_count": 226,
+        "download_count": 229,
         "created_at": "2022-08-17T19:17:21Z",
         "updated_at": "2022-08-17T19:17:23Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.54.0/syft_0.54.0_windows_amd64.zip"
@@ -10105,7 +10105,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1438,
-        "download_count": 47693,
+        "download_count": 47703,
         "created_at": "2022-08-03T17:14:18Z",
         "updated_at": "2022-08-03T17:14:18Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.53.4/syft_0.53.4_checksums.txt"
@@ -10275,7 +10275,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20414238,
-        "download_count": 97617,
+        "download_count": 97645,
         "created_at": "2022-08-03T17:14:00Z",
         "updated_at": "2022-08-03T17:14:01Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.53.4/syft_0.53.4_linux_amd64.tar.gz"
@@ -13195,7 +13195,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20882947,
-        "download_count": 66488,
+        "download_count": 66489,
         "created_at": "2022-07-21T14:19:52Z",
         "updated_at": "2022-07-21T14:19:53Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.52.0/syft_0.52.0_linux_amd64.tar.gz"
@@ -13677,7 +13677,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20752835,
-        "download_count": 42833,
+        "download_count": 42835,
         "created_at": "2022-07-11T17:33:44Z",
         "updated_at": "2022-07-11T17:33:45Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.51.0/syft_0.51.0_linux_amd64.tar.gz"
@@ -14057,7 +14057,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20747826,
-        "download_count": 28689,
+        "download_count": 28693,
         "created_at": "2022-07-06T14:04:55Z",
         "updated_at": "2022-07-06T14:04:57Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.50.0/syft_0.50.0_linux_amd64.tar.gz"
@@ -15407,7 +15407,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 862,
-        "download_count": 7176,
+        "download_count": 7178,
         "created_at": "2022-06-09T19:34:38Z",
         "updated_at": "2022-06-09T19:34:38Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.47.0/syft_0.47.0_checksums.txt"
@@ -15577,7 +15577,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20271428,
-        "download_count": 55549,
+        "download_count": 55554,
         "created_at": "2022-06-09T19:34:12Z",
         "updated_at": "2022-06-09T19:34:17Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.47.0/syft_0.47.0_linux_amd64.tar.gz"
@@ -15957,7 +15957,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 18432371,
-        "download_count": 66819,
+        "download_count": 66828,
         "created_at": "2022-05-26T07:05:08Z",
         "updated_at": "2022-05-26T07:05:09Z",
         "browser_download_url": "https://github.com/anchore/syft/releases/download/v0.46.3/syft_0.46.3_linux_amd64.tar.gz"

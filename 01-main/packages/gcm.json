@@ -62,7 +62,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 481,
-      "download_count": 349,
+      "download_count": 352,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:01Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-linux_amd64.2.0.886-symbols.tar.gz"
@@ -130,7 +130,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 156724572,
-      "download_count": 2956,
+      "download_count": 2995,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:06Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-linux_amd64.2.0.886.deb"
@@ -164,7 +164,7 @@
       "content_type": "application/x-gzip",
       "state": "uploaded",
       "size": 193947907,
-      "download_count": 470,
+      "download_count": 475,
       "created_at": "2022-12-22T17:52:54Z",
       "updated_at": "2022-12-22T17:53:00Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-linux_amd64.2.0.886.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 49094195,
-      "download_count": 12865,
+      "download_count": 12960,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:03Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-osx-arm64-2.0.886.pkg"
@@ -266,7 +266,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 49194416,
-      "download_count": 78,
+      "download_count": 79,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:03Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-osx-arm64-2.0.886.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 114708,
-      "download_count": 26,
+      "download_count": 29,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:01Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-osx-x64-2.0.886-symbols.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 50986727,
-      "download_count": 8518,
+      "download_count": 8564,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:03Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-osx-x64-2.0.886.pkg"
@@ -368,7 +368,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 51074555,
-      "download_count": 80,
+      "download_count": 86,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:03Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-osx-x64-2.0.886.tar.gz"
@@ -436,7 +436,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 2623648,
-      "download_count": 1693,
+      "download_count": 1718,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:01Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-win-x86-2.0.886.exe"
@@ -470,7 +470,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 1723095,
-      "download_count": 299,
+      "download_count": 300,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:01Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcm-win-x86-2.0.886.zip"
@@ -504,7 +504,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 2623872,
-      "download_count": 416,
+      "download_count": 419,
       "created_at": "2022-12-14T23:27:00Z",
       "updated_at": "2022-12-14T23:27:01Z",
       "browser_download_url": "https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.886/gcmuser-win-x86-2.0.886.exe"

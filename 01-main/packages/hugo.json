@@ -62,7 +62,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 2025,
-      "download_count": 2609,
+      "download_count": 2624,
       "created_at": "2022-12-23T10:49:55Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_checksums.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 34475369,
-      "download_count": 432,
+      "download_count": 443,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:53Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_darwin-universal.tar.gz"
@@ -130,7 +130,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16926057,
-      "download_count": 44,
+      "download_count": 46,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:52Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_dragonfly-amd64.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16934639,
-      "download_count": 16251,
+      "download_count": 16410,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:52Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_Linux-64bit.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17688162,
-      "download_count": 807,
+      "download_count": 830,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-amd64.deb"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16934639,
-      "download_count": 1668,
+      "download_count": 1715,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:52Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-amd64.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 16143976,
-      "download_count": 127,
+      "download_count": 131,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-arm64.deb"
@@ -368,7 +368,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 15509834,
-      "download_count": 184,
+      "download_count": 187,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:53Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-arm64.tar.gz"
@@ -470,7 +470,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 17388112,
-      "download_count": 2050,
+      "download_count": 2069,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_windows-amd64.zip"
@@ -504,7 +504,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 15915874,
-      "download_count": 218,
+      "download_count": 221,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_windows-arm64.zip"
@@ -538,7 +538,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 36405624,
-      "download_count": 766,
+      "download_count": 774,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_darwin-universal.tar.gz"
@@ -572,7 +572,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 18138775,
-      "download_count": 35087,
+      "download_count": 35393,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_Linux-64bit.tar.gz"
@@ -606,7 +606,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 18934388,
-      "download_count": 8440,
+      "download_count": 8656,
       "created_at": "2022-12-23T10:49:55Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.deb"
@@ -640,7 +640,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 18138775,
-      "download_count": 4656,
+      "download_count": 4741,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.tar.gz"
@@ -742,7 +742,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 18727758,
-      "download_count": 3307,
+      "download_count": 3337,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_windows-amd64.zip"
