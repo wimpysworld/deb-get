@@ -63,7 +63,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 66622232,
-        "download_count": 7918,
+        "download_count": 8743,
         "created_at": "2022-05-20T20:07:16Z",
         "updated_at": "2022-05-20T20:07:19Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.10.0/figma-linux_0.10.0_linux_amd64.deb"
@@ -97,7 +97,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 108908839,
-        "download_count": 425,
+        "download_count": 453,
         "created_at": "2022-05-20T20:07:16Z",
         "updated_at": "2022-05-20T20:07:20Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.10.0/figma-linux_0.10.0_linux_amd64.zip"
@@ -131,7 +131,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 66651668,
-        "download_count": 378,
+        "download_count": 407,
         "created_at": "2022-05-20T20:07:16Z",
         "updated_at": "2022-05-20T20:07:19Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.10.0/figma-linux_0.10.0_linux_x64.pacman"
@@ -165,7 +165,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 106344504,
-        "download_count": 5579,
+        "download_count": 6247,
         "created_at": "2022-05-20T20:07:16Z",
         "updated_at": "2022-05-20T20:07:21Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.10.0/figma-linux_0.10.0_linux_x86_64.AppImage"
@@ -199,7 +199,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 66857240,
-        "download_count": 1378,
+        "download_count": 1566,
         "created_at": "2022-05-20T20:07:16Z",
         "updated_at": "2022-05-20T20:07:19Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.10.0/figma-linux_0.10.0_linux_x86_64.rpm"
@@ -210,14 +210,14 @@
     "body": "\r\n## Features:\r\n* Add checkbox for enbale/disable figma-linux themes\r\n\r\n## Bug Fixes:\r\n* Update icons for deb package for LaunchPad\r\n* Fixes theme manager rules for better display themes colors\r\n* Fixes missing home toolbar bg color\r\n* Fixes tab sizing for user interactions and adds focus to new tabs. (https://github.com/Figma-Linux/figma-linux/pull/269)\r\n\r\n## Other Changes:\r\n* remove unnecessary libm library\r\n* Bump Electron version from 13.6.3 to 13.6.9\r\n* replace scss on css\r\n* Remove the old libstdc++ library\r\n",
     "reactions": {
       "url": "https://api.github.com/repos/Figma-Linux/figma-linux/releases/67426705/reactions",
-      "total_count": 41,
+      "total_count": 50,
       "+1": 0,
       "-1": 0,
       "laugh": 0,
-      "hooray": 20,
+      "hooray": 24,
       "confused": 0,
-      "heart": 15,
-      "rocket": 6,
+      "heart": 18,
+      "rocket": 8,
       "eyes": 0
     }
   },
@@ -285,7 +285,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 70329080,
-        "download_count": 106,
+        "download_count": 110,
         "created_at": "2022-03-19T20:33:46Z",
         "updated_at": "2022-03-19T20:33:50Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.6/figma-linux_0.9.6_linux_aarch64.pacman"
@@ -319,7 +319,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 63792004,
-        "download_count": 91,
+        "download_count": 94,
         "created_at": "2022-03-19T20:33:46Z",
         "updated_at": "2022-03-19T20:33:49Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.6/figma-linux_0.9.6_linux_aarch64.rpm"
@@ -353,7 +353,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 67341770,
-        "download_count": 2668,
+        "download_count": 2672,
         "created_at": "2022-03-19T19:37:29Z",
         "updated_at": "2022-03-19T19:37:33Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.6/figma-linux_0.9.6_linux_amd64.deb"
@@ -387,7 +387,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 109969657,
-        "download_count": 8911,
+        "download_count": 9397,
         "created_at": "2022-03-19T19:37:29Z",
         "updated_at": "2022-03-19T19:37:34Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.6/figma-linux_0.9.6_linux_amd64.zip"
@@ -421,7 +421,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 107407876,
-        "download_count": 441,
+        "download_count": 445,
         "created_at": "2022-03-19T20:33:46Z",
         "updated_at": "2022-03-19T20:33:51Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.6/figma-linux_0.9.6_linux_arm64.AppImage"
@@ -455,7 +455,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 70305232,
-        "download_count": 856,
+        "download_count": 859,
         "created_at": "2022-03-19T20:33:46Z",
         "updated_at": "2022-03-19T20:33:50Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.6/figma-linux_0.9.6_linux_arm64.deb"
@@ -489,7 +489,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 109600769,
-        "download_count": 53,
+        "download_count": 59,
         "created_at": "2022-03-19T20:33:46Z",
         "updated_at": "2022-03-19T20:33:53Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.6/figma-linux_0.9.6_linux_arm64.zip"
@@ -602,13 +602,13 @@
     "body": "\n## Bug Fixes:\n* tab sizing for user interactions and adds focus to new tabs\n\n## Other Changes:\n* Bump Electron version from 13.6.3 to 13.6.9\n* replace scss on css\n* Remove the old libstdc++ library\n",
     "reactions": {
       "url": "https://api.github.com/repos/Figma-Linux/figma-linux/releases/62254684/reactions",
-      "total_count": 15,
+      "total_count": 17,
       "+1": 0,
       "-1": 0,
       "laugh": 0,
-      "hooray": 12,
+      "hooray": 13,
       "confused": 0,
-      "heart": 3,
+      "heart": 4,
       "rocket": 0,
       "eyes": 0
     }
@@ -677,7 +677,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 70819400,
-        "download_count": 42,
+        "download_count": 44,
         "created_at": "2022-02-23T22:01:45Z",
         "updated_at": "2022-02-23T22:01:48Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.5/figma-linux_0.9.5_linux_aarch64.pacman"
@@ -847,7 +847,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 70779764,
-        "download_count": 646,
+        "download_count": 650,
         "created_at": "2022-02-23T22:01:45Z",
         "updated_at": "2022-02-23T22:01:48Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.5/figma-linux_0.9.5_linux_arm64.deb"
@@ -949,7 +949,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 108091495,
-        "download_count": 150,
+        "download_count": 151,
         "created_at": "2022-02-23T20:05:45Z",
         "updated_at": "2022-02-23T20:05:50Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.5/figma-linux_0.9.5_linux_x86_64.AppImage"
@@ -1137,7 +1137,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 67824800,
-        "download_count": 186,
+        "download_count": 187,
         "created_at": "2022-02-20T13:01:14Z",
         "updated_at": "2022-02-20T13:01:17Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.4/figma-linux_0.9.4_linux_amd64.deb"
@@ -1239,7 +1239,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 70780912,
-        "download_count": 101,
+        "download_count": 102,
         "created_at": "2022-02-20T14:43:28Z",
         "updated_at": "2022-02-20T14:43:31Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.4/figma-linux_0.9.4_linux_arm64.deb"
@@ -1517,7 +1517,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 68085428,
-        "download_count": 3456,
+        "download_count": 3459,
         "created_at": "2021-12-09T10:12:39Z",
         "updated_at": "2021-12-09T10:12:42Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.3/figma-linux_0.9.3_linux_amd64.deb"
@@ -1551,7 +1551,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 110584222,
-        "download_count": 4245,
+        "download_count": 4246,
         "created_at": "2021-12-09T10:12:39Z",
         "updated_at": "2021-12-09T10:12:43Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.3/figma-linux_0.9.3_linux_amd64.zip"
@@ -1909,7 +1909,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 68216876,
-        "download_count": 2681,
+        "download_count": 2682,
         "created_at": "2021-10-16T18:22:36Z",
         "updated_at": "2021-10-16T18:22:41Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.2/figma-linux_0.9.2_linux_amd64.deb"
@@ -2079,7 +2079,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 68234392,
-        "download_count": 27,
+        "download_count": 29,
         "created_at": "2021-10-16T18:22:37Z",
         "updated_at": "2021-10-16T18:22:41Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.2/figma-linux_0.9.2_linux_x64.pacman"
@@ -2727,7 +2727,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 144790489,
-        "download_count": 1275,
+        "download_count": 1279,
         "created_at": "2021-10-13T19:14:28Z",
         "updated_at": "2021-10-13T19:14:34Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.0/figma-linux_0.9.0_linux_amd64.zip"
@@ -2829,7 +2829,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 143847365,
-        "download_count": 1060,
+        "download_count": 1064,
         "created_at": "2021-10-13T21:13:32Z",
         "updated_at": "2021-10-13T21:13:37Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.9.0/figma-linux_0.9.0_linux_arm64.zip"
@@ -3051,7 +3051,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 73537628,
-        "download_count": 138,
+        "download_count": 139,
         "created_at": "2021-07-24T00:50:49Z",
         "updated_at": "2021-07-24T00:50:53Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.8.1/figma-linux_0.8.1_linux_aarch64.rpm"
@@ -3153,7 +3153,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 134689749,
-        "download_count": 1032,
+        "download_count": 1055,
         "created_at": "2021-07-24T00:50:50Z",
         "updated_at": "2021-07-24T00:50:55Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.8.1/figma-linux_0.8.1_linux_arm64.AppImage"
@@ -3323,7 +3323,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 77172092,
-        "download_count": 346,
+        "download_count": 349,
         "created_at": "2021-07-23T23:19:32Z",
         "updated_at": "2021-07-23T23:19:36Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.8.1/figma-linux_0.8.1_linux_x86_64.rpm"
@@ -4465,7 +4465,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 135066049,
-        "download_count": 122,
+        "download_count": 123,
         "created_at": "2021-05-11T18:36:16Z",
         "updated_at": "2021-05-11T18:36:21Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.7.3/figma-linux_0.7.3_linux_x86_64.AppImage"
@@ -4573,7 +4573,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83954780,
-        "download_count": 33,
+        "download_count": 34,
         "created_at": "2021-04-07T16:03:57Z",
         "updated_at": "2021-04-07T16:04:02Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.7.2/figma-linux_0.7.2_linux_aarch64.pacman"
@@ -4743,7 +4743,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83904716,
-        "download_count": 123,
+        "download_count": 124,
         "created_at": "2021-04-07T16:03:58Z",
         "updated_at": "2021-04-07T16:04:03Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.7.2/figma-linux_0.7.2_linux_arm64.deb"
@@ -4845,7 +4845,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 135258969,
-        "download_count": 266,
+        "download_count": 267,
         "created_at": "2021-04-07T14:45:17Z",
         "updated_at": "2021-04-07T14:45:22Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.7.2/figma-linux_0.7.2_linux_x86_64.AppImage"
@@ -4879,7 +4879,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 77206424,
-        "download_count": 164,
+        "download_count": 165,
         "created_at": "2021-04-07T14:45:17Z",
         "updated_at": "2021-04-07T14:45:23Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.7.2/figma-linux_0.7.2_linux_x86_64.rpm"
@@ -5827,7 +5827,7 @@
         "content_type": "application/x-iso9660-appimage",
         "state": "uploaded",
         "size": 116756456,
-        "download_count": 1363,
+        "download_count": 1364,
         "created_at": "2020-02-05T08:45:31Z",
         "updated_at": "2020-02-05T08:45:44Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.6.2/figma-linux-0.6.2.AppImage"
@@ -6593,7 +6593,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 62797352,
-        "download_count": 12,
+        "download_count": 13,
         "created_at": "2019-11-26T08:10:04Z",
         "updated_at": "2019-11-26T08:10:26Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.6.0-beta.1/figma-linux-0.6.0-beta.1.x86_64.rpm"
@@ -7149,7 +7149,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 40551784,
-        "download_count": 470,
+        "download_count": 471,
         "created_at": "2019-09-12T18:41:18Z",
         "updated_at": "2019-09-12T18:47:33Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.5.6/figma-linux_0.5.6_amd64.deb"
@@ -7325,7 +7325,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 55627203,
-        "download_count": 23,
+        "download_count": 24,
         "created_at": "2019-09-04T19:25:24Z",
         "updated_at": "2019-09-04T19:41:54Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.5.5/figma-linux-0.5.5.zip"
@@ -7637,7 +7637,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 45615996,
-        "download_count": 273,
+        "download_count": 274,
         "created_at": "2019-08-22T08:35:59Z",
         "updated_at": "2019-08-22T08:36:28Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.5.4/figma-linux_0.5.4_amd64.deb"
@@ -7847,7 +7847,7 @@
         "content_type": "application/x-iso9660-appimage",
         "state": "uploaded",
         "size": 66649443,
-        "download_count": 90,
+        "download_count": 91,
         "created_at": "2019-08-03T19:42:01Z",
         "updated_at": "2019-08-03T19:53:55Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.5.3/figma-linux.0.5.3_amd64.AppImage"
@@ -8091,7 +8091,7 @@
         "content_type": "application/x-iso9660-appimage",
         "state": "uploaded",
         "size": 68157894,
-        "download_count": 127,
+        "download_count": 128,
         "created_at": "2019-07-18T11:31:09Z",
         "updated_at": "2019-07-18T11:40:47Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.5.2/figma-linux.0.5.2.AppImage"
@@ -8369,7 +8369,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 45916796,
-        "download_count": 1764,
+        "download_count": 1765,
         "created_at": "2019-05-23T09:00:47Z",
         "updated_at": "2019-05-23T09:01:38Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.5.1/figma-linux_0.5.1_amd64.deb"
@@ -8715,7 +8715,7 @@
         "content_type": "application/x-iso9660-appimage",
         "state": "uploaded",
         "size": 68444985,
-        "download_count": 26,
+        "download_count": 27,
         "created_at": "2019-05-06T08:09:38Z",
         "updated_at": "2019-05-06T08:09:54Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.5.0/figma-linux.0.5.0.i386.AppImage"
@@ -9095,7 +9095,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 44865304,
-        "download_count": 1708,
+        "download_count": 1712,
         "created_at": "2019-02-15T09:25:42Z",
         "updated_at": "2019-02-15T09:26:10Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.4.0/figma-linux_0.4.0_amd64.deb"
@@ -9163,7 +9163,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 46070176,
-        "download_count": 223,
+        "download_count": 225,
         "created_at": "2019-02-15T09:25:43Z",
         "updated_at": "2019-02-15T09:26:35Z",
         "browser_download_url": "https://github.com/Figma-Linux/figma-linux/releases/download/v0.4.0/figma-linux_0.4.0_i386.deb"

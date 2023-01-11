@@ -62,7 +62,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 90272386,
-      "download_count": 76,
+      "download_count": 113,
       "created_at": "2022-10-24T11:58:48Z",
       "updated_at": "2022-10-24T11:59:23Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/linux-unpacked.zip"
@@ -96,7 +96,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 85989259,
-      "download_count": 11,
+      "download_count": 17,
       "created_at": "2022-10-24T12:04:14Z",
       "updated_at": "2022-10-24T12:04:50Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1-mac.zip"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 91717779,
-      "download_count": 162,
+      "download_count": 267,
       "created_at": "2022-10-24T12:01:03Z",
       "updated_at": "2022-10-24T12:01:41Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.AppImage"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 89286453,
-      "download_count": 28,
+      "download_count": 46,
       "created_at": "2022-10-24T12:01:41Z",
       "updated_at": "2022-10-24T12:02:18Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.dmg"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 66395380,
-      "download_count": 4,
+      "download_count": 10,
       "created_at": "2022-10-24T12:02:18Z",
       "updated_at": "2022-10-24T12:02:45Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.freebsd"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 64598076,
-      "download_count": 31,
+      "download_count": 54,
       "created_at": "2022-10-24T12:02:45Z",
       "updated_at": "2022-10-24T12:03:12Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.pacman"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 87053867,
-      "download_count": 1347,
+      "download_count": 1797,
       "created_at": "2022-10-24T12:03:12Z",
       "updated_at": "2022-10-24T12:03:47Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 65310584,
-      "download_count": 100,
+      "download_count": 157,
       "created_at": "2022-10-24T12:03:47Z",
       "updated_at": "2022-10-24T12:04:14Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.x86_64.rpm"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 250262381,
-      "download_count": 49,
+      "download_count": 82,
       "created_at": "2022-10-24T11:59:23Z",
       "updated_at": "2022-10-24T12:01:03Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi.app.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 64590034,
-      "download_count": 705,
+      "download_count": 1072,
       "created_at": "2022-10-24T12:04:50Z",
       "updated_at": "2022-10-24T12:05:17Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi_4.3.1_amd64.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 78819328,
-      "download_count": 94,
+      "download_count": 163,
       "created_at": "2022-10-24T12:05:17Z",
       "updated_at": "2022-10-24T12:05:49Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi_4.3.1_amd64.snap"
@@ -436,7 +436,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 79089664,
-      "download_count": 38,
+      "download_count": 64,
       "created_at": "2022-10-24T12:05:49Z",
       "updated_at": "2022-10-24T12:06:22Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidalhifi.msi"
@@ -470,7 +470,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 96949690,
-      "download_count": 21,
+      "download_count": 41,
       "created_at": "2022-10-24T12:06:22Z",
       "updated_at": "2022-10-24T12:07:02Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/win-unpacked.zip"
@@ -481,8 +481,8 @@
   "body": "fixes #172 \r\n\r\n",
   "reactions": {
     "url": "https://api.github.com/repos/Mastermindzh/tidal-hifi/releases/80785241/reactions",
-    "total_count": 3,
-    "+1": 2,
+    "total_count": 4,
+    "+1": 3,
     "-1": 0,
     "laugh": 1,
     "hooray": 0,

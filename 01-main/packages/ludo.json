@@ -63,7 +63,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 41554217,
-        "download_count": 29,
+        "download_count": 33,
         "created_at": "2022-09-25T12:53:06Z",
         "updated_at": "2022-09-25T12:53:09Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.20/Ludo-Linux-arm-0.16.20.tar.gz"
@@ -97,7 +97,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 96,
-        "download_count": 11,
+        "download_count": 12,
         "created_at": "2022-09-25T12:53:10Z",
         "updated_at": "2022-09-25T12:53:10Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.20/Ludo-Linux-arm-0.16.20.tar.gz.sha256"
@@ -131,7 +131,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 50610330,
-        "download_count": 889,
+        "download_count": 1732,
         "created_at": "2022-09-25T12:52:22Z",
         "updated_at": "2022-09-25T12:52:25Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.20/Ludo-Linux-x86_64-0.16.20.tar.gz"
@@ -199,7 +199,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 49688334,
-        "download_count": 1490,
+        "download_count": 2693,
         "created_at": "2022-09-25T12:57:33Z",
         "updated_at": "2022-09-25T12:57:34Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.20/Ludo-Windows-x86_64-0.16.20.zip"
@@ -233,7 +233,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 338,
-        "download_count": 21,
+        "download_count": 23,
         "created_at": "2022-09-25T12:57:35Z",
         "updated_at": "2022-09-25T12:57:35Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.20/Ludo-Windows-x86_64-0.16.20.zip.sha256"
@@ -267,7 +267,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 35839856,
-        "download_count": 69,
+        "download_count": 82,
         "created_at": "2022-09-25T12:52:27Z",
         "updated_at": "2022-09-25T12:52:30Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.20/ludo_0.16.20-1_amd64.deb"
@@ -301,7 +301,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 29813952,
-        "download_count": 18,
+        "download_count": 21,
         "created_at": "2022-09-25T12:53:10Z",
         "updated_at": "2022-09-25T12:53:12Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.20/ludo_0.16.20-1_armhf.deb"
@@ -387,7 +387,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 41554300,
-        "download_count": 6,
+        "download_count": 7,
         "created_at": "2022-09-05T11:34:55Z",
         "updated_at": "2022-09-05T11:34:56Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.19/Ludo-Linux-arm-0.16.19.tar.gz"
@@ -421,7 +421,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 96,
-        "download_count": 1,
+        "download_count": 2,
         "created_at": "2022-09-05T11:34:56Z",
         "updated_at": "2022-09-05T11:34:56Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.19/Ludo-Linux-arm-0.16.19.tar.gz.sha256"
@@ -489,7 +489,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 99,
-        "download_count": 6,
+        "download_count": 7,
         "created_at": "2022-09-05T11:35:13Z",
         "updated_at": "2022-09-05T11:35:13Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.19/Ludo-Linux-x86_64-0.16.19.tar.gz.sha256"
@@ -523,7 +523,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 49097978,
-        "download_count": 48,
+        "download_count": 58,
         "created_at": "2022-09-05T11:38:32Z",
         "updated_at": "2022-09-05T11:38:34Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.19/Ludo-OSX-x86_64-0.16.19.dmg"
@@ -557,7 +557,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 94,
-        "download_count": 7,
+        "download_count": 8,
         "created_at": "2022-09-05T11:38:34Z",
         "updated_at": "2022-09-05T11:38:34Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.19/Ludo-OSX-x86_64-0.16.19.dmg.sha256"
@@ -591,7 +591,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 49639852,
-        "download_count": 127,
+        "download_count": 128,
         "created_at": "2022-09-05T11:43:59Z",
         "updated_at": "2022-09-05T11:44:00Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.19/Ludo-Windows-x86_64-0.16.19.zip"
@@ -693,7 +693,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 29822388,
-        "download_count": 2,
+        "download_count": 3,
         "created_at": "2022-09-05T11:34:56Z",
         "updated_at": "2022-09-05T11:34:57Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.19/ludo_0.16.19-1_armhf.deb"
@@ -915,7 +915,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 49075872,
-        "download_count": 1699,
+        "download_count": 1700,
         "created_at": "2022-08-14T06:41:03Z",
         "updated_at": "2022-08-14T06:41:06Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.18/Ludo-OSX-x86_64-0.16.18.dmg"
@@ -983,7 +983,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 50080709,
-        "download_count": 2812,
+        "download_count": 2816,
         "created_at": "2022-08-14T06:48:49Z",
         "updated_at": "2022-08-14T06:48:51Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.18/Ludo-Windows-x86_64-0.16.18.zip"
@@ -1051,7 +1051,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 35880992,
-        "download_count": 29,
+        "download_count": 30,
         "created_at": "2022-08-14T06:39:01Z",
         "updated_at": "2022-08-14T06:39:03Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.18/ludo_0.16.18-1_amd64.deb"
@@ -1227,7 +1227,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 50564307,
-        "download_count": 168,
+        "download_count": 169,
         "created_at": "2022-08-05T09:56:30Z",
         "updated_at": "2022-08-05T09:56:32Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.17/Ludo-Linux-x86_64-0.16.17.tar.gz"
@@ -1363,7 +1363,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 50074402,
-        "download_count": 364,
+        "download_count": 366,
         "created_at": "2022-08-05T10:05:01Z",
         "updated_at": "2022-08-05T10:05:03Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.17/Ludo-Windows-x86_64-0.16.17.zip"
@@ -2123,7 +2123,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 50071450,
-        "download_count": 70,
+        "download_count": 71,
         "created_at": "2022-08-01T09:48:00Z",
         "updated_at": "2022-08-01T09:48:02Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.15/Ludo-Windows-x86_64-0.16.15.zip"
@@ -2503,7 +2503,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 48786431,
-        "download_count": 114,
+        "download_count": 115,
         "created_at": "2022-07-10T14:36:38Z",
         "updated_at": "2022-07-10T14:36:41Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.14-altui/Ludo-Windows-x86_64-0.16.14-altui.zip"
@@ -2537,7 +2537,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 350,
-        "download_count": 7,
+        "download_count": 8,
         "created_at": "2022-07-10T14:36:41Z",
         "updated_at": "2022-07-10T14:36:41Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.14-altui/Ludo-Windows-x86_64-0.16.14-altui.zip.sha256"
@@ -2883,7 +2883,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 50060906,
-        "download_count": 1073,
+        "download_count": 1074,
         "created_at": "2022-07-10T14:17:10Z",
         "updated_at": "2022-07-10T14:17:13Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.14/Ludo-Windows-x86_64-0.16.14.zip"
@@ -3059,7 +3059,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 41953801,
-        "download_count": 41,
+        "download_count": 42,
         "created_at": "2022-03-13T09:44:47Z",
         "updated_at": "2022-03-13T09:44:49Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.13/Ludo-Linux-arm-0.16.13.tar.gz"
@@ -3127,7 +3127,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 52310112,
-        "download_count": 2362,
+        "download_count": 2368,
         "created_at": "2022-03-13T09:44:51Z",
         "updated_at": "2022-03-13T09:44:53Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.13/Ludo-Linux-x86_64-0.16.13.tar.gz"
@@ -3195,7 +3195,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 51184378,
-        "download_count": 1897,
+        "download_count": 1898,
         "created_at": "2022-03-13T09:44:45Z",
         "updated_at": "2022-03-13T09:44:47Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.13/Ludo-OSX-x86_64-0.16.13.dmg"
@@ -3263,7 +3263,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 51452246,
-        "download_count": 4282,
+        "download_count": 4283,
         "created_at": "2022-03-13T09:48:21Z",
         "updated_at": "2022-03-13T09:48:22Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.13/Ludo-Windows-x86_64-0.16.13.zip"
@@ -3575,7 +3575,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 51100648,
-        "download_count": 141,
+        "download_count": 142,
         "created_at": "2022-01-02T09:13:31Z",
         "updated_at": "2022-01-02T09:13:33Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.12/Ludo-OSX-x86_64-0.16.12.dmg"
@@ -3643,7 +3643,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 51199160,
-        "download_count": 967,
+        "download_count": 968,
         "created_at": "2022-01-02T09:16:29Z",
         "updated_at": "2022-01-02T09:16:30Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.12/Ludo-Windows-x86_64-0.16.12.zip"
@@ -3677,7 +3677,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 338,
-        "download_count": 9,
+        "download_count": 10,
         "created_at": "2022-01-02T09:16:31Z",
         "updated_at": "2022-01-02T09:16:31Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.12/Ludo-Windows-x86_64-0.16.12.zip.sha256"
@@ -4223,7 +4223,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 51991049,
-        "download_count": 32,
+        "download_count": 33,
         "created_at": "2021-11-12T05:38:48Z",
         "updated_at": "2021-11-12T05:38:56Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.10/Ludo-Linux-x86_64-0.16.10.tar.gz"
@@ -5227,7 +5227,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 41679915,
-        "download_count": 7,
+        "download_count": 8,
         "created_at": "2021-10-14T13:48:59Z",
         "updated_at": "2021-10-14T13:49:00Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.8/Ludo-Linux-arm-0.16.8.tar.gz"
@@ -6367,7 +6367,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 40746782,
-        "download_count": 6,
+        "download_count": 7,
         "created_at": "2021-09-22T03:17:58Z",
         "updated_at": "2021-09-22T03:17:59Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.6/Ludo-Linux-arm-0.16.6.tar.gz"
@@ -6571,7 +6571,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 48943412,
-        "download_count": 1360,
+        "download_count": 1361,
         "created_at": "2021-09-22T03:19:08Z",
         "updated_at": "2021-09-22T03:19:11Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.6/Ludo-Windows-x86_64-0.16.6.zip"
@@ -6951,7 +6951,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 48905449,
-        "download_count": 71,
+        "download_count": 72,
         "created_at": "2021-09-09T10:53:05Z",
         "updated_at": "2021-09-09T10:53:06Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.5/Ludo-Windows-x86_64-0.16.5.zip"
@@ -7195,7 +7195,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 49395304,
-        "download_count": 5,
+        "download_count": 6,
         "created_at": "2021-09-09T11:02:05Z",
         "updated_at": "2021-09-09T11:02:06Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.5-altui/Ludo-Linux-x86_64-0.16.5-altui.tar.gz"
@@ -7745,7 +7745,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 348,
-        "download_count": 5,
+        "download_count": 6,
         "created_at": "2021-09-07T16:57:42Z",
         "updated_at": "2021-09-07T16:57:42Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.4-altui/Ludo-Windows-x86_64-0.16.4-altui.zip.sha256"
@@ -7813,7 +7813,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 28093636,
-        "download_count": 5,
+        "download_count": 6,
         "created_at": "2021-09-07T16:55:05Z",
         "updated_at": "2021-09-07T16:55:07Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.4-altui/ludo_0.16.4-altui-1_armhf.deb"
@@ -8267,7 +8267,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 49154616,
-        "download_count": 23,
+        "download_count": 24,
         "created_at": "2021-08-24T05:29:13Z",
         "updated_at": "2021-08-24T05:29:14Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.2-altui/Ludo-Linux-x86_64-0.16.2-altui.tar.gz"
@@ -8403,7 +8403,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 47405076,
-        "download_count": 93,
+        "download_count": 94,
         "created_at": "2021-08-24T05:34:08Z",
         "updated_at": "2021-08-24T05:34:09Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.2-altui/Ludo-Windows-x86_64-0.16.2-altui.zip"
@@ -8715,7 +8715,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 47403621,
-        "download_count": 14,
+        "download_count": 15,
         "created_at": "2021-08-23T07:01:59Z",
         "updated_at": "2021-08-23T07:02:01Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.1-altui/Ludo-OSX-x86_64-0.16.1-altui.dmg"
@@ -8783,7 +8783,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 47406173,
-        "download_count": 207,
+        "download_count": 212,
         "created_at": "2021-08-23T07:05:09Z",
         "updated_at": "2021-08-23T07:05:10Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.1-altui/Ludo-Windows-x86_64-0.16.1-altui.zip"
@@ -8817,7 +8817,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 348,
-        "download_count": 12,
+        "download_count": 15,
         "created_at": "2021-08-23T07:05:10Z",
         "updated_at": "2021-08-23T07:05:10Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.1-altui/Ludo-Windows-x86_64-0.16.1-altui.zip.sha256"
@@ -8851,7 +8851,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 34808704,
-        "download_count": 12,
+        "download_count": 13,
         "created_at": "2021-08-23T07:00:59Z",
         "updated_at": "2021-08-23T07:01:01Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.1-altui/ludo_0.16.1-altui-1_amd64.deb"
@@ -9521,7 +9521,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 336,
-        "download_count": 4,
+        "download_count": 5,
         "created_at": "2021-09-02T11:55:58Z",
         "updated_at": "2021-09-02T11:55:59Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.3/Ludo-Windows-x86_64-0.16.3.zip.sha256"
@@ -9799,7 +9799,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 48651020,
-        "download_count": 125,
+        "download_count": 126,
         "created_at": "2021-08-16T12:10:45Z",
         "updated_at": "2021-08-16T12:10:47Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.16.1/Ludo-OSX-x86_64-0.16.1.dmg"
@@ -10583,7 +10583,7 @@
         "content_type": "binary/octet-stream",
         "state": "uploaded",
         "size": 48648607,
-        "download_count": 10,
+        "download_count": 11,
         "created_at": "2021-08-16T03:06:12Z",
         "updated_at": "2021-08-16T03:06:14Z",
         "browser_download_url": "https://github.com/libretro/ludo/releases/download/v0.15.6/Ludo-OSX-x86_64-0.15.6.dmg"
