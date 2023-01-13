@@ -1,0 +1,14 @@
+DEFVER=1
+LOCAL IS_UBUNTU=""
+case ${UPSTREAM_ID} in #
+    ubuntu) IS_UBUNTU="x";;
+    *) IS_UBUNTU="";;
+esac
+if [ ! -z ${TRY_LTS} ]; then
+UPSTREAM_RELEASE=${UPSTREAM_RELEASE/22.10/${TRY_LTS}}
+fi
+ASC_KEY_URL="https://download.opensuse.org/repositories/home:obs_mhogomchungu/${IS_UBUNTU}${UPSTREAM_ID^}_${UPSTREAM_RELEASE}/Release.key"
+APT_REPO_URL="http://download.opensuse.org/repositories/home:/obs_mhogomchungu/${IS_UBUNTU}${UPSTREAM_ID^}_${UPSTREAM_RELEASE}/ /"
+PRETTY_NAME="Media Downloader"
+WEBSITE="https://github.com/mhogomchungu/media-downloader"
+SUMMARY="A Qt/C++ based GUI frontend to multiple CLI based tools that deal with downloading online media. yt-dlp CLI tool is the default supported tool and other tools can be added."
