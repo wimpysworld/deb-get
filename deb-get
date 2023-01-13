@@ -182,7 +182,7 @@ function get_website() {
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
         if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +60)"; then
             fancy_message info "Updating ${CACHE_FILE}"
-            if ! "${ELEVATE}" wget -q --no-use-server-timestamps "${1}" -O "${CACHE_FILE}"; then
+            if ! ${ELEVATE} wget -q --no-use-server-timestamps "${1}" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
                 ${ELEVATE} rm -f "${CACHE_FILE}"
             fi
