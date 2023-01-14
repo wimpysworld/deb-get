@@ -97,7 +97,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 185582271,
-        "download_count": 466,
+        "download_count": 473,
         "created_at": "2022-12-30T08:02:26Z",
         "updated_at": "2022-12-30T08:02:36Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-darwin-universal.dmg"
@@ -335,7 +335,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 119483986,
-        "download_count": 101,
+        "download_count": 102,
         "created_at": "2022-12-30T08:07:43Z",
         "updated_at": "2022-12-30T08:07:45Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-linux-x64.AppImage"
@@ -403,7 +403,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 72364690,
-        "download_count": 99,
+        "download_count": 103,
         "created_at": "2022-12-30T08:07:46Z",
         "updated_at": "2022-12-30T08:07:47Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-linux-x64.deb"
@@ -675,7 +675,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 85956895,
-        "download_count": 823,
+        "download_count": 835,
         "created_at": "2022-12-30T07:53:13Z",
         "updated_at": "2022-12-30T07:53:17Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-windows-x64.exe"
@@ -1923,7 +1923,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 72843568,
-        "download_count": 493,
+        "download_count": 494,
         "created_at": "2022-11-27T08:03:06Z",
         "updated_at": "2022-11-27T08:03:08Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.2/Whalebird-4.7.2-linux-x64.rpm"
@@ -4487,7 +4487,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 103,
-        "download_count": 3,
+        "download_count": 4,
         "created_at": "2022-09-08T14:06:38Z",
         "updated_at": "2022-09-08T14:06:38Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.4/Whalebird-4.6.4-darwin-universal.dmg.shasum"

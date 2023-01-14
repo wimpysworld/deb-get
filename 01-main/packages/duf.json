@@ -62,7 +62,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 3861,
-      "download_count": 728,
+      "download_count": 736,
       "created_at": "2022-02-08T06:50:00Z",
       "updated_at": "2022-02-08T06:50:00Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/checksums.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 310,
-      "download_count": 56,
+      "download_count": 57,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:53Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/checksums.txt.sig"
@@ -130,7 +130,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 945281,
-      "download_count": 390,
+      "download_count": 393,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_Darwin_arm64.tar.gz"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 950103,
-      "download_count": 4196,
+      "download_count": 4222,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_Darwin_x86_64.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 844737,
-      "download_count": 247,
+      "download_count": 249,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_freebsd_arm64.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 875352,
-      "download_count": 184,
+      "download_count": 186,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_freebsd_armv6.tar.gz"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 873663,
-      "download_count": 161,
+      "download_count": 163,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_freebsd_armv7.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 880346,
-      "download_count": 190,
+      "download_count": 192,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_freebsd_i386.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 922229,
-      "download_count": 309,
+      "download_count": 315,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_freebsd_x86_64.tar.gz"
@@ -368,7 +368,7 @@
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 886091,
-      "download_count": 167,
+      "download_count": 169,
       "created_at": "2022-02-08T06:49:57Z",
       "updated_at": "2022-02-08T06:49:59Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_386.apk"
@@ -402,7 +402,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 886326,
-      "download_count": 795,
+      "download_count": 799,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_386.deb"
@@ -436,7 +436,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 885892,
-      "download_count": 484,
+      "download_count": 488,
       "created_at": "2022-02-08T06:49:59Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_386.rpm"
@@ -470,7 +470,7 @@
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 917573,
-      "download_count": 258,
+      "download_count": 259,
       "created_at": "2022-02-08T06:49:58Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.apk"
@@ -504,7 +504,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 917644,
-      "download_count": 48548,
+      "download_count": 49281,
       "created_at": "2022-02-08T06:49:58Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.deb"
@@ -538,7 +538,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 916883,
-      "download_count": 4432,
+      "download_count": 4478,
       "created_at": "2022-02-08T06:49:59Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.rpm"
@@ -572,7 +572,7 @@
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 854448,
-      "download_count": 72,
+      "download_count": 74,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.apk"
@@ -606,7 +606,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 854558,
-      "download_count": 1297,
+      "download_count": 1304,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:58Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.deb"
@@ -640,7 +640,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 853317,
-      "download_count": 360,
+      "download_count": 361,
       "created_at": "2022-02-08T06:50:00Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.rpm"
@@ -674,7 +674,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 856536,
-      "download_count": 636,
+      "download_count": 642,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_arm64.tar.gz"
@@ -708,7 +708,7 @@
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 882114,
-      "download_count": 24,
+      "download_count": 25,
       "created_at": "2022-02-08T06:49:57Z",
       "updated_at": "2022-02-08T06:50:00Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv6.apk"
@@ -742,7 +742,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 882162,
-      "download_count": 258,
+      "download_count": 259,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv6.deb"
@@ -776,7 +776,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 881594,
-      "download_count": 131,
+      "download_count": 132,
       "created_at": "2022-02-08T06:49:59Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv6.rpm"
@@ -810,7 +810,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 885520,
-      "download_count": 135,
+      "download_count": 137,
       "created_at": "2022-02-08T06:49:58Z",
       "updated_at": "2022-02-08T06:50:01Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv6.tar.gz"
@@ -844,7 +844,7 @@
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 879389,
-      "download_count": 34,
+      "download_count": 35,
       "created_at": "2022-02-08T06:49:53Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv7.apk"
@@ -878,7 +878,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 879424,
-      "download_count": 783,
+      "download_count": 787,
       "created_at": "2022-02-08T06:49:58Z",
       "updated_at": "2022-02-08T06:50:01Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv7.deb"
@@ -912,7 +912,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 878970,
-      "download_count": 184,
+      "download_count": 185,
       "created_at": "2022-02-08T06:49:58Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv7.rpm"
@@ -946,7 +946,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 882950,
-      "download_count": 194,
+      "download_count": 196,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_armv7.tar.gz"
@@ -980,7 +980,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 886937,
-      "download_count": 61,
+      "download_count": 62,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_i386.tar.gz"
@@ -1014,7 +1014,7 @@
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 836132,
-      "download_count": 12,
+      "download_count": 13,
       "created_at": "2022-02-08T06:49:57Z",
       "updated_at": "2022-02-08T06:50:00Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_ppc64le.apk"
@@ -1048,7 +1048,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 836178,
-      "download_count": 39,
+      "download_count": 40,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_ppc64le.deb"
@@ -1082,7 +1082,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 834670,
-      "download_count": 31,
+      "download_count": 32,
       "created_at": "2022-02-08T06:50:00Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_ppc64le.rpm"
@@ -1116,7 +1116,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 837968,
-      "download_count": 15,
+      "download_count": 16,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_ppc64le.tar.gz"
@@ -1150,7 +1150,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 919990,
-      "download_count": 38249,
+      "download_count": 38977,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz"
@@ -1184,7 +1184,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 844665,
-      "download_count": 13,
+      "download_count": 14,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_openbsd_arm64.tar.gz"
@@ -1218,7 +1218,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 875076,
-      "download_count": 24,
+      "download_count": 26,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:56Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_openbsd_armv6.tar.gz"
@@ -1252,7 +1252,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 874733,
-      "download_count": 23,
+      "download_count": 25,
       "created_at": "2022-02-08T06:49:57Z",
       "updated_at": "2022-02-08T06:49:59Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_openbsd_armv7.tar.gz"
@@ -1286,7 +1286,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 879258,
-      "download_count": 29,
+      "download_count": 31,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:50:00Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_openbsd_i386.tar.gz"
@@ -1320,7 +1320,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 920875,
-      "download_count": 50,
+      "download_count": 52,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:59Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_openbsd_x86_64.tar.gz"
@@ -1354,7 +1354,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 943922,
-      "download_count": 148,
+      "download_count": 149,
       "created_at": "2022-02-08T06:49:59Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_Windows_arm64.zip"
@@ -1388,7 +1388,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 996579,
-      "download_count": 34,
+      "download_count": 36,
       "created_at": "2022-02-08T06:49:57Z",
       "updated_at": "2022-02-08T06:50:01Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_Windows_armv6.zip"
@@ -1422,7 +1422,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 989904,
-      "download_count": 33,
+      "download_count": 35,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_Windows_armv7.zip"
@@ -1456,7 +1456,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 1006836,
-      "download_count": 5700,
+      "download_count": 5772,
       "created_at": "2022-02-08T06:49:59Z",
       "updated_at": "2022-02-08T06:50:02Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_Windows_i386.zip"
@@ -1490,7 +1490,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 1020269,
-      "download_count": 9147,
+      "download_count": 9248,
       "created_at": "2022-02-08T06:49:52Z",
       "updated_at": "2022-02-08T06:49:57Z",
       "browser_download_url": "https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_Windows_x86_64.zip"

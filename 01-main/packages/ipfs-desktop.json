@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 99909354,
-      "download_count": 1700,
+      "download_count": 1880,
       "created_at": "2022-12-11T18:32:40Z",
       "updated_at": "2022-12-11T18:32:42Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-linux-amd64.deb"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 118923264,
-      "download_count": 53,
+      "download_count": 58,
       "created_at": "2022-12-11T18:30:10Z",
       "updated_at": "2022-12-11T18:30:12Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-linux-amd64.snap"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 102471308,
-      "download_count": 61,
+      "download_count": 70,
       "created_at": "2022-12-11T18:37:07Z",
       "updated_at": "2022-12-11T18:37:09Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-linux-x64.freebsd"
@@ -164,7 +164,7 @@
       "content_type": "application/x-xz",
       "state": "uploaded",
       "size": 99773904,
-      "download_count": 174,
+      "download_count": 194,
       "created_at": "2022-12-11T18:31:01Z",
       "updated_at": "2022-12-11T18:31:04Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-linux-x64.tar.xz"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 136492378,
-      "download_count": 1220,
+      "download_count": 1339,
       "created_at": "2022-12-11T18:29:21Z",
       "updated_at": "2022-12-11T18:29:24Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-linux-x86_64.AppImage"
@@ -232,7 +232,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 99871045,
-      "download_count": 175,
+      "download_count": 190,
       "created_at": "2022-12-11T18:34:40Z",
       "updated_at": "2022-12-11T18:34:42Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-linux-x86_64.rpm"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 131942204,
-      "download_count": 2950,
+      "download_count": 3223,
       "created_at": "2022-12-11T18:34:24Z",
       "updated_at": "2022-12-11T18:34:28Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-mac.dmg"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 138476,
-      "download_count": 45,
+      "download_count": 50,
       "created_at": "2022-12-11T18:34:24Z",
       "updated_at": "2022-12-11T18:34:24Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-mac.dmg.blockmap"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 125907100,
-      "download_count": 5467,
+      "download_count": 5700,
       "created_at": "2022-12-11T18:35:09Z",
       "updated_at": "2022-12-11T18:35:16Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-squirrel.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 132333,
-      "download_count": 59,
+      "download_count": 68,
       "created_at": "2022-12-11T18:35:09Z",
       "updated_at": "2022-12-11T18:35:09Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/ipfs-desktop-0.25.0-squirrel.zip.blockmap"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 100630184,
-      "download_count": 18101,
+      "download_count": 19531,
       "created_at": "2022-12-11T19:06:49Z",
       "updated_at": "2022-12-11T19:06:52Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/IPFS-Desktop-Setup-0.25.0.exe"
@@ -436,7 +436,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 105429,
-      "download_count": 7914,
+      "download_count": 8347,
       "created_at": "2022-12-11T19:06:49Z",
       "updated_at": "2022-12-11T19:06:50Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/IPFS-Desktop-Setup-0.25.0.exe.blockmap"
@@ -470,7 +470,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 405,
-      "download_count": 1799,
+      "download_count": 2008,
       "created_at": "2022-12-11T18:37:09Z",
       "updated_at": "2022-12-11T18:37:10Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/latest-linux.yml"
@@ -504,7 +504,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 520,
-      "download_count": 37477,
+      "download_count": 41187,
       "created_at": "2022-12-11T18:35:16Z",
       "updated_at": "2022-12-11T18:35:16Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/latest-mac.yml"
@@ -538,7 +538,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 356,
-      "download_count": 62137,
+      "download_count": 68025,
       "created_at": "2022-12-11T19:06:52Z",
       "updated_at": "2022-12-11T19:06:52Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.25.0/latest.yml"

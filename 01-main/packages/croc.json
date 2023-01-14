@@ -62,7 +62,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 2398,
-      "download_count": 2233,
+      "download_count": 2425,
       "created_at": "2022-12-06T15:59:52Z",
       "updated_at": "2022-12-06T15:59:52Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_checksums.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2646986,
-      "download_count": 12,
+      "download_count": 13,
       "created_at": "2022-12-06T15:59:49Z",
       "updated_at": "2022-12-06T15:59:49Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_DragonFlyBSD-64bit.tar.gz"
@@ -130,7 +130,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2546752,
-      "download_count": 11,
+      "download_count": 12,
       "created_at": "2022-12-06T15:59:46Z",
       "updated_at": "2022-12-06T15:59:47Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_FreeBSD-32bit.tar.gz"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2654998,
-      "download_count": 17,
+      "download_count": 19,
       "created_at": "2022-12-06T15:59:50Z",
       "updated_at": "2022-12-06T15:59:51Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_FreeBSD-64bit.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2616724,
-      "download_count": 469,
+      "download_count": 504,
       "created_at": "2022-12-06T15:59:51Z",
       "updated_at": "2022-12-06T15:59:51Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-32bit.deb"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2534869,
-      "download_count": 484,
+      "download_count": 519,
       "created_at": "2022-12-06T15:59:47Z",
       "updated_at": "2022-12-06T15:59:48Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-32bit.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2729088,
-      "download_count": 1712,
+      "download_count": 1866,
       "created_at": "2022-12-06T15:59:52Z",
       "updated_at": "2022-12-06T15:59:52Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-64bit.deb"
@@ -334,7 +334,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2640547,
-      "download_count": 3018,
+      "download_count": 3301,
       "created_at": "2022-12-06T15:59:50Z",
       "updated_at": "2022-12-06T15:59:50Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-64bit.tar.gz"
@@ -368,7 +368,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2558524,
-      "download_count": 39,
+      "download_count": 40,
       "created_at": "2022-12-06T15:59:52Z",
       "updated_at": "2022-12-06T15:59:52Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-ARM.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2497266,
-      "download_count": 70,
+      "download_count": 73,
       "created_at": "2022-12-06T15:59:49Z",
       "updated_at": "2022-12-06T15:59:49Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-ARM.tar.gz"
@@ -436,7 +436,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2505184,
-      "download_count": 475,
+      "download_count": 511,
       "created_at": "2022-12-06T15:59:51Z",
       "updated_at": "2022-12-06T15:59:52Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-ARM64.deb"
@@ -470,7 +470,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2431709,
-      "download_count": 635,
+      "download_count": 690,
       "created_at": "2022-12-06T15:59:49Z",
       "updated_at": "2022-12-06T15:59:50Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Linux-ARM64.tar.gz"
@@ -504,7 +504,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2750948,
-      "download_count": 637,
+      "download_count": 689,
       "created_at": "2022-12-06T15:59:47Z",
       "updated_at": "2022-12-06T15:59:48Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_macOS-64bit.tar.gz"
@@ -538,7 +538,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2649985,
-      "download_count": 494,
+      "download_count": 531,
       "created_at": "2022-12-06T15:59:49Z",
       "updated_at": "2022-12-06T15:59:50Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_macOS-ARM64.tar.gz"
@@ -572,7 +572,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2531645,
-      "download_count": 7,
+      "download_count": 9,
       "created_at": "2022-12-06T15:59:49Z",
       "updated_at": "2022-12-06T15:59:50Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_NetBSD-32bit.tar.gz"
@@ -606,7 +606,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2642366,
-      "download_count": 9,
+      "download_count": 10,
       "created_at": "2022-12-06T15:59:51Z",
       "updated_at": "2022-12-06T15:59:51Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_NetBSD-64bit.tar.gz"
@@ -640,7 +640,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2496500,
-      "download_count": 7,
+      "download_count": 8,
       "created_at": "2022-12-06T15:59:46Z",
       "updated_at": "2022-12-06T15:59:47Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_NetBSD-ARM.tar.gz"
@@ -674,7 +674,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2538478,
-      "download_count": 6,
+      "download_count": 7,
       "created_at": "2022-12-06T15:59:47Z",
       "updated_at": "2022-12-06T15:59:48Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_OpenBSD-32bit.tar.gz"
@@ -708,7 +708,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2650607,
-      "download_count": 9,
+      "download_count": 10,
       "created_at": "2022-12-06T15:59:47Z",
       "updated_at": "2022-12-06T15:59:48Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_OpenBSD-64bit.tar.gz"
@@ -742,7 +742,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2505991,
-      "download_count": 7,
+      "download_count": 8,
       "created_at": "2022-12-06T15:59:49Z",
       "updated_at": "2022-12-06T15:59:49Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_OpenBSD-ARM.tar.gz"
@@ -810,7 +810,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 2627004,
-      "download_count": 587,
+      "download_count": 628,
       "created_at": "2022-12-06T15:59:51Z",
       "updated_at": "2022-12-06T15:59:51Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Windows-32bit.zip"
@@ -844,7 +844,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 2680070,
-      "download_count": 3859,
+      "download_count": 4124,
       "created_at": "2022-12-06T15:59:46Z",
       "updated_at": "2022-12-06T15:59:47Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Windows-64bit.zip"
@@ -878,7 +878,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 2555173,
-      "download_count": 19,
+      "download_count": 20,
       "created_at": "2022-12-06T15:59:46Z",
       "updated_at": "2022-12-06T15:59:47Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Windows-ARM.zip"
@@ -912,7 +912,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 2470574,
-      "download_count": 473,
+      "download_count": 509,
       "created_at": "2022-12-06T15:59:50Z",
       "updated_at": "2022-12-06T15:59:50Z",
       "browser_download_url": "https://github.com/schollz/croc/releases/download/v9.6.2/croc_9.6.2_Windows-ARM64.zip"

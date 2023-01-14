@@ -130,7 +130,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 412,
-      "download_count": 23,
+      "download_count": 250,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:31Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/latest-linux.yml"
@@ -164,7 +164,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 538,
-      "download_count": 286,
+      "download_count": 2807,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:31Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/latest-mac.yml"
@@ -198,7 +198,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 688,
-      "download_count": 133,
+      "download_count": 1150,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:31Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/latest.yml"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 2429,
-      "download_count": 1,
+      "download_count": 2,
       "created_at": "2023-01-11T09:59:32Z",
       "updated_at": "2023-01-11T09:59:32Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/SHA256SUMS"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 79581630,
-      "download_count": 0,
+      "download_count": 3,
       "created_at": "2023-01-11T09:59:30Z",
       "updated_at": "2023-01-11T09:59:38Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-linux-amd64.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 114459880,
-      "download_count": 21,
+      "download_count": 84,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:40Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-linux-x86_64.AppImage"
@@ -436,7 +436,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 106761605,
-      "download_count": 7,
+      "download_count": 10,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:40Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-mac-arm64.dmg"
@@ -504,7 +504,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 102695357,
-      "download_count": 104,
+      "download_count": 664,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:40Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-mac-arm64.zip"
@@ -572,7 +572,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 111026890,
-      "download_count": 11,
+      "download_count": 16,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:40Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-mac-x64.dmg"
@@ -640,7 +640,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 111153919,
-      "download_count": 0,
+      "download_count": 2,
       "created_at": "2023-01-11T09:59:32Z",
       "updated_at": "2023-01-11T09:59:42Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-mac-x64.zip"
@@ -708,7 +708,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 87004976,
-      "download_count": 0,
+      "download_count": 2,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:39Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-win-ia32.exe"
@@ -776,7 +776,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 91224312,
-      "download_count": 21,
+      "download_count": 63,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:38Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-win-x64.exe"
@@ -844,7 +844,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 177345224,
-      "download_count": 42,
+      "download_count": 307,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:43Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-win.exe"
@@ -878,7 +878,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 182831,
-      "download_count": 31,
+      "download_count": 242,
       "created_at": "2023-01-11T09:59:31Z",
       "updated_at": "2023-01-11T09:59:32Z",
       "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.137.1/standard-notes-3.137.1-win.exe.blockmap"

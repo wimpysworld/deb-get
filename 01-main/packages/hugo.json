@@ -62,7 +62,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 2025,
-      "download_count": 2624,
+      "download_count": 3106,
       "created_at": "2022-12-23T10:49:55Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_checksums.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 34475369,
-      "download_count": 443,
+      "download_count": 518,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:53Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_darwin-universal.tar.gz"
@@ -130,7 +130,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16926057,
-      "download_count": 46,
+      "download_count": 55,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:52Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_dragonfly-amd64.tar.gz"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16936291,
-      "download_count": 31,
+      "download_count": 42,
       "created_at": "2022-12-23T10:49:52Z",
       "updated_at": "2022-12-23T10:49:53Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_freebsd-amd64.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16934639,
-      "download_count": 16410,
+      "download_count": 19354,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:52Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_Linux-64bit.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17688162,
-      "download_count": 830,
+      "download_count": 971,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-amd64.deb"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16934639,
-      "download_count": 1715,
+      "download_count": 2061,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:52Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-amd64.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 15829790,
-      "download_count": 67,
+      "download_count": 76,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:52Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-arm.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 16143976,
-      "download_count": 131,
+      "download_count": 149,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-arm64.deb"
@@ -368,7 +368,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 15509834,
-      "download_count": 187,
+      "download_count": 234,
       "created_at": "2022-12-23T10:49:51Z",
       "updated_at": "2022-12-23T10:49:53Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_linux-arm64.tar.gz"
@@ -402,7 +402,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16924573,
-      "download_count": 12,
+      "download_count": 17,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_netbsd-amd64.tar.gz"
@@ -436,7 +436,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16933146,
-      "download_count": 19,
+      "download_count": 26,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_openbsd-amd64.tar.gz"
@@ -470,7 +470,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 17388112,
-      "download_count": 2069,
+      "download_count": 2424,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_windows-amd64.zip"
@@ -504,7 +504,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 15915874,
-      "download_count": 221,
+      "download_count": 265,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_0.109.0_windows-arm64.zip"
@@ -538,7 +538,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 36405624,
-      "download_count": 774,
+      "download_count": 923,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_darwin-universal.tar.gz"
@@ -572,7 +572,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 18138775,
-      "download_count": 35393,
+      "download_count": 42233,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_Linux-64bit.tar.gz"
@@ -606,7 +606,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 18934388,
-      "download_count": 8656,
+      "download_count": 14161,
       "created_at": "2022-12-23T10:49:55Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.deb"
@@ -640,7 +640,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 18138775,
-      "download_count": 4741,
+      "download_count": 5765,
       "created_at": "2022-12-23T10:49:53Z",
       "updated_at": "2022-12-23T10:49:54Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-amd64.tar.gz"
@@ -674,7 +674,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17314956,
-      "download_count": 90,
+      "download_count": 113,
       "created_at": "2022-12-23T10:49:55Z",
       "updated_at": "2022-12-23T10:49:56Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-arm64.deb"
@@ -708,7 +708,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16648984,
-      "download_count": 98,
+      "download_count": 117,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_linux-arm64.tar.gz"
@@ -742,7 +742,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 18727758,
-      "download_count": 3337,
+      "download_count": 3902,
       "created_at": "2022-12-23T10:49:54Z",
       "updated_at": "2022-12-23T10:49:55Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.109.0/hugo_extended_0.109.0_windows-amd64.zip"
@@ -753,8 +753,8 @@
   "body": "<img src=\"https://user-images.githubusercontent.com/394382/209377043-7c5e2506-a4a2-46c1-83af-9a77756563a9.png\" width=40% height=40% align=right>\r\n\r\nHugo `v0.109.0` is the last release of 2022 – and with that we're wishing all of you a very merry Christmas and a prosperous new year[^1].\r\n\r\n## Notable new features\r\n### Pass variables to SCSS/SASS\r\n\r\nHugo has had great SCSS/SASS support, but passing variables (e.g. theme colours from config) down to the transpiler has been much harder than it should.\r\n\r\nIn Hugo `v0.109.0` we added a new [vars option](https://gohugo.io/hugo-pipes/scss-sass/#options) and you can finally just do:\r\n\r\n```handlebars\r\n{{ $vars := dict \"color1\" \"blue\" \"color2\" \"green\" \"font_size\" \"24px\" }}\r\n{{ $opts := (dict \"transpiler\" \"dartsass\" \"outputStyle\" \"compressed\" \"vars\" $vars ) }}\r\n{{ $r := resources.Get \"scss/main.scss\" | toCSS $opts }}\r\n```\r\nAnd then in the SCSS file:\r\n\r\n```scss\r\n@use \"hugo:vars\" as v;\r\n\r\np {\r\n    color: v.$color1;\r\n    font-size: v.$font-size;\r\n}\r\n```\r\n\r\nMore examples [here](https://discourse.gohugo.io/t/initialize-sass-variables-from-hugo-templates/42053/).\r\n\r\n### Hugo Module Workspaces\r\n\r\nWorkspace support was added in [Go 1.18](https://go.dev/blog/get-familiar-with-workspaces), and in this release Hugo finally gets solid support for it.\r\n\r\nA common use case for a workspace is to simplify local development of a site with its theme modules.\r\n\r\nA workspace can be configured in a `*.work` file and activated with the [module.workspace](https://gohugo.io/hugo-modules/configuration/) setting, which for this use is commonly controlled via the `HUGO_MODULE_WORKSPACE` OS environment variable.\r\n\r\nSee the [hugo.work](https://github.com/gohugoio/hugo/blob/master/hugo.work) file in the Hugo Docs repo for an example:\r\n\r\n```\r\ngo 1.19\r\n\r\nuse .\r\nuse ../gohugoioTheme\r\n```\r\n\r\nUsing the `use` directive, list all the modules you want to work on, pointing to its relative location. As in the example above, it's recommended to always include the main project (the \".\") in the list.\r\n\r\nWith that you can start the Hugo server with that workspace enabled:\r\n\r\n```\r\nHUGO_MODULE_WORKSPACE=hugo.work hugo server --ignoreVendorPaths \"**\"\r\n```\r\n\r\nThe `--ignoreVendorPaths` flag is added above to ignore any of the vendored dependencies inside `_vendor`. If you don't use vendoring, you don't need that flag. But now the server is set up watching the files and directories in the workspace and you can see your local edits reloaded.\r\n\r\n### Breadcrumbs\r\n\r\nWe have added a new `.Ancestors` method on `Page` that walks up the tree to the home page. With this, breadcrumbs templates can be greatly simplified:\r\n\r\n```handlebars\r\n<ol>\r\n  <ul>\r\n    {{- range .Ancestors.Reverse }}\r\n      <li><a href=\"{{ .Permalink }}\">{{ .Title }}</a></li>\r\n    {{- end }}\r\n    <li class=\"active\" aria-current=\"page\">\r\n      <a href=\"{{ .Permalink }}\">{{ .Title }}</a>\r\n    </li>\r\n  </ul>\r\n</ol>\r\n```\r\n\r\n### The path to /public now available in PostCSS\r\n\r\nSo you can do  `process.env.HUGO_PUBLISHDIR` in your `postcss.config.js` to figure out where Hugo publishes\r\nits files.\r\n\r\nNote that the value will always be an absolute file path and will point to a directory on disk even when running `hugo server` in memory mode.\r\n\r\nIf you write to this folder from PostCSS when running the server, you could run the server with one of these flags:\r\n\r\n```\r\nhugo server --renderToDisk\r\nhugo server --renderStaticToDisk\r\n```\r\n\r\n## Note\r\n\r\n* modules: Make the module.workspace=off as default (note) 0d4b17d4 @bep #10553 \r\n* release: Add a note section in release notes 3afaca75 @bep \r\n* helpers: Allow at signs in UnicodeSanitize (note) 2d217cba @jmooring #10548 \r\n* Also consider wrapped errors when checking for file IsNotExist errors ad205987 @bep #10534 \r\n\r\n## Bug fixes\r\n\r\n* If you use the legacy `libsass` transpiler in `toCSS` and uses the cached build to avoid having the extended version installed on the CI server, you need to rebuild those assets and commit them to source control (e.g. with `hugo --gc`).\r\n* tpl/resources: Fix data race in ToCSS aa2c7241 @bep #10542 \r\n* tocss: Fix unquote case with double quotes 5d5f0a23 @septs #10555 \r\n* resources/js: Fix some import discrepancies between Hugo and ESBuild b54de1bd @bep #10527 \r\n* parser/metadecoders: Fix spelling e0e63f35 @lacamera \r\n\r\n## Improvements\r\n\r\n* Adjust \"you need the extended version\" error message 180dfeba @bep \r\n* resource/page: Slight adjustment of Page.Ancestors eb0c8f9d @bep #10567 \r\n* resource/page: Add Page.Ancestors 3a216186 @septs #10567 \r\n* Annotate test assertions 71832328 @jmooring \r\n* hugolib: Exclude non-linkable pages from translations map 37ab1cf1 @jmooring #9073 \r\n* Add HUGO_PUBLISHDIR to the Node environment 59af05ca @bep #10554 \r\n* Revert \"tpl/tplimpl: Use https in sitemap templates\" 4989da65 @jmooring \r\n* tocss: Add some more test cases effa6a42 @bep #10555 \r\n* Allow \"fast render mode\" even if --disableLiveReload is set d20d2651 @bep #10561 \r\n* tocss: Add vars option 41a080b2 @bep #10555 \r\n* modules: Improve \"module workspace\" not found error eda1e720 @bep \r\n* modules: Adjust watch logic vs workspace use definitions 330fa894 @bep \r\n* Add any configured Go Workspace file to the config watcher 6db52748 @bep #10556 \r\n* parser/metadecoders: Remove superflous cast in test 17055d1f @bep \r\n* parser/metadecoders: Simplify nil check in Unmarshal 2a81a494 @bep \r\n* parser/metadecoders: Add empty /data JSON file as empty map e30d711c @acclassic #8601 \r\n* tpl/openapi3: Wrap *kopenapi3.T 87e898a1 @bep \r\n* github: Use ruby/setup-ruby d8942698 @bep #10517 \r\n* tpl/tplimpl: Use https in sitemap templates 3fd0b784 @jmooring #10515 \r\n\r\n## Dependency Updates\r\n\r\n* build(deps): bump golang.org/x/tools from 0.3.0 to 0.4.0 7874b968 @dependabot[bot] \r\n\r\n## Documentation\r\n\r\n* docs: Regen docs helper JSON 10bb29d7 @bep \r\n* tpl: Improve template funcs GoDoc cd1ed563 @bep \r\n\r\n## Build Setup\r\n\r\n* github: Update to Dart Sass 1.56.2 c9354d54 @bep \r\n\r\n[^1]: We're working on some bigger and even more exiting Hugo features that will be ready early next year. Stay tuned!\r\n\r\n\r\n",
   "reactions": {
     "url": "https://api.github.com/repos/gohugoio/hugo/releases/87065498/reactions",
-    "total_count": 79,
-    "+1": 22,
+    "total_count": 80,
+    "+1": 23,
     "-1": 0,
     "laugh": 1,
     "hooray": 22,

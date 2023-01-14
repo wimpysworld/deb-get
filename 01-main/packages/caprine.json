@@ -63,7 +63,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 92493999,
-        "download_count": 808,
+        "download_count": 827,
         "created_at": "2022-11-16T10:59:29Z",
         "updated_at": "2022-11-16T11:01:52Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/Caprine-2.57.0-mac.zip"
@@ -131,7 +131,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 100617622,
-        "download_count": 1049,
+        "download_count": 1096,
         "created_at": "2022-11-16T10:59:17Z",
         "updated_at": "2022-11-16T11:01:45Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/Caprine-2.57.0.AppImage"
@@ -165,7 +165,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 95989278,
-        "download_count": 537,
+        "download_count": 561,
         "created_at": "2022-11-16T10:58:05Z",
         "updated_at": "2022-11-16T10:59:12Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/Caprine-2.57.0.dmg"
@@ -233,7 +233,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 73177538,
-        "download_count": 6960,
+        "download_count": 7134,
         "created_at": "2022-11-16T10:38:05Z",
         "updated_at": "2022-11-16T10:38:07Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/Caprine-Setup-2.57.0.exe"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 77135,
-        "download_count": 4440,
+        "download_count": 4513,
         "created_at": "2022-11-16T10:38:05Z",
         "updated_at": "2022-11-16T10:38:05Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/Caprine-Setup-2.57.0.exe.blockmap"
@@ -301,7 +301,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 70049980,
-        "download_count": 772,
+        "download_count": 801,
         "created_at": "2022-11-16T10:54:27Z",
         "updated_at": "2022-11-16T10:56:52Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/caprine_2.57.0_amd64.deb"
@@ -335,7 +335,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85610496,
-        "download_count": 24,
+        "download_count": 26,
         "created_at": "2022-11-16T10:56:58Z",
         "updated_at": "2022-11-16T10:58:00Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/caprine_2.57.0_amd64.snap"
@@ -369,7 +369,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 369,
-        "download_count": 9741,
+        "download_count": 10292,
         "created_at": "2022-11-16T10:50:13Z",
         "updated_at": "2022-11-16T10:50:24Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/latest-linux.yml"
@@ -403,7 +403,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 489,
-        "download_count": 23200,
+        "download_count": 24337,
         "created_at": "2022-11-16T10:50:06Z",
         "updated_at": "2022-11-16T10:50:12Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/latest-mac.yml"
@@ -437,7 +437,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 345,
-        "download_count": 104046,
+        "download_count": 109524,
         "created_at": "2022-11-16T10:38:07Z",
         "updated_at": "2022-11-16T10:38:07Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/latest.yml"
@@ -694,7 +694,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 72204591,
-        "download_count": 10391,
+        "download_count": 10434,
         "created_at": "2022-08-22T20:18:18Z",
         "updated_at": "2022-08-22T20:18:20Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.56.1/Caprine-Setup-2.56.1.exe"
@@ -728,7 +728,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 76033,
-        "download_count": 7022,
+        "download_count": 7033,
         "created_at": "2022-08-22T20:18:17Z",
         "updated_at": "2022-08-22T20:18:17Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.56.1/Caprine-Setup-2.56.1.exe.blockmap"
@@ -1155,7 +1155,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 72186668,
-        "download_count": 2426,
+        "download_count": 2429,
         "created_at": "2022-08-17T10:09:09Z",
         "updated_at": "2022-08-17T10:09:11Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.56.0/Caprine-Setup-2.56.0.exe"
@@ -1446,7 +1446,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 77724748,
-        "download_count": 1125,
+        "download_count": 1126,
         "created_at": "2022-06-12T18:42:45Z",
         "updated_at": "2022-06-12T18:42:47Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.6/Caprine-2.55.6-mac.zip"
@@ -1616,7 +1616,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57222748,
-        "download_count": 8058,
+        "download_count": 8064,
         "created_at": "2022-06-12T18:42:30Z",
         "updated_at": "2022-06-12T18:42:34Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.6/Caprine-Setup-2.55.6.exe"
@@ -2042,7 +2042,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57222872,
-        "download_count": 4847,
+        "download_count": 4853,
         "created_at": "2022-05-16T09:59:22Z",
         "updated_at": "2022-05-16T09:59:23Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.5/Caprine-Setup-2.55.5.exe"
@@ -2468,7 +2468,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57222546,
-        "download_count": 7023,
+        "download_count": 7029,
         "created_at": "2022-03-20T16:52:27Z",
         "updated_at": "2022-03-20T16:52:29Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.4/Caprine-Setup-2.55.4.exe"
@@ -2894,7 +2894,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57222546,
-        "download_count": 2406,
+        "download_count": 2412,
         "created_at": "2022-03-20T10:05:31Z",
         "updated_at": "2022-03-20T10:05:34Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.3/Caprine-Setup-2.55.3.exe"
@@ -3342,7 +3342,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57236101,
-        "download_count": 12720,
+        "download_count": 12726,
         "created_at": "2021-12-09T18:26:05Z",
         "updated_at": "2021-12-09T18:26:08Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.2/Caprine-Setup-2.55.2.exe"
@@ -3802,7 +3802,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57235992,
-        "download_count": 3626,
+        "download_count": 3632,
         "created_at": "2021-12-02T15:00:47Z",
         "updated_at": "2021-12-02T15:00:49Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.1/Caprine-Setup-2.55.1.exe"
@@ -4262,7 +4262,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57235791,
-        "download_count": 6767,
+        "download_count": 6773,
         "created_at": "2021-10-28T16:09:36Z",
         "updated_at": "2021-10-28T16:09:40Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.55.0/Caprine-Setup-2.55.0.exe"
@@ -4654,7 +4654,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57187742,
-        "download_count": 12990,
+        "download_count": 12996,
         "created_at": "2021-08-12T23:17:42Z",
         "updated_at": "2021-08-12T23:17:45Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.54.1/Caprine-Setup-2.54.1.exe"
@@ -4688,7 +4688,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60224,
-        "download_count": 8445,
+        "download_count": 8449,
         "created_at": "2021-08-12T23:17:29Z",
         "updated_at": "2021-08-12T23:17:29Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.54.1/Caprine-Setup-2.54.1.exe.blockmap"
@@ -5068,7 +5068,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57187796,
-        "download_count": 4494,
+        "download_count": 4500,
         "created_at": "2021-07-29T09:57:22Z",
         "updated_at": "2021-07-29T09:57:25Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.54.0/Caprine-Setup-2.54.0.exe"
@@ -5482,7 +5482,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57187511,
-        "download_count": 12042,
+        "download_count": 12048,
         "created_at": "2021-05-07T18:34:36Z",
         "updated_at": "2021-05-07T18:34:39Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.53.0/Caprine-Setup-2.53.0.exe"
@@ -5516,7 +5516,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60280,
-        "download_count": 8847,
+        "download_count": 8852,
         "created_at": "2021-05-07T18:34:34Z",
         "updated_at": "2021-05-07T18:34:34Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.53.0/Caprine-Setup-2.53.0.exe.blockmap"
@@ -5908,7 +5908,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57018880,
-        "download_count": 3741,
+        "download_count": 3744,
         "created_at": "2021-04-26T11:59:48Z",
         "updated_at": "2021-04-26T11:59:55Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.4/Caprine-Setup-2.52.4.exe"
@@ -5942,7 +5942,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60656,
-        "download_count": 4204,
+        "download_count": 4205,
         "created_at": "2021-04-26T11:59:48Z",
         "updated_at": "2021-04-26T11:59:49Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.4/Caprine-Setup-2.52.4.exe.blockmap"
@@ -6254,7 +6254,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 82574039,
-        "download_count": 582,
+        "download_count": 583,
         "created_at": "2021-04-09T08:44:38Z",
         "updated_at": "2021-04-09T08:44:40Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.3/Caprine-2.52.3.dmg"
@@ -6322,7 +6322,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57031608,
-        "download_count": 4877,
+        "download_count": 4880,
         "created_at": "2021-04-09T08:45:19Z",
         "updated_at": "2021-04-09T08:45:20Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.3/Caprine-Setup-2.52.3.exe"
@@ -6356,7 +6356,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60409,
-        "download_count": 5026,
+        "download_count": 5027,
         "created_at": "2021-04-09T08:45:19Z",
         "updated_at": "2021-04-09T08:45:19Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.3/Caprine-Setup-2.52.3.exe.blockmap"
@@ -6736,7 +6736,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57018720,
-        "download_count": 7296,
+        "download_count": 7302,
         "created_at": "2021-03-18T12:11:40Z",
         "updated_at": "2021-03-18T12:11:42Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.2/Caprine-Setup-2.52.2.exe"
@@ -6770,7 +6770,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60768,
-        "download_count": 5963,
+        "download_count": 5965,
         "created_at": "2021-03-18T12:11:26Z",
         "updated_at": "2021-03-18T12:11:27Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.2/Caprine-Setup-2.52.2.exe.blockmap"
@@ -7082,7 +7082,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 82577668,
-        "download_count": 484,
+        "download_count": 485,
         "created_at": "2021-03-08T16:11:09Z",
         "updated_at": "2021-03-08T16:11:11Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.1/Caprine-2.52.1.dmg"
@@ -7150,7 +7150,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57018096,
-        "download_count": 3562,
+        "download_count": 3565,
         "created_at": "2021-03-08T16:11:35Z",
         "updated_at": "2021-03-08T16:11:36Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.1/Caprine-Setup-2.52.1.exe"
@@ -7184,7 +7184,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60819,
-        "download_count": 3806,
+        "download_count": 3807,
         "created_at": "2021-03-08T16:11:32Z",
         "updated_at": "2021-03-08T16:11:33Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.1/Caprine-Setup-2.52.1.exe.blockmap"
@@ -7564,7 +7564,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57016584,
-        "download_count": 83167,
+        "download_count": 83184,
         "created_at": "2021-01-25T18:48:50Z",
         "updated_at": "2021-01-25T18:48:52Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.0/Caprine-Setup-2.52.0.exe"
@@ -7598,7 +7598,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60261,
-        "download_count": 78154,
+        "download_count": 78157,
         "created_at": "2021-01-25T18:48:43Z",
         "updated_at": "2021-01-25T18:48:43Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.52.0/Caprine-Setup-2.52.0.exe.blockmap"
@@ -7978,7 +7978,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57413064,
-        "download_count": 13659,
+        "download_count": 13662,
         "created_at": "2020-11-29T16:13:40Z",
         "updated_at": "2020-11-29T16:13:41Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.51.2/Caprine-Setup-2.51.2.exe"
@@ -8392,7 +8392,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57574392,
-        "download_count": 5789,
+        "download_count": 5792,
         "created_at": "2020-11-16T14:02:17Z",
         "updated_at": "2020-11-16T14:02:19Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.51.1/Caprine-Setup-2.51.1.exe"
@@ -8806,7 +8806,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57198816,
-        "download_count": 9873,
+        "download_count": 9876,
         "created_at": "2020-10-18T22:19:33Z",
         "updated_at": "2020-10-18T22:19:34Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.51.0/Caprine-Setup-2.51.0.exe"
@@ -8840,7 +8840,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 60909,
-        "download_count": 15172,
+        "download_count": 15173,
         "created_at": "2020-10-18T22:19:33Z",
         "updated_at": "2020-10-18T22:19:33Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.51.0/Caprine-Setup-2.51.0.exe.blockmap"
@@ -9220,7 +9220,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 56978304,
-        "download_count": 8844,
+        "download_count": 8847,
         "created_at": "2020-09-27T12:35:23Z",
         "updated_at": "2020-09-27T12:35:25Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.50.0/Caprine-Setup-2.50.0.exe"
@@ -9254,7 +9254,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 59831,
-        "download_count": 13505,
+        "download_count": 13507,
         "created_at": "2020-09-27T12:35:36Z",
         "updated_at": "2020-09-27T12:35:36Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.50.0/Caprine-Setup-2.50.0.exe.blockmap"
@@ -9634,7 +9634,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 56980288,
-        "download_count": 6616,
+        "download_count": 6619,
         "created_at": "2020-09-11T15:12:18Z",
         "updated_at": "2020-09-11T15:12:20Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.49.0/Caprine-Setup-2.49.0.exe"
@@ -10048,7 +10048,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 52720848,
-        "download_count": 20852,
+        "download_count": 20855,
         "created_at": "2020-06-27T13:56:06Z",
         "updated_at": "2020-06-27T13:56:08Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.48.0/Caprine-Setup-2.48.0.exe"
@@ -10082,7 +10082,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 55968,
-        "download_count": 27669,
+        "download_count": 27672,
         "created_at": "2020-06-27T13:56:06Z",
         "updated_at": "2020-06-27T13:56:06Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.48.0/Caprine-Setup-2.48.0.exe.blockmap"
@@ -10462,7 +10462,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 52654760,
-        "download_count": 12899,
+        "download_count": 12906,
         "created_at": "2020-06-02T05:01:21Z",
         "updated_at": "2020-06-02T05:01:23Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.47.0/Caprine-Setup-2.47.0.exe"
@@ -10876,7 +10876,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 52534296,
-        "download_count": 51980,
+        "download_count": 51983,
         "created_at": "2020-05-12T08:04:38Z",
         "updated_at": "2020-05-12T08:04:39Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.46.0/Caprine-Setup-2.46.0.exe"
@@ -11290,7 +11290,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 52635368,
-        "download_count": 14219,
+        "download_count": 14222,
         "created_at": "2020-04-07T09:41:24Z",
         "updated_at": "2020-04-07T09:41:26Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.45.0/Caprine-Setup-2.45.0.exe"
@@ -11324,7 +11324,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 56691,
-        "download_count": 66894,
+        "download_count": 66895,
         "created_at": "2020-04-07T09:41:18Z",
         "updated_at": "2020-04-07T09:41:18Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.45.0/Caprine-Setup-2.45.0.exe.blockmap"
@@ -11636,7 +11636,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 72265557,
-        "download_count": 5612,
+        "download_count": 5613,
         "created_at": "2020-02-05T09:17:26Z",
         "updated_at": "2020-02-05T09:17:29Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.44.0/Caprine-2.44.0.dmg"
@@ -11704,7 +11704,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 52547376,
-        "download_count": 26660,
+        "download_count": 26663,
         "created_at": "2020-02-05T09:19:31Z",
         "updated_at": "2020-02-05T09:19:33Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.44.0/Caprine-Setup-2.44.0.exe"
@@ -11738,7 +11738,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 55533,
-        "download_count": 39843,
+        "download_count": 39844,
         "created_at": "2020-02-05T09:21:28Z",
         "updated_at": "2020-02-05T09:21:28Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.44.0/Caprine-Setup-2.44.0.exe.blockmap"
@@ -12118,7 +12118,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 47481200,
-        "download_count": 9090,
+        "download_count": 9093,
         "created_at": "2020-01-26T11:46:10Z",
         "updated_at": "2020-01-26T11:46:12Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.43.0/Caprine-Setup-2.43.0.exe"
@@ -12532,7 +12532,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 47497256,
-        "download_count": 7460,
+        "download_count": 7463,
         "created_at": "2020-01-19T19:32:36Z",
         "updated_at": "2020-01-19T19:32:38Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.42.1/Caprine-Setup-2.42.1.exe"
