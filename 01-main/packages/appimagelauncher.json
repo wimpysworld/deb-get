@@ -165,7 +165,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 2954176,
-        "download_count": 1061,
+        "download_count": 1062,
         "created_at": "2022-09-08T16:05:38Z",
         "updated_at": "2022-09-08T16:05:39Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher-2.2.0-gha111.d9d4c73.x86_64.rpm"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 46781632,
-        "download_count": 1290,
+        "download_count": 1292,
         "created_at": "2022-09-08T16:05:42Z",
         "updated_at": "2022-09-08T16:05:44Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher-lite-2.2.0-gha111-d9d4c73-x86_64.AppImage"
@@ -301,7 +301,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 4726802,
-        "download_count": 2282,
+        "download_count": 2286,
         "created_at": "2022-09-08T16:05:32Z",
         "updated_at": "2022-09-08T16:05:33Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher_2.2.0-gha111.d9d4c73%2Bbionic_amd64.deb"
@@ -335,7 +335,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 4567468,
-        "download_count": 220,
+        "download_count": 221,
         "created_at": "2022-09-08T16:05:33Z",
         "updated_at": "2022-09-08T16:05:33Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher_2.2.0-gha111.d9d4c73%2Bbionic_arm64.deb"
@@ -489,7 +489,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3496104,
-        "download_count": 13485,
+        "download_count": 13486,
         "created_at": "2020-09-29T21:38:08Z",
         "updated_at": "2020-09-29T21:38:09Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-0f91801.source.tar.xz"
@@ -591,7 +591,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 2985744,
-        "download_count": 53180,
+        "download_count": 53186,
         "created_at": "2020-09-29T21:39:00Z",
         "updated_at": "2020-09-29T21:39:00Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-2.2.0-travis995.0f91801.x86_64.rpm"
@@ -625,7 +625,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 43907104,
-        "download_count": 6103,
+        "download_count": 6106,
         "created_at": "2020-09-29T21:48:45Z",
         "updated_at": "2020-09-29T21:48:47Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-lite-2.2.0-travis995-0f91801-i386.AppImage"
@@ -659,7 +659,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 42373160,
-        "download_count": 58327,
+        "download_count": 58342,
         "created_at": "2020-09-29T21:43:49Z",
         "updated_at": "2020-09-29T21:43:50Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher-lite-2.2.0-travis995-0f91801-x86_64.AppImage"
@@ -693,7 +693,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5915004,
-        "download_count": 123385,
+        "download_count": 123405,
         "created_at": "2020-09-29T21:37:53Z",
         "updated_at": "2020-09-29T21:37:53Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb"
@@ -727,7 +727,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5830752,
-        "download_count": 12041,
+        "download_count": 12044,
         "created_at": "2020-09-29T21:47:49Z",
         "updated_at": "2020-09-29T21:47:52Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_arm64.deb"
@@ -761,7 +761,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5566926,
-        "download_count": 2425,
+        "download_count": 2426,
         "created_at": "2020-09-29T21:48:17Z",
         "updated_at": "2020-09-29T21:48:18Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_armhf.deb"
@@ -795,7 +795,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5718402,
-        "download_count": 7466,
+        "download_count": 7467,
         "created_at": "2020-09-29T21:37:35Z",
         "updated_at": "2020-09-29T21:37:35Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_i386.deb"
@@ -829,7 +829,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5457020,
-        "download_count": 16289,
+        "download_count": 16290,
         "created_at": "2020-09-29T21:38:59Z",
         "updated_at": "2020-09-29T21:38:59Z",
         "browser_download_url": "https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.xenial_amd64.deb"

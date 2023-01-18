@@ -63,7 +63,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 337,
-        "download_count": 600,
+        "download_count": 608,
         "created_at": "2023-01-04T22:16:40Z",
         "updated_at": "2023-01-04T22:16:41Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/latest-arm64-mac.yml"
@@ -97,7 +97,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 356,
-        "download_count": 107,
+        "download_count": 108,
         "created_at": "2023-01-04T22:13:48Z",
         "updated_at": "2023-01-04T22:13:48Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/latest-arm64.yml"
@@ -131,7 +131,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 352,
-        "download_count": 364,
+        "download_count": 369,
         "created_at": "2023-01-04T22:17:58Z",
         "updated_at": "2023-01-04T22:17:58Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/latest-x64.yml"
@@ -165,7 +165,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 339,
-        "download_count": 230,
+        "download_count": 233,
         "created_at": "2023-01-04T22:21:14Z",
         "updated_at": "2023-01-04T22:21:14Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/latest-x86_64-mac.yml"
@@ -199,7 +199,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 72908160,
-        "download_count": 312,
+        "download_count": 314,
         "created_at": "2023-01-04T23:32:28Z",
         "updated_at": "2023-01-04T23:32:47Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-linux-armhf.deb"
@@ -233,7 +233,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 72992324,
-        "download_count": 75,
+        "download_count": 76,
         "created_at": "2023-01-04T23:44:53Z",
         "updated_at": "2023-01-04T23:45:05Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-linux-armhf.pacman"
@@ -267,7 +267,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 69220160,
-        "download_count": 81,
+        "download_count": 82,
         "created_at": "2023-01-04T23:38:55Z",
         "updated_at": "2023-01-04T23:39:13Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-linux-armhf.rpm"
@@ -335,7 +335,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 79201622,
-        "download_count": 2032,
+        "download_count": 2053,
         "created_at": "2023-01-04T22:14:40Z",
         "updated_at": "2023-01-04T22:14:44Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-linux-x64.deb"
@@ -369,7 +369,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 79281924,
-        "download_count": 899,
+        "download_count": 909,
         "created_at": "2023-01-04T22:20:07Z",
         "updated_at": "2023-01-04T22:20:12Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-linux-x64.pacman"
@@ -403,7 +403,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 79619920,
-        "download_count": 418,
+        "download_count": 422,
         "created_at": "2023-01-04T22:17:20Z",
         "updated_at": "2023-01-04T22:17:26Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-linux-x64.rpm"
@@ -437,7 +437,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 121377594,
-        "download_count": 247,
+        "download_count": 249,
         "created_at": "2023-01-04T22:11:49Z",
         "updated_at": "2023-01-04T22:11:56Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-linux-x64.tar.gz"
@@ -471,7 +471,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 111264353,
-        "download_count": 2077,
+        "download_count": 2106,
         "created_at": "2023-01-04T22:15:39Z",
         "updated_at": "2023-01-04T22:15:48Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-macos-arm64.pkg"
@@ -505,7 +505,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 107397342,
-        "download_count": 5885,
+        "download_count": 5962,
         "created_at": "2023-01-04T22:16:35Z",
         "updated_at": "2023-01-04T22:16:40Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-macos-arm64.zip"
@@ -539,7 +539,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 115873442,
-        "download_count": 2064,
+        "download_count": 2078,
         "created_at": "2023-01-04T22:19:52Z",
         "updated_at": "2023-01-04T22:19:59Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-macos-x86_64.pkg"
@@ -573,7 +573,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 111964685,
-        "download_count": 63478,
+        "download_count": 63986,
         "created_at": "2023-01-04T22:21:07Z",
         "updated_at": "2023-01-04T22:21:14Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-macos-x86_64.zip"
@@ -607,7 +607,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 130843313,
-        "download_count": 156,
+        "download_count": 158,
         "created_at": "2023-01-04T22:13:40Z",
         "updated_at": "2023-01-04T22:13:47Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-portable-arm64.zip"
@@ -641,7 +641,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 131921683,
-        "download_count": 2650,
+        "download_count": 2671,
         "created_at": "2023-01-04T22:17:52Z",
         "updated_at": "2023-01-04T22:17:55Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-portable-x64.zip"
@@ -675,7 +675,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 97431112,
-        "download_count": 969,
+        "download_count": 982,
         "created_at": "2023-01-04T22:13:35Z",
         "updated_at": "2023-01-04T22:13:38Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-setup-arm64.exe"
@@ -743,7 +743,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 96617760,
-        "download_count": 15035,
+        "download_count": 15177,
         "created_at": "2023-01-04T22:17:27Z",
         "updated_at": "2023-01-04T22:17:30Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-setup-x64.exe"
@@ -777,7 +777,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 101986,
-        "download_count": 84,
+        "download_count": 87,
         "created_at": "2023-01-04T22:17:27Z",
         "updated_at": "2023-01-04T22:17:27Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.188/tabby-1.0.188-setup-x64.exe.blockmap"
@@ -1442,7 +1442,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 131163118,
-        "download_count": 7886,
+        "download_count": 7889,
         "created_at": "2022-11-20T19:55:36Z",
         "updated_at": "2022-11-20T19:55:39Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.187/tabby-1.0.187-portable-x64.zip"
@@ -1544,7 +1544,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 96044904,
-        "download_count": 41947,
+        "download_count": 41949,
         "created_at": "2022-11-20T19:55:16Z",
         "updated_at": "2022-11-20T19:55:18Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.187/tabby-1.0.187-setup-x64.exe"
@@ -6828,7 +6828,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 108213030,
-        "download_count": 257,
+        "download_count": 258,
         "created_at": "2022-05-28T12:19:57Z",
         "updated_at": "2022-05-28T12:20:01Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.178/tabby-1.0.178-macos-arm64.pkg"
@@ -9386,7 +9386,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 89208864,
-        "download_count": 45549,
+        "download_count": 45550,
         "created_at": "2022-03-21T15:37:47Z",
         "updated_at": "2022-03-21T15:37:51Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.174/tabby-1.0.174-setup.exe"
@@ -10376,7 +10376,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 88164392,
-        "download_count": 22237,
+        "download_count": 22238,
         "created_at": "2022-02-12T09:27:28Z",
         "updated_at": "2022-02-12T09:27:30Z",
         "browser_download_url": "https://github.com/Eugeny/tabby/releases/download/v1.0.172/tabby-1.0.172-setup.exe"

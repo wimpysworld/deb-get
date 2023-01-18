@@ -1354,7 +1354,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 268604,
-      "download_count": 703,
+      "download_count": 705,
       "created_at": "2022-12-12T12:17:34Z",
       "updated_at": "2022-12-12T12:17:35Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-bionic_amd64.deb"
@@ -1490,7 +1490,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 255988,
-      "download_count": 714,
+      "download_count": 718,
       "created_at": "2022-12-12T12:17:36Z",
       "updated_at": "2022-12-12T12:17:36Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-focal_amd64.deb"
@@ -1524,7 +1524,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 239356,
-      "download_count": 6,
+      "download_count": 8,
       "created_at": "2022-12-12T12:17:36Z",
       "updated_at": "2022-12-12T12:17:37Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-focal_arm64.deb"
@@ -1558,7 +1558,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 239528,
-      "download_count": 0,
+      "download_count": 2,
       "created_at": "2022-12-12T12:17:37Z",
       "updated_at": "2022-12-12T12:17:37Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-focal_armhf.deb"
@@ -1592,7 +1592,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 242040,
-      "download_count": 6358,
+      "download_count": 6363,
       "created_at": "2022-12-12T12:17:37Z",
       "updated_at": "2022-12-12T12:17:37Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-jammy_amd64.deb"

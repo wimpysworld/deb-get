@@ -131,7 +131,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68854568,
-        "download_count": 94,
+        "download_count": 95,
         "created_at": "2022-12-20T22:23:22Z",
         "updated_at": "2022-12-20T22:23:28Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-7.4.0-preview.1-linux-arm32.tar.gz"
@@ -165,7 +165,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 67765750,
-        "download_count": 140,
+        "download_count": 141,
         "created_at": "2022-12-20T22:23:28Z",
         "updated_at": "2022-12-20T22:23:33Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-7.4.0-preview.1-linux-arm64.tar.gz"
@@ -233,7 +233,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 70750045,
-        "download_count": 214,
+        "download_count": 215,
         "created_at": "2022-12-20T22:23:34Z",
         "updated_at": "2022-12-20T22:23:38Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-7.4.0-preview.1-linux-x64.tar.gz"
@@ -267,7 +267,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 64622807,
-        "download_count": 460,
+        "download_count": 461,
         "created_at": "2022-12-20T22:23:41Z",
         "updated_at": "2022-12-20T22:23:44Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-7.4.0-preview.1-osx-arm64.pkg"
@@ -301,7 +301,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 64371860,
-        "download_count": 310,
+        "download_count": 312,
         "created_at": "2022-12-20T22:23:45Z",
         "updated_at": "2022-12-20T22:23:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-7.4.0-preview.1-osx-arm64.tar.gz"
@@ -335,7 +335,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 67622531,
-        "download_count": 600,
+        "download_count": 603,
         "created_at": "2022-12-20T22:23:48Z",
         "updated_at": "2022-12-20T22:23:52Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-7.4.0-preview.1-osx-x64.pkg"
@@ -369,7 +369,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 67368454,
-        "download_count": 580,
+        "download_count": 583,
         "created_at": "2022-12-20T22:23:53Z",
         "updated_at": "2022-12-20T22:23:56Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-7.4.0-preview.1-osx-x64.tar.gz"
@@ -437,7 +437,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71719389,
-        "download_count": 247,
+        "download_count": 249,
         "created_at": "2022-12-20T22:24:03Z",
         "updated_at": "2022-12-20T22:24:08Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/PowerShell-7.4.0-preview.1-win-arm64.zip"
@@ -539,7 +539,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 105398272,
-        "download_count": 44930,
+        "download_count": 45204,
         "created_at": "2022-12-20T22:24:15Z",
         "updated_at": "2022-12-20T22:24:21Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/PowerShell-7.4.0-preview.1-win-x64.msi"
@@ -573,7 +573,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 107652036,
-        "download_count": 1151,
+        "download_count": 1154,
         "created_at": "2022-12-20T22:24:21Z",
         "updated_at": "2022-12-20T22:24:26Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/PowerShell-7.4.0-preview.1-win-x64.zip"
@@ -607,7 +607,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97751040,
-        "download_count": 745,
+        "download_count": 746,
         "created_at": "2022-12-20T22:24:27Z",
         "updated_at": "2022-12-20T22:24:33Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/PowerShell-7.4.0-preview.1-win-x86.msi"
@@ -641,7 +641,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99229506,
-        "download_count": 244,
+        "download_count": 245,
         "created_at": "2022-12-20T22:24:33Z",
         "updated_at": "2022-12-20T22:24:40Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/PowerShell-7.4.0-preview.1-win-x86.zip"
@@ -675,7 +675,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 355531449,
-        "download_count": 596,
+        "download_count": 600,
         "created_at": "2022-12-21T01:30:17Z",
         "updated_at": "2022-12-21T01:34:14Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/PowerShell-7.4.0-preview.1-win.msixbundle"
@@ -743,7 +743,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 70275617,
-        "download_count": 125,
+        "download_count": 126,
         "created_at": "2022-12-20T22:24:49Z",
         "updated_at": "2022-12-20T22:24:53Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-preview-7.4.0_preview.1-1.rh.x86_64.rpm"
@@ -777,7 +777,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 70861036,
-        "download_count": 165,
+        "download_count": 166,
         "created_at": "2022-12-20T22:24:41Z",
         "updated_at": "2022-12-20T22:24:45Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.4.0-preview.1/powershell-preview_7.4.0-preview.1-1.deb_amd64.deb"
@@ -865,7 +865,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 2020,
-        "download_count": 3043,
+        "download_count": 3053,
         "created_at": "2022-12-13T15:57:38Z",
         "updated_at": "2022-12-13T15:57:38Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/hashes.sha256"
@@ -899,7 +899,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 37950633,
-        "download_count": 11471,
+        "download_count": 11530,
         "created_at": "2022-12-13T15:57:43Z",
         "updated_at": "2022-12-13T15:57:46Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-1.cm.x86_64.rpm"
@@ -933,7 +933,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71107677,
-        "download_count": 3277,
+        "download_count": 3323,
         "created_at": "2022-12-13T15:57:47Z",
         "updated_at": "2022-12-13T15:57:50Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-1.rh.x86_64.rpm"
@@ -967,7 +967,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 70584508,
-        "download_count": 3002,
+        "download_count": 3033,
         "created_at": "2022-12-13T15:57:50Z",
         "updated_at": "2022-12-13T15:57:56Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-linux-alpine-x64.tar.gz"
@@ -1001,7 +1001,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69113434,
-        "download_count": 1471,
+        "download_count": 1478,
         "created_at": "2022-12-13T15:57:57Z",
         "updated_at": "2022-12-13T15:58:01Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-linux-arm32.tar.gz"
@@ -1035,7 +1035,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68034071,
-        "download_count": 8369,
+        "download_count": 8390,
         "created_at": "2022-12-13T15:58:02Z",
         "updated_at": "2022-12-13T15:58:05Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-linux-arm64.tar.gz"
@@ -1069,7 +1069,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 24377143,
-        "download_count": 325,
+        "download_count": 326,
         "created_at": "2022-12-13T15:58:10Z",
         "updated_at": "2022-12-13T15:58:11Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-linux-x64-fxdependent.tar.gz"
@@ -1103,7 +1103,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71616643,
-        "download_count": 7423,
+        "download_count": 7478,
         "created_at": "2022-12-13T15:58:06Z",
         "updated_at": "2022-12-13T15:58:09Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-linux-x64.tar.gz"
@@ -1137,7 +1137,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 65430292,
-        "download_count": 30819,
+        "download_count": 31035,
         "created_at": "2022-12-13T15:58:12Z",
         "updated_at": "2022-12-13T15:58:16Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-osx-arm64.pkg"
@@ -1171,7 +1171,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 65046823,
-        "download_count": 830,
+        "download_count": 838,
         "created_at": "2022-12-13T15:58:16Z",
         "updated_at": "2022-12-13T15:58:20Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-osx-arm64.tar.gz"
@@ -1205,7 +1205,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68444479,
-        "download_count": 29551,
+        "download_count": 29671,
         "created_at": "2022-12-13T15:58:20Z",
         "updated_at": "2022-12-13T15:58:24Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-osx-x64.pkg"
@@ -1239,7 +1239,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68077305,
-        "download_count": 1177,
+        "download_count": 1180,
         "created_at": "2022-12-13T15:58:25Z",
         "updated_at": "2022-12-13T15:58:28Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell-7.3.1-osx-x64.tar.gz"
@@ -1273,7 +1273,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 70366484,
-        "download_count": 961,
+        "download_count": 965,
         "created_at": "2022-12-13T15:58:28Z",
         "updated_at": "2022-12-13T15:58:32Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-arm32.zip"
@@ -1307,7 +1307,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71856332,
-        "download_count": 5408,
+        "download_count": 5433,
         "created_at": "2022-12-13T15:58:33Z",
         "updated_at": "2022-12-13T15:58:37Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-arm64.zip"
@@ -1341,7 +1341,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 26135782,
-        "download_count": 412,
+        "download_count": 413,
         "created_at": "2022-12-13T15:58:38Z",
         "updated_at": "2022-12-13T15:58:40Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-fxdependent.zip"
@@ -1375,7 +1375,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 24895114,
-        "download_count": 789,
+        "download_count": 793,
         "created_at": "2022-12-13T15:58:41Z",
         "updated_at": "2022-12-13T15:58:43Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-fxdependentWinDesktop.zip"
@@ -1409,7 +1409,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106213376,
-        "download_count": 576125,
+        "download_count": 577564,
         "created_at": "2022-12-13T15:58:43Z",
         "updated_at": "2022-12-13T15:58:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-x64.msi"
@@ -1443,7 +1443,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 107794111,
-        "download_count": 29826,
+        "download_count": 30055,
         "created_at": "2022-12-13T15:58:48Z",
         "updated_at": "2022-12-13T15:58:53Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-x64.zip"
@@ -1477,7 +1477,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97525760,
-        "download_count": 16672,
+        "download_count": 16760,
         "created_at": "2022-12-13T15:58:54Z",
         "updated_at": "2022-12-13T15:58:58Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-x86.msi"
@@ -1511,7 +1511,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99376255,
-        "download_count": 35674,
+        "download_count": 35991,
         "created_at": "2022-12-13T15:58:59Z",
         "updated_at": "2022-12-13T15:59:03Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win-x86.zip"
@@ -1545,7 +1545,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 356129275,
-        "download_count": 106148,
+        "download_count": 109597,
         "created_at": "2022-12-13T18:16:12Z",
         "updated_at": "2022-12-13T18:24:25Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/PowerShell-7.3.1-win.msixbundle"
@@ -1579,7 +1579,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71719252,
-        "download_count": 3449,
+        "download_count": 3485,
         "created_at": "2022-12-13T15:57:39Z",
         "updated_at": "2022-12-13T15:57:42Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.1/powershell_7.3.1-1.deb_amd64.deb"
@@ -1733,7 +1733,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68829709,
-        "download_count": 60,
+        "download_count": 61,
         "created_at": "2022-12-13T15:55:50Z",
         "updated_at": "2022-12-13T15:55:54Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-7.2.8-1.rh.x86_64.rpm"
@@ -1903,7 +1903,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69405436,
-        "download_count": 410,
+        "download_count": 414,
         "created_at": "2022-12-13T15:56:11Z",
         "updated_at": "2022-12-13T15:56:15Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-7.2.8-linux-x64.tar.gz"
@@ -1937,7 +1937,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63047165,
-        "download_count": 507,
+        "download_count": 514,
         "created_at": "2022-12-13T15:56:19Z",
         "updated_at": "2022-12-13T15:56:24Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-7.2.8-osx-arm64.pkg"
@@ -1971,7 +1971,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 62725837,
-        "download_count": 55,
+        "download_count": 56,
         "created_at": "2022-12-13T15:56:24Z",
         "updated_at": "2022-12-13T15:56:28Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-7.2.8-osx-arm64.tar.gz"
@@ -2005,7 +2005,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66761313,
-        "download_count": 2299,
+        "download_count": 2316,
         "created_at": "2022-12-13T15:56:28Z",
         "updated_at": "2022-12-13T15:56:32Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-7.2.8-osx-x64.pkg"
@@ -2039,7 +2039,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66419996,
-        "download_count": 246,
+        "download_count": 247,
         "created_at": "2022-12-13T15:56:33Z",
         "updated_at": "2022-12-13T15:56:37Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-7.2.8-osx-x64.tar.gz"
@@ -2107,7 +2107,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69391447,
-        "download_count": 120,
+        "download_count": 121,
         "created_at": "2022-12-13T15:56:42Z",
         "updated_at": "2022-12-13T15:56:46Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/PowerShell-7.2.8-win-arm64.zip"
@@ -2209,7 +2209,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106979328,
-        "download_count": 21004,
+        "download_count": 21118,
         "created_at": "2022-12-13T15:56:52Z",
         "updated_at": "2022-12-13T15:56:59Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/PowerShell-7.2.8-win-x64.msi"
@@ -2243,7 +2243,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 108766293,
-        "download_count": 534,
+        "download_count": 535,
         "created_at": "2022-12-13T15:57:00Z",
         "updated_at": "2022-12-13T15:57:06Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/PowerShell-7.2.8-win-x64.zip"
@@ -2277,7 +2277,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97308672,
-        "download_count": 2032,
+        "download_count": 2036,
         "created_at": "2022-12-13T15:57:06Z",
         "updated_at": "2022-12-13T15:57:11Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/PowerShell-7.2.8-win-x86.msi"
@@ -2379,7 +2379,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68831099,
-        "download_count": 298,
+        "download_count": 304,
         "created_at": "2022-12-13T15:57:26Z",
         "updated_at": "2022-12-13T15:57:28Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-lts-7.2.8-1.rh.x86_64.rpm"
@@ -2413,7 +2413,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63048009,
-        "download_count": 452,
+        "download_count": 459,
         "created_at": "2022-12-13T15:57:29Z",
         "updated_at": "2022-12-13T15:57:32Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-lts-7.2.8-osx-arm64.pkg"
@@ -2447,7 +2447,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66761001,
-        "download_count": 481,
+        "download_count": 492,
         "created_at": "2022-12-13T15:57:33Z",
         "updated_at": "2022-12-13T15:57:38Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-lts-7.2.8-osx-x64.pkg"
@@ -2481,7 +2481,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69447560,
-        "download_count": 831,
+        "download_count": 836,
         "created_at": "2022-12-13T15:57:18Z",
         "updated_at": "2022-12-13T15:57:22Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell-lts_7.2.8-1.deb_amd64.deb"
@@ -2515,7 +2515,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69440998,
-        "download_count": 53,
+        "download_count": 54,
         "created_at": "2022-12-13T15:55:43Z",
         "updated_at": "2022-12-13T15:55:47Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.8/powershell_7.2.8-1.deb_amd64.deb"
@@ -2669,7 +2669,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71131490,
-        "download_count": 5443,
+        "download_count": 5448,
         "created_at": "2022-11-09T00:28:52Z",
         "updated_at": "2022-11-09T00:28:55Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-1.rh.x86_64.rpm"
@@ -2703,7 +2703,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 70661731,
-        "download_count": 4924,
+        "download_count": 4927,
         "created_at": "2022-11-09T00:28:57Z",
         "updated_at": "2022-11-09T00:29:01Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-linux-alpine-x64.tar.gz"
@@ -2771,7 +2771,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68106561,
-        "download_count": 10288,
+        "download_count": 10292,
         "created_at": "2022-11-09T00:29:08Z",
         "updated_at": "2022-11-09T00:29:12Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-linux-arm64.tar.gz"
@@ -2839,7 +2839,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71703612,
-        "download_count": 11334,
+        "download_count": 11347,
         "created_at": "2022-11-09T00:29:12Z",
         "updated_at": "2022-11-09T00:29:16Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-linux-x64.tar.gz"
@@ -2873,7 +2873,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 65445031,
-        "download_count": 37608,
+        "download_count": 37611,
         "created_at": "2022-11-09T00:29:20Z",
         "updated_at": "2022-11-09T00:29:23Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-osx-arm64.pkg"
@@ -2941,7 +2941,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68460345,
-        "download_count": 39718,
+        "download_count": 39761,
         "created_at": "2022-11-09T00:29:28Z",
         "updated_at": "2022-11-09T00:29:31Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell-7.3.0-osx-x64.pkg"
@@ -3043,7 +3043,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71869573,
-        "download_count": 9917,
+        "download_count": 9946,
         "created_at": "2022-11-09T00:29:40Z",
         "updated_at": "2022-11-09T00:29:46Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-arm64.zip"
@@ -3145,7 +3145,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106225664,
-        "download_count": 958995,
+        "download_count": 959191,
         "created_at": "2022-11-09T00:29:51Z",
         "updated_at": "2022-11-09T00:29:56Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-x64.msi"
@@ -3179,7 +3179,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 107812169,
-        "download_count": 82703,
+        "download_count": 82786,
         "created_at": "2022-11-09T00:29:57Z",
         "updated_at": "2022-11-09T00:30:04Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-x64.zip"
@@ -3213,7 +3213,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97538048,
-        "download_count": 41234,
+        "download_count": 41244,
         "created_at": "2022-11-09T00:30:05Z",
         "updated_at": "2022-11-09T00:30:09Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-x86.msi"
@@ -3247,7 +3247,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99396023,
-        "download_count": 19968,
+        "download_count": 20001,
         "created_at": "2022-11-09T00:30:10Z",
         "updated_at": "2022-11-09T00:30:14Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/PowerShell-7.3.0-win-x86.zip"
@@ -3315,7 +3315,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 71728570,
-        "download_count": 8712,
+        "download_count": 8719,
         "created_at": "2022-11-09T00:28:42Z",
         "updated_at": "2022-11-09T00:28:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0/powershell_7.3.0-1.deb_amd64.deb"
@@ -3606,7 +3606,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 65048403,
-        "download_count": 780,
+        "download_count": 781,
         "created_at": "2022-10-26T22:16:03Z",
         "updated_at": "2022-10-26T22:16:08Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-rc.1/powershell-7.3.0-rc.1-osx-arm64.pkg"
@@ -3878,7 +3878,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 105357312,
-        "download_count": 97311,
+        "download_count": 97315,
         "created_at": "2022-10-26T22:16:40Z",
         "updated_at": "2022-10-26T22:16:47Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-rc.1/PowerShell-7.3.0-rc.1-win-x64.msi"
@@ -3912,7 +3912,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 107576520,
-        "download_count": 1472,
+        "download_count": 1473,
         "created_at": "2022-10-26T22:16:48Z",
         "updated_at": "2022-10-26T22:16:54Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-rc.1/PowerShell-7.3.0-rc.1-win-x64.zip"
@@ -4271,7 +4271,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68835045,
-        "download_count": 3825,
+        "download_count": 3830,
         "created_at": "2022-10-20T21:05:44Z",
         "updated_at": "2022-10-20T21:05:49Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-1.rh.x86_64.rpm"
@@ -4441,7 +4441,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69431855,
-        "download_count": 8109,
+        "download_count": 8116,
         "created_at": "2022-10-20T21:06:12Z",
         "updated_at": "2022-10-20T21:06:16Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-linux-x64.tar.gz"
@@ -4543,7 +4543,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66770084,
-        "download_count": 31849,
+        "download_count": 31852,
         "created_at": "2022-10-20T21:06:39Z",
         "updated_at": "2022-10-20T21:06:49Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-7.2.7-osx-x64.pkg"
@@ -4747,7 +4747,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106971136,
-        "download_count": 595192,
+        "download_count": 595235,
         "created_at": "2022-10-20T21:07:24Z",
         "updated_at": "2022-10-20T21:07:34Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/PowerShell-7.2.7-win-x64.msi"
@@ -4781,7 +4781,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 108770988,
-        "download_count": 26606,
+        "download_count": 26608,
         "created_at": "2022-10-20T21:07:35Z",
         "updated_at": "2022-10-20T21:07:41Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/PowerShell-7.2.7-win-x64.zip"
@@ -4815,7 +4815,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97320960,
-        "download_count": 19412,
+        "download_count": 19416,
         "created_at": "2022-10-20T21:07:42Z",
         "updated_at": "2022-10-20T21:07:49Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/PowerShell-7.2.7-win-x86.msi"
@@ -4849,7 +4849,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99432261,
-        "download_count": 20576,
+        "download_count": 20579,
         "created_at": "2022-10-20T21:07:50Z",
         "updated_at": "2022-10-20T21:07:57Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/PowerShell-7.2.7-win-x86.zip"
@@ -4951,7 +4951,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68834647,
-        "download_count": 1427,
+        "download_count": 1430,
         "created_at": "2022-10-20T21:08:10Z",
         "updated_at": "2022-10-20T21:08:17Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-lts-7.2.7-1.rh.x86_64.rpm"
@@ -5053,7 +5053,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69460950,
-        "download_count": 5131,
+        "download_count": 5143,
         "created_at": "2022-10-20T21:07:58Z",
         "updated_at": "2022-10-20T21:08:03Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.7/powershell-lts_7.2.7-1.deb_amd64.deb"
@@ -7490,7 +7490,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 50353074,
-        "download_count": 813,
+        "download_count": 814,
         "created_at": "2022-08-11T23:48:43Z",
         "updated_at": "2022-08-11T23:48:46Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.7/PowerShell-7.3.0-preview.7-win-arm64.zip"
@@ -7660,7 +7660,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 81403904,
-        "download_count": 1895,
+        "download_count": 1896,
         "created_at": "2022-08-11T23:49:15Z",
         "updated_at": "2022-08-11T23:49:20Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.7/PowerShell-7.3.0-preview.7-win-x86.msi"
@@ -7694,7 +7694,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 83149266,
-        "download_count": 627,
+        "download_count": 628,
         "created_at": "2022-08-11T23:49:21Z",
         "updated_at": "2022-08-11T23:49:25Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.7/PowerShell-7.3.0-preview.7-win-x86.zip"
@@ -7796,7 +7796,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 47112904,
-        "download_count": 825,
+        "download_count": 826,
         "created_at": "2022-08-11T23:49:34Z",
         "updated_at": "2022-08-11T23:49:41Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.7/powershell-preview-7.3.0_preview.7-1.rh.x86_64.rpm"
@@ -7986,7 +7986,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68828954,
-        "download_count": 7223,
+        "download_count": 7225,
         "created_at": "2022-08-11T21:50:14Z",
         "updated_at": "2022-08-11T21:50:18Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell-7.2.6-1.rh.x86_64.rpm"
@@ -8020,7 +8020,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68392826,
-        "download_count": 70508,
+        "download_count": 70513,
         "created_at": "2022-08-11T21:50:19Z",
         "updated_at": "2022-08-11T21:50:27Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell-7.2.6-linux-alpine-x64.tar.gz"
@@ -8088,7 +8088,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 64784215,
-        "download_count": 6482,
+        "download_count": 6483,
         "created_at": "2022-08-11T21:50:34Z",
         "updated_at": "2022-08-11T21:50:38Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell-7.2.6-linux-arm64.tar.gz"
@@ -8156,7 +8156,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69438809,
-        "download_count": 16812,
+        "download_count": 16817,
         "created_at": "2022-08-11T21:50:39Z",
         "updated_at": "2022-08-11T21:50:43Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell-7.2.6-linux-x64.tar.gz"
@@ -8258,7 +8258,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66787448,
-        "download_count": 65941,
+        "download_count": 65943,
         "created_at": "2022-08-11T21:51:17Z",
         "updated_at": "2022-08-11T21:51:21Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell-7.2.6-osx-x64.pkg"
@@ -8462,7 +8462,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106954752,
-        "download_count": 1224909,
+        "download_count": 1225024,
         "created_at": "2022-08-11T21:51:54Z",
         "updated_at": "2022-08-11T21:52:00Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/PowerShell-7.2.6-win-x64.msi"
@@ -8496,7 +8496,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 108748106,
-        "download_count": 112699,
+        "download_count": 112711,
         "created_at": "2022-08-11T21:52:01Z",
         "updated_at": "2022-08-11T21:52:07Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/PowerShell-7.2.6-win-x64.zip"
@@ -8530,7 +8530,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97800192,
-        "download_count": 65561,
+        "download_count": 65565,
         "created_at": "2022-08-11T21:52:08Z",
         "updated_at": "2022-08-11T21:52:13Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/PowerShell-7.2.6-win-x86.msi"
@@ -8564,7 +8564,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99408783,
-        "download_count": 106160,
+        "download_count": 106240,
         "created_at": "2022-08-11T21:52:14Z",
         "updated_at": "2022-08-11T21:52:21Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/PowerShell-7.2.6-win-x86.zip"
@@ -8666,7 +8666,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68831461,
-        "download_count": 24464,
+        "download_count": 24583,
         "created_at": "2022-08-11T21:52:51Z",
         "updated_at": "2022-08-11T21:52:55Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell-lts-7.2.6-1.rh.x86_64.rpm"
@@ -8768,7 +8768,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69468394,
-        "download_count": 23257,
+        "download_count": 23281,
         "created_at": "2022-08-11T21:52:23Z",
         "updated_at": "2022-08-11T21:52:27Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell-lts_7.2.6-1.deb_amd64.deb"
@@ -8802,7 +8802,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69463938,
-        "download_count": 6004,
+        "download_count": 6005,
         "created_at": "2022-08-11T21:50:05Z",
         "updated_at": "2022-08-11T21:50:10Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/powershell_7.2.6-1.deb_amd64.deb"
@@ -9740,7 +9740,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 58549474,
-        "download_count": 742,
+        "download_count": 743,
         "created_at": "2022-08-11T21:47:08Z",
         "updated_at": "2022-08-11T21:47:11Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.0.12/powershell-lts_7.0.12-1.ubuntu.20.04_amd64.deb"
@@ -10099,7 +10099,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44386624,
-        "download_count": 874,
+        "download_count": 875,
         "created_at": "2022-07-18T21:16:16Z",
         "updated_at": "2022-07-18T21:16:19Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-7.3.0-preview.6-linux-arm32.tar.gz"
@@ -10133,7 +10133,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44142464,
-        "download_count": 921,
+        "download_count": 922,
         "created_at": "2022-07-18T21:16:20Z",
         "updated_at": "2022-07-18T21:16:23Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-7.3.0-preview.6-linux-arm64.tar.gz"
@@ -10201,7 +10201,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46596387,
-        "download_count": 1084,
+        "download_count": 1085,
         "created_at": "2022-07-18T21:16:25Z",
         "updated_at": "2022-07-18T21:16:39Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-7.3.0-preview.6-linux-x64.tar.gz"
@@ -10235,7 +10235,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44369052,
-        "download_count": 1359,
+        "download_count": 1360,
         "created_at": "2022-07-18T21:16:44Z",
         "updated_at": "2022-07-18T21:16:47Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-7.3.0-preview.6-osx-arm64.pkg"
@@ -10269,7 +10269,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44205590,
-        "download_count": 970,
+        "download_count": 971,
         "created_at": "2022-07-18T21:16:48Z",
         "updated_at": "2022-07-18T21:16:51Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-7.3.0-preview.6-osx-arm64.tar.gz"
@@ -10303,7 +10303,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45996310,
-        "download_count": 1600,
+        "download_count": 1601,
         "created_at": "2022-07-18T21:16:52Z",
         "updated_at": "2022-07-18T21:16:56Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-7.3.0-preview.6-osx-x64.pkg"
@@ -10337,7 +10337,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45837048,
-        "download_count": 1217,
+        "download_count": 1218,
         "created_at": "2022-07-18T21:16:57Z",
         "updated_at": "2022-07-18T21:17:05Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-7.3.0-preview.6-osx-x64.tar.gz"
@@ -10405,7 +10405,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 49764718,
-        "download_count": 1217,
+        "download_count": 1218,
         "created_at": "2022-07-18T21:17:11Z",
         "updated_at": "2022-07-18T21:17:14Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/PowerShell-7.3.0-preview.6-win-arm64.zip"
@@ -10507,7 +10507,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 84312064,
-        "download_count": 18806,
+        "download_count": 18807,
         "created_at": "2022-07-18T21:17:24Z",
         "updated_at": "2022-07-18T21:17:30Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/PowerShell-7.3.0-preview.6-win-x64.msi"
@@ -10541,7 +10541,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 86063947,
-        "download_count": 2084,
+        "download_count": 2091,
         "created_at": "2022-07-18T21:17:31Z",
         "updated_at": "2022-07-18T21:17:39Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/PowerShell-7.3.0-preview.6-win-x64.zip"
@@ -10575,7 +10575,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 79384576,
-        "download_count": 1911,
+        "download_count": 1912,
         "created_at": "2022-07-18T21:17:41Z",
         "updated_at": "2022-07-18T21:17:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/PowerShell-7.3.0-preview.6-win-x86.msi"
@@ -10609,7 +10609,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 80981533,
-        "download_count": 1040,
+        "download_count": 1041,
         "created_at": "2022-07-18T21:17:49Z",
         "updated_at": "2022-07-18T21:17:56Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/PowerShell-7.3.0-preview.6-win-x86.zip"
@@ -10711,7 +10711,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46288175,
-        "download_count": 999,
+        "download_count": 1000,
         "created_at": "2022-07-18T21:18:07Z",
         "updated_at": "2022-07-18T21:18:11Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-preview-7.3.0_preview.6-1.rh.x86_64.rpm"
@@ -10745,7 +10745,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46623124,
-        "download_count": 1008,
+        "download_count": 1009,
         "created_at": "2022-07-18T21:17:57Z",
         "updated_at": "2022-07-18T21:18:03Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.6/powershell-preview_7.3.0-preview.6-1.deb_amd64.deb"
@@ -10901,7 +10901,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44220873,
-        "download_count": 1347,
+        "download_count": 1348,
         "created_at": "2022-06-22T20:14:42Z",
         "updated_at": "2022-06-22T20:14:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-7.3.0-preview.5-linux-arm32.tar.gz"
@@ -10935,7 +10935,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44009148,
-        "download_count": 1363,
+        "download_count": 1364,
         "created_at": "2022-06-22T20:14:49Z",
         "updated_at": "2022-06-22T20:14:52Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-7.3.0-preview.5-linux-arm64.tar.gz"
@@ -11003,7 +11003,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46454135,
-        "download_count": 1478,
+        "download_count": 1479,
         "created_at": "2022-06-22T20:14:53Z",
         "updated_at": "2022-06-22T20:14:56Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-7.3.0-preview.5-linux-x64.tar.gz"
@@ -11037,7 +11037,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44305593,
-        "download_count": 1586,
+        "download_count": 1587,
         "created_at": "2022-06-22T20:15:01Z",
         "updated_at": "2022-06-22T20:15:04Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-7.3.0-preview.5-osx-arm64.pkg"
@@ -11071,7 +11071,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44134006,
-        "download_count": 1426,
+        "download_count": 1427,
         "created_at": "2022-06-22T20:15:05Z",
         "updated_at": "2022-06-22T20:15:09Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-7.3.0-preview.5-osx-arm64.tar.gz"
@@ -11105,7 +11105,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45916211,
-        "download_count": 1830,
+        "download_count": 1831,
         "created_at": "2022-06-22T20:15:10Z",
         "updated_at": "2022-06-22T20:15:13Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-7.3.0-preview.5-osx-x64.pkg"
@@ -11139,7 +11139,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45750867,
-        "download_count": 1673,
+        "download_count": 1674,
         "created_at": "2022-06-22T20:15:14Z",
         "updated_at": "2022-06-22T20:15:18Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-7.3.0-preview.5-osx-x64.tar.gz"
@@ -11207,7 +11207,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 49790711,
-        "download_count": 1487,
+        "download_count": 1489,
         "created_at": "2022-06-22T20:15:25Z",
         "updated_at": "2022-06-22T20:15:29Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/PowerShell-7.3.0-preview.5-win-arm64.zip"
@@ -11309,7 +11309,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 84361216,
-        "download_count": 12455,
+        "download_count": 12457,
         "created_at": "2022-06-22T20:15:39Z",
         "updated_at": "2022-06-22T20:15:44Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/PowerShell-7.3.0-preview.5-win-x64.msi"
@@ -11343,7 +11343,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 86024022,
-        "download_count": 2293,
+        "download_count": 2294,
         "created_at": "2022-06-22T20:15:45Z",
         "updated_at": "2022-06-22T20:15:53Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/PowerShell-7.3.0-preview.5-win-x64.zip"
@@ -11377,7 +11377,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 79409152,
-        "download_count": 2099,
+        "download_count": 2100,
         "created_at": "2022-06-22T20:15:54Z",
         "updated_at": "2022-06-22T20:15:59Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/PowerShell-7.3.0-preview.5-win-x86.msi"
@@ -11411,7 +11411,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 80948459,
-        "download_count": 1360,
+        "download_count": 1361,
         "created_at": "2022-06-22T20:16:00Z",
         "updated_at": "2022-06-22T20:16:07Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/PowerShell-7.3.0-preview.5-win-x86.zip"
@@ -11513,7 +11513,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46188687,
-        "download_count": 1510,
+        "download_count": 1511,
         "created_at": "2022-06-22T20:16:15Z",
         "updated_at": "2022-06-22T20:16:20Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-preview-7.3.0_preview.5-1.rh.x86_64.rpm"
@@ -11547,7 +11547,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46492464,
-        "download_count": 1732,
+        "download_count": 1733,
         "created_at": "2022-06-22T20:16:08Z",
         "updated_at": "2022-06-22T20:16:11Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.5/powershell-preview_7.3.0-preview.5-1.deb_amd64.deb"
@@ -11703,7 +11703,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68827598,
-        "download_count": 7958,
+        "download_count": 7960,
         "created_at": "2022-06-21T18:17:57Z",
         "updated_at": "2022-06-21T18:18:01Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-1.rh.x86_64.rpm"
@@ -11737,7 +11737,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68321895,
-        "download_count": 23480,
+        "download_count": 23484,
         "created_at": "2022-06-21T18:18:02Z",
         "updated_at": "2022-06-21T18:18:07Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-alpine-x64.tar.gz"
@@ -11771,7 +11771,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66201903,
-        "download_count": 4792,
+        "download_count": 4794,
         "created_at": "2022-06-21T18:18:08Z",
         "updated_at": "2022-06-21T18:18:13Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-arm32.tar.gz"
@@ -11805,7 +11805,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 64716033,
-        "download_count": 7300,
+        "download_count": 7302,
         "created_at": "2022-06-21T18:18:14Z",
         "updated_at": "2022-06-21T18:18:18Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-arm64.tar.gz"
@@ -11873,7 +11873,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69364625,
-        "download_count": 16836,
+        "download_count": 16845,
         "created_at": "2022-06-21T18:18:19Z",
         "updated_at": "2022-06-21T18:18:24Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-x64.tar.gz"
@@ -11907,7 +11907,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63055607,
-        "download_count": 32986,
+        "download_count": 32988,
         "created_at": "2022-06-21T18:18:29Z",
         "updated_at": "2022-06-21T18:18:32Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-osx-arm64.pkg"
@@ -11941,7 +11941,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 62732978,
-        "download_count": 3452,
+        "download_count": 3454,
         "created_at": "2022-06-21T18:18:33Z",
         "updated_at": "2022-06-21T18:18:37Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-osx-arm64.tar.gz"
@@ -11975,7 +11975,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66784330,
-        "download_count": 49765,
+        "download_count": 49767,
         "created_at": "2022-06-21T18:18:38Z",
         "updated_at": "2022-06-21T18:18:44Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-osx-x64.pkg"
@@ -12009,7 +12009,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66452011,
-        "download_count": 5024,
+        "download_count": 5026,
         "created_at": "2022-06-21T18:18:45Z",
         "updated_at": "2022-06-21T18:18:56Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-osx-x64.tar.gz"
@@ -12077,7 +12077,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69388074,
-        "download_count": 15914,
+        "download_count": 15916,
         "created_at": "2022-06-21T18:19:03Z",
         "updated_at": "2022-06-21T18:19:07Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/PowerShell-7.2.5-win-arm64.zip"
@@ -12179,7 +12179,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106917888,
-        "download_count": 918103,
+        "download_count": 918310,
         "created_at": "2022-06-21T18:19:15Z",
         "updated_at": "2022-06-21T18:19:27Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/PowerShell-7.2.5-win-x64.msi"
@@ -12213,7 +12213,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 108749194,
-        "download_count": 65260,
+        "download_count": 65262,
         "created_at": "2022-06-21T18:19:28Z",
         "updated_at": "2022-06-21T18:19:35Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/PowerShell-7.2.5-win-x64.zip"
@@ -12247,7 +12247,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97771520,
-        "download_count": 43301,
+        "download_count": 43308,
         "created_at": "2022-06-21T18:19:36Z",
         "updated_at": "2022-06-21T18:19:42Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/PowerShell-7.2.5-win-x86.msi"
@@ -12281,7 +12281,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99407843,
-        "download_count": 154883,
+        "download_count": 154985,
         "created_at": "2022-06-21T18:19:43Z",
         "updated_at": "2022-06-21T18:19:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/PowerShell-7.2.5-win-x86.zip"
@@ -12383,7 +12383,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68828885,
-        "download_count": 4701,
+        "download_count": 4703,
         "created_at": "2022-06-21T18:19:59Z",
         "updated_at": "2022-06-21T18:20:03Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-lts-7.2.5-1.rh.x86_64.rpm"
@@ -12417,7 +12417,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63055742,
-        "download_count": 2951,
+        "download_count": 2953,
         "created_at": "2022-06-21T18:20:04Z",
         "updated_at": "2022-06-21T18:20:12Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-lts-7.2.5-osx-arm64.pkg"
@@ -12451,7 +12451,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66785497,
-        "download_count": 3286,
+        "download_count": 3288,
         "created_at": "2022-06-21T18:20:13Z",
         "updated_at": "2022-06-21T18:20:20Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-lts-7.2.5-osx-x64.pkg"
@@ -12485,7 +12485,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69388194,
-        "download_count": 14173,
+        "download_count": 14204,
         "created_at": "2022-06-21T18:19:50Z",
         "updated_at": "2022-06-21T18:19:54Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-lts_7.2.5-1.deb_amd64.deb"
@@ -12519,7 +12519,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69382904,
-        "download_count": 6584,
+        "download_count": 6586,
         "created_at": "2022-06-21T18:17:48Z",
         "updated_at": "2022-06-21T18:17:53Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell_7.2.5-1.deb_amd64.deb"
@@ -12675,7 +12675,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44385201,
-        "download_count": 1213,
+        "download_count": 1214,
         "created_at": "2022-05-23T15:48:49Z",
         "updated_at": "2022-05-23T15:48:53Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-7.3.0-preview.4-linux-arm32.tar.gz"
@@ -12709,7 +12709,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44201532,
-        "download_count": 1239,
+        "download_count": 1240,
         "created_at": "2022-05-23T15:48:54Z",
         "updated_at": "2022-05-23T15:48:58Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-7.3.0-preview.4-linux-arm64.tar.gz"
@@ -12777,7 +12777,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46666755,
-        "download_count": 1390,
+        "download_count": 1391,
         "created_at": "2022-05-23T15:48:59Z",
         "updated_at": "2022-05-23T15:49:01Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-7.3.0-preview.4-linux-x64.tar.gz"
@@ -12811,7 +12811,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44554134,
-        "download_count": 1531,
+        "download_count": 1532,
         "created_at": "2022-05-23T15:49:05Z",
         "updated_at": "2022-05-23T15:49:08Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-7.3.0-preview.4-osx-arm64.pkg"
@@ -12845,7 +12845,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 44378927,
-        "download_count": 1211,
+        "download_count": 1212,
         "created_at": "2022-05-23T15:49:08Z",
         "updated_at": "2022-05-23T15:49:11Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-7.3.0-preview.4-osx-arm64.tar.gz"
@@ -12879,7 +12879,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46172406,
-        "download_count": 1721,
+        "download_count": 1722,
         "created_at": "2022-05-23T15:49:12Z",
         "updated_at": "2022-05-23T15:49:14Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-7.3.0-preview.4-osx-x64.pkg"
@@ -12913,7 +12913,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46007801,
-        "download_count": 1475,
+        "download_count": 1476,
         "created_at": "2022-05-23T15:49:15Z",
         "updated_at": "2022-05-23T15:49:19Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-7.3.0-preview.4-osx-x64.tar.gz"
@@ -12981,7 +12981,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 49958636,
-        "download_count": 1447,
+        "download_count": 1448,
         "created_at": "2022-05-23T15:49:25Z",
         "updated_at": "2022-05-23T15:49:33Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/PowerShell-7.3.0-preview.4-win-arm64.zip"
@@ -13083,7 +13083,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 86405120,
-        "download_count": 11859,
+        "download_count": 11860,
         "created_at": "2022-05-23T15:49:46Z",
         "updated_at": "2022-05-23T15:49:51Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/PowerShell-7.3.0-preview.4-win-x64.msi"
@@ -13117,7 +13117,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 88131781,
-        "download_count": 2068,
+        "download_count": 2069,
         "created_at": "2022-05-23T15:49:52Z",
         "updated_at": "2022-05-23T15:49:58Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/PowerShell-7.3.0-preview.4-win-x64.zip"
@@ -13151,7 +13151,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 81076224,
-        "download_count": 2130,
+        "download_count": 2131,
         "created_at": "2022-05-23T15:49:58Z",
         "updated_at": "2022-05-23T15:50:04Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/PowerShell-7.3.0-preview.4-win-x86.msi"
@@ -13185,7 +13185,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 82667854,
-        "download_count": 1383,
+        "download_count": 1384,
         "created_at": "2022-05-23T15:50:04Z",
         "updated_at": "2022-05-23T15:50:13Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/PowerShell-7.3.0-preview.4-win-x86.zip"
@@ -13253,7 +13253,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46415405,
-        "download_count": 1432,
+        "download_count": 1433,
         "created_at": "2022-05-23T15:50:21Z",
         "updated_at": "2022-05-23T15:50:24Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-preview-7.3.0_preview.4-1.rh.x86_64.rpm"
@@ -13287,7 +13287,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 46699494,
-        "download_count": 1344,
+        "download_count": 1345,
         "created_at": "2022-05-23T15:50:14Z",
         "updated_at": "2022-05-23T15:50:18Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.4/powershell-preview_7.3.0-preview.4-1.deb_amd64.deb"
@@ -13408,7 +13408,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68823947,
-        "download_count": 12582,
+        "download_count": 12584,
         "created_at": "2022-05-17T17:23:40Z",
         "updated_at": "2022-05-17T17:23:43Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-1.rh.x86_64.rpm"
@@ -13442,7 +13442,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68371511,
-        "download_count": 11947,
+        "download_count": 11949,
         "created_at": "2022-05-17T17:23:44Z",
         "updated_at": "2022-05-17T17:23:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-linux-alpine-x64.tar.gz"
@@ -13476,7 +13476,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66241774,
-        "download_count": 4116,
+        "download_count": 4118,
         "created_at": "2022-05-17T17:23:48Z",
         "updated_at": "2022-05-17T17:23:53Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-linux-arm32.tar.gz"
@@ -13510,7 +13510,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 64769626,
-        "download_count": 6203,
+        "download_count": 6205,
         "created_at": "2022-05-17T17:23:54Z",
         "updated_at": "2022-05-17T17:23:57Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-linux-arm64.tar.gz"
@@ -13578,7 +13578,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69406638,
-        "download_count": 24400,
+        "download_count": 24407,
         "created_at": "2022-05-17T17:23:57Z",
         "updated_at": "2022-05-17T17:24:01Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-linux-x64.tar.gz"
@@ -13612,7 +13612,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63057049,
-        "download_count": 21037,
+        "download_count": 21039,
         "created_at": "2022-05-17T17:24:04Z",
         "updated_at": "2022-05-17T17:24:07Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-osx-arm64.pkg"
@@ -13646,7 +13646,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 62723179,
-        "download_count": 2423,
+        "download_count": 2425,
         "created_at": "2022-05-17T17:24:08Z",
         "updated_at": "2022-05-17T17:24:12Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-osx-arm64.tar.gz"
@@ -13680,7 +13680,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66789601,
-        "download_count": 34497,
+        "download_count": 34500,
         "created_at": "2022-05-17T17:24:13Z",
         "updated_at": "2022-05-17T17:24:15Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-osx-x64.pkg"
@@ -13714,7 +13714,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66456739,
-        "download_count": 3655,
+        "download_count": 3657,
         "created_at": "2022-05-17T17:24:16Z",
         "updated_at": "2022-05-17T17:24:20Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-7.2.4-osx-x64.tar.gz"
@@ -13782,7 +13782,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69389227,
-        "download_count": 10959,
+        "download_count": 10961,
         "created_at": "2022-05-17T17:24:25Z",
         "updated_at": "2022-05-17T17:24:28Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/PowerShell-7.2.4-win-arm64.zip"
@@ -13884,7 +13884,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106946560,
-        "download_count": 602267,
+        "download_count": 602287,
         "created_at": "2022-05-17T17:24:39Z",
         "updated_at": "2022-05-17T17:24:45Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/PowerShell-7.2.4-win-x64.msi"
@@ -13918,7 +13918,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 108746880,
-        "download_count": 61242,
+        "download_count": 61245,
         "created_at": "2022-05-17T17:24:46Z",
         "updated_at": "2022-05-17T17:24:51Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/PowerShell-7.2.4-win-x64.zip"
@@ -13952,7 +13952,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97800192,
-        "download_count": 39470,
+        "download_count": 39475,
         "created_at": "2022-05-17T17:24:52Z",
         "updated_at": "2022-05-17T17:24:57Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/PowerShell-7.2.4-win-x86.msi"
@@ -13986,7 +13986,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99414928,
-        "download_count": 36623,
+        "download_count": 36638,
         "created_at": "2022-05-17T17:24:57Z",
         "updated_at": "2022-05-17T17:25:02Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/PowerShell-7.2.4-win-x86.zip"
@@ -14054,7 +14054,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68825944,
-        "download_count": 4008,
+        "download_count": 4010,
         "created_at": "2022-05-17T17:25:07Z",
         "updated_at": "2022-05-17T17:25:10Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-lts-7.2.4-1.rh.x86_64.rpm"
@@ -14088,7 +14088,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63058098,
-        "download_count": 2254,
+        "download_count": 2256,
         "created_at": "2022-05-17T17:25:11Z",
         "updated_at": "2022-05-17T17:25:14Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-lts-7.2.4-osx-arm64.pkg"
@@ -14122,7 +14122,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66789778,
-        "download_count": 2510,
+        "download_count": 2512,
         "created_at": "2022-05-17T17:25:15Z",
         "updated_at": "2022-05-17T17:25:18Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-lts-7.2.4-osx-x64.pkg"
@@ -14156,7 +14156,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69430114,
-        "download_count": 7985,
+        "download_count": 7987,
         "created_at": "2022-05-17T17:25:02Z",
         "updated_at": "2022-05-17T17:25:06Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell-lts_7.2.4-1.deb_amd64.deb"
@@ -14190,7 +14190,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69434548,
-        "download_count": 6119,
+        "download_count": 6122,
         "created_at": "2022-05-17T17:23:34Z",
         "updated_at": "2022-05-17T17:23:39Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.4/powershell_7.2.4-1.deb_amd64.deb"
@@ -15450,7 +15450,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68787718,
-        "download_count": 7356,
+        "download_count": 7357,
         "created_at": "2022-04-26T20:15:20Z",
         "updated_at": "2022-04-26T20:15:25Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/powershell-7.2.3-1.rh.x86_64.rpm"
@@ -15484,7 +15484,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68351491,
-        "download_count": 6722,
+        "download_count": 6723,
         "created_at": "2022-04-26T20:15:26Z",
         "updated_at": "2022-04-26T20:15:30Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/powershell-7.2.3-linux-alpine-x64.tar.gz"
@@ -15654,7 +15654,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63050624,
-        "download_count": 12790,
+        "download_count": 12799,
         "created_at": "2022-04-26T20:15:47Z",
         "updated_at": "2022-04-26T20:15:52Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/powershell-7.2.3-osx-arm64.pkg"
@@ -15926,7 +15926,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106926080,
-        "download_count": 491796,
+        "download_count": 491842,
         "created_at": "2022-04-26T20:16:17Z",
         "updated_at": "2022-04-26T20:16:21Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x64.msi"
@@ -15994,7 +15994,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97792000,
-        "download_count": 22595,
+        "download_count": 22598,
         "created_at": "2022-04-26T20:16:27Z",
         "updated_at": "2022-04-26T20:16:32Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x86.msi"
@@ -16028,7 +16028,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99411093,
-        "download_count": 95574,
+        "download_count": 95578,
         "created_at": "2022-04-26T20:16:32Z",
         "updated_at": "2022-04-26T20:16:37Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.3/PowerShell-7.2.3-win-x86.zip"
@@ -16523,7 +16523,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 67132159,
-        "download_count": 4615,
+        "download_count": 4623,
         "created_at": "2022-04-26T20:13:12Z",
         "updated_at": "2022-04-26T20:13:16Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.7/powershell-7.1.7-linux-x64.tar.gz"
@@ -16761,7 +16761,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 100749312,
-        "download_count": 1363,
+        "download_count": 1364,
         "created_at": "2022-04-26T20:13:43Z",
         "updated_at": "2022-04-26T20:13:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.7/PowerShell-7.1.7-win-x64.msi"
@@ -18361,7 +18361,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45510602,
-        "download_count": 1080,
+        "download_count": 1081,
         "created_at": "2022-03-21T21:21:23Z",
         "updated_at": "2022-03-21T21:21:27Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-7.3.0-preview.3-linux-arm32.tar.gz"
@@ -18395,7 +18395,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45367012,
-        "download_count": 1196,
+        "download_count": 1197,
         "created_at": "2022-03-21T21:21:27Z",
         "updated_at": "2022-03-21T21:21:29Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-7.3.0-preview.3-linux-arm64.tar.gz"
@@ -18463,7 +18463,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 47793854,
-        "download_count": 1951,
+        "download_count": 1952,
         "created_at": "2022-03-21T21:21:30Z",
         "updated_at": "2022-03-21T21:21:33Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-7.3.0-preview.3-linux-x64.tar.gz"
@@ -18497,7 +18497,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45663346,
-        "download_count": 1641,
+        "download_count": 1642,
         "created_at": "2022-03-21T21:21:36Z",
         "updated_at": "2022-03-21T21:21:40Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-7.3.0-preview.3-osx-arm64.pkg"
@@ -18531,7 +18531,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 45481735,
-        "download_count": 962,
+        "download_count": 963,
         "created_at": "2022-03-21T21:21:41Z",
         "updated_at": "2022-03-21T21:21:49Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-7.3.0-preview.3-osx-arm64.tar.gz"
@@ -18565,7 +18565,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 47232170,
-        "download_count": 2172,
+        "download_count": 2173,
         "created_at": "2022-03-21T21:21:49Z",
         "updated_at": "2022-03-21T21:21:51Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-7.3.0-preview.3-osx-x64.pkg"
@@ -18599,7 +18599,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 47049589,
-        "download_count": 1530,
+        "download_count": 1531,
         "created_at": "2022-03-21T21:21:52Z",
         "updated_at": "2022-03-21T21:21:55Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-7.3.0-preview.3-osx-x64.tar.gz"
@@ -18667,7 +18667,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 49683415,
-        "download_count": 1282,
+        "download_count": 1283,
         "created_at": "2022-03-21T21:22:00Z",
         "updated_at": "2022-03-21T21:22:03Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/PowerShell-7.3.0-preview.3-win-arm64.zip"
@@ -18769,7 +18769,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 86462464,
-        "download_count": 18045,
+        "download_count": 18046,
         "created_at": "2022-03-21T21:22:14Z",
         "updated_at": "2022-03-21T21:22:18Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/PowerShell-7.3.0-preview.3-win-x64.msi"
@@ -18803,7 +18803,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 88141867,
-        "download_count": 4008,
+        "download_count": 4009,
         "created_at": "2022-03-21T21:22:19Z",
         "updated_at": "2022-03-21T21:22:23Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/PowerShell-7.3.0-preview.3-win-x64.zip"
@@ -18837,7 +18837,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 81137664,
-        "download_count": 2209,
+        "download_count": 2210,
         "created_at": "2022-03-21T21:22:24Z",
         "updated_at": "2022-03-21T21:22:30Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/PowerShell-7.3.0-preview.3-win-x86.msi"
@@ -18871,7 +18871,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 82739344,
-        "download_count": 1208,
+        "download_count": 1209,
         "created_at": "2022-03-21T21:22:31Z",
         "updated_at": "2022-03-21T21:22:36Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/PowerShell-7.3.0-preview.3-win-x86.zip"
@@ -18939,7 +18939,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 47441746,
-        "download_count": 1721,
+        "download_count": 1722,
         "created_at": "2022-03-21T21:22:40Z",
         "updated_at": "2022-03-21T21:22:43Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-preview-7.3.0_preview.3-1.rh.x86_64.rpm"
@@ -18973,7 +18973,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 47817962,
-        "download_count": 1866,
+        "download_count": 1867,
         "created_at": "2022-03-21T21:22:36Z",
         "updated_at": "2022-03-21T21:22:39Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.3.0-preview.3/powershell-preview_7.3.0-preview.3-1.deb_amd64.deb"
@@ -19129,7 +19129,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68331207,
-        "download_count": 16713,
+        "download_count": 16720,
         "created_at": "2022-03-16T18:27:03Z",
         "updated_at": "2022-03-16T18:27:07Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/powershell-7.2.2-linux-alpine-x64.tar.gz"
@@ -19571,7 +19571,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 106745856,
-        "download_count": 466274,
+        "download_count": 466299,
         "created_at": "2022-03-16T18:28:16Z",
         "updated_at": "2022-03-16T18:28:23Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/PowerShell-7.2.2-win-x64.msi"
@@ -19605,7 +19605,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 108470077,
-        "download_count": 54020,
+        "download_count": 54023,
         "created_at": "2022-03-16T18:28:23Z",
         "updated_at": "2022-03-16T18:28:29Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/PowerShell-7.2.2-win-x64.zip"
@@ -19639,7 +19639,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 97599488,
-        "download_count": 34810,
+        "download_count": 34813,
         "created_at": "2022-03-16T18:28:30Z",
         "updated_at": "2022-03-16T18:28:36Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/PowerShell-7.2.2-win-x86.msi"
@@ -19843,7 +19843,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69396358,
-        "download_count": 10407,
+        "download_count": 10426,
         "created_at": "2022-03-16T18:28:43Z",
         "updated_at": "2022-03-16T18:28:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.2/powershell-lts_7.2.2-1.deb_amd64.deb"
@@ -20440,7 +20440,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 101950244,
-        "download_count": 361,
+        "download_count": 362,
         "created_at": "2022-03-16T18:35:29Z",
         "updated_at": "2022-03-16T18:35:34Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.6/PowerShell-7.1.6-win-x64.zip"
@@ -23442,7 +23442,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69077646,
-        "download_count": 30699,
+        "download_count": 30703,
         "created_at": "2021-12-14T18:04:22Z",
         "updated_at": "2021-12-14T18:04:27Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-7.2.1-1.rh.x86_64.rpm"
@@ -23476,7 +23476,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68674867,
-        "download_count": 29719,
+        "download_count": 29722,
         "created_at": "2021-12-14T18:04:28Z",
         "updated_at": "2021-12-14T18:04:31Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-7.2.1-linux-alpine-x64.tar.gz"
@@ -23544,7 +23544,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 65023197,
-        "download_count": 7391,
+        "download_count": 7392,
         "created_at": "2021-12-14T18:04:35Z",
         "updated_at": "2021-12-14T18:04:37Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-7.2.1-linux-arm64.tar.gz"
@@ -23612,7 +23612,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69668637,
-        "download_count": 52815,
+        "download_count": 52827,
         "created_at": "2021-12-14T18:04:38Z",
         "updated_at": "2021-12-14T18:04:40Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-7.2.1-linux-x64.tar.gz"
@@ -23646,7 +23646,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 63352850,
-        "download_count": 30703,
+        "download_count": 30712,
         "created_at": "2021-12-14T18:04:43Z",
         "updated_at": "2021-12-14T18:04:45Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-7.2.1-osx-arm64.pkg"
@@ -23714,7 +23714,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 67066873,
-        "download_count": 129870,
+        "download_count": 129884,
         "created_at": "2021-12-14T18:04:50Z",
         "updated_at": "2021-12-14T18:04:53Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-7.2.1-osx-x64.pkg"
@@ -23918,7 +23918,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 105783296,
-        "download_count": 986384,
+        "download_count": 986594,
         "created_at": "2021-12-14T18:05:12Z",
         "updated_at": "2021-12-14T18:05:16Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/PowerShell-7.2.1-win-x64.msi"
@@ -23952,7 +23952,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 107754221,
-        "download_count": 221898,
+        "download_count": 221986,
         "created_at": "2021-12-14T18:05:17Z",
         "updated_at": "2021-12-14T18:05:23Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/PowerShell-7.2.1-win-x64.zip"
@@ -23986,7 +23986,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 96739328,
-        "download_count": 68816,
+        "download_count": 68819,
         "created_at": "2021-12-14T18:05:24Z",
         "updated_at": "2021-12-14T18:05:28Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/PowerShell-7.2.1-win-x86.msi"
@@ -24020,7 +24020,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 98469410,
-        "download_count": 307048,
+        "download_count": 307195,
         "created_at": "2021-12-14T18:05:29Z",
         "updated_at": "2021-12-14T18:05:37Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/PowerShell-7.2.1-win-x86.zip"
@@ -24054,7 +24054,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69080040,
-        "download_count": 13083,
+        "download_count": 13103,
         "created_at": "2021-12-14T18:05:42Z",
         "updated_at": "2021-12-14T18:05:46Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-lts-7.2.1-1.rh.x86_64.rpm"
@@ -24156,7 +24156,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69689350,
-        "download_count": 27674,
+        "download_count": 27688,
         "created_at": "2021-12-14T18:05:38Z",
         "updated_at": "2021-12-14T18:05:41Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell-lts_7.2.1-1.deb_amd64.deb"
@@ -24190,7 +24190,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69690326,
-        "download_count": 22567,
+        "download_count": 22576,
         "created_at": "2021-12-14T18:04:19Z",
         "updated_at": "2021-12-14T18:04:22Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.1/powershell_7.2.1-1.deb_amd64.deb"
@@ -24345,7 +24345,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68663993,
-        "download_count": 9405,
+        "download_count": 9414,
         "created_at": "2021-11-03T22:51:09Z",
         "updated_at": "2021-11-03T22:51:12Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.0/powershell-7.2.0-linux-alpine-x64.tar.gz"
@@ -24617,7 +24617,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 66769053,
-        "download_count": 2476,
+        "download_count": 2478,
         "created_at": "2021-11-03T22:52:31Z",
         "updated_at": "2021-11-03T22:52:34Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.0/powershell-7.2.0-osx-x64.tar.gz"
@@ -24787,7 +24787,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 105766912,
-        "download_count": 488200,
+        "download_count": 488257,
         "created_at": "2021-11-03T22:52:43Z",
         "updated_at": "2021-11-03T22:52:47Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.0/PowerShell-7.2.0-win-x64.msi"
@@ -24821,7 +24821,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 107735043,
-        "download_count": 89692,
+        "download_count": 89719,
         "created_at": "2021-11-03T22:52:48Z",
         "updated_at": "2021-11-03T22:52:51Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.0/PowerShell-7.2.0-win-x64.zip"
@@ -24855,7 +24855,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 96714752,
-        "download_count": 38550,
+        "download_count": 38553,
         "created_at": "2021-11-03T22:52:51Z",
         "updated_at": "2021-11-03T22:52:54Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.0/PowerShell-7.2.0-win-x86.msi"
@@ -24889,7 +24889,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 98456163,
-        "download_count": 51891,
+        "download_count": 51896,
         "created_at": "2021-11-03T22:52:54Z",
         "updated_at": "2021-11-03T22:52:58Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.0/PowerShell-7.2.0-win-x86.zip"
@@ -25025,7 +25025,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69679500,
-        "download_count": 8652,
+        "download_count": 8656,
         "created_at": "2021-11-03T22:52:59Z",
         "updated_at": "2021-11-03T22:53:01Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.2.0/powershell-lts_7.2.0-1.deb_amd64.deb"
@@ -25880,7 +25880,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 67762485,
-        "download_count": 42073,
+        "download_count": 42099,
         "created_at": "2021-10-14T17:56:42Z",
         "updated_at": "2021-10-14T17:56:44Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/powershell-7.1.5-1.centos.8.x86_64.rpm"
@@ -26220,7 +26220,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 64046049,
-        "download_count": 50875,
+        "download_count": 50908,
         "created_at": "2021-10-14T17:57:29Z",
         "updated_at": "2021-10-14T17:57:33Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-arm64.zip"
@@ -26322,7 +26322,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 99577856,
-        "download_count": 298461,
+        "download_count": 298482,
         "created_at": "2021-10-14T17:57:37Z",
         "updated_at": "2021-10-14T17:57:48Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.msi"
@@ -26356,7 +26356,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 101059605,
-        "download_count": 223728,
+        "download_count": 223819,
         "created_at": "2021-10-14T17:57:52Z",
         "updated_at": "2021-10-14T17:57:57Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x64.zip"
@@ -26390,7 +26390,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 89882624,
-        "download_count": 26286,
+        "download_count": 26292,
         "created_at": "2021-10-14T17:57:58Z",
         "updated_at": "2021-10-14T17:58:02Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x86.msi"
@@ -26424,7 +26424,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 91292276,
-        "download_count": 58192,
+        "download_count": 58228,
         "created_at": "2021-10-14T17:58:03Z",
         "updated_at": "2021-10-14T17:58:10Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/PowerShell-7.1.5-win-x86.zip"
@@ -26628,7 +26628,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68234364,
-        "download_count": 9277,
+        "download_count": 9278,
         "created_at": "2021-10-14T17:56:38Z",
         "updated_at": "2021-10-14T17:56:41Z",
         "browser_download_url": "https://github.com/PowerShell/PowerShell/releases/download/v7.1.5/powershell_7.1.5-1.ubuntu.20.04_amd64.deb"
