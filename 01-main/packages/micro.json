@@ -63,7 +63,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4687428,
-        "download_count": 3763,
+        "download_count": 3835,
         "created_at": "2022-08-01T01:50:39Z",
         "updated_at": "2022-08-01T01:50:39Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-osx.tar.gz"
@@ -97,7 +97,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4543107,
-        "download_count": 30869,
+        "download_count": 31575,
         "created_at": "2022-08-01T01:50:39Z",
         "updated_at": "2022-08-01T01:50:39Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-linux64.tar.gz"
@@ -131,7 +131,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4525227,
-        "download_count": 1768,
+        "download_count": 1837,
         "created_at": "2022-08-01T01:50:40Z",
         "updated_at": "2022-08-01T01:50:40Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-linux64-static.tar.gz"
@@ -165,7 +165,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4526578,
-        "download_count": 4447,
+        "download_count": 4543,
         "created_at": "2022-08-01T01:50:40Z",
         "updated_at": "2022-08-01T01:50:40Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-amd64.deb"
@@ -233,7 +233,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4300962,
-        "download_count": 1652,
+        "download_count": 1708,
         "created_at": "2022-08-01T01:50:41Z",
         "updated_at": "2022-08-01T01:50:41Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-linux-arm.tar.gz"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4159146,
-        "download_count": 2076,
+        "download_count": 2108,
         "created_at": "2022-08-01T01:50:42Z",
         "updated_at": "2022-08-01T01:50:42Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-linux-arm64.tar.gz"
@@ -335,7 +335,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4284979,
-        "download_count": 89,
+        "download_count": 90,
         "created_at": "2022-08-01T01:50:42Z",
         "updated_at": "2022-08-01T01:50:43Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-freebsd32.tar.gz"
@@ -505,7 +505,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4429652,
-        "download_count": 11148,
+        "download_count": 11385,
         "created_at": "2022-08-01T01:50:45Z",
         "updated_at": "2022-08-01T01:50:45Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-win64.zip"
@@ -539,7 +539,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4309839,
-        "download_count": 2773,
+        "download_count": 2784,
         "created_at": "2022-08-01T01:50:45Z",
         "updated_at": "2022-08-01T01:50:46Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-win32.zip"
@@ -573,7 +573,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 4563796,
-        "download_count": 8,
+        "download_count": 18,
         "created_at": "2023-01-13T03:24:09Z",
         "updated_at": "2023-01-13T03:24:11Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.11/micro-2.0.11-macos-arm64.tar.gz"
@@ -584,13 +584,13 @@
     "body": "Micro 2.0.11\r\n\r\nThis is a minor version update to micro including the following general changes:\r\n\r\n* Support for clipboard in WSL via clip.exe.\r\n* New `hlsearch` option to highlight search results.\r\n* Fixes for OSC52 clipboard support.\r\n* Syntax highlighting fixes, improvements, and new languages.\r\n* Rust clippy and go vet linters.\r\n* Switch to using go embed instead of go-bindata.\r\n* Bug fixes.\r\n",
     "reactions": {
       "url": "https://api.github.com/repos/zyedidia/micro/releases/73298261/reactions",
-      "total_count": 68,
+      "total_count": 69,
       "+1": 0,
       "-1": 0,
       "laugh": 0,
       "hooray": 18,
       "confused": 0,
-      "heart": 37,
+      "heart": 38,
       "rocket": 13,
       "eyes": 0
     }
@@ -693,7 +693,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4498110,
-        "download_count": 74003,
+        "download_count": 74005,
         "created_at": "2021-08-07T00:57:40Z",
         "updated_at": "2021-08-07T00:57:41Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.10/micro-2.0.10-linux64.tar.gz"
@@ -1101,7 +1101,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4417386,
-        "download_count": 20362,
+        "download_count": 20365,
         "created_at": "2021-08-07T00:57:45Z",
         "updated_at": "2021-08-07T00:57:45Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.10/micro-2.0.10-win64.zip"
@@ -1255,7 +1255,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4685447,
-        "download_count": 19240,
+        "download_count": 19241,
         "created_at": "2021-05-16T20:49:49Z",
         "updated_at": "2021-05-16T20:49:49Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.9/micro-2.0.9-linux64.tar.gz"
@@ -1817,7 +1817,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4645798,
-        "download_count": 41486,
+        "download_count": 41487,
         "created_at": "2020-10-06T21:44:00Z",
         "updated_at": "2020-10-06T21:44:01Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-linux64.tar.gz"
@@ -2225,7 +2225,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4526768,
-        "download_count": 10209,
+        "download_count": 10214,
         "created_at": "2020-10-06T21:44:05Z",
         "updated_at": "2020-10-06T21:44:06Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.8/micro-2.0.8-win64.zip"
@@ -2401,7 +2401,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4637921,
-        "download_count": 5338,
+        "download_count": 5339,
         "created_at": "2020-09-06T21:42:30Z",
         "updated_at": "2020-09-06T21:42:30Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.7/micro-2.0.7-linux64.tar.gz"
@@ -2889,9 +2889,9 @@
     "published_at": "2020-07-05T20:43:25Z",
     "assets": [
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622634",
-        "id": 91622634,
-        "node_id": "RA_kwDOAzJcjM4Fdgzq",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077493",
+        "id": 92077493,
+        "node_id": "RA_kwDOAzJcjM4FfP21",
         "name": "micro-2.0.12-dev.27-osx.tar.gz",
         "label": "",
         "uploader": {
@@ -2916,16 +2916,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4691125,
+        "size": 4691171,
         "download_count": 0,
-        "created_at": "2023-01-14T00:01:59Z",
-        "updated_at": "2023-01-14T00:01:59Z",
+        "created_at": "2023-01-18T00:01:25Z",
+        "updated_at": "2023-01-18T00:01:26Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-osx.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622636",
-        "id": 91622636,
-        "node_id": "RA_kwDOAzJcjM4Fdgzs",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077494",
+        "id": 92077494,
+        "node_id": "RA_kwDOAzJcjM4FfP22",
         "name": "micro-2.0.12-dev.27-macos-arm64.tar.gz",
         "label": "",
         "uploader": {
@@ -2950,16 +2950,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4500182,
+        "size": 4500142,
         "download_count": 0,
-        "created_at": "2023-01-14T00:01:59Z",
-        "updated_at": "2023-01-14T00:02:00Z",
+        "created_at": "2023-01-18T00:01:26Z",
+        "updated_at": "2023-01-18T00:01:26Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-macos-arm64.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622637",
-        "id": 91622637,
-        "node_id": "RA_kwDOAzJcjM4Fdgzt",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077496",
+        "id": 92077496,
+        "node_id": "RA_kwDOAzJcjM4FfP24",
         "name": "micro-2.0.12-dev.27-linux64.tar.gz",
         "label": "",
         "uploader": {
@@ -2984,16 +2984,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4546962,
+        "size": 4546839,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:00Z",
-        "updated_at": "2023-01-14T00:02:00Z",
+        "created_at": "2023-01-18T00:01:26Z",
+        "updated_at": "2023-01-18T00:01:27Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-linux64.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622638",
-        "id": 91622638,
-        "node_id": "RA_kwDOAzJcjM4Fdgzu",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077498",
+        "id": 92077498,
+        "node_id": "RA_kwDOAzJcjM4FfP26",
         "name": "micro-2.0.12-dev.27-linux64-static.tar.gz",
         "label": "",
         "uploader": {
@@ -3018,16 +3018,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4527140,
+        "size": 4527182,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:00Z",
-        "updated_at": "2023-01-14T00:02:01Z",
+        "created_at": "2023-01-18T00:01:27Z",
+        "updated_at": "2023-01-18T00:01:27Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-linux64-static.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622639",
-        "id": 91622639,
-        "node_id": "RA_kwDOAzJcjM4Fdgzv",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077499",
+        "id": 92077499,
+        "node_id": "RA_kwDOAzJcjM4FfP27",
         "name": "micro-2.0.12-dev.27-amd64.deb",
         "label": "",
         "uploader": {
@@ -3052,16 +3052,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4528450,
+        "size": 4528448,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:01Z",
-        "updated_at": "2023-01-14T00:02:01Z",
+        "created_at": "2023-01-18T00:01:28Z",
+        "updated_at": "2023-01-18T00:01:28Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-amd64.deb"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622640",
-        "id": 91622640,
-        "node_id": "RA_kwDOAzJcjM4Fdgzw",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077501",
+        "id": 92077501,
+        "node_id": "RA_kwDOAzJcjM4FfP29",
         "name": "micro-2.0.12-dev.27-linux32.tar.gz",
         "label": "",
         "uploader": {
@@ -3086,16 +3086,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4295208,
+        "size": 4295203,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:01Z",
-        "updated_at": "2023-01-14T00:02:02Z",
+        "created_at": "2023-01-18T00:01:28Z",
+        "updated_at": "2023-01-18T00:01:29Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-linux32.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622641",
-        "id": 91622641,
-        "node_id": "RA_kwDOAzJcjM4Fdgzx",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077503",
+        "id": 92077503,
+        "node_id": "RA_kwDOAzJcjM4FfP2_",
         "name": "micro-2.0.12-dev.27-linux-arm.tar.gz",
         "label": "",
         "uploader": {
@@ -3122,14 +3122,14 @@
         "state": "uploaded",
         "size": 4303776,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:02Z",
-        "updated_at": "2023-01-14T00:02:02Z",
+        "created_at": "2023-01-18T00:01:29Z",
+        "updated_at": "2023-01-18T00:01:30Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-linux-arm.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622642",
-        "id": 91622642,
-        "node_id": "RA_kwDOAzJcjM4Fdgzy",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077506",
+        "id": 92077506,
+        "node_id": "RA_kwDOAzJcjM4FfP3C",
         "name": "micro-2.0.12-dev.27-linux-arm64.tar.gz",
         "label": "",
         "uploader": {
@@ -3154,16 +3154,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4163114,
+        "size": 4163116,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:02Z",
-        "updated_at": "2023-01-14T00:02:03Z",
+        "created_at": "2023-01-18T00:01:30Z",
+        "updated_at": "2023-01-18T00:01:31Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-linux-arm64.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622643",
-        "id": 91622643,
-        "node_id": "RA_kwDOAzJcjM4Fdgzz",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077508",
+        "id": 92077508,
+        "node_id": "RA_kwDOAzJcjM4FfP3E",
         "name": "micro-2.0.12-dev.27-freebsd64.tar.gz",
         "label": "",
         "uploader": {
@@ -3188,16 +3188,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4527670,
+        "size": 4527672,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:03Z",
-        "updated_at": "2023-01-14T00:02:03Z",
+        "created_at": "2023-01-18T00:01:31Z",
+        "updated_at": "2023-01-18T00:01:32Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-freebsd64.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622644",
-        "id": 91622644,
-        "node_id": "RA_kwDOAzJcjM4Fdgz0",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077616",
+        "id": 92077616,
+        "node_id": "RA_kwDOAzJcjM4FfP4w",
         "name": "micro-2.0.12-dev.27-freebsd32.tar.gz",
         "label": "",
         "uploader": {
@@ -3222,16 +3222,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4285986,
+        "size": 4286191,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:04Z",
-        "updated_at": "2023-01-14T00:02:04Z",
+        "created_at": "2023-01-18T00:01:32Z",
+        "updated_at": "2023-01-18T00:01:32Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-freebsd32.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622645",
-        "id": 91622645,
-        "node_id": "RA_kwDOAzJcjM4Fdgz1",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077632",
+        "id": 92077632,
+        "node_id": "RA_kwDOAzJcjM4FfP5A",
         "name": "micro-2.0.12-dev.27-openbsd64.tar.gz",
         "label": "",
         "uploader": {
@@ -3256,16 +3256,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4487706,
+        "size": 4487714,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:04Z",
-        "updated_at": "2023-01-14T00:02:05Z",
+        "created_at": "2023-01-18T00:01:33Z",
+        "updated_at": "2023-01-18T00:01:35Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-openbsd64.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622647",
-        "id": 91622647,
-        "node_id": "RA_kwDOAzJcjM4Fdgz3",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077637",
+        "id": 92077637,
+        "node_id": "RA_kwDOAzJcjM4FfP5F",
         "name": "micro-2.0.12-dev.27-openbsd32.tar.gz",
         "label": "",
         "uploader": {
@@ -3290,16 +3290,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4251107,
+        "size": 4251279,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:05Z",
-        "updated_at": "2023-01-14T00:02:05Z",
+        "created_at": "2023-01-18T00:01:35Z",
+        "updated_at": "2023-01-18T00:01:36Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-openbsd32.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622648",
-        "id": 91622648,
-        "node_id": "RA_kwDOAzJcjM4Fdgz4",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077640",
+        "id": 92077640,
+        "node_id": "RA_kwDOAzJcjM4FfP5I",
         "name": "micro-2.0.12-dev.27-netbsd64.tar.gz",
         "label": "",
         "uploader": {
@@ -3324,16 +3324,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4479689,
+        "size": 4479688,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:05Z",
-        "updated_at": "2023-01-14T00:02:06Z",
+        "created_at": "2023-01-18T00:01:37Z",
+        "updated_at": "2023-01-18T00:01:38Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-netbsd64.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622649",
-        "id": 91622649,
-        "node_id": "RA_kwDOAzJcjM4Fdgz5",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077641",
+        "id": 92077641,
+        "node_id": "RA_kwDOAzJcjM4FfP5J",
         "name": "micro-2.0.12-dev.27-netbsd32.tar.gz",
         "label": "",
         "uploader": {
@@ -3358,16 +3358,16 @@
         },
         "content_type": "application/octet-stream",
         "state": "uploaded",
-        "size": 4244614,
+        "size": 4244609,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:06Z",
-        "updated_at": "2023-01-14T00:02:06Z",
+        "created_at": "2023-01-18T00:01:38Z",
+        "updated_at": "2023-01-18T00:01:39Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-netbsd32.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622650",
-        "id": 91622650,
-        "node_id": "RA_kwDOAzJcjM4Fdgz6",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077644",
+        "id": 92077644,
+        "node_id": "RA_kwDOAzJcjM4FfP5M",
         "name": "micro-2.0.12-dev.27-win64.zip",
         "label": "",
         "uploader": {
@@ -3393,15 +3393,15 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 4433884,
-        "download_count": 5,
-        "created_at": "2023-01-14T00:02:06Z",
-        "updated_at": "2023-01-14T00:02:07Z",
+        "download_count": 4,
+        "created_at": "2023-01-18T00:01:39Z",
+        "updated_at": "2023-01-18T00:01:40Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-win64.zip"
       },
       {
-        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/91622652",
-        "id": 91622652,
-        "node_id": "RA_kwDOAzJcjM4Fdgz8",
+        "url": "https://api.github.com/repos/zyedidia/micro/releases/assets/92077646",
+        "id": 92077646,
+        "node_id": "RA_kwDOAzJcjM4FfP5O",
         "name": "micro-2.0.12-dev.27-win32.zip",
         "label": "",
         "uploader": {
@@ -3428,14 +3428,14 @@
         "state": "uploaded",
         "size": 4313907,
         "download_count": 0,
-        "created_at": "2023-01-14T00:02:07Z",
-        "updated_at": "2023-01-14T00:02:07Z",
+        "created_at": "2023-01-18T00:01:40Z",
+        "updated_at": "2023-01-18T00:01:41Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/nightly/micro-2.0.12-dev.27-win32.zip"
       }
     ],
     "tarball_url": "https://api.github.com/repos/zyedidia/micro/tarball/nightly",
     "zipball_url": "https://api.github.com/repos/zyedidia/micro/zipball/nightly",
-    "body": "Autogenerated nightly build of micro (please DISREGARD the creation date of this Github release). Assets uploaded on Sat Jan 14 00:01:58 UTC 2023 for commit 43b512fd.",
+    "body": "Autogenerated nightly build of micro (please DISREGARD the creation date of this Github release). Assets uploaded on Wed Jan 18 00:01:24 UTC 2023 for commit 43b512fd.",
     "reactions": {
       "url": "https://api.github.com/repos/zyedidia/micro/releases/28235819/reactions",
       "total_count": 1,
@@ -3547,7 +3547,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5211057,
-        "download_count": 12832,
+        "download_count": 12833,
         "created_at": "2020-06-24T21:34:55Z",
         "updated_at": "2020-06-24T21:34:55Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.6/micro-2.0.6-linux64.tar.gz"
@@ -3921,7 +3921,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5049703,
-        "download_count": 3285,
+        "download_count": 3286,
         "created_at": "2020-06-24T21:35:02Z",
         "updated_at": "2020-06-24T21:35:02Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.6/micro-2.0.6-win64.zip"
@@ -4097,7 +4097,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5205262,
-        "download_count": 1888,
+        "download_count": 1889,
         "created_at": "2020-06-18T21:31:48Z",
         "updated_at": "2020-06-18T21:31:48Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.5/micro-2.0.5-linux64.tar.gz"
@@ -4613,7 +4613,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5196790,
-        "download_count": 5975,
+        "download_count": 5976,
         "created_at": "2020-05-23T19:02:38Z",
         "updated_at": "2020-05-23T19:02:39Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.4/micro-2.0.4-linux64.tar.gz"
@@ -5129,7 +5129,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5192224,
-        "download_count": 7732,
+        "download_count": 7733,
         "created_at": "2020-04-10T21:31:59Z",
         "updated_at": "2020-04-10T21:32:00Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.3/micro-2.0.3-linux64.tar.gz"
@@ -5163,7 +5163,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5164816,
-        "download_count": 5439,
+        "download_count": 5446,
         "created_at": "2020-04-10T21:32:01Z",
         "updated_at": "2020-04-10T21:32:01Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.3/micro-2.0.3-linux64-static.tar.gz"
@@ -5645,7 +5645,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5182756,
-        "download_count": 10209,
+        "download_count": 10210,
         "created_at": "2020-02-26T02:10:28Z",
         "updated_at": "2020-02-26T02:10:28Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.2/micro-2.0.2-linux64.tar.gz"
@@ -6161,7 +6161,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5181746,
-        "download_count": 2745,
+        "download_count": 2746,
         "created_at": "2020-02-12T19:38:37Z",
         "updated_at": "2020-02-12T19:38:37Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.1/micro-2.0.1-linux64.tar.gz"
@@ -6677,7 +6677,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 5178304,
-        "download_count": 277,
+        "download_count": 278,
         "created_at": "2020-02-11T22:06:03Z",
         "updated_at": "2020-02-11T22:06:04Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v2.0.0/micro-2.0.0-linux64.tar.gz"
@@ -7709,7 +7709,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3939796,
-        "download_count": 100943,
+        "download_count": 100944,
         "created_at": "2018-08-10T02:04:32Z",
         "updated_at": "2018-08-10T02:04:33Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.4.1/micro-1.4.1-linux64.tar.gz"
@@ -8225,7 +8225,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3893929,
-        "download_count": 24792,
+        "download_count": 24795,
         "created_at": "2018-01-26T01:22:54Z",
         "updated_at": "2018-01-26T01:22:55Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.4.0/micro-1.4.0-linux64.tar.gz"
@@ -8741,7 +8741,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3862087,
-        "download_count": 4373,
+        "download_count": 4374,
         "created_at": "2017-11-24T23:56:24Z",
         "updated_at": "2017-11-24T23:56:24Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.3.4/micro-1.3.4-linux64.tar.gz"
@@ -9257,7 +9257,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3847594,
-        "download_count": 7047,
+        "download_count": 7048,
         "created_at": "2017-09-28T23:34:41Z",
         "updated_at": "2017-09-28T23:34:41Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.3.3/micro-1.3.3-linux64.tar.gz"
@@ -9773,7 +9773,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3843623,
-        "download_count": 841,
+        "download_count": 842,
         "created_at": "2017-09-15T20:17:38Z",
         "updated_at": "2017-09-15T20:17:38Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.3.2/micro-1.3.2-linux64.tar.gz"
@@ -10289,7 +10289,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3519829,
-        "download_count": 6496,
+        "download_count": 6497,
         "created_at": "2017-08-08T15:12:03Z",
         "updated_at": "2017-08-08T15:12:03Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.3.1/micro-1.3.1-linux64.tar.gz"
@@ -10595,7 +10595,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3502850,
-        "download_count": 1841,
+        "download_count": 1842,
         "created_at": "2017-08-08T15:12:18Z",
         "updated_at": "2017-08-08T15:12:18Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.3.1/micro-1.3.1-win64.zip"
@@ -10805,7 +10805,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3531184,
-        "download_count": 1305,
+        "download_count": 1306,
         "created_at": "2017-07-29T18:34:29Z",
         "updated_at": "2017-07-29T18:34:29Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.3.0/micro-1.3.0-linux64.tar.gz"
@@ -11321,7 +11321,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3506351,
-        "download_count": 2943,
+        "download_count": 2944,
         "created_at": "2017-05-27T21:19:29Z",
         "updated_at": "2017-05-27T21:19:30Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.2.0/micro-1.2.0-linux64.tar.gz"
@@ -11837,7 +11837,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3134197,
-        "download_count": 4878,
+        "download_count": 4879,
         "created_at": "2017-02-10T15:51:36Z",
         "updated_at": "2017-02-10T15:51:37Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.1.4/micro-1.1.4-linux64.tar.gz"
@@ -12353,7 +12353,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3116861,
-        "download_count": 2000,
+        "download_count": 2001,
         "created_at": "2016-12-06T16:12:41Z",
         "updated_at": "2016-12-06T16:12:42Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.1.3/micro-1.1.3-linux64.tar.gz"
@@ -12869,7 +12869,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3099365,
-        "download_count": 1501,
+        "download_count": 1502,
         "created_at": "2016-10-24T13:09:19Z",
         "updated_at": "2016-10-24T13:09:19Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.1.2/micro-1.1.2-linux64.tar.gz"
@@ -13317,7 +13317,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3075965,
-        "download_count": 706,
+        "download_count": 707,
         "created_at": "2016-10-10T22:44:32Z",
         "updated_at": "2016-10-10T22:44:33Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.1.1/micro-1.1.1-linux64.tar.gz"
@@ -13765,7 +13765,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 3075350,
-        "download_count": 161,
+        "download_count": 162,
         "created_at": "2016-10-07T01:04:05Z",
         "updated_at": "2016-10-07T01:04:06Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.1.0/micro-1.1.0-linux64.tar.gz"
@@ -14213,7 +14213,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 2919250,
-        "download_count": 1196,
+        "download_count": 1197,
         "created_at": "2016-09-07T01:56:01Z",
         "updated_at": "2016-09-07T01:56:02Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.0.3/micro-1.0.3-linux64.tar.gz"
@@ -14661,7 +14661,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 2908168,
-        "download_count": 194,
+        "download_count": 195,
         "created_at": "2016-09-04T17:35:29Z",
         "updated_at": "2016-09-04T17:35:29Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.0.2/micro-1.0.2-linux64.tar.gz"
@@ -15109,7 +15109,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 2846854,
-        "download_count": 962,
+        "download_count": 963,
         "created_at": "2016-08-30T16:01:26Z",
         "updated_at": "2016-08-30T16:01:27Z",
         "browser_download_url": "https://github.com/zyedidia/micro/releases/download/v1.0.1/micro-1.0.1-linux64.tar.gz"

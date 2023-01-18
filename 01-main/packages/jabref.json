@@ -62,7 +62,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 203601054,
-      "download_count": 117,
+      "download_count": 164,
       "created_at": "2023-01-08T15:47:34Z",
       "updated_at": "2023-01-08T15:47:55Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-portable_linux.tar.gz"
@@ -96,7 +96,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 190461964,
-      "download_count": 156,
+      "download_count": 202,
       "created_at": "2023-01-08T15:47:33Z",
       "updated_at": "2023-01-08T15:47:54Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-portable_windows.zip"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 194595505,
-      "download_count": 12,
+      "download_count": 20,
       "created_at": "2023-01-08T15:47:35Z",
       "updated_at": "2023-01-08T15:47:56Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-signed.pkg"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 191122557,
-      "download_count": 14,
+      "download_count": 21,
       "created_at": "2023-01-08T15:47:34Z",
       "updated_at": "2023-01-08T15:47:56Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-signed._arm64.pkg"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 198371375,
-      "download_count": 655,
+      "download_count": 881,
       "created_at": "2023-01-08T15:47:34Z",
       "updated_at": "2023-01-08T15:47:59Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9.dmg"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 191840668,
-      "download_count": 1975,
+      "download_count": 2746,
       "created_at": "2023-01-08T15:47:35Z",
       "updated_at": "2023-01-08T15:47:53Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9.msi"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 194673222,
-      "download_count": 42,
+      "download_count": 55,
       "created_at": "2023-01-08T15:47:34Z",
       "updated_at": "2023-01-08T15:47:59Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9._arm64.dmg"
@@ -300,7 +300,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 192053802,
-      "download_count": 6,
+      "download_count": 8,
       "created_at": "2023-01-08T15:47:35Z",
       "updated_at": "2023-01-08T15:47:59Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-portable_macos_arm64.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 194038152,
-      "download_count": 49,
+      "download_count": 62,
       "created_at": "2023-01-08T15:47:23Z",
       "updated_at": "2023-01-08T15:47:55Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/jabref_5.9_amd64.deb"
@@ -342,5 +342,17 @@
   ],
   "tarball_url": "https://api.github.com/repos/JabRef/jabref/tarball/v5.9",
   "zipball_url": "https://api.github.com/repos/JabRef/jabref/zipball/v5.9",
-  "body": "### Added\r\n\r\n- We added a dropdown menu to let users change the library they want to import into during import. [#6177](https://github.com/JabRef/jabref/issues/6177)\r\n- We added the possibility to add/remove a preview style from the selected list using a double click. [#9490](https://github.com/JabRef/jabref/issues/9490)\r\n- We added the option to define fields as \"multine\" directly in the custom entry types dialog. [#6448](https://github.com/JabRef/jabref/issues/6448)\r\n\r\n### Changed\r\n\r\n- We changed database structure: in MySQL/MariaDB we renamed tables by adding a `JABREF_` prefix, and in PGSQL we moved tables in `jabref` schema. We added `VersionDBStructure` variable in `METADATA` table to indicate current version of structure, this variable is needed for automatic migration. [#9312](https://github.com/JabRef/jabref/issues/9312)\r\n- We moved some preferences options to a new tab in the preferences dialog. [#9442](https://github.com/JabRef/jabref/pull/9308)\r\n- We renamed \"Medline abbreviation\" to \"dotless abbreviation\". [#9504](https://github.com/JabRef/jabref/pull/9504)\r\n- We now have more \"dots\" in the offered journal abbreviations. [#9504](https://github.com/JabRef/jabref/pull/9504)\r\n- We now disable the button \"Full text search\" in the Searchbar by default [#9527](https://github.com/JabRef/jabref/pull/9527)\r\n\r\n### Fixed\r\n\r\n- The tab \"deprecated fields\" is shown in biblatex-mode only. [#7757](https://github.com/JabRef/jabref/issues/7757)\r\n- In case a journal name of an IEEE journal is abbreviated, the \"normal\" abbreviation is used - and not the one of the IEEE BibTeX strings. [abbrv#91](https://github.com/JabRef/abbrv.jabref.org/issues/91)\r\n- We fixed a performance issue when loading large lists of custom journal abbreviations. [#8928](https://github.com/JabRef/jabref/issues/8928)\r\n- We fixed an issue where the last opened libraries were not remembered when a new unsaved library was open as well. [#9190](https://github.com/JabRef/jabref/issues/9190)\r\n- We fixed an issue where no context menu for the group \"All entries\" was present. [forum#3682](https://discourse.jabref.org/t/how-sort-groups-a-z-not-subgroups/3682)\r\n- We fixed an issue where extra curly braces in some fields would trigger an exception when selecting the entry or doing an integrity check. [#9475](https://github.com/JabRef/jabref/issues/9475), [#9503](https://github.com/JabRef/jabref/issues/9503)\r\n- We fixed an issue where entering a date in the format \"YYYY/MM\" in the entry editor date field caused an exception. [#9492](https://github.com/JabRef/jabref/issues/9492)\r\n- For portable versions, the `.deb` file now works on plain debian again. [#9472](https://github.com/JabRef/jabref/issues/9472)\r\n- We fixed an issue where the download of linked online files failed after an import of entries for certain urls. [#9518](https://github.com/JabRef/jabref/issues/9518)\r\n- We fixed an issue where an exception occured when manually downloading a file from an URL in the entry editor. [#9521](https://github.com/JabRef/jabref/issues/9521)"
+  "body": "### Added\r\n\r\n- We added a dropdown menu to let users change the library they want to import into during import. [#6177](https://github.com/JabRef/jabref/issues/6177)\r\n- We added the possibility to add/remove a preview style from the selected list using a double click. [#9490](https://github.com/JabRef/jabref/issues/9490)\r\n- We added the option to define fields as \"multine\" directly in the custom entry types dialog. [#6448](https://github.com/JabRef/jabref/issues/6448)\r\n\r\n### Changed\r\n\r\n- We changed database structure: in MySQL/MariaDB we renamed tables by adding a `JABREF_` prefix, and in PGSQL we moved tables in `jabref` schema. We added `VersionDBStructure` variable in `METADATA` table to indicate current version of structure, this variable is needed for automatic migration. [#9312](https://github.com/JabRef/jabref/issues/9312)\r\n- We moved some preferences options to a new tab in the preferences dialog. [#9442](https://github.com/JabRef/jabref/pull/9308)\r\n- We renamed \"Medline abbreviation\" to \"dotless abbreviation\". [#9504](https://github.com/JabRef/jabref/pull/9504)\r\n- We now have more \"dots\" in the offered journal abbreviations. [#9504](https://github.com/JabRef/jabref/pull/9504)\r\n- We now disable the button \"Full text search\" in the Searchbar by default [#9527](https://github.com/JabRef/jabref/pull/9527)\r\n\r\n### Fixed\r\n\r\n- The tab \"deprecated fields\" is shown in biblatex-mode only. [#7757](https://github.com/JabRef/jabref/issues/7757)\r\n- In case a journal name of an IEEE journal is abbreviated, the \"normal\" abbreviation is used - and not the one of the IEEE BibTeX strings. [abbrv#91](https://github.com/JabRef/abbrv.jabref.org/issues/91)\r\n- We fixed a performance issue when loading large lists of custom journal abbreviations. [#8928](https://github.com/JabRef/jabref/issues/8928)\r\n- We fixed an issue where the last opened libraries were not remembered when a new unsaved library was open as well. [#9190](https://github.com/JabRef/jabref/issues/9190)\r\n- We fixed an issue where no context menu for the group \"All entries\" was present. [forum#3682](https://discourse.jabref.org/t/how-sort-groups-a-z-not-subgroups/3682)\r\n- We fixed an issue where extra curly braces in some fields would trigger an exception when selecting the entry or doing an integrity check. [#9475](https://github.com/JabRef/jabref/issues/9475), [#9503](https://github.com/JabRef/jabref/issues/9503)\r\n- We fixed an issue where entering a date in the format \"YYYY/MM\" in the entry editor date field caused an exception. [#9492](https://github.com/JabRef/jabref/issues/9492)\r\n- For portable versions, the `.deb` file now works on plain debian again. [#9472](https://github.com/JabRef/jabref/issues/9472)\r\n- We fixed an issue where the download of linked online files failed after an import of entries for certain urls. [#9518](https://github.com/JabRef/jabref/issues/9518)\r\n- We fixed an issue where an exception occured when manually downloading a file from an URL in the entry editor. [#9521](https://github.com/JabRef/jabref/issues/9521)",
+  "reactions": {
+    "url": "https://api.github.com/repos/JabRef/jabref/releases/88242796/reactions",
+    "total_count": 1,
+    "+1": 0,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 1,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+  }
 }

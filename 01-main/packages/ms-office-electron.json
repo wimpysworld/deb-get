@@ -62,7 +62,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 410,
-      "download_count": 192,
+      "download_count": 213,
       "created_at": "2022-11-24T14:24:35Z",
       "updated_at": "2022-11-24T14:24:36Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/latest-linux.yml"
@@ -96,7 +96,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 531,
-      "download_count": 71,
+      "download_count": 73,
       "created_at": "2022-11-24T14:18:08Z",
       "updated_at": "2022-11-24T14:18:09Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/latest-mac.yml"
@@ -130,7 +130,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 364,
-      "download_count": 430,
+      "download_count": 451,
       "created_at": "2022-11-24T14:21:07Z",
       "updated_at": "2022-11-24T14:21:08Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/latest.yml"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 75689568,
-      "download_count": 592,
+      "download_count": 635,
       "created_at": "2022-11-24T14:22:32Z",
       "updated_at": "2022-11-24T14:22:37Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-linux-amd64.deb"
@@ -232,7 +232,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 99813056,
-      "download_count": 22,
+      "download_count": 23,
       "created_at": "2022-11-24T14:21:03Z",
       "updated_at": "2022-11-24T14:21:07Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-linux-x64.tar.gz"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 105345529,
-      "download_count": 104,
+      "download_count": 111,
       "created_at": "2022-11-24T14:17:07Z",
       "updated_at": "2022-11-24T14:17:11Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-linux-x86_64.AppImage"
@@ -300,7 +300,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 76213305,
-      "download_count": 48,
+      "download_count": 52,
       "created_at": "2022-11-24T14:24:31Z",
       "updated_at": "2022-11-24T14:24:35Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-linux-x86_64.rpm"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97359820,
-      "download_count": 13,
+      "download_count": 14,
       "created_at": "2022-11-24T14:18:05Z",
       "updated_at": "2022-11-24T14:18:08Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-mac-arm64.dmg"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 102303,
-      "download_count": 10,
+      "download_count": 11,
       "created_at": "2022-11-24T14:18:05Z",
       "updated_at": "2022-11-24T14:18:05Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-mac-arm64.dmg.blockmap"
@@ -470,7 +470,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 79702965,
-      "download_count": 160,
+      "download_count": 169,
       "created_at": "2022-11-24T14:21:05Z",
       "updated_at": "2022-11-24T14:21:07Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-win-x64.exe"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 84503,
-      "download_count": 81,
+      "download_count": 84,
       "created_at": "2022-11-24T14:21:05Z",
       "updated_at": "2022-11-24T14:21:05Z",
       "browser_download_url": "https://github.com/agam778/MS-365-Electron/releases/download/v0.8.0/MS-365-Electron-v0.8.0-win-x64.exe.blockmap"
@@ -515,13 +515,13 @@
   "body": "###  This is the 18th Release of MS Office - Electron\r\n\r\n## What's Changed\r\n- As Microsoft Office has been rebranded to Microsoft 365, same happens with this project. The name of this app is now MS-365-Electron with a new executable name and logo! This would require you to relogin to your Microsoft Account(s) and setup your options in app menu again if you are updating from the previous release. [Read more about the change](https://aka.ms/microsoft-365-faq)\r\n- There is now a specific logo for macOS builds only! \r\n- arm64 builds for macOS have been uploaded (for M series macbooks), although they have not been tested due to lack of a Macbook or a Mac system. If you test the app and it works all good, do create an issue and report me so I can further continue with the arm64 builds.\r\n- Migrate to the new yarn package management system (yarn v3.3.0)\r\n- Update dependencies\r\n- Update useragent strings\r\n\r\n**Full Changelog**: https://github.com/agam778/MS-365-Electron/compare/v0.7.3...v0.8.0\r\n\r\n### Thanks for being interested in my project! :)",
   "reactions": {
     "url": "https://api.github.com/repos/agam778/MS-365-Electron/releases/84105321/reactions",
-    "total_count": 3,
+    "total_count": 4,
     "+1": 0,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,
     "confused": 0,
-    "heart": 3,
+    "heart": 4,
     "rocket": 0,
     "eyes": 0
   }

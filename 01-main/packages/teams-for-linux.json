@@ -130,7 +130,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 384,
-      "download_count": 66,
+      "download_count": 70,
       "created_at": "2022-10-12T03:06:09Z",
       "updated_at": "2022-10-12T03:06:09Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/latest-linux.yml"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 100508277,
-      "download_count": 135,
+      "download_count": 141,
       "created_at": "2022-10-12T03:06:05Z",
       "updated_at": "2022-10-12T03:06:09Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux-1.0.45-arm64.AppImage"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 95346406,
-      "download_count": 104,
+      "download_count": 110,
       "created_at": "2022-10-12T03:11:00Z",
       "updated_at": "2022-10-12T03:11:03Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux-1.0.45-arm64.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 68320480,
-      "download_count": 82,
+      "download_count": 86,
       "created_at": "2022-10-12T03:09:35Z",
       "updated_at": "2022-10-12T03:09:38Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux-1.0.45.aarch64.rpm"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 99589048,
-      "download_count": 432,
+      "download_count": 468,
       "created_at": "2022-10-12T03:06:02Z",
       "updated_at": "2022-10-12T03:06:05Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux-1.0.45.AppImage"
@@ -368,7 +368,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 65404000,
-      "download_count": 28,
+      "download_count": 29,
       "created_at": "2022-10-12T03:09:15Z",
       "updated_at": "2022-10-12T03:09:17Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux-1.0.45.armv7l.rpm"
@@ -402,7 +402,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 94707264,
-      "download_count": 57,
+      "download_count": 62,
       "created_at": "2022-10-12T03:11:08Z",
       "updated_at": "2022-10-12T03:11:10Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux-1.0.45.tar.gz"
@@ -436,7 +436,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 72111036,
-      "download_count": 210,
+      "download_count": 220,
       "created_at": "2022-10-12T03:09:39Z",
       "updated_at": "2022-10-12T03:09:41Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux-1.0.45.x86_64.rpm"
@@ -470,7 +470,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 71511830,
-      "download_count": 1582,
+      "download_count": 1656,
       "created_at": "2022-10-12T03:08:25Z",
       "updated_at": "2022-10-12T03:08:27Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux_1.0.45_amd64.deb"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 67869280,
-      "download_count": 1823,
+      "download_count": 1926,
       "created_at": "2022-10-12T03:08:27Z",
       "updated_at": "2022-10-12T03:08:29Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux_1.0.45_arm64.deb"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65090212,
-      "download_count": 1601,
+      "download_count": 1689,
       "created_at": "2022-10-12T03:07:34Z",
       "updated_at": "2022-10-12T03:07:36Z",
       "browser_download_url": "https://github.com/IsmaelMartinez/teams-for-linux/releases/download/v1.0.45/teams-for-linux_1.0.45_armv7l.deb"

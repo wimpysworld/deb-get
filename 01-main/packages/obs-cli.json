@@ -436,7 +436,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 2281019,
-      "download_count": 9,
+      "download_count": 10,
       "created_at": "2022-01-28T23:43:19Z",
       "updated_at": "2022-01-28T23:43:28Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_linux_386.rpm"
@@ -538,7 +538,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 2450970,
-      "download_count": 65,
+      "download_count": 67,
       "created_at": "2022-01-28T23:43:19Z",
       "updated_at": "2022-01-28T23:43:28Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_linux_amd64.rpm"
@@ -640,7 +640,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 2256314,
-      "download_count": 7,
+      "download_count": 8,
       "created_at": "2022-01-28T23:43:19Z",
       "updated_at": "2022-01-28T23:43:27Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_linux_arm64.rpm"
@@ -1014,7 +1014,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2452524,
-      "download_count": 448,
+      "download_count": 466,
       "created_at": "2022-01-28T23:43:18Z",
       "updated_at": "2022-01-28T23:43:27Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_linux_x86_64.tar.gz"
