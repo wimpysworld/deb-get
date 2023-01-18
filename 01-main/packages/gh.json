@@ -96,7 +96,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 9405398,
-      "download_count": 330,
+      "download_count": 331,
       "created_at": "2023-01-03T22:47:43Z",
       "updated_at": "2023-01-03T22:47:44Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_linux_386.deb"
@@ -198,7 +198,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 10351500,
-      "download_count": 14945,
+      "download_count": 14965,
       "created_at": "2023-01-03T22:47:43Z",
       "updated_at": "2023-01-03T22:47:44Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_linux_amd64.deb"
@@ -232,7 +232,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 10349276,
-      "download_count": 472,
+      "download_count": 473,
       "created_at": "2023-01-03T22:47:47Z",
       "updated_at": "2023-01-03T22:47:48Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_linux_amd64.rpm"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 9805808,
-      "download_count": 19167,
+      "download_count": 19194,
       "created_at": "2023-01-03T22:47:41Z",
       "updated_at": "2023-01-03T22:47:42Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_linux_amd64.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 9410304,
-      "download_count": 1582,
+      "download_count": 1583,
       "created_at": "2023-01-03T22:47:44Z",
       "updated_at": "2023-01-03T22:47:45Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_linux_arm64.deb"
@@ -504,7 +504,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 10123689,
-      "download_count": 5925,
+      "download_count": 5940,
       "created_at": "2023-01-03T22:47:40Z",
       "updated_at": "2023-01-03T22:47:41Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_macOS_amd64.tar.gz"
@@ -572,7 +572,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 10199040,
-      "download_count": 24694,
+      "download_count": 24732,
       "created_at": "2023-01-03T22:53:51Z",
       "updated_at": "2023-01-03T22:53:52Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_windows_amd64.msi"
@@ -606,7 +606,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 9853924,
-      "download_count": 2859,
+      "download_count": 2860,
       "created_at": "2023-01-03T22:47:42Z",
       "updated_at": "2023-01-03T22:47:43Z",
       "browser_download_url": "https://github.com/cli/cli/releases/download/v2.21.2/gh_2.21.2_windows_amd64.zip"

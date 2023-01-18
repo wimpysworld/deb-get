@@ -63,7 +63,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 5753685,
-        "download_count": 194020,
+        "download_count": 194089,
         "created_at": "2022-12-23T16:48:19Z",
         "updated_at": "2022-12-23T16:48:21Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/obsidian-1.1.9.asar.gz"
@@ -97,7 +97,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 68627128,
-        "download_count": 1626,
+        "download_count": 1628,
         "created_at": "2022-12-23T16:48:25Z",
         "updated_at": "2022-12-23T16:48:45Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/Obsidian.1.1.9-32.exe"
@@ -165,7 +165,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 72690816,
-        "download_count": 191835,
+        "download_count": 191968,
         "created_at": "2022-12-23T16:49:05Z",
         "updated_at": "2022-12-23T16:49:25Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/Obsidian.1.1.9.exe"
@@ -199,7 +199,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 98186300,
-        "download_count": 23611,
+        "download_count": 23634,
         "created_at": "2022-12-23T16:51:15Z",
         "updated_at": "2022-12-23T16:51:43Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/Obsidian-1.1.9.AppImage"
@@ -335,7 +335,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 162429009,
-        "download_count": 91954,
+        "download_count": 92024,
         "created_at": "2022-12-23T16:53:02Z",
         "updated_at": "2022-12-23T16:53:48Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/Obsidian-1.1.9-universal.dmg"
@@ -369,7 +369,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 69117910,
-        "download_count": 8016,
+        "download_count": 8020,
         "created_at": "2022-12-23T16:53:48Z",
         "updated_at": "2022-12-23T16:54:07Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/obsidian_1.1.9_amd64.deb"
@@ -403,7 +403,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 107171840,
-        "download_count": 11899,
+        "download_count": 11907,
         "created_at": "2022-12-23T16:54:07Z",
         "updated_at": "2022-12-23T16:54:37Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.1.9/obsidian_1.1.9_amd64.snap"
@@ -1579,7 +1579,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 98070528,
-        "download_count": 25328,
+        "download_count": 25330,
         "created_at": "2022-10-26T14:27:03Z",
         "updated_at": "2022-10-26T14:27:30Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.3/obsidian_1.0.3_amd64.snap"
@@ -2005,7 +2005,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 63516048,
-        "download_count": 6879,
+        "download_count": 6880,
         "created_at": "2022-10-12T18:10:32Z",
         "updated_at": "2022-10-12T18:10:50Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb"
@@ -3897,7 +3897,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 89584783,
-        "download_count": 34175,
+        "download_count": 34176,
         "created_at": "2022-04-18T19:17:08Z",
         "updated_at": "2022-04-18T19:17:33Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v0.14.6/Obsidian-0.14.6.AppImage"
@@ -4067,7 +4067,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 160755998,
-        "download_count": 93795,
+        "download_count": 93796,
         "created_at": "2022-04-19T20:23:12Z",
         "updated_at": "2022-04-19T20:23:57Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v0.14.6/Obsidian-0.14.6-universal.dmg"
@@ -6273,7 +6273,7 @@
         "content_type": "application/x-msdownload",
         "state": "uploaded",
         "size": 69148392,
-        "download_count": 77641,
+        "download_count": 77642,
         "created_at": "2022-01-05T20:06:47Z",
         "updated_at": "2022-01-05T20:07:06Z",
         "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v0.13.19/Obsidian.0.13.19.exe"

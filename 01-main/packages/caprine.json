@@ -165,7 +165,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 95989278,
-        "download_count": 594,
+        "download_count": 595,
         "created_at": "2022-11-16T10:58:05Z",
         "updated_at": "2022-11-16T10:59:12Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/Caprine-2.57.0.dmg"
@@ -233,7 +233,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 73177538,
-        "download_count": 7380,
+        "download_count": 7384,
         "created_at": "2022-11-16T10:38:05Z",
         "updated_at": "2022-11-16T10:38:07Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/Caprine-Setup-2.57.0.exe"
@@ -301,7 +301,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 70049980,
-        "download_count": 860,
+        "download_count": 861,
         "created_at": "2022-11-16T10:54:27Z",
         "updated_at": "2022-11-16T10:56:52Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/caprine_2.57.0_amd64.deb"
@@ -369,7 +369,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 369,
-        "download_count": 11035,
+        "download_count": 11040,
         "created_at": "2022-11-16T10:50:13Z",
         "updated_at": "2022-11-16T10:50:24Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/latest-linux.yml"
@@ -403,7 +403,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 489,
-        "download_count": 25869,
+        "download_count": 25875,
         "created_at": "2022-11-16T10:50:06Z",
         "updated_at": "2022-11-16T10:50:12Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/latest-mac.yml"
@@ -437,7 +437,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 345,
-        "download_count": 116691,
+        "download_count": 116713,
         "created_at": "2022-11-16T10:38:07Z",
         "updated_at": "2022-11-16T10:38:07Z",
         "browser_download_url": "https://github.com/sindresorhus/caprine/releases/download/v2.57.0/latest.yml"

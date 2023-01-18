@@ -62,7 +62,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 10698252,
-      "download_count": 22844,
+      "download_count": 22846,
       "created_at": "2022-07-03T18:02:23Z",
       "updated_at": "2022-07-03T18:02:25Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-1-lp15.2.x86_64.rpm"
@@ -878,7 +878,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 43585536,
-      "download_count": 107643,
+      "download_count": 107663,
       "created_at": "2022-07-03T18:02:42Z",
       "updated_at": "2022-07-03T18:02:48Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/Flameshot-12.1.0-win64.msi"
@@ -912,7 +912,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 93,
-      "download_count": 940,
+      "download_count": 941,
       "created_at": "2022-07-03T18:02:48Z",
       "updated_at": "2022-07-03T18:02:48Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/Flameshot-12.1.0-win64.msi.sha256sum"
@@ -946,7 +946,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 46043249,
-      "download_count": 29595,
+      "download_count": 29597,
       "created_at": "2022-07-03T18:02:48Z",
       "updated_at": "2022-07-03T18:02:55Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot-12.1.0-win64.zip"
@@ -1014,7 +1014,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 52195672,
-      "download_count": 4944,
+      "download_count": 4946,
       "created_at": "2022-07-03T18:02:56Z",
       "updated_at": "2022-07-03T18:03:03Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/Flameshot-12.1.0.x86_64.AppImage"
@@ -1082,7 +1082,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 22118868,
-      "download_count": 34605,
+      "download_count": 34612,
       "created_at": "2022-07-03T18:03:04Z",
       "updated_at": "2022-07-03T18:03:07Z",
       "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v12.1.0/flameshot.dmg"
