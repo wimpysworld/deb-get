@@ -63,7 +63,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16888458,
-        "download_count": 220392,
+        "download_count": 221324,
         "created_at": "2022-08-22T19:11:47Z",
         "updated_at": "2022-08-22T19:12:04Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-amd64.deb"
@@ -97,7 +97,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18713152,
-        "download_count": 3455,
+        "download_count": 3467,
         "created_at": "2022-08-22T19:12:04Z",
         "updated_at": "2022-08-22T19:12:15Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-arm64.deb"
@@ -131,7 +131,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 17174200,
-        "download_count": 34405,
+        "download_count": 34494,
         "created_at": "2022-08-22T19:12:15Z",
         "updated_at": "2022-08-22T19:12:25Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-linux-amd64.tar.gz"
@@ -165,7 +165,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 19033935,
-        "download_count": 2189,
+        "download_count": 2194,
         "created_at": "2022-08-22T19:12:25Z",
         "updated_at": "2022-08-22T19:12:37Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-linux-arm64.tar.gz"
@@ -199,7 +199,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 20221268,
-        "download_count": 167212,
+        "download_count": 167774,
         "created_at": "2022-08-22T19:12:37Z",
         "updated_at": "2022-08-22T19:12:47Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-macOS.pkg"
@@ -233,7 +233,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20253769,
-        "download_count": 3107,
+        "download_count": 3113,
         "created_at": "2022-08-22T19:12:47Z",
         "updated_at": "2022-08-22T19:12:57Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-macOS.zip"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 25219072,
-        "download_count": 201111,
+        "download_count": 201529,
         "created_at": "2022-08-22T19:12:57Z",
         "updated_at": "2022-08-22T19:13:12Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-windows-x86_64.msi"
@@ -301,7 +301,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 24089163,
-        "download_count": 105078,
+        "download_count": 105461,
         "created_at": "2022-08-22T19:13:12Z",
         "updated_at": "2022-08-22T19:13:25Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-windows-x86_64.zip"
@@ -489,7 +489,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 19030188,
-        "download_count": 116,
+        "download_count": 117,
         "created_at": "2022-08-19T06:54:56Z",
         "updated_at": "2022-08-19T06:55:06Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.1/pandoc-2.19.1-linux-arm64.tar.gz"
@@ -591,7 +591,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 25210880,
-        "download_count": 6734,
+        "download_count": 6735,
         "created_at": "2022-08-19T06:55:48Z",
         "updated_at": "2022-08-19T06:56:01Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.1/pandoc-2.19.1-windows-x86_64.msi"
@@ -711,7 +711,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16526050,
-        "download_count": 5588,
+        "download_count": 5594,
         "created_at": "2022-08-04T06:59:28Z",
         "updated_at": "2022-08-04T06:59:42Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-1-amd64.deb"
@@ -847,7 +847,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19732655,
-        "download_count": 4551,
+        "download_count": 4556,
         "created_at": "2022-08-04T07:00:08Z",
         "updated_at": "2022-08-04T07:00:17Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-macOS.pkg"
@@ -915,7 +915,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 24252416,
-        "download_count": 18945,
+        "download_count": 18946,
         "created_at": "2022-08-04T07:00:27Z",
         "updated_at": "2022-08-04T07:00:38Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-windows-x86_64.msi"
@@ -949,7 +949,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 23148336,
-        "download_count": 7365,
+        "download_count": 7370,
         "created_at": "2022-08-04T07:00:39Z",
         "updated_at": "2022-08-04T07:00:50Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-windows-x86_64.zip"
@@ -1035,7 +1035,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16439696,
-        "download_count": 78862,
+        "download_count": 78922,
         "created_at": "2022-04-04T18:07:32Z",
         "updated_at": "2022-04-04T18:07:45Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-1-amd64.deb"
@@ -1103,7 +1103,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16713899,
-        "download_count": 36192,
+        "download_count": 36226,
         "created_at": "2022-04-04T18:07:56Z",
         "updated_at": "2022-04-04T18:08:05Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-linux-amd64.tar.gz"
@@ -1205,7 +1205,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 19694588,
-        "download_count": 5085,
+        "download_count": 5091,
         "created_at": "2022-04-04T18:08:25Z",
         "updated_at": "2022-04-04T18:08:35Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-macOS.zip"
@@ -1273,7 +1273,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 23101030,
-        "download_count": 37780,
+        "download_count": 37783,
         "created_at": "2022-04-04T18:08:47Z",
         "updated_at": "2022-04-04T18:08:59Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-windows-x86_64.zip"
@@ -1359,7 +1359,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15625148,
-        "download_count": 43101,
+        "download_count": 43117,
         "created_at": "2022-01-31T19:16:04Z",
         "updated_at": "2022-01-31T19:16:17Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-1-amd64.deb"
@@ -1393,7 +1393,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18153090,
-        "download_count": 1273,
+        "download_count": 1274,
         "created_at": "2022-01-31T19:16:17Z",
         "updated_at": "2022-01-31T19:16:26Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-1-arm64.deb"
@@ -1427,7 +1427,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 15883177,
-        "download_count": 31367,
+        "download_count": 31425,
         "created_at": "2022-01-31T19:16:26Z",
         "updated_at": "2022-01-31T19:16:33Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-linux-amd64.tar.gz"
@@ -1683,7 +1683,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15623618,
-        "download_count": 6355,
+        "download_count": 6363,
         "created_at": "2022-01-30T20:46:24Z",
         "updated_at": "2022-01-30T20:46:38Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-1-amd64.deb"
@@ -1751,7 +1751,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 15882935,
-        "download_count": 7778,
+        "download_count": 7789,
         "created_at": "2022-01-30T20:46:49Z",
         "updated_at": "2022-01-30T20:46:58Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-linux-amd64.tar.gz"
@@ -1819,7 +1819,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19460642,
-        "download_count": 1465,
+        "download_count": 1466,
         "created_at": "2022-01-30T20:47:10Z",
         "updated_at": "2022-01-30T20:47:20Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-macOS.pkg"
@@ -1921,7 +1921,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22863199,
-        "download_count": 1883,
+        "download_count": 1885,
         "created_at": "2022-01-30T20:47:50Z",
         "updated_at": "2022-01-30T20:48:02Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-windows-x86_64.zip"
@@ -2245,7 +2245,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22850926,
-        "download_count": 8385,
+        "download_count": 8391,
         "created_at": "2022-01-14T20:04:43Z",
         "updated_at": "2022-01-14T20:05:01Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-windows-x86_64.zip"
@@ -2655,7 +2655,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16654272,
-        "download_count": 48081,
+        "download_count": 48098,
         "created_at": "2021-11-22T01:15:11Z",
         "updated_at": "2021-11-22T01:15:28Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-1-amd64.deb"
@@ -2723,7 +2723,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16939660,
-        "download_count": 98692,
+        "download_count": 99089,
         "created_at": "2021-11-22T01:16:36Z",
         "updated_at": "2021-11-22T01:16:56Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-linux-amd64.tar.gz"
@@ -2979,7 +2979,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16613234,
-        "download_count": 11512,
+        "download_count": 11515,
         "created_at": "2021-11-03T07:20:16Z",
         "updated_at": "2021-11-03T07:20:31Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.1/pandoc-2.16.1-1-amd64.deb"
@@ -3047,7 +3047,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16899207,
-        "download_count": 4713,
+        "download_count": 4719,
         "created_at": "2021-11-03T07:20:45Z",
         "updated_at": "2021-11-03T07:20:54Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.1/pandoc-2.16.1-linux-amd64.tar.gz"
@@ -3627,7 +3627,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16591822,
-        "download_count": 4617,
+        "download_count": 4619,
         "created_at": "2021-10-24T02:13:55Z",
         "updated_at": "2021-10-24T02:14:08Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.15/pandoc-2.15-1-amd64.deb"
@@ -3951,7 +3951,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15964500,
-        "download_count": 326504,
+        "download_count": 326549,
         "created_at": "2021-08-21T16:38:47Z",
         "updated_at": "2021-08-21T16:39:39Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-1-amd64.deb"
@@ -3985,7 +3985,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18050140,
-        "download_count": 1454,
+        "download_count": 1458,
         "created_at": "2021-08-21T16:39:39Z",
         "updated_at": "2021-08-21T16:39:58Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-1-arm64.deb"
@@ -4019,7 +4019,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16233272,
-        "download_count": 28974,
+        "download_count": 29000,
         "created_at": "2021-08-21T16:39:58Z",
         "updated_at": "2021-08-21T16:40:11Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz"
@@ -4087,7 +4087,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19989397,
-        "download_count": 473977,
+        "download_count": 474193,
         "created_at": "2021-08-21T16:40:34Z",
         "updated_at": "2021-08-21T16:40:44Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-macOS.pkg"
@@ -4121,7 +4121,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20002409,
-        "download_count": 1485,
+        "download_count": 1486,
         "created_at": "2021-08-21T16:40:44Z",
         "updated_at": "2021-08-21T16:40:56Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-macOS.zip"
@@ -4189,7 +4189,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22002661,
-        "download_count": 282689,
+        "download_count": 282938,
         "created_at": "2021-08-21T16:41:08Z",
         "updated_at": "2021-08-21T16:41:18Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-windows-x86_64.zip"
@@ -4275,7 +4275,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15847824,
-        "download_count": 13600,
+        "download_count": 13602,
         "created_at": "2021-07-19T05:38:56Z",
         "updated_at": "2021-07-19T05:39:13Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-amd64.deb"
@@ -4343,7 +4343,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16120570,
-        "download_count": 12276,
+        "download_count": 12279,
         "created_at": "2021-07-19T05:39:26Z",
         "updated_at": "2021-07-19T05:39:34Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-linux-amd64.tar.gz"
@@ -4599,7 +4599,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15797744,
-        "download_count": 11699,
+        "download_count": 11701,
         "created_at": "2021-06-22T21:57:15Z",
         "updated_at": "2021-06-22T21:57:34Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-1-amd64.deb"
@@ -4667,7 +4667,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16072160,
-        "download_count": 6329,
+        "download_count": 6333,
         "created_at": "2021-06-22T21:57:45Z",
         "updated_at": "2021-06-22T21:57:54Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-linux-amd64.tar.gz"
@@ -4701,7 +4701,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 18183020,
-        "download_count": 503,
+        "download_count": 505,
         "created_at": "2021-06-22T21:57:54Z",
         "updated_at": "2021-06-22T21:58:08Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-linux-arm64.tar.gz"
@@ -5485,7 +5485,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21742823,
-        "download_count": 4720,
+        "download_count": 4721,
         "created_at": "2021-06-01T13:28:22Z",
         "updated_at": "2021-06-01T13:29:03Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.1/pandoc-2.14.0.1-windows-x86_64.zip"
@@ -5571,7 +5571,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15785276,
-        "download_count": 3481,
+        "download_count": 3503,
         "created_at": "2021-05-29T05:13:04Z",
         "updated_at": "2021-05-29T05:13:19Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14/pandoc-2.14-1-amd64.deb"
@@ -5639,7 +5639,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16051804,
-        "download_count": 7264,
+        "download_count": 7265,
         "created_at": "2021-05-29T05:13:27Z",
         "updated_at": "2021-05-29T05:13:35Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14/pandoc-2.14-linux-amd64.tar.gz"
@@ -5895,7 +5895,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 14799022,
-        "download_count": 69993,
+        "download_count": 70034,
         "created_at": "2021-03-21T04:53:26Z",
         "updated_at": "2021-03-21T04:53:40Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-1-amd64.deb"
@@ -5963,7 +5963,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 15019808,
-        "download_count": 27239,
+        "download_count": 27243,
         "created_at": "2021-03-21T04:53:48Z",
         "updated_at": "2021-03-21T04:53:55Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-linux-amd64.tar.gz"
@@ -6099,7 +6099,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 21879808,
-        "download_count": 128312,
+        "download_count": 128357,
         "created_at": "2021-03-21T04:54:19Z",
         "updated_at": "2021-03-21T04:54:30Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-windows-x86_64.msi"
@@ -6133,7 +6133,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20762336,
-        "download_count": 24613,
+        "download_count": 24619,
         "created_at": "2021-03-21T04:54:30Z",
         "updated_at": "2021-03-21T04:54:41Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-windows-x86_64.zip"
@@ -6207,7 +6207,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16074678,
-        "download_count": 9804,
+        "download_count": 9807,
         "created_at": "2021-03-08T20:02:43Z",
         "updated_at": "2021-03-08T20:03:20Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-1-amd64.deb"
@@ -6275,7 +6275,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16308553,
-        "download_count": 8777,
+        "download_count": 8778,
         "created_at": "2021-03-08T20:03:52Z",
         "updated_at": "2021-03-08T20:04:16Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-linux-amd64.tar.gz"
@@ -6445,7 +6445,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22035942,
-        "download_count": 12604,
+        "download_count": 12608,
         "created_at": "2021-03-08T20:06:09Z",
         "updated_at": "2021-03-08T20:06:38Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-windows-x86_64.zip"
@@ -6519,7 +6519,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23050852,
-        "download_count": 38035,
+        "download_count": 38058,
         "created_at": "2021-01-23T23:13:52Z",
         "updated_at": "2021-01-23T23:14:10Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.4/pandoc-2.11.4-1-amd64.deb"
@@ -6655,7 +6655,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23247872,
-        "download_count": 37732,
+        "download_count": 37733,
         "created_at": "2021-01-23T23:14:41Z",
         "updated_at": "2021-01-23T23:14:51Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.4/pandoc-2.11.4-windows-x86_64.msi"
@@ -6763,7 +6763,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22943474,
-        "download_count": 19190,
+        "download_count": 19208,
         "created_at": "2020-12-30T00:37:41Z",
         "updated_at": "2020-12-30T00:38:53Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.2/pandoc-2.11.3.2-1-amd64.deb"
@@ -7019,7 +7019,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22869462,
-        "download_count": 5436,
+        "download_count": 5438,
         "created_at": "2020-12-19T01:42:35Z",
         "updated_at": "2020-12-19T01:43:03Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-1-amd64.deb"
@@ -7087,7 +7087,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18809071,
-        "download_count": 3169,
+        "download_count": 3171,
         "created_at": "2020-12-19T01:43:41Z",
         "updated_at": "2020-12-19T01:44:21Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-macOS.pkg"
@@ -7189,7 +7189,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21987741,
-        "download_count": 5159,
+        "download_count": 5169,
         "created_at": "2020-12-19T01:45:04Z",
         "updated_at": "2020-12-19T01:45:29Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-windows-x86_64.zip"
@@ -7507,7 +7507,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22850994,
-        "download_count": 39770,
+        "download_count": 39785,
         "created_at": "2020-11-19T22:56:26Z",
         "updated_at": "2020-11-19T22:56:50Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.2/pandoc-2.11.2-1-amd64.deb"
@@ -7541,7 +7541,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 23197689,
-        "download_count": 7373,
+        "download_count": 7374,
         "created_at": "2020-11-19T22:56:50Z",
         "updated_at": "2020-11-19T22:57:03Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.2/pandoc-2.11.2-linux-amd64.tar.gz"
@@ -7643,7 +7643,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 24990720,
-        "download_count": 25043,
+        "download_count": 25047,
         "created_at": "2020-11-19T22:57:26Z",
         "updated_at": "2020-11-19T22:57:41Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.2/pandoc-2.11.2-windows-x86_64.msi"
@@ -7995,7 +7995,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16252936,
-        "download_count": 3314,
+        "download_count": 3315,
         "created_at": "2020-11-03T22:32:12Z",
         "updated_at": "2020-11-03T22:32:39Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.1/pandoc-2.11.1-1-amd64.deb"
@@ -8239,7 +8239,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16248124,
-        "download_count": 9971,
+        "download_count": 9972,
         "created_at": "2020-10-23T18:49:28Z",
         "updated_at": "2020-10-23T18:49:44Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.4/pandoc-2.11.0.4-1-amd64.deb"
@@ -8273,7 +8273,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16482119,
-        "download_count": 24346,
+        "download_count": 24363,
         "created_at": "2020-10-23T18:49:44Z",
         "updated_at": "2020-10-23T18:49:52Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.4/pandoc-2.11.0.4-linux-amd64.tar.gz"
@@ -8483,7 +8483,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16226724,
-        "download_count": 9533,
+        "download_count": 9539,
         "created_at": "2020-10-16T03:51:21Z",
         "updated_at": "2020-10-16T03:51:39Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.2/pandoc-2.11.0.2-1-amd64.deb"
@@ -8727,7 +8727,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16220936,
-        "download_count": 1090,
+        "download_count": 1092,
         "created_at": "2020-10-14T18:54:59Z",
         "updated_at": "2020-10-14T18:55:36Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.1/pandoc-2.11.0.1-1-amd64.deb"

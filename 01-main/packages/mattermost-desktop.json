@@ -369,7 +369,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 124881323,
-        "download_count": 57,
+        "download_count": 58,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:13Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-linux-arm64.AppImage"
@@ -437,7 +437,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 115646636,
-        "download_count": 24,
+        "download_count": 25,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:15Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-linux-x64.tar.gz"
@@ -505,7 +505,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 78190020,
-        "download_count": 32,
+        "download_count": 33,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:10Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-linux-x86_64.rpm"
@@ -539,7 +539,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 117129421,
-        "download_count": 18,
+        "download_count": 19,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:13Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-mac-arm64.dmg"
@@ -743,7 +743,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 188509327,
-        "download_count": 4934,
+        "download_count": 4958,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:19Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-mac-universal.dmg"
@@ -1015,7 +1015,7 @@
         "content_type": "application/x-msi",
         "state": "uploaded",
         "size": 100102144,
-        "download_count": 57,
+        "download_count": 58,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:12Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-x64.msi"
