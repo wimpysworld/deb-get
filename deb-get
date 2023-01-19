@@ -641,7 +641,7 @@ function update_repos() {
                             print "GITREPO="$4"/"$5;\
                             print "BRANCH="$6;\
                             print "curl -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3";\
-                            print "if [ -f timestamp ] ;then ${ELEVATE} touch -d \"$(cat timestamp)\" *.json *html ; fi";
+                            print "if [ -f timestamp ] ;then ${ELEVATE} touch --no-create -d \"$(cat timestamp)\" *.json *.html ; fi";
                             print "${ELEVATE} mv -f *json *html /var/cache/deb-get/  >/dev/null 2>&1 ||true "}
                 ! /github/ {print "# fetching non-github repo";
                             print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
