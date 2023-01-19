@@ -62,7 +62,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 203601054,
-      "download_count": 164,
+      "download_count": 176,
       "created_at": "2023-01-08T15:47:34Z",
       "updated_at": "2023-01-08T15:47:55Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-portable_linux.tar.gz"
@@ -96,7 +96,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 190461964,
-      "download_count": 203,
+      "download_count": 212,
       "created_at": "2023-01-08T15:47:33Z",
       "updated_at": "2023-01-08T15:47:54Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-portable_windows.zip"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 194595505,
-      "download_count": 20,
+      "download_count": 21,
       "created_at": "2023-01-08T15:47:35Z",
       "updated_at": "2023-01-08T15:47:56Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-signed.pkg"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 191122557,
-      "download_count": 21,
+      "download_count": 22,
       "created_at": "2023-01-08T15:47:34Z",
       "updated_at": "2023-01-08T15:47:56Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9-signed._arm64.pkg"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 198371375,
-      "download_count": 885,
+      "download_count": 951,
       "created_at": "2023-01-08T15:47:34Z",
       "updated_at": "2023-01-08T15:47:59Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9.dmg"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 191840668,
-      "download_count": 2772,
+      "download_count": 2992,
       "created_at": "2023-01-08T15:47:35Z",
       "updated_at": "2023-01-08T15:47:53Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/JabRef-5.9.msi"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 194038152,
-      "download_count": 62,
+      "download_count": 65,
       "created_at": "2023-01-08T15:47:23Z",
       "updated_at": "2023-01-08T15:47:55Z",
       "browser_download_url": "https://github.com/JabRef/jabref/releases/download/v5.9/jabref_5.9_amd64.deb"

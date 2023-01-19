@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 99825057,
-      "download_count": 68,
+      "download_count": 96,
       "created_at": "2023-01-16T17:42:24Z",
       "updated_at": "2023-01-16T17:42:27Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.AppImage"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 70651778,
-      "download_count": 370,
+      "download_count": 588,
       "created_at": "2023-01-16T17:43:52Z",
       "updated_at": "2023-01-16T17:43:54Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.deb"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 152615608,
-      "download_count": 12668,
+      "download_count": 19773,
       "created_at": "2023-01-16T17:39:23Z",
       "updated_at": "2023-01-16T17:39:27Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.exe"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 158617,
-      "download_count": 8661,
+      "download_count": 13048,
       "created_at": "2023-01-16T17:39:23Z",
       "updated_at": "2023-01-16T17:39:23Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.exe.blockmap"
@@ -198,7 +198,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 70406594,
-      "download_count": 29,
+      "download_count": 46,
       "created_at": "2023-01-16T17:46:06Z",
       "updated_at": "2023-01-16T17:46:08Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.rpm"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 68826024,
-      "download_count": 374,
+      "download_count": 620,
       "created_at": "2023-01-16T17:42:25Z",
       "updated_at": "2023-01-16T17:42:27Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0_portable.exe"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 91905522,
-      "download_count": 70,
+      "download_count": 120,
       "created_at": "2023-01-16T17:41:05Z",
       "updated_at": "2023-01-16T17:41:09Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_arm64_4.6.0.dmg"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 88426951,
-      "download_count": 253,
+      "download_count": 343,
       "created_at": "2023-01-16T17:41:25Z",
       "updated_at": "2023-01-16T17:41:28Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_arm64_4.6.0.zip"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97743036,
-      "download_count": 443,
+      "download_count": 715,
       "created_at": "2023-01-16T17:46:27Z",
       "updated_at": "2023-01-16T17:46:31Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_x64_4.6.0.dmg"
@@ -470,7 +470,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 94295818,
-      "download_count": 270,
+      "download_count": 396,
       "created_at": "2023-01-16T17:46:48Z",
       "updated_at": "2023-01-16T17:46:51Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_x64_4.6.0.zip"
@@ -538,7 +538,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 371,
-      "download_count": 77,
+      "download_count": 131,
       "created_at": "2023-01-16T17:46:09Z",
       "updated_at": "2023-01-16T17:46:09Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/latest-linux.yml"
@@ -572,7 +572,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 812,
-      "download_count": 1088,
+      "download_count": 1738,
       "created_at": "2023-01-16T17:46:52Z",
       "updated_at": "2023-01-16T17:46:52Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/latest-mac.yml"
@@ -606,7 +606,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 337,
-      "download_count": 14499,
+      "download_count": 23910,
       "created_at": "2023-01-16T17:39:28Z",
       "updated_at": "2023-01-16T17:39:28Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/latest.yml"
@@ -617,13 +617,13 @@
   "body": "# Welcome to Blockbench 4.6 - The Animation Controller Update!\r\n\r\n\r\n## Animation controller editor\r\nBlockbench 4.6 introduces a brand new interface to edit animation controllers for Minecraft Bedrock Edition.\r\n\r\n![image](https://user-images.githubusercontent.com/29278436/210139528-7e466053-f8c7-49c1-aed5-e45993a91aa5.png)\r\n\r\nGenerally, animation controllers are handled similarly to animations.\r\nThey are automatically imported when loading a model, based on the client entity file. You can also import them using the Import Animations button.\r\nSelecting an animation controller brings up the editor, where, on new controllers, you can pick a controller preset. Once your controller has states, you can arrange and edit them, create transitions, and preview the animations.\r\n\r\nhttps://bedrock.dev/docs/stable/Animations#Animation%20Controllers\r\n\r\n* Please note that animations use short names in animation controllers to link them to a state. Blockbench cannot edit the client entity file at this time to change these short names, so you need to manually make sure that they are correct in there. Blockbench automatically assumes the last part of the animation ID to be the short name, but you can also change it manually.\r\n\r\n### Preview\r\n* Use the buttons at the top to change the animation controller preview playback.\r\n\t1. By default, it is on `Manual`, which lets you click on a state to preview the transition and animation.\r\n\t2. `Paused` will pause the animation controller preview entirely.\r\n\t3. Setting it to `Auto Play` will automatically transition between the states by evaluating the transitions.\r\n\t\t* Use the new button type `impulse` to trigger respective transitions. Example: `variable.attack_time = impulse('Attack')`\r\n* At the moment, recursively playing animation controllers won't preview.\r\n* Also, preview for start_delay and loop_delay is not implemented but planned for the future.\r\n* The \"Blend by Shortest Path\" option also has no effect on the preview at the moment.\r\n\r\n### Transitions\r\n* Transitions are displayed as connection lines above and below the states. Where the transitions going towards the right are displayed below the states, and the transitions looping back to the left are displayed above the states.\r\n* You can click on a connection line to select the other state and preview the transition.\r\n* You can double click a connection line to jump to the transition and edit the condition.\r\n* Click and drag on the connection port of a state (the blue shape at the top and bottom of a selected state) to create a connection to another state. Alternatively, use the plus button in the Transitions list.\r\n\r\n### Options\r\n* You can add animations to a state. Animations consist of a linked animation (optional) for preview, a short name (used by Minecraft), and a condition / blend value (also optional).\r\n* You can add particles and sound effects, just like you can with keyframes.\r\n* Under On Entry and On Exit, you can add a Molang script to run on transitions.\r\n* Lists can be re-arranged by dragging the gray rectangle on the left side.\r\n\r\n\r\n\r\n## Settings Profiles\r\nSettings profiles let you define profiles that override specific settings based on a condition\r\n\r\n![image](https://user-images.githubusercontent.com/29278436/210139435-3ca92c84-f29c-4acc-8745-3088dab0a066.png)\r\n\r\nHere are a few example use cases that you could use them for:\r\n* Create a **Recording** profile for recording videos. The profile could scale up the interface to be easier to read on videos, enable Streamer Mode to hide your sensitive information, etc.\r\n* Create a profile for a specific format or to files in a specific directory. Change whether project files are minified, how often automatic backups are created, or how big default cubes are.\r\n* Create a profile for another user who has different preferences and another user name in edit sessions, or another Sketchfab account.\r\n\r\n### How to use profiles\r\n1. Open the settings menu\r\n2. Create or select a profile in the top right corner, above the search bar.\r\n3. Change the value of a setting. The setting will highlight in the color of the profile, indicating that the profile is changing the setting.\r\n4. You can press the X button to clear the profile override of a setting again.\r\n5. Switch back to the profile \"None\" to see and edit the master values of the settings.\r\n\r\n### Profile condition types\r\nThere are different types of conditions for profiles, and more might be added in the future:\r\n* **Manually Selectable**: Manually choose the profile from `File` > `Preferences` > `Profiles`, or using the button in the window frame.\r\n* **Format**: Enable the profile if a specific model format is used.\r\n* **File Path**: The profile is enabled when editing files or projects that match the file path. The condition value uses [regular expression syntax](https://www.w3schools.com/jsref/jsref_obj_regexp.asp), forward slashes separate the directory names, case is ignored. Example: `my-project/.+\\.json$` matches JSON files in the my-project directory.\r\n\r\n\r\n## Bézier keyframe interpolation\r\n4.6 introduces bézier keyframe interpolation. The option can be selected from the keyframe interpolation menu. It adds two handles to the keyframe for each axis in order to change their curve.\r\n\r\n**Bézier keyframes should be used along with the Graph Editor in order to adjust their control points**\r\n\r\n* The two handles can be locked together and unlocked by right clicking the keyframe and changing the option in the context menu.\r\n* Bezier keyframes are baked on export in all formats that support animations. In Minecraft Bedrock animation files, they are baked too, but optimized in order to create fewer keyframes when possible. This should still be kept in mind when creating animations, since sine curves or catmull rom (Smooth) keyframes can create more optimized files.\r\n* You can choose whether to show or hide the handles of not selected bezier keyframes in the settings.\r\n\r\n![image](https://cdn.discordapp.com/attachments/664827699285458966/1055463640733593630/bezier.gif)\r\n\r\n\r\n## Other new features\r\n* Added mesh cluster selection mode\r\n* Added looped playback toggle\r\n* Added RGB color sliders and color picker options menu\r\n* Added additive texture view mode\r\n* Added render sides option per texture\r\n* Added UI mode setting\r\n* Added ability to import bedrock entity files in order to open the model\r\n* Added \"impulse\" button type to placeholders\r\n* Ability to paint through transparent pixels (#875)\r\n\r\n\r\n## Changes\r\n* New tab overview screen\r\n* Multiple dialogs can now stay open at once\r\n* Added armor stand ground display presets\r\n* Color coded display mode sliders\r\n* Improve start screen loading order, the backup section now shows up instantly when available\r\n* Update and improve display skin selecting\r\n* Faces and edges can now be selected individually rather than vertex based (#1050)\r\n* Make focus on selection shift camera by default (#1498)\r\n* Added keyboard modifier menu in tablet mode\r\n* Added a warning when scaling box UV models (#1701)\r\n* Hide 0 width Box UV faces in UV editor\r\n* Hide UV-related context menus in image editor\r\n* Render images smooth in editor when image smaller than screen\r\n* Enabled blend modes on fill and shape tool (#1657)\r\n* Support unhandled fields and `render_type` in java block/item format\r\n* Added render sides and render mode options to texture properties dialog\r\n* Added orientation option in image extruder\r\n* Added Option to embed textures in bbmodel file (#907)\r\n* Display UV and Element panels when no elements selected\r\n* Let new cubes and meshes inherit parent marker color\r\n* Allow selecting appimage files as image editor\r\n* Improved startup performance\r\n* Improved element performance\r\n\r\n\r\n## GIF Recorder update\r\n* GIFs now record without anti aliasing by default to improve render quality and reduce artifacts\r\n* Added Pixelate option\r\n* Added background image option (#1432)\r\n* Added option to record as Animated PNG (APNG)\r\n* Added option to record as PNG sequence (#1521)\r\n* GIF size in KB or MB is now displayed in the screenshot result dialog.\r\n* Improved recording performance\r\n\r\n\r\n## Molang features (MolangJS 1.6)\r\n* Added Molang autocomplete in all Molang input fields\r\n* Added support for conditional scopes and loops\r\n* Added `in_range`, `all`, `any`, and `approx_eq` (#1702) (https://bedrock.dev/docs/stable/Molang#List%20of%20Entity%20Queries)\r\n* Ability to use placeholder variables in particle effects\r\n* Improved execution performance\r\n\r\n\r\n## Technical changes\r\n* Added ShapelessDialog API for shapeless dialogs such as the new tab overview\r\n* Removed Jimp library\r\n* Added `selected` condition in Condition API\r\n* Update material icons\r\n* Allow plugins to be installed from URL queries\r\n* Added additional event hooks (#1655)\r\n\r\n\r\n## Fixes\r\n* Fixed #1692 Closing other tab closes \"New Tab\"\r\n* Fixed locators and nulls not updating when flipped\r\n* Fixed #1675 Fix default context menu in Firefox\r\n* Fixed links not correctly underlined in Firefox\r\n* Fixed cubes forced to box UV when generating box UV template\r\n* Fixed template generator suggesting invalid resolution presets\r\n* Fixed pasted cubes not switching to required UV mode\r\n* Fixed error when loading animation with no matching element\r\n* Fixed comment in 1.17 modded entity template\r\n* Fixed vertex snap for individual vertices not working in some cases\r\n* Fixed export scale setting not applying to OBJ format\r\n* Auto export keyframe with slight rotation when bone is relative to entity\r\n* Fixed #1694 hovering over the borders of a texture shows the brush outline in the wrong place\r\n* Fixed min max not working correctly for number settings\r\n* Fixed typo in \"Face Properties\"\r\n* Fixed textures not updating correctly when painting across multiple textures in one stroke\r\n* Fixed #1682 Bidirectional resizing can create negative cube size\r\n* Fixed #1697 copy paste overlay remains after switching tool\r\n* Fixed #1686 skin poses inconsistent when cubes invisible\r\n* Fixed playback of animated textures with per-frame frame time\r\n* Fixed incorrect molang validation of ternary conditional operators\r\n* Removed Transparent from cube texture menu (#1722)\r\n* Fixed #1664 by adding special \"Turtle\" skin preset for Minecraft java edition\r\n* Fixed rotation order in dae and fbx export\r\n* Fixed model memory data not loading correctly\r\n* Fixed #1708 Textures missing when importing java block\r\n* Reset variables when switching animations and modes (#1489)\r\n* Fixed #1073 Issue when dissolving some edges\r\n",
   "reactions": {
     "url": "https://api.github.com/repos/JannisX11/blockbench/releases/86867856/reactions",
-    "total_count": 12,
+    "total_count": 13,
     "+1": 0,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,
     "confused": 0,
-    "heart": 9,
+    "heart": 10,
     "rocket": 0,
     "eyes": 3
   }
