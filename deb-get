@@ -160,7 +160,7 @@ function get_github_releases() {
 
     # Do not process github releases while generating a pretty list or upgrading
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
-        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +60)"; then
+        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")"; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases"
             if [ -n "${2}" ]; then
