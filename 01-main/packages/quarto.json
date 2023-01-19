@@ -62,7 +62,7 @@
       "content_type": "text/markdown",
       "state": "uploaded",
       "size": 14875,
-      "download_count": 448,
+      "download_count": 1129,
       "created_at": "2023-01-06T20:26:50Z",
       "updated_at": "2023-01-06T20:26:50Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/changelog.md"
@@ -96,7 +96,7 @@
       "content_type": "text/plain",
       "state": "uploaded",
       "size": 754,
-      "download_count": 438,
+      "download_count": 1106,
       "created_at": "2023-01-06T20:26:55Z",
       "updated_at": "2023-01-06T20:26:55Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-checksums.txt"
@@ -130,7 +130,7 @@
       "content_type": "application/deb",
       "state": "uploaded",
       "size": 77482574,
-      "download_count": 3363,
+      "download_count": 8639,
       "created_at": "2023-01-06T20:26:36Z",
       "updated_at": "2023-01-06T20:26:38Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-linux-amd64.deb"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 78318678,
-      "download_count": 525,
+      "download_count": 1340,
       "created_at": "2023-01-06T20:26:31Z",
       "updated_at": "2023-01-06T20:26:33Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-linux-amd64.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 78104444,
-      "download_count": 456,
+      "download_count": 1156,
       "created_at": "2023-01-06T20:26:33Z",
       "updated_at": "2023-01-06T20:26:36Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-linux-rhel7-amd64.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/pkg",
       "state": "uploaded",
       "size": 111638758,
-      "download_count": 1532,
+      "download_count": 3445,
       "created_at": "2023-01-06T20:26:44Z",
       "updated_at": "2023-01-06T20:26:47Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-macos.pkg"
@@ -266,7 +266,7 @@
       "content_type": "application/pkg",
       "state": "uploaded",
       "size": 111549363,
-      "download_count": 437,
+      "download_count": 1107,
       "created_at": "2023-01-06T20:26:47Z",
       "updated_at": "2023-01-06T20:26:50Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-macos.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/msi",
       "state": "uploaded",
       "size": 77058048,
-      "download_count": 1337,
+      "download_count": 3406,
       "created_at": "2023-01-06T20:26:39Z",
       "updated_at": "2023-01-06T20:26:41Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-win.msi"
@@ -334,7 +334,7 @@
       "content_type": "application/pkg",
       "state": "uploaded",
       "size": 76905521,
-      "download_count": 586,
+      "download_count": 1338,
       "created_at": "2023-01-06T20:26:41Z",
       "updated_at": "2023-01-06T20:26:43Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313-win.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 40178627,
-      "download_count": 428,
+      "download_count": 1098,
       "created_at": "2023-01-06T20:26:29Z",
       "updated_at": "2023-01-06T20:26:30Z",
       "browser_download_url": "https://github.com/quarto-dev/quarto-cli/releases/download/v1.2.313/quarto-1.2.313.tar.gz"

@@ -1,9 +1,9 @@
 {
-  "url": "https://api.github.com/repos/patrikx3/onenote/releases/88457878",
-  "assets_url": "https://api.github.com/repos/patrikx3/onenote/releases/88457878/assets",
-  "upload_url": "https://uploads.github.com/repos/patrikx3/onenote/releases/88457878/assets{?name,label}",
-  "html_url": "https://github.com/patrikx3/onenote/releases/tag/v2023.4.113",
-  "id": 88457878,
+  "url": "https://api.github.com/repos/patrikx3/onenote/releases/88962267",
+  "assets_url": "https://api.github.com/repos/patrikx3/onenote/releases/88962267/assets",
+  "upload_url": "https://uploads.github.com/repos/patrikx3/onenote/releases/88962267/assets{?name,label}",
+  "html_url": "https://github.com/patrikx3/onenote/releases/tag/v2023.4.117",
+  "id": 88962267,
   "author": {
     "login": "p3x-robot",
     "id": 28588124,
@@ -24,19 +24,19 @@
     "type": "User",
     "site_admin": false
   },
-  "node_id": "RE_kwDOBW4gns4FRcKW",
-  "tag_name": "v2023.4.113",
+  "node_id": "RE_kwDOBW4gns4FTXTb",
+  "tag_name": "v2023.4.117",
   "target_commitish": "master",
-  "name": "2023.4.113",
+  "name": "2023.4.117",
   "draft": false,
   "prerelease": false,
-  "created_at": "2023-01-10T14:51:23Z",
-  "published_at": "2023-01-10T14:51:45Z",
+  "created_at": "2023-01-14T12:08:08Z",
+  "published_at": "2023-01-14T12:08:22Z",
   "assets": [
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167428",
-      "id": 91167428,
-      "node_id": "RA_kwDOBW4gns4FbxrE",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668602",
+      "id": 91668602,
+      "node_id": "RA_kwDOBW4gns4FdsB6",
       "name": "latest-linux-arm.yml",
       "label": "",
       "uploader": {
@@ -62,15 +62,15 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 401,
-      "download_count": 1,
-      "created_at": "2023-01-10T14:48:15Z",
-      "updated_at": "2023-01-10T14:48:15Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/latest-linux-arm.yml"
+      "download_count": 4,
+      "created_at": "2023-01-14T12:04:57Z",
+      "updated_at": "2023-01-14T12:04:57Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/latest-linux-arm.yml"
     },
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167427",
-      "id": 91167427,
-      "node_id": "RA_kwDOBW4gns4FbxrD",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668603",
+      "id": 91668603,
+      "node_id": "RA_kwDOBW4gns4FdsB7",
       "name": "latest-linux-arm64.yml",
       "label": "",
       "uploader": {
@@ -96,15 +96,15 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 400,
-      "download_count": 3,
-      "created_at": "2023-01-10T14:48:15Z",
-      "updated_at": "2023-01-10T14:48:15Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/latest-linux-arm64.yml"
+      "download_count": 2,
+      "created_at": "2023-01-14T12:04:57Z",
+      "updated_at": "2023-01-14T12:04:57Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/latest-linux-arm64.yml"
     },
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167403",
-      "id": 91167403,
-      "node_id": "RA_kwDOBW4gns4Fbxqr",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668590",
+      "id": 91668590,
+      "node_id": "RA_kwDOBW4gns4FdsBu",
       "name": "latest-linux.yml",
       "label": "",
       "uploader": {
@@ -130,16 +130,16 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 386,
-      "download_count": 59,
-      "created_at": "2023-01-10T14:47:57Z",
-      "updated_at": "2023-01-10T14:47:57Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/latest-linux.yml"
+      "download_count": 193,
+      "created_at": "2023-01-14T12:04:40Z",
+      "updated_at": "2023-01-14T12:04:41Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/latest-linux.yml"
     },
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167410",
-      "id": 91167410,
-      "node_id": "RA_kwDOBW4gns4Fbxqy",
-      "name": "P3X-OneNote-2023.4.113-arm64.AppImage",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668598",
+      "id": 91668598,
+      "node_id": "RA_kwDOBW4gns4FdsB2",
+      "name": "P3X-OneNote-2023.4.117-arm64.AppImage",
       "label": "",
       "uploader": {
         "login": "p3x-robot",
@@ -163,17 +163,17 @@
       },
       "content_type": "application/octet-stream",
       "state": "uploaded",
-      "size": 99098496,
-      "download_count": 6,
-      "created_at": "2023-01-10T14:48:02Z",
-      "updated_at": "2023-01-10T14:48:14Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/P3X-OneNote-2023.4.113-arm64.AppImage"
+      "size": 99106710,
+      "download_count": 14,
+      "created_at": "2023-01-14T12:04:46Z",
+      "updated_at": "2023-01-14T12:04:57Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/P3X-OneNote-2023.4.117-arm64.AppImage"
     },
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167409",
-      "id": 91167409,
-      "node_id": "RA_kwDOBW4gns4Fbxqx",
-      "name": "P3X-OneNote-2023.4.113-armv7l.AppImage",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668593",
+      "id": 91668593,
+      "node_id": "RA_kwDOBW4gns4FdsBx",
+      "name": "P3X-OneNote-2023.4.117-armv7l.AppImage",
       "label": "",
       "uploader": {
         "login": "p3x-robot",
@@ -197,17 +197,17 @@
       },
       "content_type": "application/octet-stream",
       "state": "uploaded",
-      "size": 87618931,
-      "download_count": 1,
-      "created_at": "2023-01-10T14:48:01Z",
-      "updated_at": "2023-01-10T14:48:09Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/P3X-OneNote-2023.4.113-armv7l.AppImage"
+      "size": 87627133,
+      "download_count": 9,
+      "created_at": "2023-01-14T12:04:45Z",
+      "updated_at": "2023-01-14T12:04:53Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/P3X-OneNote-2023.4.117-armv7l.AppImage"
     },
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167377",
-      "id": 91167377,
-      "node_id": "RA_kwDOBW4gns4FbxqR",
-      "name": "P3X-OneNote-2023.4.113.AppImage",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668585",
+      "id": 91668585,
+      "node_id": "RA_kwDOBW4gns4FdsBp",
+      "name": "P3X-OneNote-2023.4.117.AppImage",
       "label": "",
       "uploader": {
         "login": "p3x-robot",
@@ -232,16 +232,16 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97279976,
-      "download_count": 44,
-      "created_at": "2023-01-10T14:47:45Z",
-      "updated_at": "2023-01-10T14:47:55Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/P3X-OneNote-2023.4.113.AppImage"
+      "download_count": 156,
+      "created_at": "2023-01-14T12:04:24Z",
+      "updated_at": "2023-01-14T12:04:39Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/P3X-OneNote-2023.4.117.AppImage"
     },
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167687",
-      "id": 91167687,
-      "node_id": "RA_kwDOBW4gns4FbxvH",
-      "name": "p3x-onenote-2023.4.113.x86_64.rpm",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668724",
+      "id": 91668724,
+      "node_id": "RA_kwDOBW4gns4FdsD0",
+      "name": "p3x-onenote-2023.4.117.x86_64.rpm",
       "label": "",
       "uploader": {
         "login": "p3x-robot",
@@ -265,17 +265,17 @@
       },
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
-      "size": 66673084,
-      "download_count": 3,
-      "created_at": "2023-01-10T14:50:22Z",
-      "updated_at": "2023-01-10T14:50:28Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/p3x-onenote-2023.4.113.x86_64.rpm"
+      "size": 66670248,
+      "download_count": 6,
+      "created_at": "2023-01-14T12:07:11Z",
+      "updated_at": "2023-01-14T12:07:18Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/p3x-onenote-2023.4.117.x86_64.rpm"
     },
     {
-      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91167518",
-      "id": 91167518,
-      "node_id": "RA_kwDOBW4gns4Fbxse",
-      "name": "p3x-onenote_2023.4.113_amd64.deb",
+      "url": "https://api.github.com/repos/patrikx3/onenote/releases/assets/91668637",
+      "id": 91668637,
+      "node_id": "RA_kwDOBW4gns4FdsCd",
+      "name": "p3x-onenote_2023.4.117_amd64.deb",
       "label": "",
       "uploader": {
         "login": "p3x-robot",
@@ -299,14 +299,14 @@
       },
       "content_type": "application/octet-stream",
       "state": "uploaded",
-      "size": 66810716,
-      "download_count": 8,
-      "created_at": "2023-01-10T14:49:06Z",
-      "updated_at": "2023-01-10T14:49:13Z",
-      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.113/p3x-onenote_2023.4.113_amd64.deb"
+      "size": 66798118,
+      "download_count": 64,
+      "created_at": "2023-01-14T12:05:48Z",
+      "updated_at": "2023-01-14T12:05:56Z",
+      "browser_download_url": "https://github.com/patrikx3/onenote/releases/download/v2023.4.117/p3x-onenote_2023.4.117_amd64.deb"
     }
   ],
-  "tarball_url": "https://api.github.com/repos/patrikx3/onenote/tarball/v2023.4.113",
-  "zipball_url": "https://api.github.com/repos/patrikx3/onenote/zipball/v2023.4.113",
-  "body": "\r\nhttps://github.com/patrikx3/onenote/blob/master/change-log.md#v20234113\r\n\r\n[![Snapcraft](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/p3x-onenote#cory-non-external)\r\n"
+  "tarball_url": "https://api.github.com/repos/patrikx3/onenote/tarball/v2023.4.117",
+  "zipball_url": "https://api.github.com/repos/patrikx3/onenote/zipball/v2023.4.117",
+  "body": "\r\nhttps://github.com/patrikx3/onenote/blob/master/change-log.md#v20234117\r\n\r\n[![Snapcraft](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/p3x-onenote#cory-non-external)\r\n"
 }

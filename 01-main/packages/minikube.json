@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 8826464,
-      "download_count": 10520,
+      "download_count": 11588,
       "created_at": "2022-11-04T20:57:52Z",
       "updated_at": "2022-11-04T20:57:53Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-hyperkit"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 10681,
+      "download_count": 11762,
       "created_at": "2022-11-04T20:55:33Z",
       "updated_at": "2022-11-04T20:55:33Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-hyperkit.sha256"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 12796776,
-      "download_count": 225,
+      "download_count": 234,
       "created_at": "2022-11-04T20:56:46Z",
       "updated_at": "2022-11-04T20:56:46Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 3809300,
-      "download_count": 113,
+      "download_count": 125,
       "created_at": "2022-11-04T20:57:48Z",
       "updated_at": "2022-11-04T20:57:49Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2-1.28.0-0.x86_64.rpm"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 12796776,
-      "download_count": 8441,
+      "download_count": 9307,
       "created_at": "2022-11-04T20:58:00Z",
       "updated_at": "2022-11-04T20:58:01Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2-amd64"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 8305,
+      "download_count": 9157,
       "created_at": "2022-11-04T20:58:40Z",
       "updated_at": "2022-11-04T20:58:41Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2-amd64.sha256"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 12217048,
-      "download_count": 131,
+      "download_count": 141,
       "created_at": "2022-11-04T20:56:12Z",
       "updated_at": "2022-11-04T20:56:13Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2-arm64"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 108,
+      "download_count": 117,
       "created_at": "2022-11-04T20:58:11Z",
       "updated_at": "2022-11-04T20:58:11Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2-arm64.sha256"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 12796776,
-      "download_count": 167,
+      "download_count": 191,
       "created_at": "2022-11-04T20:56:26Z",
       "updated_at": "2022-11-04T20:56:27Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2-x86_64"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 247,
+      "download_count": 264,
       "created_at": "2022-11-04T20:56:06Z",
       "updated_at": "2022-11-04T20:56:06Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2.sha256"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 5900248,
-      "download_count": 103,
+      "download_count": 113,
       "created_at": "2022-11-04T20:55:49Z",
       "updated_at": "2022-11-04T20:55:50Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2_1.28.0-0_amd64.deb"
@@ -436,7 +436,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 5356556,
-      "download_count": 78,
+      "download_count": 81,
       "created_at": "2022-11-04T20:57:30Z",
       "updated_at": "2022-11-04T20:57:30Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/docker-machine-driver-kvm2_1.28.0-0_arm64.deb"
@@ -470,7 +470,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 30711875,
-      "download_count": 92,
+      "download_count": 99,
       "created_at": "2022-11-04T20:57:35Z",
       "updated_at": "2022-11-04T20:57:37Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-1.28.0-0.aarch64.rpm"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 31018412,
-      "download_count": 70,
+      "download_count": 76,
       "created_at": "2022-11-04T20:57:40Z",
       "updated_at": "2022-11-04T20:57:41Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-1.28.0-0.armv7hl.rpm"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 30332144,
-      "download_count": 73,
+      "download_count": 80,
       "created_at": "2022-11-04T20:56:15Z",
       "updated_at": "2022-11-04T20:56:17Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-1.28.0-0.ppc64le.rpm"
@@ -572,7 +572,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 32677236,
-      "download_count": 68,
+      "download_count": 73,
       "created_at": "2022-11-04T20:55:37Z",
       "updated_at": "2022-11-04T20:55:38Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-1.28.0-0.s390x.rpm"
@@ -606,7 +606,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 17939380,
-      "download_count": 361,
+      "download_count": 391,
       "created_at": "2022-11-04T20:56:59Z",
       "updated_at": "2022-11-04T20:57:00Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-1.28.0-0.x86_64.rpm"
@@ -640,7 +640,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 75499808,
-      "download_count": 1525,
+      "download_count": 1696,
       "created_at": "2022-11-04T20:55:44Z",
       "updated_at": "2022-11-04T20:55:46Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-darwin-amd64"
@@ -674,7 +674,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 932,
+      "download_count": 1029,
       "created_at": "2022-11-04T20:58:37Z",
       "updated_at": "2022-11-04T20:58:37Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-darwin-amd64.sha256"
@@ -708,7 +708,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 35985371,
-      "download_count": 168,
+      "download_count": 181,
       "created_at": "2022-11-04T20:57:21Z",
       "updated_at": "2022-11-04T20:57:22Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-darwin-amd64.tar.gz"
@@ -742,7 +742,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 74522162,
-      "download_count": 2053,
+      "download_count": 2263,
       "created_at": "2022-11-04T20:58:05Z",
       "updated_at": "2022-11-04T20:58:07Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-darwin-arm64"
@@ -776,7 +776,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 270,
+      "download_count": 301,
       "created_at": "2022-11-04T20:56:02Z",
       "updated_at": "2022-11-04T20:56:03Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-darwin-arm64.sha256"
@@ -810,7 +810,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 31306619,
-      "download_count": 145,
+      "download_count": 149,
       "created_at": "2022-11-04T20:57:25Z",
       "updated_at": "2022-11-04T20:57:27Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-darwin-arm64.tar.gz"
@@ -844,7 +844,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 33607038,
-      "download_count": 16724,
+      "download_count": 18276,
       "created_at": "2022-11-04T20:55:06Z",
       "updated_at": "2022-11-04T20:55:08Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-installer.exe"
@@ -878,7 +878,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 73081907,
-      "download_count": 91,
+      "download_count": 95,
       "created_at": "2022-11-04T20:54:57Z",
       "updated_at": "2022-11-04T20:54:59Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-386"
@@ -912,7 +912,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 76750347,
-      "download_count": 79052,
+      "download_count": 88122,
       "created_at": "2022-11-04T20:58:14Z",
       "updated_at": "2022-11-04T20:58:16Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-amd64"
@@ -946,7 +946,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 828,
+      "download_count": 866,
       "created_at": "2022-11-04T20:56:36Z",
       "updated_at": "2022-11-04T20:56:36Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-amd64.sha256"
@@ -980,7 +980,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 40040868,
-      "download_count": 327,
+      "download_count": 348,
       "created_at": "2022-11-04T20:55:58Z",
       "updated_at": "2022-11-04T20:55:59Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-amd64.tar.gz"
@@ -1014,7 +1014,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 71554007,
-      "download_count": 77,
+      "download_count": 83,
       "created_at": "2022-11-04T20:57:05Z",
       "updated_at": "2022-11-04T20:57:07Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-arm"
@@ -1048,7 +1048,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 69,
+      "download_count": 73,
       "created_at": "2022-11-04T20:56:42Z",
       "updated_at": "2022-11-04T20:56:42Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-arm.sha256"
@@ -1082,7 +1082,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 74221081,
-      "download_count": 141,
+      "download_count": 152,
       "created_at": "2022-11-04T20:56:20Z",
       "updated_at": "2022-11-04T20:56:23Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-arm64"
@@ -1116,7 +1116,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 78,
+      "download_count": 84,
       "created_at": "2022-11-04T20:56:56Z",
       "updated_at": "2022-11-04T20:56:57Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-arm64.sha256"
@@ -1150,7 +1150,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 30802655,
-      "download_count": 92,
+      "download_count": 93,
       "created_at": "2022-11-04T20:58:19Z",
       "updated_at": "2022-11-04T20:58:20Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-arm64.tar.gz"
@@ -1184,7 +1184,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 71693783,
-      "download_count": 67,
+      "download_count": 71,
       "created_at": "2022-11-04T20:57:10Z",
       "updated_at": "2022-11-04T20:57:13Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-armv6"
@@ -1218,7 +1218,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 74777313,
-      "download_count": 65,
+      "download_count": 70,
       "created_at": "2022-11-04T20:57:16Z",
       "updated_at": "2022-11-04T20:57:18Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-ppc64le"
@@ -1252,7 +1252,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 53,
+      "download_count": 58,
       "created_at": "2022-11-04T20:56:09Z",
       "updated_at": "2022-11-04T20:56:09Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-ppc64le.sha256"
@@ -1286,7 +1286,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 79104833,
-      "download_count": 81,
+      "download_count": 84,
       "created_at": "2022-11-04T20:55:28Z",
       "updated_at": "2022-11-04T20:55:30Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-s390x"
@@ -1320,7 +1320,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 75,
+      "download_count": 82,
       "created_at": "2022-11-04T20:55:41Z",
       "updated_at": "2022-11-04T20:55:41Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-linux-s390x.sha256"
@@ -1354,7 +1354,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 287784960,
-      "download_count": 2190,
+      "download_count": 2380,
       "created_at": "2022-11-04T20:58:24Z",
       "updated_at": "2022-11-04T20:58:33Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-v1.28.0-amd64.iso"
@@ -1388,7 +1388,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 2759,
+      "download_count": 2960,
       "created_at": "2022-11-04T20:55:03Z",
       "updated_at": "2022-11-04T20:55:03Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-v1.28.0-amd64.iso.sha256"
@@ -1422,7 +1422,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 336750592,
-      "download_count": 107,
+      "download_count": 115,
       "created_at": "2022-11-04T20:55:11Z",
       "updated_at": "2022-11-04T20:55:19Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-v1.28.0-arm64.iso"
@@ -1456,7 +1456,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 89,
+      "download_count": 99,
       "created_at": "2022-11-04T20:56:53Z",
       "updated_at": "2022-11-04T20:56:53Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-v1.28.0-arm64.iso.sha256"
@@ -1490,7 +1490,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 76710912,
-      "download_count": 20844,
+      "download_count": 22888,
       "created_at": "2022-11-04T20:55:22Z",
       "updated_at": "2022-11-04T20:55:25Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-windows-amd64.exe"
@@ -1524,7 +1524,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65,
-      "download_count": 166,
+      "download_count": 179,
       "created_at": "2022-11-04T20:56:39Z",
       "updated_at": "2022-11-04T20:56:39Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-windows-amd64.exe.sha256"
@@ -1558,7 +1558,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 33185778,
-      "download_count": 175,
+      "download_count": 187,
       "created_at": "2022-11-04T20:56:31Z",
       "updated_at": "2022-11-04T20:56:32Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube-windows-amd64.tar.gz"
@@ -1592,7 +1592,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 27454510,
-      "download_count": 890,
+      "download_count": 983,
       "created_at": "2022-11-04T20:54:53Z",
       "updated_at": "2022-11-04T20:54:54Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube_1.28.0-0_amd64.deb"
@@ -1626,7 +1626,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 25098384,
-      "download_count": 90,
+      "download_count": 93,
       "created_at": "2022-11-04T20:56:49Z",
       "updated_at": "2022-11-04T20:56:50Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube_1.28.0-0_arm64.deb"
@@ -1660,7 +1660,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 24902776,
-      "download_count": 70,
+      "download_count": 72,
       "created_at": "2022-11-04T20:55:53Z",
       "updated_at": "2022-11-04T20:55:54Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube_1.28.0-0_armhf.deb"
@@ -1694,7 +1694,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 24746606,
-      "download_count": 71,
+      "download_count": 75,
       "created_at": "2022-11-04T20:57:44Z",
       "updated_at": "2022-11-04T20:57:45Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube_1.28.0-0_ppc64el.deb"
@@ -1728,7 +1728,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 26299198,
-      "download_count": 68,
+      "download_count": 71,
       "created_at": "2022-11-04T20:57:56Z",
       "updated_at": "2022-11-04T20:57:57Z",
       "browser_download_url": "https://github.com/kubernetes/minikube/releases/download/v1.28.0/minikube_1.28.0-0_s390x.deb"
