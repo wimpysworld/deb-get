@@ -368,7 +368,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 235602,
-      "download_count": 2,
+      "download_count": 4,
       "created_at": "2022-12-12T12:17:27Z",
       "updated_at": "2022-12-12T12:17:27Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs-2.34.1-1.fc33.aarch64.rpm"
@@ -674,7 +674,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 230996,
-      "download_count": 33,
+      "download_count": 34,
       "created_at": "2022-12-12T12:17:31Z",
       "updated_at": "2022-12-12T12:17:31Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs-2.34.1-1.fc37.x86_64.rpm"
@@ -708,7 +708,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 381087,
-      "download_count": 42,
+      "download_count": 45,
       "created_at": "2022-12-12T12:17:24Z",
       "updated_at": "2022-12-12T12:17:24Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs-2.34.1.tar.gz"
@@ -878,7 +878,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 257628,
-      "download_count": 479,
+      "download_count": 490,
       "created_at": "2022-12-12T12:17:31Z",
       "updated_at": "2022-12-12T12:17:31Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.debian-bullseye_amd64.deb"
@@ -1014,7 +1014,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 279252,
-      "download_count": 25,
+      "download_count": 26,
       "created_at": "2022-12-12T12:17:32Z",
       "updated_at": "2022-12-12T12:17:33Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.debian-bullseye_i386.deb"
@@ -1048,7 +1048,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 258492,
-      "download_count": 128,
+      "download_count": 130,
       "created_at": "2022-12-21T20:08:51Z",
       "updated_at": "2022-12-21T20:09:22Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.debian-buster_amd64.deb"
@@ -1150,7 +1150,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 285784,
-      "download_count": 25,
+      "download_count": 26,
       "created_at": "2022-12-21T20:10:44Z",
       "updated_at": "2022-12-21T20:11:31Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.debian-buster_i386.deb"
@@ -1184,7 +1184,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 257834,
-      "download_count": 68,
+      "download_count": 69,
       "created_at": "2022-12-12T12:17:33Z",
       "updated_at": "2022-12-12T12:17:33Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.debian-stretch_amd64.deb"
@@ -1320,7 +1320,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 284392,
-      "download_count": 25,
+      "download_count": 26,
       "created_at": "2022-12-12T12:17:34Z",
       "updated_at": "2022-12-12T12:17:34Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.debian-stretch_i386.deb"
@@ -1354,7 +1354,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 268604,
-      "download_count": 706,
+      "download_count": 719,
       "created_at": "2022-12-12T12:17:34Z",
       "updated_at": "2022-12-12T12:17:35Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-bionic_amd64.deb"
@@ -1490,7 +1490,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 255988,
-      "download_count": 720,
+      "download_count": 739,
       "created_at": "2022-12-12T12:17:36Z",
       "updated_at": "2022-12-12T12:17:36Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-focal_amd64.deb"
@@ -1592,7 +1592,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 242040,
-      "download_count": 6418,
+      "download_count": 6453,
       "created_at": "2022-12-12T12:17:37Z",
       "updated_at": "2022-12-12T12:17:37Z",
       "browser_download_url": "https://github.com/trapexit/mergerfs/releases/download/2.34.1/mergerfs_2.34.1.ubuntu-jammy_amd64.deb"
