@@ -96,7 +96,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 310,
-      "download_count": 2,
+      "download_count": 3,
       "created_at": "2022-01-28T23:43:07Z",
       "updated_at": "2022-01-28T23:43:07Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/checksums.txt.sig"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2558312,
-      "download_count": 41,
+      "download_count": 42,
       "created_at": "2022-01-28T23:43:08Z",
       "updated_at": "2022-01-28T23:43:18Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_Darwin_x86_64.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2266711,
-      "download_count": 2,
+      "download_count": 3,
       "created_at": "2022-01-28T23:43:07Z",
       "updated_at": "2022-01-28T23:43:17Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_freebsd_armv6.tar.gz"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2263474,
-      "download_count": 2,
+      "download_count": 3,
       "created_at": "2022-01-28T23:43:19Z",
       "updated_at": "2022-01-28T23:43:29Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_freebsd_armv7.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2287844,
-      "download_count": 1,
+      "download_count": 2,
       "created_at": "2022-01-28T23:43:08Z",
       "updated_at": "2022-01-28T23:43:18Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_freebsd_i386.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2489029,
-      "download_count": 3,
+      "download_count": 4,
       "created_at": "2022-01-28T23:43:07Z",
       "updated_at": "2022-01-28T23:43:17Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_freebsd_x86_64.tar.gz"
@@ -1354,7 +1354,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 2462677,
-      "download_count": 240,
+      "download_count": 241,
       "created_at": "2022-01-28T23:43:07Z",
       "updated_at": "2022-01-28T23:43:18Z",
       "browser_download_url": "https://github.com/muesli/obs-cli/releases/download/v0.5.0/obs-cli_0.5.0_Windows_x86_64.zip"

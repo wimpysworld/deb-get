@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 99825057,
-      "download_count": 96,
+      "download_count": 103,
       "created_at": "2023-01-16T17:42:24Z",
       "updated_at": "2023-01-16T17:42:27Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.AppImage"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 70651778,
-      "download_count": 588,
+      "download_count": 663,
       "created_at": "2023-01-16T17:43:52Z",
       "updated_at": "2023-01-16T17:43:54Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.deb"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 152615608,
-      "download_count": 19773,
+      "download_count": 22090,
       "created_at": "2023-01-16T17:39:23Z",
       "updated_at": "2023-01-16T17:39:27Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.exe"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 158617,
-      "download_count": 13048,
+      "download_count": 14421,
       "created_at": "2023-01-16T17:39:23Z",
       "updated_at": "2023-01-16T17:39:23Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.exe.blockmap"
@@ -198,7 +198,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 70406594,
-      "download_count": 46,
+      "download_count": 50,
       "created_at": "2023-01-16T17:46:06Z",
       "updated_at": "2023-01-16T17:46:08Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0.rpm"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 68826024,
-      "download_count": 620,
+      "download_count": 699,
       "created_at": "2023-01-16T17:42:25Z",
       "updated_at": "2023-01-16T17:42:27Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_4.6.0_portable.exe"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 91905522,
-      "download_count": 120,
+      "download_count": 131,
       "created_at": "2023-01-16T17:41:05Z",
       "updated_at": "2023-01-16T17:41:09Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_arm64_4.6.0.dmg"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 88426951,
-      "download_count": 343,
+      "download_count": 381,
       "created_at": "2023-01-16T17:41:25Z",
       "updated_at": "2023-01-16T17:41:28Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_arm64_4.6.0.zip"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97743036,
-      "download_count": 715,
+      "download_count": 810,
       "created_at": "2023-01-16T17:46:27Z",
       "updated_at": "2023-01-16T17:46:31Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_x64_4.6.0.dmg"
@@ -470,7 +470,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 94295818,
-      "download_count": 396,
+      "download_count": 438,
       "created_at": "2023-01-16T17:46:48Z",
       "updated_at": "2023-01-16T17:46:51Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/Blockbench_x64_4.6.0.zip"
@@ -538,7 +538,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 371,
-      "download_count": 131,
+      "download_count": 154,
       "created_at": "2023-01-16T17:46:09Z",
       "updated_at": "2023-01-16T17:46:09Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/latest-linux.yml"
@@ -572,7 +572,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 812,
-      "download_count": 1738,
+      "download_count": 2032,
       "created_at": "2023-01-16T17:46:52Z",
       "updated_at": "2023-01-16T17:46:52Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/latest-mac.yml"
@@ -606,7 +606,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 337,
-      "download_count": 23910,
+      "download_count": 27252,
       "created_at": "2023-01-16T17:39:28Z",
       "updated_at": "2023-01-16T17:39:28Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.0/latest.yml"

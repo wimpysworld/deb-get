@@ -62,7 +62,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 364,
-      "download_count": 74931,
+      "download_count": 74960,
       "created_at": "2020-01-21T20:12:29Z",
       "updated_at": "2020-01-21T20:12:29Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/latest-linux.yml"
@@ -96,7 +96,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 509,
-      "download_count": 1593755,
+      "download_count": 1594453,
       "created_at": "2020-01-21T20:12:30Z",
       "updated_at": "2020-01-21T20:12:30Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/latest-mac.yml"
@@ -130,7 +130,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 342,
-      "download_count": 1620981,
+      "download_count": 1621736,
       "created_at": "2020-01-21T20:12:31Z",
       "updated_at": "2020-01-21T20:12:31Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/latest.yml"
@@ -198,7 +198,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 64220867,
-      "download_count": 8239,
+      "download_count": 8240,
       "created_at": "2020-01-21T20:08:43Z",
       "updated_at": "2020-01-21T20:09:40Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/Notable-1.8.4-mac.zip"
@@ -266,7 +266,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 72406357,
-      "download_count": 12381,
+      "download_count": 12383,
       "created_at": "2020-01-21T20:10:05Z",
       "updated_at": "2020-01-21T20:11:04Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/Notable-1.8.4.AppImage"
@@ -300,7 +300,7 @@
       "content_type": "application/x-apple-diskimage",
       "state": "uploaded",
       "size": 66335088,
-      "download_count": 73694,
+      "download_count": 73715,
       "created_at": "2020-01-21T20:11:04Z",
       "updated_at": "2020-01-21T20:12:25Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/Notable-1.8.4.dmg"
@@ -368,7 +368,7 @@
       "content_type": "application/json; charset=utf-8",
       "state": "uploaded",
       "size": 50739148,
-      "download_count": 12594,
+      "download_count": 12596,
       "created_at": "2020-01-21T20:12:32Z",
       "updated_at": "2020-01-21T20:12:52Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/notable-1.8.4.pacman"
@@ -402,7 +402,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 50785696,
-      "download_count": 4292,
+      "download_count": 4294,
       "created_at": "2020-01-21T20:12:52Z",
       "updated_at": "2020-01-21T20:13:40Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/notable-1.8.4.x86_64.rpm"
@@ -436,7 +436,7 @@
       "content_type": "application/x-msdos-program",
       "state": "uploaded",
       "size": 90623743,
-      "download_count": 147501,
+      "download_count": 147543,
       "created_at": "2020-01-21T20:07:06Z",
       "updated_at": "2020-01-21T20:07:46Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/Notable.Setup.1.8.4.exe"
@@ -504,7 +504,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 50730302,
-      "download_count": 40104,
+      "download_count": 40113,
       "created_at": "2020-01-21T20:13:41Z",
       "updated_at": "2020-01-21T20:13:58Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/notable_1.8.4_amd64.deb"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 60645376,
-      "download_count": 3897,
+      "download_count": 3898,
       "created_at": "2020-04-09T15:07:07Z",
       "updated_at": "2020-04-09T15:07:23Z",
       "browser_download_url": "https://github.com/notable/notable/releases/download/v1.8.4/notable_1.8.4_amd64.snap"
@@ -549,8 +549,8 @@
   "body": "##### Improvements\r\n- Bundling OS-specific dependencies only when needed\r\n  - This removes a file from Windows bundles that tripped Windows Defender into finding a false positive\r\n- Importing: ensuring arbitrarily large notes collections containing arbitrarily many files with the same name are still imported correctly, assuming the underlying importing library can parse the collection in the first place\r\n\r\n##### Bug Fixes\r\n- Editor: disabled automatic clipboard copying when selecting in favor of being able to create multiple cursors while dragging with the middle click (Linux)\r\n- Ensuring both creation date and modification date are updated when duplicating a note\r\n- Ensuring paste actions when dragging with the middle click are only prevented inside the editor (Linux)\r\n- Fixed misalignment in loose task lists\r\n- Fixed some regexes that were wrongly expecting to match at least one character in certain places\r\n- Multi-cursors: using “Ctrl+MouseEvent” rather than “Alt+MouseEvent” as the latter switches the focus to the menu bar (Windows)",
   "reactions": {
     "url": "https://api.github.com/repos/notable/notable/releases/23018127/reactions",
-    "total_count": 6,
-    "+1": 6,
+    "total_count": 7,
+    "+1": 7,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,
