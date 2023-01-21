@@ -62,7 +62,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 1625,
-      "download_count": 1117,
+      "download_count": 1125,
       "created_at": "2022-09-26T14:45:10Z",
       "updated_at": "2022-09-26T14:45:10Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/checksums.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2494100,
-      "download_count": 699,
+      "download_count": 701,
       "created_at": "2022-09-26T14:45:06Z",
       "updated_at": "2022-09-26T14:45:07Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_386.tar.gz"
@@ -130,7 +130,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2467862,
-      "download_count": 30362,
+      "download_count": 30572,
       "created_at": "2022-09-26T14:45:09Z",
       "updated_at": "2022-09-26T14:45:10Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_aarch64.deb"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2640530,
-      "download_count": 5312,
+      "download_count": 5363,
       "created_at": "2022-09-26T14:45:07Z",
       "updated_at": "2022-09-26T14:45:08Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_amd64.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2397088,
-      "download_count": 4707,
+      "download_count": 4734,
       "created_at": "2022-09-26T14:45:08Z",
       "updated_at": "2022-09-26T14:45:09Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_arm64.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2552626,
-      "download_count": 1448,
+      "download_count": 1456,
       "created_at": "2022-09-26T14:45:09Z",
       "updated_at": "2022-09-26T14:45:09Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_armv5.deb"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2469683,
-      "download_count": 107,
+      "download_count": 108,
       "created_at": "2022-09-26T14:45:06Z",
       "updated_at": "2022-09-26T14:45:07Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_armv5.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2521212,
-      "download_count": 13932,
+      "download_count": 14021,
       "created_at": "2022-09-26T14:45:09Z",
       "updated_at": "2022-09-26T14:45:09Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_armv7.deb"
@@ -334,7 +334,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2457338,
-      "download_count": 408,
+      "download_count": 411,
       "created_at": "2022-09-26T14:45:07Z",
       "updated_at": "2022-09-26T14:45:08Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_armv7.tar.gz"
@@ -368,7 +368,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2569416,
-      "download_count": 2037,
+      "download_count": 2064,
       "created_at": "2022-09-26T14:45:08Z",
       "updated_at": "2022-09-26T14:45:09Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_i386.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 2732834,
-      "download_count": 33915,
+      "download_count": 34218,
       "created_at": "2022-09-26T14:45:10Z",
       "updated_at": "2022-09-26T14:45:11Z",
       "browser_download_url": "https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_x86_64.deb"

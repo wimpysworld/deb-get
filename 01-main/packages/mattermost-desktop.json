@@ -165,7 +165,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 418,
-        "download_count": 7,
+        "download_count": 8,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:02Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/latest-linux-arm64.yml"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 379,
-        "download_count": 35,
+        "download_count": 36,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:02Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/latest.yml"
@@ -369,7 +369,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 124881323,
-        "download_count": 60,
+        "download_count": 62,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:13Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-linux-arm64.AppImage"
@@ -471,7 +471,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 124002315,
-        "download_count": 45,
+        "download_count": 47,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:13Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-linux-x86_64.AppImage"
@@ -505,7 +505,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 78190020,
-        "download_count": 34,
+        "download_count": 35,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:10Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-linux-x86_64.rpm"
@@ -539,7 +539,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 117129421,
-        "download_count": 19,
+        "download_count": 20,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:13Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-mac-arm64.dmg"
@@ -743,7 +743,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 188509327,
-        "download_count": 5117,
+        "download_count": 5220,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:19Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-mac-universal.dmg"
@@ -845,7 +845,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 121371460,
-        "download_count": 59,
+        "download_count": 61,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:13Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-mac-x64.dmg"
@@ -1015,7 +1015,7 @@
         "content_type": "application/x-msi",
         "state": "uploaded",
         "size": 100102144,
-        "download_count": 59,
+        "download_count": 60,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:12Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-x64.msi"
@@ -1049,7 +1049,7 @@
         "content_type": "application/x-msi",
         "state": "uploaded",
         "size": 95727616,
-        "download_count": 26,
+        "download_count": 27,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:12Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop-5.2.2-x86.msi"
@@ -1117,7 +1117,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 78261390,
-        "download_count": 137,
+        "download_count": 143,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:14Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop_5.2.2-1_amd64.deb"
@@ -1151,7 +1151,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 74650244,
-        "download_count": 14,
+        "download_count": 15,
         "created_at": "2022-12-06T14:59:02Z",
         "updated_at": "2022-12-06T14:59:10Z",
         "browser_download_url": "https://github.com/mattermost/desktop/releases/download/v5.2.2/mattermost-desktop_5.2.2-1_arm64.deb"

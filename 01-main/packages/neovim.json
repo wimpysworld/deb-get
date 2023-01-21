@@ -62,7 +62,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 10466072,
-      "download_count": 11245,
+      "download_count": 11675,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:36Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 83,
-      "download_count": 673,
+      "download_count": 697,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:36Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb.sha256sum"
@@ -130,7 +130,7 @@
       "content_type": "application/x-gtar",
       "state": "uploaded",
       "size": 10463012,
-      "download_count": 8834,
+      "download_count": 9197,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:36Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 86,
-      "download_count": 717,
+      "download_count": 738,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:36Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz.sha256sum"
@@ -198,7 +198,7 @@
       "content_type": "application/x-gtar",
       "state": "uploaded",
       "size": 12097460,
-      "download_count": 2112,
+      "download_count": 2214,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:36Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 84,
-      "download_count": 483,
+      "download_count": 500,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:36Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz.sha256sum"
@@ -266,7 +266,7 @@
       "content_type": "application/x-msi",
       "state": "uploaded",
       "size": 44007669,
-      "download_count": 4349,
+      "download_count": 4578,
       "created_at": "2022-12-29T16:29:37Z",
       "updated_at": "2022-12-29T16:29:38Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-win64.msi"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 81,
-      "download_count": 440,
+      "download_count": 461,
       "created_at": "2022-12-29T16:29:37Z",
       "updated_at": "2022-12-29T16:29:37Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-win64.msi.sha256sum"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 44338969,
-      "download_count": 5265,
+      "download_count": 5515,
       "created_at": "2022-12-29T16:29:37Z",
       "updated_at": "2022-12-29T16:29:38Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-win64.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 81,
-      "download_count": 495,
+      "download_count": 512,
       "created_at": "2022-12-29T16:29:37Z",
       "updated_at": "2022-12-29T16:29:37Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim-win64.zip.sha256sum"
@@ -402,7 +402,7 @@
       "content_type": "application/vnd.appimage",
       "state": "uploaded",
       "size": 15377600,
-      "download_count": 11914,
+      "download_count": 12487,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:37Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim.appimage"
@@ -436,7 +436,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 80,
-      "download_count": 68,
+      "download_count": 69,
       "created_at": "2022-12-29T16:29:36Z",
       "updated_at": "2022-12-29T16:29:37Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim.appimage.sha256sum"
@@ -470,7 +470,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 52760,
-      "download_count": 41,
+      "download_count": 42,
       "created_at": "2022-12-29T16:29:37Z",
       "updated_at": "2022-12-29T16:29:37Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim.appimage.zsync"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 86,
-      "download_count": 31,
+      "download_count": 33,
       "created_at": "2022-12-29T16:29:37Z",
       "updated_at": "2022-12-29T16:29:37Z",
       "browser_download_url": "https://github.com/neovim/neovim/releases/download/stable/nvim.appimage.zsync.sha256sum"
@@ -515,13 +515,13 @@
   "body": "```\nNVIM v0.8.2\nBuild type: Release\nLuaJIT 2.1.0-beta3\n\n```\n\n## Install\n\n### Windows\n\n#### Zip\n\n1. Download **nvim-win64.zip**\n2. Extract the zip.\n3. Run `nvim-qt.exe`\n\n#### MSI\n\n1. Download **nvim-win64.msi**\n2. Run the MSI\n3. Search and run `nvim-qt.exe` or run `nvim.exe` on your CLI of choice.\n\n### macOS\n\n1. Download **nvim-macos.tar.gz**\n2. Run `xattr -c ./nvim-macos.tar.gz` (to avoid \"unknown developer\" warning)\n3. Extract: `tar xzvf nvim-macos.tar.gz`\n4. Run `./nvim-macos/bin/nvim`\n\n### Linux (x64)\n\n#### Tarball\n\n1. Download **nvim-linux64.tar.gz**\n2. Extract: `tar xzvf nvim-linux64.tar.gz`\n3. Run `./nvim-linux64/bin/nvim`\n\n#### Debian Package\n\n1. Download **nvim-linux64.deb**\n2. Install the package using `sudo apt install ./nvim-linux64.deb`\n3. Run `nvim`\n\n#### AppImage\n1. Download **nvim.appimage**\n2. Run `chmod u+x nvim.appimage && ./nvim.appimage`\n   - If your system does not have FUSE you can [extract the appimage](https://github.com/AppImage/AppImageKit/wiki/FUSE#type-2-appimage):\n     ```\n     ./nvim.appimage --appimage-extract\n     ./squashfs-root/usr/bin/nvim\n     ```\n\n### Other\n\n- Install by [package manager](https://github.com/neovim/neovim/wiki/Installing-Neovim)\n\n## SHA256 Checksums\n\n```\n27aef92fba0d3f51ebb8b98f3689895f9bbe48f11b74920d89280bc58fbe8e28  nvim-linux64.tar.gz\na2d82dd169a11408921db90060c93cafdec43507898fbb36bc9e88e483ee3dfa  nvim-linux64.deb\nbb0d4599cb506fc6e29bf0e9cef3b52e06dcb4bb930b56d6eb88320f1d46a908  nvim.appimage\nd41df431bf2459048aa03b8b887f8a229e369aad909c729219b4113c801d75c0  nvim.appimage.zsync\n12c3f25c2fc46b25b851e62e65eb844722126948cc849add3cb951c3d73329eb  nvim-macos.tar.gz\ne2d53c6fd4a3caefbff47765d63d1640a5a134de46623ed8e3f9bf547791c26f  nvim-win64.zip\n5a7e78e0b4a089aa4f610440862d2c1f4edd5fb5d2b5ce6e74e671d4816c50a7  nvim-win64.msi\n```\n",
   "reactions": {
     "url": "https://api.github.com/repos/neovim/neovim/releases/87534842/reactions",
-    "total_count": 29,
+    "total_count": 31,
     "+1": 9,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,
     "confused": 0,
-    "heart": 20,
+    "heart": 22,
     "rocket": 0,
     "eyes": 0
   }

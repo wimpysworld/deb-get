@@ -62,7 +62,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 90272386,
-      "download_count": 122,
+      "download_count": 123,
       "created_at": "2022-10-24T11:58:48Z",
       "updated_at": "2022-10-24T11:59:23Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/linux-unpacked.zip"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 91717779,
-      "download_count": 295,
+      "download_count": 298,
       "created_at": "2022-10-24T12:01:03Z",
       "updated_at": "2022-10-24T12:01:41Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.AppImage"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 87053867,
-      "download_count": 1937,
+      "download_count": 1947,
       "created_at": "2022-10-24T12:03:12Z",
       "updated_at": "2022-10-24T12:03:47Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi-4.3.1.tar.gz"
@@ -368,7 +368,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 64590034,
-      "download_count": 1182,
+      "download_count": 1195,
       "created_at": "2022-10-24T12:04:50Z",
       "updated_at": "2022-10-24T12:05:17Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi_4.3.1_amd64.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 78819328,
-      "download_count": 183,
+      "download_count": 185,
       "created_at": "2022-10-24T12:05:17Z",
       "updated_at": "2022-10-24T12:05:49Z",
       "browser_download_url": "https://github.com/Mastermindzh/tidal-hifi/releases/download/4.3.1/tidal-hifi_4.3.1_amd64.snap"
@@ -481,13 +481,13 @@
   "body": "fixes #172 \r\n\r\n",
   "reactions": {
     "url": "https://api.github.com/repos/Mastermindzh/tidal-hifi/releases/80785241/reactions",
-    "total_count": 5,
-    "+1": 4,
+    "total_count": 7,
+    "+1": 5,
     "-1": 0,
     "laugh": 1,
     "hooray": 0,
     "confused": 0,
-    "heart": 0,
+    "heart": 1,
     "rocket": 0,
     "eyes": 0
   }
