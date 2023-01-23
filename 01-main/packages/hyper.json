@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 98753811,
-      "download_count": 938,
+      "download_count": 1557,
       "created_at": "2023-01-07T20:51:48Z",
       "updated_at": "2023-01-07T20:51:51Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-arm64.AppImage"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 92046768,
-      "download_count": 4174,
+      "download_count": 7030,
       "created_at": "2023-01-07T21:02:13Z",
       "updated_at": "2023-01-07T21:02:15Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-arm64.dmg"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 95915,
-      "download_count": 339,
+      "download_count": 563,
       "created_at": "2023-01-07T21:02:13Z",
       "updated_at": "2023-01-07T21:02:13Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-arm64.dmg.blockmap"
@@ -164,7 +164,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 88240309,
-      "download_count": 282501,
+      "download_count": 448630,
       "created_at": "2023-01-07T21:02:40Z",
       "updated_at": "2023-01-07T21:02:43Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-arm64.zip"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 92011,
-      "download_count": 354,
+      "download_count": 568,
       "created_at": "2023-01-07T21:02:40Z",
       "updated_at": "2023-01-07T21:02:40Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-arm64.zip.blockmap"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 96065077,
-      "download_count": 3750,
+      "download_count": 6099,
       "created_at": "2023-01-07T20:59:45Z",
       "updated_at": "2023-01-07T20:59:48Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-x64.dmg"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 102425,
-      "download_count": 324,
+      "download_count": 544,
       "created_at": "2023-01-07T20:59:45Z",
       "updated_at": "2023-01-07T20:59:45Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-x64.dmg.blockmap"
@@ -300,7 +300,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 92284587,
-      "download_count": 241918,
+      "download_count": 381191,
       "created_at": "2023-01-07T20:58:28Z",
       "updated_at": "2023-01-07T20:58:31Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-x64.zip"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97309,
-      "download_count": 344,
+      "download_count": 573,
       "created_at": "2023-01-07T20:58:28Z",
       "updated_at": "2023-01-07T20:58:28Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-x64.zip.blockmap"
@@ -368,7 +368,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 63737488,
-      "download_count": 938,
+      "download_count": 1532,
       "created_at": "2023-01-07T20:55:16Z",
       "updated_at": "2023-01-07T20:55:18Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/hyper-3.4.1.aarch64.rpm"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97878022,
-      "download_count": 2295,
+      "download_count": 3782,
       "created_at": "2023-01-07T20:51:38Z",
       "updated_at": "2023-01-07T20:51:42Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1.AppImage"
@@ -436,7 +436,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 67316016,
-      "download_count": 1617,
+      "download_count": 2632,
       "created_at": "2023-01-07T20:55:43Z",
       "updated_at": "2023-01-07T20:55:45Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/hyper-3.4.1.x86_64.rpm"
@@ -470,7 +470,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 73828760,
-      "download_count": 10603,
+      "download_count": 17378,
       "created_at": "2023-01-07T20:59:10Z",
       "updated_at": "2023-01-07T20:59:17Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-Setup-3.4.1.exe"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 77276,
-      "download_count": 320,
+      "download_count": 507,
       "created_at": "2023-01-07T20:59:10Z",
       "updated_at": "2023-01-07T20:59:11Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-Setup-3.4.1.exe.blockmap"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 86450114,
-      "download_count": 5475,
+      "download_count": 7842,
       "created_at": "2023-01-07T20:52:59Z",
       "updated_at": "2023-01-07T20:53:01Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/hyper_3.4.1_amd64.deb"
@@ -572,7 +572,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 83218432,
-      "download_count": 463,
+      "download_count": 711,
       "created_at": "2023-01-07T20:52:20Z",
       "updated_at": "2023-01-07T20:52:22Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/hyper_3.4.1_amd64.snap"
@@ -606,7 +606,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 87179706,
-      "download_count": 1161,
+      "download_count": 1891,
       "created_at": "2023-01-07T20:52:33Z",
       "updated_at": "2023-01-07T20:52:36Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/hyper_3.4.1_arm64.deb"
@@ -640,7 +640,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 373,
-      "download_count": 316,
+      "download_count": 524,
       "created_at": "2023-01-07T20:55:45Z",
       "updated_at": "2023-01-07T20:55:46Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/latest-linux-arm64.yml"
@@ -674,7 +674,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 361,
-      "download_count": 306,
+      "download_count": 501,
       "created_at": "2023-01-07T20:55:45Z",
       "updated_at": "2023-01-07T20:55:46Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/latest-linux.yml"
@@ -708,7 +708,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 805,
-      "download_count": 323,
+      "download_count": 526,
       "created_at": "2023-01-07T21:02:44Z",
       "updated_at": "2023-01-07T21:02:44Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/latest-mac.yml"
@@ -742,7 +742,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 338,
-      "download_count": 345,
+      "download_count": 552,
       "created_at": "2023-01-07T20:59:17Z",
       "updated_at": "2023-01-07T20:59:18Z",
       "browser_download_url": "https://github.com/vercel/hyper/releases/download/v3.4.1/latest.yml"
@@ -753,8 +753,8 @@
   "body": "V3.4.1\r\n\r\nBased on some reports of errors with `node-pty`, reverting it to a stable version.\r\n\r\n|   OS    | Installer |                                                                                                 |                                                                                                  |\r\n| :-----: | :-------: | :---------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: |\r\n|   Mac   |    dmg    | [x64](https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-x64.dmg) (Intel) | [arm64](https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-mac-arm64.dmg) (M1) |\r\n|  Linux  |    deb    |      [x64](https://github.com/vercel/hyper/releases/download/v3.4.1/hyper_3.4.1_amd64.deb)      |     [arm64](https://github.com/vercel/hyper/releases/download/v3.4.1/hyper_3.4.1_arm64.deb)      |\r\n|         |    rpm    |     [x64](https://github.com/vercel/hyper/releases/download/v3.4.1/hyper-3.4.1.x86_64.rpm)      |    [arm64](https://github.com/vercel/hyper/releases/download/v3.4.1/hyper-3.4.1.aarch64.rpm)     |\r\n|         | AppImage  |      [x64](https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1.AppImage)       |   [arm64](https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-3.4.1-arm64.AppImage)   |\r\n|         |   snap    |     [x64](https://github.com/vercel/hyper/releases/download/v3.4.1/hyper_3.4.1_amd64.snap)      |                                                                                                  |\r\n| Windows |    exe    |      [x64](https://github.com/vercel/hyper/releases/download/v3.4.1/Hyper-Setup-3.4.1.exe)      |                                                                                                  |\r\n\r\n\r\n## What's Changed\r\n* Use stable node-pty in https://github.com/vercel/hyper/pull/6964\r\n\r\n\r\n**Full Changelog**: https://github.com/vercel/hyper/compare/v3.4.0...v3.4.1",
   "reactions": {
     "url": "https://api.github.com/repos/vercel/hyper/releases/88218643/reactions",
-    "total_count": 14,
-    "+1": 14,
+    "total_count": 15,
+    "+1": 15,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,

@@ -5,6 +5,9 @@ on:
     types: [opened, synchronize]
     paths:
       - "01-main/packages/*"
+      - "!01-main/packages/*.html"
+      - "!01-main/packages/*.json"
+      - "!01-main/packages/timestamp"
   workflow_dispatch:
 
 jobs:
