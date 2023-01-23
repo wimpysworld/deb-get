@@ -4,10 +4,7 @@ case ${UPSTREAM_ID} in #
     ubuntu) IS_UBUNTU="x";;
     *) IS_UBUNTU="";;
 esac
-if [ ! -z ${TRY_LTS} ]; then
-UPSTREAM_RELEASE=${UPSTREAM_RELEASE/22.10/${TRY_LTS}}
-fi
-CODENAMES_SUPPORTED="stretch buster bullseye bionic focal jammy ${TRY_LTS/22.04/kinetic}"
+CODENAMES_SUPPORTED="stretch buster bullseye bionic focal jammy"
 ASC_KEY_URL="https://download.opensuse.org/repositories/home:obs_mhogomchungu/${IS_UBUNTU}${UPSTREAM_ID^}_${UPSTREAM_RELEASE}/Release.key"
 APT_REPO_URL="http://download.opensuse.org/repositories/home:/obs_mhogomchungu/${IS_UBUNTU}${UPSTREAM_ID^}_${UPSTREAM_RELEASE}/ /"
 PRETTY_NAME="Media Downloader"
