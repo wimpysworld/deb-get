@@ -63,7 +63,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 19778840,
-        "download_count": 12302,
+        "download_count": 12332,
         "created_at": "2022-09-08T20:56:48Z",
         "updated_at": "2022-09-08T20:56:50Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/imager_1.7.3.exe"
@@ -97,7 +97,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 18671159,
-        "download_count": 2713,
+        "download_count": 2722,
         "created_at": "2022-09-08T20:58:13Z",
         "updated_at": "2022-09-08T20:58:15Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/Raspberry.Pi.Imager.1.7.3.dmg"
@@ -131,7 +131,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 2731368,
-        "download_count": 228,
+        "download_count": 230,
         "created_at": "2022-09-08T20:57:37Z",
         "updated_at": "2022-09-08T20:57:38Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/rpi-imager-dbgsym_1.7.3_amd64.ddeb"
@@ -165,7 +165,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 369032,
-        "download_count": 5891,
+        "download_count": 5904,
         "created_at": "2022-09-08T20:57:38Z",
         "updated_at": "2022-09-08T20:57:39Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.3/rpi-imager_1.7.3_amd64.deb"
@@ -251,7 +251,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 19768440,
-        "download_count": 21712,
+        "download_count": 21714,
         "created_at": "2022-03-29T12:20:35Z",
         "updated_at": "2022-03-29T12:20:38Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.2/imager-1.7.2.exe"
@@ -285,7 +285,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22519854,
-        "download_count": 1042,
+        "download_count": 1043,
         "created_at": "2022-03-29T12:21:01Z",
         "updated_at": "2022-03-29T12:21:03Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.2/imager-embedded-1.7.2.zip"
@@ -473,7 +473,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 19764384,
-        "download_count": 10110,
+        "download_count": 10112,
         "created_at": "2022-02-03T18:40:30Z",
         "updated_at": "2022-02-03T18:40:32Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.7.1/imager-1.7.1.exe"
@@ -849,7 +849,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 19772672,
-        "download_count": 15888,
+        "download_count": 15892,
         "created_at": "2021-05-26T15:49:31Z",
         "updated_at": "2021-05-26T15:49:33Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.6.2/imager-1.6.2.exe"
@@ -951,7 +951,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 420468,
-        "download_count": 3704,
+        "download_count": 3706,
         "created_at": "2021-05-26T15:49:34Z",
         "updated_at": "2021-05-26T15:49:34Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.6.2/rpi-imager_1.6.2_amd64.deb"
@@ -1025,7 +1025,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 19770592,
-        "download_count": 3794,
+        "download_count": 3797,
         "created_at": "2021-03-29T18:00:56Z",
         "updated_at": "2021-03-29T18:00:58Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/1.6.1/imager-1.6.1.exe"
@@ -1161,7 +1161,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 412812,
-        "download_count": 434,
+        "download_count": 436,
         "created_at": "2021-03-29T18:01:15Z",
         "updated_at": "2021-03-29T18:01:16Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/1.6.1/rpi-imager_1.6.1_amd64.deb"
@@ -1269,7 +1269,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 19762296,
-        "download_count": 3709,
+        "download_count": 3711,
         "created_at": "2021-03-15T15:57:03Z",
         "updated_at": "2021-03-15T15:57:05Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.6/imager-1.6.exe"
@@ -1405,7 +1405,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 407704,
-        "download_count": 350,
+        "download_count": 351,
         "created_at": "2021-03-15T15:57:18Z",
         "updated_at": "2021-03-15T15:57:19Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.6/rpi-imager_1.6_amd64.deb"
@@ -1689,7 +1689,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 18180132,
-        "download_count": 1055,
+        "download_count": 1056,
         "created_at": "2020-07-17T14:21:14Z",
         "updated_at": "2020-07-17T14:21:17Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.4/imager.dmg"
@@ -1757,7 +1757,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 358796,
-        "download_count": 2610,
+        "download_count": 2611,
         "created_at": "2020-07-17T14:21:19Z",
         "updated_at": "2020-07-17T14:21:20Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.4/rpi-imager_1.4_amd64.deb"
@@ -2007,7 +2007,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 19828536,
-        "download_count": 5881,
+        "download_count": 5883,
         "created_at": "2020-03-11T09:34:30Z",
         "updated_at": "2020-03-11T09:34:33Z",
         "browser_download_url": "https://github.com/raspberrypi/rpi-imager/releases/download/v1.2/imager.exe"

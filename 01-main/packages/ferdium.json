@@ -63,7 +63,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 90070458,
-        "download_count": 15,
+        "download_count": 20,
         "created_at": "2023-01-21T01:07:49Z",
         "updated_at": "2023-01-21T01:07:52Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-linux-6.2.4-nightly.11-amd64.deb"
@@ -199,7 +199,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 90027036,
-        "download_count": 4,
+        "download_count": 6,
         "created_at": "2023-01-21T01:09:59Z",
         "updated_at": "2023-01-21T01:10:01Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-linux-6.2.4-nightly.11.rpm"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 134478523,
-        "download_count": 10,
+        "download_count": 13,
         "created_at": "2023-01-21T00:58:21Z",
         "updated_at": "2023-01-21T00:58:25Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-linux-Portable-6.2.4-nightly.11-x86_64.AppImage"
@@ -301,7 +301,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 124939088,
-        "download_count": 16,
+        "download_count": 18,
         "created_at": "2023-01-21T01:13:20Z",
         "updated_at": "2023-01-21T01:13:25Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-mac-6.2.4-nightly.11-arm64.dmg"
@@ -369,7 +369,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 130077594,
-        "download_count": 5,
+        "download_count": 13,
         "created_at": "2023-01-21T01:07:33Z",
         "updated_at": "2023-01-21T01:07:37Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-mac-6.2.4-nightly.11-x64.dmg"
@@ -437,7 +437,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 119317091,
-        "download_count": 102,
+        "download_count": 119,
         "created_at": "2023-01-21T01:13:42Z",
         "updated_at": "2023-01-21T01:13:45Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-mac-bundle-6.2.4-nightly.11-arm64.zip"
@@ -505,7 +505,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 124437238,
-        "download_count": 83,
+        "download_count": 106,
         "created_at": "2023-01-21T01:06:50Z",
         "updated_at": "2023-01-21T01:06:55Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-mac-bundle-6.2.4-nightly.11-x64.zip"
@@ -573,7 +573,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91313104,
-        "download_count": 5,
+        "download_count": 6,
         "created_at": "2023-01-21T01:09:46Z",
         "updated_at": "2023-01-21T01:09:48Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-win-AutoSetup-6.2.4-nightly.11-arm64.exe"
@@ -641,7 +641,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81359888,
-        "download_count": 7,
+        "download_count": 8,
         "created_at": "2023-01-21T01:09:41Z",
         "updated_at": "2023-01-21T01:09:43Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-win-AutoSetup-6.2.4-nightly.11-ia32.exe"
@@ -709,7 +709,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84307232,
-        "download_count": 28,
+        "download_count": 37,
         "created_at": "2023-01-21T01:09:36Z",
         "updated_at": "2023-01-21T01:09:39Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-win-AutoSetup-6.2.4-nightly.11-x64.exe"
@@ -777,7 +777,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 255515232,
-        "download_count": 603,
+        "download_count": 782,
         "created_at": "2023-01-21T01:09:31Z",
         "updated_at": "2023-01-21T01:09:36Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-win-AutoSetup-6.2.4-nightly.11.exe"
@@ -811,7 +811,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 263765,
-        "download_count": 542,
+        "download_count": 694,
         "created_at": "2023-01-21T01:09:31Z",
         "updated_at": "2023-01-21T01:09:31Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-win-AutoSetup-6.2.4-nightly.11.exe.blockmap"
@@ -913,7 +913,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84114120,
-        "download_count": 6,
+        "download_count": 9,
         "created_at": "2023-01-21T01:09:26Z",
         "updated_at": "2023-01-21T01:09:28Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/Ferdium-win-Portable-6.2.4-nightly.11-x64.exe"
@@ -981,7 +981,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 443,
-        "download_count": 116,
+        "download_count": 165,
         "created_at": "2023-01-21T01:12:31Z",
         "updated_at": "2023-01-21T01:12:31Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/latest-linux.yml"
@@ -1015,7 +1015,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 906,
-        "download_count": 2180,
+        "download_count": 2925,
         "created_at": "2023-01-21T01:13:46Z",
         "updated_at": "2023-01-21T01:13:46Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/latest-mac.yml"
@@ -1049,7 +1049,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 923,
-        "download_count": 4177,
+        "download_count": 5384,
         "created_at": "2023-01-21T01:09:49Z",
         "updated_at": "2023-01-21T01:09:49Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.11/latest.yml"
@@ -1646,7 +1646,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91318736,
-        "download_count": 6,
+        "download_count": 7,
         "created_at": "2023-01-20T01:08:11Z",
         "updated_at": "2023-01-20T01:08:13Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.10/Ferdium-win-AutoSetup-6.2.4-nightly.10-arm64.exe"
@@ -1714,7 +1714,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81359600,
-        "download_count": 12,
+        "download_count": 13,
         "created_at": "2023-01-20T01:08:05Z",
         "updated_at": "2023-01-20T01:08:08Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.10/Ferdium-win-AutoSetup-6.2.4-nightly.10-ia32.exe"
@@ -1782,7 +1782,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84305200,
-        "download_count": 26,
+        "download_count": 27,
         "created_at": "2023-01-20T01:08:00Z",
         "updated_at": "2023-01-20T01:08:03Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.10/Ferdium-win-AutoSetup-6.2.4-nightly.10-x64.exe"
@@ -1884,7 +1884,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 262351,
-        "download_count": 594,
+        "download_count": 627,
         "created_at": "2023-01-20T01:07:55Z",
         "updated_at": "2023-01-20T01:07:55Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.10/Ferdium-win-AutoSetup-6.2.4-nightly.10.exe.blockmap"
@@ -2719,7 +2719,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91242424,
-        "download_count": 7,
+        "download_count": 8,
         "created_at": "2023-01-19T01:10:15Z",
         "updated_at": "2023-01-19T01:10:17Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.9/Ferdium-win-AutoSetup-6.2.4-nightly.9-arm64.exe"
@@ -2787,7 +2787,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81290792,
-        "download_count": 9,
+        "download_count": 10,
         "created_at": "2023-01-19T01:10:10Z",
         "updated_at": "2023-01-19T01:10:13Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.9/Ferdium-win-AutoSetup-6.2.4-nightly.9-ia32.exe"
@@ -2855,7 +2855,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84243008,
-        "download_count": 15,
+        "download_count": 16,
         "created_at": "2023-01-19T01:10:05Z",
         "updated_at": "2023-01-19T01:10:09Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.9/Ferdium-win-AutoSetup-6.2.4-nightly.9-x64.exe"
@@ -2957,7 +2957,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 264634,
-        "download_count": 687,
+        "download_count": 695,
         "created_at": "2023-01-19T01:10:00Z",
         "updated_at": "2023-01-19T01:10:00Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.9/Ferdium-win-AutoSetup-6.2.4-nightly.9.exe.blockmap"
@@ -3792,7 +3792,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91240448,
-        "download_count": 9,
+        "download_count": 10,
         "created_at": "2023-01-18T01:12:59Z",
         "updated_at": "2023-01-18T01:13:04Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.8/Ferdium-win-AutoSetup-6.2.4-nightly.8-arm64.exe"
@@ -3860,7 +3860,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81293760,
-        "download_count": 13,
+        "download_count": 14,
         "created_at": "2023-01-18T01:12:53Z",
         "updated_at": "2023-01-18T01:12:56Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.8/Ferdium-win-AutoSetup-6.2.4-nightly.8-ia32.exe"
@@ -3928,7 +3928,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84231904,
-        "download_count": 21,
+        "download_count": 22,
         "created_at": "2023-01-18T01:12:47Z",
         "updated_at": "2023-01-18T01:12:50Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.8/Ferdium-win-AutoSetup-6.2.4-nightly.8-x64.exe"
@@ -4030,7 +4030,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 264326,
-        "download_count": 719,
+        "download_count": 724,
         "created_at": "2023-01-18T01:12:41Z",
         "updated_at": "2023-01-18T01:12:41Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.8/Ferdium-win-AutoSetup-6.2.4-nightly.8.exe.blockmap"
@@ -4865,7 +4865,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91243368,
-        "download_count": 9,
+        "download_count": 10,
         "created_at": "2023-01-17T01:05:28Z",
         "updated_at": "2023-01-17T01:05:32Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.7/Ferdium-win-AutoSetup-6.2.4-nightly.7-arm64.exe"
@@ -4933,7 +4933,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81285400,
-        "download_count": 10,
+        "download_count": 11,
         "created_at": "2023-01-17T01:05:23Z",
         "updated_at": "2023-01-17T01:05:30Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.7/Ferdium-win-AutoSetup-6.2.4-nightly.7-ia32.exe"
@@ -5001,7 +5001,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84231552,
-        "download_count": 21,
+        "download_count": 22,
         "created_at": "2023-01-17T01:05:17Z",
         "updated_at": "2023-01-17T01:05:22Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.7/Ferdium-win-AutoSetup-6.2.4-nightly.7-x64.exe"
@@ -5103,7 +5103,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 263155,
-        "download_count": 776,
+        "download_count": 779,
         "created_at": "2023-01-17T01:05:12Z",
         "updated_at": "2023-01-17T01:05:12Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.7/Ferdium-win-AutoSetup-6.2.4-nightly.7.exe.blockmap"
@@ -5937,7 +5937,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91242376,
-        "download_count": 10,
+        "download_count": 11,
         "created_at": "2023-01-16T01:09:19Z",
         "updated_at": "2023-01-16T01:09:24Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.6/Ferdium-win-AutoSetup-6.2.4-nightly.6-arm64.exe"
@@ -6005,7 +6005,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81288736,
-        "download_count": 14,
+        "download_count": 15,
         "created_at": "2023-01-16T01:09:14Z",
         "updated_at": "2023-01-16T01:09:21Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.6/Ferdium-win-AutoSetup-6.2.4-nightly.6-ia32.exe"
@@ -6073,7 +6073,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84229480,
-        "download_count": 28,
+        "download_count": 29,
         "created_at": "2023-01-16T01:09:09Z",
         "updated_at": "2023-01-16T01:09:13Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.6/Ferdium-win-AutoSetup-6.2.4-nightly.6-x64.exe"
@@ -6175,7 +6175,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 262611,
-        "download_count": 766,
+        "download_count": 768,
         "created_at": "2023-01-16T01:09:03Z",
         "updated_at": "2023-01-16T01:09:03Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.6/Ferdium-win-AutoSetup-6.2.4-nightly.6.exe.blockmap"
@@ -7010,7 +7010,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91237408,
-        "download_count": 12,
+        "download_count": 13,
         "created_at": "2023-01-14T01:06:22Z",
         "updated_at": "2023-01-14T01:06:27Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.5/Ferdium-win-AutoSetup-6.2.4-nightly.5-arm64.exe"
@@ -7078,7 +7078,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81289952,
-        "download_count": 17,
+        "download_count": 18,
         "created_at": "2023-01-14T01:06:16Z",
         "updated_at": "2023-01-14T01:06:21Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.5/Ferdium-win-AutoSetup-6.2.4-nightly.5-ia32.exe"
@@ -7146,7 +7146,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84229480,
-        "download_count": 33,
+        "download_count": 34,
         "created_at": "2023-01-14T01:06:10Z",
         "updated_at": "2023-01-14T01:06:13Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.5/Ferdium-win-AutoSetup-6.2.4-nightly.5-x64.exe"
@@ -7248,7 +7248,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 265254,
-        "download_count": 847,
+        "download_count": 848,
         "created_at": "2023-01-14T01:06:04Z",
         "updated_at": "2023-01-14T01:06:05Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.5/Ferdium-win-AutoSetup-6.2.4-nightly.5.exe.blockmap"
@@ -8083,7 +8083,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91234824,
-        "download_count": 14,
+        "download_count": 15,
         "created_at": "2023-01-12T02:13:55Z",
         "updated_at": "2023-01-12T02:13:58Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.4/Ferdium-win-AutoSetup-6.2.4-nightly.4-arm64.exe"
@@ -8151,7 +8151,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81280552,
-        "download_count": 19,
+        "download_count": 20,
         "created_at": "2023-01-12T02:13:50Z",
         "updated_at": "2023-01-12T02:13:53Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.4/Ferdium-win-AutoSetup-6.2.4-nightly.4-ia32.exe"
@@ -8219,7 +8219,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84239376,
-        "download_count": 38,
+        "download_count": 39,
         "created_at": "2023-01-12T02:13:45Z",
         "updated_at": "2023-01-12T02:13:48Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.4/Ferdium-win-AutoSetup-6.2.4-nightly.4-x64.exe"
@@ -8321,7 +8321,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 260881,
-        "download_count": 1177,
+        "download_count": 1178,
         "created_at": "2023-01-12T02:13:40Z",
         "updated_at": "2023-01-12T02:13:41Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.4/Ferdium-win-AutoSetup-6.2.4-nightly.4.exe.blockmap"
@@ -9156,7 +9156,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 90135120,
-        "download_count": 25,
+        "download_count": 26,
         "created_at": "2023-01-03T01:11:17Z",
         "updated_at": "2023-01-03T01:11:20Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.3/Ferdium-win-AutoSetup-6.2.4-nightly.3-arm64.exe"
@@ -9224,7 +9224,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 80453600,
-        "download_count": 27,
+        "download_count": 28,
         "created_at": "2023-01-03T01:11:11Z",
         "updated_at": "2023-01-03T01:11:13Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.3/Ferdium-win-AutoSetup-6.2.4-nightly.3-ia32.exe"
@@ -9292,7 +9292,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83689184,
-        "download_count": 79,
+        "download_count": 80,
         "created_at": "2023-01-03T01:11:04Z",
         "updated_at": "2023-01-03T01:11:07Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.3/Ferdium-win-AutoSetup-6.2.4-nightly.3-x64.exe"
@@ -9394,7 +9394,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 262983,
-        "download_count": 2800,
+        "download_count": 2803,
         "created_at": "2023-01-03T01:10:58Z",
         "updated_at": "2023-01-03T01:10:58Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.3/Ferdium-win-AutoSetup-6.2.4-nightly.3.exe.blockmap"
@@ -10229,7 +10229,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91411960,
-        "download_count": 32,
+        "download_count": 33,
         "created_at": "2022-12-27T01:06:48Z",
         "updated_at": "2022-12-27T01:06:51Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.1/Ferdium-win-AutoSetup-6.2.4-nightly.1-arm64.exe"
@@ -10297,7 +10297,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85898224,
-        "download_count": 35,
+        "download_count": 36,
         "created_at": "2022-12-27T01:06:43Z",
         "updated_at": "2022-12-27T01:06:46Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.1/Ferdium-win-AutoSetup-6.2.4-nightly.1-ia32.exe"
@@ -10365,7 +10365,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84228680,
-        "download_count": 75,
+        "download_count": 76,
         "created_at": "2022-12-27T01:06:38Z",
         "updated_at": "2022-12-27T01:06:41Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.4-nightly.1/Ferdium-win-AutoSetup-6.2.4-nightly.1-x64.exe"
@@ -10791,7 +10791,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 88927126,
-        "download_count": 2138,
+        "download_count": 2164,
         "created_at": "2022-12-24T02:10:22Z",
         "updated_at": "2022-12-24T02:10:27Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-linux-6.2.3-amd64.deb"
@@ -10825,7 +10825,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 87454278,
-        "download_count": 69,
+        "download_count": 70,
         "created_at": "2022-12-24T02:05:49Z",
         "updated_at": "2022-12-24T02:05:54Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-linux-6.2.3-arm64.deb"
@@ -10927,7 +10927,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 88793528,
-        "download_count": 193,
+        "download_count": 194,
         "created_at": "2022-12-24T02:12:53Z",
         "updated_at": "2022-12-24T02:12:57Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-linux-6.2.3.rpm"
@@ -10995,7 +10995,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 132931162,
-        "download_count": 633,
+        "download_count": 638,
         "created_at": "2022-12-24T01:58:20Z",
         "updated_at": "2022-12-24T01:58:25Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-linux-Portable-6.2.3-x86_64.AppImage"
@@ -11029,7 +11029,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 130066735,
-        "download_count": 732,
+        "download_count": 745,
         "created_at": "2022-12-24T02:09:37Z",
         "updated_at": "2022-12-24T02:09:43Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-mac-6.2.3-arm64.dmg"
@@ -11097,7 +11097,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 127241805,
-        "download_count": 952,
+        "download_count": 981,
         "created_at": "2022-12-24T02:03:43Z",
         "updated_at": "2022-12-24T02:03:48Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-mac-6.2.3-x64.dmg"
@@ -11165,7 +11165,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 124173152,
-        "download_count": 2317,
+        "download_count": 2344,
         "created_at": "2022-12-24T02:09:18Z",
         "updated_at": "2022-12-24T02:09:25Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-mac-bundle-6.2.3-arm64.zip"
@@ -11233,7 +11233,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 121693957,
-        "download_count": 2572,
+        "download_count": 2615,
         "created_at": "2022-12-24T02:03:10Z",
         "updated_at": "2022-12-24T02:03:16Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-mac-bundle-6.2.3-x64.zip"
@@ -11301,7 +11301,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91409808,
-        "download_count": 91,
+        "download_count": 92,
         "created_at": "2022-12-24T02:10:53Z",
         "updated_at": "2022-12-24T02:10:57Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-win-AutoSetup-6.2.3-arm64.exe"
@@ -11369,7 +11369,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85888904,
-        "download_count": 108,
+        "download_count": 109,
         "created_at": "2022-12-24T02:10:47Z",
         "updated_at": "2022-12-24T02:10:52Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-win-AutoSetup-6.2.3-ia32.exe"
@@ -11437,7 +11437,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84230080,
-        "download_count": 2356,
+        "download_count": 2407,
         "created_at": "2022-12-24T02:10:41Z",
         "updated_at": "2022-12-24T02:10:44Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-win-AutoSetup-6.2.3-x64.exe"
@@ -11505,7 +11505,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 260063744,
-        "download_count": 54622,
+        "download_count": 55591,
         "created_at": "2022-12-24T02:10:35Z",
         "updated_at": "2022-12-24T02:10:48Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-win-AutoSetup-6.2.3.exe"
@@ -11539,7 +11539,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 268443,
-        "download_count": 52790,
+        "download_count": 53739,
         "created_at": "2022-12-24T02:10:35Z",
         "updated_at": "2022-12-24T02:10:35Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-win-AutoSetup-6.2.3.exe.blockmap"
@@ -11641,7 +11641,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84036944,
-        "download_count": 648,
+        "download_count": 655,
         "created_at": "2022-12-24T02:10:29Z",
         "updated_at": "2022-12-24T02:10:32Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-win-Portable-6.2.3-x64.exe"
@@ -11675,7 +11675,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 259870840,
-        "download_count": 152,
+        "download_count": 155,
         "created_at": "2022-12-24T02:10:27Z",
         "updated_at": "2022-12-24T02:10:36Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/Ferdium-win-Portable-6.2.3.exe"
@@ -11709,7 +11709,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 410,
-        "download_count": 24838,
+        "download_count": 25270,
         "created_at": "2022-12-24T02:15:56Z",
         "updated_at": "2022-12-24T02:15:56Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/latest-linux.yml"
@@ -11743,7 +11743,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 840,
-        "download_count": 212929,
+        "download_count": 217027,
         "created_at": "2022-12-24T02:09:43Z",
         "updated_at": "2022-12-24T02:09:43Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/latest-mac.yml"
@@ -11777,7 +11777,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 857,
-        "download_count": 284876,
+        "download_count": 290402,
         "created_at": "2022-12-24T02:10:57Z",
         "updated_at": "2022-12-24T02:10:57Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3/latest.yml"
@@ -12374,7 +12374,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91411296,
-        "download_count": 42,
+        "download_count": 43,
         "created_at": "2022-12-19T01:01:59Z",
         "updated_at": "2022-12-19T01:02:01Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.11/Ferdium-win-AutoSetup-6.2.3-nightly.11-arm64.exe"
@@ -12442,7 +12442,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85892920,
-        "download_count": 43,
+        "download_count": 44,
         "created_at": "2022-12-19T01:01:54Z",
         "updated_at": "2022-12-19T01:01:57Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.11/Ferdium-win-AutoSetup-6.2.3-nightly.11-ia32.exe"
@@ -12510,7 +12510,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84283472,
-        "download_count": 75,
+        "download_count": 76,
         "created_at": "2022-12-19T01:01:50Z",
         "updated_at": "2022-12-19T01:01:52Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.11/Ferdium-win-AutoSetup-6.2.3-nightly.11-x64.exe"
@@ -13447,7 +13447,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91426128,
-        "download_count": 42,
+        "download_count": 43,
         "created_at": "2022-12-18T02:11:51Z",
         "updated_at": "2022-12-18T02:11:55Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.10/Ferdium-win-AutoSetup-6.2.3-nightly.10-arm64.exe"
@@ -13515,7 +13515,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85899224,
-        "download_count": 45,
+        "download_count": 46,
         "created_at": "2022-12-18T02:11:46Z",
         "updated_at": "2022-12-18T02:11:48Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.10/Ferdium-win-AutoSetup-6.2.3-nightly.10-ia32.exe"
@@ -13583,7 +13583,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84236712,
-        "download_count": 63,
+        "download_count": 64,
         "created_at": "2022-12-18T02:11:41Z",
         "updated_at": "2022-12-18T02:11:44Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.10/Ferdium-win-AutoSetup-6.2.3-nightly.10-x64.exe"
@@ -14520,7 +14520,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91357928,
-        "download_count": 43,
+        "download_count": 44,
         "created_at": "2022-12-17T01:06:18Z",
         "updated_at": "2022-12-17T01:06:22Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.9/Ferdium-win-AutoSetup-6.2.3-nightly.9-arm64.exe"
@@ -14588,7 +14588,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85822232,
-        "download_count": 46,
+        "download_count": 47,
         "created_at": "2022-12-17T01:06:12Z",
         "updated_at": "2022-12-17T01:06:17Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.9/Ferdium-win-AutoSetup-6.2.3-nightly.9-ia32.exe"
@@ -14656,7 +14656,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84196824,
-        "download_count": 50,
+        "download_count": 51,
         "created_at": "2022-12-17T01:06:06Z",
         "updated_at": "2022-12-17T01:06:10Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.9/Ferdium-win-AutoSetup-6.2.3-nightly.9-x64.exe"
@@ -15592,7 +15592,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91356904,
-        "download_count": 43,
+        "download_count": 44,
         "created_at": "2022-12-16T01:44:40Z",
         "updated_at": "2022-12-16T01:44:44Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.8/Ferdium-win-AutoSetup-6.2.3-nightly.8-arm64.exe"
@@ -15660,7 +15660,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85823184,
-        "download_count": 47,
+        "download_count": 48,
         "created_at": "2022-12-16T01:44:35Z",
         "updated_at": "2022-12-16T01:44:38Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.8/Ferdium-win-AutoSetup-6.2.3-nightly.8-ia32.exe"
@@ -15728,7 +15728,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84193928,
-        "download_count": 58,
+        "download_count": 59,
         "created_at": "2022-12-16T01:44:30Z",
         "updated_at": "2022-12-16T01:44:32Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.8/Ferdium-win-AutoSetup-6.2.3-nightly.8-x64.exe"
@@ -16665,7 +16665,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91354048,
-        "download_count": 44,
+        "download_count": 45,
         "created_at": "2022-12-15T04:19:58Z",
         "updated_at": "2022-12-15T04:20:00Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.7/Ferdium-win-AutoSetup-6.2.3-nightly.7-arm64.exe"
@@ -16733,7 +16733,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85821984,
-        "download_count": 48,
+        "download_count": 49,
         "created_at": "2022-12-15T04:19:52Z",
         "updated_at": "2022-12-15T04:19:54Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.7/Ferdium-win-AutoSetup-6.2.3-nightly.7-ia32.exe"
@@ -16801,7 +16801,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84207160,
-        "download_count": 58,
+        "download_count": 59,
         "created_at": "2022-12-15T04:19:46Z",
         "updated_at": "2022-12-15T04:19:48Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.7/Ferdium-win-AutoSetup-6.2.3-nightly.7-x64.exe"
@@ -16903,7 +16903,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 268182,
-        "download_count": 931,
+        "download_count": 932,
         "created_at": "2022-12-15T04:19:39Z",
         "updated_at": "2022-12-15T04:19:39Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.7/Ferdium-win-AutoSetup-6.2.3-nightly.7.exe.blockmap"
@@ -17738,7 +17738,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91355104,
-        "download_count": 43,
+        "download_count": 44,
         "created_at": "2022-12-12T01:10:32Z",
         "updated_at": "2022-12-12T01:10:35Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.6/Ferdium-win-AutoSetup-6.2.3-nightly.6-arm64.exe"
@@ -17806,7 +17806,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85827272,
-        "download_count": 48,
+        "download_count": 49,
         "created_at": "2022-12-12T01:10:27Z",
         "updated_at": "2022-12-12T01:10:30Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.6/Ferdium-win-AutoSetup-6.2.3-nightly.6-ia32.exe"
@@ -17874,7 +17874,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84198736,
-        "download_count": 70,
+        "download_count": 71,
         "created_at": "2022-12-12T01:10:22Z",
         "updated_at": "2022-12-12T01:10:24Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.6/Ferdium-win-AutoSetup-6.2.3-nightly.6-x64.exe"
@@ -17976,7 +17976,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 267634,
-        "download_count": 1780,
+        "download_count": 1781,
         "created_at": "2022-12-12T01:10:17Z",
         "updated_at": "2022-12-12T01:10:17Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.3-nightly.6/Ferdium-win-AutoSetup-6.2.3-nightly.6.exe.blockmap"
@@ -23099,7 +23099,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91338944,
-        "download_count": 99,
+        "download_count": 100,
         "created_at": "2022-12-05T03:25:59Z",
         "updated_at": "2022-12-05T03:26:03Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2/Ferdium-win-AutoSetup-6.2.2-arm64.exe"
@@ -23167,7 +23167,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85737584,
-        "download_count": 96,
+        "download_count": 97,
         "created_at": "2022-12-05T03:25:53Z",
         "updated_at": "2022-12-05T03:25:57Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2/Ferdium-win-AutoSetup-6.2.2-ia32.exe"
@@ -23235,7 +23235,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83946600,
-        "download_count": 1439,
+        "download_count": 1440,
         "created_at": "2022-12-05T03:25:47Z",
         "updated_at": "2022-12-05T03:25:50Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2/Ferdium-win-AutoSetup-6.2.2-x64.exe"
@@ -23337,7 +23337,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 267737,
-        "download_count": 44966,
+        "download_count": 45010,
         "created_at": "2022-12-05T03:25:41Z",
         "updated_at": "2022-12-05T03:25:41Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2/Ferdium-win-AutoSetup-6.2.2.exe.blockmap"
@@ -23405,7 +23405,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85544872,
-        "download_count": 40,
+        "download_count": 41,
         "created_at": "2022-12-05T03:25:38Z",
         "updated_at": "2022-12-05T03:25:42Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2/Ferdium-win-Portable-6.2.2-ia32.exe"
@@ -24172,7 +24172,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91340888,
-        "download_count": 61,
+        "download_count": 62,
         "created_at": "2022-12-02T01:09:24Z",
         "updated_at": "2022-12-02T01:09:26Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2-nightly.2/Ferdium-win-AutoSetup-6.2.2-nightly.2-arm64.exe"
@@ -24240,7 +24240,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85734424,
-        "download_count": 63,
+        "download_count": 64,
         "created_at": "2022-12-02T01:09:19Z",
         "updated_at": "2022-12-02T01:09:21Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2-nightly.2/Ferdium-win-AutoSetup-6.2.2-nightly.2-ia32.exe"
@@ -24308,7 +24308,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83927256,
-        "download_count": 111,
+        "download_count": 112,
         "created_at": "2022-12-02T01:09:14Z",
         "updated_at": "2022-12-02T01:09:16Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2-nightly.2/Ferdium-win-AutoSetup-6.2.2-nightly.2-x64.exe"
@@ -25245,7 +25245,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91340944,
-        "download_count": 62,
+        "download_count": 63,
         "created_at": "2022-12-01T01:22:07Z",
         "updated_at": "2022-12-01T01:22:12Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2-nightly.1/Ferdium-win-AutoSetup-6.2.2-nightly.1-arm64.exe"
@@ -25313,7 +25313,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85731416,
-        "download_count": 74,
+        "download_count": 75,
         "created_at": "2022-12-01T01:22:01Z",
         "updated_at": "2022-12-01T01:22:07Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2-nightly.1/Ferdium-win-AutoSetup-6.2.2-nightly.1-ia32.exe"
@@ -25381,7 +25381,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83938696,
-        "download_count": 82,
+        "download_count": 83,
         "created_at": "2022-12-01T01:21:56Z",
         "updated_at": "2022-12-01T01:22:00Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.2-nightly.1/Ferdium-win-AutoSetup-6.2.2-nightly.1-x64.exe"
@@ -25808,7 +25808,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 86793526,
-        "download_count": 794,
+        "download_count": 795,
         "created_at": "2022-11-30T03:04:02Z",
         "updated_at": "2022-11-30T03:04:04Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1/Ferdium-linux-6.2.1-amd64.deb"
@@ -26318,7 +26318,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91339712,
-        "download_count": 75,
+        "download_count": 76,
         "created_at": "2022-11-30T03:08:52Z",
         "updated_at": "2022-11-30T03:08:54Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1/Ferdium-win-AutoSetup-6.2.1-arm64.exe"
@@ -26386,7 +26386,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85727472,
-        "download_count": 89,
+        "download_count": 90,
         "created_at": "2022-11-30T03:08:46Z",
         "updated_at": "2022-11-30T03:08:48Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1/Ferdium-win-AutoSetup-6.2.1-ia32.exe"
@@ -26454,7 +26454,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83943496,
-        "download_count": 676,
+        "download_count": 677,
         "created_at": "2022-11-30T03:08:39Z",
         "updated_at": "2022-11-30T03:08:42Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1/Ferdium-win-AutoSetup-6.2.1-x64.exe"
@@ -26556,7 +26556,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 266545,
-        "download_count": 15155,
+        "download_count": 15161,
         "created_at": "2022-11-30T03:08:33Z",
         "updated_at": "2022-11-30T03:08:33Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1/Ferdium-win-AutoSetup-6.2.1.exe.blockmap"
@@ -27391,7 +27391,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91344496,
-        "download_count": 64,
+        "download_count": 65,
         "created_at": "2022-11-29T01:53:14Z",
         "updated_at": "2022-11-29T01:53:17Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.53/Ferdium-win-AutoSetup-6.2.1-nightly.53-arm64.exe"
@@ -27459,7 +27459,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85729272,
-        "download_count": 75,
+        "download_count": 76,
         "created_at": "2022-11-29T01:53:09Z",
         "updated_at": "2022-11-29T01:53:11Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.53/Ferdium-win-AutoSetup-6.2.1-nightly.53-ia32.exe"
@@ -27527,7 +27527,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83934520,
-        "download_count": 101,
+        "download_count": 102,
         "created_at": "2022-11-29T01:53:04Z",
         "updated_at": "2022-11-29T01:53:06Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.53/Ferdium-win-AutoSetup-6.2.1-nightly.53-x64.exe"
@@ -28464,7 +28464,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91295080,
-        "download_count": 72,
+        "download_count": 73,
         "created_at": "2022-11-27T03:21:30Z",
         "updated_at": "2022-11-27T03:21:33Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-beta.2/Ferdium-win-AutoSetup-6.2.1-beta.2-arm64.exe"
@@ -28532,7 +28532,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85661848,
-        "download_count": 87,
+        "download_count": 88,
         "created_at": "2022-11-27T03:21:24Z",
         "updated_at": "2022-11-27T03:21:28Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-beta.2/Ferdium-win-AutoSetup-6.2.1-beta.2-ia32.exe"
@@ -28600,7 +28600,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83892128,
-        "download_count": 127,
+        "download_count": 128,
         "created_at": "2022-11-27T03:21:20Z",
         "updated_at": "2022-11-27T03:21:22Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-beta.2/Ferdium-win-AutoSetup-6.2.1-beta.2-x64.exe"
@@ -29537,7 +29537,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91301384,
-        "download_count": 67,
+        "download_count": 68,
         "created_at": "2022-11-26T01:09:43Z",
         "updated_at": "2022-11-26T01:09:46Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.52/Ferdium-win-AutoSetup-6.2.1-nightly.52-arm64.exe"
@@ -29605,7 +29605,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85662672,
-        "download_count": 72,
+        "download_count": 73,
         "created_at": "2022-11-26T01:09:38Z",
         "updated_at": "2022-11-26T01:09:42Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.52/Ferdium-win-AutoSetup-6.2.1-nightly.52-ia32.exe"
@@ -29673,7 +29673,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83897528,
-        "download_count": 105,
+        "download_count": 106,
         "created_at": "2022-11-26T01:09:33Z",
         "updated_at": "2022-11-26T01:09:37Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.52/Ferdium-win-AutoSetup-6.2.1-nightly.52-x64.exe"
@@ -30610,7 +30610,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91297392,
-        "download_count": 70,
+        "download_count": 71,
         "created_at": "2022-11-25T01:40:27Z",
         "updated_at": "2022-11-25T01:40:30Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.51/Ferdium-win-AutoSetup-6.2.1-nightly.51-arm64.exe"
@@ -30678,7 +30678,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 85663200,
-        "download_count": 75,
+        "download_count": 76,
         "created_at": "2022-11-25T01:40:22Z",
         "updated_at": "2022-11-25T01:40:25Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.51/Ferdium-win-AutoSetup-6.2.1-nightly.51-ia32.exe"
@@ -30746,7 +30746,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83891992,
-        "download_count": 90,
+        "download_count": 91,
         "created_at": "2022-11-25T01:40:17Z",
         "updated_at": "2022-11-25T01:40:21Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.51/Ferdium-win-AutoSetup-6.2.1-nightly.51-x64.exe"
@@ -30848,7 +30848,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 265364,
-        "download_count": 1412,
+        "download_count": 1425,
         "created_at": "2022-11-25T01:40:12Z",
         "updated_at": "2022-11-25T01:40:12Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.51/Ferdium-win-AutoSetup-6.2.1-nightly.51.exe.blockmap"
@@ -31683,7 +31683,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 91008304,
-        "download_count": 70,
+        "download_count": 71,
         "created_at": "2022-11-24T01:19:23Z",
         "updated_at": "2022-11-24T01:19:25Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.50/Ferdium-win-AutoSetup-6.2.1-nightly.50-arm64.exe"
@@ -31751,7 +31751,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 81185448,
-        "download_count": 80,
+        "download_count": 81,
         "created_at": "2022-11-24T01:19:18Z",
         "updated_at": "2022-11-24T01:19:22Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.50/Ferdium-win-AutoSetup-6.2.1-nightly.50-ia32.exe"
@@ -31819,7 +31819,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 84416640,
-        "download_count": 84,
+        "download_count": 85,
         "created_at": "2022-11-24T01:19:14Z",
         "updated_at": "2022-11-24T01:19:16Z",
         "browser_download_url": "https://github.com/ferdium/ferdium-app/releases/download/v6.2.1-nightly.50/Ferdium-win-AutoSetup-6.2.1-nightly.50-x64.exe"

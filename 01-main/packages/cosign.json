@@ -62,7 +62,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 38547518,
-      "download_count": 373,
+      "download_count": 374,
       "created_at": "2022-10-17T18:18:55Z",
       "updated_at": "2022-10-17T18:18:57Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-1.13.1.aarch64.rpm"
@@ -470,7 +470,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 41401417,
-      "download_count": 1040,
+      "download_count": 1043,
       "created_at": "2022-10-17T18:18:54Z",
       "updated_at": "2022-10-17T18:18:55Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-1.13.1.x86_64.rpm"
@@ -504,7 +504,7 @@
       "content_type": "application/pem-certificate-chain",
       "state": "uploaded",
       "size": 1340,
-      "download_count": 36,
+      "download_count": 37,
       "created_at": "2022-10-17T18:19:35Z",
       "updated_at": "2022-10-17T18:19:35Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-1.13.1.x86_64.rpm-keyless.pem"
@@ -538,7 +538,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 33,
+      "download_count": 34,
       "created_at": "2022-10-17T18:19:35Z",
       "updated_at": "2022-10-17T18:19:35Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-1.13.1.x86_64.rpm-keyless.sig"
@@ -572,7 +572,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 93764576,
-      "download_count": 804,
+      "download_count": 806,
       "created_at": "2022-10-17T18:17:57Z",
       "updated_at": "2022-10-17T18:17:59Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-darwin-amd64"
@@ -674,7 +674,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 102,
+      "download_count": 103,
       "created_at": "2022-10-17T18:19:08Z",
       "updated_at": "2022-10-17T18:19:08Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-darwin-amd64.sig"
@@ -742,7 +742,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 89960898,
-      "download_count": 367,
+      "download_count": 373,
       "created_at": "2022-10-17T18:18:02Z",
       "updated_at": "2022-10-17T18:18:05Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-darwin-arm64"
@@ -912,7 +912,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 90293483,
-      "download_count": 28121,
+      "download_count": 28348,
       "created_at": "2022-10-17T18:18:14Z",
       "updated_at": "2022-10-17T18:18:17Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-amd64"
@@ -946,7 +946,7 @@
       "content_type": "application/pem-certificate-chain",
       "state": "uploaded",
       "size": 1340,
-      "download_count": 503,
+      "download_count": 507,
       "created_at": "2022-10-17T18:19:23Z",
       "updated_at": "2022-10-17T18:19:23Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-amd64-keyless.pem"
@@ -980,7 +980,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 501,
+      "download_count": 505,
       "created_at": "2022-10-17T18:19:22Z",
       "updated_at": "2022-10-17T18:19:22Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-amd64-keyless.sig"
@@ -1014,7 +1014,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 33273,
+      "download_count": 34116,
       "created_at": "2022-10-17T18:19:10Z",
       "updated_at": "2022-10-17T18:19:11Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-amd64.sig"
@@ -1048,7 +1048,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 195545,
-      "download_count": 50,
+      "download_count": 51,
       "created_at": "2022-10-17T18:19:03Z",
       "updated_at": "2022-10-17T18:19:04Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-amd64_1.13.1_linux_amd64.sbom"
@@ -1082,7 +1082,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 84418860,
-      "download_count": 44,
+      "download_count": 45,
       "created_at": "2022-10-17T18:17:42Z",
       "updated_at": "2022-10-17T18:17:44Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-arm"
@@ -1218,7 +1218,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 87095154,
-      "download_count": 655,
+      "download_count": 661,
       "created_at": "2022-10-17T18:17:37Z",
       "updated_at": "2022-10-17T18:17:40Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-arm64"
@@ -1422,7 +1422,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 89194760,
-      "download_count": 550,
+      "download_count": 570,
       "created_at": "2022-10-17T18:18:17Z",
       "updated_at": "2022-10-17T18:18:20Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-pivkey-pkcs11key-amd64"
@@ -1762,7 +1762,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 93897922,
-      "download_count": 41,
+      "download_count": 66,
       "created_at": "2022-10-17T18:17:47Z",
       "updated_at": "2022-10-17T18:17:50Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-linux-s390x"
@@ -1932,7 +1932,7 @@
       "content_type": "application/x-msdos-program",
       "state": "uploaded",
       "size": 152657304,
-      "download_count": 1250,
+      "download_count": 1256,
       "created_at": "2022-10-17T18:18:08Z",
       "updated_at": "2022-10-17T18:18:12Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-windows-amd64.exe"
@@ -1966,7 +1966,7 @@
       "content_type": "application/pem-certificate-chain",
       "state": "uploaded",
       "size": 1340,
-      "download_count": 17,
+      "download_count": 18,
       "created_at": "2022-10-17T18:19:21Z",
       "updated_at": "2022-10-17T18:19:21Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-windows-amd64.exe-keyless.pem"
@@ -2000,7 +2000,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 15,
+      "download_count": 16,
       "created_at": "2022-10-17T18:19:21Z",
       "updated_at": "2022-10-17T18:19:21Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-windows-amd64.exe-keyless.sig"
@@ -2034,7 +2034,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 86,
+      "download_count": 87,
       "created_at": "2022-10-17T18:19:10Z",
       "updated_at": "2022-10-17T18:19:10Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-windows-amd64.exe.sig"
@@ -2068,7 +2068,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 204412,
-      "download_count": 16,
+      "download_count": 17,
       "created_at": "2022-10-17T18:19:02Z",
       "updated_at": "2022-10-17T18:19:03Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign-windows-amd64.exe_1.13.1_windows_amd64.sbom"
@@ -2204,7 +2204,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 41427592,
-      "download_count": 2250,
+      "download_count": 2260,
       "created_at": "2022-10-17T18:18:33Z",
       "updated_at": "2022-10-17T18:18:35Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_1.13.1_amd64.deb"
@@ -2306,7 +2306,7 @@
       "content_type": "application/vnd.debian.binary-package",
       "state": "uploaded",
       "size": 38561448,
-      "download_count": 136,
+      "download_count": 137,
       "created_at": "2022-10-17T18:18:35Z",
       "updated_at": "2022-10-17T18:18:36Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_1.13.1_arm64.deb"
@@ -3020,7 +3020,7 @@
       "content_type": "application/vnd.android.package-archive",
       "state": "uploaded",
       "size": 41406752,
-      "download_count": 33,
+      "download_count": 34,
       "created_at": "2022-10-17T18:18:26Z",
       "updated_at": "2022-10-17T18:18:27Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_1.13.1_x86_64.apk"
@@ -3054,7 +3054,7 @@
       "content_type": "application/pem-certificate-chain",
       "state": "uploaded",
       "size": 1348,
-      "download_count": 9,
+      "download_count": 10,
       "created_at": "2022-10-17T18:19:27Z",
       "updated_at": "2022-10-17T18:19:27Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_1.13.1_x86_64.apk-keyless.pem"
@@ -3088,7 +3088,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 10,
+      "download_count": 11,
       "created_at": "2022-10-17T18:19:27Z",
       "updated_at": "2022-10-17T18:19:27Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_1.13.1_x86_64.apk-keyless.sig"
@@ -3122,7 +3122,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 4704,
-      "download_count": 12407,
+      "download_count": 12469,
       "created_at": "2022-10-17T18:19:05Z",
       "updated_at": "2022-10-17T18:19:05Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_checksums.txt"
@@ -3156,7 +3156,7 @@
       "content_type": "application/pem-certificate-chain",
       "state": "uploaded",
       "size": 1340,
-      "download_count": 28,
+      "download_count": 29,
       "created_at": "2022-10-17T18:19:25Z",
       "updated_at": "2022-10-17T18:19:25Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_checksums.txt-keyless.pem"
@@ -3190,7 +3190,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 28,
+      "download_count": 29,
       "created_at": "2022-10-17T18:19:25Z",
       "updated_at": "2022-10-17T18:19:25Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/cosign_checksums.txt-keyless.sig"
@@ -3224,7 +3224,7 @@
       "content_type": "application/vnd.exstream-package",
       "state": "uploaded",
       "size": 178,
-      "download_count": 872,
+      "download_count": 885,
       "created_at": "2022-10-17T18:19:36Z",
       "updated_at": "2022-10-17T18:19:36Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/release-cosign.pub"
@@ -3258,7 +3258,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 72199424,
-      "download_count": 24,
+      "download_count": 26,
       "created_at": "2022-10-17T18:17:59Z",
       "updated_at": "2022-10-17T18:18:01Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-darwin-amd64"
@@ -3360,7 +3360,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 19,
+      "download_count": 20,
       "created_at": "2022-10-17T18:19:09Z",
       "updated_at": "2022-10-17T18:19:09Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-darwin-amd64.sig"
@@ -3598,7 +3598,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 72818868,
-      "download_count": 786,
+      "download_count": 798,
       "created_at": "2022-10-17T18:18:20Z",
       "updated_at": "2022-10-17T18:18:22Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-linux-amd64"
@@ -3700,7 +3700,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 96,
-      "download_count": 168,
+      "download_count": 175,
       "created_at": "2022-10-17T18:19:11Z",
       "updated_at": "2022-10-17T18:19:11Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-linux-amd64.sig"
@@ -3904,7 +3904,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 70225272,
-      "download_count": 248,
+      "download_count": 251,
       "created_at": "2022-10-17T18:17:40Z",
       "updated_at": "2022-10-17T18:17:42Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-linux-arm64"
@@ -4448,7 +4448,7 @@
       "content_type": "application/x-msdos-program",
       "state": "uploaded",
       "size": 73300992,
-      "download_count": 85,
+      "download_count": 86,
       "created_at": "2022-10-17T18:18:12Z",
       "updated_at": "2022-10-17T18:18:14Z",
       "browser_download_url": "https://github.com/sigstore/cosign/releases/download/v1.13.1/sget-windows-amd64.exe"

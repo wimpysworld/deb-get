@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 2293192,
-      "download_count": 8743,
+      "download_count": 8772,
       "created_at": "2022-09-10T18:14:35Z",
       "updated_at": "2022-09-10T18:14:35Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 2332552,
-      "download_count": 392,
+      "download_count": 393,
       "created_at": "2022-09-10T18:16:13Z",
       "updated_at": "2022-09-10T18:16:13Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_i686.deb"
@@ -130,7 +130,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2630079,
-      "download_count": 4296,
+      "download_count": 4299,
       "created_at": "2022-09-10T18:19:08Z",
       "updated_at": "2022-09-10T18:19:09Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-aarch64-unknown-linux-gnu.tar.gz"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2670791,
-      "download_count": 275,
+      "download_count": 276,
       "created_at": "2022-09-10T18:15:09Z",
       "updated_at": "2022-09-10T18:15:09Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-arm-unknown-linux-gnueabihf.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2691640,
-      "download_count": 3247,
+      "download_count": 3368,
       "created_at": "2022-09-10T18:17:35Z",
       "updated_at": "2022-09-10T18:17:35Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-arm-unknown-linux-musleabihf.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2621936,
-      "download_count": 3782,
+      "download_count": 3789,
       "created_at": "2022-09-10T18:13:44Z",
       "updated_at": "2022-09-10T18:13:45Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-apple-darwin.tar.gz"
@@ -368,7 +368,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 2996592,
-      "download_count": 925,
+      "download_count": 930,
       "created_at": "2022-09-10T18:22:57Z",
       "updated_at": "2022-09-10T18:23:02Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-pc-windows-gnu.zip"
@@ -402,7 +402,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 2950762,
-      "download_count": 12757,
+      "download_count": 12792,
       "created_at": "2022-09-10T18:17:10Z",
       "updated_at": "2022-09-10T18:17:10Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-pc-windows-msvc.zip"
@@ -436,7 +436,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2782660,
-      "download_count": 8738,
+      "download_count": 8767,
       "created_at": "2022-09-10T18:13:57Z",
       "updated_at": "2022-09-10T18:13:57Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-gnu.tar.gz"
@@ -470,7 +470,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 2814475,
-      "download_count": 36425,
+      "download_count": 36549,
       "created_at": "2022-09-10T18:14:35Z",
       "updated_at": "2022-09-10T18:14:35Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-v0.22.1-x86_64-unknown-linux-musl.tar.gz"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 2265720,
-      "download_count": 18580,
+      "download_count": 18752,
       "created_at": "2022-09-10T18:13:57Z",
       "updated_at": "2022-09-10T18:13:57Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 2063532,
-      "download_count": 1834,
+      "download_count": 1842,
       "created_at": "2022-09-10T18:19:08Z",
       "updated_at": "2022-09-10T18:19:09Z",
       "browser_download_url": "https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_arm64.deb"
