@@ -1,0 +1,9 @@
+DEFVER=1
+APT_REPO_OPTIONS="arch=all"
+ASC_KEY_URL="https://proget.makedeb.org/debian-feeds/makedeb.pub"
+#`   APT_LIST_NAME="makedeb"
+#APT_REPO_URL="deb [arch=all] https://proget.makedeb.org/ makedeb main"
+APT_REPO_URL="https://proget.makedeb.org/ makedeb main"
+PRETTY_NAME="makedeb"
+WEBSITE="https://www.makedeb.org/"
+SUMMARY="A simple to use deb packaging tool and the mpr repository, a AUR-like sister project for debian and derivatives."

@@ -1,6 +1,6 @@
 DEFVER=1
 LOCAL IS_UBUNTU=""
-case ${UPSTREAM_ID} in #
+case ${UPSTREAM_ID} in
     ubuntu) IS_UBUNTU="x";;
     *) IS_UBUNTU="";;
 esac
