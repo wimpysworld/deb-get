@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 99824916,
-      "download_count": 68,
+      "download_count": 90,
       "created_at": "2023-01-20T19:45:48Z",
       "updated_at": "2023-01-20T19:45:52Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_4.6.1.AppImage"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 70654676,
-      "download_count": 307,
+      "download_count": 436,
       "created_at": "2023-01-20T19:47:27Z",
       "updated_at": "2023-01-20T19:47:30Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_4.6.1.deb"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 152605712,
-      "download_count": 12394,
+      "download_count": 16385,
       "created_at": "2023-01-20T19:49:31Z",
       "updated_at": "2023-01-20T19:49:36Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_4.6.1.exe"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 158456,
-      "download_count": 8305,
+      "download_count": 10676,
       "created_at": "2023-01-20T19:49:31Z",
       "updated_at": "2023-01-20T19:49:32Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_4.6.1.exe.blockmap"
@@ -198,7 +198,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 70402590,
-      "download_count": 20,
+      "download_count": 26,
       "created_at": "2023-01-20T19:49:57Z",
       "updated_at": "2023-01-20T19:50:00Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_4.6.1.rpm"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 68826232,
-      "download_count": 371,
+      "download_count": 486,
       "created_at": "2023-01-20T19:52:41Z",
       "updated_at": "2023-01-20T19:52:44Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_4.6.1_portable.exe"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 91913670,
-      "download_count": 73,
+      "download_count": 92,
       "created_at": "2023-01-20T19:51:40Z",
       "updated_at": "2023-01-20T19:51:44Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_arm64_4.6.1.dmg"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97573,
-      "download_count": 1,
+      "download_count": 3,
       "created_at": "2023-01-20T19:51:40Z",
       "updated_at": "2023-01-20T19:51:40Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_arm64_4.6.1.dmg.blockmap"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 88427982,
-      "download_count": 204,
+      "download_count": 282,
       "created_at": "2023-01-20T19:52:03Z",
       "updated_at": "2023-01-20T19:52:06Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_arm64_4.6.1.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 93248,
-      "download_count": 1,
+      "download_count": 4,
       "created_at": "2023-01-20T19:52:03Z",
       "updated_at": "2023-01-20T19:52:03Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_arm64_4.6.1.zip.blockmap"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97743274,
-      "download_count": 427,
+      "download_count": 598,
       "created_at": "2023-01-20T19:56:45Z",
       "updated_at": "2023-01-20T19:56:52Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_x64_4.6.1.dmg"
@@ -470,7 +470,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 94296826,
-      "download_count": 305,
+      "download_count": 387,
       "created_at": "2023-01-20T19:57:22Z",
       "updated_at": "2023-01-20T19:57:26Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/Blockbench_x64_4.6.1.zip"
@@ -538,7 +538,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 371,
-      "download_count": 115,
+      "download_count": 156,
       "created_at": "2023-01-20T19:50:00Z",
       "updated_at": "2023-01-20T19:50:00Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/latest-linux.yml"
@@ -572,7 +572,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 812,
-      "download_count": 1132,
+      "download_count": 1562,
       "created_at": "2023-01-20T19:57:26Z",
       "updated_at": "2023-01-20T19:57:26Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/latest-mac.yml"
@@ -606,7 +606,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 337,
-      "download_count": 13156,
+      "download_count": 17592,
       "created_at": "2023-01-20T19:49:36Z",
       "updated_at": "2023-01-20T19:49:37Z",
       "browser_download_url": "https://github.com/JannisX11/blockbench/releases/download/v4.6.1/latest.yml"
@@ -617,8 +617,8 @@
   "body": "## Changes\r\n* Added icon for bézier keyframes\r\n* Loop cuts no longer floors offset coordinates\r\n* Increased compatibility of OBJ importer\r\n\r\n## Fixes\r\n* Optimized extruding with edges\r\n* Fixed edge drag selection not selecting all vertices\r\n* Fixed issue with dissolving edges between quads\r\n* Fixed error when extruding all edges around face\r\n* Fixed ghost selection issues when switching between different selection modes\r\n* Fixed issues with select all in mesh selection modes\r\n* Fixed edge selection tool selecting vertices multiple times\r\n* Fixed icon for animation controller panel\r\n* Fixed particle size when in locator local space\r\n* Fixed #1732 Clicking autocomplete doesn't update text correctly\r\n* Fixed pressing tab does not switch between UV editor sliders\r\n* Fixed MolangJS error when not enough arguments are present in functions\r\n* Fixed formatting of other controllers not optimized after saving controller to file\r\n* Fixed controllers are never marked as unsaved\r\n* Fixed delete not working on animation controllers\r\n* Fixed issues with cropped screenshots (#1733)\r\n* Fixed crop issue with orthographic camera in GIF recorder\r\n* Fixed loading error on older browsers\r\n* Fixed #1726 Freeze when switching from playing animation to controller\r\n* Fixed empty animation controller blend values not handled correctly\r\n* Fixed #1728 Animation controller blend value not handling 0 correctly\r\n* Fixed potential issue with animated texture playback\r\n* Fixes to Shapeless dialog API\r\n* Fixed for importing bedrock entity models in web app (#1727)",
   "reactions": {
     "url": "https://api.github.com/repos/JannisX11/blockbench/releases/89762385/reactions",
-    "total_count": 4,
-    "+1": 4,
+    "total_count": 5,
+    "+1": 5,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,

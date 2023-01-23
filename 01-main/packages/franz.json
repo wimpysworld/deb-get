@@ -131,7 +131,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 102194789,
-        "download_count": 31250,
+        "download_count": 31397,
         "created_at": "2022-04-15T14:23:22Z",
         "updated_at": "2022-04-15T14:23:27Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/Franz-5.9.2-arm64.dmg"
@@ -165,7 +165,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 109322012,
-        "download_count": 12963,
+        "download_count": 12982,
         "created_at": "2022-04-15T14:39:22Z",
         "updated_at": "2022-04-15T14:39:26Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/Franz-5.9.2-mac.zip"
@@ -233,7 +233,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 87422789,
-        "download_count": 16783,
+        "download_count": 16918,
         "created_at": "2022-04-15T13:52:51Z",
         "updated_at": "2022-04-15T13:52:53Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/Franz-5.9.2.AppImage"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 102110078,
-        "download_count": 40627,
+        "download_count": 40910,
         "created_at": "2022-04-15T14:14:48Z",
         "updated_at": "2022-04-15T14:14:54Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/Franz-5.9.2.dmg"
@@ -335,7 +335,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 154300760,
-        "download_count": 220331,
+        "download_count": 221326,
         "created_at": "2022-04-15T13:54:45Z",
         "updated_at": "2022-04-15T13:54:49Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/Franz-Setup-5.9.2.exe"
@@ -369,7 +369,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 161438,
-        "download_count": 62364,
+        "download_count": 62615,
         "created_at": "2022-04-15T13:54:45Z",
         "updated_at": "2022-04-15T13:54:45Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/Franz-Setup-5.9.2.exe.blockmap"
@@ -403,7 +403,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 74019252,
-        "download_count": 38015,
+        "download_count": 38272,
         "created_at": "2022-04-15T13:58:25Z",
         "updated_at": "2022-04-15T13:58:27Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/franz_5.9.2_amd64.deb"
@@ -437,7 +437,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 381,
-        "download_count": 264956,
+        "download_count": 266707,
         "created_at": "2022-04-25T14:19:42Z",
         "updated_at": "2022-04-25T14:19:43Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/latest-linux.yml"
@@ -471,7 +471,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 512,
-        "download_count": 2814095,
+        "download_count": 2836542,
         "created_at": "2022-04-25T14:19:43Z",
         "updated_at": "2022-04-25T14:19:43Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/latest-mac.yml"
@@ -505,7 +505,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 360,
-        "download_count": 3579069,
+        "download_count": 3608475,
         "created_at": "2022-04-25T14:19:43Z",
         "updated_at": "2022-04-25T14:19:44Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.2/latest.yml"
@@ -863,7 +863,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 153931400,
-        "download_count": 12759,
+        "download_count": 12763,
         "created_at": "2022-04-04T20:14:17Z",
         "updated_at": "2022-04-04T20:14:21Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.1/Franz-Setup-5.9.1.exe"
@@ -897,7 +897,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 161886,
-        "download_count": 10447,
+        "download_count": 10494,
         "created_at": "2022-04-04T20:14:17Z",
         "updated_at": "2022-04-04T20:14:18Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.1/Franz-Setup-5.9.1.exe.blockmap"
@@ -999,7 +999,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 513,
-        "download_count": 97342,
+        "download_count": 97345,
         "created_at": "2022-04-04T20:18:36Z",
         "updated_at": "2022-04-04T20:18:36Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.1/latest-mac.yml"
@@ -1033,7 +1033,7 @@
         "content_type": "application/x-yaml",
         "state": "uploaded",
         "size": 360,
-        "download_count": 117950,
+        "download_count": 117953,
         "created_at": "2022-04-04T20:18:36Z",
         "updated_at": "2022-04-04T20:18:37Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.9.1/latest.yml"
@@ -3297,7 +3297,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 108419493,
-        "download_count": 24,
+        "download_count": 25,
         "created_at": "2022-02-17T12:58:49Z",
         "updated_at": "2022-02-17T12:58:53Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.8.0/Franz-5.8.0-mac.zip"
@@ -3467,7 +3467,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 148603936,
-        "download_count": 12517,
+        "download_count": 12521,
         "created_at": "2022-02-17T12:14:21Z",
         "updated_at": "2022-02-17T12:14:26Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.8.0/Franz-Setup-5.8.0.exe"
@@ -4261,7 +4261,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83920913,
-        "download_count": 9573,
+        "download_count": 9574,
         "created_at": "2021-06-15T13:49:29Z",
         "updated_at": "2021-06-15T13:49:31Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.7.0/Franz-5.7.0.AppImage"
@@ -4397,7 +4397,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 144456032,
-        "download_count": 241645,
+        "download_count": 241651,
         "created_at": "2021-06-15T13:54:50Z",
         "updated_at": "2021-06-15T13:54:53Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.7.0/Franz-Setup-5.7.0.exe"
@@ -4431,7 +4431,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 151269,
-        "download_count": 68567,
+        "download_count": 68579,
         "created_at": "2021-06-15T13:54:50Z",
         "updated_at": "2021-06-15T13:54:50Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.7.0/Franz-Setup-5.7.0.exe.blockmap"
@@ -4465,7 +4465,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 70778688,
-        "download_count": 36058,
+        "download_count": 36067,
         "created_at": "2021-06-15T13:54:45Z",
         "updated_at": "2021-06-15T13:54:46Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.7.0/franz_5.7.0_amd64.deb"
@@ -5123,7 +5123,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 96381887,
-        "download_count": 56812,
+        "download_count": 56815,
         "created_at": "2020-11-17T10:11:57Z",
         "updated_at": "2020-11-17T10:12:01Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.6.1/Franz-5.6.1.dmg"
@@ -5225,7 +5225,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 136087320,
-        "download_count": 96460,
+        "download_count": 96465,
         "created_at": "2020-11-17T10:03:02Z",
         "updated_at": "2020-11-17T10:03:08Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.6.1/Franz-Setup-5.6.1.exe"
@@ -5259,7 +5259,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 141692,
-        "download_count": 18288,
+        "download_count": 18292,
         "created_at": "2020-11-17T10:03:02Z",
         "updated_at": "2020-11-17T10:03:03Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.6.1/Franz-Setup-5.6.1.exe.blockmap"
@@ -6365,7 +6365,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 103653008,
-        "download_count": 63018,
+        "download_count": 63020,
         "created_at": "2020-04-29T11:55:45Z",
         "updated_at": "2020-04-29T11:55:48Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.5.0/Franz-5.5.0.dmg"
@@ -6467,7 +6467,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 163707568,
-        "download_count": 121455,
+        "download_count": 121459,
         "created_at": "2020-04-29T11:47:38Z",
         "updated_at": "2020-04-29T11:47:42Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.5.0/Franz-Setup-5.5.0.exe"
@@ -6501,7 +6501,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 170350,
-        "download_count": 52554,
+        "download_count": 52647,
         "created_at": "2020-04-29T11:47:38Z",
         "updated_at": "2020-04-29T11:47:38Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.5.0/Franz-Setup-5.5.0.exe.blockmap"
@@ -8985,7 +8985,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 157897,
-        "download_count": 11672,
+        "download_count": 11673,
         "created_at": "2019-10-23T12:56:56Z",
         "updated_at": "2019-10-23T12:56:56Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.4.0/Franz-Setup-5.4.0.exe.blockmap"
@@ -10641,7 +10641,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 148836,
-        "download_count": 173560,
+        "download_count": 173562,
         "created_at": "2019-09-17T14:02:44Z",
         "updated_at": "2019-09-17T14:02:44Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.3.3/franz-setup-5.3.3.exe.blockmap"
@@ -13125,7 +13125,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 148988,
-        "download_count": 344099,
+        "download_count": 344194,
         "created_at": "2019-07-19T18:54:05Z",
         "updated_at": "2019-07-19T18:54:06Z",
         "browser_download_url": "https://github.com/meetfranz/franz/releases/download/v5.2.0/franz-setup-5.2.0.exe.blockmap"

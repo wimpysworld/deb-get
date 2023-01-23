@@ -63,7 +63,7 @@
         "content_type": "application/appimage",
         "state": "uploaded",
         "size": 250148032,
-        "download_count": 123,
+        "download_count": 131,
         "created_at": "2022-12-26T13:48:01Z",
         "updated_at": "2022-12-26T13:48:15Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.1/whatsapp-for-linux-1.5.1-x86_64.AppImage"
@@ -97,7 +97,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 111638,
-        "download_count": 483,
+        "download_count": 527,
         "created_at": "2022-12-26T13:47:54Z",
         "updated_at": "2022-12-26T13:47:54Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.1/whatsapp-for-linux_1.5.1_amd64.deb"
@@ -131,7 +131,7 @@
         "content_type": "application/snap",
         "state": "uploaded",
         "size": 96731136,
-        "download_count": 17,
+        "download_count": 19,
         "created_at": "2022-12-26T13:47:55Z",
         "updated_at": "2022-12-26T13:48:00Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.1/whatsapp-for-linux_1.5.1_amd64.snap"
@@ -142,8 +142,8 @@
     "body": "# Changelog\r\n\r\n## [v1.5.1](https://github.com/eneshecan/whatsapp-for-linux/tree/v1.5.1) (2022-12-23)\r\n\r\n[Full Changelog](https://github.com/eneshecan/whatsapp-for-linux/compare/v1.5.0...v1.5.1)\r\n\r\n**Implemented enhancements:**\r\n\r\n- Introduce Prefer Dark Theme [\\#256](https://github.com/eneshecan/whatsapp-for-linux/issues/256)\r\n\r\n**Fixed bugs:**\r\n\r\n- Mic not enabled [\\#252](https://github.com/eneshecan/whatsapp-for-linux/issues/252)\r\n- Flatpak and Nvidia 520.65.01 driver compatibility [\\#227](https://github.com/eneshecan/whatsapp-for-linux/issues/227)\r\n\r\n**Closed issues:**\r\n\r\n- High CPU usage when the focus is on the main window [\\#115](https://github.com/eneshecan/whatsapp-for-linux/issues/115)\r\n\r\n**Merged pull requests:**\r\n\r\n- Updated Dutch translation [\\#258](https://github.com/eneshecan/whatsapp-for-linux/pull/258) ([Vistaus](https://github.com/Vistaus))\r\n- Update Italian translation [\\#257](https://github.com/eneshecan/whatsapp-for-linux/pull/257) ([bordam](https://github.com/bordam))\r\n- Add Mageia Linux to README.md [\\#247](https://github.com/eneshecan/whatsapp-for-linux/pull/247) ([kekePower](https://github.com/kekePower))\r\n- Add Russian translation \\(ru.po + desktop.in\\) [\\#246](https://github.com/eneshecan/whatsapp-for-linux/pull/246) ([OlesyaGerasimenko](https://github.com/OlesyaGerasimenko))",
     "reactions": {
       "url": "https://api.github.com/repos/eneshecan/whatsapp-for-linux/releases/87244396/reactions",
-      "total_count": 2,
-      "+1": 1,
+      "total_count": 3,
+      "+1": 2,
       "-1": 0,
       "laugh": 0,
       "hooray": 0,
@@ -251,7 +251,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 110948,
-        "download_count": 797,
+        "download_count": 799,
         "created_at": "2022-10-29T12:00:57Z",
         "updated_at": "2022-10-29T12:00:57Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.0/whatsapp-for-linux_1.5.0_amd64.deb"
@@ -855,7 +855,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 103856,
-        "download_count": 1704,
+        "download_count": 1729,
         "created_at": "2022-06-27T20:16:22Z",
         "updated_at": "2022-06-27T20:16:23Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.4.4/whatsapp-for-linux_1.4.4_amd64.deb"
@@ -1435,7 +1435,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 99104,
-        "download_count": 374,
+        "download_count": 378,
         "created_at": "2022-01-08T13:32:13Z",
         "updated_at": "2022-01-08T13:32:14Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.4.0/whatsapp-for-linux_1.4.0_amd64.deb"

@@ -63,7 +63,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 9743887,
-        "download_count": 141,
+        "download_count": 142,
         "created_at": "2023-01-17T17:24:39Z",
         "updated_at": "2023-01-17T17:24:39Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/web-v2023.1.1/web-2023.1.1-selfhosted-COMMERCIAL.zip"
@@ -97,7 +97,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 9580472,
-        "download_count": 46,
+        "download_count": 48,
         "created_at": "2023-01-17T17:24:40Z",
         "updated_at": "2023-01-17T17:24:41Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/web-v2023.1.1/web-2023.1.1-selfhosted-open-source.zip"
@@ -183,7 +183,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 70717608,
-        "download_count": 1252,
+        "download_count": 1335,
         "created_at": "2023-01-13T14:42:11Z",
         "updated_at": "2023-01-13T14:42:13Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-2023.1.1-amd64.deb"
@@ -251,7 +251,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 102749183,
-        "download_count": 20,
+        "download_count": 21,
         "created_at": "2023-01-13T14:43:04Z",
         "updated_at": "2023-01-13T14:43:07Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-2023.1.1-arm64.appx"
@@ -387,7 +387,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 68294911,
-        "download_count": 29,
+        "download_count": 31,
         "created_at": "2023-01-13T14:42:44Z",
         "updated_at": "2023-01-13T14:42:46Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/bitwarden-2023.1.1-ia32.nsis.7z"
@@ -421,7 +421,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 174278910,
-        "download_count": 121,
+        "download_count": 126,
         "created_at": "2023-01-13T14:43:12Z",
         "updated_at": "2023-01-13T14:43:18Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-2023.1.1-universal-mac.zip"
@@ -455,7 +455,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 181220903,
-        "download_count": 2223,
+        "download_count": 2308,
         "created_at": "2023-01-13T14:43:18Z",
         "updated_at": "2023-01-13T14:43:25Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-2023.1.1-universal.dmg"
@@ -523,7 +523,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 178735504,
-        "download_count": 5,
+        "download_count": 6,
         "created_at": "2023-01-13T14:43:27Z",
         "updated_at": "2023-01-13T14:43:36Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-2023.1.1-universal.pkg.archive"
@@ -659,7 +659,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 72344644,
-        "download_count": 96,
+        "download_count": 97,
         "created_at": "2023-01-13T14:42:56Z",
         "updated_at": "2023-01-13T14:42:59Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/bitwarden-2023.1.1-x64.nsis.7z"
@@ -693,7 +693,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 100322521,
-        "download_count": 5587,
+        "download_count": 5984,
         "created_at": "2023-01-13T14:42:23Z",
         "updated_at": "2023-01-13T14:42:27Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-2023.1.1-x86_64.AppImage"
@@ -727,7 +727,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 70679260,
-        "download_count": 389,
+        "download_count": 410,
         "created_at": "2023-01-13T14:42:14Z",
         "updated_at": "2023-01-13T14:42:16Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-2023.1.1-x86_64.rpm"
@@ -761,7 +761,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728544,
-        "download_count": 45282,
+        "download_count": 48414,
         "created_at": "2023-01-13T14:42:35Z",
         "updated_at": "2023-01-13T14:42:35Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-Installer-2023.1.1.exe"
@@ -795,7 +795,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 195386480,
-        "download_count": 1927,
+        "download_count": 1996,
         "created_at": "2023-01-13T14:42:28Z",
         "updated_at": "2023-01-13T14:42:34Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/Bitwarden-Portable-2023.1.1.exe"
@@ -897,7 +897,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 415,
-        "download_count": 17,
+        "download_count": 18,
         "created_at": "2023-01-13T14:43:37Z",
         "updated_at": "2023-01-13T14:43:37Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.1/latest-linux.yml"
@@ -1323,7 +1323,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 181220491,
-        "download_count": 1010,
+        "download_count": 1011,
         "created_at": "2023-01-11T10:57:34Z",
         "updated_at": "2023-01-11T10:57:41Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.0/Bitwarden-2023.1.0-universal.dmg"
@@ -1527,7 +1527,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 72360517,
-        "download_count": 31,
+        "download_count": 32,
         "created_at": "2023-01-11T10:56:52Z",
         "updated_at": "2023-01-11T10:56:58Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.0/bitwarden-2023.1.0-x64.nsis.7z"
@@ -1629,7 +1629,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728544,
-        "download_count": 13376,
+        "download_count": 13379,
         "created_at": "2023-01-11T10:56:23Z",
         "updated_at": "2023-01-11T10:56:24Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2023.1.0/Bitwarden-Installer-2023.1.0.exe"
@@ -1919,7 +1919,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 24740108,
-        "download_count": 9,
+        "download_count": 10,
         "created_at": "2023-01-11T11:52:00Z",
         "updated_at": "2023-01-11T11:52:01Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2023.1.0/bitwarden-cli.2023.1.0.nupkg"
@@ -1953,7 +1953,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 26944551,
-        "download_count": 7163,
+        "download_count": 7572,
         "created_at": "2023-01-11T11:51:58Z",
         "updated_at": "2023-01-11T11:51:59Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2023.1.0/bw-linux-2023.1.0.zip"
@@ -1987,7 +1987,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 66,
-        "download_count": 7,
+        "download_count": 8,
         "created_at": "2023-01-11T11:51:59Z",
         "updated_at": "2023-01-11T11:52:00Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2023.1.0/bw-linux-sha256-2023.1.0.txt"
@@ -2021,7 +2021,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 27130840,
-        "download_count": 715,
+        "download_count": 743,
         "created_at": "2023-01-11T11:51:56Z",
         "updated_at": "2023-01-11T11:51:57Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2023.1.0/bw-macos-2023.1.0.zip"
@@ -2123,7 +2123,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 23930330,
-        "download_count": 1193,
+        "download_count": 1257,
         "created_at": "2023-01-11T11:51:54Z",
         "updated_at": "2023-01-11T11:51:55Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2023.1.0/bw-windows-2023.1.0.zip"
@@ -2299,7 +2299,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 8216312,
-        "download_count": 50,
+        "download_count": 52,
         "created_at": "2023-01-11T09:50:25Z",
         "updated_at": "2023-01-11T09:50:27Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/browser-v2023.1.0/dist-chrome-2023.1.0.zip"
@@ -2829,7 +2829,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 65434808,
-        "download_count": 3279,
+        "download_count": 3280,
         "created_at": "2022-12-14T17:29:16Z",
         "updated_at": "2022-12-14T17:29:20Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.12.0/Bitwarden-2022.12.0-amd64.deb"
@@ -3407,7 +3407,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728544,
-        "download_count": 142562,
+        "download_count": 142649,
         "created_at": "2022-12-14T17:29:48Z",
         "updated_at": "2022-12-14T17:29:49Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.12.0/Bitwarden-Installer-2022.12.0.exe"
@@ -3731,7 +3731,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 8188318,
-        "download_count": 239,
+        "download_count": 240,
         "created_at": "2022-12-14T16:11:02Z",
         "updated_at": "2022-12-14T16:11:03Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/browser-v2022.12.0/dist-chrome-2022.12.0.zip"
@@ -4193,7 +4193,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 26934498,
-        "download_count": 13935,
+        "download_count": 13939,
         "created_at": "2022-12-01T13:20:28Z",
         "updated_at": "2022-12-01T13:20:29Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2022.11.0/bw-linux-2022.11.0.zip"
@@ -4363,7 +4363,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 23921667,
-        "download_count": 3107,
+        "download_count": 3111,
         "created_at": "2022-12-01T13:20:24Z",
         "updated_at": "2022-12-01T13:20:25Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2022.11.0/bw-windows-2022.11.0.zip"
@@ -5083,7 +5083,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728536,
-        "download_count": 71161,
+        "download_count": 71165,
         "created_at": "2022-11-29T14:13:33Z",
         "updated_at": "2022-11-29T14:13:33Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.11.0/Bitwarden-Installer-2022.11.0.exe"
@@ -5733,7 +5733,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 65116168,
-        "download_count": 4577,
+        "download_count": 4583,
         "created_at": "2022-10-20T17:54:52Z",
         "updated_at": "2022-10-20T17:54:53Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.10.1/Bitwarden-2022.10.1-amd64.deb"
@@ -6311,7 +6311,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728536,
-        "download_count": 152745,
+        "download_count": 152749,
         "created_at": "2022-10-20T17:55:08Z",
         "updated_at": "2022-10-20T17:55:08Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.10.1/Bitwarden-Installer-2022.10.1.exe"
@@ -7617,7 +7617,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728512,
-        "download_count": 36172,
+        "download_count": 36174,
         "created_at": "2022-10-12T16:23:49Z",
         "updated_at": "2022-10-12T16:23:49Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.10.0/Bitwarden-Installer-2022.10.0.exe"
@@ -7941,7 +7941,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 26038342,
-        "download_count": 15991,
+        "download_count": 15992,
         "created_at": "2022-10-12T14:17:58Z",
         "updated_at": "2022-10-12T14:17:59Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2022.10.0/bw-linux-2022.10.0.zip"
@@ -7975,7 +7975,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 66,
-        "download_count": 129,
+        "download_count": 130,
         "created_at": "2022-10-12T14:17:59Z",
         "updated_at": "2022-10-12T14:17:59Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/cli-v2022.10.0/bw-linux-sha256-2022.10.0.txt"
@@ -9293,7 +9293,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728584,
-        "download_count": 106914,
+        "download_count": 106916,
         "created_at": "2022-09-15T17:00:31Z",
         "updated_at": "2022-09-15T17:00:31Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.9.1/Bitwarden-Installer-2022.9.1.exe"
@@ -10383,7 +10383,7 @@
         "content_type": "raw",
         "state": "uploaded",
         "size": 728568,
-        "download_count": 24378,
+        "download_count": 24379,
         "created_at": "2022-09-12T15:02:40Z",
         "updated_at": "2022-09-12T15:02:41Z",
         "browser_download_url": "https://github.com/bitwarden/clients/releases/download/desktop-v2022.9.0/Bitwarden-Installer-2022.9.0.exe"

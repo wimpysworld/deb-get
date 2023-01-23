@@ -62,7 +62,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 2025,
-      "download_count": 498,
+      "download_count": 669,
       "created_at": "2023-01-17T12:27:18Z",
       "updated_at": "2023-01-17T12:27:19Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_checksums.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 34567742,
-      "download_count": 88,
+      "download_count": 120,
       "created_at": "2023-01-17T12:27:14Z",
       "updated_at": "2023-01-17T12:27:16Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_darwin-universal.tar.gz"
@@ -130,7 +130,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16979533,
-      "download_count": 8,
+      "download_count": 10,
       "created_at": "2023-01-17T12:27:14Z",
       "updated_at": "2023-01-17T12:27:15Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_dragonfly-amd64.tar.gz"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16988392,
-      "download_count": 7,
+      "download_count": 9,
       "created_at": "2023-01-17T12:27:15Z",
       "updated_at": "2023-01-17T12:27:16Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_freebsd-amd64.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16989271,
-      "download_count": 3241,
+      "download_count": 4580,
       "created_at": "2023-01-17T12:27:14Z",
       "updated_at": "2023-01-17T12:27:16Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_Linux-64bit.tar.gz"
@@ -232,7 +232,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17728328,
-      "download_count": 159,
+      "download_count": 205,
       "created_at": "2023-01-17T12:27:17Z",
       "updated_at": "2023-01-17T12:27:19Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_linux-amd64.deb"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16989271,
-      "download_count": 130,
+      "download_count": 167,
       "created_at": "2023-01-17T12:27:14Z",
       "updated_at": "2023-01-17T12:27:15Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_linux-amd64.tar.gz"
@@ -300,7 +300,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 15871484,
-      "download_count": 22,
+      "download_count": 27,
       "created_at": "2023-01-17T12:27:14Z",
       "updated_at": "2023-01-17T12:27:15Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_linux-arm.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 16143110,
-      "download_count": 32,
+      "download_count": 38,
       "created_at": "2023-01-17T12:27:18Z",
       "updated_at": "2023-01-17T12:27:19Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_linux-arm64.deb"
@@ -368,7 +368,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 15548722,
-      "download_count": 69,
+      "download_count": 88,
       "created_at": "2023-01-17T12:27:14Z",
       "updated_at": "2023-01-17T12:27:15Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_linux-arm64.tar.gz"
@@ -436,7 +436,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16988740,
-      "download_count": 8,
+      "download_count": 10,
       "created_at": "2023-01-17T12:27:16Z",
       "updated_at": "2023-01-17T12:27:17Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_openbsd-amd64.tar.gz"
@@ -470,7 +470,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 17438556,
-      "download_count": 586,
+      "download_count": 763,
       "created_at": "2023-01-17T12:27:17Z",
       "updated_at": "2023-01-17T12:27:18Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_windows-amd64.zip"
@@ -504,7 +504,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 15958125,
-      "download_count": 61,
+      "download_count": 77,
       "created_at": "2023-01-17T12:27:17Z",
       "updated_at": "2023-01-17T12:27:18Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_0.110.0_windows-arm64.zip"
@@ -538,7 +538,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 36500957,
-      "download_count": 131,
+      "download_count": 190,
       "created_at": "2023-01-17T12:27:16Z",
       "updated_at": "2023-01-17T12:27:17Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_darwin-universal.tar.gz"
@@ -572,7 +572,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 18195846,
-      "download_count": 5899,
+      "download_count": 8722,
       "created_at": "2023-01-17T12:27:16Z",
       "updated_at": "2023-01-17T12:27:17Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_Linux-64bit.tar.gz"
@@ -606,7 +606,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 19038694,
-      "download_count": 284,
+      "download_count": 404,
       "created_at": "2023-01-17T12:27:18Z",
       "updated_at": "2023-01-17T12:27:19Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_linux-amd64.deb"
@@ -640,7 +640,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 18195846,
-      "download_count": 483,
+      "download_count": 593,
       "created_at": "2023-01-17T12:27:16Z",
       "updated_at": "2023-01-17T12:27:17Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_linux-amd64.tar.gz"
@@ -674,7 +674,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17378640,
-      "download_count": 25,
+      "download_count": 38,
       "created_at": "2023-01-17T12:27:18Z",
       "updated_at": "2023-01-17T12:27:19Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_linux-arm64.deb"
@@ -708,7 +708,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 16688346,
-      "download_count": 36,
+      "download_count": 47,
       "created_at": "2023-01-17T12:27:16Z",
       "updated_at": "2023-01-17T12:27:17Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_linux-arm64.tar.gz"
@@ -742,7 +742,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 18778763,
-      "download_count": 933,
+      "download_count": 1207,
       "created_at": "2023-01-17T12:27:17Z",
       "updated_at": "2023-01-17T12:27:18Z",
       "browser_download_url": "https://github.com/gohugoio/hugo/releases/download/v0.110.0/hugo_extended_0.110.0_windows-amd64.zip"
@@ -753,13 +753,13 @@
   "body": "## Note\r\n\r\n* Make readFile return nil when file not found (note) 3c51625c @bep #9620 \r\n* Make hugo.toml the new config.toml f38a2fbd @bep #8979 \r\n\r\n## Bug fixes\r\n\r\n* Fix permalinks issue with repeated sections 671f64b2 @bep #10377 \r\n* Fix HEAD method in resources.GetRemote f13531e6 @bep #10604 \r\n* Fix order when reading custom headers in resources.GetRemote b5d48506 @bep #10616 \r\n* resource: Fix Go Doc vs .Data.Integrity fbc3e08c @bep \r\n\r\n## Improvements\r\n\r\n* related: Handly []any d5954190 @bep #10624 \r\n* tpl/strings: Add findRESubmatch 2fb40ece @bep #10594 \r\n* config/security: Add GO\\w+ (e.g. GOROOT) to the default allowed list c6b38876 @bep #10429 \r\n* Preserve front matter slice value types (e.g. int) 21af5b35 @bep #10624 \r\n* Make hugo.toml the new config.toml f38a2fbd @bep #8979 \r\n* Add fill HTTP Response info into .Data in resources.GetRemote 6a579eba @bep #10604 \r\n* tpl/compare: Sort special float values as string f95fd57a @acclassic #10389 \r\n* tpl/diagrams: Move Goat to its own file e754d5cb @bep \r\n* Update CONTRIBUTING.md 002cd528 @bep \r\n* Update CONTRIBUTING.md a76c405d @bep \r\n\r\n## Dependency Updates\r\n\r\n* deps: Upgrade github.com/evanw/esbuild v0.15.18 => v0.17.0 6e9fa9e0 @bep #10536 \r\n\r\n## Documentation\r\n\r\n* dos: Regen CLI docs 19e96056 @bep \r\n* docs: Regen docshelper 80e8bd3b @bep \r\n* Update README.md c4f3a46c @bep \r\n* Misc doc, code refactoring to improve documentation e402d91e @bep \r\n* Update README.md c0a03a2a @bep \r\n\r\n## Build Setup\r\n\r\n* Remove reference to Goreleaser in code comment dd6d0a6d @omarkohl \r\n\r\n\r\n",
   "reactions": {
     "url": "https://api.github.com/repos/gohugoio/hugo/releases/89231061/reactions",
-    "total_count": 37,
+    "total_count": 39,
     "+1": 18,
     "-1": 0,
     "laugh": 2,
-    "hooray": 8,
+    "hooray": 9,
     "confused": 0,
-    "heart": 4,
+    "heart": 5,
     "rocket": 3,
     "eyes": 2
   },
