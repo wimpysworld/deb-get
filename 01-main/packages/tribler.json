@@ -62,7 +62,7 @@
       "content_type": "text/plain",
       "state": "uploaded",
       "size": 224,
-      "download_count": 26,
+      "download_count": 27,
       "created_at": "2022-09-20T12:34:28Z",
       "updated_at": "2022-09-20T12:34:29Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/MD5.txt"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 566,
-      "download_count": 13,
+      "download_count": 14,
       "created_at": "2022-09-20T12:34:29Z",
       "updated_at": "2022-09-20T12:34:29Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/MD5.txt.asc"
@@ -130,7 +130,7 @@
       "content_type": "text/plain",
       "state": "uploaded",
       "size": 256,
-      "download_count": 18,
+      "download_count": 19,
       "created_at": "2022-09-20T12:34:29Z",
       "updated_at": "2022-09-20T12:34:30Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/SHA1.txt"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 566,
-      "download_count": 12,
+      "download_count": 13,
       "created_at": "2022-09-20T12:34:30Z",
       "updated_at": "2022-09-20T12:34:30Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/SHA1.txt.asc"
@@ -198,7 +198,7 @@
       "content_type": "text/plain",
       "state": "uploaded",
       "size": 352,
-      "download_count": 97,
+      "download_count": 98,
       "created_at": "2022-09-20T12:34:30Z",
       "updated_at": "2022-09-20T12:34:31Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/SHA256.txt"
@@ -232,7 +232,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 566,
-      "download_count": 26,
+      "download_count": 27,
       "created_at": "2022-09-20T12:34:31Z",
       "updated_at": "2022-09-20T12:34:31Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/SHA256.txt.asc"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 75860708,
-      "download_count": 5939,
+      "download_count": 6068,
       "created_at": "2022-09-20T12:38:01Z",
       "updated_at": "2022-09-20T12:39:19Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/Tribler-7.12.1.dmg"
@@ -334,7 +334,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 2739460,
-      "download_count": 3419,
+      "download_count": 3497,
       "created_at": "2022-09-20T12:39:19Z",
       "updated_at": "2022-09-20T12:39:20Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/Tribler-v7.12.1.tar.xz"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 93244708,
-      "download_count": 6643,
+      "download_count": 6808,
       "created_at": "2022-09-20T12:34:31Z",
       "updated_at": "2022-09-20T12:36:20Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/tribler_7.12.1_all.deb"
@@ -436,7 +436,7 @@
       "content_type": "application/x-msdownload",
       "state": "uploaded",
       "size": 78183720,
-      "download_count": 37423,
+      "download_count": 38457,
       "created_at": "2022-09-20T12:36:21Z",
       "updated_at": "2022-09-20T12:38:00Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/Tribler_7.12.1_x64.exe"
@@ -504,7 +504,7 @@
       "content_type": "application/x-msdownload",
       "state": "uploaded",
       "size": 68090299,
-      "download_count": 10601,
+      "download_count": 10891,
       "created_at": "2022-09-20T12:39:20Z",
       "updated_at": "2022-09-20T12:40:29Z",
       "browser_download_url": "https://github.com/Tribler/tribler/releases/download/v7.12.1/Tribler_7.12.1_x86.exe"
