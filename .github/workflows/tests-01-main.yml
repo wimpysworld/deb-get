@@ -2,7 +2,7 @@ name: 01-main Tests
 
 on:
   pull_request:
-    types: [opened, closed, synchronize]
+    types: [opened, synchronize]
     paths:
       - "01-main/packages/*"
   workflow_dispatch:
