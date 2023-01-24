@@ -130,7 +130,7 @@
       "content_type": "application/x-ms-dos-executable",
       "state": "uploaded",
       "size": 56523616,
-      "download_count": 1012,
+      "download_count": 1050,
       "created_at": "2022-09-01T10:33:19Z",
       "updated_at": "2022-09-01T10:33:31Z",
       "browser_download_url": "https://github.com/ProtonMail/proton-bridge/releases/download/v2.3.0/Bridge-Installer.exe"
@@ -164,7 +164,7 @@
       "content_type": "application/pgp-signature",
       "state": "uploaded",
       "size": 566,
-      "download_count": 10,
+      "download_count": 11,
       "created_at": "2022-09-01T10:33:32Z",
       "updated_at": "2022-09-01T10:33:32Z",
       "browser_download_url": "https://github.com/ProtonMail/proton-bridge/releases/download/v2.3.0/Bridge-Installer.exe.sig"
@@ -368,7 +368,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 64215610,
-      "download_count": 360,
+      "download_count": 361,
       "created_at": "2022-09-01T10:33:46Z",
       "updated_at": "2022-09-01T10:33:55Z",
       "browser_download_url": "https://github.com/ProtonMail/proton-bridge/releases/download/v2.3.0/protonmail-bridge_2.3.0-1_amd64.deb"

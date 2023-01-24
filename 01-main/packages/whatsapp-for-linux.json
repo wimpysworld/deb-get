@@ -63,7 +63,7 @@
         "content_type": "application/appimage",
         "state": "uploaded",
         "size": 250152128,
-        "download_count": 0,
+        "download_count": 4,
         "created_at": "2023-01-23T11:06:03Z",
         "updated_at": "2023-01-23T11:06:13Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.2/whatsapp-for-linux-1.5.2-x86_64.AppImage"
@@ -97,7 +97,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 106580,
-        "download_count": 10,
+        "download_count": 54,
         "created_at": "2023-01-23T11:05:56Z",
         "updated_at": "2023-01-23T11:05:57Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.2/whatsapp-for-linux_1.5.2_amd64.deb"
@@ -131,7 +131,7 @@
         "content_type": "application/snap",
         "state": "uploaded",
         "size": 96735232,
-        "download_count": 0,
+        "download_count": 1,
         "created_at": "2023-01-23T11:05:58Z",
         "updated_at": "2023-01-23T11:06:02Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.2/whatsapp-for-linux_1.5.2_amd64.snap"
@@ -139,7 +139,19 @@
     ],
     "tarball_url": "https://api.github.com/repos/eneshecan/whatsapp-for-linux/tarball/v1.5.2",
     "zipball_url": "https://api.github.com/repos/eneshecan/whatsapp-for-linux/zipball/v1.5.2",
-    "body": "# Changelog\n\n## [v1.5.2](https://github.com/eneshecan/whatsapp-for-linux/tree/v1.5.2) (2023-01-23)\n\n[Full Changelog](https://github.com/eneshecan/whatsapp-for-linux/compare/v1.5.1...v1.5.2)\n\n**Implemented enhancements:**\n\n- Find Russian translation and icons here [\\#260](https://github.com/eneshecan/whatsapp-for-linux/issues/260)\n- How can I remove it from the system? [\\#248](https://github.com/eneshecan/whatsapp-for-linux/issues/248)\n\n**Fixed bugs:**\n\n- Unable to Paste Clipboard Images in Whatsapp for Linus [\\#268](https://github.com/eneshecan/whatsapp-for-linux/issues/268)\n- Use different compression mode for deb package [\\#267](https://github.com/eneshecan/whatsapp-for-linux/issues/267)\n- Dark theme not appearing for window border in Linux Mint 21 Vanessa, Flatpak. [\\#262](https://github.com/eneshecan/whatsapp-for-linux/issues/262)\n\n**Merged pull requests:**\n\n- Add pt-br language [\\#270](https://github.com/eneshecan/whatsapp-for-linux/pull/270) ([filhocf](https://github.com/filhocf))\n- po: add Georgian translation [\\#265](https://github.com/eneshecan/whatsapp-for-linux/pull/265) ([NorwayFun](https://github.com/NorwayFun))\n- Update ru.po [\\#263](https://github.com/eneshecan/whatsapp-for-linux/pull/263) ([BrainKicker](https://github.com/BrainKicker))\n- add spanish translation [\\#261](https://github.com/eneshecan/whatsapp-for-linux/pull/261) ([haggen88](https://github.com/haggen88))"
+    "body": "# Changelog\n\n## [v1.5.2](https://github.com/eneshecan/whatsapp-for-linux/tree/v1.5.2) (2023-01-23)\n\n[Full Changelog](https://github.com/eneshecan/whatsapp-for-linux/compare/v1.5.1...v1.5.2)\n\n**Implemented enhancements:**\n\n- Find Russian translation and icons here [\\#260](https://github.com/eneshecan/whatsapp-for-linux/issues/260)\n- How can I remove it from the system? [\\#248](https://github.com/eneshecan/whatsapp-for-linux/issues/248)\n\n**Fixed bugs:**\n\n- Unable to Paste Clipboard Images in Whatsapp for Linus [\\#268](https://github.com/eneshecan/whatsapp-for-linux/issues/268)\n- Use different compression mode for deb package [\\#267](https://github.com/eneshecan/whatsapp-for-linux/issues/267)\n- Dark theme not appearing for window border in Linux Mint 21 Vanessa, Flatpak. [\\#262](https://github.com/eneshecan/whatsapp-for-linux/issues/262)\n\n**Merged pull requests:**\n\n- Add pt-br language [\\#270](https://github.com/eneshecan/whatsapp-for-linux/pull/270) ([filhocf](https://github.com/filhocf))\n- po: add Georgian translation [\\#265](https://github.com/eneshecan/whatsapp-for-linux/pull/265) ([NorwayFun](https://github.com/NorwayFun))\n- Update ru.po [\\#263](https://github.com/eneshecan/whatsapp-for-linux/pull/263) ([BrainKicker](https://github.com/BrainKicker))\n- add spanish translation [\\#261](https://github.com/eneshecan/whatsapp-for-linux/pull/261) ([haggen88](https://github.com/haggen88))",
+    "reactions": {
+      "url": "https://api.github.com/repos/eneshecan/whatsapp-for-linux/releases/89892612/reactions",
+      "total_count": 4,
+      "+1": 2,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 2,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    }
   },
   {
     "url": "https://api.github.com/repos/eneshecan/whatsapp-for-linux/releases/87244396",
@@ -239,7 +251,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 111638,
-        "download_count": 536,
+        "download_count": 537,
         "created_at": "2022-12-26T13:47:54Z",
         "updated_at": "2022-12-26T13:47:54Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.1/whatsapp-for-linux_1.5.1_amd64.deb"
@@ -393,7 +405,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 110948,
-        "download_count": 800,
+        "download_count": 801,
         "created_at": "2022-10-29T12:00:57Z",
         "updated_at": "2022-10-29T12:00:57Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.5.0/whatsapp-for-linux_1.5.0_amd64.deb"
@@ -997,7 +1009,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 103856,
-        "download_count": 1736,
+        "download_count": 1757,
         "created_at": "2022-06-27T20:16:22Z",
         "updated_at": "2022-06-27T20:16:23Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.4.4/whatsapp-for-linux_1.4.4_amd64.deb"
@@ -1577,7 +1589,7 @@
         "content_type": "application/deb",
         "state": "uploaded",
         "size": 99104,
-        "download_count": 379,
+        "download_count": 381,
         "created_at": "2022-01-08T13:32:13Z",
         "updated_at": "2022-01-08T13:32:14Z",
         "browser_download_url": "https://github.com/eneshecan/whatsapp-for-linux/releases/download/v1.4.0/whatsapp-for-linux_1.4.0_amd64.deb"

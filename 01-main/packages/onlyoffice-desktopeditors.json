@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 308729024,
-      "download_count": 236,
+      "download_count": 238,
       "created_at": "2022-11-16T07:16:03Z",
       "updated_at": "2022-11-16T07:16:16Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/DesktopEditors-x86_64.AppImage"
@@ -96,7 +96,7 @@
       "content_type": "application/x-ms-dos-executable",
       "state": "uploaded",
       "size": 225927944,
-      "download_count": 43489,
+      "download_count": 44092,
       "created_at": "2022-10-21T10:04:11Z",
       "updated_at": "2022-10-21T10:04:34Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/DesktopEditors_x64.exe"
@@ -130,7 +130,7 @@
       "content_type": "application/x-msi",
       "state": "uploaded",
       "size": 305431552,
-      "download_count": 426,
+      "download_count": 432,
       "created_at": "2022-10-21T10:05:46Z",
       "updated_at": "2022-10-21T10:06:16Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/DesktopEditors_x64.msi"
@@ -164,7 +164,7 @@
       "content_type": "application/x-ms-dos-executable",
       "state": "uploaded",
       "size": 204920736,
-      "download_count": 1001,
+      "download_count": 1006,
       "created_at": "2022-10-21T10:03:32Z",
       "updated_at": "2022-10-21T10:03:52Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/DesktopEditors_x86.exe"
@@ -198,7 +198,7 @@
       "content_type": "application/x-msi",
       "state": "uploaded",
       "size": 281020416,
-      "download_count": 153,
+      "download_count": 155,
       "created_at": "2022-10-21T10:03:04Z",
       "updated_at": "2022-10-21T10:03:32Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/DesktopEditors_x86.msi"
@@ -232,7 +232,7 @@
       "content_type": "application/x-apple-diskimage",
       "state": "uploaded",
       "size": 227521708,
-      "download_count": 623,
+      "download_count": 634,
       "created_at": "2022-10-21T10:07:38Z",
       "updated_at": "2022-10-21T10:08:06Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/ONLYOFFICE-arm.dmg"
@@ -266,7 +266,7 @@
       "content_type": "application/x-xz",
       "state": "uploaded",
       "size": 178864700,
-      "download_count": 55,
+      "download_count": 56,
       "created_at": "2022-10-21T10:08:07Z",
       "updated_at": "2022-10-21T10:08:25Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/onlyoffice-desktopeditors-help-any.tar.xz"
@@ -300,7 +300,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 200188373,
-      "download_count": 35,
+      "download_count": 36,
       "created_at": "2022-10-21T10:02:39Z",
       "updated_at": "2022-10-21T10:03:03Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/onlyoffice-desktopeditors-help.noarch.rpm"
@@ -334,7 +334,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 200311986,
-      "download_count": 746,
+      "download_count": 757,
       "created_at": "2022-10-21T10:06:16Z",
       "updated_at": "2022-10-21T10:07:37Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/onlyoffice-desktopeditors-help_all.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 181392349,
-      "download_count": 138,
+      "download_count": 140,
       "created_at": "2022-10-21T10:05:05Z",
       "updated_at": "2022-10-21T10:05:23Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/onlyoffice-desktopeditors.x86_64.rpm"
@@ -436,7 +436,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 191529514,
-      "download_count": 16573,
+      "download_count": 16765,
       "created_at": "2022-10-21T10:03:52Z",
       "updated_at": "2022-10-21T10:04:11Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/onlyoffice-desktopeditors_amd64.deb"
@@ -470,7 +470,7 @@
       "content_type": "application/x-apple-diskimage",
       "state": "uploaded",
       "size": 232587353,
-      "download_count": 752,
+      "download_count": 756,
       "created_at": "2022-10-21T10:05:24Z",
       "updated_at": "2022-10-21T10:05:45Z",
       "browser_download_url": "https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v7.2.1/ONLYOFFICE-x86_64.dmg"

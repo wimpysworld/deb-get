@@ -62,7 +62,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 2826,
-      "download_count": 117,
+      "download_count": 130,
       "created_at": "2023-01-09T02:20:21Z",
       "updated_at": "2023-01-09T02:20:21Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/Portfile"
@@ -96,7 +96,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 15136396,
-      "download_count": 213,
+      "download_count": 239,
       "created_at": "2023-01-09T02:11:52Z",
       "updated_at": "2023-01-09T02:11:53Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine-20.04.deb"
@@ -130,7 +130,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 15126142,
-      "download_count": 451,
+      "download_count": 509,
       "created_at": "2023-01-09T02:12:14Z",
       "updated_at": "2023-01-09T02:12:15Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine-22.04.deb"
@@ -164,7 +164,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 16110458,
-      "download_count": 6538,
+      "download_count": 7056,
       "created_at": "2023-01-09T02:14:30Z",
       "updated_at": "2023-01-09T02:14:32Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine-windows.exe"
@@ -198,7 +198,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 20534761,
-      "download_count": 2422,
+      "download_count": 2633,
       "created_at": "2023-01-09T02:14:32Z",
       "updated_at": "2023-01-09T02:14:33Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine-windows.zip"
@@ -232,7 +232,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 26727616,
-      "download_count": 680,
+      "download_count": 726,
       "created_at": "2023-01-09T02:13:41Z",
       "updated_at": "2023-01-09T02:13:43Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine.AppImage"
@@ -266,7 +266,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 596417132,
-      "download_count": 148,
+      "download_count": 163,
       "created_at": "2023-01-09T02:20:23Z",
       "updated_at": "2023-01-09T02:20:42Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine.dmg"
@@ -300,7 +300,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 14593175,
-      "download_count": 98,
+      "download_count": 108,
       "created_at": "2023-01-09T02:20:43Z",
       "updated_at": "2023-01-09T02:20:44Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine.pkg"
@@ -334,7 +334,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 15328923,
-      "download_count": 195,
+      "download_count": 214,
       "created_at": "2023-01-09T02:11:53Z",
       "updated_at": "2023-01-09T02:11:55Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine.rpm"
@@ -368,7 +368,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 7876096,
-      "download_count": 132,
+      "download_count": 149,
       "created_at": "2023-01-09T04:01:39Z",
       "updated_at": "2023-01-09T04:01:40Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine_aarch64.flatpak"
@@ -436,7 +436,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 45669816,
-      "download_count": 38,
+      "download_count": 41,
       "created_at": "2023-01-09T02:28:43Z",
       "updated_at": "2023-01-09T02:28:45Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine_debug_x86_64.flatpak"
@@ -470,7 +470,7 @@
       "content_type": "raw",
       "state": "uploaded",
       "size": 9952768,
-      "download_count": 349,
+      "download_count": 386,
       "created_at": "2023-01-09T02:28:45Z",
       "updated_at": "2023-01-09T02:28:46Z",
       "browser_download_url": "https://github.com/LizardByte/Sunshine/releases/download/v0.17.0/sunshine_x86_64.flatpak"
@@ -482,13 +482,13 @@
   "discussion_url": "https://github.com/LizardByte/Sunshine/discussions/735",
   "reactions": {
     "url": "https://api.github.com/repos/LizardByte/Sunshine/releases/88260187/reactions",
-    "total_count": 35,
+    "total_count": 37,
     "+1": 0,
     "-1": 0,
     "laugh": 9,
-    "hooray": 15,
+    "hooray": 16,
     "confused": 0,
-    "heart": 11,
+    "heart": 12,
     "rocket": 0,
     "eyes": 0
   }

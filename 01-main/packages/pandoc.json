@@ -63,7 +63,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 26023736,
-        "download_count": 1907,
+        "download_count": 2268,
         "created_at": "2023-01-18T21:25:09Z",
         "updated_at": "2023-01-18T21:25:32Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-1-amd64.deb"
@@ -97,7 +97,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 28061922,
-        "download_count": 69,
+        "download_count": 93,
         "created_at": "2023-01-18T21:25:32Z",
         "updated_at": "2023-01-18T21:26:00Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-1-arm64.deb"
@@ -131,7 +131,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 26474024,
-        "download_count": 577,
+        "download_count": 862,
         "created_at": "2023-01-18T21:26:00Z",
         "updated_at": "2023-01-18T21:26:17Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-linux-amd64.tar.gz"
@@ -165,7 +165,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 28539589,
-        "download_count": 97,
+        "download_count": 122,
         "created_at": "2023-01-18T21:26:17Z",
         "updated_at": "2023-01-18T21:26:35Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-linux-arm64.tar.gz"
@@ -199,7 +199,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 20050632,
-        "download_count": 1829,
+        "download_count": 2403,
         "created_at": "2023-01-18T21:26:35Z",
         "updated_at": "2023-01-18T21:26:46Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-macOS.pkg"
@@ -233,7 +233,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20085051,
-        "download_count": 113,
+        "download_count": 128,
         "created_at": "2023-01-18T21:26:46Z",
         "updated_at": "2023-01-18T21:26:58Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-macOS.zip"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 27475968,
-        "download_count": 7611,
+        "download_count": 9902,
         "created_at": "2023-01-18T21:26:58Z",
         "updated_at": "2023-01-18T21:27:14Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-windows-x86_64.msi"
@@ -301,7 +301,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 26270119,
-        "download_count": 2486,
+        "download_count": 2933,
         "created_at": "2023-01-18T21:27:14Z",
         "updated_at": "2023-01-18T21:27:29Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/3.0/pandoc-3.0-windows-x86_64.zip"
@@ -312,13 +312,13 @@
     "body": "<details>\r\n  <summary>Click to expand changelog</summary>\r\n\r\n- Split pandoc-server, pandoc-cli, and pandoc-lua-engine into separate packages (#8309). Note that installing the `pandoc` package from Hackage will no longer give you the `pandoc` executable; for that you need to install `pandoc-cli`.\r\n\r\n- Pandoc now behaves like a Lua interpreter when called as `pandoc-lua` or when `pandoc lua` is used (#8311, Albert Krewinkel). The Lua API that is available in filters is automatically available to the interpreter. (See the `pandoc-lua` man page.)\r\n\r\n- Pandoc behaves like a server when called as `pandoc-server` or when `pandoc server` is used. (See the `pandoc-server` man page.)\r\n\r\n- A new command-line option `--list-tables`, causes tables to be formatted as list tables in RST (#4564, with Francesco Occhipinti).\r\n\r\n- New command line option: `--epub-title-page=true|false` allows the EPUB title page to be omitted (#6097).\r\n\r\n- `--reference-doc` can now accept a URL argument (#8535) and load a remote reference doc.\r\n\r\n- `--version` output no longer contains version info for dependent packages. Instead, it contains a “Features” line that indicates whether the binary was compiled with support for acting as a server, and for using Lua filters and Custom writers.\r\n\r\n- A new option `--split-level` replaces `--epub-chapter-level` and affects both EPUB and chunked HTML output. `--epub-chapter-level` will still work but is deprecated.\r\n\r\n- Multiple input files with `--file-scope`: fix case where the links are URL-encoded, e.g. with `%20` (#8467).\r\n\r\n- Produce error if `--csl` is used more than once (#8195, Prat).\r\n\r\n- Remove deprecated `--atx-headers` option.\r\n\r\n- Remove deprecated option `--strip-empty-paragraphs`.\r\n\r\n- In `--verbose` mode add message when running citeproc (as with other filters).\r\n\r\n- Add new `mark` extension for highlighted text in Markdown, using `==` delimiters (#7743).\r\n\r\n- Add new extensions `wikilinks_title_after_pipe` and `wikilinks_title_before_pipe` for `commonmark` and `markdown`. (#2923, Albert Krewinkel). The former enables links of style `[[Name of page|Title]]` and the latter `[[Title|Name of     page]]`. Titles are optional in both variants, so this works for both: `[[https://example.org]]`, `[[Name of page]]`. The writer is modified to render links with title `wikilink` as a wikilink if a respective extension is enabled. Pandoc will use `wikilinks_title_after_pipe` if both extensions are enabled.\r\n\r\n- Add prefixes to identifiers with `--file-scope` (#6384). This change only affects the case where `--file-scope` is used and more than one file is specified on the command line. In this case, identifiers will be prefixed with a string derived from the file path, to disambiguate them. For example, an identifier `foo` in `contents/file1.txt` will become `contents__file1.txt__foo`. Links will be adjusted accordingly: if `file2.txt` links to `file1.txt#foo`, then the link will be changed to point to `#file1.txt__foo`. Similarly, a link to `file1.txt` will point to `#file1.txt`. A Div with an identifier derived from the file path will be added around each file’s content, so that links to files will still work.\r\n\r\n- New output format: `chunkedhtml`. This creates a zip file containing multiple HTML files, one for each section, linked with “next,” “previous,” “up,” and “top” links. (If `-o` is used with an argument without an extension, it is treated as a directory and the zip file is automatically extracted there, unless it already exists.) The top page will contain a table of contents if `--toc` is used. A `sitemap.json` file is also included. The option `--split-level` determines the level at which sections are to be split.\r\n\r\n- Support complex figures (Albert Krewinkel, Aner Lucero). There is now a dedicate Figure block constructor for figures. The old hack of representing a figure as `Para [Image attr [..alt..] (source, \"fig:title\")]` has been dropped. Here is a summary of figure support in different formats:\r\n\r\n  - Markdown reader: paragraphs containing just an image are treated as figures if the `implicit_figures` extension is enabled. The identifier is used as the figure’s identifier and the image description is also used as figure caption; all other attributes are treated as belonging to the image.\r\n  - Markdown writer: figures are output as implicit figures if possible, via HTML if the `raw_html` extension is enabled, and as Div elements otherwise.\r\n  - HTML reader: `<figure>` elements are parsed as figures, with the caption taken from the respective `<figcaption>` elements.\r\n  - HTML writer: the alt text is no longer constructed from the caption, as was the case with implicit figures. This reduces duplication, but comes at the risk of images that are missing alt texts. Authors should take care to provide alt texts for all images. Some readers, most notably the Markdown reader with the `implicit_figures` extension, add a caption that’s identical to the image description. The writer checks for this and adds an `aria-hidden` attribute to the `<figcaption>` element in that case.\r\n  - JATS reader: The `<fig>` and `<caption>` elements are parsed into figure elements, even if the contents is more complex.\r\n  - JATS writer: The `<fig>` and `<caption>` elements are used write figures.\r\n  - LaTeX reader: support for figures with non-image contents and for subfigures.\r\n  - LaTeX writer: complex figures, e.g. with non-image contents and subfigures, are supported. The `subfigure` template variable is set if the document contains subfigures, triggering the conditional loading of the *subcaption* package. Contants of figures that contain tables are become unwrapped, as longtable environments are not allowed within figures.\r\n  - DokuWiki, Haddock, Jira, Man, MediaWiki, Ms, Muse, PPTX, RTF, TEI, ZimWiki writers: Figures are rendered like Div elements.\r\n  - Asciidoc writer: The figure contents is unwrapped; each image in the the figure becomes a separate figure.\r\n  - Classic custom writers: Figures are passed to the global function `Figure(caption, contents, attr)`, where `caption` and `contents` are strings and `attr` is a table of key-value pairs.\r\n  - ConTeXt writer: Figures are wrapped in a “placefigure” environment with `\\startplacefigure`/`\\endplacefigure`, adding the features caption and listing title as properties. Subfigures are place in a single row with the `\\startfloatcombination` environment.\r\n  - DocBook writer: Uses `mediaobject` elements, unless the figure contains subfigures or tables, in which case the figure content is unwrapped.\r\n  - Docx writer: figures with multiple content blocks are rendered as tables with style `FigureTable`; like before, single-image figures are still output as paragraphs with style `Figure` or `Captioned Figure`, depending on whether a caption is attached.\r\n  - DokuWiki writer: Caption and “alt-text” are no longer combined. The alt text of a figure will now be lost in the conversion.\r\n  - FB2 writer: The figure caption is added as alt text to the images in the figure; pre-existing alt texts are kept.\r\n  - ICML writer: Only single-image figures are supported. The contents of figures with additional elements gets unwrapped.\r\n  - OpenDocument writer: A separate paragraph is generated for each block element in a figure, each with style `FigureWithCaption`. Behavior for single-image figures therefore remains unchanged.\r\n  - Org writer: Only the first element in a figure is given a caption; additional block elements in the figure are appended without any caption being added.\r\n  - RST writer: Single-image figures are supported as before; the contents of more complex images become nested in a container of type `float`.\r\n  - Texinfo writer: Figures are rendered as float with type `figure`.\r\n  - Textile writer: Figures are rendered with the help of HTML elements.\r\n  - XWiki: Figures are placed in a group.\r\n\r\n- Changes in custom readers/writers:\r\n\r\n  - It is now possible to have a custom reader and a custom writer for a format together in the same file. The file may also define a custom template for the writer.\r\n  - Pandoc now checks the folder `custom` in the user’s data directory for a matching script if it can’t find one in the local directory. Previously, the `readers` and `writers` data directories were searched for custom readers and writers, respectively. Scripts in those directories must be moved to the `custom` folder.\r\n  - Custom readers used to implement a fallback behavior that allowed to consume just a string value as input to the `Reader` function. This has been removed, the first argument is now always a list of sources. Use `tostring` on that argument to get a string.\r\n\r\n- New module Text.Pandoc.Writers.ChunkedHTML, exporting `writeChunkedHtml` \\[API change\\].\r\n\r\n- We now set the `pandoc-version` variable centrally rather than in the writers. One effect is the man writer now emits a comment with the pandoc version.\r\n\r\n- pandoc-server:\r\n\r\n  - Add simple CORS support to pandoc-server (#8427).\r\n  - Print message to stderr when starting the server.\r\n\r\n- Docx reader:\r\n\r\n  - Mark unnumbered headings with class `unnumbered` (#8148, Albert Krewinkel). This change ensures good conversion results when converting with `--number-sections`.\r\n  - Support parsing of highlighted text.\r\n  - Fix handling of `oMathPara` in `w:p` with other content (#8483).\r\n\r\n- ODT reader:\r\n\r\n  - Fix relative links. ODT adds a `../` to relative links (see #3524); this needs to be removed when converting from ODT.\r\n  - Handle “section” elements (#8409).\r\n  - Rename Text.Pandoc.Readers.Odt -\\> Text.Pandoc.Readers.ODT, for consistency with Writers.ODT. Rename `readOdt` -\\> `readODT`. \\[API change\\]\r\n\r\n- DocBook reader:\r\n\r\n  - Support href on link even in a fragment (#8437). (We now just look for an `href` attribute without worrying about the namespace.)\r\n  - Parse title from imageobject/objectinfo (#8437).\r\n\r\n- JATS reader:\r\n\r\n  - Handle uri element in references (#8270).\r\n\r\n- Ipynb reader:\r\n\r\n  - Add cell id to attachment filename when storing in MediaBag (#8415). Otherwise attachments with the same name can overwrite each other.\r\n\r\n- LaTeX reader:\r\n\r\n  - Skip parenthenized args of toprule, midrule, etc (#8242).\r\n  - Handle `##` macro arguments properly (#8243).\r\n  - Remove unused function `toksToString` in Parsing module.\r\n  - Support more `soul` commands, including `\\hl`.\r\n  - Add `unnumbered` class for `\\part*` (#8447)\r\n  - Fix `TEXINPUTS` handling (#8392). If `TEXINPUTS` ends with `:`, then the system default `TEXINPUTS` is added. We handle this by just adding the working directory in this case.\r\n  - Parse short table caption (see jgm/pandoc-types#103). This is not too useful yet, because writers don’t do anything with the short caption.\r\n\r\n- MediaWiki reader:\r\n\r\n  - Parse table cell with attributess, to support rowspan, colspan (#8231, Ruqi).\r\n  - Refine “blending” rules for MediaWiki links (#8525, Ruqi). The rules for “blending” characters outside a link into the link are described here: https://en.wikipedia.org/wiki/Help:Wikitext#Blend_link These pose a problem for CJK languages, which generally don’t have spaces after links. However, it turns out that the blending behavior, as implemented on Wikipedia, is (contrary to the documentation) only for ASCII letters. This commit implements that restriction, which fixes the problem for CJK.\r\n\r\n- HTML reader:\r\n\r\n  - Fix regression for `<tt>` (#8330). It was no longer being parsed as Code (Justin Wood).\r\n\r\n- RST reader:\r\n\r\n  - Support `mark` role for round-trip.\r\n\r\n- Textile reader:\r\n\r\n  - Support linked images (#8541).\r\n  - Fix strong emph ending with link (#8540).\r\n  - Adding a Parser to look for ordered list start attribute numbers if any (#2465, vkraven).\r\n  - Handle empty paragraphs (#8487). Also, if attributes are added explicitly to a paragraph, put it in a Div with the attributes.\r\n\r\n- Markdown reader:\r\n\r\n  - Allow fenced code block “bare” language to be combined with attributes (#8174, Siphalor), e.g.\r\n\r\n        ```haskell {.class #id}\r\n        ```\r\n\r\n  - Allow table caption labels to start with lowercase `t` (#8259).\r\n\r\n  - Grid tables: allow specifying a table foot by enclosing it with part separator lines, i.e., row separator lines consisting only of `+` and `=` characters (#8257, Albert Krewinkel). E.g.:\r\n\r\n        +------+-------+\r\n        | Item | Price |\r\n        +======+=======+\r\n        | Eggs | 5£    |\r\n        +------+-------+\r\n        | Spam | 3£    |\r\n        +======+=======+\r\n        | Sum  | 8£    |\r\n        +======+=======+\r\n\r\n  - Fix `implicit_header_references` with duplicate headings (#8300). Documentation says that when more than one heading has the same text, an implicit reference `[Heading text][]` refers to the first one. Previously pandoc linked to the last one instead. This patch makes pandoc conform to the documented behavior.\r\n\r\n  - Parse highlighted text inside `==..==` if `mark` extension enabled.\r\n\r\n- Org reader:\r\n\r\n  - Allow org-ref v2 citations with `&` prefix (#8302).\r\n  - Make `#+pandoc-emphasis-pre` work as expected (#8360, Amir Dekel).\r\n\r\n- BibTeX reader:\r\n\r\n  - Fix handling of `%` in `url` field (#7678). `%` does not function as a comment character inside `url` (where URL-encoding is common).\r\n  - Allow `url` field in `bibtex` as well as `biblatex` (#8287). This field is not officially supported for BibTeX, but many styles can handle it (<https://www.bibtex.com/f/url-field/>), and others will ignore it.\r\n  - Support `software` type in biblatex \\<-\\> CSL conversions (#8504).\r\n  - Make sure `version` field comes through in biblatex (#8504).\r\n\r\n- BibTeX writer:\r\n\r\n  - Pass through `url` even for `bibtex` (#8287).\r\n\r\n- Org writer:\r\n\r\n  - Pass through unknown languages in code blocks (#8278), instead of producing `begin_example`.\r\n  - Use span attributes `tag-name` in headers as tags (#8513, Albert Krewinkel). This enables round-tripping of tags in Org headings.\r\n\r\n- EndNote reader:\r\n\r\n  - Better error when parsing EndNote references fails.\r\n\r\n- DocBook writer:\r\n\r\n  - Rename Text.Pandoc.Writers.Docbook -\\> Text.Pandoc.Writers.DocBook. Rename `writeDocbook` -\\> `writeDocBook`, for consistency with the DocBook reader’s naming. \\[API change\\]\r\n  - Fix position of textobject (#8437). It is a child of `inlinemediaobject`, not `imageobject`.\r\n  - Add regression tests for #8437.\r\n  - Render image alt text using textobject element (#8437).\r\n  - Don’t indent contents of title element.\r\n  - Store “unnumbered” class in DocBook role attribute (#1402, lifeunleaded).\r\n\r\n- ConTeXt writer (Albert Krewinkel):\r\n\r\n  - Support syntax highlighting for code.\r\n  - Always use `\\type` for inline code. Inline codes that contained curly braces where previously rendered with `\\mono`; this led to unexpected results when the presentation of `\\type` was customized, as those changes would not have been applied to code rendered with `\\mono`.\r\n  - Add support for unlisted, unnumbered headings (#8486).\r\n  - Support `tagging` extension (Albert Krewinkel). Paragraphs are enclosed by `\\bpar` and `\\epar` commands, and `highlight` commands are used for emphasis. This results in much better tagging in PDF output.\r\n\r\n- LaTeX writer:\r\n\r\n  - Do not repeat caption on headless tables (Albert Krewinkel). The caption of headless tables was repeated on each page that contained part of the table. It is now made part of the “first head”, i.e. the table head that is printed only once.\r\n  - Add separator line between table’s body and its foot (Albert Krewinkel).\r\n  - Ignore languages with no babel equivalent, instead of generating an invalid command in the preamble (#8325).\r\n  - Use `\\includesvg` for SVGs and include the `svg` package (#8334).\r\n  - Use `soul` instead of `ulem` for strikeout, underline (#8411). This handles things like hyphenation, line breaks, and nonbreaking spaces better.\r\n  - Use `\\toprule\\noalign{}` instead of `\\toprule()` in tables, and similarly for `\\midrule` and `\\bottomrule` (#8223). This facilitates redefining `\\toprule`, `\\midrule`, and `\\bottomrule` without needing to gobble the ()s. (Those who redefine these macros on the assumption that they will be followed by `()` may need to change their definitions.)\r\n  - Support highlighted text for Span with class `mark`.\r\n\r\n- JATS writer:\r\n\r\n  - Use `<break/>` for LineBreak in the limited contexts that accept it (#8344).\r\n  - Officially deprecate `writeJATS` in favor of `writeJatsArchiving`.\r\n\r\n- RTF writer:\r\n\r\n  - Add space after unicode escape commands (#8264). This fixes a bug that caused characters to disappear after unicode escapes.\r\n\r\n- RST writer:\r\n\r\n  - Render tables as list tables when the `--list-tables` option is specified (`writerListTables`) (#4564, Francesco Occhipinti).\r\n  - Improve inline escaping rules (#8380).\r\n  - Use special `mark` role for Span with class `mark`.\r\n\r\n- Commonmark writer:\r\n\r\n  - Ensure that we don’t have blank lines in raw HTML (#8307).\r\n\r\n- HTML writer:\r\n\r\n  - Only add role attribute in HTML5 (#8241). It is not valid in HTML4.\r\n  - Avoid aria-hidden in code blocks for HTML4 (#8241).\r\n  - Only treat `. . .` as a slide pause in slides, and not in regular HTML output (#8281).\r\n  - Properly merge classes for headings of level \\> 6 (#8363).\r\n  - Prevent `<a>` inside `<a>` (#7585). If a link text contains a link, we replace it with a span.\r\n  - Replace deprecated aria roles for bibliography entries (#8354). `doc-biblioentry` -\\> `listitem`, `doc-bibliography` -\\> `list`.\r\n  - Remove obsolete stuff about mathml-script. This was a shim we used to include for mathml support. We don’t do anything with this any more, so this is dead code.\r\n  - Include math links if there are raw commands or environments that can be interpreted as math e.g. by MathJax (#8469).\r\n  - Add prooftree to list of math environments (#8462). This will cause raw LaTeX prooftree environments to be rendered appropriately when `--mathjax` is used.\r\n\r\n- HTML, Markdown writers: filter out empty class attributes (#8251). These should not be generated by any pandoc readers, but they might be produced programatically.\r\n\r\n- Markdown writer:\r\n\r\n  - Avoid HTML fallbacks in the generated TOC (Albert Krewinkel, #8131). The generated table of contents usually has IDs for each TOC link, allowing to link back to specific parts of the TOC. However, this leads to unidiomatic markup in formats like gfm, which do not support attributes on links and hence fall back to HTML. The IDs on TOC items are now removed in that case, leading to more aesthetic TOCs.\r\n  - Escape `!` before `[` (#8254).\r\n  - Support `mark` extension.\r\n\r\n- AsciiDoc writer:\r\n\r\n  - In link text, only replace commas with entities when they’re in Str elements. If a link contains an image, it may have attributes, and the commas there should not be converted (see #8437, #8070).\r\n\r\n- ODT writer:\r\n\r\n  - Fix relative links (#3524).\r\n\r\n- Docx writer:\r\n\r\n  - Better handling of tables in lists (#5947). Previously the content of each list cell was indented when the table belonged to a list item.\r\n  - Indent tables in list items (#5947).\r\n  - Adjust correct attribute on `lang` element (#7022). For East Asian languages, we need to adjust `w:eastAsia` rather than `w:val`. This allows normal fonts to be used for any Latin-font text. Similarly, for bidi languages, we need to adjust `w:bidi` rather than `w:val`. We treat `he` and `ar` as bidi languages, `zh`, `ja`, `ko` as East Asian languages.\r\n  - Support relative image widths (Albert Krewinkel). Image widths given in percent are interpreted to be relative to the text width. Previously, percent widths were taken relative to the image’s native size, inconsistently with other writers.\r\n  - Avoid using ‘error’ for unassigned table cells (#8468). Instead, throw a regular pandoc error.\r\n  - Render a Span with class `mark` as highlighted. Currently yellow is hardcoded.\r\n\r\n- MediaWiki writer:\r\n\r\n  - Use the ‘new’ table structure, so that colspan and rowspan are supported (Wout Gevaert).\r\n\r\n- Man writer:\r\n\r\n  - Use UTF-8 by default for non-ascii characters (#8507). Only use groff escapes if `--ascii` has been specified on the command line (`writerPreferAscii`).\r\n\r\n- ICML writer:\r\n\r\n  - Use Contents element for images with raw data instead of a link with a data: uri (#8398).\r\n\r\n- EPUB writer:\r\n\r\n  - Refactor to use Text.Pandoc.Chunks.\r\n  - Refactored and simplified code.\r\n  - Make title page optional (#6097).\r\n\r\n- Ms writer:\r\n\r\n  - Properly format display equations (#8308).\r\n  - Remove -C option on PSPIC. Some old versions don’t support this option, and since it’s the default it shouldn’t be necessary.\r\n\r\n- XWiki writer:\r\n\r\n  - Use template if it is specified (#8296). Previously templates were ignored.\r\n\r\n- LaTeX template:\r\n\r\n  - Set fonts after Beamer theme (Jeremie Knuesel). Beamer themes such as metropolis and saintpetersburg change the default fonts. This change gives precedence to the user font settings by moving them after the loading of the Beamer theme.\r\n  - Set `\\babelfont` when `mainlang` and `lang` are specified and `pdflatex` is not being used (#8538). This is needed for good results in Arabic.\r\n  - Add variable `urlstyle` (#8429, Amar Al-Zubaidi). This is set to `same` by default, so users should not experience any change.\r\n\r\n- HTML template:\r\n\r\n  - Remove default font size, line height and font family in default inline css (#8423). `mainfont`, `fontsize`, and `linestretch` can still be used as before; the only difference is that we no longer provide opinionated defaults. This commit also adds a `maxwidth` variable that sets `max-width`; if not set, 36em is used as a default.\r\n  - Add `code { hyphens: manual; }`.\r\n  - Use `styles.citations.html` partial in `styles.html`.\r\n  - Fix class name `hanging` -\\> `hanging-indent` in `styles.citations.html`.\r\n  - Put Consolas before Lucida Console for code font (#8543). This is to prevent Lucida Console from being used on Windows, where it causes spacing issues in some applications, with boldface glyphs wider than regular ones.\r\n\r\n- EPUB CSS changes: Reduce the amount of inline CSS used for EPUBs (#8379). Almost everything is now in the default EPUB CSS (`data/epub.css`), which can be overridden either by putting `epub.css` in the user data directory or by using `--css` on the command line. Inline styles are only used for syntax highlighting (which depends on the style specified, and is only included on pages with highlighted code) and for bibliography formatting (which can depend on the CSL style, and is only used in the page containing the bibliography).\r\n\r\n  Note that, for compatibility with older readers, we don’t use flexbox to style `column/columns` divs by default, as we do in HTML. Instead, we use an older method which only works when there are two `column` divs inside a `columns`\r\n\r\n  504. If you need more than two columns and aren’t worried about support for older EPUB readers, you can modify the default CSS (there is a comment in the CSS telling you what to do).\r\n\r\n- Reveal.js template: prevent line-wrapping of parallax options (#8503, Albert Krewinkel).\r\n\r\n- reference.pptx: Remove unsupported element (#8342, #6338, Link Swanson). The default template contained text above the header, which can mislead users into thinking there is a way to put text there using pandoc.\r\n\r\n- Text.Pandoc.Readers.Metadata:\r\n\r\n  - Fix metadata parsing corner case (#8465).\r\n  - Don’t fail on inline metadata beginning with newline (#8358).\r\n\r\n- Text.Pandoc.App:\r\n\r\n  - Move initial input-to-Pandoc code to internal submodule (Albert Krewinkel).\r\n  - Change `parseOptionsFromArgs` and `parseOptions` (#8406) They now return `Either OptInfo Opt`. \\[API change\\]\r\n  - Add `OptInfo` type \\[API change\\].\r\n  - Add `handleOptInfo` function. This performs the IO actions for things like `--version` that were previously done in `parseOptionsFromArgs` \\[API change\\].\r\n  - `convertWithOpts`: add argument for a `ScriptingEngine` \\[API change\\].\r\n  - Unify check for standalone output (Albert Krewinkel).\r\n  - New `optEpubTitlePage` field on `Opt` \\[API change\\] (#6097).\r\n  - Remove `optEpubChapterLevel`, add `optSplitLevel` \\[API change\\].\r\n  - Export `IpynbOutput(..)` \\[API change\\].\r\n\r\n- Text.Pandoc.App.OutputSettings:\r\n\r\n  - Remove unused field `outputWriterName` in `OutputSettings`.\r\n\r\n- Text.Pandoc.Citeproc:\r\n\r\n  - Check both extension and mime type to determine bibliography type when the bibliography is fetched remotely (#7151).\r\n  - CslJson: allow an object with `items` property in addition to an array of references. This is what is returned by e.g. `https://api.zotero.org/groups/904125/items?v=...&format=csljson`\r\n  - Require a digit for an implicit “page” locator inside explicit locator syntax `{...}` (#8288). Previously a locator specified as `{}` would be rendered as `p.` with nothing after it.\r\n  - Update `sub verbo` to `sub-verbo` (#8315). This is a change in the term’s canonical name in citeproc. As a result of this change, `sub verbo` locators have not worked in pandoc since citeproc 0.7.\r\n  - Text.Pandoc.Citeproc.MetaValue: remove unused function `metaValueToPath`.\r\n  - Add internal module Text.Pandoc.Citeproc.Name (#8345). This exports `toName`, which previously had been part of T.P.Citeproc.BibTeX, and allows for cleaner module dependencies.\r\n\r\n- Export module `Text.Pandoc.Slides` \\[API Change\\] (Albert Krewinkel).\r\n\r\n- Add new module Text.Pandoc.Format \\[API change\\] (Albert Krewinkel). The module provides functions and types for format spec parsing and processing. The function `parseFormatSpec` was moved from Text.Pandoc.Extensions to the new module and renamed to `parseFlavoredFormat`. It now operates in a PandocMonad and is based on the updated types.\r\n\r\n- Text.Pandoc.Sources:\r\n\r\n  - Add UpdateSourcePos instances for String and strict and lazy ByteString \\[API change\\].\r\n\r\n- Text.Pandoc.Extensions:\r\n\r\n  - Fix JSON decoding of Extensions (#8352, Albert Krewinkel).\r\n  - Add new exported function `readExtension` \\[API change\\].\r\n  - Remove `parseFormatSpec` \\[API change\\]. This has been moved to Text.Pandoc.Format and renamed as `parseFlavoredFormat` (Albert Krewinkel).\r\n  - Simpler implementation of Extensions based on Set (benchmarks show no performance penalty).\r\n  - Add `CustomExtension` constructor to `Extension` \\[API change\\].\r\n  - Remove `Bounded`, `Enum` instances for `Extension`.\r\n  - Add `extensionsToList` function.\r\n  - Revise `readExtension` so it can handle `CustomExtension`, and so that it returns a Text rather than `Maybe Text`.\r\n  - Add `showExtension` \\[API change\\].\r\n  - Add `Ext_mark` extension \\[API change\\].\r\n  - Add `Ext_tagging` constructor \\[API change\\] (Albert Krewinkel).\r\n  - Add `Ext_wikilinks_title_after_pipe`, `Ext_wikilinks_title_before_pipe` \\[API change\\] (Albert Krewinkel).\r\n\r\n- Text.Pandoc.PDF:\r\n\r\n  - Fix `papersize` on PDF generation via ms (#8403). We need to set an option in pdfroff in addition to including a macro in the ms file. With this fix, `-Vpapersize=a4` should be sufficient to produce A4 PDF via ms.\r\n  - Change default background color of PDFs generated via HTML (#8422, Marcin Serwin).\r\n\r\n- Text.Pandoc.MIME:\r\n\r\n  - Base module on package `mime-types`, which is already a transitive dependency (#8277, Albert Krewinkel).\r\n  - Remove deprecated overrides (#8292).\r\n\r\n- Text.Pandoc.XML:\r\n\r\n  - Re-export `lookupEntity` from commonmark-hs \\[API change\\].\r\n\r\n- Text.Pandoc.Parsing:\r\n\r\n  - Remove gratuitious renaming of Parsec types. We were exporting Parser, ParserT as synonyms of Parsec, ParsecT. There is no good reason for this and it can cause confusion. Also, when possible, we replace imports of Text.Parsec with Text.Pandoc.Parsing. The idea is to make it easier, at some point, to switch to megaparsec or another parsing engine if we want to. New (re-)exports: `Stream(..)`, `updatePosString`, `SourceName`, `Parsec`, `ParsecT`. Removed exports: `Parser`, `ParserT` \\[API change\\].\r\n  - Export `errorMessages`, `messageString` \\[API change\\].\r\n  - Export `fromParsecError`, which can be used to turn a parsec ParseError into a regular PandocParseError (#8382) \\[API change\\].\r\n  - Remove `nested` \\[API change\\]. It was not being used, and in fact it was a bad idea from the beginning, as it had no hope of solving the problem it was introduced to solve.\r\n  - Change `characterReference`, `charsInBalanced`. `characterReference` so they now return a Text (some named references don’t correspond to a single Char). Use the the `lookupEntity` function from commonmark-hs instead of the slow one from tagsoup \\[API change\\].\r\n  - `charsInBalanced` now takes a Text parser rather than a Char parser as argument \\[API change\\].\r\n\r\n- Text.Pandoc.Shared:\r\n\r\n  - Export `textToIdentifier` \\[API change\\].\r\n  - Remove deprecated `crFilter`. \\[API change\\]\r\n  - Remove deprecated `deLink`. \\[API change\\]\r\n  - Deprecate `notElemText`.\r\n  - Deprecate `makeMeta`.\r\n  - Remove `pandocVersion` (now available in Text.Pandoc.Version as `pandocVersionText`).\r\n  - Remove `findM` \\[API change\\]. This was only used in one place, and can be replaced with simpler code.\r\n  - Remove deprecated `makeMeta` \\[API change\\].\r\n  - Remove `ordNub` \\[API change\\]. This is just `nubOrd` from Data.Containers.ListUtils.\r\n  - Remove `mapLeft` \\[API change\\]. This is just a synonym for Bifunctor.first.\r\n  - Remove `elemText`, `notElemText` \\[API change\\].\r\n  - Drop export of `pandocVersion` and `pandocVersionText`, which are now exported by Text.Pandoc.Version.\r\n  - Remove `escapeURI`, `isURI`. These are now exported by Text.Pandoc.URI, and removing them from Shared helps make the module structure more straightforward.\r\n  - Use LineBreak as default block sep in `blocksToInlines`. (#8499, Albert Krewinkel). This change also affects the `pandoc.utils.blocks_to_inlines` Lua function.\r\n  - `defaultUserDataDir` is no longer exported (it has been moved to T.P.Data) \\[API change\\].\r\n  - New function `figureDiv`, offering offers a standardized way to convert a figure into a Div element (Albert Krewinkel) \\[API change\\].\r\n\r\n- Text.Pandoc.Writers.Shared:\r\n\r\n  - Export `htmlAddStyle`, `htmlAlignmentToString` and `htmlAttrs` \\[API change\\] (Wout Gevaert).\r\n  - Use ‘literal tag’ instead of ‘text (T.unpack tag)’ in `tagWithAttrs` (Wout Gevaert).\r\n  - `toTableOfContents`: handle nested Divs better (#8402).\r\n\r\n- Rename Text.Pandoc.Network.HTTP -\\> Text.Pandoc.URI. This is still an unexported internal module. Export `urlEncode`, `escapeURI`, `isURI`, `schemes`, `uriPathToPath`. Drop exports of `schemes` and `uriPathToPath`.\r\n\r\n- Text.Pandoc.URI `isURI`: don’t require non-ASCII characters to be escaped (#8508).\r\n\r\n- Rename Text.Pandoc.Readers.LaTeX.Types -\\> Text.Pandoc.TeX (internal module).\r\n\r\n- Text.Pandoc.Options:\r\n\r\n  - WriterOptions now has a field `writerListTables`, specifying that list tables be used in RST output \\[API change\\].\r\n  - New `writerEpubTitlePage` field on `WriterOptions` (#6097) \\[API change\\].\r\n  - Remove `writerEpubChapterLevel`, add `writerSplitLevel` \\[API change\\].\r\n\r\n- Text.Pandoc.Filter:\r\n\r\n  - Export `applyFilters` \\[API change\\].\r\n  - Export `applyJSONFilter` \\[API Change\\] (Albert Krewinkel).\r\n  - Parameterize `applyFilters` over scripting engine \\[API change\\] (Albert Krewinkel).\r\n\r\n- New exported module Text.Pandoc.Chunks \\[API change\\]. This module provides functions to split Pandoc documents into chunks to be rendered in separate files, e.g. one per section. Internal identifiers are rewritten appropriately to point to the new locations (#6122).\r\n\r\n- Text.Pandoc.Readers:\r\n\r\n  - Change argument type of `getReader`, so it takes a `FlavoredFormat` instead of a `Text` \\[API change\\] (Albert Krewinkel).\r\n\r\n- Text.Pandoc.Writers:\r\n\r\n  - Change argument type of `getWriter`, so it takes a `FlavoredFormat` instead of a `Text` \\[API change\\] (Albert Krewinkel).\r\n\r\n- Text.Pandoc.Templates:\r\n\r\n  - Do not try to normalize input to `getDefaultTemplate` (Albert Krewinkel). The function `getDefaultTemplate` no longer splits off extension modifers from the given format, as that conflicts with using custom writers as formats. Haskell library users should use `getDefaultTemplate <=< (fmap formatName . parseFlavoredFormat)` if the input format can still contain extensions. The same is true for `compileDefaultTemplate`, which calls `getDefaultTemplate` internally\r\n  - Add Wrapper type documentation (#8490, William Rusnack).\r\n\r\n- New exported module Text.Pandoc.Scripting (Albert Krewinkel). The module contains the central data structure for scripting engines (e.g., Lua) \\[API change\\].\r\n\r\n- Text.Pandoc.Error:\r\n\r\n  - Add new PandocError constructor `PandocNoScriptingEngine` \\[API change\\] (Albert Krewinkel).\r\n  - Add new PandocError constructor `PandocFormatError` \\[API change\\] (Albert Krewinkel). The new error is used to report problems with input or output format specifications.\r\n  - Add new PandocError constructor `PandocNoTemplateError` (Albert Krewinkel).\r\n  - Remove `PandocParsecError` constructor from `PandocError` (#8385). Henceforth we just use `PandocParseError`.\r\n\r\n- New module Text.Pandoc.Version, exporting `pandocVersionText` and `pandocVersion` \\[API change\\]. `pandocVersion` returns a `Version` instead of a `Text`, which is consistent with `pandocTypesVersion`.\r\n\r\n- Text.Pandoc.Class:\r\n\r\n  - Make `getPOSIXTime`, `getZonedTime` sensitive to `SOURCE_DATE_EPOCH` environment variable if set (#7093). (`getTimestamp` was already sensitive.) This ensures that EPUB builds are reproducible.\r\n  - Text.Pandoc.Class no longer exports `readDataFile`, `readDefaultDataFile`, `setTranslations`, and `translateTerm` \\[API change\\].\r\n  - Text.Pandoc.Class now exports `checkUserDataDir` \\[API change\\].\r\n\r\n- T.P.Class.IO: export function `writeMedia` \\[API change\\] (Albert Krewinkel). This is useful for the `pandoc.mediabag` module.\r\n\r\n- Separate out Text.Pandoc.Data and Text.Pandoc.Translations from Text.Pandoc.Class (#8348). This makes Text.Pandoc.Class more self-contained.\r\n\r\n  - Text.Pandoc.Data is now an exported module, providing `readDataFile` and `readDefaultDataFile` (both formerly provided by Text.Pandoc.Class), and also `getDataFileNames` (formerly unexported in Text.Pandoc.App.CommandLineOptions) and `defaultUSerDataDir` (formerly provided by Text.Pandoc.Shared). \\[API change\\]\r\n  - Text.Pandoc.Translations is now an exported module (along with Text.Pandoc.Translations.Types), providing `readTranslations`, `getTranslations`, `setTranslations`, `translateTerm`, `lookupTerm`, `readTranslations`, `Term(..)`, and `Translations` \\[API change\\].\r\n\r\n- Text.Pandoc now exports Text.Pandoc.Data and `setTranslations` and `translateTerm` {API change\\].\r\n\r\n- Export module Text.Pandoc.Class.IO \\[API change\\]. The module is useful when defining instances of class PandocMonad for types that are also instances of MonadIO.\r\n\r\n- Remove modules Text.Pandoc.Writers.Custom and Text.Pandoc.Readers.Custom \\[API Change\\] (Albert Krewinkel). The functions `writeCustom` and `readCustom` are available from module Text.Pandoc.Lua.\r\n\r\n- Text.Pandoc.Server:\r\n\r\n  - Split this module into a separate package, `pandoc-server`, allowing the `pandoc` library to be compiled without server support.\r\n\r\n  - Return object if JSON is accepted. Previously we just returned a JSON-encoded string. Now we return something like:\r\n\r\n        {\r\n            \"output\": \"<p>hello</p>\"\r\n            \"base64\": false,\r\n            \"messages\": [\r\n                {\r\n                    \"message\": \"Not rendering RawInline (Format \\\"tex\\\") \\\"\\\\\\\\noe\\\"\",\r\n                    \"verbosity\": \"INFO\"\r\n                }\r\n            ],\r\n        }\r\n\r\n    This is a change in the pandoc-server JSON API.\r\n\r\n  - Set translations in the writer based on `lang` metadata.\r\n\r\n  - Return error in JSON object if response is JSON.\r\n\r\n  - Remove `parseServerOpts`. \\[API change\\]\r\n\r\n- Text.Pandoc.Lua:\r\n\r\n  - This module has been moved to a separate package, `pandoc-lua-engine`.\r\n\r\n  - Export `applyFilter`, `readCustom`, and `writeCustom`. No longer export the lower-level function `runFilterFile` \\[API change\\].\r\n\r\n  - Change type of `applyFilter` \\[API Change\\] (Albert Krewinkel). The module Text.Pandoc.Filter.Lua has been merged into Text.Pandoc.Lua. The function `applyFilter` now has type\r\n\r\n    ``` haskell\r\n    applyFilter :: (PandocMonad m, MonadIO m)\r\n                => Environment-> [String]-> FilePath-> Pandoc-> m Pandoc\r\n    ```\r\n\r\n    where `Environment` is defined in Text.Pandoc.Filter.Environment.\r\n\r\n  - Export new function `getEngine` \\[API Change\\]. The function returns the Lua scripting engine.\r\n\r\n  - Add unexported modules T.P.Lua.Reader, T.P.Lua.Writer. These contain the definitions of `readCustom` and `writeCustom` that were previously in T.P.Readers.Custom and T.P.Writers.Custom.\r\n\r\n  - Cleanup module dependencies, for a cleaner module dependency graph.\r\n\r\n  - The `writeCustom` function has changed to return a Writer and an ExtensionsConfig \\[API change\\]. This allows ByteString writers to be defined.\r\n\r\n  - The `readCustom` function has changed to return a Reader and an ExtensionsConfig \\[API change\\].\r\n\r\n- Lua subsystem (Albert Krewinkel):\r\n\r\n  - The whole Lua subsystem has been moved to a separate package, `pandoc-lua-engine`. `pandoc` does not depend on it. `convertWithOpts` has a new parameter that can be used to pass in the scripting engine defined in `pandoc-lua-engine` (or a different one, in theory).\r\n  - Fix the behavior of Lua “Version” objects under equality comparisons (#8267).\r\n  - Support running Lua with a GC-collected Lua state.\r\n  - Ensure that extensions marshaling is consistent.\r\n  - Produce more informative error messages for pandoc errors. Errors are reported in Lua in the same words in which they would be reported in the terminal.\r\n  - Add new module `pandoc.format`. The module provides functions to query the set of extensions supported by formats and the set of extension enabled per default.\r\n  - Add function `pandoc.template.apply`.\r\n  - Add function `pandoc.template.meta_to_context`. The functions converts Meta values to template contexts; the intended use is in combination with `pandoc.template.apply`.\r\n  - Allow Doc values in `WriterOptions.variables`. The specialized peeker and pusher function for `Context Text` values does not go via JSON, and thus keeps Doc values unchanged during round-tripping.\r\n  - Fix rendering of Lua errors in Lua, so that the `Error running Lua` message is not prepended multiple times.\r\n  - Add new module `pandoc.zip`.\r\n  - Allow strings in place of compiled templates (#8321). This allows to use a string as parameter to `pandoc.template.apply` and in the WriterOptions `template` field.\r\n  - Rename `reader_extensions`/`writer_extensions` globals as `Extensions` (#8390).\r\n  - Add `pandoc.scaffolding.Writer` (#8377). This can be used to reduce boilerplate in custom writers.\r\n  - Fix peeker for PandocError (Albert Krewinkel). String error messages were incorrectly popped of the stack when retrieving a PandocError.\r\n  - Add functions `pandoc.text.toencoding`, `pandoc.text.fromencoding` (#8512, Albert Krewinkel).\r\n  - Add `pandoc.cli` module. Allow processing of CLI options in Lua.\r\n  - Support `-D` CLI option for custom writers. A new error `PandocNoTemplateError` (code 87) is thrown if a template is required but cannot be found.\r\n  - Allow table structure as format spec. This allows to pass structured values as format specifiers to `pandoc.write` and `pandoc.read`.\r\n  - Add function `pandoc.mediabag.write` (Albert Krewinkel).\r\n  - Add module `pandoc.structure` (Albert Krewinkel). The function `make_sections` has been given a friendlier interface and moved to the new module; the old `pandoc.utils.make_sections` has been deprecated.\r\n\r\n- Custom writers:\r\n\r\n  - The global variables `PANDOC_DOCUMENT` and `PANDOC_WRITER_OPTIONS` are no longer set when the writer script is loaded. Both variables are still set in classic writers before the conversion is started, so they can be used when they are wrapped in functions.\r\n\r\n  - Deprecate classic custom writers.\r\n\r\n  - Add function `pandoc.write_classic`. The function can be used to convert a classic writer into a new-style writer by setting it as the value of `Writer`:\r\n\r\n    ``` lua\r\n    Writer = pandoc.write_classic\r\n    ```\r\n\r\n    or to fully restore the old behavior:\r\n\r\n    ``` lua\r\n    function Writer (doc, opts)\r\n      PANDOC_DOCUMENT = doc\r\n      PANDOC_WRITER_OPTIONS = opts\r\n      load(PANDOC_SCRIPT_FILE)()\r\n      return pandoc.write_classic(doc, opts)\r\n    end\r\n    ```\r\n\r\n  - Support extensions in custom writers. Custom writers can define the extensions that they support via the global `writer_extensions`. The variable’s value must be a table with all supported extensions as keys, and their default status as values. For example, the below specifies that the writer supports the extensions `smart` and `sourcepos`, but only the `smart` extension is enabled by default:\r\n\r\n    ``` lua\r\n    writer_extensions = {\r\n      smart = true,\r\n      sourcepos = false,\r\n    }\r\n    ```\r\n\r\n  - Custom writers can define a default template via a global `Template` function; the data directory is no longer searched for a default template. Writer authors can restore the old lookup behavior with\r\n\r\n    ``` lua\r\n    Template = function ()\r\n      local template\r\n      return template.compile(template.default(PANDOC_SCRIPT_FILE))\r\n    end\r\n    ```\r\n\r\n- Custom readers:\r\n\r\n  - Support extensions in custom readers. Custom readers, like writers, can define the set of supported extensions by setting a global. E.g.:\r\n\r\n    ``` lua\r\n    reader_extensions = {\r\n      smart = true,\r\n      citations = false,\r\n    }\r\n    ```\r\n\r\n- Use latest versions of `commonmark-extensions`, `texmath`, `citeproc`, `gridtables`, and `skylighting`.\r\n\r\n- Use pandoc-types 1.23. This adds the `Figure` Block constructor and removes the `Null` Block constructor.\r\n\r\n- Require aeson \\>= 2.0.\r\n\r\n- Use jira-wiki-markup 1.5.0 (#8511, Albert Krewinkel). Fixes issues with icon-like sequences at the beginning of words.\r\n\r\n- Use doctemplates 0.11, avoiding a transitive dependency on HsYAML.\r\n\r\n- Use skylighting 0.13.1.2.\r\n\r\n- Allow mtl 2.3.1 (Alexander Batischev).\r\n\r\n- Use latest skylighting-format-context.\r\n\r\n- Allow building with mtl 2.3.\r\n\r\n- Remove `lua53` flag. We now only support Lua 5.4.\r\n\r\n- Add hie.yaml for haskell language server.\r\n\r\n- Add tools/latex-package-dependencies.lua.\r\n\r\n- Update default CSL with latest `chicago-author-date.csl`.\r\n\r\n- make_artifacts.sh: various small improvements.\r\n\r\n- Remove sample.lua from data files (#8356).\r\n\r\n- Documentation:\r\n\r\n  - Deprecate `PANDOC_WRITER_OPTIONS` in custom writers (Albert Krewinkel).\r\n  - Document `pandoc.write_classic` (Albert Krewinkel).\r\n  - Document new table features (Albert Krewinkel).\r\n  - Clarify what background-image does in reveal.js (#6450).\r\n  - Documentation improvements for `blank_before_blockquote` (#8324, Pranesh Prakash).\r\n  - Update grid table documentation (#8346).\r\n  - Add note about MathJax fonts to `--embed-resources`.\r\n  - Use cabal’s –package-env more (#8317, Artem Pelenitsyn).\r\n  - Modify Zerobrane instructions to use Lua 5.4 (#8353, Ian Max Andolina).\r\n  - Fix documentation for highlight-style in `pandoc-server.md`.\r\n  - Fix link to fedora package site (#8246, Akos Marton).\r\n  - Rephrase paragraph on format extensions (#8375, Ilona Silverwood).\r\n  - Update README.template (#8496, Sven Wick).\r\n  - Fix a tiny typo in lua-filters.md (TomBen).\r\n  - Clarify that `--css` should be used with `-s`.\r\n  - Clarify font selection for pdf -t ms (#8421, nbehrnd).\r\n  - Clarify docs for `--metadata-file` (#8459).\r\n  - Fix typo in epub.md (Vladimir Alexiev).\r\n  - Add missing backtick in filters.md (R. N. West).\r\n  - `doc/lua-filters.md`: add documentation for `pandoc.format` (Albert Krewinkel).\r\n  - Fix epub-embed-font documentation (#8455, Terence Eden).\r\n  - Removed obsolete Templates section in CONTRIBUTING.md.\r\n  - Add manual section on accessible PDFs, archiving standards (#8312, Albert Krewinkel).\r\n\r\n- Tests.Command: remove unused `runTest`.\r\n\r\n- Add pandoc-lua.1 man page.\r\n\r\n- Improve `shell.nix`.\r\n\r\n- Add `tools/moduledeps.lua` for inspecting the internal module dependency tree.\r\n\r\n- Fix macOS zip so pandoc-server is a symlink. This cuts its size by 2x.\r\n\r\n- CI: Improve CI speed by caching more, eliminating macos builds, and splitting benchmarks into a separate action, run by manual dispatch. (We still test that benchmarks build in the regular CI.) The cache can be expired manually by modifying the secret `CACHE_VERSION`.\r\n\r\n- Remove the unnecessary Setup.hs from pandoc. Cabal does not need this with build-type ‘simple’.\r\n\r\n- Add pandoc-lua and pandoc-server (symlinks) and their man pages to releases.\r\n\r\n- Use hslua-cli package for pandoc-lua interface (Albert Krewinkel).\r\n\r\n- Add `server` flag to pandoc-cli, allowing it to be compiled without server support.\r\n\r\n- pandoc-cli: Allow building a binary without Lua support (Albert Krewinkel). Disabling the `lua` cabal flag will result in a binary without Lua.\r\n\r\n- Move `--version` handling to pandoc-cli. We need it here in order to print information about whether server and Lua support have been compiled in.\r\n\r\n- Move `nightly` flag from pandoc to pandoc-cli (#8339).\r\n\r\n- Makefile changes:\r\n\r\n  - `make help` will now print all the targets and what they do.\r\n  - Add targets: `coverage`, `weeder`, `moduledeps`, `prerelease`, `ghcid`, `repl`, `linecounts`, `hie.yaml`, `binpath`.\r\n  - Note that you can `` alias pandoc=`make binpath` `` for convenient local testing of a build.\r\n  - Rename `quick-cabal` -\\> `build`, `quick-test` -\\> `test`.\r\n  - Exclude tests from `SOURCEFILES`.\r\n\r\n- Factor out xml-light into an internal library.\r\n\r\n- Add CITATION.cff (#8434).\r\n\r\n- Move trypandoc to a separate repository, jgm/trypandoc.\r\n\r\n</details>\r\n",
     "reactions": {
       "url": "https://api.github.com/repos/jgm/pandoc/releases/89463069/reactions",
-      "total_count": 134,
-      "+1": 10,
+      "total_count": 136,
+      "+1": 11,
       "-1": 0,
       "laugh": 0,
       "hooray": 65,
       "confused": 0,
-      "heart": 29,
+      "heart": 30,
       "rocket": 25,
       "eyes": 5
     }
@@ -387,7 +387,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16888458,
-        "download_count": 231079,
+        "download_count": 234929,
         "created_at": "2022-08-22T19:11:47Z",
         "updated_at": "2022-08-22T19:12:04Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-amd64.deb"
@@ -421,7 +421,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18713152,
-        "download_count": 3523,
+        "download_count": 3544,
         "created_at": "2022-08-22T19:12:04Z",
         "updated_at": "2022-08-22T19:12:15Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-arm64.deb"
@@ -455,7 +455,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 17174200,
-        "download_count": 35410,
+        "download_count": 35726,
         "created_at": "2022-08-22T19:12:15Z",
         "updated_at": "2022-08-22T19:12:25Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-linux-amd64.tar.gz"
@@ -489,7 +489,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 19033935,
-        "download_count": 2217,
+        "download_count": 2220,
         "created_at": "2022-08-22T19:12:25Z",
         "updated_at": "2022-08-22T19:12:37Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-linux-arm64.tar.gz"
@@ -523,7 +523,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 20221268,
-        "download_count": 173237,
+        "download_count": 175137,
         "created_at": "2022-08-22T19:12:37Z",
         "updated_at": "2022-08-22T19:12:47Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-macOS.pkg"
@@ -557,7 +557,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20253769,
-        "download_count": 3138,
+        "download_count": 3141,
         "created_at": "2022-08-22T19:12:47Z",
         "updated_at": "2022-08-22T19:12:57Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-macOS.zip"
@@ -591,7 +591,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 25219072,
-        "download_count": 201670,
+        "download_count": 201719,
         "created_at": "2022-08-22T19:12:57Z",
         "updated_at": "2022-08-22T19:13:12Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-windows-x86_64.msi"
@@ -625,7 +625,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 24089163,
-        "download_count": 108705,
+        "download_count": 110066,
         "created_at": "2022-08-22T19:13:12Z",
         "updated_at": "2022-08-22T19:13:25Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-windows-x86_64.zip"
@@ -711,7 +711,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16884142,
-        "download_count": 1878,
+        "download_count": 1891,
         "created_at": "2022-08-19T06:54:22Z",
         "updated_at": "2022-08-19T06:54:37Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.1/pandoc-2.19.1-1-amd64.deb"
@@ -779,7 +779,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 17167943,
-        "download_count": 548,
+        "download_count": 556,
         "created_at": "2022-08-19T06:54:47Z",
         "updated_at": "2022-08-19T06:54:56Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.1/pandoc-2.19.1-linux-amd64.tar.gz"
@@ -915,7 +915,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 25210880,
-        "download_count": 6754,
+        "download_count": 6762,
         "created_at": "2022-08-19T06:55:48Z",
         "updated_at": "2022-08-19T06:56:01Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19.1/pandoc-2.19.1-windows-x86_64.msi"
@@ -1035,7 +1035,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16526050,
-        "download_count": 5663,
+        "download_count": 5686,
         "created_at": "2022-08-04T06:59:28Z",
         "updated_at": "2022-08-04T06:59:42Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-1-amd64.deb"
@@ -1103,7 +1103,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16807538,
-        "download_count": 4629,
+        "download_count": 4631,
         "created_at": "2022-08-04T06:59:51Z",
         "updated_at": "2022-08-04T06:59:59Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-linux-amd64.tar.gz"
@@ -1171,7 +1171,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19732655,
-        "download_count": 4564,
+        "download_count": 4565,
         "created_at": "2022-08-04T07:00:08Z",
         "updated_at": "2022-08-04T07:00:17Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-macOS.pkg"
@@ -1239,7 +1239,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 24252416,
-        "download_count": 18966,
+        "download_count": 18970,
         "created_at": "2022-08-04T07:00:27Z",
         "updated_at": "2022-08-04T07:00:38Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-windows-x86_64.msi"
@@ -1273,7 +1273,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 23148336,
-        "download_count": 7381,
+        "download_count": 7382,
         "created_at": "2022-08-04T07:00:39Z",
         "updated_at": "2022-08-04T07:00:50Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.19/pandoc-2.19-windows-x86_64.zip"
@@ -1359,7 +1359,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16439696,
-        "download_count": 79342,
+        "download_count": 79697,
         "created_at": "2022-04-04T18:07:32Z",
         "updated_at": "2022-04-04T18:07:45Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-1-amd64.deb"
@@ -1393,7 +1393,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18210310,
-        "download_count": 2506,
+        "download_count": 2507,
         "created_at": "2022-04-04T18:07:45Z",
         "updated_at": "2022-04-04T18:07:56Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-1-arm64.deb"
@@ -1427,7 +1427,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16713899,
-        "download_count": 36477,
+        "download_count": 36650,
         "created_at": "2022-04-04T18:07:56Z",
         "updated_at": "2022-04-04T18:08:05Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-linux-amd64.tar.gz"
@@ -1495,7 +1495,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19669818,
-        "download_count": 32517,
+        "download_count": 32534,
         "created_at": "2022-04-04T18:08:15Z",
         "updated_at": "2022-04-04T18:08:25Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-macOS.pkg"
@@ -1529,7 +1529,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 19694588,
-        "download_count": 5144,
+        "download_count": 5169,
         "created_at": "2022-04-04T18:08:25Z",
         "updated_at": "2022-04-04T18:08:35Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-macOS.zip"
@@ -1563,7 +1563,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 24199168,
-        "download_count": 137404,
+        "download_count": 137408,
         "created_at": "2022-04-04T18:08:35Z",
         "updated_at": "2022-04-04T18:08:47Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-windows-x86_64.msi"
@@ -1597,7 +1597,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 23101030,
-        "download_count": 37860,
+        "download_count": 37921,
         "created_at": "2022-04-04T18:08:47Z",
         "updated_at": "2022-04-04T18:08:59Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-windows-x86_64.zip"
@@ -1683,7 +1683,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15625148,
-        "download_count": 43323,
+        "download_count": 43408,
         "created_at": "2022-01-31T19:16:04Z",
         "updated_at": "2022-01-31T19:16:17Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-1-amd64.deb"
@@ -1751,7 +1751,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 15883177,
-        "download_count": 31756,
+        "download_count": 31913,
         "created_at": "2022-01-31T19:16:26Z",
         "updated_at": "2022-01-31T19:16:33Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-linux-amd64.tar.gz"
@@ -1819,7 +1819,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19461736,
-        "download_count": 19946,
+        "download_count": 19947,
         "created_at": "2022-01-31T19:16:42Z",
         "updated_at": "2022-01-31T19:16:52Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-macOS.pkg"
@@ -1887,7 +1887,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23953408,
-        "download_count": 71006,
+        "download_count": 71010,
         "created_at": "2022-01-31T19:17:01Z",
         "updated_at": "2022-01-31T19:17:13Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-windows-x86_64.msi"
@@ -1921,7 +1921,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22860750,
-        "download_count": 17969,
+        "download_count": 17972,
         "created_at": "2022-01-31T19:17:13Z",
         "updated_at": "2022-01-31T19:17:25Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-windows-x86_64.zip"
@@ -2007,7 +2007,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15623618,
-        "download_count": 6505,
+        "download_count": 6550,
         "created_at": "2022-01-30T20:46:24Z",
         "updated_at": "2022-01-30T20:46:38Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-1-amd64.deb"
@@ -2075,7 +2075,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 15882935,
-        "download_count": 7928,
+        "download_count": 7972,
         "created_at": "2022-01-30T20:46:49Z",
         "updated_at": "2022-01-30T20:46:58Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-linux-amd64.tar.gz"
@@ -2143,7 +2143,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19460642,
-        "download_count": 1494,
+        "download_count": 1502,
         "created_at": "2022-01-30T20:47:10Z",
         "updated_at": "2022-01-30T20:47:20Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-macOS.pkg"
@@ -2211,7 +2211,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23957504,
-        "download_count": 2464,
+        "download_count": 2467,
         "created_at": "2022-01-30T20:47:36Z",
         "updated_at": "2022-01-30T20:47:50Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-windows-x86_64.msi"
@@ -2245,7 +2245,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22863199,
-        "download_count": 1903,
+        "download_count": 1910,
         "created_at": "2022-01-30T20:47:50Z",
         "updated_at": "2022-01-30T20:48:02Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.1/pandoc-2.17.1-windows-x86_64.zip"
@@ -2331,7 +2331,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15602196,
-        "download_count": 13758,
+        "download_count": 13761,
         "created_at": "2022-01-14T20:02:59Z",
         "updated_at": "2022-01-14T20:03:12Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-1-amd64.deb"
@@ -2399,7 +2399,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 15866137,
-        "download_count": 7392,
+        "download_count": 7394,
         "created_at": "2022-01-14T20:03:26Z",
         "updated_at": "2022-01-14T20:03:38Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-linux-amd64.tar.gz"
@@ -2535,7 +2535,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23945216,
-        "download_count": 17964,
+        "download_count": 17967,
         "created_at": "2022-01-14T20:04:24Z",
         "updated_at": "2022-01-14T20:04:43Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-windows-x86_64.msi"
@@ -2569,7 +2569,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22850926,
-        "download_count": 8449,
+        "download_count": 8480,
         "created_at": "2022-01-14T20:04:43Z",
         "updated_at": "2022-01-14T20:05:01Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-windows-x86_64.zip"
@@ -2655,7 +2655,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16712126,
-        "download_count": 1476,
+        "download_count": 1483,
         "created_at": "2022-01-13T03:08:14Z",
         "updated_at": "2022-01-13T03:08:28Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17/pandoc-2.17-1-amd64.deb"
@@ -2859,7 +2859,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23941120,
-        "download_count": 3352,
+        "download_count": 3356,
         "created_at": "2022-01-13T03:09:12Z",
         "updated_at": "2022-01-13T03:09:30Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.17/pandoc-2.17-windows-x86_64.msi"
@@ -2979,7 +2979,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16654272,
-        "download_count": 48380,
+        "download_count": 48451,
         "created_at": "2021-11-22T01:15:11Z",
         "updated_at": "2021-11-22T01:15:28Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-1-amd64.deb"
@@ -3047,7 +3047,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16939660,
-        "download_count": 100214,
+        "download_count": 100945,
         "created_at": "2021-11-22T01:16:36Z",
         "updated_at": "2021-11-22T01:16:56Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-linux-amd64.tar.gz"
@@ -3183,7 +3183,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23928832,
-        "download_count": 50869,
+        "download_count": 50874,
         "created_at": "2021-11-22T01:15:50Z",
         "updated_at": "2021-11-22T01:16:05Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.2/pandoc-2.16.2-windows-x86_64.msi"
@@ -3303,7 +3303,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16613234,
-        "download_count": 11592,
+        "download_count": 11614,
         "created_at": "2021-11-03T07:20:16Z",
         "updated_at": "2021-11-03T07:20:31Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.1/pandoc-2.16.1-1-amd64.deb"
@@ -3371,7 +3371,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16899207,
-        "download_count": 4729,
+        "download_count": 4733,
         "created_at": "2021-11-03T07:20:45Z",
         "updated_at": "2021-11-03T07:20:54Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.1/pandoc-2.16.1-linux-amd64.tar.gz"
@@ -3507,7 +3507,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23891968,
-        "download_count": 21578,
+        "download_count": 21581,
         "created_at": "2021-11-03T07:21:31Z",
         "updated_at": "2021-11-03T07:21:42Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16.1/pandoc-2.16.1-windows-x86_64.msi"
@@ -3627,7 +3627,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16615532,
-        "download_count": 1719,
+        "download_count": 1721,
         "created_at": "2021-10-31T20:48:20Z",
         "updated_at": "2021-10-31T20:48:33Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16/pandoc-2.16-1-amd64.deb"
@@ -3831,7 +3831,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23887872,
-        "download_count": 4040,
+        "download_count": 4044,
         "created_at": "2021-10-31T20:48:44Z",
         "updated_at": "2021-10-31T20:48:55Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.16/pandoc-2.16-windows-x86_64.msi"
@@ -3951,7 +3951,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16591822,
-        "download_count": 4640,
+        "download_count": 4659,
         "created_at": "2021-10-24T02:13:55Z",
         "updated_at": "2021-10-24T02:14:08Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.15/pandoc-2.15-1-amd64.deb"
@@ -4019,7 +4019,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16875086,
-        "download_count": 1430,
+        "download_count": 1431,
         "created_at": "2021-10-24T02:14:22Z",
         "updated_at": "2021-10-24T02:14:31Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.15/pandoc-2.15-linux-amd64.tar.gz"
@@ -4155,7 +4155,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23695360,
-        "download_count": 8983,
+        "download_count": 8986,
         "created_at": "2021-10-24T02:15:01Z",
         "updated_at": "2021-10-24T02:15:13Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.15/pandoc-2.15-windows-x86_64.msi"
@@ -4275,7 +4275,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15964500,
-        "download_count": 326754,
+        "download_count": 326821,
         "created_at": "2021-08-21T16:38:47Z",
         "updated_at": "2021-08-21T16:39:39Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-1-amd64.deb"
@@ -4309,7 +4309,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18050140,
-        "download_count": 1472,
+        "download_count": 1476,
         "created_at": "2021-08-21T16:39:39Z",
         "updated_at": "2021-08-21T16:39:58Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-1-arm64.deb"
@@ -4343,7 +4343,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16233272,
-        "download_count": 29164,
+        "download_count": 29236,
         "created_at": "2021-08-21T16:39:58Z",
         "updated_at": "2021-08-21T16:40:11Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz"
@@ -4411,7 +4411,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19989397,
-        "download_count": 477184,
+        "download_count": 478221,
         "created_at": "2021-08-21T16:40:34Z",
         "updated_at": "2021-08-21T16:40:44Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-macOS.pkg"
@@ -4479,7 +4479,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23208960,
-        "download_count": 58378,
+        "download_count": 58386,
         "created_at": "2021-08-21T16:40:56Z",
         "updated_at": "2021-08-21T16:41:08Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-windows-x86_64.msi"
@@ -4513,7 +4513,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22002661,
-        "download_count": 286210,
+        "download_count": 287303,
         "created_at": "2021-08-21T16:41:08Z",
         "updated_at": "2021-08-21T16:41:18Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-windows-x86_64.zip"
@@ -4599,7 +4599,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15847824,
-        "download_count": 13658,
+        "download_count": 13690,
         "created_at": "2021-07-19T05:38:56Z",
         "updated_at": "2021-07-19T05:39:13Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-amd64.deb"
@@ -4633,7 +4633,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 17929712,
-        "download_count": 805,
+        "download_count": 806,
         "created_at": "2021-07-19T05:39:13Z",
         "updated_at": "2021-07-19T05:39:26Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-arm64.deb"
@@ -4667,7 +4667,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16120570,
-        "download_count": 12404,
+        "download_count": 12489,
         "created_at": "2021-07-19T05:39:26Z",
         "updated_at": "2021-07-19T05:39:34Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-linux-amd64.tar.gz"
@@ -4735,7 +4735,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 19854928,
-        "download_count": 6657,
+        "download_count": 6658,
         "created_at": "2021-07-19T05:39:43Z",
         "updated_at": "2021-07-19T05:39:55Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-macOS.pkg"
@@ -4803,7 +4803,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23102464,
-        "download_count": 28432,
+        "download_count": 28434,
         "created_at": "2021-07-19T05:40:05Z",
         "updated_at": "2021-07-19T05:40:16Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-windows-x86_64.msi"
@@ -4837,7 +4837,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21908166,
-        "download_count": 8574,
+        "download_count": 8576,
         "created_at": "2021-07-19T05:40:16Z",
         "updated_at": "2021-07-19T05:40:26Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-windows-x86_64.zip"
@@ -4923,7 +4923,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15797744,
-        "download_count": 11763,
+        "download_count": 11773,
         "created_at": "2021-06-22T21:57:15Z",
         "updated_at": "2021-06-22T21:57:34Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-1-amd64.deb"
@@ -4991,7 +4991,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16072160,
-        "download_count": 6342,
+        "download_count": 6343,
         "created_at": "2021-06-22T21:57:45Z",
         "updated_at": "2021-06-22T21:57:54Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-linux-amd64.tar.gz"
@@ -5025,7 +5025,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 18183020,
-        "download_count": 508,
+        "download_count": 509,
         "created_at": "2021-06-22T21:57:54Z",
         "updated_at": "2021-06-22T21:58:08Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-linux-arm64.tar.gz"
@@ -5127,7 +5127,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23044608,
-        "download_count": 22090,
+        "download_count": 22092,
         "created_at": "2021-06-22T21:58:28Z",
         "updated_at": "2021-06-22T21:58:40Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-windows-x86_64.msi"
@@ -5161,7 +5161,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21848310,
-        "download_count": 6728,
+        "download_count": 6729,
         "created_at": "2021-06-22T21:58:40Z",
         "updated_at": "2021-06-22T21:58:51Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-windows-x86_64.zip"
@@ -5315,7 +5315,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16055682,
-        "download_count": 4027,
+        "download_count": 4037,
         "created_at": "2021-06-13T17:19:46Z",
         "updated_at": "2021-06-13T17:19:58Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.2/pandoc-2.14.0.2-linux-amd64.tar.gz"
@@ -5451,7 +5451,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22943744,
-        "download_count": 9754,
+        "download_count": 9756,
         "created_at": "2021-06-13T17:20:24Z",
         "updated_at": "2021-06-13T17:20:48Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.2/pandoc-2.14.0.2-windows-x86_64.msi"
@@ -5571,7 +5571,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15788644,
-        "download_count": 6811,
+        "download_count": 6822,
         "created_at": "2021-06-01T13:25:10Z",
         "updated_at": "2021-06-01T13:25:36Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.1/pandoc-2.14.0.1-1-amd64.deb"
@@ -5639,7 +5639,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16052737,
-        "download_count": 7323,
+        "download_count": 7334,
         "created_at": "2021-06-01T13:25:36Z",
         "updated_at": "2021-06-01T13:26:06Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.1/pandoc-2.14.0.1-linux-amd64.tar.gz"
@@ -5775,7 +5775,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22937088,
-        "download_count": 11355,
+        "download_count": 11357,
         "created_at": "2021-06-01T13:27:43Z",
         "updated_at": "2021-06-01T13:28:22Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.1/pandoc-2.14.0.1-windows-x86_64.msi"
@@ -5809,7 +5809,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21742823,
-        "download_count": 4725,
+        "download_count": 4729,
         "created_at": "2021-06-01T13:28:22Z",
         "updated_at": "2021-06-01T13:29:03Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14.0.1/pandoc-2.14.0.1-windows-x86_64.zip"
@@ -5895,7 +5895,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 15785276,
-        "download_count": 3507,
+        "download_count": 3516,
         "created_at": "2021-05-29T05:13:04Z",
         "updated_at": "2021-05-29T05:13:19Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14/pandoc-2.14-1-amd64.deb"
@@ -5963,7 +5963,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16051804,
-        "download_count": 7288,
+        "download_count": 7295,
         "created_at": "2021-05-29T05:13:27Z",
         "updated_at": "2021-05-29T05:13:35Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14/pandoc-2.14-linux-amd64.tar.gz"
@@ -6099,7 +6099,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22940160,
-        "download_count": 2880,
+        "download_count": 2881,
         "created_at": "2021-05-29T05:14:00Z",
         "updated_at": "2021-05-29T05:14:15Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.14/pandoc-2.14-windows-x86_64.msi"
@@ -6219,7 +6219,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 14799022,
-        "download_count": 70382,
+        "download_count": 70618,
         "created_at": "2021-03-21T04:53:26Z",
         "updated_at": "2021-03-21T04:53:40Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-1-amd64.deb"
@@ -6253,7 +6253,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16784152,
-        "download_count": 1871,
+        "download_count": 1894,
         "created_at": "2021-03-21T04:53:40Z",
         "updated_at": "2021-03-21T04:53:48Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-1-arm64.deb"
@@ -6287,7 +6287,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 15019808,
-        "download_count": 27323,
+        "download_count": 27346,
         "created_at": "2021-03-21T04:53:48Z",
         "updated_at": "2021-03-21T04:53:55Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-linux-amd64.tar.gz"
@@ -6423,7 +6423,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 21879808,
-        "download_count": 128787,
+        "download_count": 129028,
         "created_at": "2021-03-21T04:54:19Z",
         "updated_at": "2021-03-21T04:54:30Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-windows-x86_64.msi"
@@ -6457,7 +6457,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20762336,
-        "download_count": 24686,
+        "download_count": 24712,
         "created_at": "2021-03-21T04:54:30Z",
         "updated_at": "2021-03-21T04:54:41Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.13/pandoc-2.13-windows-x86_64.zip"
@@ -6531,7 +6531,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16074678,
-        "download_count": 9866,
+        "download_count": 9883,
         "created_at": "2021-03-08T20:02:43Z",
         "updated_at": "2021-03-08T20:03:20Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-1-amd64.deb"
@@ -6599,7 +6599,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16308553,
-        "download_count": 8782,
+        "download_count": 8792,
         "created_at": "2021-03-08T20:03:52Z",
         "updated_at": "2021-03-08T20:04:16Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-linux-amd64.tar.gz"
@@ -6769,7 +6769,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22035942,
-        "download_count": 12667,
+        "download_count": 12693,
         "created_at": "2021-03-08T20:06:09Z",
         "updated_at": "2021-03-08T20:06:38Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.12/pandoc-2.12-windows-x86_64.zip"
@@ -6843,7 +6843,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23050852,
-        "download_count": 38187,
+        "download_count": 38328,
         "created_at": "2021-01-23T23:13:52Z",
         "updated_at": "2021-01-23T23:14:10Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.4/pandoc-2.11.4-1-amd64.deb"
@@ -6877,7 +6877,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 23398523,
-        "download_count": 19374,
+        "download_count": 19377,
         "created_at": "2021-01-23T23:14:10Z",
         "updated_at": "2021-01-23T23:14:21Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.4/pandoc-2.11.4-linux-amd64.tar.gz"
@@ -6979,7 +6979,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23247872,
-        "download_count": 37744,
+        "download_count": 37746,
         "created_at": "2021-01-23T23:14:41Z",
         "updated_at": "2021-01-23T23:14:51Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.4/pandoc-2.11.4-windows-x86_64.msi"
@@ -7013,7 +7013,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22134101,
-        "download_count": 10147,
+        "download_count": 10148,
         "created_at": "2021-01-23T23:14:52Z",
         "updated_at": "2021-01-23T23:15:02Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.4/pandoc-2.11.4-windows-x86_64.zip"
@@ -7087,7 +7087,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22943474,
-        "download_count": 19280,
+        "download_count": 19344,
         "created_at": "2020-12-30T00:37:41Z",
         "updated_at": "2020-12-30T00:38:53Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.2/pandoc-2.11.3.2-1-amd64.deb"
@@ -7121,7 +7121,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 23291353,
-        "download_count": 8289,
+        "download_count": 8301,
         "created_at": "2020-12-30T00:38:53Z",
         "updated_at": "2020-12-30T00:39:44Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.2/pandoc-2.11.3.2-linux-amd64.tar.gz"
@@ -7223,7 +7223,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23165440,
-        "download_count": 23121,
+        "download_count": 23123,
         "created_at": "2020-12-30T00:41:13Z",
         "updated_at": "2020-12-30T00:42:10Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.2/pandoc-2.11.3.2-windows-x86_64.msi"
@@ -7257,7 +7257,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 22054838,
-        "download_count": 9285,
+        "download_count": 9291,
         "created_at": "2020-12-30T00:42:10Z",
         "updated_at": "2020-12-30T00:42:57Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.2/pandoc-2.11.3.2-windows-x86_64.zip"
@@ -7343,7 +7343,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22869462,
-        "download_count": 5447,
+        "download_count": 5448,
         "created_at": "2020-12-19T01:42:35Z",
         "updated_at": "2020-12-19T01:43:03Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-1-amd64.deb"
@@ -7411,7 +7411,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 18809071,
-        "download_count": 3180,
+        "download_count": 3181,
         "created_at": "2020-12-19T01:43:41Z",
         "updated_at": "2020-12-19T01:44:21Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-macOS.pkg"
@@ -7479,7 +7479,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 23094784,
-        "download_count": 7648,
+        "download_count": 7649,
         "created_at": "2020-12-19T01:44:53Z",
         "updated_at": "2020-12-19T01:45:04Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-windows-x86_64.msi"
@@ -7513,7 +7513,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21987741,
-        "download_count": 5233,
+        "download_count": 5243,
         "created_at": "2020-12-19T01:45:04Z",
         "updated_at": "2020-12-19T01:45:29Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.3.1/pandoc-2.11.3.1-windows-x86_64.zip"
@@ -7831,7 +7831,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 22850994,
-        "download_count": 39838,
+        "download_count": 39867,
         "created_at": "2020-11-19T22:56:26Z",
         "updated_at": "2020-11-19T22:56:50Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.2/pandoc-2.11.2-1-amd64.deb"
@@ -7865,7 +7865,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 23197689,
-        "download_count": 7386,
+        "download_count": 7391,
         "created_at": "2020-11-19T22:56:50Z",
         "updated_at": "2020-11-19T22:57:03Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.2/pandoc-2.11.2-linux-amd64.tar.gz"
@@ -8109,7 +8109,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16505712,
-        "download_count": 7757,
+        "download_count": 7759,
         "created_at": "2020-11-08T04:38:07Z",
         "updated_at": "2020-11-08T04:38:15Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.1.1/pandoc-2.11.1.1-linux-amd64.tar.gz"
@@ -8319,7 +8319,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16252936,
-        "download_count": 3322,
+        "download_count": 3325,
         "created_at": "2020-11-03T22:32:12Z",
         "updated_at": "2020-11-03T22:32:39Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.1/pandoc-2.11.1-1-amd64.deb"
@@ -8455,7 +8455,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 24950784,
-        "download_count": 5533,
+        "download_count": 5535,
         "created_at": "2020-11-03T22:34:33Z",
         "updated_at": "2020-11-03T22:35:32Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.1/pandoc-2.11.1-windows-x86_64.msi"
@@ -8597,7 +8597,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16482119,
-        "download_count": 24561,
+        "download_count": 24666,
         "created_at": "2020-10-23T18:49:44Z",
         "updated_at": "2020-10-23T18:49:52Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.4/pandoc-2.11.0.4-linux-amd64.tar.gz"
@@ -8807,7 +8807,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 16226724,
-        "download_count": 9580,
+        "download_count": 9597,
         "created_at": "2020-10-16T03:51:21Z",
         "updated_at": "2020-10-16T03:51:39Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.2/pandoc-2.11.0.2-1-amd64.deb"
@@ -8841,7 +8841,7 @@
         "content_type": "application/x-gzip",
         "state": "uploaded",
         "size": 16461694,
-        "download_count": 3651,
+        "download_count": 3654,
         "created_at": "2020-10-16T03:51:39Z",
         "updated_at": "2020-10-16T03:51:47Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.2/pandoc-2.11.0.2-linux-amd64.tar.gz"
@@ -8943,7 +8943,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 24913408,
-        "download_count": 9443,
+        "download_count": 9445,
         "created_at": "2020-10-16T03:52:05Z",
         "updated_at": "2020-10-16T03:52:19Z",
         "browser_download_url": "https://github.com/jgm/pandoc/releases/download/2.11.0.2/pandoc-2.11.0.2-windows-x86_64.msi"
