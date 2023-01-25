@@ -62,7 +62,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 816716,
-      "download_count": 1232,
+      "download_count": 1240,
       "created_at": "2022-09-13T03:32:57Z",
       "updated_at": "2022-09-13T03:32:57Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-aarch64-unknown-linux-gnu.tar.gz"
@@ -96,7 +96,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 860805,
-      "download_count": 244,
+      "download_count": 245,
       "created_at": "2022-09-13T03:31:17Z",
       "updated_at": "2022-09-13T03:31:18Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-aarch64-unknown-linux-musl.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 945201,
-      "download_count": 169,
+      "download_count": 171,
       "created_at": "2022-09-13T03:33:23Z",
       "updated_at": "2022-09-13T03:33:24Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-i686-pc-windows-msvc.zip"
@@ -232,7 +232,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 909367,
-      "download_count": 521,
+      "download_count": 522,
       "created_at": "2022-09-13T03:31:59Z",
       "updated_at": "2022-09-13T03:31:59Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-i686-unknown-linux-gnu.tar.gz"
@@ -266,7 +266,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 938791,
-      "download_count": 279,
+      "download_count": 280,
       "created_at": "2022-09-13T03:32:36Z",
       "updated_at": "2022-09-13T03:32:36Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-i686-unknown-linux-musl.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 1020273,
-      "download_count": 376,
+      "download_count": 377,
       "created_at": "2022-09-13T03:33:03Z",
       "updated_at": "2022-09-13T03:33:04Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-pc-windows-gnu.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 1004153,
-      "download_count": 3462,
+      "download_count": 3474,
       "created_at": "2022-09-13T03:31:48Z",
       "updated_at": "2022-09-13T03:31:48Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-pc-windows-msvc.zip"
@@ -402,7 +402,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 891038,
-      "download_count": 1436,
+      "download_count": 1440,
       "created_at": "2022-09-13T03:31:00Z",
       "updated_at": "2022-09-13T03:31:00Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-gnu.tar.gz"
@@ -436,7 +436,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 941846,
-      "download_count": 1147,
+      "download_count": 1150,
       "created_at": "2022-09-13T03:32:14Z",
       "updated_at": "2022-09-13T03:32:15Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-0.23.1-x86_64-unknown-linux-musl.tar.gz"
@@ -470,7 +470,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 726764,
-      "download_count": 3598,
+      "download_count": 3608,
       "created_at": "2022-09-13T03:32:14Z",
       "updated_at": "2022-09-13T03:32:15Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-musl_0.23.1_amd64.deb"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 623572,
-      "download_count": 192,
+      "download_count": 196,
       "created_at": "2022-09-13T03:31:17Z",
       "updated_at": "2022-09-13T03:31:18Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-musl_0.23.1_arm64.deb"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 744664,
-      "download_count": 59,
+      "download_count": 60,
       "created_at": "2022-09-13T03:32:36Z",
       "updated_at": "2022-09-13T03:32:36Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd-musl_0.23.1_i686.deb"
@@ -572,7 +572,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 684572,
-      "download_count": 10009,
+      "download_count": 10080,
       "created_at": "2022-09-13T03:31:00Z",
       "updated_at": "2022-09-13T03:31:00Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb"
@@ -606,7 +606,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 587036,
-      "download_count": 632,
+      "download_count": 634,
       "created_at": "2022-09-13T03:32:57Z",
       "updated_at": "2022-09-13T03:32:58Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb"
@@ -640,7 +640,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 716500,
-      "download_count": 158,
+      "download_count": 159,
       "created_at": "2022-09-13T03:31:59Z",
       "updated_at": "2022-09-13T03:31:59Z",
       "browser_download_url": "https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_i686.deb"

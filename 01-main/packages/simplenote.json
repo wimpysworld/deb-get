@@ -62,7 +62,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 400,
-      "download_count": 1536,
+      "download_count": 1537,
       "created_at": "2021-10-15T19:35:13Z",
       "updated_at": "2021-10-15T19:35:13Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/latest-linux-arm.yml"
@@ -96,7 +96,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 399,
-      "download_count": 2167,
+      "download_count": 2171,
       "created_at": "2021-10-15T19:35:13Z",
       "updated_at": "2021-10-15T19:35:13Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/latest-linux-arm64.yml"
@@ -164,7 +164,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 401,
-      "download_count": 29928,
+      "download_count": 29967,
       "created_at": "2021-10-15T19:35:13Z",
       "updated_at": "2021-10-15T19:35:13Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/latest-linux.yml"
@@ -198,7 +198,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 352,
-      "download_count": 128625,
+      "download_count": 128869,
       "created_at": "2021-10-15T19:33:46Z",
       "updated_at": "2021-10-15T19:33:46Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/latest-mac.yml"
@@ -232,7 +232,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 348,
-      "download_count": 2047961,
+      "download_count": 2052203,
       "created_at": "2021-10-15T19:30:24Z",
       "updated_at": "2021-10-15T19:30:24Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/latest.yml"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 108536154,
-      "download_count": 41893,
+      "download_count": 41930,
       "created_at": "2021-10-15T19:32:03Z",
       "updated_at": "2021-10-15T19:32:05Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-amd64.deb"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 116297658,
-      "download_count": 3801,
+      "download_count": 3810,
       "created_at": "2021-10-15T19:26:28Z",
       "updated_at": "2021-10-15T19:26:31Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-arm64.AppImage"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 99023675,
-      "download_count": 547,
+      "download_count": 548,
       "created_at": "2021-10-15T19:26:45Z",
       "updated_at": "2021-10-15T19:26:47Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-armv7l.AppImage"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 97785892,
-      "download_count": 1137,
+      "download_count": 1139,
       "created_at": "2021-10-15T19:31:39Z",
       "updated_at": "2021-10-15T19:31:41Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-armv7l.deb"
@@ -436,7 +436,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 63782468,
-      "download_count": 1005,
+      "download_count": 1006,
       "created_at": "2021-10-15T19:34:02Z",
       "updated_at": "2021-10-15T19:34:05Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-armv7l.rpm"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 108181551,
-      "download_count": 745,
+      "download_count": 748,
       "created_at": "2021-10-15T19:26:10Z",
       "updated_at": "2021-10-15T19:26:12Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-i386.AppImage"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 106509182,
-      "download_count": 2566,
+      "download_count": 2572,
       "created_at": "2021-10-15T19:32:04Z",
       "updated_at": "2021-10-15T19:32:06Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-i386.deb"
@@ -572,7 +572,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 68639973,
-      "download_count": 779,
+      "download_count": 781,
       "created_at": "2021-10-15T19:35:05Z",
       "updated_at": "2021-10-15T19:35:07Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-i686.rpm"
@@ -640,7 +640,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 103734725,
-      "download_count": 1902,
+      "download_count": 1906,
       "created_at": "2021-10-15T19:31:46Z",
       "updated_at": "2021-10-15T19:31:49Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-x64.tar.gz"
@@ -674,7 +674,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 110232469,
-      "download_count": 6628,
+      "download_count": 6634,
       "created_at": "2021-10-15T19:25:52Z",
       "updated_at": "2021-10-15T19:25:54Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-x86_64.AppImage"
@@ -708,7 +708,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 69510303,
-      "download_count": 4385,
+      "download_count": 4387,
       "created_at": "2021-10-15T19:35:11Z",
       "updated_at": "2021-10-15T19:35:13Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-linux-2.21.0-x86_64.rpm"
@@ -742,7 +742,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 111074064,
-      "download_count": 8076,
+      "download_count": 8086,
       "created_at": "2021-10-15T19:30:28Z",
       "updated_at": "2021-10-15T19:30:31Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-macOS-2.21.0.dmg"
@@ -810,7 +810,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 112220883,
-      "download_count": 1807,
+      "download_count": 1811,
       "created_at": "2021-10-15T19:28:24Z",
       "updated_at": "2021-10-15T19:28:27Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-win-2.21.0-ia32.appx"
@@ -844,7 +844,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 117393346,
-      "download_count": 18152,
+      "download_count": 18182,
       "created_at": "2021-10-15T19:29:28Z",
       "updated_at": "2021-10-15T19:29:31Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-win-2.21.0-x64.appx"
@@ -878,7 +878,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 154259704,
-      "download_count": 629688,
+      "download_count": 630678,
       "created_at": "2021-10-15T19:30:18Z",
       "updated_at": "2021-10-15T19:30:23Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-win-2.21.0.exe"
@@ -912,7 +912,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 159785,
-      "download_count": 563321,
+      "download_count": 564208,
       "created_at": "2021-10-15T19:30:18Z",
       "updated_at": "2021-10-15T19:30:18Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-win-2.21.0.exe.blockmap"
@@ -980,7 +980,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 117379835,
-      "download_count": 1981,
+      "download_count": 1983,
       "created_at": "2021-10-15T19:29:07Z",
       "updated_at": "2021-10-15T19:29:10Z",
       "browser_download_url": "https://github.com/Automattic/simplenote-electron/releases/download/v2.21.0/Simplenote-win-store-2.21.0-x64.appx"

@@ -62,7 +62,7 @@
       "content_type": "application/x-deb",
       "state": "uploaded",
       "size": 70143434,
-      "download_count": 1244,
+      "download_count": 1272,
       "created_at": "2022-12-26T20:22:25Z",
       "updated_at": "2022-12-26T20:23:16Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/min-1.27.0-amd64.deb"
@@ -96,7 +96,7 @@
       "content_type": "application/x-deb",
       "state": "uploaded",
       "size": 66242782,
-      "download_count": 367,
+      "download_count": 371,
       "created_at": "2022-12-26T20:23:16Z",
       "updated_at": "2022-12-26T20:24:03Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/min-1.27.0-arm64.deb"
@@ -130,7 +130,7 @@
       "content_type": "application/x-deb",
       "state": "uploaded",
       "size": 63741640,
-      "download_count": 419,
+      "download_count": 422,
       "created_at": "2022-12-26T20:24:03Z",
       "updated_at": "2022-12-26T20:24:49Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/min-1.27.0-armv7l.deb"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 101543936,
-      "download_count": 4497,
+      "download_count": 4626,
       "created_at": "2022-12-26T20:18:45Z",
       "updated_at": "2022-12-26T20:19:58Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/min-1.27.0-setup.exe"
@@ -198,7 +198,7 @@
       "content_type": "audio/x-pn-realaudio-plugin",
       "state": "uploaded",
       "size": 70655345,
-      "download_count": 280,
+      "download_count": 286,
       "created_at": "2022-12-26T20:24:49Z",
       "updated_at": "2022-12-26T20:25:40Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/min-1.27.0-x86_64.rpm"
@@ -232,7 +232,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 92680662,
-      "download_count": 1391,
+      "download_count": 1428,
       "created_at": "2022-12-26T20:16:27Z",
       "updated_at": "2022-12-26T20:17:34Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/min-v1.27.0-mac-arm64.zip"
@@ -266,7 +266,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 97106064,
-      "download_count": 1357,
+      "download_count": 1403,
       "created_at": "2022-12-26T20:17:34Z",
       "updated_at": "2022-12-26T20:18:44Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/min-v1.27.0-mac-x86.zip"
@@ -300,7 +300,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 96971404,
-      "download_count": 108,
+      "download_count": 109,
       "created_at": "2022-12-26T20:19:58Z",
       "updated_at": "2022-12-26T20:21:08Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/Min-v1.27.0-windows-ia32.zip"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 102779145,
-      "download_count": 826,
+      "download_count": 835,
       "created_at": "2022-12-26T20:21:08Z",
       "updated_at": "2022-12-26T20:22:24Z",
       "browser_download_url": "https://github.com/minbrowser/min/releases/download/v1.27.0/Min-v1.27.0-windows.zip"
@@ -345,13 +345,13 @@
   "body": "* Added an setting to choose whether to re-open tabs on startup.\r\n* Fixed an issue where installation on Linux would sometimes fail.\r\n* Fixed an issue where the \"use separate titlebar\" setting didn't work correctly on macOS.\r\n* Translation updates\r\n* Upgrade to a newer version of Chromium\r\n\r\n_Also, if you previously followed Min on Twitter, check out our new [Mastodon account](https://mastodon.world/@minbrowser), where I'll post occasional updates and new release announcements._",
   "reactions": {
     "url": "https://api.github.com/repos/minbrowser/min/releases/87260767/reactions",
-    "total_count": 5,
+    "total_count": 6,
     "+1": 0,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,
     "confused": 0,
-    "heart": 2,
+    "heart": 3,
     "rocket": 3,
     "eyes": 0
   }

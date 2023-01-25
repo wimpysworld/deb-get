@@ -335,7 +335,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 78270216,
-        "download_count": 15,
+        "download_count": 19,
         "created_at": "2023-01-21T10:21:02Z",
         "updated_at": "2023-01-21T10:21:04Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/v5.0.0-alpha.4/Whalebird-5.0.0-alpha.4-linux-x64.deb"
@@ -2029,7 +2029,7 @@
         "content_type": "application/x-apple-diskimage",
         "state": "uploaded",
         "size": 185582271,
-        "download_count": 697,
+        "download_count": 707,
         "created_at": "2022-12-30T08:02:26Z",
         "updated_at": "2022-12-30T08:02:36Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-darwin-universal.dmg"
@@ -2267,7 +2267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 119483986,
-        "download_count": 213,
+        "download_count": 219,
         "created_at": "2022-12-30T08:07:43Z",
         "updated_at": "2022-12-30T08:07:45Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-linux-x64.AppImage"
@@ -2335,7 +2335,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 72364690,
-        "download_count": 168,
+        "download_count": 172,
         "created_at": "2022-12-30T08:07:46Z",
         "updated_at": "2022-12-30T08:07:47Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-linux-x64.deb"
@@ -2471,7 +2471,7 @@
         "content_type": "application/x-bzip2",
         "state": "uploaded",
         "size": 99808282,
-        "download_count": 25,
+        "download_count": 26,
         "created_at": "2022-12-30T08:07:39Z",
         "updated_at": "2022-12-30T08:07:42Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-linux-x64.tar.bz2"
@@ -2539,7 +2539,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 82587663,
-        "download_count": 172,
+        "download_count": 179,
         "created_at": "2022-12-30T07:53:13Z",
         "updated_at": "2022-12-30T07:53:16Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-windows-ia32.exe"
@@ -2607,7 +2607,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 85956895,
-        "download_count": 1427,
+        "download_count": 1462,
         "created_at": "2022-12-30T07:53:13Z",
         "updated_at": "2022-12-30T07:53:17Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.4/Whalebird-4.7.4-windows-x64.exe"
@@ -3855,7 +3855,7 @@
         "content_type": "application/x-redhat-package-manager",
         "state": "uploaded",
         "size": 72843568,
-        "download_count": 525,
+        "download_count": 530,
         "created_at": "2022-11-27T08:03:06Z",
         "updated_at": "2022-11-27T08:03:08Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.2/Whalebird-4.7.2-linux-x64.rpm"
@@ -3991,7 +3991,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 82709514,
-        "download_count": 243,
+        "download_count": 245,
         "created_at": "2022-11-27T07:44:33Z",
         "updated_at": "2022-11-27T07:44:37Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.2/Whalebird-4.7.2-windows-ia32.exe"
@@ -4059,7 +4059,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 86083280,
-        "download_count": 1918,
+        "download_count": 1919,
         "created_at": "2022-11-27T07:44:33Z",
         "updated_at": "2022-11-27T07:44:37Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.2/Whalebird-4.7.2-windows-x64.exe"
@@ -4723,7 +4723,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 82627128,
-        "download_count": 165,
+        "download_count": 167,
         "created_at": "2022-11-22T11:56:29Z",
         "updated_at": "2022-11-22T11:56:32Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.1/Whalebird-4.7.1-windows-ia32.exe"
@@ -4791,7 +4791,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 86000960,
-        "download_count": 714,
+        "download_count": 715,
         "created_at": "2022-11-22T11:56:29Z",
         "updated_at": "2022-11-22T11:56:32Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.1/Whalebird-4.7.1-windows-x64.exe"
@@ -5511,7 +5511,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 85848737,
-        "download_count": 3985,
+        "download_count": 3986,
         "created_at": "2022-11-06T02:58:53Z",
         "updated_at": "2022-11-06T02:58:56Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.7.0/Whalebird-4.7.0-windows-x64.exe"
@@ -8019,7 +8019,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 82171803,
-        "download_count": 1010,
+        "download_count": 1014,
         "created_at": "2022-07-14T02:25:48Z",
         "updated_at": "2022-07-14T02:25:59Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.2/Whalebird-4.6.2-windows-ia32.exe"
@@ -8087,7 +8087,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 85537827,
-        "download_count": 1511,
+        "download_count": 1514,
         "created_at": "2022-07-14T02:25:48Z",
         "updated_at": "2022-07-14T02:25:57Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.2/Whalebird-4.6.2-windows-x64.exe"
@@ -8785,7 +8785,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 82271586,
-        "download_count": 549,
+        "download_count": 553,
         "created_at": "2022-06-18T13:23:11Z",
         "updated_at": "2022-06-18T13:23:16Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.1/Whalebird-4.6.1-windows-ia32.exe"
@@ -8853,7 +8853,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 85637449,
-        "download_count": 761,
+        "download_count": 765,
         "created_at": "2022-06-18T13:23:11Z",
         "updated_at": "2022-06-18T13:23:16Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.1/Whalebird-4.6.1-windows-x64.exe"
@@ -9551,7 +9551,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 81452071,
-        "download_count": 622,
+        "download_count": 624,
         "created_at": "2022-05-19T13:07:02Z",
         "updated_at": "2022-05-19T13:07:05Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.0/Whalebird-4.6.0-windows-ia32.exe"
@@ -9619,7 +9619,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 84818004,
-        "download_count": 917,
+        "download_count": 919,
         "created_at": "2022-05-19T13:07:02Z",
         "updated_at": "2022-05-19T13:07:05Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.0/Whalebird-4.6.0-windows-x64.exe"
@@ -11825,7 +11825,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 81451118,
-        "download_count": 632,
+        "download_count": 634,
         "created_at": "2022-05-07T07:37:09Z",
         "updated_at": "2022-05-07T07:37:12Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.0-beta.2/Whalebird-4.6.0-beta.2-windows-ia32.exe"
@@ -11893,7 +11893,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 84819835,
-        "download_count": 718,
+        "download_count": 721,
         "created_at": "2022-05-07T07:37:09Z",
         "updated_at": "2022-05-07T07:37:12Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.0-beta.2/Whalebird-4.6.0-beta.2-windows-x64.exe"
@@ -12591,7 +12591,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 81450490,
-        "download_count": 619,
+        "download_count": 621,
         "created_at": "2022-05-03T13:18:23Z",
         "updated_at": "2022-05-03T13:18:25Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.0-beta.1/Whalebird-4.6.0-beta.1-windows-ia32.exe"
@@ -12659,7 +12659,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 84819205,
-        "download_count": 698,
+        "download_count": 701,
         "created_at": "2022-05-03T13:18:23Z",
         "updated_at": "2022-05-03T13:18:25Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.6.0-beta.1/Whalebird-4.6.0-beta.1-windows-x64.exe"
@@ -13357,7 +13357,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 77184401,
-        "download_count": 690,
+        "download_count": 693,
         "created_at": "2022-04-18T08:56:40Z",
         "updated_at": "2022-04-18T08:56:43Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.4/Whalebird-4.5.4-windows-ia32.exe"
@@ -13425,7 +13425,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 80550123,
-        "download_count": 1519,
+        "download_count": 1521,
         "created_at": "2022-04-18T08:56:40Z",
         "updated_at": "2022-04-18T08:56:43Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.4/Whalebird-4.5.4-windows-x64.exe"
@@ -14123,7 +14123,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 76708199,
-        "download_count": 658,
+        "download_count": 661,
         "created_at": "2022-04-07T09:04:58Z",
         "updated_at": "2022-04-07T09:05:01Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.3/Whalebird-4.5.3-windows-ia32.exe"
@@ -14191,7 +14191,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 80074145,
-        "download_count": 842,
+        "download_count": 846,
         "created_at": "2022-04-07T09:04:58Z",
         "updated_at": "2022-04-07T09:05:01Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.3/Whalebird-4.5.3-windows-x64.exe"
@@ -14889,7 +14889,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 75571382,
-        "download_count": 840,
+        "download_count": 844,
         "created_at": "2022-02-28T14:44:05Z",
         "updated_at": "2022-02-28T14:44:08Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.2/Whalebird-4.5.2-windows-ia32.exe"
@@ -14957,7 +14957,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 77612498,
-        "download_count": 1118,
+        "download_count": 1121,
         "created_at": "2022-02-28T14:44:05Z",
         "updated_at": "2022-02-28T14:44:08Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.2/Whalebird-4.5.2-windows-x64.exe"
@@ -15643,7 +15643,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 75609900,
-        "download_count": 848,
+        "download_count": 850,
         "created_at": "2022-02-13T14:05:15Z",
         "updated_at": "2022-02-13T14:05:17Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.1/Whalebird-4.5.1-windows-ia32.exe"
@@ -15711,7 +15711,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 77650992,
-        "download_count": 1077,
+        "download_count": 1079,
         "created_at": "2022-02-13T14:05:15Z",
         "updated_at": "2022-02-13T14:05:19Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.1/Whalebird-4.5.1-windows-x64.exe"
@@ -17163,7 +17163,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 75626261,
-        "download_count": 874,
+        "download_count": 876,
         "created_at": "2022-01-04T04:37:02Z",
         "updated_at": "2022-01-04T04:37:06Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.0-beta.2/Whalebird-4.5.0-beta.2-windows-ia32.exe"
@@ -17231,7 +17231,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 77653385,
-        "download_count": 952,
+        "download_count": 956,
         "created_at": "2022-01-04T04:37:02Z",
         "updated_at": "2022-01-04T04:37:07Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.0-beta.2/Whalebird-4.5.0-beta.2-windows-x64.exe"
@@ -17896,7 +17896,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 75626243,
-        "download_count": 873,
+        "download_count": 876,
         "created_at": "2022-01-04T02:35:06Z",
         "updated_at": "2022-01-04T02:35:11Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.0-beta.1/Whalebird-4.5.0-beta.1-windows-ia32.exe"
@@ -17964,7 +17964,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 77653293,
-        "download_count": 906,
+        "download_count": 910,
         "created_at": "2022-01-04T02:35:06Z",
         "updated_at": "2022-01-04T02:35:11Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.5.0-beta.1/Whalebird-4.5.0-beta.1-windows-x64.exe"
@@ -18595,7 +18595,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 73339756,
-        "download_count": 981,
+        "download_count": 985,
         "created_at": "2021-10-26T17:05:08Z",
         "updated_at": "2021-10-26T17:05:32Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.6/Whalebird-4.4.6-windows-ia32.exe"
@@ -18629,7 +18629,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 76598883,
-        "download_count": 1449,
+        "download_count": 1451,
         "created_at": "2021-10-26T17:05:32Z",
         "updated_at": "2021-10-26T17:05:53Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.6/Whalebird-4.4.6-windows-x64.exe"
@@ -19225,7 +19225,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 73401433,
-        "download_count": 1073,
+        "download_count": 1077,
         "created_at": "2021-10-02T12:40:06Z",
         "updated_at": "2021-10-02T12:40:26Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.5/Whalebird-4.4.5-windows-ia32.exe"
@@ -19259,7 +19259,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 76699611,
-        "download_count": 1255,
+        "download_count": 1258,
         "created_at": "2021-10-02T12:40:26Z",
         "updated_at": "2021-10-02T12:40:47Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.5/Whalebird-4.4.5-windows-x64.exe"
@@ -19843,7 +19843,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 70767592,
-        "download_count": 1047,
+        "download_count": 1050,
         "created_at": "2021-10-01T14:03:35Z",
         "updated_at": "2021-10-01T14:04:02Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.4/Whalebird-4.4.4-windows-ia32.exe"
@@ -19877,7 +19877,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 73753510,
-        "download_count": 1016,
+        "download_count": 1018,
         "created_at": "2021-10-01T14:04:01Z",
         "updated_at": "2021-10-01T14:04:32Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.4/Whalebird-4.4.4-windows-x64.exe"
@@ -20461,7 +20461,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 70768729,
-        "download_count": 1112,
+        "download_count": 1115,
         "created_at": "2021-08-31T10:13:13Z",
         "updated_at": "2021-08-31T10:13:39Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.3/Whalebird-4.4.3-windows-ia32.exe"
@@ -20495,7 +20495,7 @@
         "content_type": "application/x-ms-dos-executable",
         "state": "uploaded",
         "size": 73774963,
-        "download_count": 1251,
+        "download_count": 1254,
         "created_at": "2021-08-31T10:13:39Z",
         "updated_at": "2021-08-31T10:14:15Z",
         "browser_download_url": "https://github.com/h3poteto/whalebird-desktop/releases/download/4.4.3/Whalebird-4.4.3-windows-x64.exe"

@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 407,
-      "download_count": 7,
+      "download_count": 15,
       "created_at": "2023-01-24T14:25:42Z",
       "updated_at": "2023-01-24T14:25:42Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/latest-linux.yml"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 514,
-      "download_count": 2290,
+      "download_count": 7397,
       "created_at": "2023-01-24T14:25:40Z",
       "updated_at": "2023-01-24T14:25:41Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/latest-mac.yml"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 369,
-      "download_count": 3783,
+      "download_count": 12666,
       "created_at": "2023-01-24T14:25:41Z",
       "updated_at": "2023-01-24T14:25:42Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/latest.yml"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 82740634,
-      "download_count": 19,
+      "download_count": 52,
       "created_at": "2023-01-24T13:04:56Z",
       "updated_at": "2023-01-24T13:05:00Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.AppImage"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 58142464,
-      "download_count": 78,
+      "download_count": 216,
       "created_at": "2023-01-24T13:10:02Z",
       "updated_at": "2023-01-24T13:10:05Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.deb"
@@ -232,7 +232,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 58420849,
-      "download_count": 15,
+      "download_count": 53,
       "created_at": "2023-01-24T13:12:26Z",
       "updated_at": "2023-01-24T13:12:32Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.rpm"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 71045120,
-      "download_count": 171,
+      "download_count": 484,
       "created_at": "2023-01-24T13:05:50Z",
       "updated_at": "2023-01-24T13:05:54Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.snap"
@@ -300,7 +300,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 78405255,
-      "download_count": 2,
+      "download_count": 5,
       "created_at": "2023-01-24T13:08:32Z",
       "updated_at": "2023-01-24T13:08:36Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 78643598,
-      "download_count": 2,
+      "download_count": 7,
       "created_at": "2023-01-24T13:06:15Z",
       "updated_at": "2023-01-24T13:06:20Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 155877087,
-      "download_count": 55,
+      "download_count": 187,
       "created_at": "2023-01-23T22:19:04Z",
       "updated_at": "2023-01-23T22:19:11Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-mac.dmg"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 163827,
-      "download_count": 2,
+      "download_count": 3,
       "created_at": "2023-01-23T22:19:04Z",
       "updated_at": "2023-01-23T22:19:04Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-mac.dmg.blockmap"
@@ -436,7 +436,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 150335106,
-      "download_count": 529,
+      "download_count": 1020,
       "created_at": "2023-01-23T22:19:58Z",
       "updated_at": "2023-01-23T22:20:05Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-mac.zip"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 61563672,
-      "download_count": 1351,
+      "download_count": 2838,
       "created_at": "2023-01-23T22:14:36Z",
       "updated_at": "2023-01-23T22:14:39Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-win-x64.exe"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65189,
-      "download_count": 1854,
+      "download_count": 3492,
       "created_at": "2023-01-23T22:14:36Z",
       "updated_at": "2023-01-23T22:14:37Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-win-x64.exe.blockmap"
@@ -549,13 +549,13 @@
   "body": "# Changelog\r\n\r\n<!--\r\nelectron-builder v23.1.0\r\nGoogle Analytics\r\n-->\r\n\r\n## Fixed\r\n- <kbd>F5</kbd> and <kbd>Ctrl</kbd>+<kbd>R</kbd> shortcuts now reloads the app in the current URL instead of loading the home URL.\r\n\r\n## Improvements\r\n- License validation improvements.\r\n- Prevent logging the user out after several errors while attempting to reach our servers.\r\n- Add Emoji panel to the context menu (where available).\r\n\r\n \r\n",
   "reactions": {
     "url": "https://api.github.com/repos/ramboxapp/download/releases/89968128/reactions",
-    "total_count": 2,
-    "+1": 0,
+    "total_count": 6,
+    "+1": 2,
     "-1": 0,
     "laugh": 0,
     "hooray": 0,
     "confused": 0,
-    "heart": 2,
+    "heart": 4,
     "rocket": 0,
     "eyes": 0
   }

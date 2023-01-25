@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 1186344,
-      "download_count": 241,
+      "download_count": 306,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:34Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_0.8.0_amd64.deb"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 1022516,
-      "download_count": 27,
+      "download_count": 31,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:34Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_0.8.0_arm64.deb"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 1054772,
-      "download_count": 15,
+      "download_count": 16,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:33Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_0.8.0_armhf.deb"
@@ -164,7 +164,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 1427965,
-      "download_count": 11,
+      "download_count": 12,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:33Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_aarch64-apple-darwin.tar.gz"
@@ -198,7 +198,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 1494234,
-      "download_count": 8,
+      "download_count": 9,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:33Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_aarch64-unknown-linux-gnu.tar.gz"
@@ -402,7 +402,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 1671936,
-      "download_count": 3,
+      "download_count": 4,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:34Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_i686-unknown-linux-musl.tar.gz"
@@ -504,7 +504,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 1539573,
-      "download_count": 17,
+      "download_count": 22,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:33Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-apple-darwin.tar.gz"
@@ -538,7 +538,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 1443122,
-      "download_count": 85,
+      "download_count": 86,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:33Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-pc-windows-gnu.zip"
@@ -572,7 +572,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 1492491,
-      "download_count": 578,
+      "download_count": 651,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:34Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-pc-windows-msvc.zip"
@@ -674,7 +674,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 1625390,
-      "download_count": 66,
+      "download_count": 77,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:34Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-unknown-linux-gnu.tar.gz"
@@ -742,7 +742,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 1679365,
-      "download_count": 26,
+      "download_count": 29,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:34Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64-unknown-linux-musl.tar.gz"
@@ -776,7 +776,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 1798144,
-      "download_count": 197,
+      "download_count": 231,
       "created_at": "2023-01-22T06:29:33Z",
       "updated_at": "2023-01-22T06:29:34Z",
       "browser_download_url": "https://github.com/ClementTsang/bottom/releases/download/0.8.0/bottom_x86_64_installer.msi"

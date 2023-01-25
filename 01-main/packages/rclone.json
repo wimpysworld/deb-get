@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 2895,
-      "download_count": 130,
+      "download_count": 132,
       "created_at": "2022-12-23T18:20:13Z",
       "updated_at": "2022-12-23T18:20:13Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/MD5SUMS"
@@ -96,7 +96,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 16493008,
-      "download_count": 84,
+      "download_count": 88,
       "created_at": "2022-12-23T18:20:14Z",
       "updated_at": "2022-12-23T18:20:22Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-freebsd-386.zip"
@@ -130,7 +130,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 17318154,
-      "download_count": 161,
+      "download_count": 163,
       "created_at": "2022-12-23T18:20:23Z",
       "updated_at": "2022-12-23T18:20:32Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-freebsd-amd64.zip"
@@ -198,7 +198,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 16539190,
-      "download_count": 23,
+      "download_count": 25,
       "created_at": "2022-12-23T18:20:41Z",
       "updated_at": "2022-12-23T18:20:49Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-freebsd-arm.zip"
@@ -232,7 +232,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17711442,
-      "download_count": 77,
+      "download_count": 78,
       "created_at": "2022-12-23T18:20:50Z",
       "updated_at": "2022-12-23T18:20:58Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-386.deb"
@@ -334,7 +334,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 18551554,
-      "download_count": 19898,
+      "download_count": 20411,
       "created_at": "2022-12-23T18:21:17Z",
       "updated_at": "2022-12-23T18:21:26Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-amd64.deb"
@@ -402,7 +402,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 17468564,
-      "download_count": 70231,
+      "download_count": 71824,
       "created_at": "2022-12-23T18:21:36Z",
       "updated_at": "2022-12-23T18:21:45Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-amd64.zip"
@@ -436,7 +436,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17712064,
-      "download_count": 65,
+      "download_count": 68,
       "created_at": "2022-12-23T18:22:31Z",
       "updated_at": "2022-12-23T18:22:40Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-arm-v7.deb"
@@ -538,7 +538,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17744080,
-      "download_count": 62,
+      "download_count": 63,
       "created_at": "2022-12-23T18:22:12Z",
       "updated_at": "2022-12-23T18:22:21Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-arm.deb"
@@ -606,7 +606,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 16682136,
-      "download_count": 40,
+      "download_count": 43,
       "created_at": "2022-12-23T18:23:04Z",
       "updated_at": "2022-12-23T18:23:12Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-arm.zip"
@@ -640,7 +640,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 17126988,
-      "download_count": 281,
+      "download_count": 290,
       "created_at": "2022-12-23T18:21:46Z",
       "updated_at": "2022-12-23T18:21:54Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-arm64.deb"
@@ -708,7 +708,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 16084018,
-      "download_count": 228,
+      "download_count": 234,
       "created_at": "2022-12-23T18:22:04Z",
       "updated_at": "2022-12-23T18:22:12Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-arm64.zip"
@@ -742,7 +742,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 16558602,
-      "download_count": 46,
+      "download_count": 47,
       "created_at": "2022-12-23T18:23:13Z",
       "updated_at": "2022-12-23T18:23:21Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-mips.deb"
@@ -844,7 +844,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 16331250,
-      "download_count": 45,
+      "download_count": 46,
       "created_at": "2022-12-23T18:23:22Z",
       "updated_at": "2022-12-23T18:23:30Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-mipsle.deb"
@@ -912,7 +912,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 15381345,
-      "download_count": 11,
+      "download_count": 12,
       "created_at": "2022-12-23T18:23:40Z",
       "updated_at": "2022-12-23T18:23:49Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-linux-mipsle.zip"
@@ -1150,7 +1150,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 20656270,
-      "download_count": 345,
+      "download_count": 354,
       "created_at": "2022-12-23T18:25:00Z",
       "updated_at": "2022-12-23T18:25:10Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-osx-amd64.zip"
@@ -1184,7 +1184,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 19569319,
-      "download_count": 71,
+      "download_count": 75,
       "created_at": "2022-12-23T18:25:10Z",
       "updated_at": "2022-12-23T18:25:20Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-osx-arm64.zip"
@@ -1354,7 +1354,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 16515903,
-      "download_count": 407,
+      "download_count": 416,
       "created_at": "2022-12-23T18:25:57Z",
       "updated_at": "2022-12-23T18:26:05Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-windows-386.zip"
@@ -1388,7 +1388,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 17339085,
-      "download_count": 3542,
+      "download_count": 3594,
       "created_at": "2022-12-23T18:26:06Z",
       "updated_at": "2022-12-23T18:26:18Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1-windows-amd64.zip"
@@ -1456,7 +1456,7 @@
       "content_type": "application/x-gtar",
       "state": "uploaded",
       "size": 16074138,
-      "download_count": 157,
+      "download_count": 158,
       "created_at": "2022-12-23T18:25:43Z",
       "updated_at": "2022-12-23T18:25:51Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/rclone-v1.61.1.tar.gz"
@@ -1524,7 +1524,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 4207,
-      "download_count": 197,
+      "download_count": 198,
       "created_at": "2022-12-23T18:26:33Z",
       "updated_at": "2022-12-23T18:26:34Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/SHA256SUMS"
@@ -1558,7 +1558,7 @@
       "content_type": "text/plain; charset=utf-8",
       "state": "uploaded",
       "size": 15,
-      "download_count": 47,
+      "download_count": 48,
       "created_at": "2022-12-23T18:26:35Z",
       "updated_at": "2022-12-23T18:26:35Z",
       "browser_download_url": "https://github.com/rclone/rclone/releases/download/v1.61.1/version.txt"
