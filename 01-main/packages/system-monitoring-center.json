@@ -63,7 +63,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 154276,
-        "download_count": 18,
+        "download_count": 154,
         "created_at": "2023-01-25T10:41:55Z",
         "updated_at": "2023-01-25T10:41:56Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.40.0/system-monitoring-center_1.40.0_all.deb"
@@ -71,7 +71,19 @@
     ],
     "tarball_url": "https://api.github.com/repos/hakandundar34coding/system-monitoring-center/tarball/v1.40.0",
     "zipball_url": "https://api.github.com/repos/hakandundar34coding/system-monitoring-center/zipball/v1.40.0",
-    "body": "System Monitoring Center v2.x.x is developed by using GTK4 GUI toolkit.\r\nSystem Monitoring Center v1.x.x is developed by using GTK3 GUI toolkit.\r\n\r\nThe attached .deb file is for some debian based application stores."
+    "body": "System Monitoring Center v2.x.x is developed by using GTK4 GUI toolkit.\r\nSystem Monitoring Center v1.x.x is developed by using GTK3 GUI toolkit.\r\n\r\nThe attached .deb file is for some debian based application stores.",
+    "reactions": {
+      "url": "https://api.github.com/repos/hakandundar34coding/system-monitoring-center/releases/90155273/reactions",
+      "total_count": 2,
+      "+1": 2,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    }
   },
   {
     "url": "https://api.github.com/repos/hakandundar34coding/system-monitoring-center/releases/88403039",
@@ -137,7 +149,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 147792,
-        "download_count": 1093,
+        "download_count": 1340,
         "created_at": "2023-01-10T06:00:55Z",
         "updated_at": "2023-01-10T06:00:56Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.39.1/system-monitoring-center_1.39.1_all.deb"
@@ -223,7 +235,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 148324,
-        "download_count": 571,
+        "download_count": 575,
         "created_at": "2023-01-04T06:11:39Z",
         "updated_at": "2023-01-04T06:11:41Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.39.0/system-monitoring-center_1.39.0_all.deb"
@@ -309,7 +321,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 147916,
-        "download_count": 593,
+        "download_count": 595,
         "created_at": "2022-12-28T13:46:43Z",
         "updated_at": "2022-12-28T13:46:44Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.38.0/system-monitoring-center_1.38.0_all.deb"
@@ -395,7 +407,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 145032,
-        "download_count": 112,
+        "download_count": 115,
         "created_at": "2022-12-26T06:55:05Z",
         "updated_at": "2022-12-26T06:55:07Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.37.1/system-monitoring-center_1.37.1_all.deb"
@@ -481,7 +493,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 144960,
-        "download_count": 22,
+        "download_count": 23,
         "created_at": "2022-12-25T07:36:38Z",
         "updated_at": "2022-12-25T07:36:39Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.37.0/system-monitoring-center_1.37.0_all.deb"
@@ -739,7 +751,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 145100,
-        "download_count": 5,
+        "download_count": 6,
         "created_at": "2022-12-01T06:07:54Z",
         "updated_at": "2022-12-01T06:07:56Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.35.0/system-monitoring-center_1.35.0_all.deb"
@@ -813,7 +825,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 148892,
-        "download_count": 581,
+        "download_count": 582,
         "created_at": "2022-11-25T08:22:10Z",
         "updated_at": "2022-11-25T08:22:12Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.34.0/system-monitoring-center_1.34.0_all.deb"
@@ -985,7 +997,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 151416,
-        "download_count": 431,
+        "download_count": 432,
         "created_at": "2022-11-04T13:06:23Z",
         "updated_at": "2022-11-04T13:06:25Z",
         "browser_download_url": "https://github.com/hakandundar34coding/system-monitoring-center/releases/download/v1.32.0/system-monitoring-center_1.32.0_all.deb"

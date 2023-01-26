@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function copy_cache() {
+    for pkg in $(find . -name "*html" -o -name "*.json"); do cp -p /var/cache/deb-get/`basename ${pkg}` ${pkg} ;
+    git add ${pkg}
+    done
+}
+
+#deb-get update && \
+cd ~/src/deb-get && \
+
+#for branch in extras my-faster-update; do
+git checkout extras || exit
+git pull || exit
+copy_cache
+# for pkg in $(find . -name "*html" -o -name "*.json"); do cp -p /var/cache/deb-get/`basename ${pkg}` ${pkg} ;
+# git add ${pkg}
+# done
+for repo in 01-main 90-contribs 91-fixes;
+do
+
+# sum_and_stamp ${repo}
+
+    cd ${repo}; sha256sum manifest packages/* >${repo}.sha256;
+    date -R >packages/timestamp;
+    git add ${repo}.sha256 packages/timestamp ;
+    cd -
+done
+
+git commit -m "chore:cache refresh" && git push || exit
+
+git checkout my-faster-update || exit
+git pull || exit
+
+copy_cache
+# for pkg in $(find . -name "*html" -o -name "*.json"); do cp -p /var/cache/deb-get/`basename ${pkg}` ${pkg} ; done
+for repo in 01-main ; do cd ${repo}; sha256sum manifest packages/* >${repo}.sha256;date -R >packages/timestamp; cd -;git add ${repo} ; done
+
+git commit -m "chore:cache refresh" && git push
+
+
