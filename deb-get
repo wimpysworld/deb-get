@@ -159,7 +159,7 @@ function get_github_releases() {
     #   curl -I https://api.github.com/users/flexiondotorg
 
     # Do not process github releases while generating a pretty list or upgrading
-    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "fix-installed" ]; then #|| [ "${ACTION}" == "update" ]
         if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +${DEBGET_CACHE_RTN:-60})"; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases"
@@ -179,7 +179,7 @@ function get_github_releases() {
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
-    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "fix-installed" ]; then #|| [ "${ACTION}" == "update" ]
         if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +60)"; then
             fancy_message info "Updating ${CACHE_FILE}"
             if ! ${ELEVATE} wget -q --no-use-server-timestamps "${1}" -O "${CACHE_FILE}"; then
@@ -640,9 +640,7 @@ function update_repos() {
         awk -F/ '/github/  {print "# fetching github repo";
                             print "GITREPO="$4"/"$5;\
                             print "BRANCH="$6;\
-                            print "curl -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3";\
-                            print "if [ -f timestamp ] ;then ${ELEVATE} touch --no-create -d \"$(cat timestamp)\" *.json *.html ; fi";
-                            print "${ELEVATE} mv -f *json *html /var/cache/deb-get/  >/dev/null 2>&1 ||true "}
+                            print "curl -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
                 ! /github/ {print "# fetching non-github repo";
                             print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
                             print "${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
