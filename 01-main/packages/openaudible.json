@@ -96,7 +96,7 @@
       "content_type": "application/x-apple-diskimage",
       "state": "uploaded",
       "size": 618894088,
-      "download_count": 4705,
+      "download_count": 5010,
       "created_at": "2022-11-24T00:10:25Z",
       "updated_at": "2022-11-24T00:17:23Z",
       "browser_download_url": "https://github.com/openaudible/openaudible/releases/download/v3.6.3/OpenAudible_3.6.3_aarch64.dmg"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 766211264,
-      "download_count": 2321,
+      "download_count": 2452,
       "created_at": "2022-11-24T00:17:25Z",
       "updated_at": "2022-11-24T00:26:00Z",
       "browser_download_url": "https://github.com/openaudible/openaudible/releases/download/v3.6.3/OpenAudible_3.6.3_x86_64.AppImage"
@@ -164,7 +164,7 @@
       "content_type": "application/x-debian-package",
       "state": "uploaded",
       "size": 656620050,
-      "download_count": 2628,
+      "download_count": 2763,
       "created_at": "2022-11-24T00:26:03Z",
       "updated_at": "2022-11-24T00:33:44Z",
       "browser_download_url": "https://github.com/openaudible/openaudible/releases/download/v3.6.3/OpenAudible_3.6.3_x86_64.deb"
@@ -198,7 +198,7 @@
       "content_type": "application/x-apple-diskimage",
       "state": "uploaded",
       "size": 632496634,
-      "download_count": 4874,
+      "download_count": 5180,
       "created_at": "2022-11-24T00:33:46Z",
       "updated_at": "2022-11-24T00:41:27Z",
       "browser_download_url": "https://github.com/openaudible/openaudible/releases/download/v3.6.3/OpenAudible_3.6.3_x86_64.dmg"
@@ -232,7 +232,7 @@
       "content_type": "application/x-msdownload",
       "state": "uploaded",
       "size": 683472448,
-      "download_count": 19918,
+      "download_count": 20976,
       "created_at": "2022-11-24T00:41:29Z",
       "updated_at": "2022-11-24T00:50:46Z",
       "browser_download_url": "https://github.com/openaudible/openaudible/releases/download/v3.6.3/OpenAudible_3.6.3_x86_64.exe"
@@ -266,7 +266,7 @@
       "content_type": "application/x-rpm",
       "state": "uploaded",
       "size": 656645370,
-      "download_count": 1681,
+      "download_count": 1787,
       "created_at": "2022-11-24T00:50:48Z",
       "updated_at": "2022-11-24T00:58:58Z",
       "browser_download_url": "https://github.com/openaudible/openaudible/releases/download/v3.6.3/OpenAudible_3.6.3_x86_64.rpm"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 656801555,
-      "download_count": 3022,
+      "download_count": 3209,
       "created_at": "2022-11-24T00:59:00Z",
       "updated_at": "2022-11-24T01:07:09Z",
       "browser_download_url": "https://github.com/openaudible/openaudible/releases/download/v3.6.3/OpenAudible_3.6.3_x86_64.sh"

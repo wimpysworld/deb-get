@@ -63,7 +63,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1453,
-        "download_count": 10598,
+        "download_count": 19904,
         "created_at": "2023-01-26T17:51:20Z",
         "updated_at": "2023-01-26T17:51:20Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_checksums.txt"
@@ -97,7 +97,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 22863909,
-        "download_count": 595,
+        "download_count": 818,
         "created_at": "2023-01-26T17:51:06Z",
         "updated_at": "2023-01-26T17:51:07Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_darwin_amd64.tar.gz"
@@ -131,7 +131,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 21101432,
-        "download_count": 523,
+        "download_count": 703,
         "created_at": "2023-01-26T17:51:05Z",
         "updated_at": "2023-01-26T17:51:06Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_darwin_arm64.tar.gz"
@@ -165,7 +165,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21972310,
-        "download_count": 158,
+        "download_count": 227,
         "created_at": "2023-01-26T17:51:16Z",
         "updated_at": "2023-01-26T17:51:17Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_amd64.deb"
@@ -199,7 +199,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 21951446,
-        "download_count": 129,
+        "download_count": 177,
         "created_at": "2023-01-26T17:51:09Z",
         "updated_at": "2023-01-26T17:51:10Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_amd64.rpm"
@@ -233,7 +233,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 21027488,
-        "download_count": 9994,
+        "download_count": 18772,
         "created_at": "2023-01-26T17:51:03Z",
         "updated_at": "2023-01-26T17:51:04Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_amd64.tar.gz"
@@ -267,7 +267,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 19906982,
-        "download_count": 87,
+        "download_count": 104,
         "created_at": "2023-01-26T17:51:17Z",
         "updated_at": "2023-01-26T17:51:18Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_arm64.deb"
@@ -301,7 +301,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 19931495,
-        "download_count": 74,
+        "download_count": 101,
         "created_at": "2023-01-26T17:51:11Z",
         "updated_at": "2023-01-26T17:51:12Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_arm64.rpm"
@@ -335,7 +335,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 19182990,
-        "download_count": 222,
+        "download_count": 379,
         "created_at": "2023-01-26T17:51:04Z",
         "updated_at": "2023-01-26T17:51:05Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_arm64.tar.gz"
@@ -369,7 +369,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 19280784,
-        "download_count": 2,
+        "download_count": 3,
         "created_at": "2023-01-26T17:51:18Z",
         "updated_at": "2023-01-26T17:51:20Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_ppc64le.deb"
@@ -403,7 +403,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 19221921,
-        "download_count": 4,
+        "download_count": 7,
         "created_at": "2023-01-26T17:51:13Z",
         "updated_at": "2023-01-26T17:51:14Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_ppc64le.rpm"
@@ -437,7 +437,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 18540666,
-        "download_count": 2,
+        "download_count": 3,
         "created_at": "2023-01-26T17:51:01Z",
         "updated_at": "2023-01-26T17:51:01Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_ppc64le.tar.gz"
@@ -471,7 +471,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21282206,
-        "download_count": 2,
+        "download_count": 3,
         "created_at": "2023-01-26T17:51:15Z",
         "updated_at": "2023-01-26T17:51:16Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_s390x.deb"
@@ -505,7 +505,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 21253890,
-        "download_count": 4,
+        "download_count": 7,
         "created_at": "2023-01-26T17:51:14Z",
         "updated_at": "2023-01-26T17:51:15Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_s390x.rpm"
@@ -539,7 +539,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20184553,
-        "download_count": 2,
+        "download_count": 3,
         "created_at": "2023-01-26T17:51:02Z",
         "updated_at": "2023-01-26T17:51:03Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_linux_s390x.tar.gz"
@@ -573,7 +573,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21066272,
-        "download_count": 44,
+        "download_count": 64,
         "created_at": "2023-01-26T17:51:08Z",
         "updated_at": "2023-01-26T17:51:09Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.56.0/grype_0.56.0_windows_amd64.zip"
@@ -647,7 +647,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1453,
-        "download_count": 48386,
+        "download_count": 49088,
         "created_at": "2023-01-04T21:46:13Z",
         "updated_at": "2023-01-04T21:46:14Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.55.0/grype_0.55.0_checksums.txt"
@@ -681,7 +681,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 22702168,
-        "download_count": 1538,
+        "download_count": 1558,
         "created_at": "2023-01-04T21:46:00Z",
         "updated_at": "2023-01-04T21:46:01Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.55.0/grype_0.55.0_darwin_amd64.tar.gz"
@@ -715,7 +715,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20949645,
-        "download_count": 1201,
+        "download_count": 1222,
         "created_at": "2023-01-04T21:46:01Z",
         "updated_at": "2023-01-04T21:46:02Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.55.0/grype_0.55.0_darwin_arm64.tar.gz"
@@ -749,7 +749,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21784004,
-        "download_count": 699,
+        "download_count": 732,
         "created_at": "2023-01-04T21:46:12Z",
         "updated_at": "2023-01-04T21:46:13Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.55.0/grype_0.55.0_linux_amd64.deb"
@@ -817,7 +817,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20872663,
-        "download_count": 50093,
+        "download_count": 51389,
         "created_at": "2023-01-04T21:45:56Z",
         "updated_at": "2023-01-04T21:45:57Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.55.0/grype_0.55.0_linux_amd64.tar.gz"
@@ -919,7 +919,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 19044496,
-        "download_count": 880,
+        "download_count": 901,
         "created_at": "2023-01-04T21:45:57Z",
         "updated_at": "2023-01-04T21:45:58Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.55.0/grype_0.55.0_linux_arm64.tar.gz"
@@ -1157,7 +1157,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20907950,
-        "download_count": 143,
+        "download_count": 144,
         "created_at": "2023-01-04T21:46:03Z",
         "updated_at": "2023-01-04T21:46:03Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.55.0/grype_0.55.0_windows_amd64.zip"
@@ -1231,7 +1231,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1453,
-        "download_count": 59984,
+        "download_count": 63825,
         "created_at": "2022-12-13T15:21:58Z",
         "updated_at": "2022-12-13T15:21:59Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.54.0/grype_0.54.0_checksums.txt"
@@ -1265,7 +1265,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 22701801,
-        "download_count": 1081,
+        "download_count": 1082,
         "created_at": "2022-12-13T15:21:45Z",
         "updated_at": "2022-12-13T15:21:46Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.54.0/grype_0.54.0_darwin_amd64.tar.gz"
@@ -1333,7 +1333,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21760016,
-        "download_count": 760,
+        "download_count": 770,
         "created_at": "2022-12-13T15:21:54Z",
         "updated_at": "2022-12-13T15:21:55Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.54.0/grype_0.54.0_linux_amd64.deb"
@@ -1367,7 +1367,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 21781251,
-        "download_count": 269,
+        "download_count": 272,
         "created_at": "2022-12-13T15:21:52Z",
         "updated_at": "2022-12-13T15:21:53Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.54.0/grype_0.54.0_linux_amd64.rpm"
@@ -1401,7 +1401,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20871226,
-        "download_count": 61454,
+        "download_count": 65293,
         "created_at": "2022-12-13T15:21:40Z",
         "updated_at": "2022-12-13T15:21:41Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.54.0/grype_0.54.0_linux_amd64.tar.gz"
@@ -1503,7 +1503,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 19043491,
-        "download_count": 747,
+        "download_count": 777,
         "created_at": "2022-12-13T15:21:41Z",
         "updated_at": "2022-12-13T15:21:42Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.54.0/grype_0.54.0_linux_arm64.tar.gz"
@@ -1815,7 +1815,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 67592,
+        "download_count": 67710,
         "created_at": "2022-11-21T17:14:41Z",
         "updated_at": "2022-11-21T17:14:42Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.53.1/grype_0.53.1_checksums.txt"
@@ -1883,7 +1883,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20938390,
-        "download_count": 916,
+        "download_count": 917,
         "created_at": "2022-11-21T17:14:32Z",
         "updated_at": "2022-11-21T17:14:33Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.53.1/grype_0.53.1_darwin_arm64.tar.gz"
@@ -1985,7 +1985,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20855542,
-        "download_count": 73730,
+        "download_count": 74063,
         "created_at": "2022-11-21T17:14:29Z",
         "updated_at": "2022-11-21T17:14:30Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.53.1/grype_0.53.1_linux_amd64.tar.gz"
@@ -2223,7 +2223,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20886898,
-        "download_count": 174,
+        "download_count": 175,
         "created_at": "2022-11-21T17:14:33Z",
         "updated_at": "2022-11-21T17:14:34Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.53.1/grype_0.53.1_windows_amd64.zip"
@@ -2309,7 +2309,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 7942,
+        "download_count": 8042,
         "created_at": "2022-11-18T20:56:06Z",
         "updated_at": "2022-11-18T20:56:06Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.53.0/grype_0.53.0_checksums.txt"
@@ -2343,7 +2343,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 22679850,
-        "download_count": 326,
+        "download_count": 327,
         "created_at": "2022-11-18T20:55:44Z",
         "updated_at": "2022-11-18T20:55:46Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.53.0/grype_0.53.0_darwin_amd64.tar.gz"
@@ -2479,7 +2479,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20854877,
-        "download_count": 7557,
+        "download_count": 7658,
         "created_at": "2022-11-18T20:55:35Z",
         "updated_at": "2022-11-18T20:55:38Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.53.0/grype_0.53.0_linux_amd64.tar.gz"
@@ -2791,7 +2791,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 105049,
+        "download_count": 105135,
         "created_at": "2022-11-03T17:37:24Z",
         "updated_at": "2022-11-03T17:37:24Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.52.0/grype_0.52.0_checksums.txt"
@@ -2961,7 +2961,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20873155,
-        "download_count": 102391,
+        "download_count": 102677,
         "created_at": "2022-11-03T17:37:05Z",
         "updated_at": "2022-11-03T17:37:06Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.52.0/grype_0.52.0_linux_amd64.tar.gz"
@@ -3307,7 +3307,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 52296,
+        "download_count": 52364,
         "created_at": "2022-10-18T00:22:04Z",
         "updated_at": "2022-10-18T00:22:04Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.51.0/grype_0.51.0_checksums.txt"
@@ -3477,7 +3477,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 21028116,
-        "download_count": 56859,
+        "download_count": 56948,
         "created_at": "2022-10-18T00:21:51Z",
         "updated_at": "2022-10-18T00:21:52Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.51.0/grype_0.51.0_linux_amd64.tar.gz"
@@ -3823,7 +3823,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 98769,
+        "download_count": 99090,
         "created_at": "2022-09-20T20:13:22Z",
         "updated_at": "2022-09-20T20:13:22Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.2/grype_0.50.2_checksums.txt"
@@ -3925,7 +3925,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21966406,
-        "download_count": 655,
+        "download_count": 657,
         "created_at": "2022-09-20T20:13:17Z",
         "updated_at": "2022-09-20T20:13:18Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.2/grype_0.50.2_linux_amd64.deb"
@@ -3993,7 +3993,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20995278,
-        "download_count": 99106,
+        "download_count": 99424,
         "created_at": "2022-09-20T20:13:01Z",
         "updated_at": "2022-09-20T20:13:02Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.2/grype_0.50.2_linux_amd64.tar.gz"
@@ -4231,7 +4231,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 21034239,
-        "download_count": 355,
+        "download_count": 358,
         "created_at": "2022-09-20T20:13:09Z",
         "updated_at": "2022-09-20T20:13:10Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.2/grype_0.50.2_windows_amd64.zip"
@@ -4339,7 +4339,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 134048,
+        "download_count": 135771,
         "created_at": "2022-09-13T18:51:14Z",
         "updated_at": "2022-09-13T18:51:15Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.1/grype_0.50.1_checksums.txt"
@@ -4509,7 +4509,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20955018,
-        "download_count": 138480,
+        "download_count": 140404,
         "created_at": "2022-09-13T18:50:45Z",
         "updated_at": "2022-09-13T18:50:48Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.1/grype_0.50.1_linux_amd64.tar.gz"
@@ -4611,7 +4611,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 19123273,
-        "download_count": 558,
+        "download_count": 560,
         "created_at": "2022-09-13T18:50:48Z",
         "updated_at": "2022-09-13T18:50:50Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.1/grype_0.50.1_linux_arm64.tar.gz"
@@ -4645,7 +4645,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21383460,
-        "download_count": 10,
+        "download_count": 11,
         "created_at": "2022-09-13T18:51:12Z",
         "updated_at": "2022-09-13T18:51:14Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.1/grype_0.50.1_linux_s390x.deb"
@@ -4747,7 +4747,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20993947,
-        "download_count": 202,
+        "download_count": 211,
         "created_at": "2022-09-13T18:50:58Z",
         "updated_at": "2022-09-13T18:50:59Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.1/grype_0.50.1_windows_amd64.zip"
@@ -4855,7 +4855,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 3991,
+        "download_count": 3992,
         "created_at": "2022-09-12T16:12:37Z",
         "updated_at": "2022-09-12T16:12:37Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.0/grype_0.50.0_checksums.txt"
@@ -5025,7 +5025,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20954806,
-        "download_count": 3891,
+        "download_count": 3892,
         "created_at": "2022-09-12T16:12:26Z",
         "updated_at": "2022-09-12T16:12:27Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.0/grype_0.50.0_linux_amd64.tar.gz"
@@ -5263,7 +5263,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 20993255,
-        "download_count": 27,
+        "download_count": 28,
         "created_at": "2022-09-12T16:12:30Z",
         "updated_at": "2022-09-12T16:12:31Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.50.0/grype_0.50.0_windows_amd64.zip"
@@ -5371,7 +5371,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 32251,
+        "download_count": 32294,
         "created_at": "2022-09-01T17:36:29Z",
         "updated_at": "2022-09-01T17:36:29Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.49.0/grype_0.49.0_checksums.txt"
@@ -5541,7 +5541,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20945089,
-        "download_count": 32527,
+        "download_count": 32571,
         "created_at": "2022-09-01T17:36:18Z",
         "updated_at": "2022-09-01T17:36:19Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.49.0/grype_0.49.0_linux_amd64.tar.gz"
@@ -5887,7 +5887,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 1159,
-        "download_count": 29367,
+        "download_count": 29374,
         "created_at": "2022-08-24T16:06:32Z",
         "updated_at": "2022-08-24T16:06:33Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.48.0/grype_0.48.0_checksums.txt"
@@ -6057,7 +6057,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20760766,
-        "download_count": 30611,
+        "download_count": 30617,
         "created_at": "2022-08-24T16:06:17Z",
         "updated_at": "2022-08-24T16:06:18Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.48.0/grype_0.48.0_linux_amd64.tar.gz"
@@ -6403,7 +6403,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 13681,
+        "download_count": 13684,
         "created_at": "2022-08-17T20:17:15Z",
         "updated_at": "2022-08-17T20:17:15Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.47.0/grype_0.47.0_checksums.txt"
@@ -6573,7 +6573,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20759562,
-        "download_count": 13786,
+        "download_count": 13788,
         "created_at": "2022-08-17T20:17:06Z",
         "updated_at": "2022-08-17T20:17:07Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.47.0/grype_0.47.0_linux_amd64.tar.gz"
@@ -6829,7 +6829,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 29068,
+        "download_count": 29101,
         "created_at": "2022-08-04T15:06:51Z",
         "updated_at": "2022-08-04T15:06:52Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.46.0/grype_0.46.0_checksums.txt"
@@ -6897,7 +6897,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20875092,
-        "download_count": 382,
+        "download_count": 383,
         "created_at": "2022-08-04T15:06:35Z",
         "updated_at": "2022-08-04T15:06:37Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.46.0/grype_0.46.0_darwin_arm64.tar.gz"
@@ -6931,7 +6931,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21683498,
-        "download_count": 327,
+        "download_count": 328,
         "created_at": "2022-08-04T15:06:48Z",
         "updated_at": "2022-08-04T15:06:49Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.46.0/grype_0.46.0_linux_amd64.deb"
@@ -6999,7 +6999,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20735259,
-        "download_count": 29257,
+        "download_count": 29300,
         "created_at": "2022-08-04T15:06:28Z",
         "updated_at": "2022-08-04T15:06:30Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.46.0/grype_0.46.0_linux_amd64.tar.gz"
@@ -7657,7 +7657,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 20967,
+        "download_count": 21022,
         "created_at": "2022-07-25T16:55:26Z",
         "updated_at": "2022-07-25T16:55:26Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.44.0/grype_0.44.0_checksums.txt"
@@ -7827,7 +7827,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20574772,
-        "download_count": 21890,
+        "download_count": 21944,
         "created_at": "2022-07-25T16:54:50Z",
         "updated_at": "2022-07-25T16:54:58Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.44.0/grype_0.44.0_linux_amd64.tar.gz"
@@ -8343,7 +8343,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 18661603,
-        "download_count": 127,
+        "download_count": 128,
         "created_at": "2022-07-18T21:27:31Z",
         "updated_at": "2022-07-18T21:27:32Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.43.0/grype_0.43.0_linux_arm64.tar.gz"
@@ -8599,7 +8599,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 20512492,
-        "download_count": 335,
+        "download_count": 342,
         "created_at": "2022-07-11T20:02:21Z",
         "updated_at": "2022-07-11T20:02:22Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.42.0/grype_0.42.0_linux_amd64.deb"
@@ -8667,7 +8667,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20455416,
-        "download_count": 14522,
+        "download_count": 14598,
         "created_at": "2022-07-11T20:02:08Z",
         "updated_at": "2022-07-11T20:02:09Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.42.0/grype_0.42.0_linux_amd64.tar.gz"
@@ -9025,7 +9025,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 20488456,
-        "download_count": 215,
+        "download_count": 219,
         "created_at": "2022-07-06T15:44:37Z",
         "updated_at": "2022-07-06T15:44:38Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.41.0/grype_0.41.0_linux_amd64.deb"
@@ -9349,7 +9349,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 40221,
+        "download_count": 40434,
         "created_at": "2022-06-24T19:15:26Z",
         "updated_at": "2022-06-24T19:15:26Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.40.1/grype_0.40.1_checksums.txt"
@@ -9451,7 +9451,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 20451720,
-        "download_count": 465,
+        "download_count": 469,
         "created_at": "2022-06-24T19:15:22Z",
         "updated_at": "2022-06-24T19:15:24Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.40.1/grype_0.40.1_linux_amd64.deb"
@@ -9519,7 +9519,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20393115,
-        "download_count": 41388,
+        "download_count": 41610,
         "created_at": "2022-06-24T19:15:15Z",
         "updated_at": "2022-06-24T19:15:15Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.40.1/grype_0.40.1_linux_amd64.tar.gz"
@@ -9763,7 +9763,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 12695,
+        "download_count": 12701,
         "created_at": "2022-06-17T16:37:52Z",
         "updated_at": "2022-06-17T16:37:52Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.40.0/grype_0.40.0_checksums.txt"
@@ -9933,7 +9933,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20388894,
-        "download_count": 13115,
+        "download_count": 13121,
         "created_at": "2022-06-17T16:37:33Z",
         "updated_at": "2022-06-17T16:37:34Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.40.0/grype_0.40.0_linux_amd64.tar.gz"
@@ -10177,7 +10177,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 14075,
+        "download_count": 14083,
         "created_at": "2022-06-09T21:36:00Z",
         "updated_at": "2022-06-09T21:36:00Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.39.0/grype_0.39.0_checksums.txt"
@@ -10347,7 +10347,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 20329583,
-        "download_count": 14490,
+        "download_count": 14500,
         "created_at": "2022-06-09T21:35:45Z",
         "updated_at": "2022-06-09T21:35:46Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.39.0/grype_0.39.0_linux_amd64.tar.gz"
@@ -10591,7 +10591,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 107863,
+        "download_count": 108135,
         "created_at": "2022-05-23T15:01:30Z",
         "updated_at": "2022-05-23T15:01:30Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.38.0/grype_0.38.0_checksums.txt"
@@ -10727,7 +10727,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 19892488,
-        "download_count": 721,
+        "download_count": 727,
         "created_at": "2022-05-23T15:01:24Z",
         "updated_at": "2022-05-23T15:01:25Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.38.0/grype_0.38.0_linux_amd64.rpm"
@@ -10761,7 +10761,7 @@
         "content_type": "application/gzip",
         "state": "uploaded",
         "size": 19913527,
-        "download_count": 104951,
+        "download_count": 105232,
         "created_at": "2022-05-23T15:01:16Z",
         "updated_at": "2022-05-23T15:01:17Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.38.0/grype_0.38.0_linux_amd64.tar.gz"
@@ -11107,7 +11107,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 21069010,
-        "download_count": 2153,
+        "download_count": 2176,
         "created_at": "2022-05-13T17:34:11Z",
         "updated_at": "2022-05-13T17:34:12Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.37.0/grype_0.37.0_linux_amd64.deb"
@@ -11141,7 +11141,7 @@
         "content_type": "application/x-rpm",
         "state": "uploaded",
         "size": 20998497,
-        "download_count": 1255,
+        "download_count": 1314,
         "created_at": "2022-05-13T17:34:09Z",
         "updated_at": "2022-05-13T17:34:10Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.37.0/grype_0.37.0_linux_amd64.rpm"
@@ -11419,7 +11419,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 20236,
+        "download_count": 20248,
         "created_at": "2022-05-03T17:09:55Z",
         "updated_at": "2022-05-03T17:09:55Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.36.1/grype_0.36.1_checksums.txt"
@@ -11589,7 +11589,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 21003831,
-        "download_count": 20509,
+        "download_count": 20521,
         "created_at": "2022-05-03T17:09:41Z",
         "updated_at": "2022-05-03T17:09:43Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.36.1/grype_0.36.1_linux_amd64.tar.gz"
@@ -12003,7 +12003,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 20999047,
-        "download_count": 5083,
+        "download_count": 5085,
         "created_at": "2022-04-29T18:51:23Z",
         "updated_at": "2022-04-29T18:51:25Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.36.0/grype_0.36.0_linux_amd64.tar.gz"
@@ -12349,7 +12349,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 12625654,
-        "download_count": 536,
+        "download_count": 544,
         "created_at": "2022-04-13T21:53:55Z",
         "updated_at": "2022-04-13T21:53:56Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.35.0/grype_0.35.0_linux_amd64.deb"
@@ -12417,7 +12417,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 12605380,
-        "download_count": 29704,
+        "download_count": 29706,
         "created_at": "2022-04-13T21:53:49Z",
         "updated_at": "2022-04-13T21:53:50Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.35.0/grype_0.35.0_linux_amd64.tar.gz"
@@ -12485,7 +12485,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 11625108,
-        "download_count": 108,
+        "download_count": 109,
         "created_at": "2022-04-13T21:53:54Z",
         "updated_at": "2022-04-13T21:53:55Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.35.0/grype_0.35.0_linux_arm64.rpm"
@@ -12661,7 +12661,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 58178,
+        "download_count": 58206,
         "created_at": "2022-03-24T19:49:19Z",
         "updated_at": "2022-03-24T19:49:20Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.34.7/grype_0.34.7_checksums.txt"
@@ -12831,7 +12831,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 10622237,
-        "download_count": 66492,
+        "download_count": 66522,
         "created_at": "2022-03-24T19:49:10Z",
         "updated_at": "2022-03-24T19:49:11Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.34.7/grype_0.34.7_linux_amd64.tar.gz"
@@ -13489,7 +13489,7 @@
         "content_type": "text/plain; charset=utf-8",
         "state": "uploaded",
         "size": 871,
-        "download_count": 6367,
+        "download_count": 6380,
         "created_at": "2022-03-21T20:55:29Z",
         "updated_at": "2022-03-21T20:55:29Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.34.4/grype_0.34.4_checksums.txt"
@@ -13557,7 +13557,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 10700911,
-        "download_count": 91,
+        "download_count": 92,
         "created_at": "2022-03-21T20:55:23Z",
         "updated_at": "2022-03-21T20:55:24Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.34.4/grype_0.34.4_darwin_arm64.tar.gz"
@@ -13659,7 +13659,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 10618653,
-        "download_count": 6507,
+        "download_count": 6520,
         "created_at": "2022-03-21T20:55:20Z",
         "updated_at": "2022-03-21T20:55:21Z",
         "browser_download_url": "https://github.com/anchore/grype/releases/download/v0.34.4/grype_0.34.4_linux_amd64.tar.gz"

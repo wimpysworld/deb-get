@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 100528072,
-      "download_count": 246,
+      "download_count": 484,
       "created_at": "2023-01-27T23:24:18Z",
       "updated_at": "2023-01-27T23:24:21Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-linux-amd64.deb"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 119181312,
-      "download_count": 5,
+      "download_count": 12,
       "created_at": "2023-01-27T23:21:33Z",
       "updated_at": "2023-01-27T23:21:37Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-linux-amd64.snap"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 102689184,
-      "download_count": 3,
+      "download_count": 9,
       "created_at": "2023-01-27T23:29:12Z",
       "updated_at": "2023-01-27T23:29:16Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-linux-x64.freebsd"
@@ -164,7 +164,7 @@
       "content_type": "application/x-xz",
       "state": "uploaded",
       "size": 100000156,
-      "download_count": 11,
+      "download_count": 31,
       "created_at": "2023-01-27T23:22:28Z",
       "updated_at": "2023-01-27T23:22:33Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-linux-x64.tar.xz"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 136774587,
-      "download_count": 253,
+      "download_count": 441,
       "created_at": "2023-01-27T23:20:35Z",
       "updated_at": "2023-01-27T23:20:41Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-linux-x86_64.AppImage"
@@ -232,7 +232,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 100053917,
-      "download_count": 27,
+      "download_count": 40,
       "created_at": "2023-01-27T23:26:32Z",
       "updated_at": "2023-01-27T23:26:37Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-linux-x86_64.rpm"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 132163630,
-      "download_count": 478,
+      "download_count": 867,
       "created_at": "2023-01-27T23:24:39Z",
       "updated_at": "2023-01-27T23:24:43Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-mac.dmg"
@@ -300,7 +300,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 138529,
-      "download_count": 6,
+      "download_count": 18,
       "created_at": "2023-01-27T23:24:39Z",
       "updated_at": "2023-01-27T23:24:39Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-mac.dmg.blockmap"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 126138866,
-      "download_count": 1816,
+      "download_count": 3091,
       "created_at": "2023-01-27T23:25:27Z",
       "updated_at": "2023-01-27T23:25:31Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-squirrel.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 132987,
-      "download_count": 5,
+      "download_count": 10,
       "created_at": "2023-01-27T23:25:27Z",
       "updated_at": "2023-01-27T23:25:27Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/ipfs-desktop-0.26.0-squirrel.zip.blockmap"
@@ -402,7 +402,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 100796328,
-      "download_count": 4869,
+      "download_count": 8074,
       "created_at": "2023-01-27T23:21:56Z",
       "updated_at": "2023-01-27T23:22:00Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/IPFS-Desktop-Setup-0.26.0.exe"
@@ -436,7 +436,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 105828,
-      "download_count": 2847,
+      "download_count": 4410,
       "created_at": "2023-01-27T23:21:56Z",
       "updated_at": "2023-01-27T23:21:56Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/IPFS-Desktop-Setup-0.26.0.exe.blockmap"
@@ -470,7 +470,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 405,
-      "download_count": 274,
+      "download_count": 575,
       "created_at": "2023-01-27T23:29:17Z",
       "updated_at": "2023-01-27T23:29:17Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/latest-linux.yml"
@@ -504,7 +504,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 520,
-      "download_count": 4542,
+      "download_count": 10047,
       "created_at": "2023-01-27T23:25:31Z",
       "updated_at": "2023-01-27T23:25:31Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/latest-mac.yml"
@@ -538,7 +538,7 @@
       "content_type": "text/yaml",
       "state": "uploaded",
       "size": 356,
-      "download_count": 8522,
+      "download_count": 18537,
       "created_at": "2023-01-27T23:22:01Z",
       "updated_at": "2023-01-27T23:22:01Z",
       "browser_download_url": "https://github.com/ipfs/ipfs-desktop/releases/download/v0.26.0/latest.yml"
@@ -547,5 +547,17 @@
   "tarball_url": "https://api.github.com/repos/ipfs/ipfs-desktop/tarball/v0.26.0",
   "zipball_url": "https://api.github.com/repos/ipfs/ipfs-desktop/zipball/v0.26.0",
   "body": "## Important changes in this release\r\n\r\nThis release includes changing our metrics collection policy to opt-out instead of opt-in. This means app data (non-user data), or telemetry, is gathered by default when running the application. Note that you can still disable the collection of telemetry in the settings page. For more information, see the following:\r\n\r\n1. https://github.com/ipfs-shipyard/ignite-metrics/blob/main/docs/telemetry/COLLECTION_POLICY.md\r\n2. https://github.com/ipfs-shipyard/ignite-metrics/pull/76\r\n3. https://github.com/ipfs/ipfs-gui/issues/117\r\n\r\n## What's Changed\r\n* feat: kubo 0.18 with /quic-v1 and /webtransport by @galargh in https://github.com/ipfs/ipfs-desktop/pull/2363\r\n* feat: Updating ipfs-webui CID to v2.22.0 by @djmcquillan in https://github.com/ipfs/ipfs-desktop/pull/2387\r\n\r\n## New Contributors\r\n* @djmcquillan made their first contribution in https://github.com/ipfs/ipfs-desktop/pull/2387\r\n\r\n**Full Changelog**: https://github.com/ipfs/ipfs-desktop/compare/v0.25.0...v0.26.0",
+  "reactions": {
+    "url": "https://api.github.com/repos/ipfs/ipfs-desktop/releases/90488052/reactions",
+    "total_count": 1,
+    "+1": 1,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 0,
+    "confused": 0,
+    "heart": 0,
+    "rocket": 0,
+    "eyes": 0
+  },
   "mentions_count": 2
 }

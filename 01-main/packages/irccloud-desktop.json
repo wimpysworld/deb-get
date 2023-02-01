@@ -63,7 +63,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 83835509,
-        "download_count": 209508,
+        "download_count": 213729,
         "created_at": "2021-01-14T19:59:12Z",
         "updated_at": "2021-01-14T19:59:15Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/IRCCloud-0.16.0-linux-x86_64.AppImage"
@@ -131,7 +131,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 155564642,
-        "download_count": 309762,
+        "download_count": 318311,
         "created_at": "2021-01-14T20:06:35Z",
         "updated_at": "2021-01-14T20:06:40Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/IRCCloud-0.16.0-universal.dmg"
@@ -165,7 +165,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 163304,
-        "download_count": 1252,
+        "download_count": 1259,
         "created_at": "2021-01-14T20:06:35Z",
         "updated_at": "2021-01-14T20:06:35Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/IRCCloud-0.16.0-universal.dmg.blockmap"
@@ -199,7 +199,7 @@
         "content_type": "application/x-7z-compressed",
         "state": "uploaded",
         "size": 58840797,
-        "download_count": 3804,
+        "download_count": 3824,
         "created_at": "2021-01-14T20:01:14Z",
         "updated_at": "2021-01-14T20:01:19Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/irccloud-desktop-0.16.0-x64.nsis.7z"
@@ -233,7 +233,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57611554,
-        "download_count": 494,
+        "download_count": 495,
         "created_at": "2021-01-14T20:00:24Z",
         "updated_at": "2021-01-14T20:00:28Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/irccloud-desktop_0.16.0_linux_amd64.deb"
@@ -267,7 +267,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 673232,
-        "download_count": 122495,
+        "download_count": 132628,
         "created_at": "2021-01-14T20:01:25Z",
         "updated_at": "2021-01-14T20:01:26Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/IRCCloud.exe"
@@ -301,7 +301,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 548,
-        "download_count": 15800,
+        "download_count": 15930,
         "created_at": "2021-01-14T20:00:29Z",
         "updated_at": "2021-01-14T20:00:29Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/latest-linux.yml"
@@ -335,7 +335,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 738,
-        "download_count": 53163,
+        "download_count": 53426,
         "created_at": "2021-01-14T20:07:03Z",
         "updated_at": "2021-01-14T20:07:04Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/latest-mac.yml"
@@ -369,7 +369,7 @@
         "content_type": "text/yaml",
         "state": "uploaded",
         "size": 700,
-        "download_count": 89964,
+        "download_count": 90440,
         "created_at": "2021-01-14T20:01:29Z",
         "updated_at": "2021-01-14T20:01:29Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.16.0/latest.yml"
@@ -1685,7 +1685,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 69730646,
-        "download_count": 3682,
+        "download_count": 3683,
         "created_at": "2019-07-23T08:51:15Z",
         "updated_at": "2019-07-25T12:46:54Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.13.0/IRCCloud-0.13.0-linux-x86_64.AppImage"
@@ -3545,7 +3545,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 57845998,
-        "download_count": 662,
+        "download_count": 663,
         "created_at": "2019-02-06T21:32:35Z",
         "updated_at": "2019-02-06T21:32:37Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.9.0/irccloud-desktop_0.9.0_amd64.deb"
@@ -4997,7 +4997,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 58992413,
-        "download_count": 153,
+        "download_count": 154,
         "created_at": "2018-06-05T12:02:21Z",
         "updated_at": "2018-06-05T12:02:27Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.7.0/IRCCloud-0.7.0.dmg"
@@ -5581,7 +5581,7 @@
         "content_type": "application/octet-stream",
         "state": "uploaded",
         "size": 36826054,
-        "download_count": 450,
+        "download_count": 451,
         "created_at": "2018-01-24T14:50:53Z",
         "updated_at": "2018-01-24T14:50:55Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.6.0/irccloud-desktop_0.6.0_amd64.deb"
@@ -7033,7 +7033,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 31269952,
-        "download_count": 688,
+        "download_count": 689,
         "created_at": "2016-09-07T10:21:41Z",
         "updated_at": "2017-02-01T15:44:54Z",
         "browser_download_url": "https://github.com/irccloud/irccloud-desktop/releases/download/v0.3.0/irccloud-desktop-0.3.0-amd64.deb"

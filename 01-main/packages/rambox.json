@@ -62,7 +62,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 385,
-      "download_count": 3,
+      "download_count": 28,
       "created_at": "2023-01-31T12:43:46Z",
       "updated_at": "2023-01-31T12:43:47Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/latest-linux.yml"
@@ -96,7 +96,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 492,
-      "download_count": 4163,
+      "download_count": 30887,
       "created_at": "2023-01-31T12:43:47Z",
       "updated_at": "2023-01-31T12:43:47Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/latest-mac.yml"
@@ -130,7 +130,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 347,
-      "download_count": 6666,
+      "download_count": 55959,
       "created_at": "2023-01-31T12:43:45Z",
       "updated_at": "2023-01-31T12:43:46Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/latest.yml"
@@ -164,7 +164,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 82740634,
-      "download_count": 221,
+      "download_count": 301,
       "created_at": "2023-01-24T13:04:56Z",
       "updated_at": "2023-01-24T13:05:00Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.AppImage"
@@ -198,7 +198,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 58142464,
-      "download_count": 999,
+      "download_count": 1339,
       "created_at": "2023-01-24T13:10:02Z",
       "updated_at": "2023-01-24T13:10:05Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.deb"
@@ -232,7 +232,7 @@
       "content_type": "application/x-redhat-package-manager",
       "state": "uploaded",
       "size": 58420849,
-      "download_count": 187,
+      "download_count": 249,
       "created_at": "2023-01-24T13:12:26Z",
       "updated_at": "2023-01-24T13:12:32Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.rpm"
@@ -266,7 +266,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 71045120,
-      "download_count": 1764,
+      "download_count": 2209,
       "created_at": "2023-01-24T13:05:50Z",
       "updated_at": "2023-01-24T13:05:54Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.snap"
@@ -300,7 +300,7 @@
       "content_type": "application/gzip",
       "state": "uploaded",
       "size": 78405255,
-      "download_count": 10,
+      "download_count": 17,
       "created_at": "2023-01-24T13:08:32Z",
       "updated_at": "2023-01-24T13:08:36Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.tar.gz"
@@ -334,7 +334,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 78643598,
-      "download_count": 10,
+      "download_count": 11,
       "created_at": "2023-01-24T13:06:15Z",
       "updated_at": "2023-01-24T13:06:20Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-linux-x64.zip"
@@ -368,7 +368,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 155877087,
-      "download_count": 944,
+      "download_count": 1427,
       "created_at": "2023-01-23T22:19:04Z",
       "updated_at": "2023-01-23T22:19:11Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-mac.dmg"
@@ -436,7 +436,7 @@
       "content_type": "application/zip",
       "state": "uploaded",
       "size": 150335106,
-      "download_count": 5144,
+      "download_count": 6763,
       "created_at": "2023-01-23T22:19:58Z",
       "updated_at": "2023-01-23T22:20:05Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-mac.zip"
@@ -470,7 +470,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 159045,
-      "download_count": 3,
+      "download_count": 4,
       "created_at": "2023-01-23T22:19:58Z",
       "updated_at": "2023-01-23T22:19:59Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-mac.zip.blockmap"
@@ -504,7 +504,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 61563672,
-      "download_count": 14496,
+      "download_count": 20852,
       "created_at": "2023-01-23T22:14:36Z",
       "updated_at": "2023-01-23T22:14:39Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-win-x64.exe"
@@ -538,7 +538,7 @@
       "content_type": "application/octet-stream",
       "state": "uploaded",
       "size": 65189,
-      "download_count": 18012,
+      "download_count": 25377,
       "created_at": "2023-01-23T22:14:36Z",
       "updated_at": "2023-01-23T22:14:37Z",
       "browser_download_url": "https://github.com/ramboxapp/download/releases/download/v2.0.10/Rambox-2.0.10-win-x64.exe.blockmap"

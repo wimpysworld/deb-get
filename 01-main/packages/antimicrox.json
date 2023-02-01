@@ -63,7 +63,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 16783786,
-        "download_count": 329,
+        "download_count": 1161,
         "created_at": "2023-01-30T18:17:51Z",
         "updated_at": "2023-01-30T18:17:52Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/antimicrox-3.3.3-PortableWindows-AMD64.zip"
@@ -97,7 +97,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 1933580,
-        "download_count": 36,
+        "download_count": 105,
         "created_at": "2023-01-30T18:08:16Z",
         "updated_at": "2023-01-30T18:08:17Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/antimicrox-3.3.3-ubuntu-20.04-x86_64.deb"
@@ -131,7 +131,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 1953298,
-        "download_count": 29,
+        "download_count": 64,
         "created_at": "2023-01-30T18:08:07Z",
         "updated_at": "2023-01-30T18:08:07Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/antimicrox-3.3.3-ubuntu-22.04-x86_64.deb"
@@ -165,7 +165,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 13640292,
-        "download_count": 444,
+        "download_count": 1547,
         "created_at": "2023-01-30T18:17:53Z",
         "updated_at": "2023-01-30T18:17:54Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/antimicrox-3.3.3-Windows-AMD64.exe"
@@ -199,7 +199,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 42489024,
-        "download_count": 21,
+        "download_count": 48,
         "created_at": "2023-01-30T18:18:19Z",
         "updated_at": "2023-01-30T18:18:21Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/AntiMicroX-debug-x86_64.AppImage"
@@ -233,7 +233,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 28320960,
-        "download_count": 27,
+        "download_count": 87,
         "created_at": "2023-01-30T18:15:03Z",
         "updated_at": "2023-01-30T18:15:05Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/AntiMicroX-x86_64.AppImage"
@@ -267,7 +267,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 97026,
-        "download_count": 5,
+        "download_count": 13,
         "created_at": "2023-01-30T18:15:05Z",
         "updated_at": "2023-01-30T18:15:06Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.3/AntiMicroX-x86_64.AppImage.zsync"
@@ -278,13 +278,13 @@
     "body": "## [3.3.3](https://github.com/AntiMicroX/antimicrox/tree/3.3.3) (2023-01-30)\r\n\r\n**Implemented enhancements:**\r\n\r\n- Add checkbox enabling numeric keypad in ButtonEditDialog [\\#168](https://github.com/AntiMicroX/antimicrox/issues/168)\r\n- Add MSVC cmake support. [\\#667](https://github.com/AntiMicroX/antimicrox/pull/667) (by [nitz](https://github.com/nitz))\r\n- Update translations: Spanish, Korean, Russian\r\n- Add translations: Rusyn, Portugese(Brazil)\r\n\r\n**Fixed bugs:**\r\n\r\n- Name mismatch in set selector list [\\#655](https://github.com/AntiMicroX/antimicrox/issues/655)\r\n- Fix broken loading recently used profile for Windows 11 [\\#632](https://github.com/AntiMicroX/antimicrox/issues/632) (by [nitz](https://github.com/nitz))\r\n- Shebang ignored in execute bind [\\#699](https://github.com/AntiMicroX/antimicrox/issues/699)\r\n- Mouse spring mode not working in wayland session [\\#521](https://github.com/AntiMicroX/antimicrox/issues/521)\r\n\r\n**Notable changes:**\r\n\r\n- Some code refactors and docs updates\r\n- Logs improvements\r\n\r\n**Full Changelog**: https://github.com/AntiMicroX/antimicrox/compare/3.3.2...3.3.3",
     "reactions": {
       "url": "https://api.github.com/repos/AntiMicroX/antimicrox/releases/90723309/reactions",
-      "total_count": 6,
-      "+1": 4,
+      "total_count": 9,
+      "+1": 5,
       "-1": 0,
       "laugh": 0,
       "hooray": 0,
       "confused": 0,
-      "heart": 1,
+      "heart": 3,
       "rocket": 0,
       "eyes": 1
     }
@@ -353,7 +353,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 16791504,
-        "download_count": 10676,
+        "download_count": 10702,
         "created_at": "2022-11-21T12:43:17Z",
         "updated_at": "2022-11-21T12:43:18Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.2/antimicrox-3.3.2-PortableWindows-AMD64.zip"
@@ -387,7 +387,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 1947190,
-        "download_count": 869,
+        "download_count": 870,
         "created_at": "2022-11-21T12:34:41Z",
         "updated_at": "2022-11-21T12:34:41Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.2/antimicrox-3.3.2-ubuntu-20.04-x86_64.deb"
@@ -421,7 +421,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 1962122,
-        "download_count": 633,
+        "download_count": 634,
         "created_at": "2022-11-21T12:34:33Z",
         "updated_at": "2022-11-21T12:34:34Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.2/antimicrox-3.3.2-ubuntu-22.04-x86_64.deb"
@@ -455,7 +455,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 13639411,
-        "download_count": 12460,
+        "download_count": 12472,
         "created_at": "2022-11-21T12:43:18Z",
         "updated_at": "2022-11-21T12:43:19Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.2/antimicrox-3.3.2-Windows-AMD64.exe"
@@ -933,7 +933,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 16783607,
-        "download_count": 2679,
+        "download_count": 2682,
         "created_at": "2022-10-24T21:10:23Z",
         "updated_at": "2022-10-24T21:10:24Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.1/antimicrox-3.3.1-PortableWindows-AMD64.zip"
@@ -967,7 +967,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 1936666,
-        "download_count": 266,
+        "download_count": 267,
         "created_at": "2022-10-24T21:03:10Z",
         "updated_at": "2022-10-24T21:03:11Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.1/antimicrox-3.3.1-ubuntu-20.04-x86_64.deb"
@@ -1035,7 +1035,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 13630304,
-        "download_count": 3176,
+        "download_count": 3179,
         "created_at": "2022-10-24T21:10:24Z",
         "updated_at": "2022-10-24T21:10:26Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.3.1/antimicrox-3.3.1-Windows-AMD64.exe"
@@ -1513,7 +1513,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 13583092,
-        "download_count": 23700,
+        "download_count": 23707,
         "created_at": "2022-07-18T15:32:43Z",
         "updated_at": "2022-07-18T15:32:48Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.5/antimicrox-3.2.5-AMD64.exe"
@@ -2180,7 +2180,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 13419849,
-        "download_count": 8155,
+        "download_count": 8161,
         "created_at": "2022-04-24T19:29:38Z",
         "updated_at": "2022-04-24T19:29:39Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.3/antimicrox-3.2.3-AMD64.exe"
@@ -2402,7 +2402,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 13351733,
-        "download_count": 7111,
+        "download_count": 7116,
         "created_at": "2022-02-24T14:16:58Z",
         "updated_at": "2022-02-24T14:17:00Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.2/antimicrox-3.2.2-AMD64.exe"
@@ -2624,7 +2624,7 @@
         "content_type": "application/x-msdos-program",
         "state": "uploaded",
         "size": 13409532,
-        "download_count": 8274,
+        "download_count": 8294,
         "created_at": "2022-01-03T14:53:02Z",
         "updated_at": "2022-01-03T14:53:03Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.1/antimicrox-3.2.1-AMD64.exe"
@@ -2658,7 +2658,7 @@
         "content_type": "application/vnd.debian.binary-package",
         "state": "uploaded",
         "size": 1773490,
-        "download_count": 1525,
+        "download_count": 1530,
         "created_at": "2022-01-03T16:59:40Z",
         "updated_at": "2022-01-03T17:00:23Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.1/antimicrox-3.2.1-x86_64.deb"
@@ -2692,7 +2692,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 41837760,
-        "download_count": 482,
+        "download_count": 483,
         "created_at": "2022-01-03T14:53:25Z",
         "updated_at": "2022-01-03T14:53:28Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.1/AntiMicroX-debug-x86_64.AppImage"
@@ -2726,7 +2726,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 29017280,
-        "download_count": 520,
+        "download_count": 521,
         "created_at": "2022-01-03T14:51:02Z",
         "updated_at": "2022-01-03T14:51:04Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.1/AntiMicroX-x86_64.AppImage"
@@ -2936,7 +2936,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 28988608,
-        "download_count": 313,
+        "download_count": 314,
         "created_at": "2021-10-29T15:12:47Z",
         "updated_at": "2021-10-29T15:12:48Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.2.0/AntiMicroX-x86_64.AppImage"
@@ -3056,7 +3056,7 @@
         "content_type": "application/x-debian-package",
         "state": "uploaded",
         "size": 1626750,
-        "download_count": 670,
+        "download_count": 671,
         "created_at": "2021-09-10T13:45:05Z",
         "updated_at": "2021-09-10T13:45:06Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.1.7/antimicrox-3.1.7-x86_64.deb"
@@ -3090,7 +3090,7 @@
         "content_type": "application/zip",
         "state": "uploaded",
         "size": 29086912,
-        "download_count": 938,
+        "download_count": 939,
         "created_at": "2021-09-10T13:44:56Z",
         "updated_at": "2021-09-10T13:44:57Z",
         "browser_download_url": "https://github.com/AntiMicroX/antimicrox/releases/download/3.1.7/AntiMicroX-x86_64.AppImage"
