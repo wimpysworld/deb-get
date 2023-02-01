@@ -159,7 +159,7 @@ function get_github_releases() {
     #   curl -I https://api.github.com/users/flexiondotorg
 
     # Do not process github releases while generating a pretty list or upgrading
-    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "fix-installed" ]; then #|| [ "${ACTION}" == "update" ]
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "show" ] || [ "${ACTION}" == "fix-installed" ]; then #|| [ "${ACTION}" == "update" ]
         if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +${DEBGET_CACHE_RTN:-60})"; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases"
@@ -179,7 +179,7 @@ function get_github_releases() {
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
-    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "fix-installed" ]; then #|| [ "${ACTION}" == "update" ]
+    if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "show" ] || [ "${ACTION}" == "fix-installed" ]; then #|| [ "${ACTION}" == "update" ]
         if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +60)"; then
             fancy_message info "Updating ${CACHE_FILE}"
             if ! ${ELEVATE} wget -q --no-use-server-timestamps "${1}" -O "${CACHE_FILE}"; then
