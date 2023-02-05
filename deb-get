@@ -160,7 +160,7 @@ function get_github_releases() {
 
     # Do not process github releases while generating a pretty list or upgrading
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
-        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +60)"; then
+        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +${DEBGET_CACHE_RTN:-60})"; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases"
             if [ -n "${2}" ]; then
@@ -605,24 +605,52 @@ function init_repos() {
 }
 
 function refresh_supported_cache_lists(){
+    if [ -f ${CACHE_DIR}/updating_supported.lock ] ; then
+      return 0
+    else
+    ${ELEVATE} touch ${CACHE_DIR}/updating_supported.lock
     ${ELEVATE} rm -f ${CACHE_DIR}/supported.list  ${CACHE_DIR}/supported_apps.list
-    fancy_message info "Updating cache of supported apps"
-    list_debs | ${ELEVATE} tee ${CACHE_DIR}/supported.list >/dev/null
-    cut -d" " -f 1 ${CACHE_DIR}/supported.list |sort -u | ${ELEVATE} tee ${CACHE_DIR}/supported_apps.list >/dev/null
+    fancy_message info "Updating cache of supported apps in the background"
+    list_debs | grep -v -e '\[+\]' | ${ELEVATE} tee ${CACHE_DIR}/supported.list.tmp >/dev/null
+    # # belt and braces no longer needed
+    #${ELEVATE} sed -i '/[+]/d' ${CACHE_DIR}/supported.list.tmp
+    cut -d" " -f 1 ${CACHE_DIR}/supported.list.tmp |sort -u | ${ELEVATE} tee ${CACHE_DIR}/supported_apps.list.tmp >/dev/null
+    ${ELEVATE} mv ${CACHE_DIR}/supported.list.tmp ${CACHE_DIR}/supported.list
+    ${ELEVATE} mv ${CACHE_DIR}/supported_apps.list.tmp ${CACHE_DIR}/supported_apps.list
+    ${ELEVATE} rm  ${CACHE_DIR}/updating_supported.lock
+    fi
 }
 
 function update_repos() {
     local REPO_URL=""
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
+        export REPO
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
-        tail -n +2 "${ETC_DIR}/${REPO}.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/${REPO}.repo.tmp"
-        ${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
-        ${ELEVATE} rm "${ETC_DIR}/${REPO}.repo.tmp"
+
+        # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
+        # although so long as manifest is good we are OK
+        # Faster by some margin if we are hitting github
+        # Otherwise revert to old-style for a bespoke hosted repo
+
+        cd ${ETC_DIR}/${REPO}.d
+
+        awk -F/ '/github/  {print "# fetching github repo";
+                            print "GITREPO="$4"/"$5;\
+                            print "BRANCH="$6;\
+                            print "curl -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
+                ! /github/ {print "# fetching non-github repo";
+                            print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
+                            print "${ELEVATE} wget -q --show-progress --progress=bar:force:noscroll -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
+                            print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
+                } '\
+                <<<${REPO_URL} | bash -
+
+        cd -
     done
-    refresh_supported_cache_lists
+    refresh_supported_cache_lists &
 }
 
 function list_repo_apps() {
