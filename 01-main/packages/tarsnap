@@ -1,0 +1,7 @@
+DEFVER=2
+ASC_KEY_URL="https://pkg.tarsnap.com/tarsnap-deb-packaging-key.asc"
+APT_REPO_URL="http://pkg.tarsnap.com/deb/${UPSTREAM_CODENAME} ./"
+APT_REPO_OPTIONS="arch=amd64"
+PRETTY_NAME="Tarsnap"
+WEBSITE="https://www.tarsnap.com/"
+SUMMARY="Online backups for the truly paranoid. Tarsnap is a secure, efficient online backup service"
