@@ -167,9 +167,9 @@ function get_github_releases() {
                 URL+="/${2}"
             fi
             wgetcmdarray=("${ELEVATE}" wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
-            echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it." ; ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null )
+            echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
             if [ -f "${CACHE_FILE}" ] && grep "API rate limit exceeded" "${CACHE_FILE}"; then
-                fancy_message warn "Updating ${CACHE_FILE} exceed GitHub API limits. Deleting it."
+                fancy_message warn "Updating ${CACHE_FILE} exceeded GitHub API limits. Deleting it."
                 ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
             fi
         fi
@@ -325,6 +325,8 @@ function install_deb() {
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
                 return
             fi
+        elif [ -z "${FILE}" ]; then
+            fancy_message warn "${APP} update check failed, moving on to next package."
         else
             fancy_message info "${FILE} is up to date."
         fi
@@ -455,10 +457,19 @@ function validate_deb() {
                 exit 1
             fi
         fi
-    elif  [ -n "${PPA}" ]; then
+    elif [ -n "${PPA}" ]; then
         METHOD="ppa"
     else
-        if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -e "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+        # If the method is github and the cache file is empty, ignore the package
+        # The GitHub API is rate limit has likely been reached
+        if [ "${METHOD}" == github ] && [ ! -s "${CACHE_FILE}" ]; then
+            if [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; then
+                fancy_message warn "Cached file ${CACHE_FILE} is empty or missing."
+                ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
+            fi
+        fi
+
+        if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
