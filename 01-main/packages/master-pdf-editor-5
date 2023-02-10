@@ -2,7 +2,7 @@ DEFVER=1
 CODENAMES_SUPPORTED="bionic bullseye buster focal jammy"
 get_website "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download"
 if [ "${ACTION}" != "prettylist" ]; then
-        URL=$(grep -Eo "https://code-industry.net/public/.*\.deb" "${CACHE_FILE}" | uniq)
+        URL=$( grep 'document\.location' "${CACHE_FILE}" | grep -Eo "https://code-industry.net/public/.*\.deb" )
         VERSION_PUBLISHED="$(echo "${URL}" | sed 's/^.*editor-//;s/-qt5.x86_64.*$//')"
 fi
 PRETTY_NAME="Master PDF Editor"
