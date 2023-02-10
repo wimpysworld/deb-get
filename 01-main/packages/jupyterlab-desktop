@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "jupyterlab/jupyterlab-desktop" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*.deb" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="JupyterLab Desktop"
+WEBSITE="https://github.com/jupyterlab/jupyterlab-desktop"
+SUMMARY="JupyterLab desktop application, based on Electron"
