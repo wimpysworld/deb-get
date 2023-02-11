@@ -1,5 +1,5 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 i386 arm64 arm32"
+ARCHS_SUPPORTED="amd64 i386 arm64 armhf"
 local TARGET_ARCH="xxx"
 
 # Handle raspi - this was implemented for a Debian on Pi use-case
@@ -20,7 +20,8 @@ WEBSITE="https://agena.sourceforge.net/"
 get_website "${WEBSITE}/download.html"
 if [ "${ACTION}" != "prettylist" ]; then
     local REDIR_URL="$(grep -o "[^\"]*/${APP}/.*${TARGET_ARCH}\.deb" "${CACHE_FILE}")"
-    URL=$( echo $(unroll_url "${REDIR_URL}") | sed 's/\?viasf=1//')
+    URL=$(unroll_url "${REDIR_URL}")
+    URL=${URL/\.deb*/.deb}
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
 fi
 PRETTY_NAME="Agena"
