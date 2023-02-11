@@ -20,7 +20,7 @@ WEBSITE="https://agena.sourceforge.net/"
 get_website "${WEBSITE}/download.html"
 if [ "${ACTION}" != "prettylist" ]; then
     local REDIR_URL="$(grep -o "[^\"]*/${APP}/.*${TARGET_ARCH}\.deb" "${CACHE_FILE}")"
-    URL=$(unroll_url "${REDIR_URL}")
+    URL=$( echo $(unroll_url "${REDIR_URL}") | sed 's/\?viasf=1//')
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
 fi
 PRETTY_NAME="Agena"
