@@ -471,7 +471,9 @@ function validate_deb() {
 
         if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
-           { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
+           { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
+           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
+           { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             echo "URL=${URL}" >&2
             echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
