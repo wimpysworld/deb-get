@@ -663,7 +663,7 @@ function update_repos() {
         # Faster by some margin if we are hitting github
         # Otherwise revert to old-style for a bespoke hosted repo
 
-        cd ${ETC_DIR}/${REPO}.d
+        pushd ${ETC_DIR}/${REPO}.d >/dev/null
 
         awk -F/ '/github/  {print "# fetching github repo";
                             print "GITREPO="$4"/"$5;\
@@ -676,7 +676,7 @@ function update_repos() {
                 } '\
                 <<<${REPO_URL} | bash -
 
-        cd -
+        popd >/dev/null
     done
     refresh_supported_cache_lists &
 }
