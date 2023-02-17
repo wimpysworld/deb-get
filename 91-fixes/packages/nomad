@@ -1,0 +1,9 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ASC_KEY_URL="https://apt.releases.hashicorp.com/gpg"
+APT_LIST_NAME="hashicorp"
+APT_REPO_URL="https://apt.releases.hashicorp.com ${UPSTREAM_CODENAME} main"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="Nomad"
+WEBSITE="https://www.nomadproject.io/"
+SUMMARY="Orchestration tool for deploying and managing applications."
