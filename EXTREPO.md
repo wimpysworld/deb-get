@@ -32,6 +32,7 @@ The variables defined in the package definition file are the following:
 * `CODENAMES_SUPPORTED`: A space-separated list of supported upstream codenames, supporting the values from `UPSTREAM_CODENAME`.
 * `ASC_KEY_URL`: A URL to the ASCII-armored keyring file.
 * `GPG_KEY_URL`: A URL to the binary keyring file.
+* `GPG_KEY_ID`: The Key ID to be fetched from a keyserver.
 * `APT_LIST_NAME`: The name of the `*.list` file, without the extension.
 * `APT_REPO_URL`: The repository URL, the distribution codename and any following components for the line that will be printed to the `*.list` file.
 * `APT_REPO_OPTIONS`: The space-separated extra options, such as `arch=` or `by-hash=` for the line that will be printed to the `*.list` file.
@@ -101,6 +102,22 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
 GPG_KEY_URL=""
+APT_LIST_NAME=""
+APT_REPO_URL=""
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+EULA=""
+PRETTY_NAME=""
+WEBSITE=""
+SUMMARY=""
+```
+
+If the keyring file must be fetched from a keyserver by ID use this template:
+
+```bash
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
+GPG_KEY_ID=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
 APT_REPO_OPTIONS="arch=${HOST_ARCH}"

@@ -1,7 +1,5 @@
 DEFVER=1
-if [ "${ACTION}" != "prettylist" ]; then
-    ASC_KEY_URL="$(curl -s https://www.insynchq.com/downloads | grep gpgkey | cut -d'=' -f2)"
-fi
+GPG_KEY_ID="A684470CACCAF35C"
 APT_REPO_URL="http://apt.insync.io/${UPSTREAM_ID} ${UPSTREAM_CODENAME} non-free contrib"
 PRETTY_NAME="Insync"
 WEBSITE="https://www.insynchq.com/"
