@@ -1,7 +1,8 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
 get_github_releases "ferdium/ferdium-app" latest
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v -e nightly -e beta |head -n1 | cut -d'"' -f4)"
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v -e nightly -e beta | head -n1 | cut -d'"' -f4)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
 PRETTY_NAME="Ferdium"
