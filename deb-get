@@ -530,6 +530,8 @@ function list_debs() {
                 list_debs --include-unsupported --installed | comm  --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
             elif [ "${2}" == --not-installed ]; then
                 list_debs --include-unsupported --not-installed | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
+            elif [ "${2}" == --only-unsupported ]; then
+                list_debs --include-unsupported --raw | comm --nocheck-order -13 ${CACHE_DIR}/supported_apps.list -
             else
                 # this has [ installed ] tags
                 list_debs --include-unsupported  | comm --nocheck-order -12 ${CACHE_DIR}/supported.list -
@@ -1415,7 +1417,7 @@ case "${ACTION}" in
         while [ -n "${1}" ]; do
             if [ "${1}" == --include-unsupported ]; then
                 list_opt_1=--include-unsupported
-            elif [[ " --raw --installed --not-installed " =~ " ${1} " ]]; then
+            elif [[ " --raw --installed --not-installed --only-unsupported " =~ " ${1} " ]]; then
                 list_opt_2="${1}"
             else
                 fancy_message fatal "Unknown option supplied: ${1}"
