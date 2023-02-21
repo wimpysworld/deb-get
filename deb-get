@@ -416,66 +416,69 @@ function validate_deb() {
     else
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
-    if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
-        fancy_message error "Missing required information of package ${APP}:"
-        echo "DEFVER=${DEFVER}" >&2
-        echo "PRETTY_NAME=${PRETTY_NAME}" >&2
-        echo "SUMMARY=${SUMMARY}" >&2
-        echo "WEBSITE=${WEBSITE}" >&2
-        exit 1
-    fi
-    VERSION_INSTALLED=$(version_deb)
-    if [ -n "${APT_REPO_URL}" ]; then
-        METHOD="apt"
-        if [ "${ACTION}" != "prettylist" ]; then
-            if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
-                fancy_message error "Missing required information of apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
-                exit 1
-            fi
-            if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
-                fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
-                exit 1
-            fi
-            if [ -n "${GPG_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
-                fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
-                exit 1
-            fi
-            if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
-                fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
-                exit 1
-            fi
-        fi
-    elif [ -n "${PPA}" ]; then
-        METHOD="ppa"
-    else
-        # If the method is github and the cache file is empty, ignore the package
-        # The GitHub API is rate limit has likely been reached
-        if [ "${METHOD}" == github ] && [ ! -s "${CACHE_FILE}" ]; then
-            if [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; then
-                fancy_message warn "Cached file ${CACHE_FILE} is empty or missing."
-                ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
-            fi
-        fi
+    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
-        if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
-           { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
-           { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
-            fancy_message error "Missing required information of ${METHOD} package ${APP}:"
-            echo "URL=${URL}" >&2
-            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
+        if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
+            fancy_message error "Missing required information of package ${APP}:"
+            echo "DEFVER=${DEFVER}" >&2
+            echo "PRETTY_NAME=${PRETTY_NAME}" >&2
+            echo "SUMMARY=${SUMMARY}" >&2
+            echo "WEBSITE=${WEBSITE}" >&2
             exit 1
+        fi
+        VERSION_INSTALLED=$(version_deb)
+        if [ -n "${APT_REPO_URL}" ]; then
+            METHOD="apt"
+            if [ "${ACTION}" != "prettylist" ]; then
+                if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
+                    fancy_message error "Missing required information of apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
+                if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
+                    fancy_message error "Conflicting repository key types for apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
+                if [ -n "${GPG_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
+                    fancy_message error "Conflicting repository key types for apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
+                if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
+                    fancy_message error "Conflicting repository key types for apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
+            fi
+        elif [ -n "${PPA}" ]; then
+            METHOD="ppa"
+        else
+            # If the method is github and the cache file is empty, ignore the package
+            # The GitHub API is rate limit has likely been reached
+            if [ "${METHOD}" == github ] && [ ! -s "${CACHE_FILE}" ]; then
+                if [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; then
+                    fancy_message warn "Cached file ${CACHE_FILE} is empty or missing."
+                    ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
+                fi
+            fi
+
+            if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
+            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
+                fancy_message error "Missing required information of ${METHOD} package ${APP}:"
+                echo "URL=${URL}" >&2
+                echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
+                exit 1
+            fi
         fi
     fi
 }
