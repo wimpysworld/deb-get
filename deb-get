@@ -480,6 +480,28 @@ function validate_deb() {
                 exit 1
             fi
         fi
+    elif [ -n "${PPA}" ]; then
+        METHOD="ppa"
+    else
+        # If the method is github and the cache file is empty, ignore the package
+        # The GitHub API is rate limit has likely been reached
+        if [ "${METHOD}" == github ] && [ ! -s "${CACHE_FILE}" ]; then
+            if [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; then
+                fancy_message warn "Cached file ${CACHE_FILE} is empty or missing."
+                ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
+            fi
+        fi
+
+        if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+           { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
+           { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
+           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
+           { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
+            fancy_message error "Missing required information of ${METHOD} package ${APP}:"
+            echo "URL=${URL}" >&2
+            echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
+            exit 1
+        fi
     fi
 }
 
