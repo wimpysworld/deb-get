@@ -1,8 +1,9 @@
-DEFVER=1
+DEFVER=2
 #CODENAMES_SUPPORTED="kinetic"
+ARCHS_SUPPORTED="amd64 armhf"
 ASC_KEY_URL="https://azlux.fr/repo.gpg"
 APT_REPO_URL="http://packages.azlux.fr/debian/ stable main"
-APT_REPO_OPTIONS="arch=amd64,armhf"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
 PRETTY_NAME="broot"
 WEBSITE="https://dystroy.org/broot/"
 SUMMARY="A better way to navigate directories"
