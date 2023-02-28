@@ -219,7 +219,7 @@ function fancy_message() {
 
 function download_deb() {
     local URL="${1}"
-    local FILE="${URL##*/}"
+    local FILE="${2}"
 
     if ! ${ELEVATE} wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
@@ -294,7 +294,7 @@ function install_ppa() {
 
 function install_deb() {
     local URL="${1}"
-    local FILE="${URL##*/}"
+    local FILE="${FILE:-${URL##*/}}"
     local STATUS=""
     ((PACKAGE_INSTALLATION_TRIES++))
 
@@ -302,7 +302,7 @@ function install_deb() {
         if ! eula; then
             return
         fi
-        if ! download_deb "${URL}"; then
+        if ! download_deb "${URL}" "${FILE}"; then
             return
         fi
         if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
@@ -312,14 +312,14 @@ function install_deb() {
         maint_supported_cache
     else
         if [ "${ACTION}" == "reinstall" ]; then
-            if ! download_deb "${URL}"; then
+            if ! download_deb "${URL}" "${FILE}"; then
                 return
             fi
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"; then
                 return
             fi
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
-            if ! download_deb "${URL}"; then
+            if ! download_deb "${URL}" "${FILE}"; then
                 return
             fi
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
@@ -340,7 +340,7 @@ function install_deb() {
 function remove_deb() {
     local APP="${1}"
     local REMOVE="${2:-remove}"
-    local FILE="${URL##*/}"
+    local FILE="${FILE:-${URL##*/}}"
     local STATUS=""
 
     if package_is_installed "${APP}" || [[ " ${DEPRECATED_INSTALLED[*]} " =~ " ${APP} " ]]; then
@@ -409,6 +409,7 @@ function validate_deb() {
     export PRETTY_NAME=""
     export SUMMARY=""
     export WEBSITE=""
+    export FILE=""
 
     # Source the variables
     if [ "${APP_SRC}" == "00-builtin" ]; then
