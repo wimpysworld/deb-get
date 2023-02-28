@@ -1,0 +1,10 @@
+DEFVER=1
+get_website "https://www.tonelib.net/downloads.html"
+TLAPP="BassDrive"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(unroll_url "$(grep -o "https://www\.tonelib\.net/download/ToneLib-${TLAPP}[[:alpha:]]*-amd64\.deb" "${CACHE_FILE}")")"
+    VERSION_PUBLISHED="$(echo $(grep  -A4 "ToneLib ${TLAPP}" ${CACHE_FILE} |grep Version |grep -o "[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*") | sed 's/\./-/2' | sed 's/.2/.1/' )"
+fi
+PRETTY_NAME="ToneLib BassDrive"
+WEBSITE="https://tonelib.net"
+SUMMARY="Freeware Audio effect plugin."
