@@ -1492,13 +1492,19 @@ case "${ACTION}" in
     update)
         if [ -n "${1}" ] && [ "${1}" != --repos-only ] && [ "${1}" != --quiet ]; then
             fancy_message fatal "Unknown option supplied: ${1}"
+        elif [ -n "${2}" ] && [ "${2}" != --repos-only ] && [ "${2}" != --quiet ]; then
+                fancy_message fatal "Unknown option supplied: ${2}"
+        fi
+        if [ -n "${3}" ] ; then
+                    fancy_message error "Ignoring extra options from : ${3}"
         fi
         elevate_privs
         create_cache_dir
         create_etc_dir
         init_repos
         update_repos "$@"
-        if [ "${1}" != --repos-only ]; then
+        #if [ "${1}" != --repos-only ]; then
+        if [[ "$*" != *"--repos-only"* ]] ; then
             APPS="$(list_local_apps)"
             APPS="${APPS}
 $(list_repo_apps)"
