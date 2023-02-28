@@ -1,4 +1,4 @@
-DEFVER=1
+DEFVER=3
 CODENAMES_SUPPORTED="jammy kinetic"
 ASC_KEY_URL="https://baltocdn.com/i3-window-manager/signing.asc"
 APT_REPO_URL="https://baltocdn.com/i3-window-manager/i3/i3-autobuild-ubuntu/ all main"
