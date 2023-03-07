@@ -1,0 +1,9 @@
+DEFVER=1
+ARCHS_SUPPORTED="i386 amd64 arm64 armhf"
+ASC_KEY_URL="https://repo.charm.sh/apt/gpg.key"
+APT_REPO_URL="https://repo.charm.sh/apt/ * *"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+APT_LIST_NAME=charm
+PRETTY_NAME="Confettysh"
+WEBSITE="https://github.com/charmbracelet/confettysh"
+SUMMARY="Description: Confetty over SSH"
