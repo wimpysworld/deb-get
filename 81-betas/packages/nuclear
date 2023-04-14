@@ -5,8 +5,6 @@ get_github_releases "nukeop/nuclear"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
-    VERSION_PUBLISHED=${VERSION_PUBLISHED/fd06a3/0.6.17}
-    VERSION_PUBLISHED=${VERSION_PUBLISHED/2f1ec0/0.6.17}
 fi
 PRETTY_NAME="Nuclear"
 WEBSITE="https://nuclear.js.org/"
