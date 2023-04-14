@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:mozillateam/ppa"
+PRETTY_NAME="Firefox"
+WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+SUMMARY="Firefox Stable Release."
