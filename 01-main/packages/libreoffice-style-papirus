@@ -1,4 +1,5 @@
 DEFVER=1
+CODENAMES_SUPPORTED="Focal Bionic Xenial Trusty"
 PPA="ppa:papirus/papirus"
 PRETTY_NAME="LibreOffice Papirus icon theme"
 WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-libreoffice-theme"
