@@ -4,8 +4,7 @@ DEFVER=1
 get_github_releases "nukeop/nuclear"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(grep published_at "${CACHE_FILE}" | head -n1|cut -d'"' -f4)-$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
-    VERSION_PUBLISHED="$(echo "${VERSION_PUBLISHED}" | sed "s/\://g")"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
 fi
 PRETTY_NAME="Nuclear"
 WEBSITE="https://nuclear.js.org/"
