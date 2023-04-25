@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "KRTirtho/flemozi" "latest"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | grep -v nightly | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
-fi
-PRETTY_NAME="Flemozi"
-WEBSITE="https://github.com/KRTirtho/flemozi"
-SUMMARY="A simple, fast and lightweight emoji picker for desktop operating systems."
