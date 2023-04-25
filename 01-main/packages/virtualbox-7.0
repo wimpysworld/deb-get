@@ -1,4 +1,5 @@
 DEFVER=1
+CODENAMES_SUPPORTED="buster bullseye bionic focal jammy"
 ASC_KEY_URL="https://www.virtualbox.org/download/oracle_vbox_2016.asc"
 APT_REPO_URL="https://download.virtualbox.org/virtualbox/debian ${UPSTREAM_CODENAME} contrib"
 APT_REPO_OPTIONS="arch=amd64"
