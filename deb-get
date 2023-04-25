@@ -420,44 +420,67 @@ function validate_deb() {
     else
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
-    if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
-        fancy_message error "Missing required information of package ${APP}:"
-        echo "DEFVER=${DEFVER}" >&2
-        echo "PRETTY_NAME=${PRETTY_NAME}" >&2
-        echo "SUMMARY=${SUMMARY}" >&2
-        echo "WEBSITE=${WEBSITE}" >&2
-        exit 1
-    fi
-    VERSION_INSTALLED=$(version_deb)
-    if [ -n "${APT_REPO_URL}" ]; then
-        METHOD="apt"
-        if [ "${ACTION}" != "prettylist" ]; then
-            if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
-                fancy_message error "Missing required information of apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
-                exit 1
+    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+
+        if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
+            fancy_message error "Missing required information of package ${APP}:"
+            echo "DEFVER=${DEFVER}" >&2
+            echo "PRETTY_NAME=${PRETTY_NAME}" >&2
+            echo "SUMMARY=${SUMMARY}" >&2
+            echo "WEBSITE=${WEBSITE}" >&2
+            exit 1
+        fi
+        VERSION_INSTALLED=$(version_deb)
+        if [ -n "${APT_REPO_URL}" ]; then
+            METHOD="apt"
+            if [ "${ACTION}" != "prettylist" ]; then
+                if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
+                    fancy_message error "Missing required information of apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
+                if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
+                    fancy_message error "Conflicting repository key types for apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
+                if [ -n "${GPG_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
+                    fancy_message error "Conflicting repository key types for apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
+                if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
+                    fancy_message error "Conflicting repository key types for apt package ${APP}:"
+                    echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
+                    echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
+                    echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+                    exit 1
+                fi
             fi
-            if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
-                fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
-                exit 1
+        elif [ -n "${PPA}" ]; then
+            METHOD="ppa"
+        else
+            # If the method is github and the cache file is empty, ignore the package
+            # The GitHub API is rate limit has likely been reached
+            if [ "${METHOD}" == github ] && [ ! -s "${CACHE_FILE}" ]; then
+                if [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; then
+                    fancy_message warn "Cached file ${CACHE_FILE} is empty or missing."
+                    ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
+                fi
             fi
-            if [ -n "${GPG_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
-                fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
-                exit 1
-            fi
-            if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
-                fancy_message error "Conflicting repository key types for apt package ${APP}:"
-                echo "ASC_KEY_URL=${ASC_KEY_URL}" >&2
-                echo "GPG_KEY_URL=${GPG_KEY_URL}" >&2
-                echo "GPG_KEY_ID=${GPG_KEY_ID}" >&2
+
+            if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
+            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
+                fancy_message error "Missing required information of ${METHOD} package ${APP}:"
+                echo "URL=${URL}" >&2
+                echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
                 exit 1
             fi
         fi
@@ -475,7 +498,9 @@ function validate_deb() {
 
         if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
-           { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
+           { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
+           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
+           { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             echo "URL=${URL}" >&2
             echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
@@ -531,6 +556,8 @@ function list_debs() {
                 list_debs --include-unsupported --installed | comm  --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
             elif [ "${2}" == --not-installed ]; then
                 list_debs --include-unsupported --not-installed | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
+            elif [ "${2}" == --only-unsupported ]; then
+                list_debs --include-unsupported --raw | comm --nocheck-order -13 ${CACHE_DIR}/supported_apps.list -
             else
                 # this has [ installed ] tags
                 list_debs --include-unsupported  | comm --nocheck-order -12 ${CACHE_DIR}/supported.list -
@@ -1426,7 +1453,7 @@ case "${ACTION}" in
         while [ -n "${1}" ]; do
             if [ "${1}" == --include-unsupported ]; then
                 list_opt_1=--include-unsupported
-            elif [[ " --raw --installed --not-installed " =~ " ${1} " ]]; then
+            elif [[ " --raw --installed --not-installed --only-unsupported " =~ " ${1} " ]]; then
                 list_opt_2="${1}"
             else
                 fancy_message fatal "Unknown option supplied: ${1}"
