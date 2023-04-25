@@ -1,0 +1,9 @@
+DEFVER=1
+ARCHS_SUPPORTED="i386 amd64 arm64 armhf"
+ASC_KEY_URL="https://repo.charm.sh/apt/gpg.key"
+APT_LIST_NAME=charm
+APT_REPO_URL="https://repo.charm.sh/apt/ * *"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="Glow"
+WEBSITE="https://github.com/charmbracelet/glow"
+SUMMARY="Glow is a terminal based markdown reader designed from the ground up to bring out the beauty—and power—of the CLI."
