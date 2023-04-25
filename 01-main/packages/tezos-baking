@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:serokell/tezos"
+PRETTY_NAME="Octez (Tezos)"
+WEBSITE="http://tezos.gitlab.io/"
+SUMMARY="Octez is an implementation of Tezos, a distributed consensus platform (a blockchain) with meta-consensus capability."
