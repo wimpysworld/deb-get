@@ -6,7 +6,9 @@ antimicrox
 anydesk
 appimagelauncher
 atom
+atomic
 audio-recorder
+authme
 azure-cli
 azuredatastudio
 balena-etcher-electron
@@ -58,6 +60,7 @@ ferdium
 figma-linux
 firefox-esr
 flameshot
+flemozi
 foliate
 franz
 frostwire
@@ -69,6 +72,7 @@ git-delta
 github-desktop
 gitkraken
 gitter
+glow
 google-chat-electron
 google-chrome-stable
 google-cloud-cli
@@ -81,6 +85,7 @@ heroic
 homeassistant-supervised
 hugo
 hyper
+i3
 igdm
 #igdm-pro
 influxdb
@@ -101,6 +106,7 @@ kdiskmark
 keepassxc
 keybase
 kopia-ui
+koreader
 ksnip
 lens
 libreoffice
@@ -133,10 +139,12 @@ nextcloud-desktop
 nomad
 nordvpn
 notable
+nuclear
 obs-cli
 obsidian
 obs-studio
 ocenaudio
+tezos-baking
 onedriver
 onlyoffice-desktopeditors
 openaudible
@@ -147,16 +155,22 @@ os-agent
 p3x-onenote
 pandoc
 papirus-icon-theme
+filezilla-theme-papirus
 #parsec
+pdfsam-basic
+pdfsam-visual
 peazip
 #picocrypt
 plexmediaserver
 plow
 polychromatic
+pomatez
 portmaster
 powershell
 protonmail-bridge
 protonvpn
+publii
+pulsar
 pulse-sms
 qownnotes
 quarto
@@ -181,6 +195,7 @@ skypeforlinux
 slack-desktop
 sleek
 smartgit
+sniffnet
 softmaker-office-2021
 indicator-sound-switcher
 soundux
@@ -214,6 +229,7 @@ tonelib-noisereducer
 tonelib-tubewarmth
 tonelib-zoom
 tribler
+trilium
 trivy
 typora
 ubuntu-make

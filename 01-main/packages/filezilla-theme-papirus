@@ -1,0 +1,6 @@
+DEFVER=1
+CODENAMES_SUPPORTED="Kinetic Jammy Focal Bionic Xenial Trusty"
+PPA="ppa:papirus/papirus"
+PRETTY_NAME="Filezilla Papirus icon theme"
+WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-filezilla-themes"
+SUMMARY="Papirus icons for filezilla"
