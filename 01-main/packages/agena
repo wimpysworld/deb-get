@@ -1,10 +1,27 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 i386" #armv6-32 armv8-64
+ARCHS_SUPPORTED="amd64 i386 arm64 armhf"
+local TARGET_ARCH="xxx"
+
+# Handle raspi - this was implemented for a Debian on Pi use-case
+# Probably needs better logic to allow for guard-rails if there are problems with the
+# provided builds on Debian or Ubuntu (or derivatives) and any "other" arm platforms need
+# different treatment
+
+case ${HOST_ARCH} in
+    arm64|armv8-64|armv8|aarch64)
+        TARGET_ARCH=armv8-64;;
+    arm32|armv6-32|armv6|armhf|armv7)
+        TARGET_ARCH=armv6-32;;
+    *)
+        TARGET_ARCH=${HOST_ARCH};;
+esac
+
 WEBSITE="https://agena.sourceforge.net/"
 get_website "${WEBSITE}/download.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    local REDIR_URL="$(grep -o "[^\"]*/${APP}/.*${HOST_ARCH}\.deb" "${CACHE_FILE}")"
+    local REDIR_URL="$(grep -o "[^\"]*/${APP}/.*${TARGET_ARCH}\.deb" "${CACHE_FILE}")"
     URL=$(unroll_url "${REDIR_URL}")
+    URL=${URL/\.deb*/.deb}
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
 fi
 PRETTY_NAME="Agena"
