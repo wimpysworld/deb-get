@@ -1,6 +1,6 @@
 ---
 author: Martin Wimpress
-date: October 6, 2022
+date: February 14, 2022
 footer: deb-get
 header: deb-get User Manual
 section: 1
@@ -16,7 +16,7 @@ deb-get - An installation manager for 3rd-Party deb packages
 **deb-get** \[*COMMAND*\]...
 
 ```
-deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
+deb-get {update [--repos-only] [--quiet] | upgrade | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
         | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean

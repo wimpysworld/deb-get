@@ -59,7 +59,7 @@ cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
 
-deb-get {update [--repos-only] | upgrade | show <pkg list> | install <pkg list>
+deb-get {update [--repos-only] [--quiet] | upgrade | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
         | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean
@@ -76,6 +76,7 @@ update
     When --repos-only is provided, only initialize and update deb-get's
     external repositories, without updating apt or looking for updates of
     installed packages.
+    When --quiet is provided the fetching of deb-get repository updates is done without progress feedback.
 
 upgrade
     upgrade is used to install the newest versions of all packages currently
