@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "GyulyVGC/sniffnet" "latest"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
-fi
-PRETTY_NAME="Sniffnet"
-WEBSITE="https://github.com/GyulyVGC/sniffnet"
-SUMMARY="Application to comfortably monitor your network traffic."

@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "neovim/neovim" # "latest"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*nvim-linux64\.deb[^.]" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(wget -q https://github.com/neovim/neovim/releases/tag/stable -O- | grep -o -E 'NVIM v[[:digit:]]+.[[:digit:]]+.[[:digit:]]+'|head -1|tr -d 'NVIM v' )
-fi
-PRETTY_NAME="Neovim"
-WEBSITE="https://neovim.io/"
-SUMMARY="Hyperextensible Vim-based text editor"
