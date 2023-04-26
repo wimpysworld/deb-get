@@ -18,7 +18,9 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://anydesk.com/) | `anydesk` | <i>Access any device at any time. From anywhere. Always secure and fast.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/TheAssassin/AppImageLauncher) | `appimagelauncher` | <i>A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://atom.io/) | `atom` | <i>A hackable text editor for the 21st Century.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://atomicwallet.io) | `atomic` | <i>Crypto Wallet for Buying, Staking & Exchanging.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://launchpad.net/~audio-recorder) | `audio-recorder` | <i>Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Levminer/authme) | `authme` | <i>Simple cross-platform two-factor (2FA) authenticator app for desktop.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) | `azure-cli` | <i>Command-line interface used to create and manage Azure resources.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://docs.microsoft.com/en-us/sql/azure-data-studio/) | `azuredatastudio` | <i>Data management tool for working with SQL Server, Azure SQL DB and SQL DW.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.balena.io/etcher/) | `balena-etcher-electron` | <i>Flash OS images to SD cards & USB drives, safely and easily.</i> |
@@ -67,6 +69,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/sharkdp/fd) | `fd` | <i>A simple, fast and user-friendly alternative to 'find'.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://ferdium.org/) | `ferdium` | <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Figma-Linux/figma-linux) | `figma-linux` | <i>Unofficial Electron-based Figma desktop app for Linux.</i> |
+| [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-filezilla-themes) | `filezilla-theme-papirus` | <i>Papirus icons for filezilla</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://www.mozilla.org/firefox/enterprise/) | `firefox-esr` | <i> Firefox Extended Support Release.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://flameshot.org/) | `flameshot` | <i>Flameshot is a free and open-source, cross-platform tool to take screenshots with many built-in features to save you time.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://johnfactotum.github.io/foliate/) | `foliate` | <i>A simple and modern eBook viewer for Linux desktops.</i> |
@@ -79,6 +82,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://desktop.github.com/) | `github-desktop` | <i>Simple collaboration from your desktop.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.gitkraken.com/invite/ieih1QR3) | `gitkraken` | <i>Intuitive Git GUI & powerful Git CLI.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://gitter.im/) | `gitter` | <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i> |
+| [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/charmbracelet/glow) | `glow` | <i>Glow is a terminal based markdown reader designed from the ground up to bring out the beauty—and power—of the CLI.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.google.com/chrome/) | `google-chrome-stable` | <i>Fast, Secure Browser from Google.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://cloud.google.com/sdk) | `google-cloud-cli` | <i>The Google Cloud CLI is a set of tools to create and manage Google Cloud resources. You can use these tools to perform many common platform tasks from the command line or through scripts and other automation.</i> |
@@ -104,12 +108,14 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.jabref.org/) | `jabref` | <i>The efficient way to collect, organize & discover.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://jami.net/) | `jami` | <i>Share, freely and privately.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://jellyfin.org/) | `jellyfin` | <i>The Free Software Media System.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://jellyfin.org) | `jellyfin-media-player` | <i>Jellyfin Media Player is a desktop client using jellyfin-web with embedded MPV player for the Jellyfin Media Server.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/jupyterlab/jupyterlab-desktop) | `jupyterlab-desktop` | <i>JupyterLab desktop application, based on Electron</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/influxdata/kapacitor) | `kapacitor` | <i>Open source framework for processing, monitoring, and alerting on time series data.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/JonMagon/KDiskMark) | `kdiskmark` | <i>A simple open-source disk benchmark tool for Linux distros.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://keepassxc.org/) | `keepassxc` | <i>Cross-Platform Password Manager.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://keybase.io/) | `keybase` | <i>End-to-end encryption for things that matter. Secure messaging and file-sharing.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://kopia.io/) | `kopia-ui` | <i>Cross-platform backup tool for Windows, macOS & Linux with fast, incremental backups, client-side end-to-end encryption, compression and data deduplication.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://koreader.rocks/) | `koreader` | <i>KOReader is a document viewer for E Ink devices. </i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ksnip/ksnip) | `ksnip` | <i>Cross-platform screenshot and annotation tool.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://k8slens.dev/) | `lens` | <i>The way the world runs Kubernetes.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://www.libreoffice.org/) | `libreoffice` | <i>LibreOffice Fresh is the latest (non-alpha/beta) release of the newest series of LibreOffice - a free and powerful office suite.</i> |
@@ -135,13 +141,13 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://agam778.github.io/MS-Office-Electron/) | `ms-office-electron` | <i>A Microsoft Office Online Desktop Client made with Electron.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad-vpn` | <i>VPN Service based in Sweden that does not collect user data.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala` | <i>Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer.</i> |
-| [<img src="../.github/debian.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala-legacy` | <i>Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala-legacy` | <i>Commandline frontend for the APT package manager for Ubuntu 21.04 / Debian Stable and older.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://neo4j.com/) | `neo4j` | <i>The Graph Data Platform for Today's Intelligent Applications.</i> |
-| [<img src="../.github/github.png" align="top" width="20" />](https://neovim.io/) | `neovim` | <i>Hyperextensible Vim-based text editor</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.nomadproject.io/) | `nomad` | <i>Orchestration tool for deploying and managing applications.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://nuclear.js.org/) | `nuclear` | <i>Streaming music player that finds free music for you.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/muesli/obs-cli) | `obs-cli` | <i>OBS-cli is a command-line remote control for OBS.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://obsidian.md/) | `obsidian` | <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://obsproject.com/) | `obs-studio` | <i>Free and open source software for video recording and live streaming.</i> |
@@ -156,14 +162,19 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.corifeus.com/onenote) | `p3x-onenote` | <i>A Linux compatible version of OneNote.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://pandoc.org/) | `pandoc` | <i>A universal document converter.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) | `papirus-icon-theme` | <i>A free and open source SVG icon theme for Linux. Papirus weaves a beautiful visual cohesiveness over an ever-growing coverage of icons.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://pdfsam.org/) | `pdfsam-basic` | <i>PDFsam (PDF Split And Merge) Basic is a free and open source, multi-platform software designed to extract pages, split, merge, mix and rotate PDF files.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://pdfsam.org/) | `pdfsam-visual` | <i>PDFsam Visual is a powerful tool to visually combine PDF files, rearrange pages, compress, extract or delete pages, split, merge, rotate, encrypt, decrypt, repair, resize pages, extract text, convert to grayscale, crop PDF files.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://peazip.github.io) | `peazip` | <i>PeaZip is a free file archiver utility and extractor.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.plex.tv/) | `plexmediaserver` | <i>Stream Movies and TV Shows.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/six-ddc/plow) | `plow` | <i>A high-performance HTTP benchmarking tool with real-time web UI and terminal displaying</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://polychromatic.app/) | `polychromatic` | <i>Frontend for OpenRazer that enables Razer devices to control lighting effects and more.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://roldanjr.github.io/pomatez/) | `pomatez` | <i>A pomodoro timer</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://safing.io/portmaster/) | `portmaster` | <i>Portmaster is a free and open-source application that puts you back in charge over all your computer's network connections.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://docs.microsoft.com/powershell/) | `powershell` | <i>Cross-platform automation and configuration tool/framework and optimized for dealing with structured data.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://proton.me/mail/bridge) | `protonmail-bridge` | <i>Proton Mail Bridge adds end-to-end encryption to popular email apps, including Outlook, Thunderbird, and Apple Mail.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://protonvpn.com/) | `protonvpn` | <i>High-speed Swiss VPN that safeguards your privacy.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://getpublii.com/) | `publii` | <i>A free and open-source publishing platform that makes creating static websites fast and hassle-free, even for beginners.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://pulsar-edit.dev/) | `pulsar` | <i>A Community-led Hyper-Hackable Text Editor</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://maplemedia.io/apps/) | `pulse-sms` | <i>A desktop client for Pulse SMS</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://www.qownnotes.org) | `qownnotes` | <i>Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://quarto.org/) | `quarto` | <i>Quarto - an open-source scientific and technical publishing system built on Pandoc</i> |
@@ -187,6 +198,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://slack.com/) | `slack-desktop` | <i>One platform for your team and your work.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ransome1/sleek) | `sleek` | <i>Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS).</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.syntevo.com/) | `smartgit` | <i>A graphical Git client with support for pull requests for GitHub and Bitbucket.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/GyulyVGC/sniffnet) | `sniffnet` | <i>Application to comfortably monitor your network traffic.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://soundux.rocks) | `soundux` | <i>Soundux is a cross-platform soundboard compatible with both Pulseaudio and Pipewire. It has a universal architecture and works with a variety of applications such as Discord, Steam, and more.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.spotify.com/) | `spotify-client` | <i>Millions of songs and podcasts.</i> |
@@ -209,6 +221,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/influxdata/telegraf) | `telegraf` | <i>The plugin-driven server agent for collecting & reporting metrics.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.terraform.io/) | `terraform` | <i>Automate Infrastructure on Any Cloud.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://tug.org/texworks/) | `texworks` | <i>Lowering the entry barrier to the TeX world.</i> |
+| [<img src="../.github/launchpad.png" align="top" width="20" />](http://tezos.gitlab.io/) | `tezos-baking` | <i>Octez is an implementation of Tezos, a distributed consensus platform (a blockchain) with meta-consensus capability.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Mastermindzh/tidal-hifi) | `tidal-hifi` | <i>Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.tixati.com/) | `tixati` | <i>A New and Powerful P2P System.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://tonelib.net) | `tonelib-bassdrive` | <i>Freeware Audio effect plugin.</i> |
@@ -219,6 +232,7 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://tonelib.net) | `tonelib-tubewarmth` | <i>Freeware Audio effect plugin.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://tonelib.net) | `tonelib-zoom` | <i>An easy-to-use application which allows you to see, change and save all the settings in your Zoom guitar pedal.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.tribler.org/) | `tribler` | <i>An encrypted torrent client.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/zadam/trilium/) | `trilium` | <i>Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://aquasecurity.github.io/trivy/) | `trivy` | <i>A simple and comprehensive vulnerability/misconfiguration/secret scanner for containers and other artifacts.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://typora.io/) | `typora` | <i>A minimal Markdown editor and reader.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/ubuntu/ubuntu-make/) | `ubuntu-make` | <i>Easy setup of common tools for developers on Ubuntu.</i> |
