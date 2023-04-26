@@ -1,7 +1,13 @@
 DEFVER=1
-get_github_releases "LizardByte/Sunshine" "latest"
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="bullseye focal jammy"
+SUNSHINE_RELEASE="${UPSTREAM_RELEASE}"
+if [ "${UPSTREAM_ID}" == debian ]; then
+    SUNSHINE_RELEASE=$UPSTREAM_CODENAME
+fi
+get_github_releases "LizardByte/Sunshine" # "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*-${UPSTREAM_ID}-${SUNSHINE_RELEASE}-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" |grep -v -e 'nightly-dev' |head -1 |cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's|^v||')"
 fi
 PRETTY_NAME="Sunshine"

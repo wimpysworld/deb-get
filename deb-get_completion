@@ -6,8 +6,8 @@ function _deb-get() {
     elif [ "${COMP_CWORD}" -ge 2 ]; then
         local command="${COMP_WORDS[1]}"
 
-        if [ "${COMP_CWORD}" = 2 ] && [ "${command}" = update ]; then
-            COMPREPLY=($(compgen -W "--repos-only" "\\${COMP_WORDS[2]}"))
+        if  [ "${command}" = update ] &&  [ "${COMP_CWORD}" -le 3 ]; then
+            COMPREPLY=($(compgen -W "--repos-only --quiet" "\\${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${command}" = show ]; then
             COMPREPLY=($(compgen -W "$(deb-get list --include-unsupported --raw | tr "\n" " ")" "${COMP_WORDS[${COMP_CWORD}]}"))
         elif [ "${COMP_CWORD}" = 2 ] && [ "${command}" = search ]; then

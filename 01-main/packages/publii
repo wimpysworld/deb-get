@@ -1,0 +1,10 @@
+DEFVER=1
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(curl -q -s https://getpublii.com/download/ | grep  -E -o "https://cdn.getpublii.com/Publii-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\.deb"|head -1)
+    VERSION_PUBLISHED=${URL/*-/}
+    VERSION_PUBLISHED=${VERSION_PUBLISHED/\.deb/}
+fi
+PRETTY_NAME="Publii"
+WEBSITE="https://getpublii.com/"
+SUMMARY="A free and open-source publishing platform that makes creating static websites fast and hassle-free, even for beginners."
