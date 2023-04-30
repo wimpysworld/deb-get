@@ -1,7 +1,7 @@
 DEFVER=2
 # Debian should not use this repo
 # See https://i3wm.org/docs/repositories.html
-CODENAMES_SUPPORTED="bionic focal jammy kinetic"
+CODENAMES_SUPPORTED="bionic focal jammy kinetic lunar"
 GPG_KEY_ID="E3CA1A89941C42E6"
 APT_REPO_URL="http://debian.sur5r.net/i3/ ${UPSTREAM_CODENAME} universe"
 APT_REPO_OPTIONS="arch=amd64"
