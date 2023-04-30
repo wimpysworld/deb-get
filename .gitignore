@@ -3,3 +3,11 @@ debian/*debhelper*
 debian/deb-get*
 
 rejections.md
+lunartests.tar.gz
+01-main/packages/done1
+01-main/packages/done2
+01-main/packages/nopes
+01-main/packages/testlist0
+01-main/packages/testlist1
+01-main/packages/to-test-or-fix
+01-main/packages/todos
