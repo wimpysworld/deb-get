@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bookworm bullseye sid focal jammy kinetic"
+CODENAMES_SUPPORTED="bookworm bullseye sid focal jammy kinetic lunar"
 GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
 local TARGET_CODENAME=${UPSTREAM_CODENAME}
 if [ "${UPSTREAM_CODENAME}" = "kinetic" ]; then
