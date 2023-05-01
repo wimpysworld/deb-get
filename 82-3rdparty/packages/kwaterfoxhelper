@@ -1,0 +1,15 @@
+DEFVER=1
+# Captialise first character of UPSTREAM_ID and prefeix with 'x' for Ubuntu
+local OBS_UPSTREAM_ID="${UPSTREAM_ID^}"
+if [ "${OBS_UPSTREAM_ID}" == "Ubuntu" ]; then
+    OBS_UPSTREAM_ID="x${OBS_UPSTREAM_ID}"
+fi
+
+ASC_KEY_URL="https://download.opensuse.org/repositories/home:hawkeye116477:waterfox/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/Release.key"
+APT_LIST_NAME="waterfox"
+APT_REPO_URL="https://download.opensuse.org/repositories/home:/hawkeye116477:/waterfox/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/ /"
+PRETTY_NAME="kwaterfoxhelper"
+#WEBSITE="https://github.com/WaterfoxCo/Waterfox"
+#WEBSITE=https://github.com/hawkeye116477/waterfox-deb-rpm-arch-AppImage
+WEBSITE="https://www.waterfox.net/"
+SUMMARY="Waterfox gives you a sane way to browse the web. Built with you, the user, in mind."
