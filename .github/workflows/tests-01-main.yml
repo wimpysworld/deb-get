@@ -35,6 +35,7 @@ jobs:
           echo "deb-get 1 github" | sudo tee /etc/deb-get/installed > /dev/null
           sudo cp ./01-main/manifest /etc/deb-get/01-main.repo
           sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
+          sudo gpg -k > /dev/null
 
       # Install added/changed packages to see if they install properly and are detected as such
       - name: Test package installations
