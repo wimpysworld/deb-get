@@ -35,6 +35,7 @@ jobs:
       - name: Test zero status
         run: |
           chmod a+x ./deb-get
+          export DEBGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
           ./deb-get list --raw >/dev/null
           ./deb-get prettylist >/dev/null
           ./deb-get csvlist >/dev/null

@@ -42,6 +42,7 @@ jobs:
         run: |
           chmod a+x ./deb-get
           export DEBIAN_FRONTEND=noninteractive
+          export DEBGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
           set -x
           APPS="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||")"
           SUPPORTED="$(./deb-get list --raw)"
