@@ -1342,6 +1342,7 @@ case "${UPSTREAM_CODENAME}" in
     jammy)    UPSTREAM_RELEASE="22.04";;
     kinetic)  UPSTREAM_RELEASE="22.10";;
     lunar)    UPSTREAM_RELEASE="23.04";;
+    mantic)   UPSTREAM_RELEASE="23.10";;
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 
