@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="bookworm bullseye kinetic jammy focal"
+get_github_releases "jellyfin/jellyfin-media-player" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}-${UPSTREAM_CODENAME}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="Jellyfin Media Player"
+WEBSITE="https://jellyfin.org"
+SUMMARY="Jellyfin Media Player is a desktop client using jellyfin-web with embedded MPV player for the Jellyfin Media Server."
