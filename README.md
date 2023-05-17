@@ -253,7 +253,7 @@ We really hope that you will enjoy the convenience and flexibility of the user o
 
 ## Related projects
 
-  * [App Outlet](https://app-outlet.github.io/): *A Universal linux app store*
+  * [App Outlet](https://appoutlet.github.io/): *A Universal linux app store*
   * [bin-get](https://github.com/OhMyMndy/bin-get): *Script to easily and safely fetch binaries from Github Releases/tags*
   * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
   * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
