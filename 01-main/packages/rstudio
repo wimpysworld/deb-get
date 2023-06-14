@@ -3,7 +3,7 @@ get_website "https://posit.co/download/rstudio-desktop/"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         focal|buster|bullseye)
-            URL="$( grep -e "bionic/.*amd64.deb" "${CACHE_FILE}" | grep -v "tar.gz" | head -n1 | cut -d'"' -f4)"
+            URL="$( grep -e "focal/.*amd64.deb" "${CACHE_FILE}" | grep -v "tar.gz" | head -n1 | cut -d'"' -f4)"
             ;;
         *)
             URL="$( grep -e "jammy/.*amd64.deb" "${CACHE_FILE}" | grep -v "tar.gz" | head -n1 | cut -d'"' -f4)"
@@ -12,6 +12,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"
 fi
 PRETTY_NAME="RStudio"
-WEBSITE="https://www.rstudio.com/"
+WEBSITE="https://posit.co/"
 #https://posit.co/products/open-source/rstudio/
 SUMMARY="Professional software for data science teams."
