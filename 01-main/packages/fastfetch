@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "LinusDierheimer/fastfetch" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*Linux\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
 fi
 PRETTY_NAME="FastFetch"
 WEBSITE="https://github.com/LinusDierheimer/fastfetch"
