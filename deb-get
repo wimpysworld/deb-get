@@ -735,9 +735,7 @@ function list_deprecated_apps() {
 
 function list_local_apps() {
     if [ -d "${ETC_DIR}/99-local.d" ]; then
-        for APP in $(find "${ETC_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n"); do
-            echo "99-local/${APP}"
-        done
+        find "${ETC_DIR}/99-local.d" -maxdepth 1 -type f -printf '99-local/%f\n'
     fi
 }
 
