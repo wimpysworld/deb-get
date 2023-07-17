@@ -677,7 +677,7 @@ function update_repos() {
     local CURL_VERBOSITY="-q --show-progress --progress=bar:force:noscroll "
     local WGET_VERBOSITY="-q"
 
-    if [[ "$*" == *"--quiet"* ]]  ; then
+    if [[ " $* " == *' --quiet '* ]]  ; then
          CURL_VERBOSITY="-Ss"
          WGET_VERBOSITY="-q"
          export WGET_VERBOSITY CURL_VERBOSITY
@@ -1421,7 +1421,7 @@ case "${ACTION}" in
                 exit 1
             fi
             validate_deb "${FULL_APP}"
-            if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
+            if [[ " ${ARCHS_SUPPORTED} " != *" ${HOST_ARCH} "* ]]; then
                 fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
             fi
 
@@ -1526,8 +1526,7 @@ case "${ACTION}" in
         create_etc_dir
         init_repos
         update_repos "$@"
-        #if [ "${1}" != --repos-only ]; then
-        if [[ "$*" != *"--repos-only"* ]] ; then
+        if [[ " $* " != *' --repos-only '* ]] ; then
             APPS="$(list_local_apps)"
             APPS="${APPS}
 $(list_repo_apps)"
