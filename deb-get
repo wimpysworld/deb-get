@@ -527,44 +527,55 @@ function list_debs() {
             done
         fi
     else
-        if [ -f ${CACHE_DIR}/supported.list ] ; then
-            if [ "${2}" == --raw ]; then
+        if [ -f "${CACHE_DIR}"/supported.list ] ; then
+            case "${2}" in
+            (--raw)
                 list_debs --include-unsupported --raw | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
-            elif [ "${2}" == --installed ]; then
+                ;;
+            (--installed)
                 # these don't have the [installed] tag so need a similar file to join
                 list_debs --include-unsupported --installed | comm  --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
-            elif [ "${2}" == --not-installed ]; then
+                ;;
+            (--not-installed)
                 list_debs --include-unsupported --not-installed | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
-            elif [ "${2}" == --only-unsupported ]; then
+                ;;
+            (--only-unsupported)
                 list_debs --include-unsupported --raw | comm --nocheck-order -13 ${CACHE_DIR}/supported_apps.list -
-            else
+                ;;
+            (*)
                 # this has [ installed ] tags
                 list_debs --include-unsupported  | comm --nocheck-order -12 ${CACHE_DIR}/supported.list -
-            fi
+                ;;
+            esac
         else
             #elevate_privs
             # because we need to update the cache files this one slow time
             for FULL_APP in "${APPS[@]}"; do
                 validate_deb "${FULL_APP}"
                 if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
-                    if [ "${2}" == --raw ]; then
+                    case "${2}" in
+                    (--raw)
                         printf '%s\n' "${APP}"
-                    elif [ "${2}" == --installed ]; then
+                        ;;
+                    (--installed)
                         if package_is_installed "${APP}"; then
                             printf '%s\n' "${APP}"
                         fi
-                    elif [ "${2}" == --not-installed ]; then
+                        ;;
+                    (--not-installed)
                         if ! package_is_installed "${APP}"; then
                             printf '%s\n' "${APP}"
                         fi
-                    else
+                        ;;
+                    (*)
                         if package_is_installed "${APP}"; then
                             local PAD='                              '
                             printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
                         else
                             printf '%s\n' "${APP}"
                         fi
-                    fi
+                        ;;
+                    esac
                 fi
 
             done
