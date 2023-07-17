@@ -501,17 +501,11 @@ function validate_deb() {
 function list_debs() {
     if [ "${1}" == --include-unsupported ]; then
         if [ "${2}" = --raw ]; then
-            local OLD_IFS="$IFS"
-            IFS=$'\n'
-            echo "${APPS[*]}" | cut -d / -f 2
-            IFS="$OLD_IFS"
+            printf '%s\n' "${APPS[@]}" | cut -d / -f 2
         elif [ "${2}" = --installed ]; then
-            local OLD_IFS="$IFS"
-            IFS=$'\n'
-            echo "${INSTALLED_APPS[*]}"
-            IFS="$OLD_IFS"
+            printf '%s\n' "${INSTALLED_APPS[@]}"
         elif [ "${2}" = --not-installed ]; then
-            local NOT_INSTALLED_APPS=($(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2))
+            local NOT_INSTALLED_APPS=($(printf '%s\n' "${APPS[@]}" | cut -d / -f 2))
 
             for APP in "${INSTALLED_APPS[@]}"; do
                 for i in "${!NOT_INSTALLED_APPS[@]}"; do
@@ -521,10 +515,7 @@ function list_debs() {
                 done
             done
 
-            local OLD_IFS="$IFS"
-            IFS=$'\n'
-            echo "${NOT_INSTALLED_APPS[*]}"
-            IFS="$OLD_IFS"
+            printf '%s\n' "${NOT_INSTALLED_APPS[@]}"
         else
             local PAD='                              '
             for FULL_APP in "${APPS[@]}"; do
@@ -617,7 +608,7 @@ function update_debs() {
     local STATUS=""
     update_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+        validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
@@ -631,7 +622,7 @@ function upgrade_debs() {
     local STATUS=""
     upgrade_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+        validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${STATUS}" == "install ok installed" ]; then
@@ -744,7 +735,7 @@ function print_etc_overrides() {
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
-            local FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            local FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
             fancy_message warn "Conflict detected, duplicate declaration of package ${APP}, using declaration from $(echo "${FULL_APP}" | cut -d / -f 1)"
 
             if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "${DEB_GET_SCRIPT_FILE}" -nt "${ETC_DIR}/99-local.d/${APP}" ]; then
@@ -1398,7 +1389,7 @@ case "${ACTION}" in
         ;;
     show)
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 ACTION="list"
@@ -1413,7 +1404,7 @@ case "${ACTION}" in
         create_cache_dir
         create_etc_dir
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 ACTION="list"
@@ -1467,9 +1458,9 @@ case "${ACTION}" in
             shift
         fi
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
-                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$")"
+                FULL_APP="$(printf '%s\n' "${DEPRECATED_APPS[@]}" | grep -m 1 "/${APP}$")"
             fi
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
@@ -1488,9 +1479,9 @@ case "${ACTION}" in
             shift
         fi
         for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
             if [ -z "${FULL_APP}" ]; then
-                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$")"
+                FULL_APP="$(printf '%s\n' "${DEPRECATED_APPS[@]}" | grep -m 1 "/${APP}$")"
             fi
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
@@ -1534,7 +1525,7 @@ $(list_repo_apps)"
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
             APPS=($(printf '%s\n' "${APPS}" | sort -t / -k 2 -u))
             for APP in "${INSTALLED_APPS[@]}"; do
-                FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+                FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
                 if [ -n "${FULL_APP}" ]; then
                     validate_deb "${FULL_APP}"
                     fix_installed
@@ -1556,12 +1547,12 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
         elevate_privs
         if [ "${1}" = --old-apps ]; then
             for APP in $(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' "${APPS[*]##*/}" | sed -n -e 's/^ii //p'); do
-                validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+                validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
                 fix_old_apps
             done
         else
             for APP in "${INSTALLED_APPS[@]}"; do
-                FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+                FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
                 if [ -n "${FULL_APP}" ]; then
                     validate_deb "${FULL_APP}"
                     fix_installed
