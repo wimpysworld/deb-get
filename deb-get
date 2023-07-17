@@ -343,7 +343,7 @@ function remove_deb() {
     local STATUS=""
 
     if package_is_installed "${APP}" || [[ " ${DEPRECATED_INSTALLED[*]} " =~ " ${APP} " ]]; then
-        STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+        STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
         if [ "${STATUS}" == "deinstall ok config-files" ]; then
             REMOVE="purge"
         fi
@@ -370,9 +370,8 @@ function remove_deb() {
 
 function version_deb() {
     if package_is_installed "${APP}"; then
-        dpkg -s "${APP}" 2> /dev/null | grep ^Version: | cut -d' ' -f2
-    else
-        echo ""
+        dpkg-query -Wf '${Version}' "${APP}" 2> /dev/null
+        # else empty output
     fi
 }
 
@@ -610,7 +609,7 @@ function update_debs() {
     for APP in "${INSTALLED_APPS[@]}"; do
         validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+            STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
             if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
                 fancy_message info "${APP} (${VERSION_INSTALLED}) has an update pending. ${VERSION_PUBLISHED} is available."
             fi
@@ -624,7 +623,7 @@ function upgrade_debs() {
     for APP in "${INSTALLED_APPS[@]}"; do
         validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-            STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
+            STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
             if [ "${STATUS}" == "install ok installed" ]; then
                 install_deb "${URL}"
             fi
