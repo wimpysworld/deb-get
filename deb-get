@@ -164,7 +164,7 @@ function get_github_releases() {
 
     # Do not process github releases while generating a pretty list or upgrading
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
-        if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +${DEBGET_CACHE_RTN:-60})" ]; then
+        if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases"
             if [ -n "${2}" ]; then
@@ -184,7 +184,7 @@ function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
-        if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +${DEBGET_CACHE_RTN:-60})" ]; then
+        if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             if ! ${ELEVATE} wget -q --no-use-server-timestamps "${1}" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
@@ -232,7 +232,7 @@ function eula() {
         echo -e "${EULA}\n\n"
         printf '%s\n' "Do you agree to the ${APP} EULA?"
         select yn in "Yes" "No"; do
-            case $yn in
+            case "$yn" in
                 Yes) return 0;;
                 No) return 1;;
             esac
@@ -355,7 +355,7 @@ function remove_deb() {
     fi
 
     # Remove repos/PPA/key even if the app is not installed.
-    case ${METHOD} in
+    case "${METHOD}" in
         direct|github|website)
             if [ -f "${CACHE_DIR}/${FILE}" ]; then
                 fancy_message info "Removing ${CACHE_DIR}/${FILE}"
@@ -378,7 +378,7 @@ function version_deb() {
 
 function info_deb() {
     local INSTALLED="${VERSION_INSTALLED:-No}"
-    case ${METHOD} in
+    case "${METHOD}" in
         (direct|github|website)
             printf '%s\n' "${PRETTY_NAME}"
             printf '  %s:\t%s\n' Package "${APP}" Repository "${APP_SRC}" Updater deb-get Installed "${INSTALLED}" Published "${VERSION_PUBLISHED}" Architecture "${ARCHS_SUPPORTED}" Download "${URL}" Website "${WEBSITE}" Summary "${SUMMARY}";;
@@ -513,9 +513,9 @@ function list_debs() {
         elif [ "${2}" = --not-installed ]; then
             local NOT_INSTALLED_APPS=($(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2))
 
-            for APP in ${INSTALLED_APPS[@]}; do
+            for APP in "${INSTALLED_APPS[@]}"; do
                 for i in "${!NOT_INSTALLED_APPS[@]}"; do
-                    if [[ ${NOT_INSTALLED_APPS[i]} = $APP ]]; then
+                    if [[ ${NOT_INSTALLED_APPS[i]} = "$APP" ]]; then
                     unset 'NOT_INSTALLED_APPS[i]'
                     fi
                 done
@@ -592,7 +592,7 @@ EOMSG
     for FULL_APP in "${APPS[@]}"; do
         validate_deb "${FULL_APP}"
         if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
-            case ${METHOD} in
+            case "${METHOD}" in
                 apt)    ICON="debian.png";;
                 github) ICON="github.png";;
                 ppa)    ICON="launchpad.png";;
@@ -695,7 +695,7 @@ function update_repos() {
         # Faster by some margin if we are hitting github
         # Otherwise revert to old-style for a bespoke hosted repo
 
-        pushd ${ETC_DIR}/${REPO}.d >/dev/null
+        pushd "${ETC_DIR}/${REPO}.d" >/dev/null
 
         awk -F/ '/github/  {print "# fetching github repo";
                             print "GITREPO="$4"/"$5;\
@@ -706,7 +706,7 @@ function update_repos() {
                             print "${ELEVATE} wget ${WGET_VERBOSITY} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
                             print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
                 } '\
-                <<<${REPO_URL} | bash -
+                <<<"${REPO_URL}" | bash -
 
         popd >/dev/null
     done
@@ -1177,7 +1177,7 @@ function add_apt_repo() {
             ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
         elif [ -n "${GPG_KEY_ID}" ]; then
-            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv ${GPG_KEY_ID}
+            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
         else #GPG_KEY_URL
             ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
@@ -1220,7 +1220,7 @@ function maint_supported_cache() {
                 # Replace it with a flagged one
                 cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
                 # should be there but safest to be sure
-                grep -q -w ${APP}$ ${CACHE_DIR}/supported_apps.list || \
+                grep -q -w "${APP}$" "${CACHE_DIR}"/supported_apps.list || \
                 cat ${CACHE_DIR}/supported_apps.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported_apps.list
                 ;;
         esac
@@ -1251,7 +1251,7 @@ function deb_deb-get() {
 
 function parse_machine() {
 export HOST_CPU="$(uname -m)"
-case ${HOST_CPU} in
+case "${HOST_CPU}" in
   aarch64|armv7l|x86_64) export HOST_ARCH="$(dpkg --print-architecture)";;
   *) fancy_message fatal "${HOST_CPU} is not supported. Quitting.";;
 esac
@@ -1280,11 +1280,11 @@ else
     fancy_message fatal "os-release not found. Quitting"
 fi
 
-UPSTREAM_ID="$(grep "^ID=" ${OS_RELEASE} | cut -d'=' -f2)"
+UPSTREAM_ID="$(grep "^ID=" "${OS_RELEASE}" | cut -d'=' -f2)"
 
 # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
 if ! [[ ' ubuntu debian ' =~ " ${UPSTREAM_ID} " ]]; then
-    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" ${OS_RELEASE} | cut -d'=' -f2 | cut -d \" -f 2)"
+    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" "${OS_RELEASE}" | cut -d'=' -f2 | cut -d \" -f 2)"
 
     if [[ " ${UPSTREAM_ID_LIKE} " =~ " ubuntu " ]]; then
         UPSTREAM_ID=ubuntu
@@ -1295,14 +1295,14 @@ if ! [[ ' ubuntu debian ' =~ " ${UPSTREAM_ID} " ]]; then
     fi
 fi
 
-UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" "${OS_RELEASE}" | cut -d'=' -f2)
 
 if [ -z "${UPSTREAM_CODENAME}" ]; then
-    UPSTREAM_CODENAME=$(grep "^DEBIAN_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+    UPSTREAM_CODENAME=$(grep "^DEBIAN_CODENAME=" "${OS_RELEASE}" | cut -d'=' -f2)
 fi
 
 if [ -z "${UPSTREAM_CODENAME}" ]; then
-    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" "${OS_RELEASE}" | cut -d'=' -f2)
 fi
 
 # Debian 12+
@@ -1371,7 +1371,7 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     ;;
 esac
 
-case ${ACTION} in
+case "${ACTION}" in
     install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
@@ -1439,7 +1439,7 @@ case "${ACTION}" in
                 fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
             fi
 
-            case ${METHOD} in
+            case "${METHOD}" in
                 direct|github|website) install_deb "${URL}";;
                 apt) install_apt;;
                 ppa) install_ppa;;
