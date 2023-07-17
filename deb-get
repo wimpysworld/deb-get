@@ -393,8 +393,8 @@ function info_deb() {
 
 function validate_deb() {
     local FULL_APP="${1}"
-    export APP_SRC="$(echo "${FULL_APP}" | cut -d / -f 1)"
-    export APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
+    export APP_SRC=${FULL_APP%/*}
+    export APP=${FULL_APP##*/}
     export DEFVER=""
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
@@ -519,11 +519,11 @@ function list_debs() {
         else
             local PAD='                              '
             for FULL_APP in "${APPS[@]}"; do
-                local APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
+                local APP=${FULL_APP##*/}
                 if package_is_installed "${APP}"; then
-                    printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
+                    printf '%s %s [ installed ]\n' "${APP}" "${PAD:${#APP}}"
                 else
-                    echo "${APP}"
+                    printf '%s\n' "${APP}"
                 fi
             done
         fi
@@ -736,7 +736,7 @@ function print_etc_overrides() {
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
             local FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
-            fancy_message warn "Conflict detected, duplicate declaration of package ${APP}, using declaration from $(echo "${FULL_APP}" | cut -d / -f 1)"
+            fancy_message warn "Conflict detected, duplicate declaration of package ${APP}, using declaration from ${FULL_APP%/*}"
 
             if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "${DEB_GET_SCRIPT_FILE}" -nt "${ETC_DIR}/99-local.d/${APP}" ]; then
                 ((NUM_OLDER_CONFLICTS++))
@@ -748,7 +748,7 @@ function print_etc_overrides() {
         fi
 
         for FULL_APP in "${LOCAL_APPS[@]}"; do
-            fancy_message info "Including local package $(echo "${FULL_APP}" | cut -d / -f 2)"
+            fancy_message info "Including local package ${FULL_APP##*/}"
         done
 
         if [ ${#LOCAL_APPS[@]} -gt 0 ]; then
@@ -1098,9 +1098,9 @@ function remove_old_apt_repo() {
 }
 
 function remove_old_ppa_repo() {
-    local -r PPA_ADDRESS="$(echo "${1}" | cut -d : -f 2)"
-    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
-    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r PPA_ADDRESS=${1#*:}
+    local -r PPA_PERSON=${PPA_ADDRESS%%/*}
+    local -r PPA_ARCHIVE=${PPA_ADDRESS#*/}
     local -r APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}"
     fancy_message info "Removing /etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
     ${ELEVATE} rm -f "/etc/apt/trusted.gpg.d/${APT_LIST_NAME}.gpg"
@@ -1183,9 +1183,9 @@ function add_apt_repo() {
 }
 
 function ppa_to_apt() {
-    local -r PPA_ADDRESS="$(echo "${PPA}" | cut -d : -f 2)"
-    local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
-    local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
+    local -r PPA_ADDRESS=${PPA#*:}
+    local -r PPA_PERSON=${PPA_ADDRESS%%/*}
+    local -r PPA_ARCHIVE=${PPA_ADDRESS#*/}
     export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
     export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
     export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
