@@ -500,21 +500,11 @@ function validate_deb() {
 function list_debs() {
     if [ "${1}" == --include-unsupported ]; then
         if [ "${2}" = --raw ]; then
-            printf '%s\n' "${APPS[@]}" | cut -d / -f 2
+            printf '%s\n' "${APPS[@]##*/}"
         elif [ "${2}" = --installed ]; then
             printf '%s\n' "${INSTALLED_APPS[@]}"
         elif [ "${2}" = --not-installed ]; then
-            local NOT_INSTALLED_APPS=($(printf '%s\n' "${APPS[@]}" | cut -d / -f 2))
-
-            for APP in "${INSTALLED_APPS[@]}"; do
-                for i in "${!NOT_INSTALLED_APPS[@]}"; do
-                    if [[ ${NOT_INSTALLED_APPS[i]} = "$APP" ]]; then
-                    unset 'NOT_INSTALLED_APPS[i]'
-                    fi
-                done
-            done
-
-            printf '%s\n' "${NOT_INSTALLED_APPS[@]}"
+            printf '%s\n' "${APPS[@]##*/}" | comm -23  - <(printf '%s\n' "${INSTALLED_APPS[@]}")
         else
             local PAD='                              '
             for FULL_APP in "${APPS[@]}"; do
