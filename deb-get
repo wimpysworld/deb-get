@@ -392,28 +392,17 @@ function info_deb() {
 
 function validate_deb() {
     local FULL_APP="${1}"
-    export APP_SRC=${FULL_APP%/*}
-    export APP=${FULL_APP##*/}
+    export APP_SRC=${FULL_APP%/*} APP=${FULL_APP##*/}
     export DEFVER=""
-    export ASC_KEY_URL=""
-    export GPG_KEY_URL=""
-    export GPG_KEY_ID=""
-    export APT_LIST_NAME="${APP}"
-    export APT_REPO_URL=""
-    export APT_REPO_OPTIONS=""
-    export PPA=""
-    export ARCHS_SUPPORTED="amd64"
-    export CODENAMES_SUPPORTED=""
+    export ASC_KEY_URL="" GPG_KEY_URL="" GPG_KEY_ID=""
+    export APT_LIST_NAME="${APP}" APT_REPO_URL="" APT_REPO_OPTIONS="" PPA=""
+    export ARCHS_SUPPORTED="amd64" CODENAMES_SUPPORTED=""
     export METHOD="direct"
     export EULA=""
-    export CACHE_FILE=""
+    export VERSION_INSTALLED="" VERSION_PUBLISHED=""
+    export PRETTY_NAME="" SUMMARY="" WEBSITE=""
     export URL=""
-    export VERSION_INSTALLED=""
-    export VERSION_PUBLISHED=""
-    export PRETTY_NAME=""
-    export SUMMARY=""
-    export WEBSITE=""
-    export FILE=""
+    export CACHE_FILE="" FILE=""
 
     # Source the variables
     if [ "${APP_SRC}" == "00-builtin" ]; then
