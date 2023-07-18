@@ -601,7 +601,7 @@ function update_debs() {
     local STATUS=""
     update_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+        validate_deb "${APPNAME2FULL[$APP]}"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
             if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
@@ -615,7 +615,7 @@ function upgrade_debs() {
     local STATUS=""
     upgrade_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+        validate_deb "${APPNAME2FULL[$APP]}"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
             if [ "${STATUS}" == "install ok installed" ]; then
@@ -728,7 +728,7 @@ function print_etc_overrides() {
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
-            local FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+            local FULL_APP=${APPNAME2FULL[$APP]}
             fancy_message warn "Conflict detected, duplicate declaration of package ${APP}, using declaration from ${FULL_APP%/*}"
 
             if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "${DEB_GET_SCRIPT_FILE}" -nt "${ETC_DIR}/99-local.d/${APP}" ]; then
@@ -1336,6 +1336,8 @@ case "${ACTION}" in
 $(list_repo_apps)
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
     mapfile -t APPS < <(printf '%s\n' "${APPS}" | sort -t / -k 2 -u)
+    declare -gA APPNAME2FULL
+    for APP in "${APPS[@]}"; do APPNAME2FULL[${APP##*/}]=${APP}; done
     readonly APP_CONFLICTS=($(printf '%s\n' "${APPS[@]##*/}" | uniq --repeated))
     readonly LOCAL_APPS=($(printf '%s\n' "${APPS[@]}" | grep "^99-local/"))
     if [ -e "${ETC_DIR}/installed" ]; then
@@ -1379,7 +1381,7 @@ case "${ACTION}" in
         ;;
     show)
         for APP in "${@,,}"; do
-            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+            FULL_APP=${APPNAME2FULL[$APP]}
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 ACTION="list"
@@ -1394,7 +1396,7 @@ case "${ACTION}" in
         create_cache_dir
         create_etc_dir
         for APP in "${@,,}"; do
-            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+            FULL_APP=${APPNAME2FULL[$APP]}
             if [ -z "${FULL_APP}" ]; then
                 fancy_message error "${APP} is not a supported application."
                 ACTION="list"
@@ -1448,7 +1450,7 @@ case "${ACTION}" in
             shift
         fi
         for APP in "${@,,}"; do
-            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+            FULL_APP=${APPNAME2FULL[$APP]}
             if [ -z "${FULL_APP}" ]; then
                 FULL_APP="$(printf '%s\n' "${DEPRECATED_APPS[@]}" | grep -m 1 "/${APP}$")"
             fi
@@ -1469,7 +1471,7 @@ case "${ACTION}" in
             shift
         fi
         for APP in "${@,,}"; do
-            FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+            FULL_APP=${APPNAME2FULL[$APP]}
             if [ -z "${FULL_APP}" ]; then
                 FULL_APP="$(printf '%s\n' "${DEPRECATED_APPS[@]}" | grep -m 1 "/${APP}$")"
             fi
@@ -1512,8 +1514,10 @@ case "${ACTION}" in
 $(list_repo_apps)
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
             mapfile -t APPS < <(printf '%s\n' "${APPS}" | sort -t / -k 2 -u)
+            declare -gA APPNAME2FULL
+            for APP in "${APPS[@]}"; do APPNAME2FULL["${APP##*/}"]=${APP}; done
             for APP in "${INSTALLED_APPS[@]}"; do
-                FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
+                FULL_APP=${APPNAME2FULL[$APP]}
                 if [ -n "${FULL_APP}" ]; then
                     validate_deb "${FULL_APP}"
                     fix_installed
