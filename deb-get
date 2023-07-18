@@ -1343,20 +1343,17 @@ fi
 
 case "${ACTION}" in
     update|upgrade|show|reinstall|install|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
-    APPS="$(list_local_apps)"
-    APPS="${APPS}
-$(list_repo_apps)"
-    APPS="${APPS}
+    APPS="$(list_local_apps)
+$(list_repo_apps)
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
-    readonly APP_CONFLICTS=($(echo "${APPS}" | cut -d / -f 2 | sort | uniq --repeated))
-    APPS="$(printf '%s\n' "${APPS}" | sort -t / -k 2 -u)"
-    readonly LOCAL_APPS=($(echo "${APPS}" | grep "^99-local/"))
+    mapfile -t APPS < <(printf '%s\n' "${APPS}" | sort -t / -k 2 -u)
+    readonly APP_CONFLICTS=($(printf '%s\n' "${APPS[@]##*/}" | uniq --repeated))
+    readonly LOCAL_APPS=($(printf '%s\n' "${APPS[@]}" | grep "^99-local/"))
     if [ -e "${ETC_DIR}/installed" ]; then
         INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
     else
         INSTALLED_APPS=()
     fi
-    APPS=(${APPS})
     ;;
 esac
 
@@ -1522,12 +1519,10 @@ case "${ACTION}" in
         init_repos
         update_repos "$@"
         if [[ " $* " != *' --repos-only '* ]] ; then
-            APPS="$(list_local_apps)"
-            APPS="${APPS}
-$(list_repo_apps)"
-            APPS="${APPS}
+            APPS="$(list_local_apps)
+$(list_repo_apps)
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
-            APPS=($(printf '%s\n' "${APPS}" | sort -t / -k 2 -u))
+            mapfile -t APPS < <(printf '%s\n' "${APPS}" | sort -t / -k 2 -u)
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
                 if [ -n "${FULL_APP}" ]; then
