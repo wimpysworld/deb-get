@@ -660,13 +660,12 @@ function refresh_supported_cache_lists() {
 function update_repos() {
     local REPO_URL=""
     # preserve current behaviour for now but allow modification via env
-    local CURL_VERBOSITY="-q --show-progress --progress=bar:force:noscroll "
+    local CURL_VERBOSITY="-q --progress-bar"
     local WGET_VERBOSITY="-q"
 
     if [[ " $* " == *' --quiet '* ]]  ; then
          CURL_VERBOSITY="-Ss"
          WGET_VERBOSITY="-q"
-         export WGET_VERBOSITY CURL_VERBOSITY
     fi
 
 
