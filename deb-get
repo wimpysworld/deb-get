@@ -710,14 +710,22 @@ function list_repo_apps() {
     fi
 }
 
-function list_deprecated_apps() {
+function populate_deprecated_apps() {
+    declare -ga DEPRECATED_APPS=() DEPRECATED_INSTALLED=()
     if [ -d "${ETC_DIR}" ]; then
+        mapfile -t DEPRECATED_APPS < <(
         find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" |
         sort -r |
         while IFS= read -r REPO; do
-            sed -n -e "1d; s/^#/${REPO%.repo}\//p" <"${ETC_DIR}/${REPO}" | sort -u
+            # sort -t ... -u may fail
+            sed -n -e "1d; s/^#/${REPO%.repo}\//p" <"${ETC_DIR}/${REPO}" | sort -t / -k 2 | uniq
         done
+        )
+        if [ "${#DEPRECATED_APPS[@]}" -gt 0 ]; then
+            mapfile -t DEPRECATED_INSTALLED < <(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' "${DEPRECATED_APPS[@]##*/}" | sed -n -e 's/^ii //p')
+        fi
     fi
+    readonly DEPRECATED_INSTALLED
 }
 
 function list_local_apps() {
@@ -1371,13 +1379,7 @@ case "${ACTION}" in
             exit 1
         fi
         print_etc_overrides
-        DEPRECATED_APPS="$(list_deprecated_apps | sort -t / -k 2 -u)"
-        if [ -n "${DEPRECATED_APPS}" ]; then
-            readonly DEPRECATED_INSTALLED=($(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' $(cut -d / -f 2 <<<"${DEPRECATED_APPS}") | sed -n -e 's/^ii //p'))
-        else
-            readonly DEPRECATED_INSTALLED=()
-        fi
-        DEPRECATED_APPS=(${DEPRECATED_APPS})
+        populate_deprecated_apps
         print_deprecated;;
 esac
 
