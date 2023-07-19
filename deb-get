@@ -701,20 +701,21 @@ function update_repos() {
 
 function list_repo_apps() {
     if [ -d "${ETC_DIR}" ]; then
-        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
-            for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep -v "^#" | sort -u); do
-                echo "${REPO}/${APP}"
-            done
+        find "${ETC_DIR}" -maxdepth 1 -name '*.repo' ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf '%f\n' |
+        sort -r |
+        while IFS= read -r REPO; do
+            # WARN: repos can't contain '/' or '\', which the rest of the code assumes anyway
+            sed -n -e "1d; /^#/d; s/^/${REPO%.repo}\//p" <"${ETC_DIR}/${REPO}" | sort -u
         done
     fi
 }
 
 function list_deprecated_apps() {
     if [ -d "${ETC_DIR}" ]; then
-        for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//" | sort -r); do
-            for APP in $(tail -n +2 "${ETC_DIR}/${REPO}.repo" | grep "^#" | sed "s/^#//" | sort -u); do
-                echo "${REPO}/${APP}"
-            done
+        find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" |
+        sort -r |
+        while IFS= read -r REPO; do
+            sed -n -e "1d; s/^#/${REPO%.repo}\//p" <"${ETC_DIR}/${REPO}" | sort -u
         done
     fi
 }
