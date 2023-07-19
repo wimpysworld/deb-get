@@ -670,7 +670,7 @@ function update_repos() {
 
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
-        export REPO ETC_DIR ELEVATE
+        # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         ${ELEVATE} wget ${WGET_VERBOSITY} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
@@ -681,7 +681,7 @@ function update_repos() {
         # Otherwise revert to old-style for a bespoke hosted repo
 
         pushd "${ETC_DIR}/${REPO}.d" >/dev/null
-
+        (eval "$(
         awk -F/ '/github/  {print "# fetching github repo";
                             print "GITREPO="$4"/"$5;\
                             print "BRANCH="$6;\
@@ -691,7 +691,8 @@ function update_repos() {
                             print "${ELEVATE} wget ${WGET_VERBOSITY} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
                             print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
                 } '\
-                <<<"${REPO_URL}" | bash -
+                <<<"${REPO_URL}"
+        )")
 
         popd >/dev/null
     done
