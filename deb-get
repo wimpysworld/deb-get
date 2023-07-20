@@ -499,13 +499,17 @@ function validate_deb() {
 
 function list_debs() {
     if [ "${1}" == --include-unsupported ]; then
-        if [ "${2}" = --raw ]; then
+        case "${2}" in
+        (--raw)
             printf '%s\n' "${APPS[@]##*/}"
-        elif [ "${2}" = --installed ]; then
+            ;;
+        (--installed)
             printf '%s\n' "${INSTALLED_APPS[@]}"
-        elif [ "${2}" = --not-installed ]; then
+            ;;
+        (--not-installed)
             printf '%s\n' "${APPS[@]##*/}" | comm -23  - <(printf '%s\n' "${INSTALLED_APPS[@]}")
-        else
+            ;;
+        (*)
             local PAD='                              '
             for FULL_APP in "${APPS[@]}"; do
                 local APP=${FULL_APP##*/}
@@ -515,7 +519,7 @@ function list_debs() {
                     printf '%s\n' "${APP}"
                 fi
             done
-        fi
+        esac
     else
         if [ -f "${CACHE_DIR}"/supported.list ] ; then
             case "${2}" in
