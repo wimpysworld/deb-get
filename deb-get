@@ -1321,64 +1321,6 @@ case "${UPSTREAM_CODENAME}" in
 esac
 }
 
-
-if ((BASH_VERSINFO[0] < 4)); then
-    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename "${0}")."
-fi
-
-if ! command -v lsb_release 1>/dev/null; then
-  fancy_message fatal "lsb_release not detected. Quitting."
-fi
-
-export CACHE_DIR="/var/cache/deb-get"
-readonly ETC_DIR="/etc/deb-get"
-readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
-
-readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
-readonly USER_HOME="${HOME}"
-
-parse_machine
-
-if [ -n "${1}" ]; then
-    ACTION="${1,,}"
-    shift
-else
-    fancy_message error "You must specify an action."
-    usage >&2
-    exit 1
-fi
-case "${ACTION}" in
-    (pretty_list|csv_list) ACTION=${ACTION/_/} ;;
-    (csv) ACTION=csvlist ;;
-esac
-
-case "${ACTION}" in (update|upgrade|show|reinstall|install|remove|purge|search|list|prettylist|csvlist|fix-installed)
-    populate_apps
-    mapfile -t APP_CONFLICTS < <(printf '%s\n' "${APPS[@]##*/}" | uniq --repeated)
-    mapfile -t LOCAL_APPS < <(printf '%s\n' "${APPS[@]}" | grep "^99-local/")
-    if [ -e "${ETC_DIR}/installed" ]; then
-        mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=("${INSTALLED_APPS[@]%% *}")
-    else
-        INSTALLED_APPS=()
-    fi
-    readonly APP_CONFLICTS LOCAL_APPS
-    ;;
-esac
-
-case "${ACTION}" in (install|reinstall|remove|purge|show)
-        if [ -z "${1}" ]; then
-            fancy_message error "You must specify an app:\n"
-            ACTION="list"
-            list_debs "" --raw >&2
-            exit 1
-        fi
-        print_etc_overrides
-        populate_deprecated_apps
-        print_deprecated;;
-esac
-
-export ELEVATE=""
-
 function dg_action_cache() {
         ls -lh "${CACHE_DIR}/"
 }
@@ -1573,6 +1515,64 @@ function dg_action_fix-installed() {
 }
 function dg_action_version() { echo "${VERSION}"; }
 function dg_action_help() { usage; }
+
+
+if ((BASH_VERSINFO[0] < 4)); then
+    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename "${0}")."
+fi
+
+if ! command -v lsb_release 1>/dev/null; then
+  fancy_message fatal "lsb_release not detected. Quitting."
+fi
+
+export CACHE_DIR="/var/cache/deb-get"
+readonly ETC_DIR="/etc/deb-get"
+readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
+
+readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+readonly USER_HOME="${HOME}"
+
+parse_machine
+
+if [ -n "${1}" ]; then
+    ACTION="${1,,}"
+    shift
+else
+    fancy_message error "You must specify an action."
+    usage >&2
+    exit 1
+fi
+case "${ACTION}" in
+    (pretty_list|csv_list) ACTION=${ACTION/_/} ;;
+    (csv) ACTION=csvlist ;;
+esac
+
+case "${ACTION}" in (update|upgrade|show|reinstall|install|remove|purge|search|list|prettylist|csvlist|fix-installed)
+    populate_apps
+    mapfile -t APP_CONFLICTS < <(printf '%s\n' "${APPS[@]##*/}" | uniq --repeated)
+    mapfile -t LOCAL_APPS < <(printf '%s\n' "${APPS[@]}" | grep "^99-local/")
+    if [ -e "${ETC_DIR}/installed" ]; then
+        mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=("${INSTALLED_APPS[@]%% *}")
+    else
+        INSTALLED_APPS=()
+    fi
+    readonly APP_CONFLICTS LOCAL_APPS
+    ;;
+esac
+
+case "${ACTION}" in (install|reinstall|remove|purge|show)
+        if [ -z "${1}" ]; then
+            fancy_message error "You must specify an app:\n"
+            ACTION="list"
+            list_debs "" --raw >&2
+            exit 1
+        fi
+        print_etc_overrides
+        populate_deprecated_apps
+        print_deprecated;;
+esac
+
+export ELEVATE=""
 
 if declare -F "dg_action_$ACTION" >/dev/null; then
     "dg_action_$ACTION" "$@"
