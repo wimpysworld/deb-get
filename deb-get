@@ -1249,26 +1249,12 @@ function deb_deb-get() {
     SUMMARY="'apt-get' functionality for .debs published in 3rd party repositories or via direct download package."
 }
 
-export CACHE_DIR="/var/cache/deb-get"
-readonly ETC_DIR="/etc/deb-get"
-readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
-
-if ((BASH_VERSINFO[0] < 4)); then
-    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename "${0}")."
-fi
-
-if ! command -v lsb_release 1>/dev/null; then
-  fancy_message fatal "lsb_release not detected. Quitting."
-fi
-
+function parse_machine() {
 export HOST_CPU="$(uname -m)"
 case ${HOST_CPU} in
   aarch64|armv7l|x86_64) export HOST_ARCH="$(dpkg --print-architecture)";;
   *) fancy_message fatal "${HOST_CPU} is not supported. Quitting.";;
 esac
-
-readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
-readonly USER_HOME="${HOME}"
 
 OS_ID=$(lsb_release --id --short)
 case "${OS_ID}" in
@@ -1337,6 +1323,25 @@ case "${UPSTREAM_CODENAME}" in
     mantic)   UPSTREAM_RELEASE="23.10";;
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
+}
+
+
+if ((BASH_VERSINFO[0] < 4)); then
+    fancy_message fatal "Sorry, you need bash 4.0 or newer to run $(basename "${0}")."
+fi
+
+if ! command -v lsb_release 1>/dev/null; then
+  fancy_message fatal "lsb_release not detected. Quitting."
+fi
+
+export CACHE_DIR="/var/cache/deb-get"
+readonly ETC_DIR="/etc/deb-get"
+readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
+
+readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+readonly USER_HOME="${HOME}"
+
+parse_machine
 
 if [ -n "${1}" ]; then
     ACTION="${1,,}"
