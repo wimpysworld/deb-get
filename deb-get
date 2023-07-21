@@ -1446,16 +1446,17 @@ function dg_action_remove() {
         done
 }
 function dg_action_search() {
+        local list_opt_1=''
         if [ "${1}" == --include-unsupported ]; then
-            if [ -z "${2}" ]; then
-                fancy_message error "You must specify a pattern."
-                usage >&2
-                exit 1
-            fi
-            list_debs --include-unsupported --raw | grep "${2}"
-        else
-            list_debs "" --raw | grep "${1}"
+            list_opt_1=$1
+            shift
         fi
+        if [ -z "${1}" ]; then
+            fancy_message error "You must specify a pattern."
+            usage >&2
+            exit 1
+        fi
+        list_debs "$list_opt_1" --raw | grep -e "${2}"
 }
 function dg_action_update() {
         if   [ -n "${1}" ] && ! [[ ' --repos-only --quiet ' =~ "${1}" ]]; then
