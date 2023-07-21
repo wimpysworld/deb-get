@@ -1218,6 +1218,21 @@ function remove_installed() {
     ${ELEVATE} sed -i "/^${1} /d" "${ETC_DIR}/installed"
 }
 
+function list_apps() {
+    list_local_apps; list_repo_apps
+    declare -F | sed -n -e 's|declare -f deb_|00-builtin/|gp'
+}
+
+function populate_apps() {
+    declare -ga APPS
+    declare -gA APPNAME2FULL
+    local APP
+
+    mapfile -t APPS < <(list_apps | sort -t / -k 2 -u)
+    # set, unless key already exists (only first match counts)
+    for APP in "${APPS[@]}"; do : "${APPNAME2FULL["${APP##*/}"]:=${APP}}"; done
+}
+
 function deb_deb-get() {
     DEFVER=1
     ARCHS_SUPPORTED="amd64 arm64 armhf i386"
@@ -1332,19 +1347,15 @@ fi
 
 case "${ACTION}" in
     update|upgrade|show|reinstall|install|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
-    APPS="$(list_local_apps)
-$(list_repo_apps)
-$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
-    mapfile -t APPS < <(printf '%s\n' "${APPS}" | sort -t / -k 2 -u)
-    declare -gA APPNAME2FULL
-    for APP in "${APPS[@]}"; do APPNAME2FULL[${APP##*/}]=${APP}; done
-    readonly APP_CONFLICTS=($(printf '%s\n' "${APPS[@]##*/}" | uniq --repeated))
-    readonly LOCAL_APPS=($(printf '%s\n' "${APPS[@]}" | grep "^99-local/"))
+    populate_apps
+    mapfile -t APP_CONFLICTS < <(printf '%s\n' "${APPS[@]##*/}" | uniq --repeated)
+    mapfile -t LOCAL_APPS < <(printf '%s\n' "${APPS[@]}" | grep "^99-local/")
     if [ -e "${ETC_DIR}/installed" ]; then
-        INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
+        mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=("${INSTALLED_APPS[@]%% *}")
     else
         INSTALLED_APPS=()
     fi
+    readonly APP_CONFLICTS LOCAL_APPS
     ;;
 esac
 
@@ -1510,12 +1521,7 @@ case "${ACTION}" in
         init_repos
         update_repos "$@"
         if [[ " $* " != *' --repos-only '* ]] ; then
-            APPS="$(list_local_apps)
-$(list_repo_apps)
-$(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
-            mapfile -t APPS < <(printf '%s\n' "${APPS}" | sort -t / -k 2 -u)
-            declare -gA APPNAME2FULL
-            for APP in "${APPS[@]}"; do APPNAME2FULL["${APP##*/}"]=${APP}; done
+            populate_apps
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP=${APPNAME2FULL[$APP]}
                 if [ -n "${FULL_APP}" ]; then
@@ -1525,7 +1531,7 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
                     remove_installed "${APP}"
                 fi
             done
-            INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
+            mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=(${INSTALLED_APPS[@]%% *})
             update_debs
         fi;;
     upgrade)
