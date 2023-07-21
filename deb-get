@@ -1355,9 +1355,12 @@ else
     usage >&2
     exit 1
 fi
-
 case "${ACTION}" in
-    update|upgrade|show|reinstall|install|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
+    (pretty_list|csv_list) ACTION=${ACTION/_/} ;;
+    (csv) ACTION=csvlist ;;
+esac
+
+case "${ACTION}" in (update|upgrade|show|reinstall|install|remove|purge|search|list|prettylist|csvlist|fix-installed)
     populate_apps
     mapfile -t APP_CONFLICTS < <(printf '%s\n' "${APPS[@]##*/}" | uniq --repeated)
     mapfile -t LOCAL_APPS < <(printf '%s\n' "${APPS[@]}" | grep "^99-local/")
@@ -1370,8 +1373,7 @@ case "${ACTION}" in
     ;;
 esac
 
-case "${ACTION}" in
-    install|reinstall|remove|purge|show)
+case "${ACTION}" in (install|reinstall|remove|purge|show)
         if [ -z "${1}" ]; then
             fancy_message error "You must specify an app:\n"
             ACTION="list"
@@ -1452,10 +1454,10 @@ case "${ACTION}" in
             shift
         done
         list_debs "${list_opt_1}" "${list_opt_2}";;
-    pretty_list|prettylist)
+    prettylist)
         ACTION="prettylist"
         prettylist_debs "${1}";;
-    csv_list|csvlist|csv)
+    csvlist)
         ACTION="prettylist"
         csvlist_debs "${1}";;
     purge)
