@@ -639,19 +639,21 @@ function init_repos() {
 }
 
 function refresh_supported_cache_lists() {
-    if [ -f "${CACHE_DIR}/updating_supported.lock" ]; then
+    # WARN: this function must run in a subshell
+    local lockfile=${CACHE_DIR}/updating_supported.lock
+    if [ -f "$lockfile" ]; then
+        fancy_message warn "Cannot update cache of supported apps: $lockfile found (job still running?)"
         return 0
     else
-        ${ELEVATE} touch "${CACHE_DIR}/updating_supported.lock"
+        trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
+        ${ELEVATE} touch "$lockfile"
         ${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
         fancy_message info "Updating cache of supported apps in the background"
-        list_debs | grep -v -e '\[+\]' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
+        list_debs | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
+        ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
         # # belt and braces no longer needed
         #${ELEVATE} sed -i '/[+]/d' ${CACHE_DIR}/supported.list.tmp
-        cut -d" " -f 1 "${CACHE_DIR}/supported.list.tmp" |sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list.tmp" >/dev/null
-        ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
-        ${ELEVATE} mv "${CACHE_DIR}/supported_apps.list.tmp" "${CACHE_DIR}/supported_apps.list"
-        ${ELEVATE} rm  "${CACHE_DIR}/updating_supported.lock"
+        cut -d" " -f 1 "${CACHE_DIR}/supported.list" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list" >/dev/null
     fi
 }
 
