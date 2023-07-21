@@ -1379,17 +1379,18 @@ esac
 
 export ELEVATE=""
 
-case "${ACTION}" in
-    cache)
-        ls -lh "${CACHE_DIR}/";;
-    clean)
+function dg_action_cache() {
+        ls -lh "${CACHE_DIR}/"
+}
+function dg_action_clean() {
         elevate_privs
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.deb
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.html
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.txt
-        ;;
-    show)
+
+}
+function dg_action_show() {
         for APP in "${@,,}"; do
             FULL_APP=${APPNAME2FULL[$APP]}
             if [ -z "${FULL_APP}" ]; then
@@ -1400,8 +1401,10 @@ case "${ACTION}" in
             fi
             validate_deb "${FULL_APP}"
             info_deb
-        done;;
-    install|reinstall)
+        done
+}
+function dg_action_reinstall() { dg_action_install "$@"; }
+function dg_action_install() {
         elevate_privs
         create_cache_dir
         create_etc_dir
@@ -1431,8 +1434,9 @@ case "${ACTION}" in
                 apt) install_apt;;
                 ppa) install_ppa;;
             esac
-        done;;
-    list)
+        done
+}
+function dg_action_list() {
         list_opt_1=""
         list_opt_2=""
         while [ -n "${1}" ]; do
@@ -1445,14 +1449,17 @@ case "${ACTION}" in
             fi
             shift
         done
-        list_debs "${list_opt_1}" "${list_opt_2}";;
-    prettylist)
+        list_debs "${list_opt_1}" "${list_opt_2}"
+}
+function dg_action_prettylist() {
         ACTION="prettylist"
-        prettylist_debs "${1}";;
-    csvlist)
+        prettylist_debs "${1}"
+}
+function dg_action_csvlist() {
         ACTION="prettylist"
-        csvlist_debs "${1}";;
-    purge)
+        csvlist_debs "${1}"
+}
+function dg_action_purge() {
         elevate_privs
         opt_remove_repo=""
         if [ "${1}" == --remove-repo ]; then
@@ -1472,8 +1479,9 @@ case "${ACTION}" in
             fi
             validate_deb "${FULL_APP}"
             remove_deb "${APP}" purge "${opt_remove_repo}"
-        done;;
-    remove)
+        done
+}
+function dg_action_remove() {
         elevate_privs
         opt_remove_repo=""
         if [ "${1}" == --remove-repo ]; then
@@ -1493,8 +1501,9 @@ case "${ACTION}" in
             fi
             validate_deb "${FULL_APP}"
             remove_deb "${APP}" "" "${opt_remove_repo}"
-        done;;
-    search)
+        done
+}
+function dg_action_search() {
         if [ "${1}" == --include-unsupported ]; then
             if [ -z "${2}" ]; then
                 fancy_message error "You must specify a pattern."
@@ -1504,8 +1513,9 @@ case "${ACTION}" in
             list_debs --include-unsupported --raw | grep "${2}"
         else
             list_debs "" --raw | grep "${1}"
-        fi;;
-    update)
+        fi
+}
+function dg_action_update() {
         if   [ -n "${1}" ] && ! [[ ' --repos-only --quiet ' =~ "${1}" ]]; then
             fancy_message fatal "Unknown option supplied: ${1}"
         elif [ -n "${2}" ] && ! [[ ' --repos-only --quiet ' =~ "${2}" ]]; then
@@ -1532,12 +1542,14 @@ case "${ACTION}" in
             done
             mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=(${INSTALLED_APPS[@]%% *})
             update_debs
-        fi;;
-    upgrade)
+        fi
+}
+function dg_action_upgrade() {
         elevate_privs
         create_cache_dir
-        upgrade_debs;;
-    fix-installed)
+        upgrade_debs
+}
+function dg_action_fix-installed() {
         if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
             fancy_message fatal "Unknown option supplied: ${1}"
         fi
@@ -1557,11 +1569,16 @@ case "${ACTION}" in
                     remove_installed "${APP}"
                 fi
             done
-        fi;;
-    version) echo "${VERSION}";;
-    help) usage;;
-    *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
-esac
+        fi
+}
+function dg_action_version() { echo "${VERSION}"; }
+function dg_action_help() { usage; }
+
+if declare -F "dg_action_$ACTION" >/dev/null; then
+    "dg_action_$ACTION" "$@"
+else
+    fancy_message fatal "Unknown action supplied: ${ACTION}"
+fi
 
 if [[ ${PACKAGE_INSTALLATION_COUNT} -lt ${PACKAGE_INSTALLATION_TRIES} ]]; then
     exit 1
