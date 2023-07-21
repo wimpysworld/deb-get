@@ -161,10 +161,7 @@ function get_github_releases() {
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
-            local URL="https://api.github.com/repos/${1}/releases"
-            if [ -n "${2}" ]; then
-                URL+="/${2}"
-            fi
+            local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
             wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
             ${ELEVATE} "${wgetcmdarray[@]}" || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
             if [ -f "${CACHE_FILE}" ] && grep "API rate limit exceeded" "${CACHE_FILE}"; then
