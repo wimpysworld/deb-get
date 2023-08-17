@@ -14,6 +14,10 @@ else
     unset HEADERPARAM
 fi
 
+# local-apt-repository
+export USE_LOCAL_APT_REPOSITORY="no"
+export DIR_LOCAL_APT_REPOSITORY="/srv/local-apt-repository"
+
 function usage() {
 cat <<HELP
 
@@ -338,6 +342,14 @@ function install_deb() {
     fi
     ((PACKAGE_INSTALLATION_COUNT++))
     if [ -f "${CACHE_DIR}/${FILE}" ]; then
+        if [ "${USE_LOCAL_APT_REPOSITORY}" == "yes" ]; then
+            if [ -d "${DIR_LOCAL_APT_REPOSITORY}" ]; then
+                ${ELEVATE} cp "${CACHE_DIR}/${FILE}" "${DIR_LOCAL_APT_REPOSITORY}/${FILE}" 2>/dev/null
+                fancy_message info "${FILE} copied to ${DIR_LOCAL_APT_REPOSITORY} directory."
+            else
+                fancy_message warn "${DIR_LOCAL_APT_REPOSITORY} does not exist."
+            fi
+        fi
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
     fi
 }
