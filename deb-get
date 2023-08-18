@@ -376,12 +376,6 @@ function remove_deb() {
     case ${METHOD} in
         direct|github|website)
             if [ -f "${CACHE_DIR}/${FILE}" ]; then
-                if [ "${USE_LOCAL_APT_REPOSITORY}" == "yes" ]; then
-                    if [ -f "${DIR_LOCAL_APT_REPOSITORY}/${FILE}" ]; then
-                        fancy_message info "Removing ${DIR_LOCAL_APT_REPOSITORY}/${FILE}"
-                        ${ELEVATE} rm "${DIR_LOCAL_APT_REPOSITORY}/${FILE}" 2>/dev/null
-                    fi
-                fi
                 fancy_message info "Removing ${CACHE_DIR}/${FILE}"
                 ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
             fi
