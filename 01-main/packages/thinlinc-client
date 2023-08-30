@@ -19,4 +19,4 @@ if [ "${ACTION}" != "prettylist" ]; then
 fi
 
 PRETTY_NAME="Thinlinc"
-SUMMARY="ThinLinc is a software that enables organizations to implement a Linux server-based computing (SBC) infrastructure."
+SUMMARY="The ThinLinc Client is a remote desktop client used to connect to a ThinLinc"
