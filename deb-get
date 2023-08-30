@@ -1456,7 +1456,7 @@ function dg_action_search() {
             usage >&2
             exit 1
         fi
-        list_debs "$list_opt_1" --raw | grep -e "${2}"
+        list_debs "$list_opt_1" --raw | grep -e "${1}"
 }
 function dg_action_update() {
         if   [ -n "${1}" ] && ! [[ ' --repos-only --quiet ' =~ "${1}" ]]; then
