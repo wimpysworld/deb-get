@@ -18,5 +18,5 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL="https://www.cendio.com/downloads/clients/thinlinc-client_${VERSION_PUBLISHED}_${TARGET_ARCH}.deb"
 fi
 
-PRETTY_NAME="Thinlinc"
+PRETTY_NAME="Thinlinc Client"
 SUMMARY="The ThinLinc Client is a remote desktop client used to connect to a ThinLinc"
