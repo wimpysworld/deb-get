@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "popcorn-official/popcorn-desktop" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+fi
+PRETTY_NAME="popcorn-desktop"
+WEBSITE="https://github.com/popcorn-official/popcorn-desktop"
+SUMMARY="Popcorn Time is a multi-platform, free software BitTorrent client that includes an integrated media player ( Windows / Mac / Linux ) A Butter-Project Fork"
