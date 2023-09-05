@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "AlduinApp/alduin" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+fi
+PRETTY_NAME="alduin"
+WEBSITE="https://github.com/AlduinApp/alduin"
+SUMMARY="Alduin is a free and open source RSS, Atom and JSON feed reader that allows you to keep track of your favorite websites."
