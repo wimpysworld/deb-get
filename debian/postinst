@@ -3,11 +3,11 @@
 set -e
 
 if [ "${1}" = configure ]; then
-    if [ ! -e /etc/deb-get ] || [ ! -e /etc/deb-get/01-main.repo ] || [ ! -e /etc/deb-get/01-main.d ] || [ -n "$(find /etc/deb-get/01-main.d -prune -empty 2> /dev/null)" ]; then
+    if [ ! -e /etc/deb-get ] || [ ! -e /etc/deb-get/01-main.repo ] || [ ! -e /etc/deb-get/01-main.d ] || [ -n "$(find /etc/deb-get/01-main.d -prune -empty 2>/dev/null)" ]; then
         deb-get update --repos-only
     fi
     if [ ! -e /etc/deb-get/installed ]; then
-        echo "deb-get 1 github" | tee /etc/deb-get/installed > /dev/null
+        echo "deb-get 1 github" | tee /etc/deb-get/installed >/dev/null
     fi
     if [ -n "${2}" ]; then
         if dpkg --compare-versions "${2}" le "0.3.6-1"; then
