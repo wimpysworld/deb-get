@@ -1,0 +1,22 @@
+ DEFVER=1
+ ARCHS_SUPPORTED="amd64 armhf"
+ local TARGET_ARCH="xxx"
+ 
+ case ${HOST_ARCH} in
+    amd64|intel)
+         TARGET_ARCH=amd64;;
+    arm32|armv6-32|armv6|armhf|armv7)
+         TARGET_ARCH=armhf;;
+    *)
+         TARGET_ARCH=${HOST_ARCH};;
+esac
+
+WEBSITE="https://www.cendio.com/thinlinc/"
+get_website "${WEBSITE}/download/"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(grep deb "${CACHE_FILE}" | grep thinlinc|grep -v sha|tail -n2|head -n1|awk -F "_" '{print $2}')"
+    URL="https://www.cendio.com/downloads/clients/thinlinc-client_${VERSION_PUBLISHED}_${TARGET_ARCH}.deb"
+fi
+
+PRETTY_NAME="Thinlinc Client"
+SUMMARY="The ThinLinc Client is a remote desktop client used to connect to a ThinLinc"
