@@ -15,7 +15,7 @@ else
 fi
 
 function usage() {
-cat <<HELP
+    cat <<HELP
 
 Usage
 
@@ -112,8 +112,9 @@ HELP
 }
 
 function package_is_installed() {
+    # shellcheck disable=SC2076
     if [[ " ${INSTALLED_APPS[*]} " =~ " ${1} " ]]; then return 0; fi
-    return 1;
+    return 1
 }
 
 function elevate_privs() {
@@ -147,13 +148,12 @@ function create_etc_dir() {
     ${ELEVATE} chmod 755 "${ETC_DIR}" 2>/dev/null
 }
 
-
 function unroll_url() {
     # Sourceforge started adding parameters
-    local TRIM_URL="$(curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null)"
+    local TRIM_URL
+    TRIM_URL="$(curl -w "%{url_effective}\n" -I -L -s -S "${1}" -o /dev/null)"
     echo "${TRIM_URL/\.deb*/.deb}"
 }
-
 
 function get_github_releases() {
     METHOD="github"
@@ -165,15 +165,15 @@ function get_github_releases() {
 
     # Do not process github releases while generating a pretty list or upgrading
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
-        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +${DEBGET_CACHE_RTN:-60})"; then
+        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")"; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases"
             if [ -n "${2}" ]; then
                 URL+="/${2}"
             fi
-            wgetcmdarray=("${ELEVATE}" wget  "${HEADERPARAM}" "${HEADERAUTH}" ${WGET_VERBOSITY} \
-                --no-use-server-timestamps ${WGET_TIMEOUT} "${URL}" -O "${CACHE_FILE}")
-            echo "${wgetcmdarray[@]}" | bash -  || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+            wgetcmdarray=("${ELEVATE}" wget "${HEADERPARAM}" "${HEADERAUTH}" "${WGET_VERBOSITY}"
+                --no-use-server-timestamps "${WGET_TIMEOUT}" "${URL}" -O "${CACHE_FILE}")
+            echo "${wgetcmdarray[@]}" | bash - || (fancy_message warn "Updating ${CACHE_FILE} failed.")
             if [ -f "${CACHE_FILE}" ] && grep "API rate limit exceeded" "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} exceeded GitHub API limits. Deleting it."
                 ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
@@ -186,9 +186,9 @@ function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
     if [ "${ACTION}" == "install" ] || [ "${ACTION}" == "update" ] || [ "${ACTION}" == "fix-installed" ]; then
-        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +${DEBGET_CACHE_RTN:-60})"; then
+        if [ ! -e "${CACHE_FILE}" ] || test "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")"; then
             fancy_message info "Updating ${CACHE_FILE}"
-            if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "${1}" -O "${CACHE_FILE}"; then
+            if ! ${ELEVATE} wget "${WGET_VERBOSITY}" --no-use-server-timestamps "${WGET_TIMEOUT}" "${1}" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
                 ${ELEVATE} rm -f "${CACHE_FILE}"
             fi
@@ -198,7 +198,7 @@ function get_website() {
 
 function fancy_message() {
     if [ -z "${1}" ] || [ -z "${2}" ]; then
-      return
+        return
     fi
 
     local RED="\e[31m"
@@ -212,14 +212,16 @@ function fancy_message() {
     MESSAGE="${2}"
 
     case ${MESSAGE_TYPE} in
-      info) echo -e "  [${GREEN}+${RESET}] ${MESSAGE}";;
-      progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}";;
-      recommend) echo -e "  [${MAGENTA}!${RESET}] ${MESSAGE}";;
-      warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}";;
-      error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2;;
-      fatal) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2
-             exit 1;;
-      *) echo -e "  [?] UNKNOWN: ${MESSAGE}";;
+    info) echo -e "  [${GREEN}+${RESET}] ${MESSAGE}" ;;
+    progress) echo -en "  [${GREEN}+${RESET}] ${MESSAGE}" ;;
+    recommend) echo -e "  [${MAGENTA}!${RESET}] ${MESSAGE}" ;;
+    warn) echo -e "  [${YELLOW}*${RESET}] WARNING! ${MESSAGE}" ;;
+    error) echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2 ;;
+    fatal)
+        echo -e "  [${RED}!${RESET}] ERROR! ${MESSAGE}" >&2
+        exit 1
+        ;;
+    *) echo -e "  [?] UNKNOWN: ${MESSAGE}" ;;
     esac
 }
 
@@ -227,7 +229,7 @@ function download_deb() {
     local URL="${1}"
     local FILE="${2}"
 
-    if ! ${ELEVATE} wget ${WGET_VERBOSITY} --continue ${WGET_TIMEOUT} --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
+    if ! ${ELEVATE} wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
         return 1
@@ -240,8 +242,8 @@ function eula() {
         echo -e "\nDo you agree to the ${APP} EULA?"
         select yn in "Yes" "No"; do
             case $yn in
-                Yes) return 0;;
-                No) return 1;;
+            Yes) return 0 ;;
+            No) return 1 ;;
             esac
         done
     fi
@@ -349,12 +351,13 @@ function remove_deb() {
     local FILE="${FILE:-${URL##*/}}"
     local STATUS=""
 
+    # shellcheck disable=SC2076
     if package_is_installed "${APP}" || [[ " ${DEPRECATED_INSTALLED[*]} " =~ " ${APP} " ]]; then
         STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
         if [ "${STATUS}" == "deinstall ok config-files" ]; then
             REMOVE="purge"
         fi
-        ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
+        ${ELEVATE} apt-get -q -y --autoremove "${REMOVE}" "${APP}"
         remove_installed "${APP}"
         maint_supported_cache
     else
@@ -363,21 +366,22 @@ function remove_deb() {
 
     # Remove repos/PPA/key even if the app is not installed.
     case ${METHOD} in
-        direct|github|website)
-            if [ -f "${CACHE_DIR}/${FILE}" ]; then
-                fancy_message info "Removing ${CACHE_DIR}/${FILE}"
-                ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
-            fi
-            ;;
-        apt|ppa)
-            remove_repo "${3}";;
+    direct | github | website)
+        if [ -f "${CACHE_DIR}/${FILE}" ]; then
+            fancy_message info "Removing ${CACHE_DIR}/${FILE}"
+            ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
+        fi
+        ;;
+    apt | ppa)
+        remove_repo "${3}"
+        ;;
     esac
 
 }
 
 function version_deb() {
     if package_is_installed "${APP}"; then
-        dpkg -s "${APP}" 2> /dev/null | grep ^Version: | cut -d' ' -f2
+        dpkg -s "${APP}" 2>/dev/null | grep ^Version: | cut -d' ' -f2
     else
         echo ""
     fi
@@ -386,16 +390,17 @@ function version_deb() {
 function info_deb() {
     local INSTALLED="${VERSION_INSTALLED:-No}"
     case ${METHOD} in
-        direct|github|website) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Repository:\t${APP_SRC}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Download:\t${URL}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}";;
-        apt) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Repository:\t${APP_SRC}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Repository:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}";;
-        ppa) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Repository:\t${APP_SRC}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Launchpad:\t${PPA}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}";;
+    direct | github | website) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Repository:\t${APP_SRC}\n  Updater:\tdeb-get\n  Installed:\t${INSTALLED}\n  Published:\t${VERSION_PUBLISHED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Download:\t${URL}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}" ;;
+    apt) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Repository:\t${APP_SRC}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Repository:\t${APT_REPO_URL}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}" ;;
+    ppa) echo -e "${PRETTY_NAME}\n  Package:\t${APP}\n  Repository:\t${APP_SRC}\n  Updater:\tapt\n  Installed:\t${INSTALLED}\n  Architecture:\t${ARCHS_SUPPORTED}\n  Launchpad:\t${PPA}\n  Website:\t${WEBSITE}\n  Summary:\t${SUMMARY}" ;;
     esac
 }
 
 function validate_deb() {
     local FULL_APP="${1}"
-    export APP_SRC="$(echo "${FULL_APP}" | cut -d / -f 1)"
-    export APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
+    APP_SRC="$(echo "${FULL_APP}" | cut -d / -f 1)"
+    APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
+    export APP APP_SRC
     export DEFVER=""
     export ASC_KEY_URL=""
     export GPG_KEY_URL=""
@@ -419,13 +424,17 @@ function validate_deb() {
 
     # Source the variables
     if [ "${APP_SRC}" == "00-builtin" ]; then
-        deb_"${APP}" 2>/dev/null
+        "deb_${APP}" 2>/dev/null
     else
+        # shellcheck disable=SC1090
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
-    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
-
-        if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
+    # shellcheck disable=SC2076
+    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] &&
+        { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } &&
+        { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+        if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] ||
+            [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
             fancy_message error "Missing required information of package ${APP}:"
             echo "DEFVER=${DEFVER}" >&2
             echo "PRETTY_NAME=${PRETTY_NAME}" >&2
@@ -479,8 +488,8 @@ function validate_deb() {
             fi
 
             if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
-            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
-            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
+                { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
+                { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
                 fancy_message error "Missing required information of ${METHOD} package ${APP}:"
                 echo "URL=${URL}" >&2
                 echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
@@ -500,10 +509,10 @@ function validate_deb() {
         fi
 
         if { { { [ "${METHOD}" == github ] || [ "${METHOD}" == website ]; } && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
-           { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
-           { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
-           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
-           { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
+            { [ "${ACTION}" != "prettylist" ] && [ "${ACTION}" != "remove" ] && [ "${ACTION}" != "purge" ]; } &&
+            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
+            { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
+            { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             echo "URL=${URL}" >&2
             echo "VERSION_PUBLISHED=${VERSION_PUBLISHED}" >&2
@@ -514,6 +523,7 @@ function validate_deb() {
 
 function list_debs() {
     if [ "${1}" == --include-unsupported ]; then
+        # shellcheck disable=2031 disable=2030
         if [ "${2}" = --raw ]; then
             local OLD_IFS="$IFS"
             IFS=$'\n'
@@ -525,12 +535,15 @@ function list_debs() {
             echo "${INSTALLED_APPS[*]}"
             IFS="$OLD_IFS"
         elif [ "${2}" = --not-installed ]; then
-            local NOT_INSTALLED_APPS=($(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2))
+            local NOT_INSTALLED_APPS=($(
+                IFS=$'\n'
+                echo "${APPS[*]}" | cut -d / -f 2
+            ))
 
-            for APP in ${INSTALLED_APPS[@]}; do
+            for APP in "${INSTALLED_APPS[@]}"; do
                 for i in "${!NOT_INSTALLED_APPS[@]}"; do
-                    if [[ ${NOT_INSTALLED_APPS[i]} = $APP ]]; then
-                    unset 'NOT_INSTALLED_APPS[i]'
+                    if [[ ${NOT_INSTALLED_APPS[i]} = "$APP" ]]; then
+                        unset 'NOT_INSTALLED_APPS[i]'
                     fi
                 done
             done
@@ -542,7 +555,8 @@ function list_debs() {
         else
             local PAD='                              '
             for FULL_APP in "${APPS[@]}"; do
-                local APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
+                local APP
+                APP="$(echo "${FULL_APP}" | cut -d / -f 2)"
                 if package_is_installed "${APP}"; then
                     printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
                 else
@@ -551,25 +565,26 @@ function list_debs() {
             done
         fi
     else
-        if [ -f ${CACHE_DIR}/supported.list ] ; then
+        if [ -f ${CACHE_DIR}/supported.list ]; then
             if [ "${2}" == --raw ]; then
                 list_debs --include-unsupported --raw | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
             elif [ "${2}" == --installed ]; then
                 # these don't have the [installed] tag so need a similar file to join
-                list_debs --include-unsupported --installed | comm  --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
+                list_debs --include-unsupported --installed | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
             elif [ "${2}" == --not-installed ]; then
                 list_debs --include-unsupported --not-installed | comm --nocheck-order -12 ${CACHE_DIR}/supported_apps.list -
             elif [ "${2}" == --only-unsupported ]; then
                 list_debs --include-unsupported --raw | comm --nocheck-order -13 ${CACHE_DIR}/supported_apps.list -
             else
                 # this has [ installed ] tags
-                list_debs --include-unsupported  | comm --nocheck-order -12 ${CACHE_DIR}/supported.list -
+                list_debs --include-unsupported | comm --nocheck-order -12 ${CACHE_DIR}/supported.list -
             fi
         else
             #elevate_privs
             # because we need to update the cache files this one slow time
             for FULL_APP in "${APPS[@]}"; do
                 validate_deb "${FULL_APP}"
+                # shellcheck disable=SC2076
                 if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
                     if [ "${2}" == --raw ]; then
                         echo "${APP}"
@@ -605,10 +620,10 @@ function prettylist_debs() {
         validate_deb "${FULL_APP}"
         if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
             case ${METHOD} in
-                apt)    ICON="debian.png";;
-                github) ICON="github.png";;
-                ppa)    ICON="launchpad.png";;
-                *)      ICON="direct.png";;
+            apt) ICON="debian.png" ;;
+            github) ICON="github.png" ;;
+            ppa) ICON="launchpad.png" ;;
+            *) ICON="direct.png" ;;
             esac
             echo "| [<img src=\"../.github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
         fi
@@ -629,7 +644,10 @@ function update_debs() {
     local STATUS=""
     update_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+        validate_deb "$(
+            IFS=$'\n'
+            echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+        )"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
@@ -643,7 +661,10 @@ function upgrade_debs() {
     local STATUS=""
     upgrade_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+        validate_deb "$(
+            IFS=$'\n'
+            echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+        )"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
             STATUS="$(dpkg -s "${APP}" | grep ^Status: | cut -d" " -f2-)"
             if [ "${STATUS}" == "install ok installed" ]; then
@@ -655,7 +676,7 @@ function upgrade_debs() {
 
 function init_repos() {
     if [ ! -e "${ETC_DIR}/01-main.repo" ]; then
-        echo "${MAIN_REPO_URL}" | ${ELEVATE} tee "${ETC_DIR}/01-main.repo" > /dev/null
+        echo "${MAIN_REPO_URL}" | ${ELEVATE} tee "${ETC_DIR}/01-main.repo" >/dev/null
     fi
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
@@ -676,10 +697,10 @@ function refresh_supported_cache_lists() {
         list_debs | grep -v -e '\[+\]' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
         # # belt and braces no longer needed
         #${ELEVATE} sed -i '/[+]/d' ${CACHE_DIR}/supported.list.tmp
-        cut -d" " -f 1 "${CACHE_DIR}/supported.list.tmp" |sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list.tmp" >/dev/null
+        cut -d" " -f 1 "${CACHE_DIR}/supported.list.tmp" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list.tmp" >/dev/null
         ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
         ${ELEVATE} mv "${CACHE_DIR}/supported_apps.list.tmp" "${CACHE_DIR}/supported_apps.list"
-        ${ELEVATE} rm  "${CACHE_DIR}/updating_supported.lock"
+        ${ELEVATE} rm "${CACHE_DIR}/updating_supported.lock"
     fi
 }
 
@@ -687,27 +708,26 @@ function update_repos() {
     local REPO_URL=""
     # preserve current behaviour for now but allow modification via env
     local CURL_VERBOSITY="-q --show-progress --progress=bar:force:noscroll "
-    local UPD_WGET_VERBOSITY=${WGET_VERBOSITY}
+    local UPD_WGET_VERBOSITY="${WGET_VERBOSITY}"
 
-    if [[ "$*" == *"--quiet"* ]]  ; then
-         CURL_VERBOSITY="-Ss"
-         UPD_WGET_VERBOSITY="-q"
-         export UPD_WGET_VERBOSITY CURL_VERBOSITY
+    if [[ "$*" == *"--quiet"* ]]; then
+        CURL_VERBOSITY="-Ss"
+        UPD_WGET_VERBOSITY="-q"
+        export UPD_WGET_VERBOSITY CURL_VERBOSITY
     fi
-
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         export REPO ETC_DIR ELEVATE
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
-        ${ELEVATE} wget ${UPD_WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
+        ${ELEVATE} wget "${UPD_WGET_VERBOSITY}" "${WGET_TIMEOUT}" "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
         # although so long as manifest is good we are OK
         # Faster by some margin if we are hitting github
         # Otherwise revert to old-style for a bespoke hosted repo
 
-        pushd ${ETC_DIR}/${REPO}.d >/dev/null
+        pushd "${ETC_DIR}/${REPO}.d" >/dev/null || return
 
         awk -F/ '/github/  {print "# fetching github repo";
                             print "GITREPO="$4"/"$5;\
@@ -715,12 +735,12 @@ function update_repos() {
                             print "curl ${CURL_VERBOSITY} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
                 ! /github/ {print "# fetching non-github repo";
                             print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
-                            print "${ELEVATE} wget ${UPD_WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
+                            print "${ELEVATE} wget \"${WGET_VERBOSITY}\" -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
                             print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
-                } '\
-                <<<${REPO_URL} | bash -
+                } ' \
+            <<<"${REPO_URL}" | bash -
 
-        popd >/dev/null
+        popd >/dev/null || return
     done
     refresh_supported_cache_lists &
 }
@@ -747,9 +767,7 @@ function list_deprecated_apps() {
 
 function list_local_apps() {
     if [ -d "${ETC_DIR}/99-local.d" ]; then
-        for APP in $(find "${ETC_DIR}/99-local.d" -maxdepth 1 -type f -printf "%f\n"); do
-            echo "99-local/${APP}"
-        done
+        find "${ETC_DIR}/99-local.d" -maxdepth 1 -type f -printf "99-local/%f\n"
     fi
 }
 
@@ -758,9 +776,14 @@ function print_etc_overrides() {
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
-            local FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
+            local FULL_APP
+            FULL_APP="$(
+                IFS=$'\n'
+                echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+            )"
             fancy_message warn "Conflict detected, duplicate declaration of package ${APP}, using declaration from $(echo "${FULL_APP}" | cut -d / -f 1)"
 
+            # shellcheck disable=SC2076
             if [[ " ${LOCAL_APPS[*]} " =~ " ${FULL_APP} " ]] && [ "${DEB_GET_SCRIPT_FILE}" -nt "${ETC_DIR}/99-local.d/${APP}" ]; then
                 ((NUM_OLDER_CONFLICTS++))
             fi
@@ -792,285 +815,285 @@ function fix_old_apps() {
     local OLD_APT_LIST_NAME=""
     local OLD_PPA=""
     case "${APP}" in
-        1password)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="1password"
-        ;;
-        anydesk)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="anydesk-stable"
-        ;;
-        appimagelauncher)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:appimagelauncher-team/stable"
-        ;;
-        atom)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="atom"
-        ;;
-        audio-recorder)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:audio-recorder/ppa"
-        ;;
-        azure-cli)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="azure-cli"
-        ;;
-        blanket)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:apandada1/blanket"
-        ;;
-        brave-browser)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="brave-browser-release"
-        ;;
-        cawbird)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="home:IBBoard:cawbird"
-        ;;
-        chronograf)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="influxdata"
-        ;;
-        code)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="vscode"
-        ;;
-        copyq)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:hluk/copyq"
-        ;;
-        cryptomator)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:sebastian-stenzel/cryptomator"
-        ;;
-        docker-ce)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="docker"
-        ;;
-        enpass)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="enpass"
-        ;;
-        firefox-esr)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:mozillateam/ppa"
-        ;;
-        foliate)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:apandada1/foliate"
-        ;;
-        fsearch)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:christian-boxdoerfer/fsearch-stable"
-        ;;
-        google-chrome-stable)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="google-chrome"
-        ;;
-        google-earth-pro-stable)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="google-earth-pro"
-        ;;
-        gpu-viewer)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:arunsivaraman/gpuviewer"
-        ;;
-        influxdb)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="influxdata"
-        ;;
-        influxdb2)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="influxdata"
-        ;;
-        influxdb2-cli)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="influxdata"
-        ;;
-        insync)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="insync"
-        ;;
-        jellyfin)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="jellyfin"
-        ;;
-        kapacitor)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="influxdata"
-        ;;
-        kdiskmark)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:jonmagon/kdiskmark"
-        ;;
-        keepassxc)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:phoerious/keepassxc"
-        ;;
-        keybase)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="keybase"
-        ;;
-        kopia-ui)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="kopia"
-        ;;
-        lutris)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:lutris-team/lutris"
-        ;;
-        microsoft-edge-stable)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="microsoft-edge"
-        ;;
-        neo4j)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="neo4j"
-        ;;
-        nextcloud-desktop)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:nextcloud-devs/client"
-        ;;
-        nomad)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="nomad"
-        ;;
-        obs-studio)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:flexiondotorg/obs-fully-loaded"
-        ;;
-        openrazer-meta)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:openrazer/stable"
-        ;;
-        opera-stable)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="opera-stable"
-        ;;
-        papirus-icon-theme)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:papirus/papirus"
-        ;;
-        plexmediaserver)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="plexmediaserver"
-        ;;
-        polychromatic)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:polychromatic/stable"
-        ;;
-        protonvpn)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="protonvpn-stable"
-        ;;
-        qownnotes)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:pbek/qownnotes"
-        ;;
-        quickemu)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:flexiondotorg/quickemu"
-        ;;
-        quickgui)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:yannick-mauray/quickgui"
-        ;;
-        resilio-sync)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="resilio-sync"
-        ;;
-        retroarch)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:libretro/stable"
-        ;;
-        signal-desktop)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="signal-xenial.list"
-        ;;
-        skypeforlinux)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="skype-stable"
-        ;;
-        slack-desktop)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="slack"
-        ;;
-        softmaker-office-2021)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="softmaker"
-        ;;
-        strawberry)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:jonaski/strawberry"
-        ;;
-        sublime-merge)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="sublime-text"
-        ;;
-        sublime-text)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="sublime-text"
-        ;;
-        syncthing)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="syncthing"
-        ;;
-        teams)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="teams"
-        ;;
-        telegraf)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="influxdata"
-        ;;
-        terraform)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="terraform"
-        ;;
-        texworks)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:texworks/stable"
-        ;;
-        typora)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="typora"
-        ;;
-        ubuntu-make)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:lyzardking/ubuntu-make"
-        ;;
-        ulauncher)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:agornostal/ulauncher"
-        ;;
-        virtualbox-6.1)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="virtualbox-6.1"
-        ;;
-        vivaldi-stable)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="vivaldi"
-        ;;
-        wavebox)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="wavebox-stable"
-        ;;
-        weechat)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="weechat"
-        ;;
-        wire-desktop)
-            OLD_METHOD="apt"
-            OLD_APT_LIST_NAME="wire-desktop"
-        ;;
-        xemu)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:mborgerson/xemu"
-        ;;
-        yq)
-            OLD_METHOD="ppa"
-            OLD_PPA="ppa:rmescandon/yq"
+    1password)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="1password"
+        ;;
+    anydesk)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="anydesk-stable"
+        ;;
+    appimagelauncher)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:appimagelauncher-team/stable"
+        ;;
+    atom)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="atom"
+        ;;
+    audio-recorder)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:audio-recorder/ppa"
+        ;;
+    azure-cli)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="azure-cli"
+        ;;
+    blanket)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:apandada1/blanket"
+        ;;
+    brave-browser)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="brave-browser-release"
+        ;;
+    cawbird)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="home:IBBoard:cawbird"
+        ;;
+    chronograf)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="influxdata"
+        ;;
+    code)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="vscode"
+        ;;
+    copyq)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:hluk/copyq"
+        ;;
+    cryptomator)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:sebastian-stenzel/cryptomator"
+        ;;
+    docker-ce)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="docker"
+        ;;
+    enpass)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="enpass"
+        ;;
+    firefox-esr)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:mozillateam/ppa"
+        ;;
+    foliate)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:apandada1/foliate"
+        ;;
+    fsearch)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:christian-boxdoerfer/fsearch-stable"
+        ;;
+    google-chrome-stable)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="google-chrome"
+        ;;
+    google-earth-pro-stable)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="google-earth-pro"
+        ;;
+    gpu-viewer)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:arunsivaraman/gpuviewer"
+        ;;
+    influxdb)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="influxdata"
+        ;;
+    influxdb2)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="influxdata"
+        ;;
+    influxdb2-cli)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="influxdata"
+        ;;
+    insync)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="insync"
+        ;;
+    jellyfin)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="jellyfin"
+        ;;
+    kapacitor)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="influxdata"
+        ;;
+    kdiskmark)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:jonmagon/kdiskmark"
+        ;;
+    keepassxc)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:phoerious/keepassxc"
+        ;;
+    keybase)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="keybase"
+        ;;
+    kopia-ui)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="kopia"
+        ;;
+    lutris)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:lutris-team/lutris"
+        ;;
+    microsoft-edge-stable)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="microsoft-edge"
+        ;;
+    neo4j)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="neo4j"
+        ;;
+    nextcloud-desktop)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:nextcloud-devs/client"
+        ;;
+    nomad)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="nomad"
+        ;;
+    obs-studio)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:flexiondotorg/obs-fully-loaded"
+        ;;
+    openrazer-meta)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:openrazer/stable"
+        ;;
+    opera-stable)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="opera-stable"
+        ;;
+    papirus-icon-theme)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:papirus/papirus"
+        ;;
+    plexmediaserver)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="plexmediaserver"
+        ;;
+    polychromatic)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:polychromatic/stable"
+        ;;
+    protonvpn)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="protonvpn-stable"
+        ;;
+    qownnotes)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:pbek/qownnotes"
+        ;;
+    quickemu)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:flexiondotorg/quickemu"
+        ;;
+    quickgui)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:yannick-mauray/quickgui"
+        ;;
+    resilio-sync)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="resilio-sync"
+        ;;
+    retroarch)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:libretro/stable"
+        ;;
+    signal-desktop)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="signal-xenial.list"
+        ;;
+    skypeforlinux)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="skype-stable"
+        ;;
+    slack-desktop)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="slack"
+        ;;
+    softmaker-office-2021)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="softmaker"
+        ;;
+    strawberry)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:jonaski/strawberry"
+        ;;
+    sublime-merge)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="sublime-text"
+        ;;
+    sublime-text)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="sublime-text"
+        ;;
+    syncthing)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="syncthing"
+        ;;
+    teams)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="teams"
+        ;;
+    telegraf)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="influxdata"
+        ;;
+    terraform)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="terraform"
+        ;;
+    texworks)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:texworks/stable"
+        ;;
+    typora)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="typora"
+        ;;
+    ubuntu-make)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:lyzardking/ubuntu-make"
+        ;;
+    ulauncher)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:agornostal/ulauncher"
+        ;;
+    virtualbox-6.1)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="virtualbox-6.1"
+        ;;
+    vivaldi-stable)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="vivaldi"
+        ;;
+    wavebox)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="wavebox-stable"
+        ;;
+    weechat)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="weechat"
+        ;;
+    wire-desktop)
+        OLD_METHOD="apt"
+        OLD_APT_LIST_NAME="wire-desktop"
+        ;;
+    xemu)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:mborgerson/xemu"
+        ;;
+    yq)
+        OLD_METHOD="ppa"
+        OLD_PPA="ppa:rmescandon/yq"
         ;;
     esac
     if [ -n "${OLD_METHOD}" ]; then
@@ -1094,11 +1117,13 @@ function fix_old_apps() {
 }
 
 function fix_installed() {
-    local line="$(grep -m 1 "^${APP} " "${ETC_DIR}/installed")"
-    local OLD_DEFVER="$(echo "${line}" | cut -d " " -f 2)"
-    local OLD_METHOD="$(echo "${line}" | cut -d " " -f 3)"
+    local line OLD_DEFVER OLD_METHOD
+    line="$(grep -m 1 "^${APP} " "${ETC_DIR}/installed")"
+    OLD_DEFVER="$(echo "${line}" | cut -d " " -f 2)"
+    OLD_METHOD="$(echo "${line}" | cut -d " " -f 3)"
     if [ "${DEFVER}" != "${OLD_DEFVER}" ]; then
         remove_installed "${APP}"
+        # shellcheck disable=SC2076
         if [[ " apt ppa " =~ " ${OLD_METHOD} " ]]; then
             remove_repo --remove-repo
         fi
@@ -1143,7 +1168,7 @@ function remove_repo() {
     if [ "${count}" -gt 0 ]; then
         ((count--))
         ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
-        echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" > /dev/null
+        echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" >/dev/null
     fi
     if [ "${1}" == --remove-repo ]; then
         if [ "${count}" -eq 0 ]; then
@@ -1179,19 +1204,19 @@ function add_apt_repo() {
     if [ -e "${ETC_DIR}/aptrepos" ]; then
         ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
     fi
-    echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" > /dev/null
+    echo "${APT_LIST_NAME} ${count}" | ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" >/dev/null
     if [ ! -d /usr/share/keyrings ]; then
         ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
     fi
     if [ ! -e "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" ]; then
         if [ -n "${ASC_KEY_URL}" ]; then
-            ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+            ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
         elif [ -n "${GPG_KEY_ID}" ]; then
-            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv ${GPG_KEY_ID}
+            ${ELEVATE} gpg --no-default-keyring --keyring "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
         else #GPG_KEY_URL
-            ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+            ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
     fi
 
@@ -1202,7 +1227,7 @@ function add_apt_repo() {
     fi
 
     APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" > /dev/null
+    echo "${APT_LIST_LINE}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" >/dev/null
 }
 
 function ppa_to_apt() {
@@ -1210,7 +1235,8 @@ function ppa_to_apt() {
     local -r PPA_PERSON="$(echo "${PPA_ADDRESS}" | cut -d / -f 1)"
     local -r PPA_ARCHIVE="$(echo "${PPA_ADDRESS}" | cut -d / -f 2)"
     export APT_REPO_URL="https://ppa.launchpadcontent.net/${PPA_ADDRESS}/ubuntu/ ${UPSTREAM_CODENAME} main"
-    export ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+    ASC_KEY_URL="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x$(curl -s "https://api.launchpad.net/devel/~${PPA_PERSON}/+archive/ubuntu/${PPA_ARCHIVE}" | grep -o -E "\"signing_key_fingerprint\": \"[0-9A-F]+\"" | cut -d \" -f 4)"
+    export ASC_KEY_URL
     export APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
 }
 
@@ -1220,28 +1246,29 @@ function maint_supported_cache() {
 
     if [ -f ${CACHE_DIR}/supported.list ]; then
         case "${ACTION}" in
-            remove|purge)
-                ${ELEVATE} sed -i "/^${APP} /d" ${CACHE_DIR}/supported.list
-                cat ${CACHE_DIR}/supported.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
-                ;;
-            reinstall|install)
-                local PAD='                              '
-                local cache_line=$(printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}")
-                # # First remove the bare entry
-                ${ELEVATE} sed -i -e '/^${APP}$/d' ${CACHE_DIR}/supported.list
-                # Replace it with a flagged one
-                cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
-                # should be there but safest to be sure
-                grep -q -w ${APP}$ ${CACHE_DIR}/supported_apps.list || \
+        remove | purge)
+            ${ELEVATE} sed -i "/^${APP} /d" ${CACHE_DIR}/supported.list
+            cat ${CACHE_DIR}/supported.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+            ;;
+        reinstall | install)
+            local PAD='                              '
+            local cache_line
+            cache_line=$(printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}")
+            # # First remove the bare entry
+            ${ELEVATE} sed -i -e "/^${APP}\$/d" ${CACHE_DIR}/supported.list
+            # Replace it with a flagged one
+            cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+            # should be there but safest to be sure
+            grep -q -w "${APP}\$" ${CACHE_DIR}/supported_apps.list ||
                 cat ${CACHE_DIR}/supported_apps.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported_apps.list
-                ;;
+            ;;
         esac
     fi
 }
 
 function add_installed() {
     local line="${APP} ${DEFVER} ${METHOD}"
-    cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
+    cat "${ETC_DIR}/installed" - <<<"${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
 }
 
 function remove_installed() {
@@ -1263,8 +1290,8 @@ function deb_deb-get() {
 
 #### MAIN ####
 
-WGET_VERBOSITY=${WGET_VERBOSITY:="-q"}
-WGET_TIMEOUT=${WGET_TIMEOUT:="--timeout 5"}
+WGET_VERBOSITY="${WGET_VERBOSITY:="-q"}"
+WGET_TIMEOUT="${WGET_TIMEOUT:="--timeout 5"}"
 export WGET_TIMEOUT WGET_VERBOSITY
 export CACHE_DIR="/var/cache/deb-get"
 readonly ETC_DIR="/etc/deb-get"
@@ -1275,30 +1302,35 @@ if ((BASH_VERSINFO[0] < 4)); then
 fi
 
 if ! command -v lsb_release 1>/dev/null; then
-  fancy_message fatal "lsb_release not detected. Quitting."
+    fancy_message fatal "lsb_release not detected. Quitting."
 fi
 
-export HOST_CPU="$(uname -m)"
+HOST_CPU="$(uname -m)"
+export HOST_CPU
 case ${HOST_CPU} in
-  aarch64|armv7l|x86_64) export HOST_ARCH="$(dpkg --print-architecture)";;
-  *) fancy_message fatal "${HOST_CPU} is not supported. Quitting.";;
+aarch64 | armv7l | x86_64)
+    HOST_ARCH="$(dpkg --print-architecture)"
+    export HOST_ARCH
+    ;;
+*) fancy_message fatal "${HOST_CPU} is not supported. Quitting." ;;
 esac
-
+#shellcheck disable=SC2034
 readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+#shellcheck disable=SC2034
 readonly USER_HOME="${HOME}"
 
 OS_ID=$(lsb_release --id --short)
 case "${OS_ID}" in
-  Debian) OS_ID_PRETTY="Debian";;
-  Linuxmint) OS_ID_PRETTY="Linux Mint";;
-  Neon) OS_ID_PRETTY="KDE Neon";;
-  Pop) OS_ID_PRETTY="Pop!_OS";;
-  Ubuntu) OS_ID_PRETTY="Ubuntu";;
-  Zorin) OS_ID_PRETTY="Zorin OS";;
-  *)
+Debian) OS_ID_PRETTY="Debian" ;;
+Linuxmint) OS_ID_PRETTY="Linux Mint" ;;
+Neon) OS_ID_PRETTY="KDE Neon" ;;
+Pop) OS_ID_PRETTY="Pop!_OS" ;;
+Ubuntu) OS_ID_PRETTY="Ubuntu" ;;
+Zorin) OS_ID_PRETTY="Zorin OS" ;;
+*)
     OS_ID_PRETTY="${OS_ID}"
     fancy_message warn "${OS_ID} is not supported."
-  ;;
+    ;;
 esac
 
 OS_CODENAME=$(lsb_release --codename --short)
@@ -1311,11 +1343,11 @@ else
     fancy_message fatal "os-release not found. Quitting"
 fi
 
-UPSTREAM_ID="$(grep "^ID=" ${OS_RELEASE} | cut -d'=' -f2)"
+UPSTREAM_ID="$(grep "^ID=" "${OS_RELEASE}" | cut -d'=' -f2)"
 
 # Fallback to ID_LIKE if ID was not 'ubuntu' or 'debian'
 if [ "${UPSTREAM_ID}" != ubuntu ] && [ "${UPSTREAM_ID}" != debian ]; then
-    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" ${OS_RELEASE} | cut -d'=' -f2 | cut -d \" -f 2)"
+    UPSTREAM_ID_LIKE="$(grep "^ID_LIKE=" "${OS_RELEASE}" | cut -d'=' -f2 | cut -d \" -f 2)"
 
     if [[ " ${UPSTREAM_ID_LIKE} " =~ " ubuntu " ]]; then
         UPSTREAM_ID=ubuntu
@@ -1326,14 +1358,14 @@ if [ "${UPSTREAM_ID}" != ubuntu ] && [ "${UPSTREAM_ID}" != debian ]; then
     fi
 fi
 
-UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+UPSTREAM_CODENAME=$(grep "^UBUNTU_CODENAME=" "${OS_RELEASE}" | cut -d'=' -f2)
 
 if [ -z "${UPSTREAM_CODENAME}" ]; then
-    UPSTREAM_CODENAME=$(grep "^DEBIAN_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+    UPSTREAM_CODENAME=$(grep "^DEBIAN_CODENAME=" "${OS_RELEASE}" | cut -d'=' -f2)
 fi
 
 if [ -z "${UPSTREAM_CODENAME}" ]; then
-    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" ${OS_RELEASE} | cut -d'=' -f2)
+    UPSTREAM_CODENAME=$(grep "^VERSION_CODENAME=" "${OS_RELEASE}" | cut -d'=' -f2)
 fi
 
 # Debian 12+
@@ -1341,18 +1373,19 @@ if [ -z "${UPSTREAM_CODENAME}" ] && [ -e /etc/debian_version ]; then
     UPSTREAM_CODENAME=$(cut -d / -f 1 /etc/debian_version)
 fi
 
+# shellcheck disable=SC2034
 case "${UPSTREAM_CODENAME}" in
-    buster)   UPSTREAM_RELEASE="10";;
-    bullseye) UPSTREAM_RELEASE="11";;
-    bookworm) UPSTREAM_RELEASE="12";;
-    trixie)   UPSTREAM_CODENAME="13";;
-    sid)      UPSTREAM_RELEASE="unstable";;
-    focal)    UPSTREAM_RELEASE="20.04";;
-    jammy)    UPSTREAM_RELEASE="22.04";;
-    kinetic)  UPSTREAM_RELEASE="22.10";;
-    lunar)    UPSTREAM_RELEASE="23.04";;
-    mantic)   UPSTREAM_RELEASE="23.10";;
-    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
+buster) UPSTREAM_RELEASE="10" ;;
+bullseye) UPSTREAM_RELEASE="11" ;;
+bookworm) UPSTREAM_RELEASE="12" ;;
+trixie) UPSTREAM_CODENAME="13" ;;
+sid) UPSTREAM_RELEASE="unstable" ;;
+focal) UPSTREAM_RELEASE="20.04" ;;
+jammy) UPSTREAM_RELEASE="22.04" ;;
+kinetic) UPSTREAM_RELEASE="22.10" ;;
+lunar) UPSTREAM_RELEASE="23.04" ;;
+mantic) UPSTREAM_RELEASE="23.10" ;;
+*) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release." ;;
 esac
 
 if [ -n "${1}" ]; then
@@ -1364,8 +1397,13 @@ else
     exit 1
 fi
 
+APPS=()
+INSTALLED_APPS=()
+APP_CONFLICTS=()
+LOCAL_APPS=()
+
 case "${ACTION}" in
-    update|upgrade|show|reinstall|install|remove|purge|search|list|pretty_list|prettylist|csv_list|csvlist|csv|fix-installed)
+update | upgrade | show | reinstall | install | remove | purge | search | list | pretty_list | prettylist | csv_list | csvlist | csv | fix-installed)
     APPS="$(list_local_apps)"
     APPS="${APPS}
 $(list_repo_apps)"
@@ -1384,214 +1422,270 @@ $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
 esac
 
 case ${ACTION} in
-    install|reinstall|remove|purge|show)
-        if [ -z "${1}" ]; then
-            fancy_message error "You must specify an app:\n"
-            ACTION="list"
-            list_debs "" --raw >&2
-            exit 1
-        fi
-        print_etc_overrides
-        DEPRECATED_APPS="$(list_deprecated_apps | sort -t / -k 2 -u)"
-        if [ -n "${DEPRECATED_APPS}" ]; then
-            readonly DEPRECATED_INSTALLED=($(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(echo "${DEPRECATED_APPS}" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2))
-        else
-            readonly DEPRECATED_INSTALLED=()
-        fi
-        DEPRECATED_APPS=(${DEPRECATED_APPS})
-        print_deprecated;;
+install | reinstall | remove | purge | show)
+    if [ -z "${1}" ]; then
+        fancy_message error "You must specify an app:\n"
+        ACTION="list"
+        list_debs "" --raw >&2
+        exit 1
+    fi
+    print_etc_overrides
+    DEPRECATED_APPS="$(list_deprecated_apps | sort -t / -k 2 -u)"
+    DEPRECATED_INSTALLED=()
+    pkglist=$(echo "${DEPRECATED_APPS}" | cut -d / -f 2 | tr "\n" " ")
+    if [ -n "${DEPRECATED_APPS}" ]; then
+        dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W "${pkglist[@]}" 2>/dev/null |
+            grep "^ii " | cut -d : -f 2 |
+            while IFS="" read -r line; do DEPRECATED_INSTALLED+=("$line"); done
+    fi
+    readonly DEPRECATED_INSTALLED
+    DEPRECATED_APPS=("${DEPRECATED_APPS[*]}")
+    print_deprecated
+    ;;
 esac
 
 export ELEVATE=""
 
 case "${ACTION}" in
-    cache)
-        ls -lh "${CACHE_DIR}/";;
-    clean)
-        elevate_privs
-        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.deb
-        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json
-        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.html
-        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.txt
-        ;;
-    show)
-        for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-            if [ -z "${FULL_APP}" ]; then
-                fancy_message error "${APP} is not a supported application."
-                ACTION="list"
-                list_debs "" --raw >&2
-                exit 1
-            fi
-            validate_deb "${FULL_APP}"
-            info_deb
-        done;;
-    install|reinstall)
-        elevate_privs
-        create_cache_dir
-        create_etc_dir
-        for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-            if [ -z "${FULL_APP}" ]; then
-                fancy_message error "${APP} is not a supported application."
-                ACTION="list"
-                list_debs "" --raw >&2
-                exit 1
-            fi
-            validate_deb "${FULL_APP}"
-            if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
-                fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
-            fi
-
-            if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${UPSTREAM_CODENAME}" ]]; then
-                fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
-            fi
-
-            if [ "${METHOD}" == "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
-                fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
-            fi
-
-            case ${METHOD} in
-                direct|github|website) install_deb "${URL}";;
-                apt) install_apt;;
-                ppa) install_ppa;;
-            esac
-        done;;
-    list)
-        list_opt_1=""
-        list_opt_2=""
-        while [ -n "${1}" ]; do
-            if [ "${1}" == --include-unsupported ]; then
-                list_opt_1=--include-unsupported
-            elif [[ " --raw --installed --not-installed --only-unsupported " =~ " ${1} " ]]; then
-                list_opt_2="${1}"
-            else
-                fancy_message fatal "Unknown option supplied: ${1}"
-            fi
-            shift
-        done
-        list_debs "${list_opt_1}" "${list_opt_2}";;
-    pretty_list|prettylist)
-        ACTION="prettylist"
-        prettylist_debs "${1}";;
-    csv_list|csvlist|csv)
-        ACTION="prettylist"
-        csvlist_debs "${1}";;
-    purge)
-        elevate_privs
-        opt_remove_repo=""
-        if [ "${1}" == --remove-repo ]; then
-            opt_remove_repo=--remove-repo
-            shift
+cache)
+    ls -lh "${CACHE_DIR}/"
+    ;;
+clean)
+    elevate_privs
+    ${ELEVATE} rm -fv "${CACHE_DIR}"/*.deb
+    ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json
+    ${ELEVATE} rm -fv "${CACHE_DIR}"/*.html
+    ${ELEVATE} rm -fv "${CACHE_DIR}"/*.txt
+    ;;
+show)
+    for APP in "${@,,}"; do
+        FULL_APP="$(
+            IFS=$'\n'
+            echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+        )"
+        if [ -z "${FULL_APP}" ]; then
+            fancy_message error "${APP} is not a supported application."
+            ACTION="list"
+            list_debs "" --raw >&2
+            exit 1
         fi
-        for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-            if [ -z "${FULL_APP}" ]; then
-                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$")"
-            fi
-            if [ -z "${FULL_APP}" ]; then
-                fancy_message error "${APP} is not a supported application."
-                ACTION="list"
-                list_debs "" --raw >&2
-                exit 1
-            fi
-            validate_deb "${FULL_APP}"
-            remove_deb "${APP}" purge "${opt_remove_repo}"
-        done;;
-    remove)
-        elevate_privs
-        opt_remove_repo=""
-        if [ "${1}" == --remove-repo ]; then
-            opt_remove_repo=--remove-repo
-            shift
+        validate_deb "${FULL_APP}"
+        info_deb
+    done
+    ;;
+
+install | reinstall)
+    elevate_privs
+    create_cache_dir
+    create_etc_dir
+    for APP in "${@,,}"; do
+        FULL_APP="$(
+            IFS=$'\n'
+            echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+        )"
+        if [ -z "${FULL_APP}" ]; then
+            fancy_message error "${APP} is not a supported application."
+            ACTION="list"
+            list_debs "" --raw >&2
+            exit 1
         fi
-        for APP in "${@,,}"; do
-            FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-            if [ -z "${FULL_APP}" ]; then
-                FULL_APP="$(IFS=$'\n'; echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$")"
-            fi
-            if [ -z "${FULL_APP}" ]; then
-                fancy_message error "${APP} is not a supported application."
-                ACTION="list"
-                list_debs "" --raw >&2
-                exit 1
-            fi
-            validate_deb "${FULL_APP}"
-            remove_deb "${APP}" "" "${opt_remove_repo}"
-        done;;
-    search)
+        validate_deb "${FULL_APP}"
+        if [[ "${ARCHS_SUPPORTED}" != *"${HOST_ARCH}"* ]]; then
+            fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
+        fi
+
+        # shellcheck disable=SC2076
+        if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ "${CODENAMES_SUPPORTED[*]}" =~ "${UPSTREAM_CODENAME}" ]]; then
+            fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
+        fi
+
+        if [ "${METHOD}" == "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+            fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
+        fi
+
+        case ${METHOD} in
+        direct | github | website) install_deb "${URL}" ;;
+        apt) install_apt ;;
+        ppa) install_ppa ;;
+        esac
+    done
+    ;;
+list)
+    list_opt_1=""
+    list_opt_2=""
+    while [ -n "${1}" ]; do
+        # shellcheck disable=SC2076
         if [ "${1}" == --include-unsupported ]; then
-            if [ -z "${2}" ]; then
-                fancy_message error "You must specify a pattern."
-                usage >&2
-                exit 1
-            fi
-            list_debs --include-unsupported --raw | grep "${2}"
+            list_opt_1=--include-unsupported
+        elif [[ " --raw --installed --not-installed --only-unsupported " =~ " ${1} " ]]; then
+            list_opt_2="${1}"
         else
-            list_debs "" --raw | grep "${1}"
-        fi;;
-    update)
-        if [ -n "${1}" ] && [ "${1}" != --repos-only ] && [ "${1}" != --quiet ]; then
             fancy_message fatal "Unknown option supplied: ${1}"
-        elif [ -n "${2}" ] && [ "${2}" != --repos-only ] && [ "${2}" != --quiet ]; then
-                fancy_message fatal "Unknown option supplied: ${2}"
         fi
-        if [ -n "${3}" ] ; then
-                    fancy_message error "Ignoring extra options from : ${3}"
+        shift
+    done
+    list_debs "${list_opt_1}" "${list_opt_2}"
+    ;;
+pretty_list | prettylist)
+    ACTION="prettylist"
+    prettylist_debs "${1}"
+    ;;
+csv_list | csvlist | csv)
+    ACTION="prettylist"
+    csvlist_debs "${1}"
+    ;;
+
+purge)
+    elevate_privs
+    opt_remove_repo=""
+    if [ "${1}" == --remove-repo ]; then
+        opt_remove_repo=--remove-repo
+        shift
+    fi
+    for APP in "${@,,}"; do
+        FULL_APP="$(
+            IFS=$'\n'
+            echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+        )"
+        if [ -z "${FULL_APP}" ]; then
+            FULL_APP="$(
+                IFS=$'\n'
+                echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$"
+            )"
         fi
-        elevate_privs
-        create_cache_dir
-        create_etc_dir
-        init_repos
-        update_repos "$@"
-        #if [ "${1}" != --repos-only ]; then
-        if [[ "$*" != *"--repos-only"* ]] ; then
-            APPS="$(list_local_apps)"
-            APPS="${APPS}
+        if [ -z "${FULL_APP}" ]; then
+            fancy_message error "${APP} is not a supported application."
+            ACTION="list"
+            list_debs "" --raw >&2
+            exit 1
+        fi
+        validate_deb "${FULL_APP}"
+        remove_deb "${APP}" purge "${opt_remove_repo}"
+    done
+    ;;
+
+remove)
+    elevate_privs
+    opt_remove_repo=""
+    if [ "${1}" == --remove-repo ]; then
+        opt_remove_repo=--remove-repo
+        shift
+    fi
+
+    for APP in "${@,,}"; do
+        FULL_APP="$(
+            IFS=$'\n'
+            echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+        )"
+        if [ -z "${FULL_APP}" ]; then
+            FULL_APP="$(
+                IFS=$'\n'
+                echo "${DEPRECATED_APPS[*]}" | grep -m 1 "/${APP}$"
+            )"
+        fi
+        if [ -z "${FULL_APP}" ]; then
+            fancy_message error "${APP} is not a supported application."
+            ACTION="list"
+            list_debs "" --raw >&2
+            exit 1
+        fi
+        validate_deb "${FULL_APP}"
+        remove_deb "${APP}" "" "${opt_remove_repo}"
+    done
+    ;;
+
+search)
+    if [ "${1}" == --include-unsupported ]; then
+        if [ -z "${2}" ]; then
+            fancy_message error "You must specify a pattern."
+            usage >&2
+            exit 1
+        fi
+        list_debs --include-unsupported --raw | grep "${2}"
+    else
+        list_debs "" --raw | grep "${1}"
+    fi
+    ;;
+
+update)
+    if [ -n "${1}" ] && [ "${1}" != --repos-only ] && [ "${1}" != --quiet ]; then
+        fancy_message fatal "Unknown option supplied: ${1}"
+    elif [ -n "${2}" ] && [ "${2}" != --repos-only ] && [ "${2}" != --quiet ]; then
+        fancy_message fatal "Unknown option supplied: ${2}"
+    fi
+    if [ -n "${3}" ]; then
+        fancy_message error "Ignoring extra options from : ${3}"
+    fi
+    elevate_privs
+    create_cache_dir
+    create_etc_dir
+    init_repos
+    update_repos "$@"
+    #if [ "${1}" != --repos-only ]; then
+    if [[ "$*" != *"--repos-only"* ]]; then
+        APPS="$(list_local_apps)"
+        APPS="${APPS}
 $(list_repo_apps)"
-            APPS="${APPS}
+        APPS="${APPS}
 $(declare -F | grep deb_ | sed 's|declare -f deb_|00-builtin/|g')"
-            APPS=($(echo "${APPS}" | sort -t / -k 2 -u))
-            for APP in "${INSTALLED_APPS[@]}"; do
-                FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                if [ -n "${FULL_APP}" ]; then
-                    validate_deb "${FULL_APP}"
-                    fix_installed
-                else
-                    remove_installed "${APP}"
-                fi
-            done
-            INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
-            update_debs
-        fi;;
-    upgrade)
-        elevate_privs
-        create_cache_dir
-        upgrade_debs;;
-    fix-installed)
-        if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
-            fancy_message fatal "Unknown option supplied: ${1}"
-        fi
-        elevate_privs
-        if [ "${1}" = --old-apps ]; then
-            for APP in $(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(IFS=$'\n'; echo "${APPS[*]}" | cut -d / -f 2 | tr "\n" " ") 2> /dev/null | grep "^ii " | cut -d : -f 2); do
-                validate_deb "$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                fix_old_apps
-            done
-        else
-            for APP in "${INSTALLED_APPS[@]}"; do
-                FULL_APP="$(IFS=$'\n'; echo "${APPS[*]}" | grep -m 1 "/${APP}$")"
-                if [ -n "${FULL_APP}" ]; then
-                    validate_deb "${FULL_APP}"
-                    fix_installed
-                else
-                    remove_installed "${APP}"
-                fi
-            done
-        fi;;
-    version) echo "${VERSION}";;
-    help) usage;;
-    *) fancy_message fatal "Unknown action supplied: ${ACTION}";;
+        APPS=($(echo "${APPS}" | sort -t / -k 2 -u))
+        for APP in "${INSTALLED_APPS[@]}"; do
+            FULL_APP="$(
+                IFS=$'\n'
+                echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+            )"
+            if [ -n "${FULL_APP}" ]; then
+                validate_deb "${FULL_APP}"
+                fix_installed
+            else
+                remove_installed "${APP}"
+            fi
+        done
+        INSTALLED_APPS=($(cut -d " " -f 1 "${ETC_DIR}/installed"))
+        update_debs
+    fi
+    ;;
+
+upgrade)
+    elevate_privs
+    create_cache_dir
+    upgrade_debs
+    ;;
+
+fix-installed)
+    if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
+        fancy_message fatal "Unknown option supplied: ${1}"
+    fi
+    elevate_privs
+    if [ "${1}" = --old-apps ]; then
+        for APP in $(dpkg-query -f '${db:Status-abbrev}:${Package}\n' -W $(
+            IFS=$'\n'
+            echo "${APPS[*]}" | cut -d / -f 2 | tr "\n" " "
+        ) 2>/dev/null | grep "^ii " | cut -d : -f 2); do
+            validate_deb "$(
+                IFS=$'\n'
+                echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+            )"
+            fix_old_apps
+        done
+    else
+        for APP in "${INSTALLED_APPS[@]}"; do
+            FULL_APP="$(
+                IFS=$'\n'
+                echo "${APPS[*]}" | grep -m 1 "/${APP}$"
+            )"
+            if [ -n "${FULL_APP}" ]; then
+                validate_deb "${FULL_APP}"
+                fix_installed
+            else
+                remove_installed "${APP}"
+            fi
+        done
+    fi
+    ;;
+version) echo "${VERSION}" ;;
+help) usage ;;
+*) fancy_message fatal "Unknown action supplied: ${ACTION}" ;;
 esac
 
 if [[ ${PACKAGE_INSTALLATION_COUNT} -lt ${PACKAGE_INSTALLATION_TRIES} ]]; then

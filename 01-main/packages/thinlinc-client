@@ -1,7 +1,7 @@
  DEFVER=1
  ARCHS_SUPPORTED="amd64 armhf"
  local TARGET_ARCH="xxx"
- 
+
  case ${HOST_ARCH} in
     amd64|intel)
          TARGET_ARCH=amd64;;
