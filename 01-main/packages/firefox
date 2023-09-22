@@ -1,0 +1,6 @@
+DEFVER=1
+CODENAMES_SUPPORTED="mantic lunar jammy focal bionic xenial"
+PPA="ppa:mozillateam/ppa"
+PRETTY_NAME="firefox"
+WEBSITE="https://www.mozilla.org/firefox/enterprise/"
+SUMMARY="Firefox Stable Release."
