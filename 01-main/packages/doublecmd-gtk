@@ -1,0 +1,8 @@
+DEFVER=1
+CODENAMES_SUPPORTED="buster bullseye focal jammy kinetic lunar"
+ASC_KEY_URL="https://download.opensuse.org/repositories/home:Alexx2000/xUbuntu_${UPSTREAM_RELEASE}/Release.key"
+APT_LIST_NAME="doublecmd-gtk"
+APT_REPO_URL="https://download.opensuse.org/repositories/home:/Alexx2000/xUbuntu_${UPSTREAM_RELEASE}/ /"
+PRETTY_NAME="doublecmd-gtk"
+WEBSITE="https://doublecmd.sourceforge.io/"
+SUMMARY="Doublecmd is a cross-platform open source file manager with two panels side by side. It is inspired by Total Commander and features new ideas."
