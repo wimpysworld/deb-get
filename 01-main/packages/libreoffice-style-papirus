@@ -1,0 +1,6 @@
+DEFVER=1
+CODENAMES_SUPPORTED="focal bionic xenial trusty"
+PPA="ppa:papirus/papirus"
+PRETTY_NAME="libreoffice-style-papirus"
+WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-libreoffice-theme"
+SUMMARY="Papirus theme for LibreOffice."
