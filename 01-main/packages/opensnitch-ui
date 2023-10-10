@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "evilsocket/opensnitch" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | grep 'python3-opensnitch-ui' | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+fi
+PRETTY_NAME="python3-opensnitch-ui"
+WEBSITE="https://github.com/evilsocket/opensnitch"
+SUMMARY="UI for OpenSnitch is a GNU/Linux interactive application firewall inspired by Little Snitch."
