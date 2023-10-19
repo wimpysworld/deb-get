@@ -178,7 +178,7 @@ function get_website() {
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
-            if ! ${ELEVATE} wget -q --no-use-server-timestamps "${1}" -O "${CACHE_FILE}"; then
+            if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "${1}" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
                 ${ELEVATE} rm -f "${CACHE_FILE}"
             fi
@@ -212,7 +212,7 @@ function download_deb() {
     local URL="${1}"
     local FILE="${2}"
 
-    if ! ${ELEVATE} wget --quiet --continue --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
+    if ! ${ELEVATE} wget ${WGET_VERBOSITY} --continue ${WGET_TIMEOUT} --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
         return 1
@@ -665,7 +665,7 @@ function update_repos() {
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
-        ${ELEVATE} wget ${WGET_VERBOSITY} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
+        ${ELEVATE} wget ${UPD_WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
         # although so long as manifest is good we are OK
@@ -680,7 +680,7 @@ function update_repos() {
                             print "curl ${CURL_VERBOSITY} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
                 ! /github/ {print "# fetching non-github repo";
                             print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
-                            print "${ELEVATE} wget ${WGET_VERBOSITY} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
+                            print "${ELEVATE} wget ${UPD_WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
                             print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
                 } '\
                 <<<"${REPO_URL}"
@@ -1158,13 +1158,13 @@ function add_apt_repo() {
     fi
     if [ ! -e "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" ]; then
         if [ -n "${ASC_KEY_URL}" ]; then
-            ${ELEVATE} wget -q "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+            ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
         elif [ -n "${GPG_KEY_ID}" ]; then
             ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
         else #GPG_KEY_URL
-            ${ELEVATE} wget -q "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+            ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
     fi
 
