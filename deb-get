@@ -652,14 +652,12 @@ function refresh_supported_cache_lists() {
 function update_repos() {
     local REPO_URL=""
     # preserve current behaviour for now but allow modification via env
-    local CURL_VERBOSITY="-q --progress-bar"
-    local WGET_VERBOSITY="-q"
+    local CURL_OPTS="--disable --progress-bar"
+    local WGET_VERBOSITY="--quiet"
 
-    if [[ " $* " == *' --quiet '* ]]  ; then
-         CURL_VERBOSITY="-Ss"
-         WGET_VERBOSITY="-q"
+    if [[ " $* " == *' --quiet'* ]]  ; then
+         CURL_OPTS="--disable --show-error --silent"
     fi
-
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
@@ -677,7 +675,7 @@ function update_repos() {
         awk -F/ '/github/  {print "# fetching github repo";
                             print "GITREPO="$4"/"$5;\
                             print "BRANCH="$6;\
-                            print "curl ${CURL_VERBOSITY} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
+                            print "curl ${CURL_OPTS} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
                 ! /github/ {print "# fetching non-github repo";
                             print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
                             print "${ELEVATE} wget ${UPD_WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
