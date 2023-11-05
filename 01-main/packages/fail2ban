@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "fail2ban/fail2ban" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+fi
+PRETTY_NAME="fail2ban"
+WEBSITE="https://github.com/fail2ban/fail2ban"
+SUMMARY=" Daemon to ban hosts that cause multiple authentication errors "
