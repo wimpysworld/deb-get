@@ -24,8 +24,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build .deb
       run: |
-        apt-get -y update
-        apt-get -y install debhelper devscripts
+        sudo apt-get -y update
+        sudo apt-get -y install debhelper devscripts
         REL_VER=$(grep "^readonly VERSION" deb-get | cut -d'"' -f2)
         dch -v "${REL_VER}-1" --distribution=unstable "New upstream release."
         dpkg-buildpackage --build=binary --no-check-builddeps --compression=gzip
