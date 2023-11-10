@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize]
     paths:
       - "01-main/packages/*"
+      - "01-main/manifest"
       - "!01-main/packages/*.html"
       - "!01-main/packages/*.json"
       - "!01-main/packages/timestamp"
@@ -22,9 +23,6 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-
-          # Dependencies to build the deb
-          # sudo apt-get install build-essential devscripts debhelper -y
 
           # Dependencies for deb-get itself
           sudo apt-get install apt apt-transport-https bash coreutils curl dpkg gpg grep libc-bin lsb-release sed software-properties-common sudo wget desktop-file-utils -y
