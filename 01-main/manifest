@@ -1,5 +1,6 @@
 https://raw.githubusercontent.com/philclifford/deb-get/extras/01-main
 1password
+activitywatch
 agena
 alduin
 android-messages-desktop
@@ -8,6 +9,7 @@ anydesk
 appimagelauncher
 atom
 atomic
+atuin
 audio-recorder
 authme
 azure-cli
@@ -58,8 +60,8 @@ duf
 dustracing2d
 element-desktop
 enpass
-exodus
 exifcleaner
+#exodus
 expressvpn
 fail2ban
 fastfetch
@@ -128,6 +130,7 @@ mailspring
 makedeb
 master-pdf-editor-5
 mattermost-desktop
+mdview
 media-downloader
 mediathekview
 mergerfs
@@ -138,12 +141,14 @@ minigalaxy
 minikube
 motrix
 mpdevil
-ms-office-electron
+#ms-office-electron
+ms-365-electron
 mullvad-vpn
 nala
 nala-legacy
 neo4j
 #neovim
+nemo-mediainfo-tab
 nextcloud-desktop
 nomad
 nordvpn
@@ -229,6 +234,7 @@ telegraf
 terraform
 texworks
 thinlinc-client
+thorium-browser
 tidal-hifi
 tixati
 tonelib-bassdrive

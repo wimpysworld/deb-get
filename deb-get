@@ -3,7 +3,7 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.3.9.1-pc-extras"
+readonly VERSION="0.4.0.1-pc-extras"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
 if [ -n "${DEBGET_TOKEN}" ]; then
@@ -652,20 +652,18 @@ function refresh_supported_cache_lists() {
 function update_repos() {
     local REPO_URL=""
     # preserve current behaviour for now but allow modification via env
-    local CURL_VERBOSITY="-q --progress-bar"
-    local WGET_VERBOSITY="-q"
+    local CURL_OPTS="--disable --progress-bar"
+    local WGET_VERBOSITY="--quiet"
 
-    if [[ " $* " == *' --quiet '* ]]  ; then
-         CURL_VERBOSITY="-Ss"
-         WGET_VERBOSITY="-q"
+    if [[ " $* " == *' --quiet'* ]]  ; then
+         CURL_OPTS="--disable --show-error --silent"
     fi
-
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
-        ${ELEVATE} wget ${UPD_WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
+        ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
         # although so long as manifest is good we are OK
@@ -677,10 +675,10 @@ function update_repos() {
         awk -F/ '/github/  {print "# fetching github repo";
                             print "GITREPO="$4"/"$5;\
                             print "BRANCH="$6;\
-                            print "curl ${CURL_VERBOSITY} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
+                            print "curl ${CURL_OPTS} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
                 ! /github/ {print "# fetching non-github repo";
                             print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
-                            print "${ELEVATE} wget ${UPD_WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
+                            print "${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
                             print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
                 } '\
                 <<<"${REPO_URL}"
