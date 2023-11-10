@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "ActivityWatch/activitywatch" "latest"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
-fi
-PRETTY_NAME="ActivityWatch"
-WEBSITE="https://activitywatch.net/"
-SUMMARY="The best free and open-source automated time tracker. Cross-platform, extensible, privacy-focused."
