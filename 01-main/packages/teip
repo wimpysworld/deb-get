@@ -1,5 +1,5 @@
 DEFVER=1
-ARCHS_SUPPORTED='amd64 arm64 armhf'
+ARCHS_SUPPORTED='amd64'
 get_github_releases 'greymd/teip' 'latest'
 if [ "${ACTION}" != prettylist ]; then
     URL=$(grep -m1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*${HOST_CPU}[^/\"]*\.deb\"" "${CACHE_FILE}")
