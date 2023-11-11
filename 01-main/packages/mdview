@@ -5,7 +5,6 @@ if [ "${ACTION}" != prettylist ]; then
     URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
 fi
-EULA="https://github.com/mapitman/mdview/blob/main/LICENSE"
 PRETTY_NAME="Markdown View (mdview)"
 WEBSITE="https://github.com/mapitman/mdview"
 SUMMARY="A command line utility to format markdown and launch the resulting HTML file in the default web browser."
