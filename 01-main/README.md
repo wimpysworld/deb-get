@@ -117,6 +117,7 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://iriun.com/) | `iriunwebcam` | <i>Use your phone's camera as a wireless webcam.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.jabref.org/) | `jabref` | <i>The efficient way to collect, organize & discover.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://jami.net/) | `jami` | <i>Share, freely and privately.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/kellyjonbrazil/jc) | `jc` | <i>JSON CLI output utility</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://jellyfin.org/) | `jellyfin` | <i>The Free Software Media System.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://jellyfin.org) | `jellyfin-media-player` | <i>Jellyfin Media Player is a desktop client using jellyfin-web with embedded MPV player for the Jellyfin Media Server.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/hvdwolf/jExifToolGUI) | `jexiftoolgui` | <i>jExifToolGUI is a multi-platform java/Swing graphical frontend for the excellent command-line ExifTool application by Phil Harvey</i> |
@@ -133,6 +134,7 @@ cog.out(pretty_list)
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://www.libreoffice.org/) | `libreoffice` | <i>LibreOffice Fresh is the latest (non-alpha/beta) release of the newest series of LibreOffice - a free and powerful office suite.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://librewolf.net/) | `librewolf` | <i>An independent fork of Firefox, with the primary goals of privacy, security and user freedom.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/GEROGIANNIS/Limoji) | `limoji` | <i>Turning your favorite emojis into the world of ASCII.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/localsend/localsend) | `localsend` | <i>An open source cross-platform alternative to AirDrop</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Peltoche/lsd) | `lsd` | <i>The next gen 'ls' command.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://ludo.libretro.com/) | `ludo` | <i>A minimalist frontend for emulators.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
