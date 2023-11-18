@@ -3,9 +3,9 @@ DEFVER=1
 #get_gitlab_releases("34675721")
 
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(wget  -q -O- https://gitlab.com/api/v4/projects/34675721/releases/permalink/latest/assets/links|jq -r '.[] |select(.name|contains("x86_64.deb"))| .direct_asset_url')
-    VERSION_PUBLISHED=${URL##*/releases/v}
-￼   VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
+    URL=$(wget  -q -O- "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases/permalink/latest/assets/links" | jq -r '.[] |select(.name|contains("x86_64.deb"))| .direct_asset_url')
+    VERSION_PUBLISHED="${URL##*/releases/v}"
+    VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
 fi
 
 PRETTY_NAME="Glab"
