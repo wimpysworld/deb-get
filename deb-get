@@ -172,6 +172,29 @@ function get_github_releases() {
     fi
 }
 
+function get_gitlab_releases() {
+    METHOD="gitlab"
+    CACHE_FILE="${CACHE_DIR}/${APP}.json"
+    # Cache gitlab releases json for 1 hour to try and prevent API rate limits
+    # 
+    # Do not process gitlab releases while generating a pretty list or upgrading
+    # if $1 is org/app or user/repo it must be urlencoded
+    # the gitlab api can take a release or use permalink/latest to get the latest release
+    # So for gitlab sourced apps that use this release model users can use 99-local to pin a version
+    # 
+
+    if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
+        if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
+            fancy_message info "Updating ${CACHE_FILE}"
+            RELEASE=${2/%latest/permalink/latest}
+
+            local URL="https://gitlab.com/api/v4/projects/${1}/releases/${RELEASE}/assets/links" 
+            wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
+            
+            ${ELEVATE} "${wgetcmdarray[@]}" || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+        fi
+    fi
+}
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
@@ -348,7 +371,7 @@ function remove_deb() {
 
     # Remove repos/PPA/key even if the app is not installed.
     case "${METHOD}" in
-        direct|github|website)
+        direct|github|gitlab|website)
             if [ -f "${CACHE_DIR}/${FILE}" ]; then
                 fancy_message info "Removing ${CACHE_DIR}/${FILE}"
                 ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
@@ -370,7 +393,7 @@ function version_deb() {
 function info_deb() {
     local INSTALLED="${VERSION_INSTALLED:-No}"
     case "${METHOD}" in
-        (direct|github|website)
+        (direct|github|gitlab|website)
             printf '%s\n' "${PRETTY_NAME}"
             printf '  %s:\t%s\n' Package "${APP}" Repository "${APP_SRC}" Updater deb-get Installed "${INSTALLED}" Published "${VERSION_PUBLISHED}" Architecture "${ARCHS_SUPPORTED}" Download "${URL}" Website "${WEBSITE}" Summary "${SUMMARY}";;
         (apt)
@@ -466,7 +489,7 @@ function validate_deb() {
             fi
         fi
 
-        if { { [[ ' github website ' =~ " ${METHOD} " ]] && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+        if { { [[ ' github website gitlab ' =~ " ${METHOD} " ]] && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            ! [[ ' prettylist remove purge ' =~ " ${ACTION} " ]] &&
            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
            { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
@@ -571,6 +594,7 @@ EOMSG
             case "${METHOD}" in
                 apt)    ICON="debian.png";;
                 github) ICON="github.png";;
+                gitlab) ICON-"gitlab.png";;
                 ppa)    ICON="launchpad.png";;
                 *)      ICON="direct.png";;
             esac
@@ -594,7 +618,7 @@ function update_debs() {
     update_apt
     for APP in "${INSTALLED_APPS[@]}"; do
         validate_deb "${APPNAME2FULL[$APP]}"
-        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "gitlab" ] || [ "${METHOD}" == "website" ]; then
             STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
             if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
                 fancy_message info "${APP} (${VERSION_INSTALLED}) has an update pending. ${VERSION_PUBLISHED} is available."
@@ -608,7 +632,7 @@ function upgrade_debs() {
     upgrade_apt
     for APP in "${INSTALLED_APPS[@]}"; do
         validate_deb "${APPNAME2FULL[$APP]}"
-        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ]|| [ "${METHOD}" == "gitlab" ] || [ "${METHOD}" == "website" ]; then
             STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
             if [ "${STATUS}" == "install ok installed" ]; then
                 install_deb "${URL}"
@@ -1370,7 +1394,7 @@ function dg_action_install() {
             fi
 
             case "${METHOD}" in
-                direct|github|website) install_deb "${URL}";;
+                direct|github|gitlab|website) install_deb "${URL}";;
                 apt) install_apt;;
                 ppa) install_ppa;;
             esac
