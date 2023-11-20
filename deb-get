@@ -594,7 +594,7 @@ EOMSG
             case "${METHOD}" in
                 apt)    ICON="debian.png";;
                 github) ICON="github.png";;
-                gitlab) ICON-"gitlab.png";;
+                gitlab) ICON="gitlab.png";;
                 ppa)    ICON="launchpad.png";;
                 *)      ICON="direct.png";;
             esac
