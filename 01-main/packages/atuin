@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
-CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar"
+CODENAMES_SUPPORTED="buster bullseye bookworm sid focal jammy kinetic lunar mantic"
 get_github_releases "atuinsh/atuin" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
