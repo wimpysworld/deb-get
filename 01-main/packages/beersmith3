@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bionic focal jammy kinetic"
+CODENAMES_SUPPORTED="bionic focal jammy mantic"
 get_website "https://beersmith.com/download-beersmith/"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${UPSTREAM_CODENAME} in
@@ -9,7 +9,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         focal)
             URL="$( grep "3\.2\.7_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
         ;;
-        jammy|kinetic)
+        jammy|mantic)
             URL="$(grep "amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
         ;;
         *)
