@@ -33,6 +33,21 @@ and install it manually with
 ``` bash
 sudo apt-get install ./path/to/deb-get_<version>.deb
 ```
+### GitHub Personal Access Token (PAT)
+
+You must provide `deb-get` with a GitHub [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Once created, insert it into the `DEBGET_TOKEN` environment variable for `deb-get` to use for authorization with the GitHub API.
+
+For example:
+
+```shell
+export DEBGET_TOKEN=github-personal-access-token
+deb-get update
+deb-get upgrade
+```
+
+Skipping this step will lead to failures during the `update`, `upgrade`, and `install` commands.
+
+For more information, see the [API rate limit section below](#github-api-rate-limits).
 
 ## Usage
 
@@ -191,19 +206,20 @@ can only be updated/upgraded by using `deb-get update` and `deb-get upgrade`.
 
 #### GitHub API Rate Limits
 
-`deb-get` uses the [GitHub REST API](https://docs.github.com/en/rest) for some functionality when applications are provided via  GitHub Releases
-<img src=".github/github.png" align="top" width="20" />
-and for unauthenticated interactions this API is [rate-limited](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting) to 60 calls per hour per source (IP Address). This is vital for keeping the API responsive and available to all users, but can be inconvenient if you have a lot of GitHub releases being handled by `deb-get` (or need to update several times in a short period to test your [contribution](01-main/CONTRIBUTING.md)) and will result in, for example, temporary failures to be able to upgrade or install applications via  GitHub Releases
-<img src=".github/github.png" align="top" width="20" />.
+`deb-get` uses the [GitHub REST API](https://docs.github.com/en/rest) when updating the package index files for GitHub Releases
+<img src=".github/github.png" align="top" width="20" /> and for downloading the associated `.debs`. This API is [rate-limited](https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting) to 60 calls per hour per source IP address. This limit is vital for keeping the API responsive and available to all GitHub users. However, a lot of GitHub releases are now handled by `deb-get` so you will experience temporary failure to perform the following functions.
 
-If you have a GitHub account you can authenticate your GitHub API usage to increase your rate-limit to 5000 requests per hour per authenticated user.  To do this you will need to use a [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Once you have created a token within GitHub (or identified an appropriate existing token) you should insert it into an environment variable (`DEBGET_TOKEN`) for `deb-get` to pick up and use to authenticate to the GitHub API.
+* `update` the `deb-get` package index files
+* `upgrade` currently installed packages via GitHub Releases <img src=".github/github.png" align="top" width="20" />
+* `install` new applications via GitHub Releases <img src=".github/github.png" align="top" width="20" />
 
-e.g.:
+If you have a GitHub account you can provide an authorization token during your GitHub API usage to increase your rate limit to 5000 requests per hour per authenticated user.  To do this you will need to use a [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with GitHub. Once you have created a token within GitHub (or identified an appropriate existing token), insert it into the `DEBGET_TOKEN` environment variable for `deb-get` to use with the GitHub API.
 
-```
-export DEBGET_TOKEN=<my-secret-token>
-deb-get update
-deb-get upgrade
+You probably want to put this into your `.profile` so it is always available. Remember to never commit secrets in dotfiles to public git repositories!
+
+```shell
+# In .profile
+export DEBGET_TOKEN=github-personal-access-token
 ```
 
 
@@ -230,7 +246,7 @@ How to use:
 
 ### Custom User Includes
 
-As a more advanced feature, it is possible to also add your own local customizations or overrides, and supplement the list of packages supported by the main repository. This feature is especially useful so that your local copy of the main repository can remain unmodified and always be kept fully up to date by moving your customizations out in a seperate folder away from the main repository.
+As a more advanced feature, it is possible to also add your own local customizations or overrides, and supplement the list of packages supported by the main repository. This feature is especially useful so that your local copy of the main repository can remain unmodified and always be kept fully up to date by moving your customizations out in a separate folder away from the main repository.
 
 Typically because:
 
@@ -245,7 +261,7 @@ How to use:
 * For information on how to create a package definition file, head to [EXTREPO](EXTREPO.md#the-package-definition-files).
 * Your user custom package definition files are then loaded after the package definitions from any added repository.
 * A recommendation message is printed for any new user added definitions, with a URL link to open a request.
-* Warning messages are then also printed for any conflicts detected for overriden definitions (of same name), which then take priority over existing ones.
+* Warning messages are then also printed for any conflicts detected for overridden definitions (of same name), which then take priority over existing ones.
 
 For the last situation, this is most often meant as a helpful reminder to remove your custom definition once it has been successfully merged upstream into the main repository, so after the main repository updates itself you are properly notified. It also avoids keeping lots of duplicate definitions around.
 
@@ -254,7 +270,7 @@ We really hope that you will enjoy the convenience and flexibility of the user o
 ## Related projects
 
   * [App Outlet](https://appoutlet.github.io/): *A Universal linux app store*
-  * [bin-get](https://github.com/OhMyMndy/bin-get): *Script to easily and safely fetch binaries from Github Releases/tags*
+  * [bin-get](https://github.com/OhMyMndy/bin-get): *Script to easily and safely fetch binaries from GitHub Releases/tags*
   * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
   * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
