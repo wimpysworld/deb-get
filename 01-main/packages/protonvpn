@@ -1,5 +1,5 @@
 DEFVER=1
-ASC_KEY_URL="https://protonvpn.com/download/public_key.asc"
+ASC_KEY_URL="https://repo.protonvpn.com/debian/public_key.asc"
 APT_LIST_NAME="protonvpn-stable"
 APT_REPO_URL="https://repo.protonvpn.com/debian stable main"
 PRETTY_NAME="Proton VPN"
