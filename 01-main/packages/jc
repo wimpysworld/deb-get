@@ -1,0 +1,13 @@
+DEFVER=1
+ARCHS_SUPPORTED='amd64'
+get_github_releases 'kellyjonbrazil/jc' 'latest'
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -m1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*${HOST_ARCH}[^\"]*\.deb\"" "${CACHE_FILE}")
+    URL=${URL%\"}; URL=${URL##*\"}
+    VERSION_PUBLISHED=${URL##*/download/v}
+    VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
+fi
+EULA=''
+PRETTY_NAME='jc'
+WEBSITE='https://github.com/kellyjonbrazil/jc'
+SUMMARY='JSON CLI output utility'

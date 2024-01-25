@@ -1,5 +1,6 @@
 https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main
 1password
+activitywatch
 agena
 alduin
 android-messages-desktop
@@ -8,6 +9,7 @@ anydesk
 appimagelauncher
 atom
 atomic
+atuin
 audio-recorder
 authme
 azure-cli
@@ -49,6 +51,8 @@ discord
 dive
 docker-ce
 docker-desktop
+doublecmd-gtk
+doublecmd-qt
 draw.io
 dropbox
 du-dust
@@ -56,9 +60,10 @@ duf
 dustracing2d
 element-desktop
 enpass
-exodus
 exifcleaner
+#exodus
 expressvpn
+fail2ban
 fastfetch
 fd
 ferdium
@@ -89,9 +94,11 @@ heroic
 homeassistant-supervised
 hugo
 hyper
+hyperfine
 i3
 igdm
 #igdm-pro
+imhex
 influxdb
 influxdb2
 influxdb2-cli
@@ -102,6 +109,7 @@ irccloud-desktop
 iriunwebcam
 jabref
 jami
+jc
 jellyfin
 jellyfin-media-player
 jexiftoolgui
@@ -118,6 +126,7 @@ lens
 libreoffice
 librewolf
 limoji
+localsend
 lsd
 ludo
 lutris
@@ -125,6 +134,7 @@ mailspring
 makedeb
 master-pdf-editor-5
 mattermost-desktop
+mdview
 media-downloader
 mediathekview
 mergerfs
@@ -135,13 +145,16 @@ minigalaxy
 minikube
 motrix
 mpdevil
-ms-office-electron
+#ms-office-electron
+ms-365-electron
 mullvad-vpn
 nala
 nala-legacy
 neo4j
 #neovim
+nemo-mediainfo-tab
 nextcloud-desktop
+nodejs
 nomad
 nordvpn
 notable
@@ -206,6 +219,7 @@ sniffnet
 softmaker-office-2021
 indicator-sound-switcher
 soundux
+speedtest
 spotify-client
 standard-notes
 strawberry
@@ -223,10 +237,13 @@ tarsnap
 teams
 teams-for-linux
 teamviewer
+teip
 telegraf
+termius-app
 terraform
 texworks
 thinlinc-client
+thorium-browser
 tidal-hifi
 tixati
 tonelib-bassdrive

@@ -1,0 +1,6 @@
+DEFVER=1
+ASC_KEY_URL="https://packagecloud.io/ookla/speedtest-cli/gpgkey"
+APT_REPO_URL="https://packagecloud.io/ookla/speedtest-cli/ubuntu/ ${UPSTREAM_CODENAME} main"
+PRETTY_NAME="Speedtest"
+WEBSITE="https://www.speedtest.net/"
+SUMMARY="Official Linux-native Speedtest application backed by Ookla"
