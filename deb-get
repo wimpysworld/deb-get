@@ -639,12 +639,11 @@ function refresh_supported_cache_lists() {
     else
         trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
         ${ELEVATE} touch "$lockfile"
-        ${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
+        # keep the old list around for a bit for speed
+        #${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
         fancy_message info "Updating cache of supported apps in the background"
         list_debs | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
-        ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
-        # # belt and braces no longer needed
-        #${ELEVATE} sed -i '/[+]/d' ${CACHE_DIR}/supported.list.tmp
+        ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"     
         cut -d" " -f 1 "${CACHE_DIR}/supported.list" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list" >/dev/null
     fi
 }
