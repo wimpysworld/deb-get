@@ -1,9 +1,0 @@
-DEFVER=1
-ARCHS_SUPPORTED=amd64 arm64 armhf
-ASC_KEY_URL="https://packages.opentofu.org/opentofu/tofu/gpgkey"
-APT_LIST_NAME="opentofu"
-APT_REPO_URL="https://packages.opentofu.org/opentofu/tofu/any/ any main"
-APT_REPO_OPTIONS="arch=${HOST_ARCH}"
-PRETTY_NAME="OpenTofu"
-WEBSITE="https://opentofu.org/"
-SUMMARY="The open source infrastructure as code tool."
