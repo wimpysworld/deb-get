@@ -407,7 +407,7 @@ function validate_deb() {
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
             fancy_message error "Missing required information of package ${APP}:"
             printf >&2 '%s\n' "DEFVER=${DEFVER}" "PRETTY_NAME=${PRETTY_NAME}" "SUMMARY=${SUMMARY}" "WEBSITE=${WEBSITE}"
-            exit 1
+            #exit 1
         fi
         VERSION_INSTALLED=$(version_deb)
         if [ -n "${APT_REPO_URL}" ]; then
@@ -416,22 +416,22 @@ function validate_deb() {
                 if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
                     fancy_message error "Missing required information of apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    #exit 1
                 fi
                 if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
                     fancy_message error "Conflicting repository key types for apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    #exit 1
                 fi
                 if [ -n "${GPG_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
                     fancy_message error "Conflicting repository key types for apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    #exit 1
                 fi
                 if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
                     fancy_message error "Conflicting repository key types for apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    #exit 1
                 fi
             fi
         elif [ -n "${PPA}" ]; then
@@ -451,7 +451,7 @@ function validate_deb() {
             { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
                 fancy_message error "Missing required information of ${METHOD} package ${APP}:"
                 printf >&2 '%s\n' "URL=${URL}" "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
-                exit 1
+                #exit 1
             fi
         fi
     elif [ -n "${PPA}" ]; then
@@ -473,7 +473,7 @@ function validate_deb() {
            { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             printf >&2 '%s\n' "URL=${URL}" "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
-            exit 1
+            #exit 1
         fi
     fi
 }
@@ -639,12 +639,11 @@ function refresh_supported_cache_lists() {
     else
         trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
         ${ELEVATE} touch "$lockfile"
-        ${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
+        # keep the old list around for a bit for speed
+        #${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
         fancy_message info "Updating cache of supported apps in the background"
         list_debs | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
-        ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
-        # # belt and braces no longer needed
-        #${ELEVATE} sed -i '/[+]/d' ${CACHE_DIR}/supported.list.tmp
+        ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"     
         cut -d" " -f 1 "${CACHE_DIR}/supported.list" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list" >/dev/null
     fi
 }
