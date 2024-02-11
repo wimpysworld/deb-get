@@ -1,14 +1,16 @@
 DEFVER=1
-get_github_releases "LinusDierheimer/fastfetch" # "latest"
+get_github_releases "LinusDierheimer/fastfetch"
 if [ "${ACTION}" != "prettylist" ]; then
-#`UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `lunar` (23.04) and `mantic` (23.10)
+
 case $(UPSTREAM_CODENAME) in
     buster|bullseye|focal) 
         URL=$(grep "browser_download_url.*Linux\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+        ARCHS_SUPPORTED="amd64"
         ;;
     *)
         URL=$(grep "browser_download_url.*linux-${HOST_CPU}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-        ;;    
+        ARCHS_SUPPORTED="amd64 arm64"
+        ;;
 esac
 
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
