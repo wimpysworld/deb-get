@@ -1,6 +1,11 @@
 DEFVER=1
-CODENAMES_SUPPORTED="mantic lunar jammy focal bionic xenial"
+# Per https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/dists/noble/main/ :
+ARCHS_SUPPORTED="amd64 arm64 armhf i386 ppc64el riscv64 s390x"
+# Per https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/dists/ :
+# focal groovy gutsy hardy hirsute impish intrepid jammy jaunty kinetic lunar mantic noble trusty xenial zesty
+CODENAMES_SUPPORTED="focal jammy kinetic lunar mantic"
+APT_LIST_NAME="mozilla.org"
 PPA="ppa:mozillateam/ppa"
-PRETTY_NAME="firefox"
-WEBSITE="https://www.mozilla.org/firefox/enterprise/"
-SUMMARY="Firefox Stable Release."
+PRETTY_NAME="Firefox"
+WEBSITE="https://www.mozilla.org/firefox/"
+SUMMARY="Firefox web browser (stable release)."
