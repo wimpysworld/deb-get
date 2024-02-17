@@ -1,0 +1,16 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armv6 armv7 armvf i386"
+URL_ARCH="${HOST_ARCH}"
+if [[ "${URL_ARCH}" =~ ^(arm|armvf)$ ]]; then
+    URL_ARCH=armv7
+elif [[ "${URL_ARCH}" =~ i386 ]]; then
+    URL_ARCH=386
+fi
+get_github_releases "browsh-org/browsh"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${URL_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | sed -E 's|.*/v([0-9.]*)/.*|\1|')"
+fi
+PRETTY_NAME="browsh"
+WEBSITE="https://github.com/browsh-org/browsh"
+SUMMARY="A fully interactive, real-time, and modern text-based browser rendered to TTYs and browsers."
