@@ -1,4 +1,5 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64"
 ASC_KEY_URL="https://dl.google.com/linux/linux_signing_key.pub"
 APT_LIST_NAME="google-chrome"
 APT_REPO_URL="https://dl.google.com/linux/chrome/deb/ stable main"
