@@ -1,5 +1,5 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 arm64 armv6 armv7 armvf i386"
+ARCHS_SUPPORTED="amd64 arm64 armv6 armv7 i386"
 URL_ARCH="${HOST_ARCH}"
 if [[ "${URL_ARCH}" =~ ^(arm|armvf)$ ]]; then
     URL_ARCH=armv7
