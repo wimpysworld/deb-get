@@ -1,0 +1,7 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble"
+APT_LIST_NAME="apps.mamolinux.org"
+PPA="ppa:mamolinux/gui-apps"
+PRETTY_NAME="Theme Manager"
+WEBSITE="https://hsbasu.github.io/theme-manager/"
+SUMMARY="Very simple Python3-based GUI application to set different theme colour and mode (dark/light) variants on linux automatically based on system time."
