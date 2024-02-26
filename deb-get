@@ -407,7 +407,7 @@ function validate_deb() {
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
             fancy_message error "Missing required information of package ${APP}:"
             printf >&2 '%s\n' "DEFVER=${DEFVER}" "PRETTY_NAME=${PRETTY_NAME}" "SUMMARY=${SUMMARY}" "WEBSITE=${WEBSITE}"
-            exit 1
+            return 1
         fi
         VERSION_INSTALLED=$(version_deb)
         if [ -n "${APT_REPO_URL}" ]; then
@@ -416,22 +416,22 @@ function validate_deb() {
                 if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
                     fancy_message error "Missing required information of apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    return 1
                 fi
                 if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_URL}" ]; then
                     fancy_message error "Conflicting repository key types for apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    return 1
                 fi
                 if [ -n "${GPG_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
                     fancy_message error "Conflicting repository key types for apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    return 1
                 fi
                 if [ -n "${ASC_KEY_URL}" ] && [ -n "${GPG_KEY_ID}" ]; then
                     fancy_message error "Conflicting repository key types for apt package ${APP}:"
                     printf >&2 '%s\n' "ASC_KEY_URL=${ASC_KEY_URL}" "GPG_KEY_URL=${GPG_KEY_URL}" "GPG_KEY_ID=${GPG_KEY_ID}"
-                    exit 1
+                    return 1
                 fi
             fi
         elif [ -n "${PPA}" ]; then
@@ -451,7 +451,7 @@ function validate_deb() {
             { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
                 fancy_message error "Missing required information of ${METHOD} package ${APP}:"
                 printf >&2 '%s\n' "URL=${URL}" "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
-                exit 1
+                return 1
             fi
         fi
     elif [ -n "${PPA}" ]; then
@@ -473,9 +473,10 @@ function validate_deb() {
            { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             printf >&2 '%s\n' "URL=${URL}" "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
-            exit 1
+            return 1
         fi
     fi
+    return 0
 }
 
 function list_debs() {
@@ -526,31 +527,32 @@ function list_debs() {
             #elevate_privs
             # because we need to update the cache files this one slow time
             for FULL_APP in "${APPS[@]}"; do
-                validate_deb "${FULL_APP}"
-                if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
-                    case "${2}" in
-                    (--raw)
-                        printf '%s\n' "${APP}"
-                        ;;
-                    (--installed)
-                        if package_is_installed "${APP}"; then
+                if validate_deb "${FULL_APP}"; then
+                    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+                        case "${2}" in
+                        (--raw)
                             printf '%s\n' "${APP}"
-                        fi
-                        ;;
-                    (--not-installed)
-                        if ! package_is_installed "${APP}"; then
-                            printf '%s\n' "${APP}"
-                        fi
-                        ;;
-                    (*)
-                        if package_is_installed "${APP}"; then
-                            local PAD='                              '
-                            printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
-                        else
-                            printf '%s\n' "${APP}"
-                        fi
-                        ;;
-                    esac
+                            ;;
+                        (--installed)
+                            if package_is_installed "${APP}"; then
+                                printf '%s\n' "${APP}"
+                            fi
+                            ;;
+                        (--not-installed)
+                            if ! package_is_installed "${APP}"; then
+                                printf '%s\n' "${APP}"
+                            fi
+                            ;;
+                        (*)
+                            if package_is_installed "${APP}"; then
+                                local PAD='                              '
+                                printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}"
+                            else
+                                printf '%s\n' "${APP}"
+                            fi
+                            ;;
+                        esac
+                    fi
                 fi
 
             done
@@ -566,15 +568,16 @@ cat <<"EOMSG"
 | :------: | :------------- | :------------ |
 EOMSG
     for FULL_APP in "${APPS[@]}"; do
-        validate_deb "${FULL_APP}"
-        if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
-            case "${METHOD}" in
-                apt)    ICON="debian.png";;
-                github) ICON="github.png";;
-                ppa)    ICON="launchpad.png";;
-                *)      ICON="direct.png";;
-            esac
-            echo "| [<img src=\"../.github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
+        if validate_deb "${FULL_APP}"; then
+            if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
+                case "${METHOD}" in
+                    apt)    ICON="debian.png";;
+                    github) ICON="github.png";;
+                    ppa)    ICON="launchpad.png";;
+                    *)      ICON="direct.png";;
+                esac
+                echo "| [<img src=\"../.github/${ICON}\" align=\"top\" width=\"20\" />](${WEBSITE}) | "'`'"${APP}"'`'" | <i>${SUMMARY}</i> |"
+            fi
         fi
     done
 }
@@ -582,9 +585,10 @@ EOMSG
 function csvlist_debs() {
     local REPO="${1:-01-main}"
     for FULL_APP in "${APPS[@]}"; do
-        validate_deb "${FULL_APP}"
-        if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
-            echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
+        if validate_deb "${FULL_APP}"; then
+            if [ "${APP_SRC}" == "${REPO}" ] || { [ "${REPO}" == "01-main" ] && [ "${APP_SRC}" == "00-builtin" ]; }; then
+                echo "\"${APP}\",\"${PRETTY_NAME}\",\"${VERSION_INSTALLED}\",\"${ARCHS_SUPPORTED}\",\"${METHOD}\",\"${SUMMARY}\""
+            fi
         fi
     done
 }
@@ -593,11 +597,12 @@ function update_debs() {
     local STATUS=""
     update_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "${APPNAME2FULL[$APP]}"
-        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-            STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
-            if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
-                fancy_message info "${APP} (${VERSION_INSTALLED}) has an update pending. ${VERSION_PUBLISHED} is available."
+        if validate_deb "${APPNAME2FULL[$APP]}"; then
+            if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+                STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
+                if [ "${STATUS}" == "install ok installed" ] && dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
+                    fancy_message info "${APP} (${VERSION_INSTALLED}) has an update pending. ${VERSION_PUBLISHED} is available."
+                fi
             fi
         fi
     done
@@ -607,11 +612,12 @@ function upgrade_debs() {
     local STATUS=""
     upgrade_apt
     for APP in "${INSTALLED_APPS[@]}"; do
-        validate_deb "${APPNAME2FULL[$APP]}"
-        if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
-            STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
-            if [ "${STATUS}" == "install ok installed" ]; then
-                install_deb "${URL}"
+        if validate_deb "${APPNAME2FULL[$APP]}"; then
+            if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "website" ]; then
+                STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
+                if [ "${STATUS}" == "install ok installed" ]; then
+                    install_deb "${URL}"
+                fi
             fi
         fi
     done
@@ -1339,8 +1345,9 @@ function dg_action_show() {
                 list_debs "" --raw >&2
                 exit 1
             fi
-            validate_deb "${FULL_APP}"
-            info_deb
+            if validate_deb "${FULL_APP}"; then
+                info_deb
+            fi
         done
 }
 function dg_action_reinstall() { dg_action_install "$@"; }
@@ -1356,24 +1363,25 @@ function dg_action_install() {
                 list_debs "" --raw >&2
                 exit 1
             fi
-            validate_deb "${FULL_APP}"
-            if [[ " ${ARCHS_SUPPORTED} " != *" ${HOST_ARCH} "* ]]; then
-                fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
-            fi
+            if validate_deb "${FULL_APP}"; then
+                if [[ " ${ARCHS_SUPPORTED} " != *" ${HOST_ARCH} "* ]]; then
+                    fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
+                fi
 
-            if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ " ${CODENAMES_SUPPORTED[*]} " =~ " ${UPSTREAM_CODENAME} " ]]; then
-                fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
-            fi
+                if [ -n "${CODENAMES_SUPPORTED}" ] && ! [[ " ${CODENAMES_SUPPORTED[*]} " =~ " ${UPSTREAM_CODENAME} " ]]; then
+                    fancy_message fatal "${APP} is not supported on ${OS_ID_PRETTY} ${UPSTREAM_CODENAME^}."
+                fi
 
-            if [ "${METHOD}" == "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
-                fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
-            fi
+                if [ "${METHOD}" == "ppa" ] && [ "${UPSTREAM_ID}" != "ubuntu" ]; then
+                    fancy_message fatal "${APP} cannot be installed as PPAs are not supported on distros that are not derived from Ubuntu."
+                fi
 
-            case "${METHOD}" in
-                direct|github|website) install_deb "${URL}";;
-                apt) install_apt;;
-                ppa) install_ppa;;
-            esac
+                case "${METHOD}" in
+                    direct|github|website) install_deb "${URL}";;
+                    apt) install_apt;;
+                    ppa) install_ppa;;
+                esac
+            fi
         done
 }
 function dg_action_list() {
@@ -1417,8 +1425,9 @@ function dg_action_purge() {
                 list_debs "" --raw >&2
                 exit 1
             fi
-            validate_deb "${FULL_APP}"
-            remove_deb "${APP}" purge "${opt_remove_repo}"
+            if validate_deb "${FULL_APP}"; then
+                remove_deb "${APP}" purge "${opt_remove_repo}"
+            fi
         done
 }
 function dg_action_remove() {
@@ -1439,8 +1448,9 @@ function dg_action_remove() {
                 list_debs "" --raw >&2
                 exit 1
             fi
-            validate_deb "${FULL_APP}"
-            remove_deb "${APP}" "" "${opt_remove_repo}"
+            if validate_deb "${FULL_APP}"; then
+                remove_deb "${APP}" "" "${opt_remove_repo}"
+            fi
         done
 }
 function dg_action_search() {
@@ -1475,8 +1485,9 @@ function dg_action_update() {
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP=${APPNAME2FULL[$APP]}
                 if [ -n "${FULL_APP}" ]; then
-                    validate_deb "${FULL_APP}"
-                    fix_installed
+                    if validate_deb "${FULL_APP}"; then
+                        fix_installed
+                    fi
                 else
                     remove_installed "${APP}"
                 fi
@@ -1497,15 +1508,17 @@ function dg_action_fix-installed() {
         elevate_privs
         if [ "${1}" = --old-apps ]; then
             for APP in $(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' "${APPS[*]##*/}" | sed -n -e 's/^ii //p'); do
-                validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
-                fix_old_apps
+                if validate_deb "$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"; then
+                    fix_old_apps
+                fi
             done
         else
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
                 if [ -n "${FULL_APP}" ]; then
-                    validate_deb "${FULL_APP}"
-                    fix_installed
+                    if validate_deb "${FULL_APP}"; then
+                        fix_installed
+                    fi
                 else
                     remove_installed "${APP}"
                 fi
