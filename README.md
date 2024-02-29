@@ -206,6 +206,15 @@ deb-get update
 deb-get upgrade
 ```
 
+#### local-apt-repository
+[local-apt-repository](https://packages.ubuntu.com/search?keywords=local-apt-repository) can be used to store packages inside local respository. Package will be copied to (`DIR_LOCAL_APT_REPOSITORY`) after install. To use this feature, set (`USE_LOCAL_APT_REPOSITORY`) variable to (`yes`) and (`DIR_LOCAL_APT_REPOSITORY`) to proper local-apt-repository packages directory:
+
+```
+# local-apt-repository
+export USE_LOCAL_APT_REPOSITORY="yes"
+export DIR_LOCAL_APT_REPOSITORY="/srv/local-apt-repository"
+```
+
 
 
 ## Adding Software
