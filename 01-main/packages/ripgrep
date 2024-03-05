@@ -1,0 +1,20 @@
+DEFVER=1
+ARCHS_SUPPORTED='amd64'
+SUMMARY='ripgrep recursively searches directories for a regex pattern while respecting your gitignore'
+EULA=''
+
+pkg_ripgrep() {
+  local GH_OWNER_REPO='BurntSushi/ripgrep'
+  local GH_REPO=${GH_OWNER_REPO##*/}
+  local DEB_PKGNAME=$GH_REPO
+  PRETTY_NAME=$GH_REPO
+  WEBSITE=https://github.com/$GH_OWNER_REPO
+  get_github_releases "$GH_OWNER_REPO" latest
+  if [ "${ACTION}" != prettylist ]; then
+      URL=$(grep -m1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*/${DEB_PKGNAME}_[^/\"]*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}")
+      URL=${URL%\"}; URL=${URL##*\"}
+      local DEB_FILENAME=${URL##*/}
+      VERSION_PUBLISHED=${DEB_FILENAME#*_}; VERSION_PUBLISHED=${VERSION_PUBLISHED%%_*}
+  fi
+}
+pkg_ripgrep
