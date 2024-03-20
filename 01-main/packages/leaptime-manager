@@ -1,0 +1,7 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble"
+APT_LIST_NAME="apps.mamolinux.org"
+PPA="ppa:mamolinux/gui-apps"
+PRETTY_NAME="LeapTime Manager"
+WEBSITE="https://hsbasu.github.io/leaptime-manager/"
+SUMMARY="Aiming to be an all-in-one, friendly to new-users, GUI based backup manager for Debian/Ubuntu based systems."
