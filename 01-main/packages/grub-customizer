@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:danielrichter2007/grub-customizer"
+PRETTY_NAME="Grub Customizer"
+WEBSITE="https://launchpad.net/grub-customizer"
+SUMMARY="Grub Customizer is a graphical interface to configure the GRUB2/BURG settings and menuentries."
