@@ -628,6 +628,13 @@ function init_repos() {
         ${ELEVATE} tee "${ETC_DIR}/01-main.repo" <<<"${MAIN_REPO_URL}" >/dev/null
     fi
 
+    # make sure the first line is MAIN_REPO_URL
+    REPO_URL="$(head -n 1 "${ETC_DIR}/01-main.repo" | grep -o $MAIN_REPO_URL)"
+    if [ -z $REPO_URL ]; then
+        fancy_message warn "Reapply ${ETC_DIR}/01-main.repo URL"
+        ${ELEVATE} tee "${ETC_DIR}/01-main.repo" <<<"${MAIN_REPO_URL}" >/dev/null
+    fi
+
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
             ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
@@ -668,8 +675,14 @@ function update_repos() {
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
-        REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
-        ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
+
+        # make sure the first line is http(s)
+        REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo" | grep -o -E "^https{0,1}:\/\/.*")"
+        if [ -z $REPO_URL ]; then
+            fancy_message error "Invalid URL ${ETC_DIR}/${REPO}"
+        else
+            ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
+        fi
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
         # although so long as manifest is good we are OK
