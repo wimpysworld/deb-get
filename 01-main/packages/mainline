@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:cappelikan/ppa"
+PRETTY_NAME="Mainline"
+WEBSITE="https://github.com/bkw777/mainline"
+SUMMARY="A tool for installing Ubuntu Mainline Kernel Builds onto debian-based distributions."
