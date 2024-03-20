@@ -1,5 +1,5 @@
 DEFVER=1
-get_github_releases "schollz/croc" "latest"
+get_github_releases "schollz/croc" 
 
 if [ "${ACTION}" != "prettylist" ]; then
   case ${HOST_ARCH} in
