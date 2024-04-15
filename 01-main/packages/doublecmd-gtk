@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="buster bullseye focal jammy kinetic lunar mantic"
+CODENAMES_SUPPORTED="buster bullseye focal jammy kinetic lunar mantic noble"
 ASC_KEY_URL="https://download.opensuse.org/repositories/home:Alexx2000/xUbuntu_${UPSTREAM_RELEASE}/Release.key"
 APT_LIST_NAME="doublecmd"
 APT_REPO_URL="https://download.opensuse.org/repositories/home:/Alexx2000/xUbuntu_${UPSTREAM_RELEASE}/ /"

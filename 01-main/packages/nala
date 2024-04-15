@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="bookworm sid jammy lunar mantic"
+CODENAMES_SUPPORTED="bookworm sid jammy lunar mantic noble"
 GPG_KEY_URL="https://deb.volian.org/volian/scar.key"
 APT_REPO_URL="http://deb.volian.org/volian/ scar main"
 APT_REPO_OPTIONS="arch=${HOST_ARCH}"
