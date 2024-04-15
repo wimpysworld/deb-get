@@ -63,7 +63,7 @@ The environment variables available to the package definition file are the follo
 * `OS_ID_PRETTY`: The brand name of the OS.
 * `OS_CODENAME`: The codename of the OS, as output by `lsb_release --codename --short`.
 * `UPSTREAM_ID`: The id of the upstream distribution. Supported values are `ubuntu` and `debian`.
-* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `lunar` (23.04) and `mantic` (23.10)
+* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `lunar` (23.04), `mantic` (23.10) and `noble` (24.04)
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
@@ -84,7 +84,7 @@ If the keyring file is in the ASCII-armored format (extension `*.asc`), use this
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 ASC_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -100,7 +100,7 @@ If the keyring file is in the binary format instead (extension `*.gpg`), use thi
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 GPG_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -116,7 +116,7 @@ If the keyring file must be fetched from a keyserver by ID use this template:
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 GPG_KEY_ID=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -145,7 +145,7 @@ Replace `<user-organization>` and `<repository>` with the correct values:
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 get_github_releases "<user-organization>/<repository>" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
@@ -162,7 +162,7 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 get_website "<website>"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep "<pattern>" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
@@ -179,7 +179,7 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(unroll_url "<website>")"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
