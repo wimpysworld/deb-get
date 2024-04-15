@@ -1,5 +1,5 @@
 DEFVER=2
-CODENAMES_SUPPORTED="bookworm bullseye trixie sid focal jammy kinetic lunar mantic"
+CODENAMES_SUPPORTED="bullseye bookworm trixie sid focal jammy kinetic lunar mantic noble"
 GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
 
 
