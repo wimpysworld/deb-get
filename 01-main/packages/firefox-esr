@@ -3,7 +3,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf i386 ppc64el riscv64 s390x"
 # Per https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/dists/ :
 # focal groovy gutsy hardy hirsute impish intrepid jammy jaunty kinetic lunar mantic noble trusty xenial zesty
-CODENAMES_SUPPORTED="focal jammy kinetic lunar mantic"
+CODENAMES_SUPPORTED="focal jammy kinetic lunar mantic noble"
 APT_LIST_NAME="ppa.mozilla.org"
 PPA="ppa:mozillateam/ppa"
 PRETTY_NAME="Firefox ESR"

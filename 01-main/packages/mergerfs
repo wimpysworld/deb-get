@@ -1,7 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye focal jammy"
-# mantic"
+CODENAMES_SUPPORTED="buster bullseye focal jammy mantic noble"
 get_github_releases "trapexit/mergerfs" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*.deb" "${CACHE_FILE}" | grep "${UPSTREAM_CODENAME}_${HOST_ARCH}" | cut -d'"' -f4)"	

@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bionic focal jammy mantic"
+CODENAMES_SUPPORTED="bionic focal jammy mantic noble"
 get_website "https://beersmith.com/download-beersmith/"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${UPSTREAM_CODENAME} in
