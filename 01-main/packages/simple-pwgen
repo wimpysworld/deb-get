@@ -1,0 +1,7 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble"
+APT_LIST_NAME="apps.mamolinux.org"
+PPA="ppa:mamolinux/gui-apps"
+PRETTY_NAME="Simple Password Generator"
+WEBSITE="https://hsbasu.github.io/simple-pwgen/"
+SUMMARY="Very simple Python3-based GUI application to generate secure and random password."
