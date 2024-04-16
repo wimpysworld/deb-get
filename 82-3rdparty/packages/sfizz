@@ -1,16 +1,8 @@
 DEFVER=1
-#CODENAMES_SUPPORTED="kinetic"
-CODENAMES_SUPPORTED="bullseye bookworm sid focal jammy kinetic"
+CODENAMES_SUPPORTED="bullseye bookworm trixie sid focal jammy lunar mantic noble"
 ARCHS_SUPPORTED="amd64"
 local OBS_UPSTREAM_ID="${UPSTREAM_ID^}"
-# local OBS_RELEASE=${UPSTREAM_RELEASE/12/Testing}
 OBS_UPSTREAM_ID=${OBS_UPSTREAM_ID/U/xU}
-# if [ "${OBS_UPSTREAM_ID}" == "Ubuntu" ]; then
-#     OBS_UPSTREAM_ID="x${OBS_UPSTREAM_ID}"
-# fi
-# if "${OBS_UPSTREAM_ID}" == "Debian" ]; then
-
-# fi
 ASC_KEY_URL="https://download.opensuse.org/repositories/home:sfztools:sfizz/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/Release.key"
 APT_REPO_URL="http://download.opensuse.org/repositories/home:/sfztools:/sfizz/${OBS_UPSTREAM_ID}_${UPSTREAM_RELEASE}/ /"
 APT_REPO_OPTIONS="arch=${HOST_ARCH}"
@@ -18,8 +10,3 @@ PRETTY_NAME="sfizz"
 WEBSITE="https://sfz.tools/sfizz/"
 SUMMARY="a sample-based musical synthesizer."
 
-#Debian_[10|11|Testing]
-#Raspian_[11|10]
-#  $(sed 's/d/D/;s/ub/xUb/' <<< "$UPSTREAM_ID")_$(sed 's/12/Testing/;s/u/U/' <<< "$UPSTREAM_RELEASE")
-# nicked from onedriver
-# actually maybe better to go change that
