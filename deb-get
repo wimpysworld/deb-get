@@ -178,7 +178,7 @@ function get_website() {
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
-            if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "${1}" -O "${CACHE_FILE}"; then
+            if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "$@" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
                 ${ELEVATE} rm -f "${CACHE_FILE}"
             fi
@@ -640,18 +640,27 @@ function refresh_supported_cache_lists() {
     # WARN: this function must run in a subshell
     local lockfile=${CACHE_DIR}/updating_supported.lock
     if [ -f "$lockfile" ]; then
-        fancy_message warn "Cannot update cache of supported apps: $lockfile found (job still running?)"
-        return 0
-    else
-        trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
-        ${ELEVATE} touch "$lockfile"
-        # keep the old list around for a bit for speed
-        #${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
-        fancy_message info "Updating cache of supported apps in the background"
-        list_debs | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
-        ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"     
-        cut -d" " -f 1 "${CACHE_DIR}/supported.list" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list" >/dev/null
+        pgrep -f "$DEBGET_BIN update"
+        if [ $? ]; then
+            # pgrep returned 1 (command not found), delete lockfile and continue
+            fancy_message warn "Lock file found, but job is not running. Deleting $lockfile, cache update continues."
+            ${ELEVATE} rm $lockfile
+        else
+            # pgrep returned 0 (command found), do nothing and return
+            fancy_message warn "Cannot update cache of supported apps: $lockfile found (job still running?)"
+            return 0
+        fi
     fi
+
+    trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
+    ${ELEVATE} touch "$lockfile"
+    ${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
+    fancy_message info "Updating cache of supported apps in the background"
+    list_debs | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
+    ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
+    # # belt and braces no longer needed
+    #${ELEVATE} sed -i '/[+]/d' ${CACHE_DIR}/supported.list.tmp
+    cut -d" " -f 1 "${CACHE_DIR}/supported.list" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list" >/dev/null
 }
 
 function update_repos() {
@@ -668,7 +677,7 @@ function update_repos() {
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
-        ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo"
+        ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo.tmp" && ${ELEVATE} mv "${ETC_DIR}/${REPO}.repo.tmp" "${ETC_DIR}/${REPO}.repo"
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
         # although so long as manifest is good we are OK
@@ -1542,6 +1551,8 @@ readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/ma
 
 readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
 readonly USER_HOME="${HOME}"
+
+readonly DEBGET_BIN=$(basename $0)
 
 parse_machine
 
