@@ -5,13 +5,13 @@ get_website "https://openrgb.org/releases.html"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         buster)
-            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_buster_[[:digit:]]+\.deb" "${CACHE_FILE}" )"
+            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_buster_[[:alnum:]]+\.deb" "${CACHE_FILE}" | head -1 )"
         ;;
-        bullseye|focal|jammy)
-            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bullseye_[[:digit:]]+\.deb" "${CACHE_FILE}" )"
+        bullseye|focal)
+            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bullseye_[[:alnum:]]+\.deb" "${CACHE_FILE}" | head -1 )"
         ;;        
         *)
-            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bookworm_[[:digit:]]+\.deb" "${CACHE_FILE}" )"
+            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bookworm_[[:alnum:]]+\.deb" "${CACHE_FILE}" | head -1 )"
         ;;
     esac
     VERSION_PUBLISHED="$(echo "${URL}" | grep -o -E '[[:digit:]]+\.[[:digit:]]+'|sort -u)"
