@@ -3,20 +3,32 @@ ARCHS_SUPPORTED="amd64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy noble"
 get_website "https://openrgb.org/releases.html"
 if [ "${ACTION}" != "prettylist" ]; then
+    local codename, regex, deb
     case "${UPSTREAM_CODENAME}" in
         buster)
-            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_buster_[[:xdigit:]]+\.deb" "${CACHE_FILE}" )"
+            codename=buster
         ;;
-        bullseye|focal|jammy)
-            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bullseye_[[:xdigit:]]+\.deb" "${CACHE_FILE}" )"
-        ;;        
+        bullseye|focal)
+            codename=bullseye
+        ;;
         *)
-            URL="https://openrgb.org/$( grep -o -E "/releases/release_[[:digit:]]+\.[[:digit:]]+/openrgb_[[:digit:]]+\.[[:digit:]]_${HOST_ARCH}_bookworm_[[:xdigit:]]+\.deb" "${CACHE_FILE}" )"
+            codename=bookworm
         ;;
     esac
-    VERSION_PUBLISHED="$(echo "${URL}" | grep -o -E '[[:digit:]]+\.[[:digit:]]+'|sort -u)"
+    # allow more complex version numbers, such as 0.9.1, 0.9b, or 0.9-1:
+    regex="/releases/release_[^/]+/openrgb_[^_]+_${HOST_ARCH}_${codename}_[^.]+\.deb"
+    # can return multiple lines:
+    deb=$( grep -m 1 -o -E "${regex}" "${CACHE_FILE}" )
+    # strip everything after the first newline:
+    deb="${deb/$'\n'*/}"
+    URL="https://openrgb.org/${deb}"
+    # grab the first version found in the path (in the directory name):
+    VERSION_PUBLISHED=$( grep -m 1 -o -E '_[^/]+/' <<<"${deb}" )
+    # strip the leading _:
+    VERSION_PUBLISHED="${VERSION_PUBLISHED/_/}"
+    # strip the trailing /:
+    VERSION_PUBLISHED="${VERSION_PUBLISHED/\//}"
 fi
 PRETTY_NAME="OpenRGB"
 WEBSITE="https://openrgb.org/"
 SUMMARY="Open source RGB lighting control that doesn't depend on manufacturer software."
-
