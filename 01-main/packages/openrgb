@@ -17,7 +17,7 @@ if [ "${ACTION}" != "prettylist" ]; then
     esac
     # allow more complex version numbers, such as 0.9.1, 0.9b, or 0.9-1:
     regex="/releases/release_[^/]+/openrgb_[^_]+_${HOST_ARCH}_${codename}_[^.]+\.deb"
-    # can return multiple lines:
+    # can return multiple lines (since the content has no newlines):
     deb=$( grep -m 1 -o -E "${regex}" "${CACHE_FILE}" )
     # strip everything after the first newline:
     deb="${deb/$'\n'*/}"
