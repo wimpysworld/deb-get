@@ -112,7 +112,6 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://helio.fm/) | `helio-workstation` | <i>libre music composition software</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/home-assistant/supervised-installer) | `homeassistant-supervised` | <i>This is Home Assistant supervised installer, that provides the full Home Assistant experience on a regular operating system.</i> |
-| [<img src="../.github/github.png" align="top" width="20" />](https://gohugo.io/) | `hugo` | <i>Open-source static site generator.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://hyper.is/) | `hyper` | <i>A terminal built on web technologies.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/sharkdp/hyperfine) | `hyperfine` | <i>A command-line benchmarking tool</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://i3wm.org/) | `i3` | <i>i3 window manager - Stable release</i> |
@@ -193,7 +192,6 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://openrazer.github.io/) | `openrazer-meta` | <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://openrgb.org/) | `openrgb` | <i>Open source RGB lighting control that doesn't depend on manufacturer software.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.opera.com/) | `opera-stable` | <i>Faster, safer and smarter than default browsers.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/home-assistant/os-agent) | `os-agent` | <i>This is the OS Agent for Home Assistant. It is used for Home Assistant OS and Home Assistant Supervised installation types and it allows the Home Assistant Supervisor to communicate with the host operating system.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.corifeus.com/onenote) | `p3x-onenote` | <i>A Linux compatible version of OneNote.</i> |
@@ -238,7 +236,6 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.skype.com/) | `skypeforlinux` | <i>Stay connected with free video calls worldwide.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://slack.com/) | `slack-desktop` | <i>One platform for your team and your work.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ransome1/sleek) | `sleek` | <i>Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS).</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://www.syntevo.com/) | `smartgit` | <i>A graphical Git client with support for pull requests for GitHub and Bitbucket.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/GyulyVGC/sniffnet) | `sniffnet` | <i>Application to comfortably monitor your network traffic.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/marin-m/SongRec) | `songrec` | <i>This app is used to recognise songs and audios around us.</i> |
