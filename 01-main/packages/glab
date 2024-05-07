@@ -1,0 +1,23 @@
+
+DEFVER=1
+#get_gitlab_releases "34675721" 
+#get_gitlab_releases "gitlab-org%2Fcli" 
+# PROJ="gitlab-org/cli"
+# PROJ=${PROJ/\//%2F}
+#ARCHS_SUPPORTED="amd64 arm64 armhf
+get_gitlab_releases "gitlab-org%2Fcli" "latest"
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(jq <${CACHE_FILE} -r '.[] |select(.name|contains("x86_64.deb"))| .direct_asset_url')
+    #URL=$(jq <${CACHE_FILE} --arg arch ${HOST_CPU/armhf/arm} -r '.[] |select(.name|contains($arch))|select(.name|contains(".deb"))| .direct_asset_url')
+
+    #URL= $(jq <${CACHE_FILE} -r '.[] | .direct_asset_url' | grep ".*${HOST_CPU}\.deb"
+    #URL="${URL//\"}"
+
+    VERSION_PUBLISHED="${URL##*/releases/v}"
+    VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
+fi
+
+PRETTY_NAME="Glab"
+WEBSITE="https://gitlab.com/gitlab-org/cli"
+SUMMARY="A GitLab CLI tool bringing GitLab to your command line"
