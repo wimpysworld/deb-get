@@ -1,6 +1,6 @@
 DEFVER=1
-CODENAMES_SUPPORTED="Kinetic Jammy Focal Bionic Xenial Trusty"
+CODENAMES_SUPPORTED="mantic lunar kinetic jammy focal bionic xenial trusty"
 PPA="ppa:papirus/papirus"
-PRETTY_NAME="Filezilla Papirus icon theme"
+PRETTY_NAME="filezilla-theme-papirus"
 WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-filezilla-themes"
 SUMMARY="Papirus icons for filezilla"

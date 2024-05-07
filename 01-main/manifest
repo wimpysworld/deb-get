@@ -26,6 +26,7 @@ bluejeans-v2
 bottom
 brave-browser
 brisqi
+browsh
 caddy
 caprine
 cawbird
@@ -47,6 +48,7 @@ deadbeef-static
 deborah
 deltachat-desktop
 deskcut
+detectiteasy
 discord
 dive
 docker-ce
@@ -60,6 +62,7 @@ duf
 dustracing2d
 element-desktop
 enpass
+emby-server
 exifcleaner
 #exodus
 expressvpn
@@ -68,7 +71,11 @@ fastfetch
 fd
 ferdium
 figma-linux
+firefox
+firefox-beta
+firefox-devedition
 firefox-esr
+firefox-nightly
 flameshot
 foliate
 franz
@@ -84,10 +91,13 @@ gitter
 glab
 glow
 google-chat-electron
+google-chrome-beta
 google-chrome-stable
+google-chrome-unstable
 google-cloud-cli
 google-earth-pro-stable
 gpu-viewer
+grub-customizer
 grype
 headset
 helio-workstation
@@ -95,12 +105,16 @@ heroic
 homeassistant-supervised
 hugo
 hyper
+hyperfine
 i3
 igdm
 #igdm-pro
+imhex
+indicator-sound-switcher
 influxdb
 influxdb2
 influxdb2-cli
+inkscape
 insomnia
 insync
 ipfs-desktop
@@ -119,6 +133,7 @@ keepassxc
 keybase
 kopia-ui
 koreader
+kse
 ksnip
 kwaterfoxhelper
 lens
@@ -147,12 +162,15 @@ mpdevil
 #ms-office-electron
 ms-365-electron
 mullvad-vpn
+multimc
 nala
 nala-legacy
+nekoray
 neo4j
 #neovim
 nemo-mediainfo-tab
 nextcloud-desktop
+nodejs
 nomad
 nordvpn
 notable
@@ -171,6 +189,7 @@ opera-stable
 os-agent
 p3x-onenote
 pandoc
+papirus-folders
 papirus-icon-theme
 filezilla-theme-papirus
 #parsec
@@ -182,6 +201,7 @@ plexmediaserver
 plow
 polychromatic
 pomatez
+popcorn-time
 portmaster
 powershell
 protonmail-bridge
@@ -198,6 +218,7 @@ rambox
 rclone
 resilio-sync
 retroarch
+ripgrep
 rocketchat
 rpi-imager
 rstudio
@@ -207,6 +228,7 @@ sejda-desktop
 #sengi
 shutter-encoder
 signal-desktop
+simple-pwgen
 simplenote
 skypeforlinux
 slack-desktop
@@ -214,8 +236,9 @@ sleek
 smartgit
 sniffnet
 softmaker-office-2021
-indicator-sound-switcher
+songrec
 soundux
+speedtest
 spotify-client
 standard-notes
 strawberry
@@ -230,16 +253,19 @@ system-monitoring-center
 tabby-terminal
 tailscale
 tarsnap
-teams
+#teams
 teams-for-linux
 teamviewer
+teip
 telegraf
+termius-app
 terraform
 texworks
 thinlinc-client
 thorium-browser
 tidal-hifi
 tixati
+tofu
 tonelib-bassdrive
 tonelib-gfx
 tonelib-jam
@@ -274,7 +300,7 @@ winehq-devel
 winehq-stable
 winehq-staging
 wire-desktop
-wraith-master
+# wraith-master
 xemu
 youtube-music
 yq

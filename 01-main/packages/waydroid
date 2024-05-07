@@ -1,12 +1,9 @@
-DEFVER=1
-CODENAMES_SUPPORTED="bookworm bullseye sid focal jammy kinetic lunar"
+DEFVER=2
+CODENAMES_SUPPORTED="bullseye bookworm trixie sid focal jammy kinetic lunar mantic noble"
 GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
-local TARGET_CODENAME=${UPSTREAM_CODENAME}
-if [ "${UPSTREAM_CODENAME}" = "kinetic" ]; then
-    TARGET_CODENAME="ubuntu-devel"
-fi
 
-APT_REPO_URL="https://repo.waydro.id ${TARGET_CODENAME} main"
+
+APT_REPO_URL="https://repo.waydro.id ${UPSTREAM_CODENAME} main"
 PRETTY_NAME="WayDroid"
 WEBSITE="https://waydro.id/"
 SUMMARY="A container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu."

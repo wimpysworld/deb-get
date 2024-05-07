@@ -1,5 +1,5 @@
-DEFVER=1
-PPA="ppa:flexiondotorg/obs-fully-loaded"
-PRETTY_NAME="OBS Studio (Fully Loaded)"
+DEFVER=2
+PPA="ppa:obsproject/obs-studio"
+PRETTY_NAME="OBS Studio"
 WEBSITE="https://obsproject.com/"
 SUMMARY="Free and open source software for video recording and live streaming."
