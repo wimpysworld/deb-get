@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="buster focal"
+#CODENAMES_SUPPORTED="buster focal"
 get_website "https://www.stremio.com/downloads"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep -o "dl-linux-four-deb.*amd64\.deb\"" "${CACHE_FILE}" | cut -d "\"" -f 3)"

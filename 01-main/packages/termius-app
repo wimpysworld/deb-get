@@ -1,0 +1,8 @@
+DEFVER=1
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(unroll_url "https://www.termius.com/download/linux/Termius.deb")
+    VERSION_PUBLISHED="latest"
+fi
+PRETTY_NAME="Termius"
+WEBSITE="https://termius.com/"
+SUMMARY="SSH, SFTP, MOSH, telnet and serial client. Connect with one click from any mobile and desktop device. No re-entering IP addresses, ports, and passwords."

@@ -1,10 +1,7 @@
 DEFVER=1
-CODENAMES_SUPPORTED="focal jammy kinetic"
-get_github_releases "hsbasu/battery-monitor" "latest"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
-fi
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble"
+APT_LIST_NAME="apps.mamolinux.org"
+PPA="ppa:mamolinux/gui-apps"
 PRETTY_NAME="Battery Monitor"
-WEBSITE="https://github.com/hsbasu/battery-monitor/"
+WEBSITE="https://hsbasu.github.io/battery-monitor/"
 SUMMARY="An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop."

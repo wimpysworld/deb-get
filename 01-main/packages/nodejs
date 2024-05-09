@@ -1,0 +1,6 @@
+DEFVER=1
+ASC_KEY_URL="https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key"
+APT_REPO_URL="https://deb.nodesource.com/node_21.x nodistro main"
+PRETTY_NAME="Node.js"
+WEBSITE="https://nodejs.org/"
+SUMMARY="Open-source, cross-platform JavaScript runtime environment"

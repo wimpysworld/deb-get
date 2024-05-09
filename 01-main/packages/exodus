@@ -1,9 +1,0 @@
-DEFVER=1
-get_website "https://www.exodus.com/download/"
-if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(sed "s|.*https://downloads\.exodus\.com/releases/hashes-exodus-||" "${CACHE_FILE}" | sed "s/\.txt.*//")"
-    URL="https://downloads.exodus.com/releases/exodus-linux-x64-${VERSION_PUBLISHED}.deb"
-fi
-PRETTY_NAME="Exodus"
-WEBSITE="https://exodus.com/"
-SUMMARY="Bitcoin & Crypto Wallet."

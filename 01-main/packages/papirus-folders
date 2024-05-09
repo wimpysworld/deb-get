@@ -1,0 +1,6 @@
+DEFVER=1
+CODENAMES_SUPPORTED="noble mantic lunar kinetic jammy focal bionic xenial impish"
+PPA="ppa:papirus/papirus"
+PRETTY_NAME="papirus-folders"
+WEBSITE="https://github.com/PapirusDevelopmentTeam/papirus-folders"
+SUMMARY="Papirus theme for folders."

@@ -1,0 +1,13 @@
+DEFVER=1
+ARCHS_SUPPORTED='amd64'
+get_github_releases 'localsend/localsend' 'latest'
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -m1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*x86-64\.deb\"" "${CACHE_FILE}")
+    URL=${URL%\"}; URL=${URL##*\"}
+    VERSION_PUBLISHED=${URL##*/download/v}
+    VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
+fi
+EULA=''
+PRETTY_NAME='LocalSend'
+WEBSITE='https://github.com/localsend/localsend'
+SUMMARY='An open source cross-platform alternative to AirDrop'
