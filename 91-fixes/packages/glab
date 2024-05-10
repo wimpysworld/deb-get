@@ -1,0 +1,11 @@
+DEFVER=1
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(wget  -q -O- "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases/permalink/latest/assets/links" | jq -r '.[] |select(.name|contains("x86_64.deb"))| .direct_asset_url')
+    VERSION_PUBLISHED="${URL##*/releases/v}"
+    VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
+fi
+
+PRETTY_NAME="Glab"
+WEBSITE="https://gitlab.com/gitlab-org/cli"
+SUMMARY="A GitLab CLI tool bringing GitLab to your command line"
