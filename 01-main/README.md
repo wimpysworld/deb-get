@@ -152,6 +152,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://lutris.net/) | `lutris` | <i>Open Gaming Platform.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://getmailspring.com/) | `mailspring` | <i>Boost your productivity and send better email with the best mail client.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.makedeb.org/) | `makedeb` | <i>A simple to use deb packaging tool and the mpr repository, a AUR-like sister project for debian and derivatives.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](http://www.theologeek.ch/manuskript) | `manuskript` | <i>A open-source tool for writers</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://code-industry.net/free-pdf-editor/) | `master-pdf-editor-5` | <i>Edit PDF files in Linux. It enables you to create, edit, view and print interactive PDF documents.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://mattermost.com/) | `mattermost-desktop` | <i>Open Source platform for developer collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/mapitman/mdview) | `mdview` | <i>A command line utility to format markdown and launch the resulting HTML file in the default web browser.</i> |
@@ -185,6 +186,7 @@ cog.out(pretty_list)
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://obsproject.com/) | `obs-studio` | <i>Free and open source software for video recording and live streaming.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.ocenaudio.com/) | `ocenaudio` | <i>Easy, fast and powerful audio editor.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/jstaf/onedriver) | `onedriver` | <i>A native Linux filesystem for Microsoft Onedrive.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/o2sh/onefetch) | `onefetch` | <i>A command-line Git information tool written in Rust that displays project information and code statistics for a local Git repository directly to your terminal working entirely offline.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://openrazer.github.io/) | `openrazer-meta` | <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i> |
