@@ -654,13 +654,12 @@ function init_repos() {
     if [ ! -e "${ETC_DIR}/01-main.repo" ]; then
         ${ELEVATE} tee "${ETC_DIR}/01-main.repo" <<<"${MAIN_REPO_URL}" >/dev/null
     fi
-    if [ ! -e "${ETC_DIR}/02-main.repo" ]; then
-         ${ELEVATE} sed 's/01/02/' "${ETC_DIR}/01-main.repo" > "${ETC_DIR}/02-main.repo"
-    fi
-    if [ ! -e "${ETC_DIR}/03-main.repo" ]; then
-        ${ELEVATE} sed 's/01/03/' "${ETC_DIR}/01-main.repo" > "${ETC_DIR}/03-main.repo"
-    fi
-
+    for subrepo in 02 03; do
+        if [ ! -e "${ETC_DIR}/${subrepo}-main.repo" ]; then
+            ${ELEVATE} head -1 "${ETC_DIR}/01-main.repo" | sed "s/01/${subrepo}/" > "${ETC_DIR}/${subrepo}-main.repo"
+        fi
+    done
+    
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         if [ ! -e "${ETC_DIR}/${REPO}.d" ]; then
             ${ELEVATE} mkdir "${ETC_DIR}/${REPO}.d" 2>/dev/null
@@ -1584,11 +1583,9 @@ fi
 
 export CACHE_DIR="/var/cache/deb-get"
 readonly ETC_DIR="/etc/deb-get"
-readonly MAIN_REPO_URL="https://raw.githubusercontent.com/philclifford/deb-get/split_github_repos/01-main"
-
+readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
 readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
 readonly USER_HOME="${HOME}"
-
 readonly DEBGET_BIN=$(basename $0)
 
 parse_machine
