@@ -1,8 +1,9 @@
 DEFVER=1
 get_website "https://www.bitwig.com/download/"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -o "https://www\.bitwig\.com/dl/Bitwig%20Studio/[[:digit:]]*.[[:digit:]]*.[[:digit:]]*/installer_linux" "${CACHE_FILE}")
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d "/" -f 6)"
+    URL="$(follow_url "$(grep -o "https://www\.bitwig\.com/dl/Bitwig%20Studio/[[:digit:]]*.[[:digit:]]*.[[:digit:]]*/installer_linux/" "${CACHE_FILE}")")"
+    VERSION_PUBLISHED="$(echo "\"${URL}\"" | cut -d "/" -f 4)"
+    FILE="${DOWNLOAD_DIR}/Bitwig_Studio_${VERSION_PUBLISHED}.deb"
 fi
 PRETTY_NAME="BitWig Studio"
 WEBSITE="https://www.bitwig.com/"
