@@ -132,6 +132,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://jellyfin.org/) | `jellyfin` | <i>The Free Software Media System.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://jellyfin.org) | `jellyfin-media-player` | <i>Jellyfin Media Player is a desktop client using jellyfin-web with embedded MPV player for the Jellyfin Media Server.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/hvdwolf/jExifToolGUI) | `jexiftoolgui` | <i>jExifToolGUI is a multi-platform java/Swing graphical frontend for the excellent command-line ExifTool application by Phil Harvey</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/jitsi/jitsi-meet) | `jitsi-meet-electron` | <i>Desktop application for Jitsi Meet built with Electron.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/jupyterlab/jupyterlab-desktop) | `jupyterlab-desktop` | <i>JupyterLab desktop application, based on Electron</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/influxdata/kapacitor) | `kapacitor` | <i>Open source framework for processing, monitoring, and alerting on time series data.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/JonMagon/KDiskMark) | `kdiskmark` | <i>A simple open-source disk benchmark tool for Linux distros.</i> |
@@ -190,6 +191,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://openrazer.github.io/) | `openrazer-meta` | <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://openrgb.org/) | `openrgb` | <i>Open source RGB lighting control that doesn't depend on manufacturer software.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.opera.com/) | `opera-stable` | <i>Faster, safer and smarter than default browsers.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/home-assistant/os-agent) | `os-agent` | <i>This is the OS Agent for Home Assistant. It is used for Home Assistant OS and Home Assistant Supervised installation types and it allows the Home Assistant Supervisor to communicate with the host operating system.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.corifeus.com/onenote) | `p3x-onenote` | <i>A Linux compatible version of OneNote.</i> |
@@ -234,6 +236,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.skype.com/) | `skypeforlinux` | <i>Stay connected with free video calls worldwide.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://slack.com/) | `slack-desktop` | <i>One platform for your team and your work.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ransome1/sleek) | `sleek` | <i>Todo manager based on the todo.txt syntax for Linux, free and open-source (FOSS).</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://www.syntevo.com/) | `smartgit` | <i>A graphical Git client with support for pull requests for GitHub and Bitbucket.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/GyulyVGC/sniffnet) | `sniffnet` | <i>Application to comfortably monitor your network traffic.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.softmaker.com/en/softmaker-office) | `softmaker-office-2021` | <i>Create impressive documents with ease.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/marin-m/SongRec) | `songrec` | <i>This app is used to recognise songs and audios around us.</i> |
