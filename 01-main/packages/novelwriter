@@ -6,4 +6,4 @@ if [ "${ACTION}" != "prettylist" ]; then
 fi
 PRETTY_NAME="novelWriter"
 WEBSITE="https://novelwriter.io"
-SUMMARY="A markdown editor for novels"
+SUMMARY="An open source plain text editor designed for writing novels. It supports a minimal markdown-like syntax for formatting text."

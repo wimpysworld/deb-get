@@ -148,6 +148,11 @@ function unroll_url() {
     printf '%s' "${TRIM_URL/\.deb*/.deb}"
 }
 
+function follow_url() {
+    local TRIM_URL="$(curl -w "%{url_effective}" -I -L -s -S "${1}" -o /dev/null)"
+    printf '%s' "${TRIM_URL}"
+}
+
 
 function get_github_releases() {
     METHOD="github"
