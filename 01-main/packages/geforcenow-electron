@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "hmlendea/gfn-electron"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
-fi
-PRETTY_NAME="GeForce NOW"
-WEBSITE="https://github.com/hmlendea/gfn-electron"
-SUMMARY="Desktop client for Nvidia's GeForce NOW game streaming service."
