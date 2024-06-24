@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "NicolasConstant/sengi"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*linux\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
-fi
-PRETTY_NAME="Sengi"
-WEBSITE="https://github.com/NicolasConstant/sengi"
-SUMMARY="Tweetdeck inspired Mastodon & Pleroma Multi-account Desktop Client."
