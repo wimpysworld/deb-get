@@ -21,7 +21,6 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/TheAssassin/AppImageLauncher) | `appimagelauncher` | <i>A free and open source MIT licensed app that makes your Linux desktop AppImage ready. Integrate AppImages to your application launcher with one click, and manage, update and remove them from there.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://atom.io/) | `atom` | <i>A hackable text editor for the 21st Century.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://atomicwallet.io) | `atomic` | <i>Crypto Wallet for Buying, Staking & Exchanging.</i> |
-| [<img src="../.github/github.png" align="top" width="20" />](https://atuin.sh/) | `atuin` | <i>Sync, search, and backup shell history</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://launchpad.net/~audio-recorder) | `audio-recorder` | <i>Audio recording app that allows for the recording from various sources such as microphones, a system's sound card, or a web browser, and save it to various possible formats.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Levminer/authme) | `authme` | <i>Simple cross-platform two-factor (2FA) authenticator app for desktop.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) | `azure-cli` | <i>Command-line interface used to create and manage Azure resources.</i> |
@@ -34,7 +33,6 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.bitwig.com/) | `bitwig-studio` | <i>Modern music production and performance.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/rafaelmardojai/blanket) | `blanket` | <i>Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.blockbench.net/) | `blockbench` | <i>A low-poly 3D model editor</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://www.bluejeans.com) | `bluejeans-v2` | <i>The secure video conferencing platform that makes you more productive.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ClementTsang/bottom) | `bottom` | <i>Yet another cross-platform graphical process/system monitor.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://brave.com/) | `brave-browser` | <i>Browse privately. Search privately. And ditch Big Tech.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://brisqi.com/) | `brisqi` | <i>An offline-first personal Kanban app.</i> |
@@ -64,6 +62,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/wagoodman/dive/) | `dive` | <i>A tool for exploring each layer in a docker image.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.docker.com/) | `docker-ce` | <i>Open source containerization technology for building and containerizing your applications.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.docker.com/products/docker-desktop/) | `docker-desktop` | <i>The fastest way to containerize applications.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://spikehd.github.io/projects/dorion/) | `dorion` | <i>Tiny alternative Discord client with a smaller footprint.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://doublecmd.sourceforge.io/) | `doublecmd-gtk` | <i>Doublecmd is a cross-platform open source file manager with two panels side by side. It is inspired by Total Commander and features new ideas.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://doublecmd.sourceforge.io/) | `doublecmd-qt` | <i>Doublecmd is a cross-platform open source file manager with two panels side by side. It is inspired by Total Commander and features new ideas.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.diagrams.net) | `draw.io` | <i>Diagramming and whiteboarding app that wraps the core draw.io editor.</i> |
@@ -98,6 +97,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://desktop.github.com/) | `github-desktop` | <i>Simple collaboration from your desktop.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.gitkraken.com/invite/ieih1QR3) | `gitkraken` | <i>Intuitive Git GUI & powerful Git CLI.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://gitter.im/) | `gitter` | <i>A chat and networking platform to manage and connect communities through messaging, content and discovery.</i> |
+| [<img src="../.github/gitlab.png" align="top" width="20" />](https://gitlab.com/gitlab-org/cli) | `glab` | <i>A GitLab CLI tool bringing GitLab to your command line</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/charmbracelet/glow) | `glow` | <i>Glow is a terminal based markdown reader designed from the ground up to bring out the beauty—and power—of the CLI.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/ankurk91/google-chat-electron) | `google-chat-electron` | <i>An unofficial desktop app for Google Chat.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.google.com/chrome/beta/) | `google-chrome-beta` | <i>Fast, Secure Browser from Google (Beta Release).</i> |
@@ -112,8 +112,10 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://helio.fm/) | `helio-workstation` | <i>libre music composition software</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://heroicgameslauncher.com/) | `heroic` | <i>An Open Source GOG and Epic games launcher.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/home-assistant/supervised-installer) | `homeassistant-supervised` | <i>This is Home Assistant supervised installer, that provides the full Home Assistant experience on a regular operating system.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://gohugo.io/) | `hugo` | <i>Open-source static site generator.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://hyper.is/) | `hyper` | <i>A terminal built on web technologies.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/sharkdp/hyperfine) | `hyperfine` | <i>A command-line benchmarking tool</i> |
+| [<img src="../.github/debian.png" align="top" width="20" />](https://i3wm.org/) | `i3` | <i>i3 window manager - Stable release</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/igdmapps/igdm) | `igdm` | <i>Continue your Instagram direct messages from your phone to your desktop.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://imhex.werwolv.net/) | `imhex` | <i>A Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://yktoo.com/en/software/sound-switcher-indicator/#software-downloads) | `indicator-sound-switcher` | <i>Sound input/output selector indicator for Linux.</i> |
@@ -180,7 +182,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.nomadproject.io/) | `nomad` | <i>Orchestration tool for deploying and managing applications.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
-| [<img src="../.github/github.png" align="top" width="20" />](https://novelwriter.io) | `novelwriter` | <i>A markdown editor for novels</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://novelwriter.io) | `novelwriter` | <i>An open source plain text editor designed for writing novels. It supports a minimal markdown-like syntax for formatting text.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://nuclear.js.org/) | `nuclear` | <i>Streaming music player that finds free music for you.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/muesli/obs-cli) | `obs-cli` | <i>OBS-cli is a command-line remote control for OBS.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://obsidian.md/) | `obsidian` | <i>A powerful knowledge base on top of a local folder of plain text Markdown files.</i> |
