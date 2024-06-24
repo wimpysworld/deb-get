@@ -1,4 +1,4 @@
-DEFVER=1
+DEFVER=2
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="bookworm sid jammy lunar mantic noble"
 GPG_KEY_URL="https://deb.volian.org/volian/nala.key"
