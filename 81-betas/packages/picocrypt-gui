@@ -1,0 +1,15 @@
+DEFVER=1
+#ARCHS_SUPPORTED="amd64"
+get_github_releases "Picocrypt/Picocrypt" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    #URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="1"
+    #VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    #VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+fi
+PRETTY_NAME="Picocrypt"
+WEBSITE="https://github.com/Picocrypt/Picocrypt/"
+SUMMARY="Picocrypt is a very small, very simple, yet very secure encryption tool"
+
+
