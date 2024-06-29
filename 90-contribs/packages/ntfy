@@ -1,9 +1,0 @@
-DEFVER=1
-ARCHS_SUPPORTED="amd64 arm64 armhf"
-ASC_KEY_URL="https://archive.heckel.io/apt/pubkey.txt"
-APT_REPO_URL="https://archive.heckel.io/apt debian main"
-APT_REPO_OPTIONS="arch=${HOST_ARCH}"
-APT_LIST_NAME=heckel.io
-PRETTY_NAME="nfty"
-WEBSITE="https://github.com/binwiederhier/ntfy/"
-SUMMARY="ntfy lets you send push notifications to your phone or desktop via scripts from any computer, using simple HTTP PUT or POST requests"
