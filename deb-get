@@ -314,6 +314,12 @@ function install_ppa() {
 function install_deb() {
     local URL="${1}"
     local FILE="${FILE:-${URL##*/}}"
+
+    # If $FILE contains 'download?type='" replace contents with actual filename
+    ## TODO function only in ticktick definition at present
+    FILE="${FILE/download?type=*/$(get_filename_from_url "${URL}")}"
+
+
     local STATUS=""
     ((PACKAGE_INSTALLATION_TRIES++))
 
