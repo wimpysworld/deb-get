@@ -3,7 +3,7 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.4.1.1-pc-extras"
+readonly VERSION="0.4.2.1-pc-extras"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
 if [ -n "${DEBGET_TOKEN}" ]; then
@@ -314,6 +314,7 @@ function install_ppa() {
 function install_deb() {
     local URL="${1}"
     local FILE="${FILE:-${URL##*/}}"
+
     local STATUS=""
     ((PACKAGE_INSTALLATION_TRIES++))
 
