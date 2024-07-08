@@ -1,9 +1,8 @@
 DEFVER=1
 get_github_releases "zyedidia/micro"  latest
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v nightly |head -n1 | cut -d'"' -f4)
-    #VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
-    VERSION_PUBLISHED="$(echo $URL | cut -d/ -f9 |cut -d- -f2-3 )"
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v nightly | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
 PRETTY_NAME="micro"
 WEBSITE="https://micro-editor.github.io/"
