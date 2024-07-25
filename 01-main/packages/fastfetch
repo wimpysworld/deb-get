@@ -8,7 +8,7 @@ case $(UPSTREAM_CODENAME) in
         ARCHS_SUPPORTED="amd64"
         ;;
     *)
-        URL=$(grep "browser_download_url.*linux-${HOST_CPU}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+        URL=$(grep "browser_download_url.*linux-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
         ARCHS_SUPPORTED="amd64 arm64"
         ;;
 esac
