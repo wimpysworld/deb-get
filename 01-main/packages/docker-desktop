@@ -2,7 +2,7 @@ DEFVER=1
 get_website "https://docs.docker.com/desktop/release-notes/"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "amd64\.deb" "${CACHE_FILE}" | grep -Eo 'https://[^ >]+' | cut -d'?' -f1 | tr -d '"' | head -n1)"
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
+    VERSION_PUBLISHED=$(grep -E -m 1 -o 'href=#[0-9]+>[^>]*([^<]*)<' "${CACHE_FILE}" | head -n 1 | sed -E 's|.*>([^<]+)<.*|\1|')
 fi
 PRETTY_NAME="Docker Desktop"
 WEBSITE="https://www.docker.com/products/docker-desktop/"
