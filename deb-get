@@ -3,7 +3,8 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.4.2.1-pc-extras"
+
+readonly VERSION="0.4.3.1-pc-extras"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
 if [ -n "${DEBGET_TOKEN}" ]; then
@@ -181,21 +182,21 @@ function get_gitlab_releases() {
     METHOD="gitlab"
     CACHE_FILE="${CACHE_DIR}/${APP}.json"
     # Cache gitlab releases json for 1 hour to try and prevent API rate limits
-    # 
+    #
     # Do not process gitlab releases while generating a pretty list or upgrading
     # if $1 is org/app or user/repo it must be urlencoded
     # the gitlab api can take a release or use permalink/latest to get the latest release
     # So for gitlab sourced apps that use this release model users can use 99-local to pin a version
-    # 
+    #
 
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             RELEASE=${2/%latest/permalink/latest}
 
-            local URL="https://gitlab.com/api/v4/projects/${1}/releases/${RELEASE}/assets/links" 
+            local URL="https://gitlab.com/api/v4/projects/${1}/releases/${RELEASE}/assets/links"
             wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
-            
+
             ${ELEVATE} "${wgetcmdarray[@]}" || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
         fi
     fi
@@ -1298,6 +1299,7 @@ esac
 OS_ID=$(lsb_release --id --short)
 case "${OS_ID}" in
   Debian) OS_ID_PRETTY="Debian";;
+  elementary|Elementary) OS_ID_PRETTY="elementary OS";;
   Linuxmint) OS_ID_PRETTY="Linux Mint";;
   Neon) OS_ID_PRETTY="KDE Neon";;
   Pop) OS_ID_PRETTY="Pop!_OS";;
