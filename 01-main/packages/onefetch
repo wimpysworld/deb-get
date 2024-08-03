@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "o2sh/onefetch" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}")
+fi
+PRETTY_NAME="Onefetch"
+WEBSITE="https://github.com/o2sh/onefetch"
+SUMMARY="A command-line Git information tool written in Rust that displays project information and code statistics for a local Git repository directly to your terminal working entirely offline."
