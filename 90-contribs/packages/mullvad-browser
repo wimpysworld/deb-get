@@ -1,0 +1,8 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ASC_KEY_URL="https://repository.mullvad.net/deb/mullvad-keyring.asc"
+APT_REPO_URL="https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" 
+
+PRETTY_NAME="Mullvad Browser"
+WEBSITE="https://mullvad.net/en/browser"
+SUMMARY="TOR-based browser designed to minimize tracking and fingerprints."
