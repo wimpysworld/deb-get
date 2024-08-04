@@ -1,0 +1,7 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble"
+APT_LIST_NAME="apps.mamolinux.org"
+PPA="ppa:mamolinux/gui-apps"
+PRETTY_NAME="Battery Monitor"
+WEBSITE="https://hsbasu.github.io/battery-monitor/"
+SUMMARY="An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop."
