@@ -1,7 +1,7 @@
 DEFVER=1
 get_github_releases "ClementTsang/bottom" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*bottom_.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
 fi
 PRETTY_NAME="bottom"
