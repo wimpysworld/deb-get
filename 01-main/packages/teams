@@ -1,7 +1,0 @@
-DEFVER=1
-ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
-APT_REPO_URL="https://packages.microsoft.com/repos/ms-teams stable main"
-APT_REPO_OPTIONS="arch=amd64"
-PRETTY_NAME="Microsoft Teams"
-WEBSITE="https://www.microsoft.com/microsoft-teams/group-chat-software"
-SUMMARY="Team chat and collaboration."
