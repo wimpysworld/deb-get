@@ -1,0 +1,15 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+case ${HOST_ARCH} in
+    amd64) CODENAMES_SUPPORTED="bullseye bookworm focal jammy noble" ;;
+    arm64) CODENAMES_SUPPORTED="bullseye bookworm focal jammy noble" ;;
+    armhf) CODENAMES_SUPPORTED="bullseye bookworm focal" ;;
+esac 
+get_website "https://www.veracrypt.fr/en/Downloads.html"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(grep 'Latest Stable Release' $CACHE_FILE  |cut -d\  -f 5)"  
+    URL=$(unroll_url "https://launchpad.net/veracrypt/trunk/${VERSION_PUBLISHED}/+download/veracrypt-console-${VERSION_PUBLISHED}-${UPSTREAM_ID^}-${UPSTREAM_RELEASE}-${HOST_ARCH}.deb\"")
+fi
+PRETTY_NAME="Veracrypt Console"
+WEBSITE="https://www.veracrypt.fr/en/Downloads.html"
+SUMMARY="VeraCrypt is a free and open-source utility for on-the-fly encryption (OTFE)."
