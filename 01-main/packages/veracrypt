@@ -1,9 +1,10 @@
 DEFVER=2
-ARCHS_SUPPORTED="amd64 arm64"
-CODENAMES_SUPPORTED="buster bullseye focal jammy"
-if [ "${ARCH}" == "amd64" ]; then
-    CODENAMES_SUPPORTED="${CODENAMES_SUPPORTED} noble bookworm"
-fi 
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+case ${HOST_ARCH} in
+    amd64) CODENAMES_SUPPORTED="bullseye bookworm focal jammy noble" ;;
+    arm64) CODENAMES_SUPPORTED="bullseye bookworm focal jammy noble" ;;
+    armhf) CODENAMES_SUPPORTED="bullseye bookworm focal" ;;
+esac
 get_website "https://www.veracrypt.fr/en/Downloads.html"
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(grep 'Latest Stable Release' $CACHE_FILE  |cut -d\  -f 5)"  
