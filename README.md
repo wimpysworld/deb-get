@@ -72,7 +72,7 @@ result = subprocess.check_output(["./deb-get", "help"], encoding="utf-8")
 help = result.replace("Usage\n\n", "").rstrip()
 cog.out(f"```\n{help}\n```")
 ]]] -->
-```
+```bash
 
 deb-get {update [--repos-only] [--quiet] | upgrade | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
@@ -95,7 +95,9 @@ update
 
 upgrade
     upgrade is used to install the newest versions of all packages currently
-    installed on the system.
+    installed on the system with option to evaluate with default y/n answer.
+    Answering no will upgrade only deb-get packages.
+    deb-get upgrade -y will act as unattended upgrades.
 
 install
     install is followed by one package (or a space-separated list of packages)

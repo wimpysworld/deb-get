@@ -40,7 +40,9 @@ update
 
 upgrade
     upgrade is used to install the newest versions of all packages currently
-    installed on the system.
+    installed on the system with option to evaluate with default y/n answer.
+    Answering no will upgrade only deb-get packages.
+    deb-get upgrade -y will act as unattended upgrades.
 
 install
     install is followed by one package (or a space-separated list of packages)
@@ -265,7 +267,7 @@ function update_apt() {
 }
 
 function upgrade_apt() {
-    ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y upgrade
+    ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" upgrade "$1"
 }
 
 # Update only the added repo (during install action)
@@ -638,7 +640,7 @@ function update_debs() {
 
 function upgrade_debs() {
     local STATUS=""
-    upgrade_apt
+    upgrade_apt "$@"
     for APP in "${INSTALLED_APPS[@]}"; do
         validate_deb "${APPNAME2FULL[$APP]}"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ]|| [ "${METHOD}" == "gitlab" ] || [ "${METHOD}" == "website" ]; then
@@ -1536,7 +1538,7 @@ function dg_action_update() {
 function dg_action_upgrade() {
         elevate_privs
         create_cache_dir
-        upgrade_debs
+        upgrade_debs "$@"
 }
 function dg_action_fix-installed() {
         if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
