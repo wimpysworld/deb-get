@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armv6 i386"
-CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble"
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble oracular"
 get_github_releases "knqyf263/pet" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)

@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="buster bullseye focal jammy mantic noble"
+CODENAMES_SUPPORTED="buster bullseye focal jammy mantic noble oracular"
 get_github_releases "flameshot-org/flameshot" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_RELEASE}" in
