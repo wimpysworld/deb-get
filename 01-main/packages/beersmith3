@@ -1,19 +1,22 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bionic focal jammy mantic noble"
+CODENAMES_SUPPORTED="bionic focal jammy mantic noble oracular"
 get_website "https://beersmith.com/download-beersmith/"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${UPSTREAM_CODENAME} in
         bionic)
-            URL="$(grep "18\.04_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+            URL="https://beersmith3-1.s3.amazonaws.com/BeerSmith-3.1.8_18.04_amd64.deb"
         ;;
         focal)
-            URL="$( grep "3\.2\.7_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+	        URL="https://beersmith3-2.s3.amazonaws.com/BeerSmith-3.2.7_amd64.deb"
         ;;
         jammy|mantic)
-            URL="$(grep "amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+	        URL="https://beersmith3-2.s3.amazonaws.com/BeerSmith-3.2.8_amd64.deb"
         ;;
+	    noble|oracular)
+	        URL="https://beersmith3-2.s3.amazonaws.com/BeerSmith-3.2.8_24_04_amd64.deb"
+	    ;;    
         *)
-            URL="$(grep "amd64\.deb\"" "${CACHE_FILE}"| head -n1 | cut -d'"' -f2)"
+	        URL="https://beersmith3-2.s3.amazonaws.com/BeerSmith-3.2.8_24_04_amd64.deb"
         ;;
     esac
 
