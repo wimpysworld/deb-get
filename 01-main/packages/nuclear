@@ -7,5 +7,5 @@ if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
 fi
 PRETTY_NAME="Nuclear"
-WEBSITE="https://nuclear.js.org/"
+WEBSITE="https://nuclearplayer.com/"
 SUMMARY="Streaming music player that finds free music for you."
