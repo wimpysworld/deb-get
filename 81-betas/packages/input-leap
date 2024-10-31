@@ -1,0 +1,23 @@
+DEFVER=1
+get_github_releases "input-leap/input-leap" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+#CODENAMES_SUPPORTED="bookworm jammy noble oracular" # plucky trixie sid
+    case ${UPSTREAM_ID} in #
+    ubuntu)
+        # Note: this relies on the "." in the release being a regex wildcard and matching the "-" in the URL
+        # which will still work if they change the release format to "22.04" or similar
+        URL=$(grep -m 1 "browser_download_url.*_ubuntu_${UPSTREAM_RELEASE}_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4) 
+        ;;
+    debian)
+        URL=$(grep -m 1 "browser_download_url.*_debian${UPSTREAM_RELEASE}_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4) 
+        ;;
+    *) 
+        URL=$(grep -m 1 "browser_download_url._debian12_${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)  
+        ;;
+    esac
+
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}"| tr -d 'v')
+fi
+PRETTY_NAME="InputLeap"
+WEBSITE="https://github.com/input-leap/input-leap"
+SUMMARY="Open-source KVM software that mimics the functionality of a KVM switch."
