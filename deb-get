@@ -3,8 +3,7 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-
-readonly VERSION="0.4.3.1-pc-extras"
+readonly VERSION="0.4.4.1-pc-extras"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
 if [ -n "${DEBGET_TOKEN}" ]; then
@@ -1359,6 +1358,8 @@ case "${UPSTREAM_CODENAME}" in
     lunar)    UPSTREAM_RELEASE="23.04";;
     mantic)   UPSTREAM_RELEASE="23.10";;
     noble)    UPSTREAM_RELEASE="24.04";;
+    oracular) UPSTREAM_RELEASE="24.10";;
+
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
 }
