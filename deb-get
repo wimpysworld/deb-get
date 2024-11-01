@@ -173,6 +173,8 @@ function get_github_releases() {
                 fancy_message warn "Updating ${CACHE_FILE} exceeded GitHub API limits. Deleting it."
                 ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
             fi
+            # we only want the .deb files download urls from the json
+            ${ELEVATE} sed -i '/browser_download/!d;/\.deb/!d' ${CACHE_FILE}
         fi
     fi
 }
