@@ -1,27 +1,27 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bionic focal jammy mantic noble"
+CODENAMES_SUPPORTED="bionic focal jammy mantic noble oracular"
 get_website "https://beersmith.com/download-beersmith/"
 if [ "${ACTION}" != "prettylist" ]; then
     DL=$(grep -o -E '\"https://beer.*\.deb\"' "$CACHE_FILE" | sed 's/<br>/\n/g')
     case ${UPSTREAM_CODENAME} in
         bionic)
-            URL="$(grep "18\.04_amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
+            URL="https://beersmith3-1.s3.amazonaws.com/BeerSmith-3.1.8_18.04_amd64.deb"
         ;;
         focal)
-            URL=$(grep 20.04 <<<"${DL}" | cut -d\" -f4)
+            URL=$(grep -m 1 20.04 <<<"${DL}" | cut -d\" -f4)
         ;;
         jammy|mantic)
-            URL=$(grep 22.04 <<<"${DL}" | cut -d\" -f4)
+            URL=$(grep -m 1 22.04 <<<"${DL}" | cut -d\" -f4)
         ;;
         noble|oracular)
-            URL=$(grep 24.04 <<<"${DL}" | cut -d\" -f2 | uniq)
+            URL=$(grep -m 1 24.04 <<<"${DL}" | cut -d\" -f2)
 	    ;;    
         *)
-            URL=$(grep "${UPSTREAM_RELEASE}" <<<"${DL}" | cut -d\" -f4)
+            URL=$(grep -m 1 "${UPSTREAM_RELEASE}" <<<"${DL}" | cut -d\" -f4)
         ;;
     esac
 
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)
 fi
 PRETTY_NAME="BeerSmith"
 WEBSITE="https://beersmith.com/"

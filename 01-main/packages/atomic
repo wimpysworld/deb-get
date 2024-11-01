@@ -1,7 +1,7 @@
 DEFVER=1
 get_website "https://get.atomicwallet.io/download/"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(grep deb "${CACHE_FILE}" | grep atomicwallet|grep -v sha|tail -n2|head -n1|sed "s/^.*\-\(\S*\).deb.*/\1/")"
+    VERSION_PUBLISHED=$(grep deb "${CACHE_FILE}" | grep atomicwallet|grep -v sha|tail -n2|head -n1|sed "s/^.*\-\(\S*\).deb.*/\1/")
     URL="https://get.atomicwallet.io/download/atomicwallet-${VERSION_PUBLISHED}.deb"
 fi
 PRETTY_NAME="Atomic Wallet"
