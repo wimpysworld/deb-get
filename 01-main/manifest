@@ -1,4 +1,4 @@
-https://raw.githubusercontent.com/philclifford/deb-get/extras/01-main
+https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main
 1password
 activitywatch
 agena
@@ -11,6 +11,7 @@ atom
 atomic
 #atuin
 audio-recorder
+auth
 authme
 azure-cli
 azuredatastudio
@@ -67,6 +68,7 @@ expressvpn
 fail2ban
 fastfetch
 fd
+fedistar
 ferdium
 figma-linux
 filezilla-theme-papirus
@@ -160,10 +162,11 @@ motrix
 mpdevil
 mqttx
 ms-365-electron
+mullvad-browser
 mullvad-vpn
 multimc
 nala
-nala-legacy
+#nala-legacy
 nekoray
 nemo-mediainfo-tab
 neo4j
@@ -179,6 +182,7 @@ obs-cli
 obsidian
 obs-studio
 ocenaudio
+oculante
 onedriver
 onefetch
 onlyoffice-desktopeditors
@@ -194,6 +198,7 @@ papirus-icon-theme
 pdfsam-basic
 pdfsam-visual
 peazip
+pet
 picocrypt-gui
 plexmediaserver
 plow

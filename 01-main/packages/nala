@@ -1,7 +1,7 @@
 DEFVER=2
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="bookworm sid jammy lunar mantic noble"
-GPG_KEY_URL="https://deb.volian.org/volian/nala.key"
+GPG_KEY_URL="https://gitlab.com/volian/volian-archive/-/raw/main/volian-archive-scar-unstable.gpg?ref_type=heads&inline=false"
 APT_REPO_URL="http://deb.volian.org/volian/ nala main"
 APT_REPO_OPTIONS="arch=${HOST_ARCH}"
 PRETTY_NAME="Nala"
