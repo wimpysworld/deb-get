@@ -2,19 +2,11 @@ DEFVER=1
 CODENAMES_SUPPORTED="buster bullseye focal jammy mantic noble oracular"
 get_github_releases "flameshot-org/flameshot" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    case "${UPSTREAM_RELEASE}" in
-        22.10) ONLY_ONE="tail -1" ;;
-        *) ONLY_ONE="head -1"
-    esac
-    if ! grep -q -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE:0:2}.*\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json"; then
-      case "${UPSTREAM_RELEASE}" in
-        # For 24.x and 25.x, use 22.04, if a more recent version hasn't been released
-        2[45].*) UPSTREAM_RELEASE=22.04 ;;
-      esac
+    URL="$(grep -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}.*\.${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    if [ -z "${URL}" ]; then
+        URL="$(sort -r ${CACHE_FILE} | grep -m 1 -E "browser_download_url.*\.${UPSTREAM_ID}-.*\.${HOST_ARCH}\.deb\"" | cut -d'"' -f4)"
     fi
-    URL="$(grep  -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE:0:2}.*\.${HOST_ARCH}\.deb\"" "${CACHE_DIR}/${APP}.json" | $ONLY_ONE | cut -d'"' -f4)"
-    local VERSION_TMP="${URL##*/flameshot-}"
-    VERSION_PUBLISHED="${VERSION_TMP%%[-.]${UPSTREAM_ID}*}"
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
 fi
 PRETTY_NAME="Flameshot"
 WEBSITE="https://flameshot.org/"
