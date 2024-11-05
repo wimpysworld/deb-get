@@ -1,3 +1,16 @@
+# Remote repository structure
+
+`.` is root of your external repository
+```
+.
+└── <priority>-<repo-name>
+    ├── manifest
+    └── packages
+        └── <package-files>
+        └── ...
+```
+
+
 # The base URL
 
 It is the URL that is used as base to build the URLs to download all the files from the external repository. It must be in a format so that the following gives the URLs of the manifest file and the package definition files:
