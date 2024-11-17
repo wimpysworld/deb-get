@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
 get_github_releases "emqx/MQTTX" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
 PRETTY_NAME="MQTTX"
 WEBSITE="https://github.com/emqx/MQTTX/"

@@ -3,10 +3,10 @@ get_website "https://posit.co/download/rstudio-desktop/"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         focal|buster|bullseye)
-            URL="$( grep -e "focal/.*amd64.deb" "${CACHE_FILE}" | grep -v "tar.gz" | head -n1 | cut -d'"' -f4)"
+            URL="$( grep -e "focal/.*amd64.deb" "${CACHE_FILE}" | grep -m 1 -v tar.gz | cut -d'"' -f4)"
             ;;
         *)
-            URL="$( grep -e "jammy/.*amd64.deb" "${CACHE_FILE}" | grep -v "tar.gz" | head -n1 | cut -d'"' -f4)"
+            URL="$( grep -e "jammy/.*amd64.deb" "${CACHE_FILE}" | grep -m 1 -v tar.gz | cut -d'"' -f4)"
             ;;
     esac
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"
