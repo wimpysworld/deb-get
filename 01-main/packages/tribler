@@ -1,7 +1,7 @@
 DEFVER=1
-get_github_releases "Tribler/tribler" "latest"
+get_github_releases "Tribler/tribler" 
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*_all\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
 PRETTY_NAME="Tribler"
