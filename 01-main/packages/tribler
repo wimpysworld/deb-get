@@ -1,8 +1,21 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ARCH="${HOST_ARCH}"
+case "${ARCH}" in
+  arm64|aarch64)
+    ARCH=aarch64
+    ;;
+  amd64|x86_64)
+    ARCH=x64
+    ;;
+   *)
+    printf "Unsupported HOST_ARCH: '%s'\n" "${ARCH}"
+    ;;
+esac
 get_github_releases "Tribler/tribler" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*_all\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    URL=$(grep "browser_download_url.*${ARCH}.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
 PRETTY_NAME="Tribler"
 WEBSITE="https://www.tribler.org/"
