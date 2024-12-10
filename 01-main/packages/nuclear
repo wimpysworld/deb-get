@@ -3,9 +3,9 @@ DEFVER=1
 # using "latest" would return nothing
 get_github_releases "nukeop/nuclear"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")
 fi
 PRETTY_NAME="Nuclear"
-WEBSITE="https://nuclear.js.org/"
+WEBSITE="https://nuclearplayer.com/"
 SUMMARY="Streaming music player that finds free music for you."

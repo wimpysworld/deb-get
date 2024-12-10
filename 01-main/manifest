@@ -9,7 +9,6 @@ anydesk
 appimagelauncher
 atom
 atomic
-#atuin
 audio-recorder
 auth
 authme
@@ -23,7 +22,6 @@ bitwarden
 bitwig-studio
 blanket
 blockbench
-#bluejeans-v2
 bottom
 brave-browser
 brisqi
@@ -37,7 +35,6 @@ codium
 com.github.tkashkin.gamehub
 copyq
 cosign
-# croc
 cronopete
 crossover
 crow-translate
@@ -71,6 +68,7 @@ fd
 fedistar
 ferdium
 figma-linux
+files-cli
 filezilla-theme-papirus
 firefox
 firefox-beta
@@ -96,6 +94,8 @@ google-chrome-stable
 google-chrome-unstable
 google-cloud-cli
 google-earth-pro-stable
+goreleaser
+goreleaser-pro
 gpu-viewer
 grub-customizer
 grype
@@ -107,6 +107,7 @@ hugo
 hyper
 hyperfine
 i3
+icaclient
 igdm
 imhex
 indicator-sound-switcher
@@ -166,7 +167,6 @@ mullvad-browser
 mullvad-vpn
 multimc
 nala
-#nala-legacy
 nekoray
 nemo-mediainfo-tab
 neo4j
@@ -176,8 +176,8 @@ nomad
 nordvpn
 notable
 novelwriter
-nuclear
 ntfy
+nuclear
 obs-cli
 obsidian
 obs-studio
@@ -207,6 +207,7 @@ pomatez
 popcorn-time
 portmaster
 powershell
+prospect-mail
 protonmail-bridge
 protonvpn
 publii
@@ -256,7 +257,6 @@ system-monitoring-center
 tabby-terminal
 tailscale
 tarsnap
-#teams
 teams-for-linux
 teamviewer
 teip
@@ -305,7 +305,6 @@ winehq-devel
 winehq-stable
 winehq-staging
 wire-desktop
-# wraith-master
 xemu
 youtube-music
 yq
