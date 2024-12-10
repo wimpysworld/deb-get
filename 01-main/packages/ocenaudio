@@ -1,7 +1,7 @@
 DEFVER=1
 get_website "https://www.ocenaudio.com/en/download" --prefer-family=IPv4
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(grep "<p>Version" "${CACHE_FILE}" | head -n1 | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)"
+    VERSION_PUBLISHED=$(grep -m 1 "<p>Version" "${CACHE_FILE}" | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)
 fi
 URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_64.deb"
 PRETTY_NAME="ocenaudio"

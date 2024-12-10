@@ -1,8 +1,8 @@
 DEFVER=1
 get_website "https://www.tixati.com/download/linux.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "amd64\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f2)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    URL=$(grep -m 1 "amd64\.deb\"" "${CACHE_FILE}" | cut -d'"' -f2)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
 fi
 PRETTY_NAME="Tixati"
 WEBSITE="https://www.tixati.com/"
