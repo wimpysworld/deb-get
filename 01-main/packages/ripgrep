@@ -11,7 +11,7 @@ pkg_ripgrep() {
   WEBSITE=https://github.com/$GH_OWNER_REPO
   get_github_releases "$GH_OWNER_REPO" latest
   if [ "${ACTION}" != prettylist ]; then
-      URL=$(grep -m1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*/${DEB_PKGNAME}_[^/\"]*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}")
+      URL=$(grep -m 1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*/${DEB_PKGNAME}_[^/\"]*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}")
       URL=${URL%\"}; URL=${URL##*\"}
       local DEB_FILENAME=${URL##*/}
       VERSION_PUBLISHED=${DEB_FILENAME#*_}; VERSION_PUBLISHED=${VERSION_PUBLISHED%%_*}

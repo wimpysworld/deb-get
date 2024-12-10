@@ -1,8 +1,8 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-get_website "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/"
+get_website "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(sed -e 's/<[^>]*>//g' "${CACHE_FILE}" | sed '/^[[:space:]]*$/d' | grep "${HOST_ARCH}" | sort -r | head -n1 | awk '{print $1}' | cut -d'_' -f2)
+    VERSION_PUBLISHED=$(sed -e 's/<[^>]*>//g' "${CACHE_FILE}" | sed '/^[[:space:]]*$/d' | grep -m 1 "${HOST_ARCH}" | sort -r | awk '{print $1}' | cut -d'_' -f2)
     URL="https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
 fi
 PRETTY_NAME="NordVPN"

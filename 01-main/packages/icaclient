@@ -1,4 +1,4 @@
-URL_PRE=$(curl https://www.citrix.com/downloads/workspace-app/ | grep "Citrix Workspace app.*Linux" | sort -r -k 5 | grep -v -i tech | head -n 1 | cut -d'"' -f2)
+URL_PRE=$(curl https://www.citrix.com/downloads/workspace-app/ | grep "Citrix Workspace app.*Linux" | sort -r -k 5 | grep -m 1 -v -i tech | cut -d'"' -f2)
 URL="http:$(curl https://www.citrix.com/${URL_PRE} | grep ctx-dl-lin | cut -d'"' -f10 | grep icaclient.*${HOST_ARCH}.*deb)"
 FILE=$(echo "${URL}" | sed 's/.deb?.*/.deb/g')
 FILE=${FILE##*/}
