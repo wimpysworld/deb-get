@@ -1,0 +1,18 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+PRETTY_NAME="TickTick"
+
+if [ "${ACTION}" != "prettylist" ]; then
+
+
+    local ARCH_VER
+    case ${HOST_ARCH} in
+        amd64)   ARCH_VER=x64;;
+        arm64) ARCH_VER=arm64;;
+    esac
+    URL=$(unroll_url "https://ticktick.com/static/getApp/download?type=linux_deb_${ARCH_VER}")
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d- -f2)  
+fi
+WEBSITE="https://ticktick.com/home"
+SUMMARY="TickTick is a powerful to-do & task management app with seamless cloud synchronization across all your devices."
+# Whether you need to schedule an agenda, make memos, share shopping lists, collaborate in a team, or even develop a new habit, TickTick is always here to help you get stuff done and keep life on track.

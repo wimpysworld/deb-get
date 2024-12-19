@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "wimpysworld/stream-sprout" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*all\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8)
+fi
+PRETTY_NAME="Stream Sprout"
+WEBSITE="https://github.com/wimpysworld/stream-sprout/"
+SUMMARY="Restream a video source to multiple destinations such as Twitch, YouTube, Owncast and Peertube 📡"

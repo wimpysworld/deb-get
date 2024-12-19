@@ -1,0 +1,5 @@
+DEFVER=1
+PPA="ppa:yubico/stable"
+PRETTY_NAME="yubikey-manager"
+WEBSITE="https://github.com/Yubico/yubikey-manager"
+SUMMARY="Python 3.8 (or later) library and command line tool for configuring a YubiKey."

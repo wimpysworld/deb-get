@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble oracular"
+get_github_releases "woelper/oculante" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
+fi
+PRETTY_NAME="Oculante"
+WEBSITE="https://github.com/woelper/oculante"
+SUMMARY="A fast and simple image viewer / editor for many operating systems"

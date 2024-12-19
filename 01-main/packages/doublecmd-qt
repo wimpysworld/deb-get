@@ -1,8 +1,20 @@
-DEFVER=1
-CODENAMES_SUPPORTED="buster bullseye focal jammy kinetic lunar mantic noble"
-ASC_KEY_URL="https://download.opensuse.org/repositories/home:Alexx2000/xUbuntu_${UPSTREAM_RELEASE}/Release.key"
+DEFVER=2
+CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy kinetic lunar mantic noble oracular"
+LOCALID=""
+case ${UPSTREAM_ID} in
+    ubuntu)
+        LOCALID="x${UPSTREAM_ID^}" ;; 
+    debian)
+        LOCALID="${UPSTREAM_ID^}" ;; 
+esac
+# Even though
+#   https://software.opensuse.org//download.html?project=home%3AAlexx2000%3Adoublecmd-svn&package=doublecmd-qt
+# shows
+#   http://download.opensuse.org/repositories/home:/Alexx2000:/doublecmd-svn/xUbuntu_24.10/
+# these URLs still work:
+ASC_KEY_URL="https://download.opensuse.org/repositories/home:Alexx2000/${LOCALID}_${UPSTREAM_RELEASE}/Release.key"
 APT_LIST_NAME="doublecmd"
-APT_REPO_URL="https://download.opensuse.org/repositories/home:/Alexx2000/xUbuntu_${UPSTREAM_RELEASE}/ /"
+APT_REPO_URL="https://download.opensuse.org/repositories/home:/Alexx2000/${LOCALID}_${UPSTREAM_RELEASE}/ /"
 PRETTY_NAME="doublecmd-qt"
 WEBSITE="https://doublecmd.sourceforge.io/"
 SUMMARY="Doublecmd is a cross-platform open source file manager with two panels side by side. It is inspired by Total Commander and features new ideas."
