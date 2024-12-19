@@ -29,6 +29,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.balena.io/etcher/) | `balena-etcher` | <i>Flash OS images to SD cards & USB drives, safely and easily.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/sharkdp/bat) | `bat` | <i>A 'cat' clone with wings.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://hsbasu.github.io/battery-monitor/) | `battery-monitor` | <i>An X-platform utility tool developed on Python, notifies about charging, discharging, and critically low battery state of the battery on laptop.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://beersmith.com/) | `beersmith3` | <i>Home Brewing Software.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://bitwarden.com/) | `bitwarden` | <i>Open Source Password Manager.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.bitwig.com/) | `bitwig-studio` | <i>Modern music production and performance.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://github.com/rafaelmardojai/blanket) | `blanket` | <i>Improve focus and increase your productivity by listening to different sounds. Or allows you to fall asleep in a noisy environment.</i> |
@@ -86,6 +87,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.mozilla.org/en-US/firefox/channel/desktop/#developer) | `firefox-devedition` | <i>Firefox web browser (developer edition).</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://www.mozilla.org/firefox/enterprise/) | `firefox-esr` | <i> Firefox web browser (extended support release).</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.mozilla.org/en-US/firefox/channel/desktop/#nightly) | `firefox-nightly` | <i>Firefox web browser (nightly release).</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://flameshot.org/) | `flameshot` | <i>Flameshot is a free and open-source, cross-platform tool to take screenshots with many built-in features to save you time.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://johnfactotum.github.io/foliate/) | `foliate` | <i>A simple and modern eBook viewer for Linux desktops.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://meetfranz.com/) | `franz` | <i>A messaging app for WhatsApp, Facebook Messenger, Slack, Telegram and many many more.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.frostwire.com/) | `frostwire` | <i>An easy to use Cloud Downloader, BitTorrent Client and Media Player. Search, Download, Play, Share</i> |
@@ -159,6 +161,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](http://www.theologeek.ch/manuskript) | `manuskript` | <i>A open-source tool for writers</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://code-industry.net/free-pdf-editor/) | `master-pdf-editor-5` | <i>Edit PDF files in Linux. It enables you to create, edit, view and print interactive PDF documents.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://mattermost.com/) | `mattermost-desktop` | <i>Open Source platform for developer collaboration.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/mapitman/mdview) | `mdview` | <i>A command line utility to format markdown and launch the resulting HTML file in the default web browser.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/mhogomchungu/media-downloader) | `media-downloader` | <i>A Qt/C++ based GUI frontend to multiple CLI based tools that deal with downloading online media. yt-dlp CLI tool is the default supported tool and other tools can be added.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://mediathekview.de/) | `mediathekview` | <i>View streams from German public television stations.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/trapexit/mergerfs) | `mergerfs` | <i>A featureful union filesystem.</i> |
@@ -172,13 +175,16 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/emqx/MQTTX/) | `mqttx` | <i>A Powerful and All-in-One MQTT 5.0 client toolbox for Desktop, CLI and WebSocket.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://agam778.github.io/MS-365-Electron/) | `ms-365-electron` | <i>An Unofficial Microsoft Office 365 Desktop Client made with Electron.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://mullvad.net/en/browser) | `mullvad-browser` | <i>TOR-based browser designed to minimize tracking and fingerprints.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://mullvad.net/) | `mullvad-vpn` | <i>VPN Service based in Sweden that does not collect user data.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://multimc.org/) | `multimc` | <i>A custom launcher for Minecraft that allows you to easily manage multiple installations of Minecraft at once.</i> |
+| [<img src="../.github/debian.png" align="top" width="20" />](https://gitlab.com/volian/nala) | `nala` | <i>Commandline frontend for the APT package manager for Ubuntu 22.04 / Debian Sid and newer.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://matsuridayo.github.io/) | `nekoray` | <i>Qt based cross-platform GUI proxy configuration manager (backend: v2ray / sing-box)</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/linux-man/nemo-mediainfo-tab) | `nemo-mediainfo-tab` | <i>View media information from the properties tab</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://neo4j.com/) | `neo4j` | <i>The Graph Data Platform for Today's Intelligent Applications.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://nextcloud.com/) | `nextcloud-desktop` | <i>The self-hosted productivity platform that keeps you in control.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://nodejs.org/) | `nodejs` | <i>Open-source, cross-platform JavaScript runtime environment</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.nomadproject.io/) | `nomad` | <i>Orchestration tool for deploying and managing applications.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://nordvpn.com/) | `nordvpn` | <i>VPN service for speed and security.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://notable.app/) | `notable` | <i>The Markdown-based note-taking app that doesn't suck.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://novelwriter.io) | `novelwriter` | <i>An open source plain text editor designed for writing novels. It supports a minimal markdown-like syntax for formatting text.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/binwiederhier/ntfy/) | `ntfy` | <i>ntfy lets you send push notifications to your phone or desktop via scripts from any computer, using simple HTTP PUT or POST requests</i> |
@@ -188,7 +194,7 @@ cog.out(pretty_list)
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://obsproject.com/) | `obs-studio` | <i>Free and open source software for video recording and live streaming.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.ocenaudio.com/) | `ocenaudio` | <i>Easy, fast and powerful audio editor.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/woelper/oculante) | `oculante` | <i>A fast and simple image viewer / editor for many operating systems</i> |
-| [<img src="../.github/debian.png" align="top" width="20" />](https://github.com/jstaf/onedriver) | `onedriver` | <i>A native Linux filesystem for Microsoft Onedrive.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://github.com/jstaf/onedriver) | `onedriver` | <i>A native Linux filesystem for Microsoft Onedrive.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/o2sh/onefetch) | `onefetch` | <i>A command-line Git information tool written in Rust that displays project information and code statistics for a local Git repository directly to your terminal working entirely offline.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
@@ -203,6 +209,7 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://pdfsam.org/) | `pdfsam-basic` | <i>PDFsam (PDF Split And Merge) Basic is a free and open source, multi-platform software designed to extract pages, split, merge, mix and rotate PDF files.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://pdfsam.org/) | `pdfsam-visual` | <i>PDFsam Visual is a powerful tool to visually combine PDF files, rearrange pages, compress, extract or delete pages, split, merge, rotate, encrypt, decrypt, repair, resize pages, extract text, convert to grayscale, crop PDF files.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://peazip.github.io) | `peazip` | <i>PeaZip is a free file archiver utility and extractor.</i> |
+| [<img src="../.github/github.png" align="top" width="20" />](https://github.com/knqyf263/pet) | `pet` | <i>A Simple Command-line Snippet Manager</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Picocrypt/Picocrypt/) | `picocrypt-gui` | <i>Picocrypt is a very small, very simple, yet very secure encryption tool</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.plex.tv/) | `plexmediaserver` | <i>Stream Movies and TV Shows.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/six-ddc/plow) | `plow` | <i>A high-performance HTTP benchmarking tool with real-time web UI and terminal displaying</i> |
@@ -268,6 +275,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.terraform.io/) | `terraform` | <i>Automate Infrastructure on Any Cloud.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://tug.org/texworks/) | `texworks` | <i>Lowering the entry barrier to the TeX world.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](http://tezos.gitlab.io/) | `tezos-baking` | <i>Octez is an implementation of Tezos, a distributed consensus platform (a blockchain) with meta-consensus capability.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://www.cendio.com/thinlinc/) | `thinlinc-client` | <i>The ThinLinc Client is a remote desktop client used to connect to a ThinLinc</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://thorium.rocks/) | `thorium-browser` | <i>Faster Chromium browser.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://ticktick.com/home) | `ticktick` | <i>TickTick is a powerful to-do & task management app with seamless cloud synchronization across all your devices.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/Mastermindzh/tidal-hifi) | `tidal-hifi` | <i>Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine.</i> |
