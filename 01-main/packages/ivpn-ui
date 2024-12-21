@@ -1,0 +1,9 @@
+DEFVER=1
+# Although the key has a .gpg extension, it's actually in ASCII format.
+ASC_KEY_URL="https://repo.ivpn.net/stable/${UPSTREAM_ID}/generic.gpg"
+APT_LIST_NAME="ivpn"
+APT_REPO_URL="https://repo.ivpn.net/stable/${UPSTREAM_ID} ./generic main"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="IVPN"
+WEBSITE="https://www.ivpn.net/"
+SUMMARY="Client for IVPN service"
