@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "popey/slomore" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v musl | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+fi
+PRETTY_NAME="Slomore"
+WEBSITE="https://github.com/popey/slomore"
+SUMMARY="A custom pager that outputs lines with a delay, allowing control over pacing."
