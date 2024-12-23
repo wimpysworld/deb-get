@@ -1,8 +1,9 @@
 DEFVER=1
 get_website "https://www.syntevo.com/smartgit/download/"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="https://www.syntevo.com$(grep -m 1 "\.deb" "${CACHE_FILE}" | cut -d'"' -f2)
+    URL=$(grep -m 1 "\.deb" "${CACHE_FILE}" | cut -d'"' -f2)
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f2 | cut -d'.' -f1 | tr '_' '.')
+    VERSION_PUBLISHED=${VERSION_PUBLISHED%%.0}
 fi
 PRETTY_NAME="SmartGit"
 WEBSITE="https://www.syntevo.com/"
