@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "FilenCloudDienste/filen-desktop" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep -E "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
+fi
+PRETTY_NAME="Filen Desktop"
+WEBSITE="https://filen.io/"
+SUMMARY="Filen Desktop client including Syncing, Virtual Drive mounting, S3, WebDAV, File Browsing, Chats, Notes, Contacts and more"
