@@ -19,7 +19,7 @@ cat <<HELP
 
 Usage
 
-deb-get {update [--repos-only] [--quiet] | upgrade | show <pkg list> | install <pkg list>
+deb-get {update [--repos-only] [--quiet] | upgrade [--dg-only] | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
         | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean
@@ -41,6 +41,7 @@ update
 upgrade
     upgrade is used to install the newest versions of all packages currently
     installed on the system.
+    When --dg-only is provided, only the packages which have been installed by deb-get will be upgraded.
 
 install
     install is followed by one package (or a space-separated list of packages)
@@ -268,6 +269,11 @@ function update_apt() {
 
 function upgrade_apt() {
     ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y upgrade
+}
+
+function upgrade_only_dg() {
+    mapfile -t INSTALLED_APT_PPA < <(grep -E "apt\s*$|ppa\s*$" "${ETC_DIR}/installed"); INSTALLED_APT_PPA=(${INSTALLED_APT_PPA[@]%% *})
+    printf '%s\0' "${INSTALLED_APT_PPA[@]}" | xargs -0 ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y install --only-upgrade
 }
 
 # Update only the added repo (during install action)
@@ -640,7 +646,11 @@ function update_debs() {
 
 function upgrade_debs() {
     local STATUS=""
-    upgrade_apt
+    if [[ " $* " != *' --dg-only '* ]] ; then
+        upgrade_apt
+    else
+        upgrade_only_dg
+    fi
     for APP in "${INSTALLED_APPS[@]}"; do
         validate_deb "${APPNAME2FULL[$APP]}"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ]|| [ "${METHOD}" == "gitlab" ] || [ "${METHOD}" == "website" ]; then
@@ -1540,7 +1550,7 @@ function dg_action_update() {
 function dg_action_upgrade() {
         elevate_privs
         create_cache_dir
-        upgrade_debs
+        upgrade_debs "$@"
 }
 function dg_action_fix-installed() {
         if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then

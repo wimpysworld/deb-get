@@ -74,7 +74,7 @@ cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
 
-deb-get {update [--repos-only] [--quiet] | upgrade | show <pkg list> | install <pkg list>
+deb-get {update [--repos-only] [--quiet] | upgrade [--dg-only] | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
         | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean
@@ -96,6 +96,7 @@ update
 upgrade
     upgrade is used to install the newest versions of all packages currently
     installed on the system.
+    When --dg-only is provided, only the packages which have been installed by deb-get will be upgraded.
 
 install
     install is followed by one package (or a space-separated list of packages)
