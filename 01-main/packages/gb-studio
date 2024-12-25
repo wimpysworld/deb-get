@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "chrismaltby/gb-studio"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(sed -E 's|.*/download/v([^/]*).*|\1|' <<< "${URL}")"
+fi
+PRETTY_NAME="GB Studio"
+WEBSITE="https://www.gbstudio.dev/"
+SUMMARY="A quick and easy to use drag and drop retro game creator."
