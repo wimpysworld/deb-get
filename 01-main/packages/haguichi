@@ -1,0 +1,16 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+GPG_KEY_ID="eb75b0ebe2c821ac"
+APT_LIST_NAME="haguichi"
+# although this is technically a PPA, the developer has a build specifically intended for Debian
+# https://haguichi.net/download/#debian
+local FAKE_CODENAME
+case "${OS_CODENAME}" in
+    trixie|sid) FAKE_CODENAME="oracular" ;;
+    buster|bullseye|bookworm) FAKE_CODENAME="bionic" ;;
+    *) FAKE_CODENAME=${OS_CODENAME} ;;
+esac
+APT_REPO_URL="http://ppa.launchpad.net/ztefn/haguichi-${UPSTREAM_ID/ubuntu/stable}/ubuntu ${FAKE_CODENAME} main"
+PRETTY_NAME="Haguichi"
+WEBSITE="https://haguichi.net/"
+SUMMARY="Haguichi provides a user friendly GUI to control the Hamachi client on Linux."
