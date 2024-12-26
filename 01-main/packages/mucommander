@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "mucommander/mucommander" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '/' -f 8 <<< "${URL}")"
+fi
+PRETTY_NAME="muCommander"
+WEBSITE="https://www.mucommander.com/"
+SUMMARY="a lightweight, cross-platform file manager"
