@@ -1,9 +1,10 @@
 DEFVER=1
-get_website "https://help.gitkraken.com/gitkraken-client/current/"
+ARCHS_SUPPORTED="amd64"
+get_website "https://www.gitkraken.com/download/linux-deb"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(grep -m 1 'id="version-' "${CACHE_FILE}" | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)
+    VERSION_PUBLISHED=$(sed -n -E "0,/.*name: '([^']+)'/s//\1/p" "${CACHE_FILE}")
 fi
 URL="https://release.gitkraken.com/linux/gitkraken-amd64.deb"
 PRETTY_NAME="GitKraken"
-WEBSITE="https://www.gitkraken.com/invite/ieih1QR3"
+WEBSITE="https://www.gitkraken.com/git-client"
 SUMMARY="Intuitive Git GUI & powerful Git CLI."
