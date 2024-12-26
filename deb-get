@@ -1203,6 +1203,11 @@ function add_apt_repo() {
             ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
         elif [ -n "${GPG_KEY_ID}" ]; then
+            #Fetching from the keyserver will fail if root doesn't already have a .gnupg directory.
+            #This will create it if it doesn't already exist.
+            if ${ELEVATE} printenv GNUPGHOME > /dev/null && ${ELEVATE} [ ! -e "${GNUPGHOME}" ] || ${ELEVATE} [ ! -e "$(${ELEVATE} printenv HOME)/.gnupg" ] ; then
+               ${ELEVATE} gpg --list-keys
+            fi
             ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
         else #GPG_KEY_URL
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
