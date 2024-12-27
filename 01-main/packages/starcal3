@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "ilius/starcal"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '/' -f 8 <<< "${URL}")"
+fi
+PRETTY_NAME="StarCalendar"
+WEBSITE="https://ilius.github.io/starcal/"
+SUMMARY="A full-featured international calendar written in Python."
