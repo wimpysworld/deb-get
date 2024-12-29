@@ -148,8 +148,8 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 get_github_releases "<user-organization>/<repository>" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
 fi
 EULA=""
 PRETTY_NAME=""
@@ -165,8 +165,8 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 get_website "<website>"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep "<pattern>" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+    URL="$(grep -m 1 "<pattern>" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
 fi
 EULA=""
 PRETTY_NAME=""
@@ -182,7 +182,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(unroll_url "<website>")"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
 fi
 EULA=""
 PRETTY_NAME=""
