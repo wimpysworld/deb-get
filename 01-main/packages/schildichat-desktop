@@ -1,0 +1,8 @@
+DEFVER=1
+ASC_KEY_URL="https://apt.supercable.onl/super-apt-repo.key"
+APT_LIST_NAME="schildichat"
+APT_REPO_URL="https://apt.supercable.onl/debian/ all main"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="SchildiChat"
+WEBSITE="https://schildi.chat/"
+SUMMARY="SchildiChat is a feature-rich messenger for Matrix based on Element with some extras and tweaks."
