@@ -209,6 +209,7 @@ function get_website() {
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
+            # shellcheck disable=SC2086
             if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "$@" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
                 ${ELEVATE} rm -f "${CACHE_FILE}"
@@ -243,6 +244,7 @@ function download_deb() {
     local URL="${1}"
     local FILE="${2}"
 
+    # shellcheck disable=SC2086
     if ! ${ELEVATE} wget ${WGET_VERBOSITY} --continue ${WGET_TIMEOUT} --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
@@ -376,7 +378,7 @@ function remove_deb() {
         if [ "${STATUS}" == "deinstall ok config-files" ]; then
             REMOVE="purge"
         fi
-        ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
+        ${ELEVATE} apt-get -q -y --autoremove "${REMOVE}" "${APP}"
         remove_installed "${APP}"
         maint_supported_cache
     else
@@ -716,6 +718,7 @@ function update_repos() {
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
+        # shellcheck disable=SC2086
         ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo.tmp" && ${ELEVATE} mv "${ETC_DIR}/${REPO}.repo.tmp" "${ETC_DIR}/${REPO}.repo"
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
@@ -778,7 +781,7 @@ function list_local_apps() {
 }
 
 function print_etc_overrides() {
-    if [ ${#LOCAL_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
+    if [ "${#LOCAL_APPS[@]}" -gt 0 ] || [ "${#APP_CONFLICTS[@]}" -gt 0 ]; then
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
@@ -798,7 +801,7 @@ function print_etc_overrides() {
             fancy_message info "Including local package ${FULL_APP##*/}"
         done
 
-        if [ ${#LOCAL_APPS[@]} -gt 0 ]; then
+        if [ "${#LOCAL_APPS[@]}" -gt 0 ]; then
             fancy_message recommend "Please consider contributing back new entries, an issue (or raise a PR) directly at https://github.com/wimpysworld/deb-get/pulls"
         fi
     fi
@@ -1209,6 +1212,7 @@ function add_apt_repo() {
     fi
     if [ ! -e "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" ]; then
         if [ -n "${ASC_KEY_URL}" ]; then
+            # shellcheck disable=SC2086
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
@@ -1220,6 +1224,7 @@ function add_apt_repo() {
             fi
             ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
         else #GPG_KEY_URL
+            # shellcheck disable=SC2086
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
     fi
@@ -1247,19 +1252,19 @@ function maint_supported_cache() {
     # called by install and re-install when we've installed
     # so we should be supported
 
-    if [ -f ${CACHE_DIR}/supported.list ]; then
+    if [ -f "${CACHE_DIR}/supported.list" ]; then
         case "${ACTION}" in
             remove|purge)
-                ${ELEVATE} sed -i "/^${APP} /d" ${CACHE_DIR}/supported.list
-                cat ${CACHE_DIR}/supported.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+                ${ELEVATE} sed -i "/^${APP} /d" "${CACHE_DIR}/supported.list"
+                cat "${CACHE_DIR}/supported.list" - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o "${CACHE_DIR}/supported.list"
                 ;;
             reinstall|install)
                 local PAD='                              '
                 local cache_line=$(printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}")
                 # # First remove the bare entry
-                ${ELEVATE} sed -i -e '/^${APP}$/d' ${CACHE_DIR}/supported.list
+                ${ELEVATE} sed -i -e '/^${APP}$/d' "${CACHE_DIR}/supported.list"
                 # Replace it with a flagged one
-                cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+                cat "${CACHE_DIR}/supported.list" - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${CACHE_DIR}/supported.list"
                 # should be there but safest to be sure
                 grep -q -w "${APP}$" "${CACHE_DIR}"/supported_apps.list || \
                 cat ${CACHE_DIR}/supported_apps.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported_apps.list
