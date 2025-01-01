@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf i386"
+get_github_releases "goreleaser/goreleaser-pro" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | sed -E 's|v([^\-]*)\-(pro)|\1\~\2|')
+fi
+PRETTY_NAME="Goreleaser Pro"
+WEBSITE="https://goreleaser.com/pro"
+SUMMARY="Deliver Go binaries as fast, easily and as pro as possible."

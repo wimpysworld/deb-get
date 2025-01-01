@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "pavlobu/deskreen"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+fi
+PRETTY_NAME="Deskreen"
+WEBSITE="https://deskreen.com"
+SUMMARY="Deskreen turns any device with a web browser into a secondary screen for your computer."

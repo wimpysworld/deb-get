@@ -1,0 +1,15 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+case ${HOST_ARCH} in
+    amd64) ARCH=x86_64 ;;
+    arm64) ARCH=arm64 ;;
+    armhf) ARCH=arm7 ;;
+esac
+get_github_releases "gitkraken/gk-cli" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -E "browser_download_url.*_${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
+fi
+PRETTY_NAME="GitKraken CLI"
+WEBSITE="https://www.gitkraken.com/"
+SUMMARY="gk is GitKraken on the command line. It makes working across multiple repos easier with Workspaces, provides access to pull requests and issues from multiple services (GitHub, GitLab, Bitbucket, etc.), and seamlessly connects with GitKraken Client and GitLens in VS Code to visualize git information when you need it."

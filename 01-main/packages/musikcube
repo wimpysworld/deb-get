@@ -1,0 +1,17 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "clangen/musikcube" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    case "${HOST_CPU}" in
+        x86_64)
+            URL="$(grep -m 1 "browser_download_url.*x86_64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+            ;;
+        aarch64)
+            URL="$(grep -m 1 "browser_download_url.*armv8\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+            ;;
+    esac
+    VERSION_PUBLISHED=$(cut -d "/" -f 8 <<< "${URL}")
+fi
+PRETTY_NAME="musikcube"
+WEBSITE="https://musikcube.com"
+SUMMARY="A terminal-based music player and library."

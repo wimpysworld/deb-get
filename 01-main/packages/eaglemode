@@ -1,0 +1,9 @@
+DEFVER=1
+get_website "https://eaglemode.sourceforge.net/download.html"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(unroll_url "$(grep -m 1 -o "http.*amd64\.deb" "${CACHE_FILE}" )" )"
+    VERSION_PUBLISHED="$(basename "${URL}" .deb | cut -d '_' -f 2)"
+fi
+PRETTY_NAME="Eagle Mode"
+WEBSITE="https://eaglemode.sourceforge.net/"
+SUMMARY="A zoomable user interface (ZUI) with file manager, file viewers, games, and more."
