@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "peazip/PeaZip"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -e Qt | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8)"
+fi
+PRETTY_NAME="PeaZip"
+WEBSITE="https://peazip.github.io"
+SUMMARY="PeaZip is a free file archiver utility and extractor."
