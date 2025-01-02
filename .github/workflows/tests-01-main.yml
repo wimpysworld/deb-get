@@ -51,7 +51,16 @@ jobs:
                 echo "Failed to detect ${APP} as installed" >&2
                 exit 1
               else
-                ./deb-get purge "${APP}"
+                PUBLISHED_VER=$(./deb-get show "${APP}" | grep "Published:" | grep -oE '[^[:space:]]+$' || :)
+                INSTALLED_VER=$(./deb-get show "${APP}" | grep "Installed:" | grep -oE '[^[:space:]]+$' || :)
+                if [ ! -z "${PUBLISHED_VER// /}" ] && [ "${PUBLISHED_VER}" != "${INSTALLED_VER}" ]; then
+                    echo "Versions do not match. The package's VERSION_PUBLISHED variable may need to be changed." >&2
+                    echo "Published Version: ${PUBLISHED_VER}"
+                    echo "Installed Version: ${INSTALLED_VER}"
+                    exit 1
+                else
+                    ./deb-get purge "${APP}"
+                fi
               fi
             fi
           done
