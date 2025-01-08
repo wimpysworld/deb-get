@@ -1381,6 +1381,7 @@ case "${UPSTREAM_CODENAME}" in
     mantic)   UPSTREAM_RELEASE="23.10";;
     noble)    UPSTREAM_RELEASE="24.04";;
     oracular) UPSTREAM_RELEASE="24.10";;
+    plucky)   UPSTREAM_RELEASE="25.04";;
 
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
