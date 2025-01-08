@@ -1376,9 +1376,6 @@ case "${UPSTREAM_CODENAME}" in
     sid)      UPSTREAM_RELEASE="unstable";;
     focal)    UPSTREAM_RELEASE="20.04";;
     jammy)    UPSTREAM_RELEASE="22.04";;
-    kinetic)  UPSTREAM_RELEASE="22.10";;
-    lunar)    UPSTREAM_RELEASE="23.04";;
-    mantic)   UPSTREAM_RELEASE="23.10";;
     noble)    UPSTREAM_RELEASE="24.04";;
     oracular) UPSTREAM_RELEASE="24.10";;
 
