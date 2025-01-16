@@ -2,7 +2,15 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_github_releases "torakiki/pdfsam-visual-public" latest
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha | cut -d'"' -f4)"
+    local ARCH_VER
+    case ${HOST_ARCH} in
+        amd64)   ARCH_VER=x64;;
+    esac
+
+    URL="$(grep "browser_download_url.*${ARCH_VER}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha | cut -d'"' -f4)"
+    if [ -z $URL] ;then
+        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha | cut -d'"' -f4)"
+    fi
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
 PRETTY_NAME="PDFsam Visual"
