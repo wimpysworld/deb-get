@@ -1,11 +1,21 @@
 DEFVER=2
-CODENAMES_SUPPORTED="trixie sid noble oracular"
+CODENAMES_SUPPORTED="trixie sid focal jammy noble oracular"
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-get_github_releases "johnfactotum/foliate"
-if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
-    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
-fi
+
+case ${UPSTREAM_ID} in
+    ubuntu)
+        PPA="ppa:apandada1/foliate"
+        ;;
+    debian)
+        get_github_releases "johnfactotum/foliate"
+        if [ "${ACTION}" != prettylist ]; then
+            URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+            VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+        fi
+        ;;
+esac
+
+
 PRETTY_NAME="Foliate"
 WEBSITE="https://johnfactotum.github.io/foliate/"
 SUMMARY="A simple and modern eBook viewer for Linux desktops."
