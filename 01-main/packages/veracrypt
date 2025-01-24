@@ -7,8 +7,7 @@ case ${HOST_ARCH} in
 esac
 get_website "https://www.veracrypt.fr/en/Downloads.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(grep -Eo '/Linux: Version [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+ ' "${CACHE_FILE}" | cut -d\  -f3)
-
+    VERSION_PUBLISHED=$(grep  'Stable Release' "${CACHE_FILE}" | grep  -Eo '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+')
     URL=$(unroll_url "https://launchpad.net/veracrypt/trunk/${VERSION_PUBLISHED}/+download/veracrypt-${VERSION_PUBLISHED}-${UPSTREAM_ID^}-${UPSTREAM_RELEASE}-${HOST_ARCH}.deb\"")
 fi
 PRETTY_NAME="Veracrypt"
