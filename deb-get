@@ -1357,22 +1357,24 @@ if ! [[ ' ubuntu debian ' =~ " ${UPSTREAM_ID} " ]]; then
     fi
 fi
 
-local codename
-for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
-    UPSTREAM_CODENAME=$(sed -n -e "s/^$codename=//p" "${OS_RELEASE}")
-    [ -z "${UPSTREAM_CODENAME}" ] || break
-done
-
-# Debian 12+
-if [ -z "${UPSTREAM_CODENAME}" ] && [ -e /etc/debian_version ]; then
-    UPSTREAM_CODENAME=$(cut -d / -f 1 /etc/debian_version)
+# Debian Sid doesn't have it's own unique os-release file. It is the same as Debian stable.
+# So we first check /etc/debian_version to see if we're running sid. If not, we will trust what os-release says.
+if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" /etc/debian_version; then
+    UPSTREAM_CODENAME="sid"
+    OS_CODENAME="sid"
+else
+    local codename
+    for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
+        UPSTREAM_CODENAME=$(sed -n -e "s/^$codename=//p" "${OS_RELEASE}")
+        [ -z "${UPSTREAM_CODENAME}" ] || break
+    done
 fi
 
 case "${UPSTREAM_CODENAME}" in
     buster)   UPSTREAM_RELEASE="10";;
     bullseye) UPSTREAM_RELEASE="11";;
     bookworm) UPSTREAM_RELEASE="12";;
-    trixie)   UPSTREAM_CODENAME="13";;
+    trixie)   UPSTREAM_RELEASE="13";;
     sid)      UPSTREAM_RELEASE="unstable";;
     focal)    UPSTREAM_RELEASE="20.04";;
     jammy)    UPSTREAM_RELEASE="22.04";;
