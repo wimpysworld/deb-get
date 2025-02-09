@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "sharkdp/numbat" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v musl | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(cut -d'_' -f2 <<<"${URL}")
+fi
+PRETTY_NAME="Numbat"
+WEBSITE="https://numbat.dev/"
+SUMMARY="A statically typed programming language for scientific computations with first class support for physical dimensions and units"
