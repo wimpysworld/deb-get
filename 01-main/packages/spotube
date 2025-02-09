@@ -8,7 +8,6 @@ case ${HOST_ARCH} in
 esac
 get_github_releases "KRTirtho/spotube" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    cp ${CACHE_FILE} ~/Downloads
     URL="$(grep -m 1 "browser_download_url.*${TARGET_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
