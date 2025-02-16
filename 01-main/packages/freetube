@@ -1,4 +1,5 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armv7l"
 get_github_releases "FreeTubeApp/FreeTube" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
