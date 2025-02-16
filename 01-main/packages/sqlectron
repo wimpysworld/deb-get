@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "sqlectron/sqlectron-gui" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v '.md5' | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+fi
+PRETTY_NAME="sqlectron"
+WEBSITE="https://github.com/sqlectron/sqlectron-gui"
+SUMMARY="A simple and lightweight SQL client desktop with cross database and platform support."
