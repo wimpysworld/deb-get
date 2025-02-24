@@ -6,4 +6,4 @@ if [ "${ACTION}" != "prettylist" ]; then
 fi
 PRETTY_NAME="joplin"
 WEBSITE="https://github.com/laurent22/joplin"
-SUMMARY=" Joplin - the privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS."
+SUMMARY="Privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS."
