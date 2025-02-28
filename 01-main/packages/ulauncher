@@ -1,4 +1,4 @@
-DEFVER=1
+DEFVER=2
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "Ulauncher/Ulauncher" "latest"
 if [ "${ACTION}" != prettylist ]; then
