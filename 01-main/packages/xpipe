@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="x86_64 arm64"
+get_github_releases "xpipe-io/xpipe" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v '.md5' | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+fi
+PRETTY_NAME="xpipe"
+WEBSITE="https://github.com/xpipe-io/xpipe"
+SUMMARY=" Your entire server infrastructure at your fingertips "
