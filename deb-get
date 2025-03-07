@@ -1365,7 +1365,7 @@ if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" /etc/debian_version; then
 else
     local codename
     for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
-        UPSTREAM_CODENAME=$(sed -n -e "s/^$codename=//p" "${OS_RELEASE}")
+        UPSTREAM_CODENAME=$(sed -n -e "/^$codename=/ {s/^$codename=//p;q}" "${OS_RELEASE}")
         [ -z "${UPSTREAM_CODENAME}" ] || break
     done
 fi
