@@ -12,4 +12,4 @@ if [ "${ACTION}" != "prettylist" ]; then
 fi
 PRETTY_NAME="xpipe"
 WEBSITE="https://github.com/xpipe-io/xpipe"
-SUMMARY=" Your entire server infrastructure at your fingertips "
+SUMMARY="Your entire server infrastructure at your fingertips"
