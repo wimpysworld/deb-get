@@ -7,4 +7,4 @@ if [ "${ACTION}" != "prettylist" ]; then
 fi
 PRETTY_NAME="neo-htop"
 WEBSITE="https://github.com/Abdenasser/neohtop"
-SUMMARY=" 💪🏻 system monitoring on steroids "
+SUMMARY="💪🏻 system monitoring on steroids"
