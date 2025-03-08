@@ -1,7 +1,7 @@
 DEFVER=1
 get_github_releases "microsoft/azuredatastudio" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    local REDIR_URL="$(grep -o "\[linux-deb\]:.*linkid=[0-9]*" "${CACHE_FILE}" | cut -d' ' -f2)"
+    local REDIR_URL="$(grep -Eo "\[linux-deb\]:\s*\S*linkid=[0-9]*" "${CACHE_FILE}" | cut -d' ' -f2)"
     URL=$(unroll_url "${REDIR_URL}")
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f3 | sed 's/\.deb//')"
 fi
