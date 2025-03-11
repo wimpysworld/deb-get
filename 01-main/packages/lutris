@@ -1,6 +1,6 @@
 DEFVER=2
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-get_github_releases "lutris/lutris" "latest"
+get_github_releases "lutris/lutris"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
