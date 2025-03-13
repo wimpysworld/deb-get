@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "Jean28518/linux-assistant" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(sed -E 's|.*download/v([^/]*).*|\1|' <<< "${URL}")"
+fi
+PRETTY_NAME="linux-assistant"
+WEBSITE="https://www.linux-assistant.org/"
+SUMMARY="A daily linux helper with powerful integrated search, routines checks and administrative tasks."
