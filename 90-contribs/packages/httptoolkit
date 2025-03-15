@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "httptoolkit/httptoolkit-desktop" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$( cut -d'/' -f8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="httptoolkit"
+WEBSITE="https://github.com/httptoolkit/httptoolkit-desktop"
+SUMMARY=" Electron wrapper to build and distribute HTTP Toolkit for the desktop "

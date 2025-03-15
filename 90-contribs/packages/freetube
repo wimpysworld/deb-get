@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "FreeTubeApp/FreeTube" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+fi
+PRETTY_NAME="freetube"
+WEBSITE="https://github.com/FreeTubeApp/FreeTube"
+SUMMARY="An Open Source YouTube app for privacy."
