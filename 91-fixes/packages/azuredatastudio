@@ -1,0 +1,10 @@
+DEFVER=1
+get_github_releases "microsoft/azuredatastudio" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    local REDIR_URL="$(grep -Eo "\[linux-deb\]:\s*\S*linkid=[0-9]*" "${CACHE_FILE}" | cut -d' ' -f2)"
+    URL=$(unroll_url "${REDIR_URL}")
+    VERSION_PUBLISHED=$( grep tag_name "${CACHE_FILE}" |cut -d\" -f4)
+fi
+PRETTY_NAME="Azure Data Studio"
+WEBSITE="https://docs.microsoft.com/en-us/sql/azure-data-studio/"
+SUMMARY="Data management tool for working with SQL Server, Azure SQL DB and SQL DW."

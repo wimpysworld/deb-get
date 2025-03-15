@@ -3,7 +3,7 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.4.4.1-pc-extras"
+readonly VERSION="0.4.5"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
 if [ -n "${DEBGET_TOKEN}" ]; then
@@ -19,7 +19,7 @@ cat <<HELP
 
 Usage
 
-deb-get {update [--repos-only] [--quiet] | upgrade | show <pkg list> | install <pkg list>
+deb-get {update [--repos-only] [--quiet] | upgrade [--dg-only] | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
         | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean
@@ -41,6 +41,7 @@ update
 upgrade
     upgrade is used to install the newest versions of all packages currently
     installed on the system.
+    When --dg-only is provided, only the packages which have been installed by deb-get will be upgraded.
 
 install
     install is followed by one package (or a space-separated list of packages)
@@ -156,7 +157,7 @@ function follow_url() {
 
 function get_github_releases() {
     METHOD="github"
-    CACHE_FILE="${CACHE_DIR}/${APP}.json"
+    CACHE_FILE="${CACHE_DIR}/${APP}.json_extract"
     # Cache github releases json for 1 hour to try and prevent API rate limits
     #   https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
     #   {"message":"API rate limit exceeded for 62.31.16.154. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
@@ -167,11 +168,15 @@ function get_github_releases() {
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
-            wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
-            ${ELEVATE} "${wgetcmdarray[@]}" || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+            wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O- )
+            "${wgetcmdarray[@]}" | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
             if [ -f "${CACHE_FILE}" ] && grep "API rate limit exceeded" "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} exceeded GitHub API limits. Deleting it."
                 ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
+            fi
+            if [ ! ${APP} == "azuredatastudio" ]; then
+                # because MS have to be different
+                ${ELEVATE} sed -i '/browser_download/!d;/\.deb/!d' ${CACHE_FILE}
             fi
         fi
     fi
@@ -206,6 +211,7 @@ function get_website() {
     if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
+            # shellcheck disable=SC2086
             if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "$@" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
                 ${ELEVATE} rm -f "${CACHE_FILE}"
@@ -240,6 +246,7 @@ function download_deb() {
     local URL="${1}"
     local FILE="${2}"
 
+    # shellcheck disable=SC2086
     if ! ${ELEVATE} wget ${WGET_VERBOSITY} --continue ${WGET_TIMEOUT} --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
@@ -266,6 +273,11 @@ function update_apt() {
 
 function upgrade_apt() {
     ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y upgrade
+}
+
+function upgrade_only_dg() {
+    mapfile -t INSTALLED_APT_PPA < <(grep -E "apt\s*$|ppa\s*$" "${ETC_DIR}/installed"); INSTALLED_APT_PPA=(${INSTALLED_APT_PPA[@]%% *})
+    printf '%s\0' "${INSTALLED_APT_PPA[@]}" | xargs -0 ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y install --only-upgrade
 }
 
 # Update only the added repo (during install action)
@@ -368,7 +380,7 @@ function remove_deb() {
         if [ "${STATUS}" == "deinstall ok config-files" ]; then
             REMOVE="purge"
         fi
-        ${ELEVATE} apt-get -q -y --autoremove ${REMOVE} "${APP}"
+        ${ELEVATE} apt-get -q -y --autoremove "${REMOVE}" "${APP}"
         remove_installed "${APP}"
         maint_supported_cache
     else
@@ -638,7 +650,11 @@ function update_debs() {
 
 function upgrade_debs() {
     local STATUS=""
-    upgrade_apt
+    if [[ " $* " != *' --dg-only '* ]] ; then
+        upgrade_apt
+    else
+        upgrade_only_dg
+    fi
     for APP in "${INSTALLED_APPS[@]}"; do
         validate_deb "${APPNAME2FULL[$APP]}"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ]|| [ "${METHOD}" == "gitlab" ] || [ "${METHOD}" == "website" ]; then
@@ -704,6 +720,7 @@ function update_repos() {
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
         fancy_message info "Updating ${ETC_DIR}/${REPO}"
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
+        # shellcheck disable=SC2086
         ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo.tmp" && ${ELEVATE} mv "${ETC_DIR}/${REPO}.repo.tmp" "${ETC_DIR}/${REPO}.repo"
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
@@ -766,7 +783,7 @@ function list_local_apps() {
 }
 
 function print_etc_overrides() {
-    if [ ${#LOCAL_APPS[@]} -gt 0 ] || [ ${#APP_CONFLICTS[@]} -gt 0 ]; then
+    if [ "${#LOCAL_APPS[@]}" -gt 0 ] || [ "${#APP_CONFLICTS[@]}" -gt 0 ]; then
         local DEB_GET_SCRIPT_FILE="${0}"
         local NUM_OLDER_CONFLICTS=0
         for APP in "${APP_CONFLICTS[@]}"; do
@@ -786,7 +803,7 @@ function print_etc_overrides() {
             fancy_message info "Including local package ${FULL_APP##*/}"
         done
 
-        if [ ${#LOCAL_APPS[@]} -gt 0 ]; then
+        if [ "${#LOCAL_APPS[@]}" -gt 0 ]; then
             fancy_message recommend "Please consider contributing back new entries, an issue (or raise a PR) directly at https://github.com/wimpysworld/deb-get/pulls"
         fi
     fi
@@ -1197,12 +1214,19 @@ function add_apt_repo() {
     fi
     if [ ! -e "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" ]; then
         if [ -n "${ASC_KEY_URL}" ]; then
+            # shellcheck disable=SC2086
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
         elif [ -n "${GPG_KEY_ID}" ]; then
+            #Fetching from the keyserver will fail if root doesn't already have a .gnupg directory.
+            #This will create it if it doesn't already exist.
+            if ${ELEVATE} printenv GNUPGHOME > /dev/null && ${ELEVATE} [ ! -e "${GNUPGHOME}" ] || ${ELEVATE} [ ! -e "$(${ELEVATE} printenv HOME)/.gnupg" ] ; then
+               ${ELEVATE} gpg --list-keys
+            fi
             ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
         else #GPG_KEY_URL
+            # shellcheck disable=SC2086
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
     fi
@@ -1230,19 +1254,19 @@ function maint_supported_cache() {
     # called by install and re-install when we've installed
     # so we should be supported
 
-    if [ -f ${CACHE_DIR}/supported.list ]; then
+    if [ -f "${CACHE_DIR}/supported.list" ]; then
         case "${ACTION}" in
             remove|purge)
-                ${ELEVATE} sed -i "/^${APP} /d" ${CACHE_DIR}/supported.list
-                cat ${CACHE_DIR}/supported.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+                ${ELEVATE} sed -i "/^${APP} /d" "${CACHE_DIR}/supported.list"
+                cat "${CACHE_DIR}/supported.list" - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o "${CACHE_DIR}/supported.list"
                 ;;
             reinstall|install)
                 local PAD='                              '
                 local cache_line=$(printf "%s %s [ installed ]\n" "${APP}" "${PAD:${#APP}}")
                 # # First remove the bare entry
-                ${ELEVATE} sed -i -e '/^${APP}$/d' ${CACHE_DIR}/supported.list
+                ${ELEVATE} sed -i -e '/^${APP}$/d' "${CACHE_DIR}/supported.list"
                 # Replace it with a flagged one
-                cat ${CACHE_DIR}/supported.list - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported.list
+                cat "${CACHE_DIR}/supported.list" - <<<"${cache_line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${CACHE_DIR}/supported.list"
                 # should be there but safest to be sure
                 grep -q -w "${APP}$" "${CACHE_DIR}"/supported_apps.list || \
                 cat ${CACHE_DIR}/supported_apps.list - <<<"${APP}" | ${ELEVATE} sort -t " " -k 1 -u -o ${CACHE_DIR}/supported_apps.list
@@ -1335,22 +1359,24 @@ if ! [[ ' ubuntu debian ' =~ " ${UPSTREAM_ID} " ]]; then
     fi
 fi
 
-local codename
-for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
-    UPSTREAM_CODENAME=$(sed -n -e "s/^$codename=//p" "${OS_RELEASE}")
-    [ -z "${UPSTREAM_CODENAME}" ] || break
-done
-
-# Debian 12+
-if [ -z "${UPSTREAM_CODENAME}" ] && [ -e /etc/debian_version ]; then
-    UPSTREAM_CODENAME=$(cut -d / -f 1 /etc/debian_version)
+# Debian Sid doesn't have it's own unique os-release file. It is the same as Debian stable.
+# So we first check /etc/debian_version to see if we're running sid. If not, we will trust what os-release says.
+if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" /etc/debian_version; then
+    UPSTREAM_CODENAME="sid"
+    OS_CODENAME="sid"
+else
+    local codename
+    for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
+        UPSTREAM_CODENAME=$(sed -n -e "/^$codename=/ {s/^$codename=//p;q}" "${OS_RELEASE}")
+        [ -z "${UPSTREAM_CODENAME}" ] || break
+    done
 fi
 
 case "${UPSTREAM_CODENAME}" in
     buster)   UPSTREAM_RELEASE="10";;
     bullseye) UPSTREAM_RELEASE="11";;
     bookworm) UPSTREAM_RELEASE="12";;
-    trixie)   UPSTREAM_CODENAME="13";;
+    trixie)   UPSTREAM_RELEASE="13";;
     sid)      UPSTREAM_RELEASE="unstable";;
     focal)    UPSTREAM_RELEASE="20.04";;
     jammy)    UPSTREAM_RELEASE="22.04";;
@@ -1359,6 +1385,7 @@ case "${UPSTREAM_CODENAME}" in
     mantic)   UPSTREAM_RELEASE="23.10";;
     noble)    UPSTREAM_RELEASE="24.04";;
     oracular) UPSTREAM_RELEASE="24.10";;
+    plucky)   UPSTREAM_RELEASE="25.04";;
 
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac
@@ -1370,7 +1397,7 @@ function dg_action_cache() {
 function dg_action_clean() {
         elevate_privs
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.deb
-        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json
+        ${ELEVATE} rm -fv "${CACHE_DIR}"/*.json*
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.html
         ${ELEVATE} rm -fv "${CACHE_DIR}"/*.txt
 
@@ -1538,7 +1565,7 @@ function dg_action_update() {
 function dg_action_upgrade() {
         elevate_privs
         create_cache_dir
-        upgrade_debs
+        upgrade_debs "$@"
 }
 function dg_action_fix-installed() {
         if [ -n "${1}" ] && [ "${1}" != --old-apps ]; then
