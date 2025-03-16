@@ -1,4 +1,4 @@
-DEFVER=2
+DEFVER=3
 ASC_KEY_URL="https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg"
 APT_REPO_URL="http://repository.spotify.com stable non-free"
 PRETTY_NAME="Spotify"
