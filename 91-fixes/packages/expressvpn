@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="riscv"
+CODENAMES_SUPPORTED='NoOSSupported'
+get_website "https://www.expressvpn.com/vpn-download
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(grep -o 'value="https://www\.expressvpn\.works/clients/linux/expressvpn_.*'${HOST_ARCH}'\.deb"' "${CACHE_FILE}" | cut -d"_" -f2)"
+    URL="https://www.expressvpn.works/clients/linux/expressvpn_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+fi
+PRETTY_NAME="Expressvpn"
+WEBSITE="https://www.expressvpn.com/"
+SUMMARY="Popular VPN software"
