@@ -1,0 +1,11 @@
+DEFVER=1
+get_website "https://www.tonelib.net/downloads.html"
+TLAPP="EasyComp"
+if [ "${ACTION}" != "prettylist" ]; then
+    DET=$(grep -e 'Version:' -e lnx -e purc-page-h1 -e purc-page-label ${CACHE_FILE}|grep -A3 $TLAPP) 
+    URL=$(grep -Eo 'https://tonelib.net/download.php\?id=[[:alpha:]]*\&amp\;os\=lnx' <<< "${DET}"  )
+    VERSION_PUBLISHED="$(grep -Eo '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' <<<  "${DET}" )"
+fi
+PRETTY_NAME="ToneLib EasyComp"
+WEBSITE="https://tonelib.net"
+SUMMARY="Powerful Compressor without any Complexity"
