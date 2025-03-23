@@ -5,9 +5,9 @@ case ${HOST_ARCH} in
     arm64) ARCH=arm64 ;;
     armhf) ARCH=arm7 ;;
 esac
-get_github_releases "gitkraken/gk-cli" "latest"
+get_github_releases "gitkraken/gk-cli"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -E "browser_download_url.*_${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    URL=$(grep -e "browser_download_url.*_${ARCH}\.deb\"" -e "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4 | grep -m 1 -v "beta")
     VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
 fi
 PRETTY_NAME="GitKraken CLI"
