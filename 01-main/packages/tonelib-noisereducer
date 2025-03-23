@@ -2,9 +2,9 @@ DEFVER=1
 get_website "https://www.tonelib.net/downloads.html"
 TLAPP="NoiseReducer"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(unroll_url "$(grep -o "https://www\.tonelib\.net/download/ToneLib-${TLAPP}[[:alpha:]]*-amd64\.deb" "${CACHE_FILE}")")
-    #VERSION_PUBLISHED="$(echo $(grep  -A4 "ToneLib ${TLAPP}" ${CACHE_FILE} |grep Version |grep -o "[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*") | sed 's/\./-/2' )"
-    VERSION_PUBLISHED=$(grep -A 4 "${TLAPP}" "${CACHE_FILE}" | grep -Eo 'Version:[^<]+<' | tr -d '[[:space:]]' | cut -d':' -f 2 | cut -d '<' -f 1 | sed 's/\./-/2')
+    DET=$(grep -e 'Version:' -e lnx -e purc-page-h1 -e purc-page-label ${CACHE_FILE}|grep -A3 $TLAPP) 
+    URL=$(grep -Eo 'https://tonelib.net/download.php\?id=[[:alpha:]]*\&amp\;os\=lnx' <<< "${DET}"  )
+    VERSION_PUBLISHED="$(grep -Eo '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' <<<  "${DET}" )"
 fi
 PRETTY_NAME="ToneLib NoiseReducer"
 WEBSITE="https://tonelib.net"
