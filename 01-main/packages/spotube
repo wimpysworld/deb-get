@@ -1,0 +1,16 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+case ${HOST_ARCH} in
+    amd64)
+        TARGET_ARCH=x86_64;;
+    arm64)
+        TARGET_ARCH=aarch64;;
+esac
+get_github_releases "KRTirtho/spotube" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${TARGET_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL//v/}" )
+fi
+PRETTY_NAME="Spotube"
+WEBSITE="https://spotube.krtirtho.dev/"
+SUMMARY="An Open Source Spotify Client for every platform"
