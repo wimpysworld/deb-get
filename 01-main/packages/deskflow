@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="trixie sid plucky"
+get_github_releases "deskflow/deskflow" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${UPSTREAM_CODENAME/sid/trixie}-${HOST_CPU}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '-' -f 2 <<< "${URL}")"
+fi
+PRETTY_NAME="Deskflow"
+WEBSITE="https://github.com/deskflow/deskflow"
+SUMMARY="Deskflow lets you share one mouse and keyboard between multiple computers on Windows, macOS and Linux."
