@@ -7,6 +7,11 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -Eo 'https://tonelib.net/download.php\?id=[[:alpha:]]*\&amp\;os\=lnx' <<< "${DET}"  )
     URL=$(unroll_url  "${URL/&amp;/\&}" )
     VERSION_PUBLISHED="$(grep -Eo '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' <<<  "${DET}" )"
+    # Change the VERSION_PUBLISHED to the match the installed version pattern by changing the second "." to "-"
+    # e.g. 1.2.3 to 1.2-3 
+    # To avoid sed we use bash string manipulation and change them all then revert the first one
+    VERSION_PUBLISHED=${VERSION_PUBLISHED//./-}
+    VERSION_PUBLISHED=${VERSION_PUBLISHED/-/.}
 fi
 PRETTY_NAME="ToneLib Metal"
 WEBSITE="https://tonelib.net"
