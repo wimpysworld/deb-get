@@ -2,7 +2,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_github_releases "marktext/marktext" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*${TARGET_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
     VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | tr -d v)
 fi
 PRETTY_NAME="MarkText"
