@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "daid/EmptyEpsilon" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(cut -d'-' -f2 <<< "${URL}" | cut -d'/' -f1)"
+fi
+PRETTY_NAME="Empty Epsilon"
+WEBSITE="https://daid.github.io/EmptyEpsilon/"
+SUMMARY="A spaceship bridge simulator game"
