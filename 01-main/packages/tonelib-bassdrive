@@ -1,9 +1,17 @@
 DEFVER=1
+CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy"
 get_website "https://www.tonelib.net/downloads.html"
 TLAPP="BassDrive"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(unroll_url "$(grep -o "https://www\.tonelib\.net/download/ToneLib-${TLAPP}[[:alpha:]]*-amd64\.deb" "${CACHE_FILE}")")"
-    VERSION_PUBLISHED="$(echo $(grep  -A4 "ToneLib ${TLAPP}" ${CACHE_FILE} |grep Version |grep -o "[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*") | sed 's/\./-/2' | sed 's/.2/.1/' )"
+    DET=$(grep -e 'Version:' -e lnx -e purc-page-h1 -e purc-page-label ${CACHE_FILE}|grep -A3 $TLAPP) 
+    URL=$(grep -Eo 'https://tonelib.net/download.php\?id=[[:alpha:]]*\&amp\;os\=lnx' <<< "${DET}"  )
+    URL=$(unroll_url  "${URL/&amp;/\&}" )
+    VERSION_PUBLISHED="$(grep -Eo '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' <<<  "${DET}" )"
+    # Change the VERSION_PUBLISHED to the match the installed version pattern by changing the second "." to "-"
+    # e.g. 1.2.3 to 1.2-3 
+    # To avoid sed we use bash string manipulation and change them all then revert the first one
+    VERSION_PUBLISHED=${VERSION_PUBLISHED//./-}
+    VERSION_PUBLISHED=${VERSION_PUBLISHED/-/.}
 fi
 PRETTY_NAME="ToneLib BassDrive"
 WEBSITE="https://tonelib.net"
