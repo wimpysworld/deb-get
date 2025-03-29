@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "Suwayomi/Suwayomi-Server" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(sed -E 's|.*download/v([^/]*).*|\1|' <<< "${URL}")"
+fi
+PRETTY_NAME="Suwayomi-Server"
+WEBSITE="https://github.com/Suwayomi/Suwayomi-Server"
+SUMMARY="A free and open source manga reader server that runs extensions built for Tachiyomi."
