@@ -195,14 +195,21 @@ function get_gitlab_releases() {
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             RELEASE=${2/%latest/permalink/latest}
-
-            local URL="https://gitlab.com/api/v4/projects/${1}/releases/${RELEASE}/assets/links"
+            if [[ ${1} =~ ^https?://.* ]]; then
+                local GITLAB_HOST="$(sed -E 's|(https?://[^/]*).*|\1|' <<< ${1})"
+                local GITLAB_PROJECT="$(sed -E 's|https?://[^/]*/||' <<< ${1})"
+            else
+                local GITLAB_HOST="https://gitlab.com"
+                local GITLAB_PROJECT="${1}"
+            fi
+            local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT}/releases/${RELEASE}/assets/links"
             wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
 
             ${ELEVATE} "${wgetcmdarray[@]}" || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
         fi
     fi
 }
+
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
