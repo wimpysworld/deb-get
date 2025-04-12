@@ -277,6 +277,7 @@ We really hope that you will enjoy the convenience and flexibility of the user o
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
   * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
   * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
+  * [AM](https://github.com/ivan-hc/AM): *Appimage Manager* (also now handles portable apps)
 ## In the media
 
   * [The deb-get tool helps Ubuntu (and derivative distro) fans grab extra apps](https://www.gamingonlinux.com/2022/05/the-deb-get-tool-helps-ubuntu-and-derivative-distro-fans-grab-extra-apps/) - **GamingOnLinux**
