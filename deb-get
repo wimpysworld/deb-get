@@ -182,7 +182,7 @@ function get_github_releases() {
 
 function get_gitlab_releases() {
     METHOD="gitlab"
-    CACHE_FILE="${CACHE_DIR}/${APP}.json"
+    CACHE_FILE="${CACHE_DIR}/${APP}.json_extract"
     # Cache gitlab releases json for 1 hour to try and prevent API rate limits
     #
     # Do not process gitlab releases while generating a pretty list or upgrading
@@ -195,14 +195,26 @@ function get_gitlab_releases() {
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             RELEASE=${2/%latest/permalink/latest}
-
-            local URL="https://gitlab.com/api/v4/projects/${1}/releases/${RELEASE}/assets/links"
-            wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
-
-            ${ELEVATE} "${wgetcmdarray[@]}" || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+            if [[ ${1} =~ ^https?://.* ]]; then
+                local GITLAB_HOST="$(sed -E 's|(https?://[^/]*).*|\1|' <<< ${1})"
+                local GITLAB_PROJECT="$(sed -E 's|https?://[^/]*/||' <<< ${1})"
+            else
+                local GITLAB_HOST="https://gitlab.com"
+                local GITLAB_PROJECT="${1}"
+            fi
+            if [[ -n "${2}" ]]; then
+                local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT//\//%2F}/releases/${RELEASE}/assets/links"
+            else
+                local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT//\//%2F}/releases"
+            fi
+            wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O- )
+            # Only grab the .deb files URLs, but first add newlines, because the JSON is all on one line.
+            # This will make it easier for packages to use sed or grep, instead of needing to use jq.
+            "${wgetcmdarray[@]}" | sed -E 's/(\"direct_asset_url\")/\n\1/g; s/(\",)/\1\n/g' | sed -E '/direct_asset_url/!d;/\.deb/!d; s/.*(http.*\.deb).*/\1/' | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
         fi
     fi
 }
+
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
