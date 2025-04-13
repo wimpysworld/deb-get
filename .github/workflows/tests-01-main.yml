@@ -6,9 +6,13 @@ on:
     paths:
       - "01-main/packages/*"
       - "01-main/manifest"
+      - "01-main/*.md"
       - "!01-main/packages/*.html"
       - "!01-main/packages/*.json"
       - "!01-main/packages/timestamp"
+      # if we exclude docs and they are changed, the workflow will not run so the merge will not be allowed
+      # - "!01-main/packages/*.md"
+
   workflow_dispatch:
 
 jobs:
@@ -19,6 +23,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: tj-actions/changed-files@v46
+        id: changed-md-files
+        with:
+          files: '**/*.md'
+          separator: ","
+      - uses: DavidAnson/markdownlint-cli2-action@v19
+        if: steps.changed-md-files.outputs.any_changed == 'true'
+        with:
+          globs: ${{ steps.changed-files.outputs.all_changed_files }}
+          separator: ","
+          config: .markdownlint.yml
+          # fail_on_error: false
+          # fail_on_warning: false
+          # fail_on_info: false
+          # fail_on_nothing: false
+
 
       - name: Install dependencies
         run: |
@@ -55,3 +75,33 @@ jobs:
               fi
             fi
           done
+
+      #   # report changed to markdown files and optionally lint them
+      # - name: Report changed Markdown files
+      #   with: 
+      #       globs: |
+      #       *.md
+      #       !test/*.md
+      #       01-main/*.md
+      #   run: |
+      #     set -x
+      #     CHANGED="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/.*\.md$")"
+      #     if [ -n "${CHANGED}" ]; then
+      #       echo "Changed Markdown files:"
+      #       echo "${CHANGED}"
+      #     else
+      #       echo "No changed Markdown files"
+      #     fi
+      #     if [ -n "${CHANGED}" ]; then
+      #       # mardownlint must be installed
+      #       # sudo apt-get install markdownlint -y
+      #       # or use npm
+      #       sudo npm install -g markdownlint-cli2
+
+      #       for FILE in ${CHANGED}; do
+      #         echo "Linting ${FILE}"
+      #       # markdownlint the file and preserve assets but prevent the workflow from failing
+      #         markdownlint-cli2 --ignore-front-matter --disable MD013,MD033,MD041,MD024,MD025,MD034,MD036,MD037,MD038,MD039,MD041,MD042,MD043,MD044,MD046 "${FILE}" || true
+      #       done
+      #     fi
+        
