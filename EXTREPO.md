@@ -63,7 +63,7 @@ The environment variables available to the package definition file are the follo
 * `OS_ID_PRETTY`: The brand name of the OS.
 * `OS_CODENAME`: The codename of the OS, as output by `lsb_release --codename --short`.
 * `UPSTREAM_ID`: The id of the upstream distribution. Supported values are `ubuntu` and `debian`.
-* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `lunar` (23.04), `mantic` (23.10), `noble` (24.04), `oracular` (24.10) and `plucky` (25.04).
+* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `noble` (24.04), `oracular` (24.10) and `plucky` (25.04).
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
