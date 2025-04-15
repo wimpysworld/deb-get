@@ -1,9 +1,15 @@
 DEFVER=1
+CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy"
 get_website "https://www.tonelib.net/downloads.html"
 TLAPP="Zoom"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="https://www.tonelib.net/download/ToneLib-Zoom-amd64.deb"
-    VERSION_PUBLISHED="$(echo $(grep  -A4 "ToneLib ${TLAPP}" ${CACHE_FILE} |grep Version |grep -o "[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*") | sed 's/\./-/2' )"
+    VERSION_PUBLISHED=$(grep  -A4 "ToneLib ${TLAPP}" ${CACHE_FILE} |grep Version |grep -o "[[:digit:]]*\.[[:digit:]]*\.[[:digit:]]*")
+    # Change the VERSION_PUBLISHED to the match the installed version pattern by changing the second "." to "-"
+    # e.g. 1.2.3 to 1.2-3 
+    # To avoid sed we use bash string manipulation and change them all then revert the first one
+    VERSION_PUBLISHED=${VERSION_PUBLISHED//./-}
+    VERSION_PUBLISHED=${VERSION_PUBLISHED/-/.}
 fi
 PRETTY_NAME="ToneLib Zoom"
 WEBSITE="https://tonelib.net"

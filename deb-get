@@ -3,7 +3,7 @@ LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
 
-readonly VERSION="0.4.5"
+readonly VERSION="0.4.6"
 
 # set a github auth token (e.g a PAT ) in DEBGET_TOKEN to get a bigger rate limit
 if [ -n "${DEBGET_TOKEN}" ]; then
@@ -169,20 +169,22 @@ function get_github_releases() {
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
             wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O- )
-            "${wgetcmdarray[@]}" | sed '/browser_download/!d;/\.deb/!d' | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+            "${wgetcmdarray[@]}" | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
             if [ -f "${CACHE_FILE}" ] && grep "API rate limit exceeded" "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} exceeded GitHub API limits. Deleting it."
                 ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
             fi
-            # we only want the .deb files download urls from the json
-            ${ELEVATE} sed -i '/browser_download/!d;/\.deb/!d' ${CACHE_FILE}
+            if [ ! ${APP} == "azuredatastudio" ]; then
+                # because MS have to be different
+                ${ELEVATE} sed -i '/browser_download/!d;/\.deb/!d' ${CACHE_FILE}
+            fi
         fi
     fi
 }
 
 function get_gitlab_releases() {
     METHOD="gitlab"
-    CACHE_FILE="${CACHE_DIR}/${APP}.json"
+    CACHE_FILE="${CACHE_DIR}/${APP}.json_extract"
     # Cache gitlab releases json for 1 hour to try and prevent API rate limits
     #
     # Do not process gitlab releases while generating a pretty list or upgrading
@@ -195,14 +197,26 @@ function get_gitlab_releases() {
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             RELEASE=${2/%latest/permalink/latest}
-
-            local URL="https://gitlab.com/api/v4/projects/${1}/releases/${RELEASE}/assets/links"
-            wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O "${CACHE_FILE}")
-
-            ${ELEVATE} "${wgetcmdarray[@]}" || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+            if [[ ${1} =~ ^https?://.* ]]; then
+                local GITLAB_HOST="$(sed -E 's|(https?://[^/]*).*|\1|' <<< ${1})"
+                local GITLAB_PROJECT="$(sed -E 's|https?://[^/]*/||' <<< ${1})"
+            else
+                local GITLAB_HOST="https://gitlab.com"
+                local GITLAB_PROJECT="${1}"
+            fi
+            if [[ -n "${2}" ]]; then
+                local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT//\//%2F}/releases/${RELEASE}/assets/links"
+            else
+                local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT//\//%2F}/releases"
+            fi
+            wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O- )
+            # Only grab the .deb files URLs, but first add newlines, because the JSON is all on one line.
+            # This will make it easier for packages to use sed or grep, instead of needing to use jq.
+            "${wgetcmdarray[@]}" | sed -E 's/(\"direct_asset_url\")/\n\1/g; s/(\",)/\1\n/g' | sed -E '/direct_asset_url/!d;/\.deb/!d; s/.*(http.*\.deb).*/\1/' | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
         fi
     fi
 }
+
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
@@ -1357,31 +1371,33 @@ if ! [[ ' ubuntu debian ' =~ " ${UPSTREAM_ID} " ]]; then
     fi
 fi
 
-local codename
-for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
-    UPSTREAM_CODENAME=$(sed -n -e "s/^$codename=//p" "${OS_RELEASE}")
-    [ -z "${UPSTREAM_CODENAME}" ] || break
-done
-
-# Debian 12+
-if [ -z "${UPSTREAM_CODENAME}" ] && [ -e /etc/debian_version ]; then
-    UPSTREAM_CODENAME=$(cut -d / -f 1 /etc/debian_version)
+# Debian Sid doesn't have it's own unique os-release file. It is the same as Debian stable.
+# So we first check /etc/debian_version to see if we're running sid. If not, we will trust what os-release says.
+if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" /etc/debian_version; then
+    UPSTREAM_CODENAME="sid"
+    OS_CODENAME="sid"
+else
+    local codename
+    for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
+        UPSTREAM_CODENAME=$(sed -n -e "/^$codename=/ {s/^$codename=//p;q}" "${OS_RELEASE}")
+        [ -z "${UPSTREAM_CODENAME}" ] || break
+    done
 fi
 
 case "${UPSTREAM_CODENAME}" in
     buster)   UPSTREAM_RELEASE="10";;
     bullseye) UPSTREAM_RELEASE="11";;
     bookworm) UPSTREAM_RELEASE="12";;
-    trixie)   UPSTREAM_CODENAME="13";;
-    forky)    UPSTREAM_CODENAME="14";;
+    trixie)   UPSTREAM_RELEASE="13";;
+    forky)    UPSTREAM_RELEASE="14";;
+    trixie)   UPSTREAM_RELEASE="13";;
     sid)      UPSTREAM_RELEASE="unstable";;
     focal)    UPSTREAM_RELEASE="20.04";;
     jammy)    UPSTREAM_RELEASE="22.04";;
-    kinetic)  UPSTREAM_RELEASE="22.10";;
-    lunar)    UPSTREAM_RELEASE="23.04";;
-    mantic)   UPSTREAM_RELEASE="23.10";;
     noble)    UPSTREAM_RELEASE="24.04";;
     oracular) UPSTREAM_RELEASE="24.10";;
+    plucky)   UPSTREAM_RELEASE="25.04";;
+    questing) UPSTREAM_RELEASE="25.10";;
 
     *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
 esac

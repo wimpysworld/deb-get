@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "aandrew-me/ytDownloader" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL//v/}" )
+fi
+PRETTY_NAME="ytDownloader"
+WEBSITE="https://ytdn.netlify.app/"
+SUMMARY="A modern GUI App for downloading Videos and Audios from hundreds of sites"

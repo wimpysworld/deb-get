@@ -3,6 +3,7 @@ https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main
 activitywatch
 agena
 alduin
+alsa-scarlett-gui
 android-messages-desktop
 antimicrox
 anydesk
@@ -18,6 +19,7 @@ azuredatastudio
 balena-etcher
 bat
 battery-monitor
+beekeeper-studio
 beersmith3
 bitwarden
 bitwig-studio
@@ -28,6 +30,7 @@ bottom
 brave-browser
 brisqi
 browsh
+bruno
 caddy
 caprine
 cawbird
@@ -42,12 +45,16 @@ cronopete
 crossover
 crow-translate
 cryptomator
+cudatext
 cw-tail
+davmail
 dbeaver-ce
+dbgate
 deadbeef-static
 deborah
 deltachat-desktop
 deskcut
+deskflow
 deskreen
 detectiteasy
 discord
@@ -65,10 +72,11 @@ dustracing2d
 eaglemode
 element-desktop
 emby-server
+emptyepsilon
 enpass
 eversticky
 exifcleaner
-expressvpn
+#expressvpn
 fail2ban
 fastfetch
 fd
@@ -85,12 +93,15 @@ firefox-nightly
 flameshot
 foliate
 franz
+freeshow
 frostwire
 fsearch
+g
 ganttproject
 gb-studio
 gcm
 gh
+gifski
 git-delta
 github-desktop
 gitkraken
@@ -113,9 +124,11 @@ grype
 haguichi
 headset
 helio-workstation
+helmwave
 heroic
 homeassistant-supervised
 hugo
+hydralauncher
 hyper
 hyperfine
 i3
@@ -126,6 +139,7 @@ influxdb
 influxdb2
 influxdb2-cli
 inkscape
+input-leap
 insomnia
 insync
 ipfs-desktop
@@ -135,6 +149,7 @@ ivpn-ui
 jabref
 jami
 jc
+joplin
 jellyfin
 jellyfin-media-player
 jexiftoolgui
@@ -150,8 +165,10 @@ kse
 ksnip
 kwaterfoxhelper
 lens
+libation
 libreoffice
 librewolf
+linux-assistant
 limoji
 localsend
 lsd
@@ -160,6 +177,7 @@ lutris
 mailspring
 makedeb
 manuskript
+marktext
 master-pdf-editor-5
 mattermost-desktop
 mdview
@@ -179,12 +197,14 @@ mucommander
 mullvad-browser
 mullvad-vpn
 multimc
+museeks
 musikcube
 nala
 #nala-legacy
 nekoray
 nemo-mediainfo-tab
 neo4j
+neo-htop
 nextcloud-desktop
 nodejs
 nomad
@@ -192,6 +212,7 @@ nordvpn
 notable
 novelwriter
 nuclear
+numbat
 ntfy
 obs-cli
 obsidian
@@ -206,6 +227,7 @@ openrazer-meta
 openrgb
 opera-stable
 os-agent
+ov
 p3x-onenote
 pandoc
 papirus-folders
@@ -260,6 +282,7 @@ songrec
 soundux
 speedtest
 spotify-client
+spotube
 standard-notes
 starcal3
 strawberry
@@ -297,6 +320,7 @@ tonelib-metal
 tonelib-noisereducer
 tonelib-tubewarmth
 tonelib-zoom
+topgrade
 tribler
 trilium
 trivy
@@ -320,14 +344,17 @@ weechat
 weylus
 whalebird
 whatsapp-for-linux
+winegui
 winehq-devel
 winehq-stable
 winehq-staging
 wire-desktop
 # wraith-master
 xemu
+xpipe
 youtube-music
-yq
+#yq
+ytdownloader
 yubikey-manager
 zenith
 zettlr
