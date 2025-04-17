@@ -1334,6 +1334,7 @@ esac
 OS_ID=$(lsb_release --id --short)
 case "${OS_ID}" in
   Debian) OS_ID_PRETTY="Debian";;
+  Devuan) OS_ID_PRETTY="Devuan";;
   elementary|Elementary) OS_ID_PRETTY="elementary OS";;
   Linuxmint) OS_ID_PRETTY="Linux Mint";;
   Neon) OS_ID_PRETTY="KDE Neon";;
@@ -1398,7 +1399,18 @@ case "${UPSTREAM_CODENAME}" in
     plucky)   UPSTREAM_RELEASE="25.04";;
     questing) UPSTREAM_RELEASE="25.10";;
 
-    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
+    *)  #Devuan
+        if [[ "${UPSTREAM_ID}" == "debian" ]]; then
+            UPSTREAM_RELEASE="$(grep -E -o -m 1 "^[0-9]+" "/etc/debian_version")"
+        fi
+        case "${UPSTREAM_RELEASE}" in
+            10) UPSTREAM_CODENAME="buster";;
+            11) UPSTREAM_CODENAME="bullseye";;
+            12) UPSTREAM_CODENAME="bookworm";;
+            13) UPSTREAM_CODENAME="trixie";;
+            14) UPSTREAM_CODENAME="forky";;
+             *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
+        esac
 esac
 }
 
