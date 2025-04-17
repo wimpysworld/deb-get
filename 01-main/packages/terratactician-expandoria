@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm trixie sid jammy noble oracular plucky"
+get_gitlab_releases "https://vccourses.cs.ovgu.de/course/terratactician-expandoria" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "${HOST_ARCH}.*\.deb" "${CACHE_FILE}")"
+    local VER="${URL##*/v}"; VERSION_PUBLISHED="${VER%%/*}-1"
+fi
+PRETTY_NAME="TerraTactician Expandoria"
+WEBSITE="https://terratactician-expandoria.codeberg.page/"
+SUMMARY="A hexgon build up game. It is your time to shine. Can you meet the ever-growing resource requirements and expand your hexagon world?"
