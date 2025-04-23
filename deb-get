@@ -1371,11 +1371,18 @@ if ! [[ ' ubuntu debian ' =~ " ${UPSTREAM_ID} " ]]; then
     fi
 fi
 
-# Debian Sid doesn't have it's own unique os-release file. It is the same as Debian stable.
-# So we first check /etc/debian_version to see if we're running sid. If not, we will trust what os-release says.
-if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" /etc/debian_version; then
-    UPSTREAM_CODENAME="sid"
-    OS_CODENAME="sid"
+# Debian Sid & Testing don't always have their own unique os-release file. It is often the same as the previous Debian stable.
+# So we first check /etc/debian_version to make sure we're not running Stable.
+# If not, we will then use apt-cache policy to distinguish between Debian Sid and Debian Testing.
+local ETC_DEB_VER="$(< /etc/debian_version)"
+if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" <<< "${ETC_DEB_VER}"; then
+    if apt-cache policy | grep -q -i -e "o=debian.*n=${ETC_DEB_VER%%/*}" -e "o=debian.*n=testing"; then
+        UPSTREAM_CODENAME="${ETC_DEB_VER%%/*}"
+        OS_CODENAME="${UPSTREAM_CODENAME}"
+    else
+        UPSTREAM_CODENAME="sid"
+        OS_CODENAME="sid"
+    fi
 else
     local codename
     for codename in UBUNTU_CODENAME DEBIAN_CODENAME VERSION_CODENAME; do
