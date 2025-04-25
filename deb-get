@@ -1174,6 +1174,12 @@ function remove_old_ppa_repo() {
 }
 
 function remove_repo() {
+    if [[ -n "${PPA}" ]]; then
+        local -r PPA_ADDRESS=${PPA#*:}
+        local -r PPA_PERSON=${PPA_ADDRESS%%/*}
+        local -r PPA_ARCHIVE=${PPA_ADDRESS#*/}
+        APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    fi
     local count=""
     if [ -e "${ETC_DIR}/aptrepos" ]; then
         count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
