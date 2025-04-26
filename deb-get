@@ -1212,21 +1212,23 @@ function remove_repo() {
 }
 
 function add_apt_repo() {
-    local count=""
-    if [ -e "${ETC_DIR}/aptrepos" ]; then
-        count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
-    fi
-    if [ -z "${count}" ]; then
-        count=0
-    fi
-    if [ "${count}" -eq 0 ] && [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+    if [[ "${ACTION}" != "reinstall" ]]; then
+        local count=""
+        if [ -e "${ETC_DIR}/aptrepos" ]; then
+            count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
+        fi
+        if [ -z "${count}" ]; then
+            count=0
+        fi
+        if [ "${count}" -eq 0 ] && [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+            ((count++))
+        fi
         ((count++))
+        if [ -e "${ETC_DIR}/aptrepos" ]; then
+            ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+        fi
+        ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" <<<"${APT_LIST_NAME} ${count}" >/dev/null
     fi
-    ((count++))
-    if [ -e "${ETC_DIR}/aptrepos" ]; then
-        ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
-    fi
-    ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" <<<"${APT_LIST_NAME} ${count}" >/dev/null
     if [ ! -d /usr/share/keyrings ]; then
         ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
     fi
