@@ -54,6 +54,7 @@ body:
     attributes:
       label: /etc/os-release
       placeholder: Paste the contents of your /etc/os-release file here.
+      render: ini
     validations:
       required: false
   - type: markdown
@@ -69,6 +70,7 @@ body:
     attributes:
       label: /etc/lsb-release
       placeholder: Paste the contents of your /etc/lsb-release file here.
+      render: ini
     validations:
       required: false
   - type: markdown
@@ -84,6 +86,7 @@ body:
     attributes:
       label: deb-get version
       placeholder: The version number of deb-get that you are running.
+      render: bash
     validations:
       required: false
   - type: markdown
@@ -98,6 +101,7 @@ body:
     attributes:
       label: deb-get update
       placeholder: Paste the output from updating deb-get.
+      render: bash
     validations:
       required: false
   - type: markdown
