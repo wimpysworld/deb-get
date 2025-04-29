@@ -1,0 +1,17 @@
+name: New Feature
+description: Request a new feature to be added to deb-get.
+title: "Feature Request: "
+labels: ["enhancement"]
+body:
+- type: markdown
+  attributes:
+    value: |
+      ## Requesting a new feature 🧑‍💻
+      Thank you for taking the time to report an issue to the deb-get project 🙂
+      Please describe the proposed feature with as much detail as possible:
+- type: textarea
+  id: new-feature
+  attributes:
+    label: New Feature
+  validations:
+    required: true

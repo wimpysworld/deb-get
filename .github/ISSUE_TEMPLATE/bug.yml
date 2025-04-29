@@ -1,0 +1,114 @@
+name: Bug Report
+description: Report a problem with deb-get.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Reporting a bug 🐛
+        Thank you for taking the time to report an issue to the deb-get project 🙂
+        Please make sure the version of `deb-get` you are using is up to date:
+        ```bash
+        deb-get update
+        deb-get reinstall deb-get
+        ```
+        &nbsp;
+        &nbsp;
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      placeholder: Describe the expected behavior here.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      placeholder: Describe the actual behavior here.
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: Describe the exact steps required to reproduce the issue.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        ### System information
+        Run the following commands and paste the output below:
+        &nbsp;
+        &nbsp;
+        ```bash
+        cat /etc/os-release
+        ```
+  - type: textarea
+    id: os-release
+    attributes:
+      label: /etc/os-release
+      placeholder: Paste the contents of your /etc/os-release file here.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        &nbsp;
+        &nbsp;
+        ```bash
+        cat /etc/lsb-release
+        ```
+  - type: textarea
+    id: lsb-release
+    attributes:
+      label: /etc/lsb-release
+      placeholder: Paste the contents of your /etc/lsb-release file here.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        &nbsp;
+        &nbsp;
+        ```bash
+        deb-get version
+        ```
+  - type: textarea
+    id: version
+    attributes:
+      label: deb-get version
+      placeholder: The version number of deb-get that you are running.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        &nbsp;
+        ```bash
+        deb-get update
+        ```
+  - type: textarea
+    id: update
+    attributes:
+      label: deb-get update
+      placeholder: Paste the output from updating deb-get.
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        &nbsp;
+        &nbsp;
+  - type: textarea
+    id: more-info
+    attributes:
+      label: Additional Information
+      placeholder: Any additional information that you think would be useful.
+    validations:
+      required: false
