@@ -1379,6 +1379,7 @@ if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" <<< "${ETC_DEB_VER}"; the
     if apt-cache policy | grep -q -i -e "o=debian.*n=${ETC_DEB_VER%%/*}" -e "o=debian.*n=testing"; then
         UPSTREAM_CODENAME="${ETC_DEB_VER%%/*}"
         OS_CODENAME="${UPSTREAM_CODENAME}"
+        DEBIAN_TESTING="${UPSTREAM_CODENAME}"
     else
         UPSTREAM_CODENAME="sid"
         OS_CODENAME="sid"
