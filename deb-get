@@ -1236,7 +1236,9 @@ function add_apt_repo() {
             if ${ELEVATE} printenv GNUPGHOME > /dev/null && ${ELEVATE} [ ! -e "${GNUPGHOME}" ] || ${ELEVATE} [ ! -e "$(${ELEVATE} printenv HOME)/.gnupg" ] ; then
                ${ELEVATE} gpg --list-keys
             fi
-            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
+            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring-temp.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
+            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring-temp.gpg --yes --output "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" --export "${GPG_KEY_ID}"
+            ${ELEVATE} rm /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring-temp.gpg
         else #GPG_KEY_URL
             # shellcheck disable=SC2086
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
