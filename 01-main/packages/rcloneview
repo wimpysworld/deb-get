@@ -1,0 +1,14 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+case ${HOST_ARCH} in
+    amd64) ARCH=x86_64 ;;
+    arm64) ARCH=aarch64 ;;
+esac
+get_website "https://rcloneview.com/src/download.html"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(sed -E -n "s/.*href=.(.*linux.*${ARCH}.*\.deb).*/\1/p" "${CACHE_FILE}")"
+    VERSION_PUBLISHED="$(sed -E -n "N;s/.*Deb.*Linux.*\s+ver\s+([^\s]+).*/\1/pi" "${CACHE_FILE}")"
+fi
+PRETTY_NAME="RcloneView"
+WEBSITE="https://rcloneview.com/"
+SUMMARY="The ultimate GUI for cloud data sync and file management."
