@@ -1,0 +1,17 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf i386 loong64"
+ARCH=${HOST_ARCH}
+case "${ARCH}" in
+    amd64) ARCH=x86_64 ;;
+    arm64) ARCH=aarch64 ;;
+    armhf) ARCH=armv7 ;;
+    *) ;;
+esac
+get_github_releases "version-fox/vfox" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(sed -E -n "s|.*browser_download_url.*(https.*${ARCH}\.deb).*|\1|p"  "${CACHE_FILE}")
+    VERSION_PUBLISHED=$(sed -E "s|.*/v([^/]*)/.*|\1|" <<<"${URL}")
+fi
+PRETTY_NAME="vfox"
+WEBSITE="https://vfox.dev/"
+SUMMARY="The Multiple SDK Version Manager."
