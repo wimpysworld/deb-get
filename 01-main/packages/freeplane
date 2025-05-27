@@ -1,0 +1,11 @@
+DEFVER=1
+get_website "https://sourceforge.net/projects/freeplane/files/freeplane%20stable/"
+if [ "${ACTION}" != "prettylist" ]; then
+    # Find the latest .deb URL for the current naming pattern
+    local REDIR_URL="$(grep -Eo 'https://downloads\.sourceforge\.net/project/freeplane/[^"\ >]+' "${CACHE_FILE}" | grep 'freeplane_[0-9.]*~upstream-[0-9]+_all.deb' | head -n1)"
+    URL=$(unroll_url "${REDIR_URL}")
+    VERSION_PUBLISHED="$(echo "${URL}" | grep -oP 'freeplane_\K([0-9]+\.[0-9]+\.[0-9]+)(?=~upstream-1_all\.deb)')"
+fi
+PRETTY_NAME="Freeplane"
+WEBSITE="https://www.freeplane.org/"
+SUMMARY="Free and open source mind mapping and information management software. Alternative to Xmind and Mindmeister. Written in Java."
