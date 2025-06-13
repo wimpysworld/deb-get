@@ -1,6 +1,5 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-CODENAMES_SUPPORTED="noble plucky trixie sid"
 get_github_releases "topgrade-rs/topgrade" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -E "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
