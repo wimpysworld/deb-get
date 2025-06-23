@@ -1,8 +1,13 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="jammy noble"
+case ${HOST_ARCH} in
+    amd64) ARCH= ;;
+    arm64) ARCH=arm- ;;
+esac
 get_github_releases "flowkeeper-org/fk-desktop" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    case "${UPSTREAM_CODENAME}" in focal|buster|bullseye) local LEGACY_VER; LEGACY_VER="-legacy" ;; esac
-    URL="$(grep -m 1 "browser_download_url.*flowkeeper${LEGACY_VER}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    URL="$(grep -m 1 "browser_download_url.*flowkeeper.*${UPSTREAM_RELEASE}-${ARCH}nuitka-package\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
     VERSION_PUBLISHED="$(sed -E 's|.*/download/v([^/]*).*|\1|' <<< "${URL}")"
 fi
 PRETTY_NAME="Flowkeeper"
