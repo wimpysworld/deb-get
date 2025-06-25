@@ -2,6 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
 ARCH=${HOST_ARCH}
 get_github_releases "henrygd/beszel" "latest"
+URL=$(grep -m 1 "browser_download_url.*${TARGET_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL//v/}")
 PRETTY_NAME="Beszel Agent"
 WEBSITE="https://beszel.dev/"
 SUMMARY="Lightweight server monitoring agent with historical data, docker stats, and alerts. "
