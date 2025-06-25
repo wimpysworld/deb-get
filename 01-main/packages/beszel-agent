@@ -1,11 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
 ARCH=${HOST_ARCH}
-case "${ARCH}" in
-    amd64) ARCH=amd64 ;;
-    arm64) ARCH=arm64 ;;
-    *) ;;
-esac
 get_github_releases "henrygd/beszel" "latest"
 PRETTY_NAME="Beszel Agent"
 WEBSITE="https://beszel.dev/"
