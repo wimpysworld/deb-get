@@ -44,23 +44,32 @@ jobs:
           set -x
           APPS="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||")"
           SUPPORTED="$(./deb-get list --raw)"
+          errors=0
           for APP in ${APPS}; do
             if ! grep -q -m 1 "^${APP}$" <<<"${SUPPORTED}"; then
-              echo "Skipping '${APP}' as it is not supported" >&2
+              echo "::notice::App ${APP} is not supported" >&2
               continue
             fi
-            ./deb-get install "${APP}"
+            if ! ./deb-get install "${APP}"; then
+              echo "::error::App ${APP} failed to install" >&2
+              ((errors++))
+              continue
+            fi
             if ./deb-get show "${APP}" | grep -q "Installed:	No"; then
-              echo "Failed to detect '${APP}' as installed" >&2
-              exit 1
+              echo "::error::App ${APP} failed to register as installed" >&2
+              ((errors++))
+              continue
             fi
             PUBLISHED_VER=$(./deb-get show "${APP}" | grep "Published:" | grep -oE '[^[:space:]]+$' || :)
             INSTALLED_VER=$(dpkg-query -Wf '${Version}' "${APP}" || :)
             if [ -n "${PUBLISHED_VER// /}" ] && dpkg --compare-versions "${PUBLISHED_VER}" gt "${INSTALLED_VER}" ; then
-              echo "Versions do not match. The '${APP}' package's VERSION_PUBLISHED variable may need to be changed." >&2
-              echo "Published Version: ${PUBLISHED_VER}"
-              echo "Installed Version: ${INSTALLED_VER}"
-              exit 1
+              echo "::error::App ${APP}'s published version '${PUBLISHED_VER}' doesn't match installed version '${INSTALLED_VER}'. Fix VERSION_PUBLISHED variable?" >&2
+              ((errors++))
+              # fallthrough
             fi
-            ./deb-get purge "${APP}"
+            if ! ./deb-get purge "${APP}"; then
+              echo "::error::App ${APP} failed to be purged" >&2
+              ((errors++))
+            fi
           done
+          exit $errors
