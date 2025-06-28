@@ -1,4 +1,5 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64"
 get_website "https://docs.docker.com/desktop/release-notes/"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep -m 1 -o 'https:[^>]*\.deb' "${CACHE_FILE}" )"
