@@ -1,0 +1,12 @@
+DEFVER=1
+get_website "https://www.edrawsoft.com/download-edrawmind.html"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -E -o -m 1 "https://[^\"]*\.deb" "${CACHE_FILE}")"
+    VERSION_PUBLISHED="$(grep -m 1 -E -i -A 10 --no-group-separator "for linux" "${CACHE_FILE}" | grep -m 1 -E -o "[0-9]+\.[0-9]+\.[0-9]+")"
+fi
+EULA="\n The EdrawMind EULA can be found at: \nhttps://www.edrawsoft.com/user-license-agreement.html"
+PRETTY_NAME="EdrawMind"
+WEBSITE="https://www.edrawsoft.com/edrawmind/"
+SUMMARY="Wondershare EdrawMind is a full-featured cross-platform mind mapping and brainstorming tool. Whether you are an employee, an entrepreneur, a student, or a freelancer, you can use Wondershare EdrawMind to develop more ideas, boost creativity, and streamline your workflow."
+#If the package "desktop-file-utils" is not installed in Debian, Edrawmind's post-install script may return some errors. But the app installs and launches regardless.
+#However, this may cause deb-get to think the installation failed. So to uninstall, you may need to use Apt instead of deb-get.
