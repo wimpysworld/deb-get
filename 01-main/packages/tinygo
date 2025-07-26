@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "tinygo-org/tinygo" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
+fi
+PRETTY_NAME="Tinygo"
+WEBSITE="https://tinygo.org/"
+SUMMARY="A Go Compiler For Small Places."
