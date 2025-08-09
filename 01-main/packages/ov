@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "noborus/ov" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(sed -E 's|.*download/v([^/]*).*|1:\1|' <<< "${URL}")"
+fi
+PRETTY_NAME="ov"
+WEBSITE="https://noborus.github.io/ov"
+SUMMARY="ov is a feature rich terminal pager."

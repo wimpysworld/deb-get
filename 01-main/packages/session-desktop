@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "session-foundation/session-desktop" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(sed -E 's|.*download/v([^/]*).*|\1|' <<< "${URL}")"
+fi
+PRETTY_NAME="Session Desktop"
+WEBSITE="https://getsession.org/"
+SUMMARY="Session is an end-to-end encrypted messenger that minimises sensitive metadata."

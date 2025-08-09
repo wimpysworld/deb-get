@@ -1,0 +1,14 @@
+DEFVER=1
+local QT_VER
+case "${UPSTREAM_CODENAME}" in
+    sid|trixie|plucky) QT_VER="6" ;;
+    *) QT_VER="5" ;;
+esac
+get_website "https://sourceforge.net/p/cudatext/activity/feed"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(unroll_url "$(sed 's|</*link>|\n|g' "${CACHE_FILE}" | grep -o -m 1 "^http.*qt${QT_VER}_amd64.deb")")"
+    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+fi
+PRETTY_NAME="CudaText"
+WEBSITE="https://cudatext.github.io/"
+SUMMARY="Text/code editor with lite UI. Syntax highlighting for 300+ languages. Config system in JSON files. Multi-carets and multi-selections. Search and replace with RegEx. Extendable by Python plugins and themes."

@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "ChurchApps/FreeShow" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(cut -d'-' -f2 <<< "${URL}")"
+fi
+PRETTY_NAME="FreeShow"
+WEBSITE="https://freeshow.app/"
+SUMMARY="A free and open-source presenter"

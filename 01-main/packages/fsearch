@@ -1,5 +1,24 @@
-DEFVER=1
-PPA="ppa:christian-boxdoerfer/fsearch-stable"
+DEFVER=2
+local THE_KEY
+local THE_REPO
+case ${UPSTREAM_ID} in
+    ubuntu)
+        THE_KEY="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x52b2ffb2dc496f40"
+        THE_REPO="https://ppa.launchpadcontent.net/christian-boxdoerfer/fsearch-stable/ubuntu ${UPSTREAM_CODENAME} main"
+        ;;
+    *)
+        local DEBIANVER
+        case ${UPSTREAM_CODENAME} in
+            sid|13|trixie) DEBIANVER=Unstable ;;
+            *) DEBIANVER=${UPSTREAM_RELEASE} ;;
+        esac
+        THE_KEY="https://download.opensuse.org/repositories/home:cboxdoerfer/Debian_${DEBIANVER}/Release.key"
+        THE_REPO="http://download.opensuse.org/repositories/home:/cboxdoerfer/Debian_${DEBIANVER}/ /"
+        ;;
+esac
+ASC_KEY_URL="${THE_KEY}"
+APT_REPO_URL="${THE_REPO}"
+APT_LIST_NAME="fsearch"
 PRETTY_NAME="FSearch"
-WEBSITE="https://github.com/cboxdoerfer/fsearch"
+WEBSITE="https://cboxdoerfer.github.io/fsearch/"
 SUMMARY="Fast file search utility."

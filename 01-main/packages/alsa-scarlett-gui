@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+get_github_releases "geoffreybennett/alsa-scarlett-gui" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f4)"
+    VERSION_PUBLISHED="$(cut -d'/' -f8 <<< "${URL}")"
+fi
+PRETTY_NAME="Alsa Scarlett Gui"
+WEBSITE="https://github.com/geoffreybennett/alsa-scarlett-gui"
+SUMMARY="alsa-scarlett-gui is a Gtk4 GUI for the ALSA controls presented by the Linux kernel Focusrite Scarlett2 Mixer Driver"
