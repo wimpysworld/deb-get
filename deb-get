@@ -1174,6 +1174,12 @@ function remove_old_ppa_repo() {
 }
 
 function remove_repo() {
+    if [[ -n "${PPA}" ]]; then
+        local -r PPA_ADDRESS=${PPA#*:}
+        local -r PPA_PERSON=${PPA_ADDRESS%%/*}
+        local -r PPA_ARCHIVE=${PPA_ADDRESS#*/}
+        APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
+    fi
     local count=""
     if [ -e "${ETC_DIR}/aptrepos" ]; then
         count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
@@ -1206,21 +1212,23 @@ function remove_repo() {
 }
 
 function add_apt_repo() {
-    local count=""
-    if [ -e "${ETC_DIR}/aptrepos" ]; then
-        count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
-    fi
-    if [ -z "${count}" ]; then
-        count=0
-    fi
-    if [ "${count}" -eq 0 ] && [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+    if [[ "${ACTION}" != "reinstall" ]]; then
+        local count=""
+        if [ -e "${ETC_DIR}/aptrepos" ]; then
+            count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
+        fi
+        if [ -z "${count}" ]; then
+            count=0
+        fi
+        if [ "${count}" -eq 0 ] && [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+            ((count++))
+        fi
         ((count++))
+        if [ -e "${ETC_DIR}/aptrepos" ]; then
+            ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
+        fi
+        ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" <<<"${APT_LIST_NAME} ${count}" >/dev/null
     fi
-    ((count++))
-    if [ -e "${ETC_DIR}/aptrepos" ]; then
-        ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
-    fi
-    ${ELEVATE} tee -a "${ETC_DIR}/aptrepos" <<<"${APT_LIST_NAME} ${count}" >/dev/null
     if [ ! -d /usr/share/keyrings ]; then
         ${ELEVATE} mkdir -p /usr/share/keyrings 2>/dev/null
     fi
@@ -1236,7 +1244,9 @@ function add_apt_repo() {
             if ${ELEVATE} printenv GNUPGHOME > /dev/null && ${ELEVATE} [ ! -e "${GNUPGHOME}" ] || ${ELEVATE} [ ! -e "$(${ELEVATE} printenv HOME)/.gnupg" ] ; then
                ${ELEVATE} gpg --list-keys
             fi
-            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
+            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring-temp.gpg --keyserver keyserver.ubuntu.com --recv "${GPG_KEY_ID}"
+            ${ELEVATE} gpg --no-default-keyring --keyring /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring-temp.gpg --yes --output "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" --export "${GPG_KEY_ID}"
+            ${ELEVATE} rm /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring-temp.gpg
         else #GPG_KEY_URL
             # shellcheck disable=SC2086
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
@@ -1334,6 +1344,7 @@ esac
 OS_ID=$(lsb_release --id --short)
 case "${OS_ID}" in
   Debian) OS_ID_PRETTY="Debian";;
+  Devuan) OS_ID_PRETTY="Devuan";;
   elementary|Elementary) OS_ID_PRETTY="elementary OS";;
   Linuxmint) OS_ID_PRETTY="Linux Mint";;
   Neon) OS_ID_PRETTY="KDE Neon";;
@@ -1398,7 +1409,18 @@ case "${UPSTREAM_CODENAME}" in
     plucky)   UPSTREAM_RELEASE="25.04";;
     questing) UPSTREAM_RELEASE="25.10";;
 
-    *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
+    *)  #Devuan
+        if [[ "${UPSTREAM_ID}" == "debian" ]]; then
+            UPSTREAM_RELEASE="$(grep -E -o -m 1 "^[0-9]+" "/etc/debian_version")"
+        fi
+        case "${UPSTREAM_RELEASE}" in
+            10) UPSTREAM_CODENAME="buster";;
+            11) UPSTREAM_CODENAME="bullseye";;
+            12) UPSTREAM_CODENAME="bookworm";;
+            13) UPSTREAM_CODENAME="trixie";;
+            14) UPSTREAM_CODENAME="forky";;
+             *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
+        esac
 esac
 }
 
