@@ -9,6 +9,8 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL="$(sed -E -n "s/.*href=.(.*linux.*${ARCH}.*\.deb).*/\1/p" "${CACHE_FILE}")"
     VERSION_PUBLISHED="$(cut -d'-' -f2 <<<${URL})"
 fi
+EULA="By downloading, installing, copying, saving on your computer, or otherwise using this software, you are consenting to be bound by all the terms and conditions of this EULA: \n - https://rcloneview.com/src/eula.html \nIf you do not agree to the terms and conditions of this agreement, you should not download, install and use the software.\n"
+
 PRETTY_NAME="RcloneView"
 WEBSITE="https://rcloneview.com/"
 SUMMARY="The ultimate GUI for cloud data sync and file management."
