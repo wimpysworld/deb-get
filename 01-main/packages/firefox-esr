@@ -1,11 +1,19 @@
-DEFVER=1
-# Per https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/dists/noble/main/ :
-ARCHS_SUPPORTED="amd64 arm64 armhf i386 ppc64el riscv64 s390x"
-# Per https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/dists/ :
-# focal groovy gutsy hardy hirsute impish intrepid jammy jaunty kinetic lunar mantic noble oracular trusty xenial zesty
-CODENAMES_SUPPORTED="focal jammy kinetic lunar mantic noble oracular"
-APT_LIST_NAME="ppa.mozilla.org"
-PPA="ppa:mozillateam/ppa"
+DEFVER=2
+#Mozilla's apt repo only has an amd64 version of firefox-esr.
+case "${UPSTREAM_ID}" in ubuntu) ARCHS_SUPPORTED="amd64 arm64 armhf";; esac
+case "${HOST_ARCH}" in
+	amd64)
+        ASC_KEY_URL="https://packages.mozilla.org/apt/repo-signing-key.gpg"
+        APT_REPO_URL="https://packages.mozilla.org/apt mozilla main"
+        APT_LIST_NAME="mozilla.org"
+        ;;
+	*)
+		PPA="ppa:mozillateam/ppa"
+		;;
+esac
 PRETTY_NAME="Firefox ESR"
 WEBSITE="https://www.mozilla.org/firefox/enterprise/"
 SUMMARY=" Firefox web browser (extended support release)."
+
+
+
