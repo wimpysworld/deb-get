@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases " psygreg/linuxtoys" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+fi
+PRETTY_NAME="LinuxToys"
+WEBSITE="https://github.com/psygreg/linuxtoys"
+SUMMARY="A collection of tools for Linux in a user-friendly way."
