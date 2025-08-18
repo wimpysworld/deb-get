@@ -146,6 +146,18 @@ function create_etc_dir() {
 function unroll_url() {
     # Sourceforge started adding parameters
     local TRIM_URL="$(curl -w "%{url_effective}" -I -L -s -S "${1}" -o /dev/null)"
+    #we will only check for the meta refresh if the initial unroll didn't accomplish anything
+    if [[ "${1%/}" == "${TRIM_URL%/}" ]]; then
+        local META_REFRESH="$(curl -s "${1}" | grep -E -i -o -m 1 "<meta.*http-equiv=[^\>]*refresh[^\>]*>" | grep -i -E "content=.*url=")"
+        if [[ -n "${META_REFRESH}" ]]; then
+            META_REFRESH="$(sed -E 's|.*url=['\''"]?([^'\''">]*).*|\1|i' <<< "${META_REFRESH}")"
+            if [[ ${META_REFRESH} =~ ^https?://.* ]]; then
+                TRIM_URL="${META_REFRESH}"
+            else
+                TRIM_URL="$(sed -E 's|(https?://[^/]*).*|\1|' <<< ${1})/${META_REFRESH#\/}"
+            fi
+        fi
+    fi
     printf '%s' "${TRIM_URL/\.deb*/.deb}"
 }
 
