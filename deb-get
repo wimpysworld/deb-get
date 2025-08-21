@@ -280,11 +280,15 @@ function eula() {
 }
 
 function update_apt() {
+  if ! [ "$DISABLE_APT" == "y" ]; then
     ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y update
+  fi
 }
 
 function upgrade_apt() {
+  if ! [ "$DISABLE_APT" == "y" ]; then
     ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y upgrade
+  fi
 }
 
 function upgrade_only_dg() {
