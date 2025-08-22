@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "turbot/steampipe" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(cut -d/ -f8 <<< "${URL}" | tr -d 'v')"
+fi
+PRETTY_NAME="Steampipe"
+WEBSITE="https://steampipe.io/"
+SUMMARY="Zero-ETL, infinite possibilities. Live query APIs, code & more with SQL. No DB required."
