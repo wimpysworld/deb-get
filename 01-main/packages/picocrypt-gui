@@ -1,5 +1,6 @@
 DEFVER=1
 #ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="trixie sid noble oracular plucky"
 get_github_releases "Picocrypt/Picocrypt" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
