@@ -44,7 +44,7 @@ The variables defined in the package definition file are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_LIST_NAME`, `APT_REPO_OPTIONS` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`, and `APT_LIST_NAME` defaults to `${APP}`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
+`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_LIST_NAME`, `APT_REPO_OPTIONS` and `EULA` are optional and can be omitted when not needed. `ARCHS_SUPPORTED` defaults to `amd64`, and `APT_LIST_NAME` defaults to `${APP}`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 
 ```bash
 if [ "${ACTION}" != prettylist ]; then
