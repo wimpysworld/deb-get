@@ -276,7 +276,7 @@ cog.out(pretty_list)
 | [<img src="../.github/debian.png" align="top" width="20" />](https://schildi.chat/) | `schildichat-desktop` | <i>SchildiChat is a feature-rich messenger for Matrix based on Element with some extras and tweaks.</i> |
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.sejda.com/) | `sejda-desktop` | <i>Easy, pleasant and productive PDF editor.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://getsession.org/) | `session-desktop` | <i>Session is an end-to-end encrypted messenger that minimises sensitive metadata.</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://www.shutterencoder.com/) | `shutter-encoder` | <i>Professional video, audio and image coversion and encoding tool.</i> |
+| [<img src="../.github/direct.png" align="top" width="20" />](https://www.shutterencoder.com/) | `shutter-encoder` | <i>Professional video, audio and image conversion and encoding tool.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://signal.org/) | `signal-desktop` | <i>Private Messenger.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://simplenote.com/) | `simplenote` | <i>The simplest way to keep notes.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://hsbasu.github.io/simple-pwgen/) | `simple-pwgen` | <i>Very simple Python3-based GUI application to generate secure and random password.</i> |
