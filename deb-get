@@ -118,7 +118,7 @@ function package_is_installed() {
 
 function elevate_privs() {
     if [ "$(id -ru)" -eq 0 ]; then
-        # Alreday in the root context
+        # Already in the root context
         ELEVATE=""
     elif command -v doas 1>/dev/null && doas true 2>/dev/null; then
         ELEVATE="doas"
