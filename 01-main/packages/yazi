@@ -14,7 +14,9 @@ if [ "${ACTION}" != "prettylist" ]; then
 
     URL=$(grep -m 1 "browser_download_url.*yazi-${HOST_CPU}.*linux-gnu\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     # override gnu to musl if you want - 
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}"| tr -d 'v')
+    # VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}"| tr -d 'v')
+    # VERSION_PUBLISHED=${VERSION_PUBLISHED/nightly/25.5.28-1}
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d 'v' | sed 's/nightly/25.5.28-1/')
 fi
 PRETTY_NAME="Yazi"
 WEBSITE="https://yazi-rs.github.io/"
