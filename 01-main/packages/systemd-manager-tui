@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "matheus-git/systemd-manager-tui" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f4)"
+    VERSION_PUBLISHED="$(cut -d'/' -f8 <<< "${URL}")"
+fi
+PRETTY_NAME="Systemd manager tui"
+WEBSITE="https://github.com/matheus-git/systemd-manager-tui"
+SUMMARY="A program for managing systemd services through a TUI (Terminal User Interfaces)."
