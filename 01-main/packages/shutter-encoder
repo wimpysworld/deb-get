@@ -6,4 +6,4 @@ if [ "${ACTION}" != "prettylist" ]; then
 fi
 PRETTY_NAME="shutter-encoder"
 WEBSITE="https://www.shutterencoder.com/"
-SUMMARY="Professional video, audio and image coversion and encoding tool."
+SUMMARY="Professional video, audio and image conversion and encoding tool."
