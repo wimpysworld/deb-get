@@ -1,9 +1,9 @@
 DEFVER=1
 get_website "https://www.shutterencoder.com/en/thanks.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="https://www.shutterencoder.com/$(grep -a "64bits\.deb\"" "${CACHE_FILE}" | cut -d'"' -f2 | sed 's|\.\./||')"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d' ' -f3)"
-fi
+    URL="https://www.shutterencoder.com/$(grep -a "64bits\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 2 | sed 's|\.\./||')"
+    VERSION_PUBLISHED=$(cut -d ' ' -f 3 <<< "${URL}")
+    fi
 PRETTY_NAME="shutter-encoder"
 WEBSITE="https://www.shutterencoder.com/"
-SUMMARY="Professional video, audio and image coversion and encoding tool."
+SUMMARY="Professional video, audio and image conversion and encoding tool."
