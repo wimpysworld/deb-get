@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "mfat/sshpilot" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -i -m 1 'browser_download_url.*_all\.deb"' "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed 's/^v//')
+fi
+PRETTY_NAME="sshpilot"
+WEBSITE="https://github.com/mfat/sshpilot"
+SUMMARY="User-friendly, cross-platform SSH connection manager"
