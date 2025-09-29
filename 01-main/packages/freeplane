@@ -6,7 +6,7 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(unroll_url "${REDIR_URL}")
     VERSION_PUBLISHED=$( grep -oP 'freeplane_\K([0-9]+\.[0-9]+\.[0-9]+(.upstream-[0-9]+)*)(?=_all\.deb)' <<<"${URL}" )
     # of course they would leave '~' in the actual version so
-    VERSION_PUBLISHED=${VERSION_PUBLISHED/.ups/~ups}
+    VERSION_PUBLISHED="${VERSION_PUBLISHED/.ups/~ups}"
 
 fi
 PRETTY_NAME="Freeplane"
