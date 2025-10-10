@@ -1,0 +1,23 @@
+DEFVER=1
+# CODENAMES_SUPPORTED="bookworm bullseye buster focal jammy noble oracular plucky trixie sid"
+# Maybe omit jammy/bookworm in case fd users get unexpected downgrade
+ARCHS_SUPPORTED="amd64 arm64" # filenames aarch64  amd64
+# ARCH=${HOST_ARCH}
+# case "${ARCH}" in
+#     arm64) ARCH=aarch64 ;;
+#     amd64) ARCH=x86_64 ;;
+#     *) ;;
+# esac
+get_github_releases "sxyazi/yazi" #"latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    # URL=$(grep -m 1 "browser_download_url.*yazi-${ARCH}.*linux-gnu\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+
+    URL=$(grep -m 1 "browser_download_url.*yazi-${HOST_CPU}.*linux-gnu\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    # override gnu to musl if you want - 
+    # VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}"| tr -d 'v')
+    # VERSION_PUBLISHED=${VERSION_PUBLISHED/nightly/25.5.28-1}
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d 'v' | sed 's/nightly/25.5.28-1/')
+fi
+PRETTY_NAME="Yazi"
+WEBSITE="https://yazi-rs.github.io/"
+SUMMARY="💥 Blazing fast terminal file manager written in Rust, based on async I/O."
