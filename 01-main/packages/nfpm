@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "goreleaser/nfpm" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="nFPM"
+WEBSITE="https://nfpm.goreleaser.com/"
+SUMMARY="nFPM is Not FPM - a simple deb, rpm, apk, ipk, and arch linux packager written in Go"
