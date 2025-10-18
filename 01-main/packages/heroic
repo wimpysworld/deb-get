@@ -1,7 +1,7 @@
 DEFVER=1
 get_github_releases "Heroic-Games-Launcher/HeroicGamesLauncher"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v beta | cut -d '"' -f 4)
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha| cut -d '"' -f 4)
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Heroic Games Launcher"
