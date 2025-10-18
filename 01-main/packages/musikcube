@@ -4,10 +4,10 @@ get_github_releases "clangen/musikcube" "latest"
 if [ "${ACTION}" != prettylist ]; then
     case "${HOST_CPU}" in
         x86_64)
-            URL="$(grep -m 1 "browser_download_url.*x86_64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+            URL=$(grep -m 1 "browser_download_url.*x86_64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
             ;;
         aarch64)
-            URL="$(grep -m 1 "browser_download_url.*armv8\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+            URL=$(grep -m 1 "browser_download_url.*armv8\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
             ;;
     esac
     VERSION_PUBLISHED=$(cut -d "/" -f 8 <<< "${URL}")

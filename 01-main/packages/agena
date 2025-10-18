@@ -19,10 +19,10 @@ esac
 WEBSITE="https://agena.sourceforge.net/"
 get_website "${WEBSITE}/download.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    local REDIR_URL="$(grep -o "[^\"]*/${APP}/.*${TARGET_ARCH}\.deb" "${CACHE_FILE}")"
+    local REDIR_URL=$(grep -o "[^\"]*/${APP}/.*${TARGET_ARCH}\.deb" "${CACHE_FILE}")
     URL=$(unroll_url "${REDIR_URL}")
     URL=${URL/\.deb*/.deb}
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f2)
 fi
 PRETTY_NAME="Agena"
 SUMMARY="Agena is an easy-to-learn procedural programming language designed to be used in science, scripting, and many other applications"

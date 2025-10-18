@@ -10,7 +10,7 @@ if [ "${ACTION}" != "prettylist" ]; then
             URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
         ;;
     esac
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
 fi
 PRETTY_NAME="Prospect Mail"
 WEBSITE="https://github.com/julian-alarcon/prospect-mail"

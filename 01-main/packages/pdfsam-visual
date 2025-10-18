@@ -7,11 +7,11 @@ if [ "${ACTION}" != "prettylist" ]; then
         amd64)   ARCH_VER=x64;;
     esac
 
-    URL="$(grep "browser_download_url.*${ARCH_VER}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha | cut -d'"' -f4)"
+    URL=$(grep "browser_download_url.*${ARCH_VER}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha | cut -d'"' -f4)
     if [ -z $URL] ;then
-        URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha | cut -d'"' -f4)"
+        URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e nightly -e beta -e alpha | cut -d'"' -f4)
     fi
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
 PRETTY_NAME="PDFsam Visual"
 WEBSITE="https://pdfsam.org/"

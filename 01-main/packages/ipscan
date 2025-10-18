@@ -7,7 +7,7 @@ esac
 
 get_github_releases "angryip/ipscan" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*${ARCH_CHOICE}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    URL=$(grep -m 1 "browser_download_url.*${ARCH_CHOICE}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | tr -d v)
 fi
 PRETTY_NAME="Angry IP Scanner"
