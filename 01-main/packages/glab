@@ -2,7 +2,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
 get_gitlab_releases "gitlab-org%2Fcli" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep -m 1 -e "${HOST_ARCH}\.deb" -e "${HOST_CPU}\.deb" ${CACHE_FILE})"
+    URL=$(grep -m 1 -e "${HOST_ARCH}\.deb" -e "${HOST_CPU}\.deb" "${CACHE_FILE}")
     VERSION_PUBLISHED="${URL##*/releases/v}"
     VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
 fi

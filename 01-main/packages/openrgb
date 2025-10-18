@@ -23,7 +23,7 @@ if [ "${ACTION}" != "prettylist" ]; then
     deb="${deb/$'\n'*/}"
     URL="https://codeberg.org/OpenRGB/OpenRGB/${deb}"
     # grab the first version found in the path (in the directory name):
-    VERSION_PUBLISHED=$( cut -d/ -f3 <<<"${deb}" )
+    VERSION_PUBLISHED=$( cut -d / -f 3 <<<"${deb}" )
     VERSION_PUBLISHED="${VERSION_PUBLISHED/_candidate/}"
     VERSION_PUBLISHED="${VERSION_PUBLISHED#release_}"
     if [ "$VERSION_PUBLISHED" == "1.0rc2" ]; then
