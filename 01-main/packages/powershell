@@ -1,8 +1,8 @@
 DEFVER=1
 get_github_releases "PowerShell/PowerShell"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e preview -e lts | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e preview -e lts | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
 fi
 PRETTY_NAME="PowerShell"
 WEBSITE="https://docs.microsoft.com/powershell/"

@@ -3,7 +3,7 @@ CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy noble oracu
 get_github_releases "mamolinux/battery-monitor" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
 PRETTY_NAME="Battery Monitor"
 WEBSITE="https://hsbasu.github.io/battery-monitor/"

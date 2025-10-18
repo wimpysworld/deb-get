@@ -2,8 +2,8 @@ DEFVER=1
 CODENAMES_SUPPORTED="bookworm trixie sid jammy noble plucky questing"
 get_gitlab_releases "https://gitlab.melroy.org/melroy/winegui" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "\.deb$" "${CACHE_FILE}")"
-    VERSION_PUBLISHED="$(sed -E 's|.*-v(.*)\.deb|\1|' <<< "${URL}")"
+    URL=$(grep -m 1 "\.deb$" "${CACHE_FILE}")
+    VERSION_PUBLISHED=$(sed -E 's|.*-v(.*)\.deb|\1|' <<< "${URL}")
 fi
 PRETTY_NAME="WineGUI"
 WEBSITE="https://gitlab.melroy.org/melroy/winegui"

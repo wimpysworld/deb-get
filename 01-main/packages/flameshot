@@ -2,9 +2,9 @@ DEFVER=1
 CODENAMES_SUPPORTED="bookworm jammy noble" # only packaged for Debian 12, Ubuntu 22.04, Ubuntu 24.04
 get_github_releases "flameshot-org/flameshot" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}.*\.${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    URL=$(grep -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}.*\.${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     if [ -z "${URL}" ]; then
-        URL="$(sort -r ${CACHE_FILE} | grep -m 1 -E "browser_download_url.*\.${UPSTREAM_ID}-.*\.${HOST_ARCH}\.deb\"" | cut -d'"' -f4)"
+        URL=$(sort -r ${CACHE_FILE} | grep -m 1 -E "browser_download_url.*\.${UPSTREAM_ID}-.*\.${HOST_ARCH}\.deb\"" | cut -d'"' -f4)
     fi
     VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
 fi
