@@ -10,7 +10,7 @@ if [ "${ACTION}" != "prettylist" ]; then
             URL=$(grep -m 1 "browser_download_url.*min.*-${HOST_ARCH}.deb" "${CACHE_FILE}" | cut -d'"' -f4)
         ;;
     esac
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f2)
+    VERSION_PUBLISHED=$(cut -d'-' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Min"
 WEBSITE="https://minbrowser.org"

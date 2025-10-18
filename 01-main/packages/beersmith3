@@ -1,6 +1,6 @@
 DEFVER=1
 CODENAMES_SUPPORTED="bionic focal jammy mantic noble oracular"
-get_website "https://beersmith.com/download-beersmith/"
+get_website "https://beersmith.com/download-beersmith/" 
 if [ "${ACTION}" != "prettylist" ]; then
     DL=$(grep -o -E '\"https://beer.*\.deb\"' "$CACHE_FILE" | sed 's/<br>/\n/g')
     case ${UPSTREAM_CODENAME} in
@@ -21,7 +21,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         ;;
     esac
 
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)
+    VERSION_PUBLISHED=$(cut -d'-' -f3 <<< "${URL}" | cut -d'_' -f1)
 fi
 PRETTY_NAME="BeerSmith"
 WEBSITE="https://beersmith.com/"

@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_website "https://yktoo.com/en/software/sound-switcher-indicator/download/"
 if [ "${ACTION}" != prettylist ]; then
     URL=$(grep -o -m 1 "https[^ ]*\.deb" "${CACHE_FILE}")
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d '_' -f 2)
+    VERSION_PUBLISHED=$(cut -d'_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Sound Switcher Indicator"
 WEBSITE="https://yktoo.com/en/software/sound-switcher-indicator"

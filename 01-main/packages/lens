@@ -1,7 +1,7 @@
 DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(unroll_url https://api.k8slens.dev/binaries/latest.amd64.deb)
-    VERSION_PUBLISHED=$(echo "${URL}"| cut -d"-" -f2)
+    VERSION_PUBLISHED=$(cut -d'-' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Lens"
 WEBSITE="https://k8slens.dev/"

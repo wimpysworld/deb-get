@@ -9,7 +9,7 @@ if [ "${ACTION}" != "prettylist" ]; then
             URL=$( grep -o -E "wget.*jammy.*amd64\.deb" "${CACHE_FILE}" | cut -d' '  -f2)
             ;;
     esac
-    VERSION_PUBLISHED=$(echo "${URL}" |  grep -E -o '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\-[[:digit:]]+' | tr - +)
+    VERSION_PUBLISHED=$(grep -E -o '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\-[[:digit:]]+' <<< "${URL}" | tr - +)
 fi
 PRETTY_NAME="RStudio Server"
 WEBSITE="https://posit.co"
