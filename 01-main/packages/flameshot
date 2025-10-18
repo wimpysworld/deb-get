@@ -4,7 +4,7 @@ get_github_releases "flameshot-org/flameshot" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}.*\.${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
     if [ -z "${URL}" ]; then
-        URL=$(sort -r ${CACHE_FILE} | grep -m 1 -E "browser_download_url.*\.${UPSTREAM_ID}-.*\.${HOST_ARCH}\.deb\"" | cut -d '"' -f 4)
+        URL=$(sort -r "${CACHE_FILE}" | grep -m 1 -E "browser_download_url.*\.${UPSTREAM_ID}-.*\.${HOST_ARCH}\.deb\"" | cut -d '"' -f 4)
     fi
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<<"${URL}" | tr -d v)
 fi

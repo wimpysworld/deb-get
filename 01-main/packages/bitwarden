@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "bitwarden/clients"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}"| tr -d [=-=][:alpha:])
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}"| tr -d '[=-=][:alpha:]')
 fi
 PRETTY_NAME="Bitwarden"
 WEBSITE="https://bitwarden.com/"

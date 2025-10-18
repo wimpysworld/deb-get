@@ -1,5 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
+# shellcheck disable=SC2168
 local ARCH_VER
 case ${HOST_ARCH} in
     armhf) ARCH_VER="arm7" ;;
