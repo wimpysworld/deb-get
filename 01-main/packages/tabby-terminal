@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "Eugeny/tabby"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*-linux-x64\.deb" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 )
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" )
     VERSION_PUBLISHED=${VERSION_PUBLISHED/v}
 fi
 PRETTY_NAME="Tabby"

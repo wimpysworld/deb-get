@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "MediaBrowser/Emby.Releases" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v '.md5' | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | sed "s/v//")
 fi
 PRETTY_NAME="Emby Server"
 WEBSITE="https://github.com/MediaBrowser/Emby.Releases"

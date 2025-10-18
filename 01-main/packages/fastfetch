@@ -13,7 +13,7 @@ case $(UPSTREAM_CODENAME) in
         ;;
 esac
 
-    VERSION_PUBLISHED="$(cut -d '/' -f8 <<< "${URL}")"
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}")
 fi
 PRETTY_NAME="FastFetch"
 WEBSITE="https://github.com/fastfetch-cli/fastfetch"

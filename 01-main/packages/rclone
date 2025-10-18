@@ -10,7 +10,7 @@ if [ "${ACTION}" != "prettylist" ]; then
             URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
             ;;
     esac
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | tr -d v)
 fi
 PRETTY_NAME="Rclone"
 WEBSITE="https://rclone.org/"

@@ -8,7 +8,7 @@ fi
 get_github_releases "LizardByte/Sunshine" # "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*-${UPSTREAM_ID}-${SUNSHINE_RELEASE}-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v -e 'nightly-dev' | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed 's|^v||')
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | sed 's|^v||')
 fi
 PRETTY_NAME="Sunshine"
 WEBSITE="https://docs.lizardbyte.dev/projects/sunshine/"

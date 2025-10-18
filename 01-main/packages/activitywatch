@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "ActivityWatch/activitywatch" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | sed "s/v//")
 fi
 PRETTY_NAME="ActivityWatch"
 WEBSITE="https://activitywatch.net/"

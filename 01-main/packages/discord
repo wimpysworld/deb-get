@@ -1,7 +1,7 @@
 DEFVER=1
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f6)
+    VERSION_PUBLISHED=$(cut -d'/' -f6 <<< "${URL}")
 fi
 PRETTY_NAME="Discord"
 WEBSITE="https://discord.com/"
