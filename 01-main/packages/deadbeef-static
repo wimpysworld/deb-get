@@ -1,6 +1,7 @@
 DEFVER=1
 get_website "https://deadbeef.sourceforge.io/download.html"
 if [ "${ACTION}" != "prettylist" ]; then
+    # shellcheck disable=SC2168,SC2155
     local REDIR_URL=$(grep "amd64\.deb" "${CACHE_FILE}" | cut -d '"' -f 2)
     URL=$(unroll_url "${REDIR_URL}")
     VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
