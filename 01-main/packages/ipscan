@@ -2,7 +2,7 @@ DEFVER=1
 
 case "${HOST_ARCH}" in
   amd64) ARCH_CHOICE=${HOST_ARCH} ;;
-  *) ARCH_CHOICE;="any";
+  *) ARCH_CHOICE="any";;
 esac
 
 get_github_releases "angryip/ipscan" "latest"
