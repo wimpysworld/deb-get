@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "hakandundar34coding/system-monitoring-center"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*all\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" |grep -o -E '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' |sort -u)
+    VERSION_PUBLISHED=$(grep -o -E '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+' <<< "${URL}" | sort -u)
 fi
 PRETTY_NAME="System Monitoring Center"
 WEBSITE="https://github.com/hakandundar34coding/system-monitoring-center"

@@ -3,7 +3,7 @@ get_github_releases "frostwire/frostwire"
 #"latest" cannot be used here
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*amd64\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3)
+    VERSION_PUBLISHED=$(cut -d'-' -f 3 <<< "${URL}")
 fi
 PRETTY_NAME="FrostWire"
 WEBSITE="https://www.frostwire.com/"

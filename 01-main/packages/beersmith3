@@ -21,7 +21,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         ;;
     esac
 
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f3 | cut -d'_' -f1)
+    VERSION_PUBLISHED=$(cut -d'-' -f3 <<< "${URL}" | cut -d'_' -f1)
 fi
 PRETTY_NAME="BeerSmith"
 WEBSITE="https://beersmith.com/"

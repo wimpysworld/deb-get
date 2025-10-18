@@ -2,7 +2,7 @@ DEFVER=1
 get_website "https://multimc.org/"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep  -o -e  'https://files.multimc.org/downloads/multimc_.*\.deb' "${CACHE_FILE}" )
-    VERSION_PUBLISHED=$(echo "${URL}" | grep -o -e '[[:digit:]].*[[:digit:]]')
+    VERSION_PUBLISHED=$(grep -o -e '[[:digit:]].*[[:digit:]]' <<< "${URL}")
 fi
 PRETTY_NAME="MultiMC"
 WEBSITE="https://multimc.org/"

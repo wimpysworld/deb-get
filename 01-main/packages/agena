@@ -1,5 +1,7 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 i386 arm64 armhf"
+# shellcheck disable=SC2168 
+# as we are in a function context
 local TARGET_ARCH="xxx"
 
 # Handle raspi - this was implemented for a Debian on Pi use-case
@@ -19,10 +21,12 @@ esac
 WEBSITE="https://agena.sourceforge.net/"
 get_website "${WEBSITE}/download.html"
 if [ "${ACTION}" != "prettylist" ]; then
+    # shellcheck disable=SC2168,SC2155
+    # as we are in a function context
     local REDIR_URL=$(grep -o "[^\"]*/${APP}/.*${TARGET_ARCH}\.deb" "${CACHE_FILE}")
     URL=$(unroll_url "${REDIR_URL}")
     URL=${URL/\.deb*/.deb}
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'-' -f2)
+    VERSION_PUBLISHED=$(cut -d'-' -f2 <<< "${URL}")
 fi
 PRETTY_NAME="Agena"
 SUMMARY="Agena is an easy-to-learn procedural programming language designed to be used in science, scripting, and many other applications"
