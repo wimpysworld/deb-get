@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64"
 get_github_releases "Peltoche/lsd" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v musl | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    VERSION_PUBLISHED=$(cut -d'_' -f2 <<< "${URL}")
 fi
 PRETTY_NAME="LSDeluxe"
 WEBSITE="https://github.com/Peltoche/lsd"

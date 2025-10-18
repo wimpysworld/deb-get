@@ -1,8 +1,9 @@
+
 DEFVER=1
 get_github_releases "bootandy/dust" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*amd64\.deb\"" "${CACHE_FILE}" | grep -m 1 -v musl | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    VERSION_PUBLISHED=$(cut -d'_' -f2 <<< "${URL}")
 fi
 PRETTY_NAME="du-dust"
 WEBSITE="https://github.com/bootandy/dust"

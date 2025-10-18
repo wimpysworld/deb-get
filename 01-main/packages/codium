@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "VSCodium/vscodium"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    VERSION_PUBLISHED=$(cut -d'_' -f2 <<< "${URL}")
 fi
 PRETTY_NAME="VSCodium"
 WEBSITE="https://vscodium.com/"
