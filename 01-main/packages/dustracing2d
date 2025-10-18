@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "juzzlin/DustRacing2D" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -e "18\.04" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}")
 fi
 PRETTY_NAME="DustRacing2D"
 WEBSITE="https://juzzlin.github.io/DustRacing2D/index.html"

@@ -4,7 +4,7 @@ CODENAMES_SUPPORTED="bookworm bullseye kinetic jammy focal noble"
 get_github_releases "jellyfin/jellyfin-media-player" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${UPSTREAM_CODENAME}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
+    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | tr -d v)
 fi
 PRETTY_NAME="Jellyfin Media Player"
 WEBSITE="https://jellyfin.org"
