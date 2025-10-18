@@ -1,8 +1,8 @@
 DEFVER=1
 get_github_releases "ONLYOFFICE/DesktopEditors" 
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | grep -m 1 -v help | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | tr -d v)
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | grep -m 1 -v help | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | tr -d v)
 fi
 PRETTY_NAME="ONLYOFFICE Desktop Editors"
 WEBSITE="https://www.onlyoffice.com/en/desktop.aspx"

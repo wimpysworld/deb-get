@@ -3,8 +3,8 @@ ARCHS_SUPPORTED="amd64"
 CODENAMES_SUPPORTED="bookworm trixie sid forky jammy noble plucky questing"
 get_github_releases "geoffreybennett/alsa-scarlett-gui" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f4)
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}")
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
 fi
 PRETTY_NAME="Alsa Scarlett Gui"
 WEBSITE="https://github.com/geoffreybennett/alsa-scarlett-gui"

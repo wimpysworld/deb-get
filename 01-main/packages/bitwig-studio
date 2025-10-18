@@ -10,7 +10,7 @@ function follow_url() {
 if [ "${ACTION}" != "prettylist" ]; then
 # shellcheck disable=SC2046
     URL=$(follow_url $(grep -o "https://www\.bitwig\.com/dl/Bitwig%20Studio/[[:digit:]]*.[[:digit:]]*.[[:digit:]]*/installer_linux/" "${CACHE_FILE}"))
-    VERSION_PUBLISHED=$(cut -d'/' -f4 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 4 <<< "${URL}")
     FILE="${DOWNLOAD_DIR}/Bitwig_Studio_${VERSION_PUBLISHED}.deb"
 fi
 PRETTY_NAME="BitWig Studio"

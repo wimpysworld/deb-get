@@ -8,9 +8,9 @@ if [ "${ACTION}" != "prettylist" ]; then
         amd64)   ARCH_VER=x64;;
         arm64) ARCH_VER=a64;;
     esac
-    VERSION_PUBLISHED=$(grep -m 1 '<a href="files/vue'"${ARCH_VER}"'.*\.deb">.*</a>' "${CACHE_FILE}" | cut -d'>' -f 2 | cut -d'<' -f 1)
-    local MAJOR_VER=$(cut -d'.' -f 1 <<< "${VERSION_PUBLISHED}")
-    local MINOR_VER=$(cut -d'.' -f 2 <<< "${VERSION_PUBLISHED}")
+    VERSION_PUBLISHED=$(grep -m 1 '<a href="files/vue'"${ARCH_VER}"'.*\.deb">.*</a>' "${CACHE_FILE}" | cut -d '>' -f 2 | cut -d '<' -f 1)
+    local MAJOR_VER=$(cut -d '.' -f 1 <<< "${VERSION_PUBLISHED}")
+    local MINOR_VER=$(cut -d '.' -f 2 <<< "${VERSION_PUBLISHED}")
     URL="https://www.hamrick.com/files/vue${ARCH_VER}${MAJOR_VER}${MINOR_VER}.deb"
 fi
 PRETTY_NAME="VueScan"

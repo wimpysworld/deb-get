@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_github_releases "popey/slomore" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v musl | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(cut -d'_' -f2 <<< "${URL}")
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v musl | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Slomore"
 WEBSITE="https://github.com/popey/slomore"

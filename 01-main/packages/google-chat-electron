@@ -1,8 +1,8 @@
 DEFVER=1
 get_github_releases "ankurk91/google-chat-electron" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(cut -d'_' -f2 <<< "${URL}")
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Google Chat"
 WEBSITE="https://github.com/ankurk91/google-chat-electron"

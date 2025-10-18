@@ -1,8 +1,8 @@
 DEFVER=1
 get_github_releases "h3poteto/fedistar"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*64\.deb\"" "${CACHE_FILE}" | grep -m1 -v -e beta -e alpha -e '-rc\.' | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | tr -d v )
+    URL=$(grep "browser_download_url.*64\.deb\"" "${CACHE_FILE}" | grep -m1 -v -e beta -e alpha -e '-rc\.' | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | tr -d v )
 fi
 PRETTY_NAME="Fedistar"
 WEBSITE="https://fedistar.net/"

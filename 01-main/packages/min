@@ -4,13 +4,13 @@ get_github_releases "minbrowser/min" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${HOST_ARCH} in
         armhf)
-            URL=$(grep -m 1 "browser_download_url.*min.*-${HOST_CPU}.deb" "${CACHE_FILE}" | cut -d'"' -f4)
+            URL=$(grep -m 1 "browser_download_url.*min.*-${HOST_CPU}.deb" "${CACHE_FILE}" | cut -d '"' -f 4)
         ;;
         *)
-            URL=$(grep -m 1 "browser_download_url.*min.*-${HOST_ARCH}.deb" "${CACHE_FILE}" | cut -d'"' -f4)
+            URL=$(grep -m 1 "browser_download_url.*min.*-${HOST_ARCH}.deb" "${CACHE_FILE}" | cut -d '"' -f 4)
         ;;
     esac
-    VERSION_PUBLISHED=$(cut -d'-' -f 2 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Min"
 WEBSITE="https://minbrowser.org"

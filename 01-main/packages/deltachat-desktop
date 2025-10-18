@@ -5,7 +5,7 @@ get_website $(unroll_url https://delta.chat/en/download)
 
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d "\"" -f 2)
-    VERSION_PUBLISHED=$(cut -d'/' -f5 <<< "${URL}" | tr -d v)
+    VERSION_PUBLISHED=$(cut -d '/' -f 5 <<< "${URL}" | tr -d v)
 fi
 PRETTY_NAME="Delta Chat"
 WEBSITE="https://delta.chat/"
