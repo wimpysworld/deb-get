@@ -1,8 +1,8 @@
 DEFVER=1
 get_website "https://www.sejda.com/desktop"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="https://downloads.sejda-cdn.com/$(grep "linux:" "${CACHE_FILE}" | cut -d"'" -f2)"
-    VERSION_PUBLISHED=$(cut -d'_' -f2 <<< "${URL}")
+    URL="https://downloads.sejda-cdn.com/$(grep "linux:" "${CACHE_FILE}" | cut -d "'" -f 2)"
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Sejda PDF Desktop"
 WEBSITE="https://www.sejda.com/"

@@ -2,7 +2,7 @@ DEFVER=1
 CODENAMES_SUPPORTED="sid bullseye jammy focal"
 get_website "https://www.rastersoft.com/programas/cronopete.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(grep -m 1 "Current version" "${CACHE_FILE}" | cut -d ' ' -f3)
+    VERSION_PUBLISHED=$(grep -m 1 "Current version" "${CACHE_FILE}" | cut -d ' ' -f 3)
 fi
 URL="https://www.rastersoft.com/descargas/cronopete/cronopete-${UPSTREAM_CODENAME}_${VERSION_PUBLISHED}-${UPSTREAM_ID}1_amd64.deb"
 PRETTY_NAME="Cronopete"

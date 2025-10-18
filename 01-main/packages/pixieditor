@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_github_releases "PixiEditor/PixiEditor" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(cut -d'-' -f2 <<< "${URL}")
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="PixiEditor"
 WEBSITE="https://pixieditor.net/"

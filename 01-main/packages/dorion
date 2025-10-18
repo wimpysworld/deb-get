@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
 get_github_releases "SpikeHD/dorion" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}" | tr -d v)
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | tr -d v)
 fi
 PRETTY_NAME="Dorion"
 WEBSITE="https://spikehd.github.io/projects/dorion/"

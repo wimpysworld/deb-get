@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_github_releases "espanso/espanso" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -E "browser_download_url.*wayland-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | tr -d v)
+    URL=$(grep -E "browser_download_url.*wayland-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<<"${URL}" | tr -d v)
 fi
 PRETTY_NAME="Espanso (Wayland)
 SUMMARY="Cross-platform Text Expander written in Rust"

@@ -4,16 +4,16 @@ if [ "${ACTION}" != "prettylist" ]; then
 
 case $(UPSTREAM_CODENAME) in
     buster|bullseye|focal) 
-        URL=$(grep -m 1 "browser_download_url.*Linux\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+        URL=$(grep -m 1 "browser_download_url.*Linux\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
         ARCHS_SUPPORTED="amd64"
         ;;
     *)
-        URL=$(grep -m 1 "browser_download_url.*linux-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+        URL=$(grep -m 1 "browser_download_url.*linux-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
         ARCHS_SUPPORTED="aarch64 amd64 arm64 riscv64"
         ;;
 esac
 
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
 fi
 PRETTY_NAME="FastFetch"
 WEBSITE="https://github.com/fastfetch-cli/fastfetch"

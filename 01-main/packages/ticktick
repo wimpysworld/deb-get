@@ -10,7 +10,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         arm64) ARCH_VER=arm64;;
     esac
     URL=$(unroll_url "https://ticktick.com/static/getApp/download?type=linux_deb_${ARCH_VER}")
-    VERSION_PUBLISHED=$(cut -d'-' -f 2 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL}")
 fi
 WEBSITE="https://ticktick.com/home"
 SUMMARY="TickTick is a powerful to-do & task management app with seamless cloud synchronization across all your devices."
