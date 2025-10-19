@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "home-assistant/supervised-installer" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | tr -d v)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
 fi
 PRETTY_NAME="Home Assistant Supervised"
 WEBSITE="https://github.com/home-assistant/supervised-installer"

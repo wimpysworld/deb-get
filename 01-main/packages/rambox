@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "ramboxapp/download" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*x64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | tr -d v)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
 fi
 PRETTY_NAME="Rambox"
 WEBSITE="https://rambox.app/"

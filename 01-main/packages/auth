@@ -2,7 +2,7 @@ DEFVER=1
 get_github_releases "ente-io/ente" 
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*auth.*${HOST_CPU}\.deb\"" "${CACHE_FILE}" | grep -m1 -v -e '-beta' | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '-' -f 5 <<< "${URL}" | tr -d 'v')
+    VERSION_PUBLISHED=$(cut -d '-' -f 5 <<< ${URL/v/}")
 fi
 PRETTY_NAME="Ente Auth"
 WEBSITE="https://github.com/ente-io/ente"

@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64"
 get_github_releases "dbgate/dbgate" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<<"${URL}")
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="DbGate"
 WEBSITE="https://dbgate.org/"

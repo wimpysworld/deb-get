@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64"
 get_github_releases "usebruno/bruno" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}_linux\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<<"${URL}")
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Bruno"
 WEBSITE="https://www.usebruno.com/"
