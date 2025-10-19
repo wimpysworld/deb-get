@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf i386"
 get_github_releases "goreleaser/goreleaser-pro" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(sed -E 's|.*download/v([^/-]+).*|\1|' <<<"${URL}")
+    VERSION_PUBLISHED=$(sed -E 's|.*download/v([^/-]+).*|\1|' <<< "${URL}")
 fi
 PRETTY_NAME="GoReleaser Pro"
 WEBSITE="https://goreleaser.com/pro"
