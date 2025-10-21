@@ -4,7 +4,7 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -v -e '-rc.' "${CACHE_FILE}"  | grep -m 1 "browser_download_url.*"${HOST_ARCH}"\.deb\"" | cut -d '"' -f 4)
     # For Release Candidates, use the following line instead:
     # URL=$(grep -m 1 "browser_download_url.*"${HOST_ARCH}"\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Mattermost Desktop"
 WEBSITE="https://mattermost.com/"
