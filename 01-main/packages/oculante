@@ -3,7 +3,7 @@ CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid jammy noble plucky ques
 get_github_releases "woelper/oculante" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Oculante"
 WEBSITE="https://github.com/woelper/oculante"

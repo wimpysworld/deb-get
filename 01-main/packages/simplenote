@@ -6,7 +6,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         amd64) URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4);;
         armhf) URL=$(grep -m 1 "browser_download_url.*armhv7l\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4);;
     esac
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Simplenote"
 WEBSITE="https://simplenote.com/"

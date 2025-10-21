@@ -15,7 +15,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         ;;
     esac
     URL=$(grep "browser_download_url.*_linux_${PKGARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="K9s"
 WEBSITE="https://k9scli.io/"
