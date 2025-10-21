@@ -1,7 +1,7 @@
 DEFVER=1
 get_website "https://dbeaver.io/debs/dbeaver-ce/"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(grep -o '"dbeaver-ce_.*amd64\.deb"' "${CACHE_FILE}" | sort --version-sort | tail -n1 | cut -d"_" -f2)"
+    VERSION_PUBLISHED=$(grep -o '"dbeaver-ce_.*amd64\.deb"' "${CACHE_FILE}" | sort --version-sort | tail -n1 | cut -d "_" -f 2)
     URL="https://dbeaver.io/debs/dbeaver-ce/dbeaver-ce_${VERSION_PUBLISHED}_amd64.deb"
 fi
 PRETTY_NAME="DBeaver"

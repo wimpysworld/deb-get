@@ -4,6 +4,7 @@ GPG_KEY_ID="eb75b0ebe2c821ac"
 APT_LIST_NAME="haguichi"
 # although this is technically a PPA, the developer has a build specifically intended for Debian
 # https://haguichi.net/download/#debian
+# shellcheck disable=SC2168
 local FAKE_CODENAME
 case "${OS_CODENAME}" in
     trixie|sid) FAKE_CODENAME="oracular" ;;
