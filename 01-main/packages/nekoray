@@ -1,9 +1,18 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_github_releases "MatsuriDayo/nekoray" "latest"
+function get_github_url_and_version() {
+local MATCH_STRING="${1}"
+local STRIP_STRING="${2}"
+local CUT_DELIMITER="${3:-/}"
+local CUT_FIELD="${4:-8}"
+
+URL=$(grep -m 1 "browser_download_url.*${MATCH_STRING}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+VERSION_PUBLISHED=$(cut -d "${CUT_DELIMITER}" -f "${CUT_FIELD}" <<< "${URL//"${STRIP_STRING:=v}"/}" )
+}
+
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*x64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+       get_github_url_and_version "x64"
 fi
 PRETTY_NAME="NekoRay"
 WEBSITE="https://matsuridayo.github.io/"

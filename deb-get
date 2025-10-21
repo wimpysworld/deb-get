@@ -182,6 +182,24 @@ function get_github_releases() {
     fi
 }
 
+
+function get_github_url_and_version() {
+    # Get the GitHub URL and version from the cache file
+    # Arguments:
+    #   1: Match string (e.g. "$HOST_CPU    " or "x64")
+    #   2: Strip string (default: "v")
+    #   3: Cut delimiter (default: "/")
+    #   4: Cut field (default: 8)
+    local MATCH_STRING="${1}"
+    local STRIP_STRING="${2:-v}"
+    local CUT_DELIMITER="${3:-/}"
+    local CUT_FIELD="${4:-8}"
+
+URL=$(grep -m 1 "browser_download_url.*${MATCH_STRING}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+VERSION_PUBLISHED=$(cut -d "${CUT_DELIMITER}" -f "${CUT_FIELD}" <<< "${URL//"${STRIP_STRING}"/}" )
+}
+
+
 function get_gitlab_releases() {
     METHOD="gitlab"
     CACHE_FILE="${CACHE_DIR}/${APP}.json_extract"
