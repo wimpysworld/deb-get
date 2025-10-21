@@ -2,7 +2,10 @@ DEFVER=1
 get_github_releases "bitwarden/clients"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}"| tr -d '[=-=][:alpha:]')
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//[[:alpha:]=-]/}" )
+    # This is an alternative way to get the version number from the URL without using cut:
+    # IFS='/' read -r _ _ _ _ _ _ _ VERSION_PUBLISHED _ <<< "${URL//[[:alpha:]=-]/}"
+    # I think cut is more readable and maintainable in this case.
 fi
 PRETTY_NAME="Bitwarden"
 WEBSITE="https://bitwarden.com/"
