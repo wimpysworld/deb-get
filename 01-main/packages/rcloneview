@@ -7,7 +7,7 @@ esac
 get_website "https://rcloneview.com/src/download.html"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(sed -E -n "s/.*href=.(.*linux.*${ARCH}.*\.deb).*/\1/p" "${CACHE_FILE}")
-    VERSION_PUBLISHED=$(cut -d'-' -f2 <<<${URL})
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL}")
 fi
 EULA="By downloading, installing, copying, saving on your computer, or otherwise using this software, you are consenting to be bound by all the terms and conditions of this EULA: \n - https://rcloneview.com/src/eula.html \nIf you do not agree to the terms and conditions of this agreement, you should not download, install and use the software.\n"
 
