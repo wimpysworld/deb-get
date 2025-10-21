@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "ente-io/ente" #"latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*auth-v.*-${HOST_CPU}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/auth-v/}") 
+fi
+PRETTY_NAME="Ente Authenticator"
+WEBSITE="https://ente.io/"
+SUMMARY="Ente two-factor authenticator"
