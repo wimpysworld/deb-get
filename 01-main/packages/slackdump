@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 386"
+get_github_releases "rusq/slackdump"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+fi
+PRETTY_NAME="Slackdump"
+WEBSITE="https://github.com/rusq/slackdump/"
+SUMMARY="Save or export your private and public Slack messages, threads, files, and users locally without admin privileges."

@@ -21,6 +21,7 @@ bat
 battery-monitor
 beekeeper-studio
 beersmith3
+beszel-agent
 bitwarden
 bitwig-studio
 blanket
@@ -33,7 +34,7 @@ browsh
 bruno
 caddy
 caprine
-cawbird
+#cawbird
 chronograf
 code
 codium
@@ -70,10 +71,12 @@ du-dust
 duf
 dustracing2d
 eaglemode
+eduvpn-client
 element-desktop
 emby-server
 emptyepsilon
 enpass
+ente
 espanso
 espanso-wayland
 eversticky
@@ -92,6 +95,7 @@ firefox-beta
 firefox-devedition
 firefox-esr
 firefox-nightly
+firefoxpwa
 flameshot
 flowkeeper
 foliate
@@ -147,12 +151,14 @@ inkscape
 input-leap
 insomnia
 insync
+ipscan
 ipfs-desktop
 irccloud-desktop
 iriunwebcam
 ivpn-ui
 jabref
 jami
+jan
 jc
 joplin
 jellyfin
@@ -175,6 +181,7 @@ libation
 libreoffice
 librewolf
 linux-assistant
+linuxtoys
 limoji
 localsend
 lsd
@@ -215,6 +222,7 @@ neo4j
 neo-htop
 net.downloadhelper.coapp
 nextcloud-desktop
+nfpm
 nodejs
 nomad
 nordvpn
@@ -245,7 +253,8 @@ pdfsam-basic
 pdfsam-visual
 peazip
 pet
-picocrypt-gui
+#picocrypt-gui
+picocrypt-ng-gui
 pixieditor
 plexmediaserver
 plow
@@ -267,6 +276,7 @@ quickgui
 quickobs
 rambox
 rclone
+rclone-ui
 rcloneview
 readest
 resilio-sync
@@ -274,6 +284,7 @@ retroarch
 ripgrep
 rocketchat
 rpi-imager
+rquickshare
 rstudio
 rstudio-server
 rustdesk
@@ -296,8 +307,10 @@ soundux
 speedtest
 spotify-client
 spotube
+sshpilot
 standard-notes
 starcal3
+steampipe
 strawberry
 stream-sprout
 stremio
@@ -309,6 +322,7 @@ suwayomi-server
 syft
 syncthing
 system-monitoring-center
+systemd-manager-tui
 tabby-terminal
 tailscale
 tarsnap
