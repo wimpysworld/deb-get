@@ -118,7 +118,7 @@ function package_is_installed() {
 
 function elevate_privs() {
     if [ "$(id -ru)" -eq 0 ]; then
-        # Already in the root context
+        # Alreday in the root context
         ELEVATE=""
     elif command -v doas 1>/dev/null && doas true 2>/dev/null; then
         ELEVATE="doas"
@@ -164,7 +164,7 @@ function get_github_releases() {
     #   curl -I https://api.github.com/users/flexiondotorg
 
     # Do not process github releases while generating a pretty list or upgrading
-    if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
+    if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
@@ -193,7 +193,7 @@ function get_gitlab_releases() {
     # So for gitlab sourced apps that use this release model users can use 99-local to pin a version
     #
 
-    if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
+    if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             RELEASE=${2/%latest/permalink/latest}
@@ -220,7 +220,7 @@ function get_gitlab_releases() {
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
-    if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
+    if [[ ' install update fix-installed ' =~ " ${ACTION} " ]]; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             # shellcheck disable=SC2086

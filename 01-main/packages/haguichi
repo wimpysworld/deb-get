@@ -6,7 +6,7 @@ APT_LIST_NAME="haguichi"
 # https://haguichi.net/download/#debian
 local FAKE_CODENAME
 case "${OS_CODENAME}" in
-    trixie|sid) FAKE_CODENAME="oracular" ;;
+    trixie|sid) FAKE_CODENAME="plucky" ;;
     buster|bullseye|bookworm) FAKE_CODENAME="bionic" ;;
     *) FAKE_CODENAME=${OS_CODENAME} ;;
 esac
