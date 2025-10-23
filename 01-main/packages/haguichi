@@ -1,19 +1,14 @@
 DEFVER=2
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="trixie forky sid jammy noble plucky questing"
-case "${UPSTREAM_ID}" in
-    ubuntu)
-        PPA="ppa:ztefn/haguichi-stable" ;;
-    debian)
-            local RELEASE
-            case "${UPSTREAM_CODENAME}" in
-                "${DEBIAN_TESTING}") RELEASE="Testing" ;;
-                *) RELEASE="${UPSTREAM_RELEASE^}" ;;
-            esac
-        APT_LIST_NAME="haguichi"
-        APT_REPO_URL="http://download.opensuse.org/repositories/home:/ztefn:/debian/Debian_${RELEASE}/ /"
-        ASC_KEY_URL="https://download.opensuse.org/repositories/home:ztefn:debian/Debian_${RELEASE}/Release.key"
-        ;;
+GPG_KEY_ID="eb75b0ebe2c821ac"
+APT_LIST_NAME="haguichi"
+# although this is technically a PPA, the developer has a build specifically intended for Debian
+# https://haguichi.net/download/#debian
+local FAKE_CODENAME
+case "${OS_CODENAME}" in
+    trixie|sid) FAKE_CODENAME="plucky" ;;
+    buster|bullseye|bookworm) FAKE_CODENAME="bionic" ;;
+    *) FAKE_CODENAME=${OS_CODENAME} ;;
 esac
 PRETTY_NAME="Haguichi"
 WEBSITE="https://haguichi.net/"
