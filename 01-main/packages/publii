@@ -2,7 +2,7 @@ DEFVER=1
 
 if [ "${ACTION}" != "prettylist" ]; then
     #URL=$(curl -q -s https://getpublii.com/download/ | grep  -E -o "https://cdn.getpublii.com/Publii-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\.deb"|head -1)
-    URL="https://getpublii.com"$(curl -q -s https://getpublii.com/download/ | grep -m 1 -E -o "/download/Publii-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\.deb" | head -n 1)
+    URL="https://getpublii.com$(curl -q -s https://getpublii.com/download/ | grep -m 1 -E -o "/download/Publii-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\.deb" | head -n 1)"
     VERSION_PUBLISHED=${URL/*-/}
     VERSION_PUBLISHED=${VERSION_PUBLISHED/\.deb/}
 fi

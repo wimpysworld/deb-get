@@ -3,8 +3,8 @@ get_github_releases "alexpasmantier/television" "latest"
 if [ "${ACTION}" != prettylist ]; then
 	#They offer versions built with Glibc or Musl. The Glibc version doesn't work in Bullseye, Bookworm, Focal, or Jammy.
 	#So we are grabbing the Musl version which works everywhere.
-    URL="$(grep -m 1 "browser_download_url.*musl\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
-    VERSION_PUBLISHED="$(cut -d '-' -f 2 <<< "${URL}")-1"
+    URL=$(grep -m 1 "browser_download_url.*musl\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL}") #-1
 fi
 PRETTY_NAME="television"
 WEBSITE="https://github.com/alexpasmantier/television"

@@ -3,13 +3,13 @@ get_website "https://posit.co/download/rstudio-server/"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
         focal|buster|bullseye)
-            URL="$( grep -o -E "wget.*focal.*amd64\.deb" "${CACHE_FILE}" | cut -d' ' -f2)"
+            URL=$( grep -o -E "wget.*focal.*amd64\.deb" "${CACHE_FILE}" | cut -d ' ' -f 2)
             ;;
         *)
-            URL="$( grep -o -E "wget.*jammy.*amd64\.deb" "${CACHE_FILE}" | cut -d' '  -f2)"
+            URL=$( grep -o -E "wget.*jammy.*amd64\.deb" "${CACHE_FILE}" | cut -d ' '  -f 2)
             ;;
     esac
-    VERSION_PUBLISHED="$(echo "${URL}" |  grep -E -o '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\-[[:digit:]]+' | tr - +)"
+    VERSION_PUBLISHED=$(grep -E -o '[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\-[[:digit:]]+' <<< "${URL}" | tr - +)
 fi
 PRETTY_NAME="RStudio Server"
 WEBSITE="https://posit.co"

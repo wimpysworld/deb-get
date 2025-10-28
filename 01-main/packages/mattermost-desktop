@@ -1,8 +1,10 @@
 DEFVER=1
 get_github_releases "mattermost/desktop"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_FILE}" | grep -m 1 -v -e rc | cut -d'"' -f4 | cut -d'/' -f8 | tr -d v)"
-    URL=$(wget -q https://github.com/mattermost/desktop/releases -O- | grep -v -e 'rc.' | grep -o -E "https.*${VERSION_PUBLISHED}.*${HOST_ARCH}\.deb\"" | tr -d '\"')
+    URL=$(grep -v -e '-rc.' "${CACHE_FILE}"  | grep -m 1 "browser_download_url.*"${HOST_ARCH}"\.deb\"" | cut -d '"' -f 4)
+    # For Release Candidates, use the following line instead:
+    # URL=$(grep -m 1 "browser_download_url.*"${HOST_ARCH}"\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Mattermost Desktop"
 WEBSITE="https://mattermost.com/"
