@@ -1,5 +1,6 @@
-DEFVER=2
-ASC_KEY_URL="https://download.teamviewer.com/download/linux/signature/TeamViewer2017.asc"
+DEFVER=3
+THE_KEY="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xEF9DBDC73B7D1A07"
+ASC_KEY_URL="${THE_KEY}"
 APT_REPO_URL="https://linux.teamviewer.com/deb stable main"
 PRETTY_NAME="TeamViewer"
 WEBSITE="https://www.teamviewer.com/"
