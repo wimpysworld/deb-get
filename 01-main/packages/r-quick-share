@@ -1,0 +1,13 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+
+get_github_releases "Martichou/rquickshare" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    glibc=$(getconf GNU_LIBC_VERSION | cut -d' ' -f2)
+    glibc=$( [ "$(printf '%s\n2.39' "$glibc" | sort -V | head -n1)" = "2.39" ] && echo "2.39" || echo "2.31" )
+    URL="$(grep -m 1 "browser_download_url.*glibc-${glibc}_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}" )
+fi
+PRETTY_NAME="rquickshare"
+WEBSITE="https://github.com/Martichou/rquickshare"
+SUMMARY="Rust implementation of NearbyShare/QuickShare from Android for Linux and macOS."
