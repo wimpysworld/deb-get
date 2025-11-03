@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+get_github_releases "bambanah/deemix"
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -m 1 "browser_download_url.*gui.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
+fi
+PRETTY_NAME="Deemix Gui"
+WEBSITE="https://github.com/bambanah/deemix"
+SUMMARY="An electron app that wraps deemix-webui and lets you use the deemix-js library"
