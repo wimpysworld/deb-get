@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "cjpais/Handy" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$( cut -d'/' -f8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="handy"
+WEBSITE="https://github.com/cjpais/Handy"
+SUMMARY="A free, open source, and extensible speech-to-text application that works completely offline."
