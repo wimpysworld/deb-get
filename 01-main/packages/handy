@@ -6,5 +6,5 @@ if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED=$( cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="handy"
-WEBSITE="https://github.com/cjpais/Handy"
+WEBSITE="https://handy.computer/"
 SUMMARY="A free, open source, and extensible speech-to-text application that works completely offline."
