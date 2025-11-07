@@ -1,8 +1,9 @@
 DEFVER=1
 local QT_VER
 case "${UPSTREAM_CODENAME}" in
-    sid|trixie|plucky) QT_VER="6" ;;
-    *) QT_VER="5" ;;
+    buster|bookworm|focal|jammy|noble|lunar|kinetic|mantic) QT_VER="5" ;; # oracular has both 
+    sid|trixie|forky|oracular|plucky|questing) QT_VER="6" ;;
+    *) QT_VER="6" ;;
 esac
 get_website "https://sourceforge.net/p/cudatext/activity/feed"
 if [ "${ACTION}" != prettylist ]; then
