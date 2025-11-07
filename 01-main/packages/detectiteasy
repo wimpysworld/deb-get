@@ -7,4 +7,4 @@ fi
 PRETTY_NAME="detectiteasy"
 WEBSITE="https://github.com/horsicq/DIE-engine"
 SUMMARY="die-engine - binary type detection"
-CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic"
+CODENAMES_SUPPORTED="bookworm bullseye buster focal jammy kinetic lunar mantic noble oracular "
