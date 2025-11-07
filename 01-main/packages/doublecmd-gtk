@@ -1,5 +1,5 @@
 DEFVER=2
-CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy kinetic lunar mantic noble oracular"
+CODENAMES_SUPPORTED="buster bullseye bookworm jammy noble plucky questing"
 LOCALID=""
 case ${UPSTREAM_ID} in
     ubuntu)
