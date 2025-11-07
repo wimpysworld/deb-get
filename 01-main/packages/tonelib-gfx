@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy"
+CODENAMES_SUPPORTED="buster bullseye bookworm jammy noble plucky questing"
 get_website "https://www.tonelib.net/downloads.html"
 TLAPP=$(echo ${APP^^} |cut -d-  -f2)
 if [ "${ACTION}" != "prettylist" ]; then
