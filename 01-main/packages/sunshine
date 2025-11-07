@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-CODENAMES_SUPPORTED="bookworm bullseye focal jammy noble"
+CODENAMES_SUPPORTED="bookworm bullseye jammy noble"
 SUNSHINE_RELEASE="${UPSTREAM_RELEASE}"
 if [ "${UPSTREAM_ID}" == debian ]; then
     SUNSHINE_RELEASE=$UPSTREAM_CODENAME
