@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="sid bullseye jammy focal"
+CODENAMES_SUPPORTED="noble plucky sid bookworm"
 get_website "https://www.rastersoft.com/programas/cronopete.html"
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED=$(grep -m 1 "Current version" "${CACHE_FILE}" | cut -d ' ' -f3)
