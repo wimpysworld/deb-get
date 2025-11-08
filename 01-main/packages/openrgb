@@ -5,10 +5,16 @@ get_website "https://openrgb.org/releases.html"
 if [ "${ACTION}" != "prettylist" ]; then
     local codename, regex, deb
     case "${UPSTREAM_CODENAME}" in
-        trixie|forky|noble|plucky|questing)
+        trixie|forky|plucky|questing)
             codename=trixie
         ;;
-        jammy|bookworm)
+        jammy|noble|bookworm)
+        # noble misses dependencies so we use bookworm builds instead
+        #  openrgb : Depends: libmbedcrypto16 (>= 3.6.0) but it is not installable
+        #            Depends: libmbedtls21 (>= 3.6.0) but it is not installable
+        #            Depends: libmbedx509-7 (>= 3.6.0) but it is not installable
+        #    Recommends: openrgb-dkms-drivers but it is not installable
+
             codename=bookworm
         ;;
         *)
