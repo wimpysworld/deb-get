@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="focal jammy kinetic"
+CODENAMES_SUPPORTED="jammy"
 get_github_releases "ymauray/quickobs"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${UPSTREAM_CODENAME}.*_${HOST_ARCH}.deb" "${CACHE_FILE}" | cut -d'"' -f4)
