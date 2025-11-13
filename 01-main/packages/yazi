@@ -1,0 +1,14 @@
+DEFVER=1
+# CODENAMES_SUPPORTED="bookworm bullseye buster focal jammy noble oracular plucky questing trixie sid"
+ARCHS_SUPPORTED="amd64 arm64" # filenames aarch64  amd64
+get_github_releases "sxyazi/yazi" #"latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*yazi-${HOST_CPU}.*linux-gnu\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    # override gnu to musl if you want - 
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+    # While only nightly releases are available, you can override the version like this:
+    # VERSION_PUBLISHED=${VERSION_PUBLISHED/nightly/25.9.15-1}
+fi
+PRETTY_NAME="Yazi"
+WEBSITE="https://yazi-rs.github.io/"
+SUMMARY="💥 Blazing fast terminal file manager written in Rust, based on async I/O."
