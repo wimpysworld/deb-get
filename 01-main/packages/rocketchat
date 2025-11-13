@@ -1,8 +1,8 @@
 DEFVER=1
 get_github_releases "RocketChat/Rocket.Chat.Electron"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8)
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
 fi
 PRETTY_NAME="Rocketchat Desktop"
 WEBSITE="https://rocket.chat/"
