@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="buster bullseye trixie focal jammy mantic noble oracular"
+CODENAMES_SUPPORTED="buster bullseye trixie focal sid jammy mantic noble oracular"
 get_github_releases "flameshot-org/flameshot" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep -E "browser_download_url.*\.${UPSTREAM_ID}-${UPSTREAM_RELEASE}.*\.${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
