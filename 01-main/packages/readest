@@ -3,8 +3,8 @@ ARCHS_SUPPORTED="amd64 arm64"
 CODENAMES_SUPPORTED="bookworm trixie sid jammy noble oracular plucky"
 get_github_releases "readest/readest" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
-    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Readest"
 WEBSITE="https://readest.com/"
