@@ -3,8 +3,8 @@ DEFVER=1
 CODENAMES_SUPPORTED="bookworm trixie sid jammy noble oracular plucky"
 get_website "https://proton.me/download/PassDesktop/linux/x64/version.json"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -o -m 1 "https://.*\.deb" "${CACHE_FILE}")"
-    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+    URL=$(grep -o -m 1 "https://.*\.deb" "${CACHE_FILE}")
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Proton Pass"
 WEBSITE="https://proton.me/pass"

@@ -1,7 +1,9 @@
 DEFVER=1
+# shellcheck disable=SC2046
 get_website $(unroll_url https://www.bluejeans.com/downloads)
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "BlueJeans_.*\.deb\"" "${CACHE_FILE}" | cut -d"\"" -f 2)
+    URL=$(grep -m 1 "BlueJeans_.*\.deb\"" "${CACHE_FILE}" | cut -d "\"" -f 2)
+    # shellcheck disable=SC2168,SC2155
     local VERSION_TMP="${URL##*/BlueJeans_}"
     VERSION_PUBLISHED="${VERSION_TMP%%.deb}"
 fi

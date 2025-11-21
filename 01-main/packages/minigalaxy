@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "sharkwouter/minigalaxy"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*all\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    URL=$(grep -m 1 "browser_download_url.*all\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Minigalaxy"
 WEBSITE="https://sharkwouter.github.io/minigalaxy/"

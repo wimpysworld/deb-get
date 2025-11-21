@@ -2,8 +2,8 @@ DEFVER=1
 CODENAMES_SUPPORTED="focal jammy kinetic lunar mantic"
 get_github_releases "ymauray/deborah"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${UPSTREAM_CODENAME}.*_amd64.deb" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
+    URL=$(grep -m 1 "browser_download_url.*${UPSTREAM_CODENAME}.*_amd64.deb" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Deborah"
 WEBSITE="https://github.com/ymauray/deborah/"
