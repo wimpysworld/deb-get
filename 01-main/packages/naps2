@@ -1,0 +1,12 @@
+DEFVER=1
+
+get_github_releases "cyanfish/naps2" "latest"
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+
+PRETTY_NAME="NAPS2"
+WEBSITE="https://www.naps2.com/"
+SUMMARY="Simple and powerful document scanning application"
