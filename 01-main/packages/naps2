@@ -2,10 +2,30 @@ DEFVER=1
 
 get_github_releases "cyanfish/naps2" "latest"
 
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+ARCH=$(dpkg --print-architecture)
+
+# Map common architecture aliases
+case "${ARCH}" in
+    amd64) ARCH_FALLBACK="x86_64" ;;
+    arm64) ARCH_FALLBACK="aarch64" ;;
+    *)     ARCH_FALLBACK="" ;;
+esac
+
+# 1. Try exact architecture match
+URL=$(grep -m 1 "browser_download_url.*${ARCH}.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+
+# 2. Try fallback architecture alias
+if [ -z "${URL}" ] && [ -n "${ARCH_FALLBACK}" ]; then
+    URL=$(grep -m 1 "browser_download_url.*${ARCH_FALLBACK}.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
 fi
+
+# 3. Final fallback: first .deb found
+if [ -z "${URL}" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+fi
+
+# Extract version from filename
+VERSION_PUBLISHED=$(basename "${URL}" | cut -d'-' -f2)
 
 PRETTY_NAME="NAPS2"
 WEBSITE="https://www.naps2.com/"
