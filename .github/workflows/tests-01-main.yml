@@ -44,9 +44,9 @@ jobs:
             if [ -n "${INPUT_PACKAGES}" ]; then
               CHANGED_FILES="${INPUT_PACKAGES}"
             else
-              # Read all packages from manifest (skip first line which is repo URL)
+              # Read all packages from manifest (skip first line which is repo URL, comments, and empty lines)
               echo "::notice::No packages specified. Reading all packages from manifest."
-              CHANGED_FILES=$(tail -n +2 01-main/manifest | tr '\n' ' ')
+              CHANGED_FILES=$(tail -n +2 01-main/manifest | grep -v '^#' | grep -v '^[[:space:]]*$' | tr '\n' ' ')
             fi
           else
             CHANGED_FILES=""
