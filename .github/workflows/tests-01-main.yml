@@ -1,4 +1,4 @@
-name: 01-main Tests
+name: 📦 Package Tests
 
 on:
   pull_request:
@@ -10,6 +10,11 @@ on:
       - "!01-main/packages/*.json"
       - "!01-main/packages/timestamp"
   workflow_dispatch:
+    inputs:
+      packages:
+        description: 'Space-separated list of packages to test (leave empty to test ALL packages)'
+        required: false
+        default: ''
 
 jobs:
   detect-changes:
@@ -29,8 +34,17 @@ jobs:
           if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
             # Pull request: detect changed package files
             CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||" || true)
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # workflow_dispatch: use input packages or all packages from manifest
+            INPUT_PACKAGES="${{ github.event.inputs.packages }}"
+            if [ -n "${INPUT_PACKAGES}" ]; then
+              # User specified packages
+              CHANGED_FILES="${INPUT_PACKAGES}"
+            else
+              # No input: read all packages from manifest (skip first line and commented lines)
+              CHANGED_FILES=$(tail -n +2 01-main/manifest | grep -v "^#" | tr '\n' ' ')
+            fi
           else
-            # workflow_dispatch: no base SHA available, skip testing
             CHANGED_FILES=""
           fi
 
