@@ -68,7 +68,7 @@ jobs:
               # fallthrough
             fi
             if ! ./deb-get purge "${APP}"; then
-              echo "::error::App ${APP} failed to be purged: error $?" >&2
+              echo "::error::App ${APP} failed to be purged" >&2
               ((errors++))
             fi
           done
