@@ -1,0 +1,10 @@
+DEFVER=1
+get_github_releases "Stirling-Tools/Stirling-PDF" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+
+fi
+PRETTY_NAME="Stirling PDF"
+WEBSITE="https://stirlingpdf.com/"
+SUMMARY="Locally-hosted web application that allows you to perform various operations on PDF files"
