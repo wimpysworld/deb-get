@@ -12,19 +12,70 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
+  detect-changes:
     runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.detect.outputs.packages }}
+      has_packages: ${{ steps.detect.outputs.has_packages }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Detect changed packages
+        id: detect
+        run: |
+          if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
+            # Pull request: detect changed package files
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||" || true)
+          else
+            # workflow_dispatch: no base SHA available, skip testing
+            CHANGED_FILES=""
+          fi
+
+          # Filter out non-package files (html, json, timestamp)
+          PACKAGES=""
+          for FILE in ${CHANGED_FILES}; do
+            case "${FILE}" in
+              *.html|*.json|timestamp) continue ;;
+              *) PACKAGES="${PACKAGES} ${FILE}" ;;
+            esac
+          done
+
+          # Trim leading/trailing whitespace and convert to JSON array
+          PACKAGES=$(echo "${PACKAGES}" | xargs)
+          if [ -n "${PACKAGES}" ]; then
+            JSON_ARRAY=$(echo "${PACKAGES}" | tr ' ' '\n' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "packages=${JSON_ARRAY}" >> $GITHUB_OUTPUT
+            echo "has_packages=true" >> $GITHUB_OUTPUT
+            echo "Detected packages: ${JSON_ARRAY}"
+          else
+            echo "packages=[]" >> $GITHUB_OUTPUT
+            echo "has_packages=false" >> $GITHUB_OUTPUT
+            echo "No packages to test"
+          fi
+
+  test-package:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_packages == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.detect-changes.outputs.packages) }}
+    continue-on-error: true
+
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      DEBGET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
           sudo apt-get update
-
-          # Dependencies for deb-get itself
           sudo apt-get install apt apt-transport-https bash coreutils curl dpkg gpg grep libc-bin lsb-release sed software-properties-common sudo wget desktop-file-utils -y
 
       - name: Initialize /etc/deb-get
@@ -35,32 +86,135 @@ jobs:
           sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
           sudo gpg -k > /dev/null
 
-      # Install added/changed packages to see if they install properly and are detected as such
-      - name: Test package installations
+      - name: Test package ${{ matrix.package }}
+        id: test
         run: |
           chmod a+x ./deb-get
-          export DEBIAN_FRONTEND=noninteractive
-          export DEBGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
           set -x
-          APPS="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||")"
-          SUPPORTED="$(./deb-get list --raw)"
-          for APP in ${APPS}; do
-            if echo "${SUPPORTED}" | grep -q -m 1 "^${APP}$"; then
-              ./deb-get install "${APP}"
+
+          APP="${{ matrix.package }}"
+          START_TIME=$(date +%s)
+          STATUS="pass"
+          ERROR_MSG=""
+
+          SUPPORTED=$(./deb-get list --raw)
+          if echo "${SUPPORTED}" | grep -q -m 1 "^${APP}$"; then
+            ./deb-get install "${APP}" || { STATUS="fail"; ERROR_MSG="Installation failed"; }
+
+            if [ "${STATUS}" = "pass" ]; then
               if ./deb-get show "${APP}" | grep -q "Installed:	No"; then
-                echo "Failed to detect ${APP} as installed" >&2
-                exit 1
+                STATUS="fail"
+                ERROR_MSG="Failed to detect ${APP} as installed"
               else
                 PUBLISHED_VER=$(./deb-get show "${APP}" | grep "Published:" | grep -oE '[^[:space:]]+$' || :)
                 INSTALLED_VER=$(dpkg-query -Wf '${Version}' "${APP}" || :)
-                if [ -n "${PUBLISHED_VER// /}" ] && dpkg --compare-versions "${PUBLISHED_VER}" gt "${INSTALLED_VER}" ; then
-                    echo "Versions do not match. The package's VERSION_PUBLISHED variable may need to be changed." >&2
-                    echo "Published Version: ${PUBLISHED_VER}"
-                    echo "Installed Version: ${INSTALLED_VER}"
-                    exit 1
+                if [ -n "${PUBLISHED_VER// /}" ] && dpkg --compare-versions "${PUBLISHED_VER}" gt "${INSTALLED_VER}"; then
+                  STATUS="fail"
+                  ERROR_MSG="Version mismatch: Published=${PUBLISHED_VER} Installed=${INSTALLED_VER}"
                 else
-                    ./deb-get purge "${APP}"
+                  ./deb-get purge "${APP}" || { STATUS="fail"; ERROR_MSG="Purge failed"; }
                 fi
               fi
             fi
+          else
+            STATUS="skip"
+            ERROR_MSG="Package not in supported list"
+          fi
+
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+
+          echo "status=${STATUS}" >> $GITHUB_OUTPUT
+          echo "duration=${DURATION}" >> $GITHUB_OUTPUT
+          echo "error_msg=${ERROR_MSG}" >> $GITHUB_OUTPUT
+
+          # Fail the step if test failed
+          if [ "${STATUS}" = "fail" ]; then
+            echo "::error::${ERROR_MSG}"
+            exit 1
+          fi
+
+      - name: Save result
+        if: always()
+        run: |
+          mkdir -p results
+          cat > results/${{ matrix.package }}.json << EOF
+          {
+            "package": "${{ matrix.package }}",
+            "status": "${{ steps.test.outputs.status || 'fail' }}",
+            "duration": ${{ steps.test.outputs.duration || 0 }},
+            "error": "${{ steps.test.outputs.error_msg || 'Unknown error' }}"
+          }
+          EOF
+
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ matrix.package }}
+          path: results/${{ matrix.package }}.json
+          retention-days: 1
+
+  report-results:
+    needs: [detect-changes, test-package]
+    if: always() && needs.detect-changes.outputs.has_packages == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: result-*
+          path: results
+          merge-multiple: true
+
+      - name: Generate summary
+        run: |
+          PASSED=0
+          FAILED=0
+          SKIPPED=0
+
+          echo "## Package Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Package | Status | Duration |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|--------|----------|" >> $GITHUB_STEP_SUMMARY
+
+          for FILE in results/*.json; do
+            if [ -f "${FILE}" ]; then
+              PACKAGE=$(jq -r '.package' "${FILE}")
+              STATUS=$(jq -r '.status' "${FILE}")
+              DURATION=$(jq -r '.duration' "${FILE}")
+              ERROR=$(jq -r '.error' "${FILE}")
+
+              case "${STATUS}" in
+                pass)
+                  ICON="pass"
+                  PASSED=$((PASSED + 1))
+                  ;;
+                skip)
+                  ICON="skip"
+                  SKIPPED=$((SKIPPED + 1))
+                  ;;
+                *)
+                  ICON="fail"
+                  FAILED=$((FAILED + 1))
+                  ;;
+              esac
+
+              echo "| ${PACKAGE} | ${ICON} | ${DURATION}s |" >> $GITHUB_STEP_SUMMARY
+            fi
           done
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Passed:** ${PASSED}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Failed:** ${FAILED}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Skipped:** ${SKIPPED}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total:** $((PASSED + FAILED + SKIPPED))" >> $GITHUB_STEP_SUMMARY
+
+          # Exit with failure if any package failed
+          if [ "${FAILED}" -gt 0 ]; then
+            echo "::error::${FAILED} package(s) failed testing"
+            exit 1
+          fi
