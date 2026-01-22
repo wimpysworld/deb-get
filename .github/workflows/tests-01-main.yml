@@ -24,6 +24,8 @@ jobs:
       has_packages: ${{ steps.detect.outputs.has_packages }}
       excluded_packages: ${{ steps.detect.outputs.excluded_packages }}
       has_excluded: ${{ steps.detect.outputs.has_excluded }}
+      deprecated_packages: ${{ steps.detect.outputs.deprecated_packages }}
+      has_deprecated: ${{ steps.detect.outputs.has_deprecated }}
 
     steps:
       - uses: actions/checkout@v4
@@ -34,6 +36,9 @@ jobs:
         id: detect
         run: |
           MAX_JOBS=256
+
+          # Get deprecated packages from manifest (lines starting with # after repo URL line)
+          DEPRECATED=$(tail -n +2 01-main/manifest | grep '^#' | sed 's/^#//' | tr '\n' ' ')
 
           if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
             # Pull request: detect changed package files
@@ -52,14 +57,30 @@ jobs:
             CHANGED_FILES=""
           fi
 
-          # Filter out non-package files (html, json, timestamp) and commented entries
+          # Filter out non-package files (html, json, timestamp), commented entries, and deprecated packages
           PACKAGES=""
+          SKIPPED_DEPRECATED=""
           for FILE in ${CHANGED_FILES}; do
             case "${FILE}" in
               \#*|*.html|*.json|timestamp) continue ;;
-              *) PACKAGES="${PACKAGES} ${FILE}" ;;
+              *)
+                # Check if package is deprecated
+                if echo " ${DEPRECATED} " | grep -q " ${FILE} "; then
+                  SKIPPED_DEPRECATED="${SKIPPED_DEPRECATED} ${FILE}"
+                  echo "::notice::Skipping deprecated package: ${FILE}"
+                else
+                  PACKAGES="${PACKAGES} ${FILE}"
+                fi
+                ;;
             esac
           done
+
+          # Report skipped deprecated packages
+          SKIPPED_DEPRECATED=$(echo "${SKIPPED_DEPRECATED}" | xargs)
+          if [ -n "${SKIPPED_DEPRECATED}" ]; then
+            SKIPPED_COUNT=$(echo "${SKIPPED_DEPRECATED}" | wc -w)
+            echo "::warning::${SKIPPED_COUNT} deprecated package(s) will not be tested: ${SKIPPED_DEPRECATED}"
+          fi
 
           # Trim leading/trailing whitespace
           PACKAGES=$(echo "${PACKAGES}" | xargs)
@@ -103,6 +124,16 @@ jobs:
           else
             echo "excluded_packages=[]" >> $GITHUB_OUTPUT
             echo "has_excluded=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [ -n "${SKIPPED_DEPRECATED}" ]; then
+            DEPRECATED_JSON=$(echo "${SKIPPED_DEPRECATED}" | tr ' ' '\n' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "deprecated_packages=${DEPRECATED_JSON}" >> $GITHUB_OUTPUT
+            echo "has_deprecated=true" >> $GITHUB_OUTPUT
+            echo "Deprecated packages: ${DEPRECATED_JSON}"
+          else
+            echo "deprecated_packages=[]" >> $GITHUB_OUTPUT
+            echo "has_deprecated=false" >> $GITHUB_OUTPUT
           fi
 
   test-package:
@@ -224,12 +255,15 @@ jobs:
         env:
           EXCLUDED_PACKAGES: ${{ needs.detect-changes.outputs.excluded_packages }}
           HAS_EXCLUDED: ${{ needs.detect-changes.outputs.has_excluded }}
+          DEPRECATED_PACKAGES: ${{ needs.detect-changes.outputs.deprecated_packages }}
+          HAS_DEPRECATED: ${{ needs.detect-changes.outputs.has_deprecated }}
           DOWNLOAD_OUTCOME: ${{ steps.download.outcome }}
         run: |
           PASSED=0
           FAILED=0
           SKIPPED=0
           NOT_TESTED=0
+          DEPRECATED=0
           RESULTS_FOUND=0
 
           echo "## Package Test Results" >> $GITHUB_STEP_SUMMARY
@@ -287,6 +321,21 @@ jobs:
             done
           fi
 
+          # Add deprecated packages section if any were skipped
+          if [ "${HAS_DEPRECATED}" = "true" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Deprecated (not tested)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Package | Status |" >> $GITHUB_STEP_SUMMARY
+            echo "|---------|--------|" >> $GITHUB_STEP_SUMMARY
+
+            # Parse deprecated packages JSON array
+            for PKG in $(echo "${DEPRECATED_PACKAGES}" | jq -r '.[]'); do
+              echo "| ${PKG} | ⚠️ deprecated |" >> $GITHUB_STEP_SUMMARY
+              DEPRECATED=$((DEPRECATED + 1))
+            done
+          fi
+
           # Add excluded packages section if any were excluded
           if [ "${HAS_EXCLUDED}" = "true" ]; then
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -308,10 +357,13 @@ jobs:
           echo "- **Passed:** ${PASSED}" >> $GITHUB_STEP_SUMMARY
           echo "- **Failed:** ${FAILED}" >> $GITHUB_STEP_SUMMARY
           echo "- **Skipped:** ${SKIPPED}" >> $GITHUB_STEP_SUMMARY
+          if [ "${DEPRECATED}" -gt 0 ]; then
+            echo "- **Deprecated:** ${DEPRECATED}" >> $GITHUB_STEP_SUMMARY
+          fi
           if [ "${NOT_TESTED}" -gt 0 ]; then
             echo "- **Not Tested:** ${NOT_TESTED}" >> $GITHUB_STEP_SUMMARY
           fi
-          echo "- **Total:** $((PASSED + FAILED + SKIPPED + NOT_TESTED))" >> $GITHUB_STEP_SUMMARY
+          echo "- **Total:** $((PASSED + FAILED + SKIPPED + DEPRECATED + NOT_TESTED))" >> $GITHUB_STEP_SUMMARY
 
           # Exit with failure if any package failed
           if [ "${FAILED}" -gt 0 ]; then
