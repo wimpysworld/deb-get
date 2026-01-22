@@ -1,0 +1,11 @@
+DEFVER=1
+# CODENAMES_SUPPORTED="bookworm bullseye buster focal jammy noble oracular plucky questing trixie sid"
+# ARCHS_SUPPORTED="amd64"
+get_github_releases "johannesjo/super-productivity" #"latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*superProductivity-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Super Productivity"
+WEBSITE="https://super-productivity.com/"
+SUMMARY="An advanced todo list app with timeboxing and time tracking capabilities that supports importing tasks from your calendar, Jira, GitHub and others"
