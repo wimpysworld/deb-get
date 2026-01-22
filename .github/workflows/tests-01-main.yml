@@ -72,4 +72,4 @@ jobs:
               ((errors++))
             fi
           done
-          exit $errors
+          exit $((errors > 0 ? 1 : 0))
