@@ -1,15 +1,27 @@
 DEFVER=1
+CODENAMES_SUPPORTED="bookworm trixie sid forky jammy noble plucky questing"
 get_website "https://posit.co/download/rstudio-desktop/"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${UPSTREAM_CODENAME}" in
-        focal|buster|bullseye)
-            URL="$( grep -e "focal/.*amd64.deb" "${CACHE_FILE}" | grep -m 1 -v tar.gz | cut -d'"' -f4)"
+        bookworm|jammy|noble)
+            # Only these are present currently. Focal has been removed. Both currently point to jammy/bookworm builds.
+            #
+            URL=$(grep -A4 -e "${OS_ID} ${UPSTREAM_RELEASE%%.*}"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
+            ;;
+        plucky|questing)
+        # On the assumption that these will use 24 when a newer build is available.
+            URL=$(grep -A4 -e "${OS_ID} 24"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
+            ;;
+        forky|sid|trixie)
+        # currently only 12 is available. Amend when more are added.
+            URL=$(grep -A4 -e "${OS_ID} 12"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
             ;;
         *)
-            URL="$( grep -e "jammy/.*amd64.deb" "${CACHE_FILE}" | grep -m 1 -v tar.gz | cut -d'"' -f4)"
+        # Default to Ubuntu 22.04 build for other distros
+            URL=$(grep -A4 -e "Ubuntu 22"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
             ;;
     esac
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'-' -f2-3 | tr - +)"
+    VERSION_PUBLISHED=$(cut -d '-' -f 2-3 <<< "${URL}" | tr - +)
 fi
 PRETTY_NAME="RStudio"
 WEBSITE="https://posit.co/"
