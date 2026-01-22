@@ -65,7 +65,7 @@ jobs:
               \#*|*.html|*.json|timestamp) continue ;;
               *)
                 # Check if package is deprecated
-                if echo " ${DEPRECATED} " | grep -q " ${FILE} "; then
+                if echo " ${DEPRECATED} " | grep -q -F " ${FILE} "; then
                   SKIPPED_DEPRECATED="${SKIPPED_DEPRECATED} ${FILE}"
                   echo "::notice::Skipping deprecated package: ${FILE}"
                 else
