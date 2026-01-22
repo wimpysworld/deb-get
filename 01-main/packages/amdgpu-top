@@ -1,0 +1,7 @@
+DEFVER=1
+get_github_releases "Umio-Yasuno/amdgpu_top" "latest"
+URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+PRETTY_NAME="AMD GPU Top"
+WEBSITE="https://github.com/Umio-Yasuno/amdgpu_top"
+SUMMARY="A tool to display AMD GPU usage."
