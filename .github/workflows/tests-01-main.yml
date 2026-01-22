@@ -47,7 +47,7 @@ jobs:
           errors=0
           for APP in ${APPS}; do
             if ! grep -q -m 1 "^${APP}$" <<<"${SUPPORTED}"; then
-              echo "::notice::App ${APP} is not supported" >&2
+              echo "::notice::App ${APP} is not supported"
               continue
             fi
             if ! ./deb-get install "${APP}"; then
