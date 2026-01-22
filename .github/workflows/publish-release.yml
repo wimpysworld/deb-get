@@ -7,7 +7,7 @@ on:
 jobs:
   create-release:
     name: Create Release
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
     - name: Create release ${{ github.ref }} as a draft
@@ -19,7 +19,7 @@ jobs:
   build-release:
     needs: [create-release]
     name: Build Release
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
     - name: Build and Upload .deb
@@ -36,7 +36,7 @@ jobs:
   publish-release:
     name: Publish Release
     needs: [build-release]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
     - name: Publish release ${{ github.ref }}
