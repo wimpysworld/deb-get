@@ -52,11 +52,11 @@ jobs:
             CHANGED_FILES=""
           fi
 
-          # Filter out non-package files (html, json, timestamp)
+          # Filter out non-package files (html, json, timestamp) and commented entries
           PACKAGES=""
           for FILE in ${CHANGED_FILES}; do
             case "${FILE}" in
-              *.html|*.json|timestamp) continue ;;
+              \#*|*.html|*.json|timestamp) continue ;;
               *) PACKAGES="${PACKAGES} ${FILE}" ;;
             esac
           done
@@ -211,6 +211,8 @@ jobs:
 
     steps:
       - name: Download all results
+        id: download
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           pattern: result-*
@@ -218,45 +220,72 @@ jobs:
           merge-multiple: true
 
       - name: Generate summary
+        if: always()
         env:
           EXCLUDED_PACKAGES: ${{ needs.detect-changes.outputs.excluded_packages }}
           HAS_EXCLUDED: ${{ needs.detect-changes.outputs.has_excluded }}
+          DOWNLOAD_OUTCOME: ${{ steps.download.outcome }}
         run: |
           PASSED=0
           FAILED=0
           SKIPPED=0
           NOT_TESTED=0
+          RESULTS_FOUND=0
 
           echo "## Package Test Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Package | Status | Duration |" >> $GITHUB_STEP_SUMMARY
-          echo "|---------|--------|----------|" >> $GITHUB_STEP_SUMMARY
 
-          for FILE in results/*.json; do
-            if [ -f "${FILE}" ]; then
-              PACKAGE=$(jq -r '.package' "${FILE}")
-              STATUS=$(jq -r '.status' "${FILE}")
-              DURATION=$(jq -r '.duration' "${FILE}")
-              ERROR=$(jq -r '.error' "${FILE}")
+          # Check if results directory exists and has files
+          if [ "${DOWNLOAD_OUTCOME}" != "success" ]; then
+            echo "**Warning:** Artifact download failed or was incomplete." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
 
-              case "${STATUS}" in
-                pass)
-                  ICON="✅ pass"
-                  PASSED=$((PASSED + 1))
-                  ;;
-                skip)
-                  ICON="⏭️ skip"
-                  SKIPPED=$((SKIPPED + 1))
-                  ;;
-                *)
-                  ICON="❌ fail"
+          if [ ! -d "results" ]; then
+            echo "**No results directory found.** Test jobs may not have completed." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          elif [ -z "$(ls -A results/*.json 2>/dev/null)" ]; then
+            echo "**No result files found.** Test jobs may not have uploaded artifacts." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Package | Status | Duration |" >> $GITHUB_STEP_SUMMARY
+            echo "|---------|--------|----------|" >> $GITHUB_STEP_SUMMARY
+
+            for FILE in results/*.json; do
+              if [ -f "${FILE}" ]; then
+                # Validate JSON before parsing
+                if ! jq empty "${FILE}" 2>/dev/null; then
+                  BASENAME=$(basename "${FILE}" .json)
+                  echo "| ${BASENAME} | ⚠️ invalid result | - |" >> $GITHUB_STEP_SUMMARY
                   FAILED=$((FAILED + 1))
-                  ;;
-              esac
+                  continue
+                fi
 
-              echo "| ${PACKAGE} | ${ICON} | ${DURATION}s |" >> $GITHUB_STEP_SUMMARY
-            fi
-          done
+                PACKAGE=$(jq -r '.package // "unknown"' "${FILE}")
+                STATUS=$(jq -r '.status // "unknown"' "${FILE}")
+                DURATION=$(jq -r '.duration // 0' "${FILE}")
+                ERROR=$(jq -r '.error // ""' "${FILE}")
+                RESULTS_FOUND=$((RESULTS_FOUND + 1))
+
+                case "${STATUS}" in
+                  pass)
+                    ICON="✅ pass"
+                    PASSED=$((PASSED + 1))
+                    ;;
+                  skip)
+                    ICON="⏭️ skip"
+                    SKIPPED=$((SKIPPED + 1))
+                    ;;
+                  *)
+                    ICON="❌ fail"
+                    FAILED=$((FAILED + 1))
+                    ;;
+                esac
+
+                echo "| ${PACKAGE} | ${ICON} | ${DURATION}s |" >> $GITHUB_STEP_SUMMARY
+              fi
+            done
+          fi
 
           # Add excluded packages section if any were excluded
           if [ "${HAS_EXCLUDED}" = "true" ]; then
