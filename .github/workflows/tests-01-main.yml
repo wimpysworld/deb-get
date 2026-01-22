@@ -51,7 +51,7 @@ jobs:
               continue
             fi
             if ! ./deb-get install "${APP}"; then
-              echo "::error::App ${APP} failed to install: error $?" >&2
+              echo "::error::App ${APP} failed to install" >&2
               ((errors++))
               continue
             fi
