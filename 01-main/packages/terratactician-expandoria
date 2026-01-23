@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bookworm trixie sid jammy noble oracular plucky"
+CODENAMES_SUPPORTED="bookworm trixie sid jammy noble plucky questing"
 get_gitlab_releases "https://vccourses.cs.ovgu.de/course/terratactician-expandoria" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep -m 1 "${HOST_ARCH}.*\.deb" "${CACHE_FILE}")"

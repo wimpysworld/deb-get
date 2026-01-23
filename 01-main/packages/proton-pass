@@ -1,6 +1,6 @@
 DEFVER=1
 #installs in Bullseye, but doesn't launch due to outdated Glibc
-CODENAMES_SUPPORTED="bookworm trixie sid jammy noble oracular plucky"
+CODENAMES_SUPPORTED="bookworm trixie sid jammy noble plucky questing"
 get_website "https://proton.me/download/PassDesktop/linux/x64/version.json"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep -o -m 1 "https://.*\.deb" "${CACHE_FILE}")"

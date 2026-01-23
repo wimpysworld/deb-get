@@ -1,15 +1,21 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy noble"
+ARCHS_SUPPORTED="amd64 armhf" 
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie forky jammy noble plucky questing"
 get_website "https://openrgb.org/releases.html"
 if [ "${ACTION}" != "prettylist" ]; then
     local codename, regex, deb
     case "${UPSTREAM_CODENAME}" in
-        buster)
-            codename=buster
+        trixie|forky|plucky|questing)
+            codename=trixie
         ;;
-        bullseye|focal)
-            codename=bullseye
+        jammy|noble|bookworm)
+        # noble misses dependencies so we use bookworm builds instead
+        #  openrgb : Depends: libmbedcrypto16 (>= 3.6.0) but it is not installable
+        #            Depends: libmbedtls21 (>= 3.6.0) but it is not installable
+        #            Depends: libmbedx509-7 (>= 3.6.0) but it is not installable
+        #    Recommends: openrgb-dkms-drivers but it is not installable
+
+            codename=bookworm
         ;;
         *)
             codename=bookworm
@@ -23,7 +29,7 @@ if [ "${ACTION}" != "prettylist" ]; then
     deb="${deb/$'\n'*/}"
     URL="https://codeberg.org/OpenRGB/OpenRGB/${deb}"
     # grab the first version found in the path (in the directory name):
-    VERSION_PUBLISHED=$( cut -d/ -f3 <<<"${deb}" )
+    VERSION_PUBLISHED=$( cut -d/ -f3 <<< "${deb}" )
     VERSION_PUBLISHED="${VERSION_PUBLISHED/_candidate/}"
     VERSION_PUBLISHED="${VERSION_PUBLISHED#release_}"
     if [ "$VERSION_PUBLISHED" == "1.0rc2" ]; then

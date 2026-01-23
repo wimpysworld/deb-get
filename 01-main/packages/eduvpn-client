@@ -1,0 +1,8 @@
+DEFVER=1
+ASC_KEY_URL="https://app.eduvpn.org/linux/v4/deb/app+linux@eduvpn.org.asc"
+APT_LIST_NAME="eduvpn-v4"
+APT_REPO_URL="https://app.eduvpn.org/linux/v4/deb/ ${UPSTREAM_CODENAME} main"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="eduVPN"
+WEBSITE="https://www.eduvpn.org/"
+SUMMARY="Access your institute's network or the Internet using an encrypted connection"
