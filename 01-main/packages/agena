@@ -15,7 +15,7 @@ case ${HOST_ARCH} in
     arm32|armv6-32|armv6|armhf|armv7)
         TARGET_ARCH=armv6-32;;
     *)
-        TARGET_ARCH=${HOST_ARCH};;
+        TARGET_ARCH="${HOST_ARCH}";;
 esac
 
 WEBSITE="https://agena.sourceforge.net/"
