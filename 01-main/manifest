@@ -4,13 +4,13 @@ activitywatch
 agena
 #alduin
 alsa-scarlett-gui
+amdgpu-top
 android-messages-desktop
 antimicrox
 anydesk
 appimagelauncher
 atom
 atomic
-#atuin
 audio-recorder
 #auth
 authme
@@ -26,7 +26,6 @@ bitwarden
 bitwig-studio
 blanket
 blockbench
-#bluejeans-v2
 bottom
 brave-browser
 brisqi
@@ -41,7 +40,6 @@ codium
 com.github.tkashkin.gamehub
 copyq
 cosign
-# croc
 cronopete
 crossover
 crow-translate
@@ -53,6 +51,7 @@ dbeaver-ce
 dbgate
 deadbeef-static
 deborah
+deemix
 deltachat-desktop
 deskcut
 deskflow
@@ -72,6 +71,7 @@ duf
 dustracing2d
 eaglemode
 eduvpn-client
+elecwhat
 element-desktop
 emby-server
 emptyepsilon
@@ -100,6 +100,7 @@ firefoxpwa
 flameshot
 flowkeeper
 foliate
+fooyin
 franz
 freeplane
 freeshow
@@ -127,11 +128,12 @@ google-earth-pro-stable
 goose
 goreleaser
 goreleaser-pro
-gotop
+#gotop
 gpu-viewer
 grub-customizer
 grype
 haguichi
+handy
 headset
 helio-workstation
 helmwave
@@ -216,7 +218,6 @@ museeks
 musicplayerplus
 musikcube
 nala
-#nala-legacy
 nekoray
 nemo-mediainfo-tab
 neo4j
@@ -237,6 +238,7 @@ obsidian
 obs-studio
 ocenaudio
 oculante
+onedrive
 onedriver
 onefetch
 onlyoffice-desktopeditors
@@ -257,6 +259,7 @@ pet
 #picocrypt-gui
 picocrypt-ng-gui
 pixieditor
+playtorrio
 plexmediaserver
 plow
 polychromatic
@@ -266,6 +269,7 @@ portmaster
 powershell
 protonmail-bridge
 protonvpn
+proton-authenticator
 proton-pass
 publii
 pulsar
@@ -298,6 +302,7 @@ simplenote
 simple-pwgen
 skypeforlinux
 slack-desktop
+slackdump
 sleek
 slomore
 smartgit
@@ -312,11 +317,13 @@ sshpilot
 standard-notes
 starcal3
 steampipe
+stirling-pdf
 strawberry
 stream-sprout
 stremio
 sublime-merge
 sublime-text
+superproductivity
 sunshine
 surfshark
 suwayomi-server
@@ -327,7 +334,6 @@ systemd-manager-tui
 tabby-terminal
 tailscale
 tarsnap
-#teams
 teams-for-linux
 teamviewer
 teip
@@ -365,8 +371,9 @@ vagrant
 veracrypt
 veracrypt-console
 vfox
-virtualbox-6.1
-virtualbox-7.0
+#virtualbox-6.1
+#virtualbox-7.0
+virtualbox-7.1
 vivaldi-stable
 vuescan
 waterfox-g-kde
@@ -382,7 +389,6 @@ winehq-devel
 winehq-stable
 winehq-staging
 wire-desktop
-# wraith-master
 xemu
 xpipe
 youtube-music

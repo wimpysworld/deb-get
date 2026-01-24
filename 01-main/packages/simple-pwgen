@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic noble"
+CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid jammy noble"
 APT_LIST_NAME="apps.mamolinux.org"
 PPA="ppa:mamolinux/gui-apps"
 PRETTY_NAME="Simple Password Generator"

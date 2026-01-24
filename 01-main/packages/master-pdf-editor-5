@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bionic bullseye buster focal jammy noble"
+CODENAMES_SUPPORTED="bionic bullseye buster jammy noble"
 get_website "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download"
 if [ "${ACTION}" != "prettylist" ]; then
         URL=$( grep 'document\.location' "${CACHE_FILE}" | grep -Eo "https://code-industry.net/public/.*\.deb" )

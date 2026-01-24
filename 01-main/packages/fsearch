@@ -13,7 +13,7 @@ case ${UPSTREAM_ID} in
         local DEBIANVER
         case ${UPSTREAM_CODENAME} in
             sid|13|trixie) DEBIANVER=Unstable ;;
-            *) DEBIANVER=${UPSTREAM_RELEASE} ;;
+            *) DEBIANVER="${UPSTREAM_RELEASE}" ;;
         esac
         THE_KEY="https://download.opensuse.org/repositories/home:cboxdoerfer/Debian_${DEBIANVER}/Release.key"
         THE_REPO="http://download.opensuse.org/repositories/home:/cboxdoerfer/Debian_${DEBIANVER}/ /"

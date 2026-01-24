@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "piec/elecwhat" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+fi
+PRETTY_NAME="ElecWhat"
+WEBSITE="https://github.com/piec/elecwhat"
+SUMMARY="Simple desktop WhatsApp client for Linux"
