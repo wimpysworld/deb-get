@@ -272,6 +272,7 @@ We really hope that you will enjoy the convenience and flexibility of the user o
 
   * [App Outlet](https://appoutlet.github.io/): *A Universal linux app store*
   * [bin-get](https://github.com/OhMyMndy/bin-get): *Script to easily and safely fetch binaries from GitHub Releases/tags*
+  * [bin](https://github.com/marcosnils/bin): *A lightweight, cross-platform binary manager without requiring root privileges*
   * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
   * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
