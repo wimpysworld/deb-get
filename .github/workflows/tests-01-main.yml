@@ -244,7 +244,7 @@ jobs:
       - name: Download all results
         id: download
         continue-on-error: true
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: result-*
           path: results
