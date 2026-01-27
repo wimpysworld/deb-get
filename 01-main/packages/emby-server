@@ -5,6 +5,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL="$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v '.md5' | cut -d'"' -f4)"
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
 fi
-PRETTY_NAME="emby-server"
+PRETTY_NAME="Emby Server"
 WEBSITE="https://github.com/MediaBrowser/Emby.Releases"
 SUMMARY=" Emby Server is a personal media server with apps on just about every device."

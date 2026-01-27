@@ -5,6 +5,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(cut -d'/' -f8 <<<"${URL}" | sed 's|v||')
 fi
-PRETTY_NAME="Goreleaser"
+PRETTY_NAME="GoReleaser"
 WEBSITE="https://goreleaser.com"
 SUMMARY="Deliver Go binaries as fast, easily as possible."

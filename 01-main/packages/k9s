@@ -17,6 +17,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*_linux_${PKGARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
-PRETTY_NAME="k9s"
+PRETTY_NAME="K9s"
 WEBSITE="https://k9scli.io/"
 SUMMARY="K9s is a terminal based UI to interact with your Kubernetes clusters."

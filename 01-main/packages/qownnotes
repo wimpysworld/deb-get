@@ -24,6 +24,6 @@ ASC_KEY_URL="${THE_KEY}"
 APT_REPO_URL="${THE_REPO}"
 APT_REPO_OPTIONS="${THE_OPTIONS}"
 APT_LIST_NAME=qownnotes
-PRETTY_NAME="qownnotes"
+PRETTY_NAME="QOwnNotes"
 WEBSITE="https://www.qownnotes.org"
 SUMMARY="Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration."

@@ -4,6 +4,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")
 fi
-PRETTY_NAME="popcorn-time"
+PRETTY_NAME="Popcorn Time"
 WEBSITE="https://github.com/popcorn-official/popcorn-desktop"
 SUMMARY="Popcorn Time is a multi-platform, free software BitTorrent client that includes an integrated media player ( Windows / Mac / Linux ) A Butter-Project Fork"

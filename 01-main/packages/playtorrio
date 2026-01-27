@@ -4,6 +4,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$( cut -d'/' -f8 <<< "${URL//v/}")
 fi
-PRETTY_NAME="playtorrio"
+PRETTY_NAME="PlayTorrio"
 WEBSITE="https://github.com/ayman708-UX/PlayTorrio"
 SUMMARY="PlayTorrio is an all-in-one media center application that brings together streaming, torrenting, and media management in a beautiful, easy-to-use interface."

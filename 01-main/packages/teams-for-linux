@@ -12,6 +12,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     esac
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
 fi
-PRETTY_NAME="teams-for-linux"
+PRETTY_NAME="Teams for Linux"
 WEBSITE="https://github.com/IsmaelMartinez/teams-for-linux"
 SUMMARY="unofficial Microsoft Teams for LInux"

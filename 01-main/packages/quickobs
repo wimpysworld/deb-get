@@ -5,6 +5,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${UPSTREAM_CODENAME}.*_${HOST_ARCH}.deb" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
-PRETTY_NAME="quickobs"
+PRETTY_NAME="QuickOBS"
 WEBSITE="https://github.com/ymauray/quickobs/"
 SUMMARY="A tool to quickly download and run Martin Wimpress' OBS Studio Portable."

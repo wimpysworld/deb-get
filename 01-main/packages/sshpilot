@@ -4,6 +4,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -i -m 1 'browser_download_url.*_all\.deb"' "${CACHE_FILE}" | cut -d '"' -f 4)
     VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL/v/}")
 fi
-PRETTY_NAME="sshpilot"
+PRETTY_NAME="SSH Pilot"
 WEBSITE="https://github.com/mfat/sshpilot"
 SUMMARY="User-friendly, cross-platform SSH connection manager"
