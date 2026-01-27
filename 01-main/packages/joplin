@@ -4,6 +4,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$( cut -d'/' -f8 <<< "${URL//v/}")
 fi
-PRETTY_NAME="joplin"
+PRETTY_NAME="Joplin"
 WEBSITE="https://github.com/laurent22/joplin"
 SUMMARY="Privacy-focused note taking app with sync capabilities for Windows, macOS, Linux, Android and iOS."

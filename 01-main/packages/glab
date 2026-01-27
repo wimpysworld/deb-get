@@ -6,6 +6,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="${URL##*/releases/v}"
     VERSION_PUBLISHED=${VERSION_PUBLISHED%%/*}
 fi
-PRETTY_NAME="Glab"
+PRETTY_NAME="GLab"
 WEBSITE="https://gitlab.com/gitlab-org/cli"
 SUMMARY="A GitLab CLI tool bringing GitLab to your command line"

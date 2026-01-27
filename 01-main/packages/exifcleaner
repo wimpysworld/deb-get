@@ -4,6 +4,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")
 fi
-PRETTY_NAME="exifcleaner"
+PRETTY_NAME="ExifCleaner"
 WEBSITE="https://github.com/szTheory/exifcleaner"
 SUMMARY=" Cross-platform desktop GUI app to clean image metadata"

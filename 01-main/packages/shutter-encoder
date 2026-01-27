@@ -4,6 +4,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL="https://www.shutterencoder.com/$(grep -a "64bits\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 2 | sed 's|\.\./||')"
     VERSION_PUBLISHED=$(cut -d ' ' -f 3 <<< "${URL}")
     fi
-PRETTY_NAME="shutter-encoder"
+PRETTY_NAME="Shutter Encoder"
 WEBSITE="https://www.shutterencoder.com/"
 SUMMARY="Professional video, audio and image conversion and encoding tool."

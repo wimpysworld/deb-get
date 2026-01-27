@@ -4,6 +4,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")
 fi
-PRETTY_NAME="jexiftoolgui"
+PRETTY_NAME="jExifToolGUI"
 WEBSITE="https://github.com/hvdwolf/jExifToolGUI"
 SUMMARY="jExifToolGUI is a multi-platform java/Swing graphical frontend for the excellent command-line ExifTool application by Phil Harvey"
