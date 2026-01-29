@@ -1,5 +1,6 @@
 DEFVER=1
-# Captialise first character of UPSTREAM_ID and prefeix with 'x' for Ubuntu
+# Capitalise first character of UPSTREAM_ID and prefix with 'x' for Ubuntu
+# shellcheck disable=SC2168
 local OBS_UPSTREAM_ID="${UPSTREAM_ID^}"
 if [ "${OBS_UPSTREAM_ID}" == "Ubuntu" ]; then
     OBS_UPSTREAM_ID="x${OBS_UPSTREAM_ID}"
