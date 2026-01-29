@@ -1,0 +1,16 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ARCH=${HOST_ARCH}
+case "${ARCH}" in
+    amd64) ARCH=-linux ;;
+    arm64) ARCH=-linux-arm64 ;;
+    *) ;;
+esac
+get_github_releases "siyuan-note/siyuan" 
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(sed -E -n "s|.*browser_download_url.*(https.*${ARCH}\.deb).*|\1|p" "${CACHE_FILE}" | head -n 1)
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+fi
+PRETTY_NAME="SiYuan"
+WEBSITE="https://b3log.org/siyuan"
+SUMMARY="A privacy-first, self-hosted, fully open source personal knowledge management software, written in typescript and golang."
