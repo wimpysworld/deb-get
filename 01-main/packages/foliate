@@ -1,5 +1,5 @@
 DEFVER=2
-CODENAMES_SUPPORTED="trixie sid noble oracular"
+CODENAMES_SUPPORTED="trixie sid noble plucky questing"
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "johnfactotum/foliate"
 if [ "${ACTION}" != prettylist ]; then
