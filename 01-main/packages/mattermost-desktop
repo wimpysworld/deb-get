@@ -1,8 +1,11 @@
 DEFVER=1
 get_github_releases "mattermost/desktop"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(grep "browser_download_url" "${CACHE_FILE}" | grep -m 1 -v -e rc | cut -d'"' -f4 | cut -d'/' -f8 | tr -d v)"
-    URL=$(wget -q https://github.com/mattermost/desktop/releases -O- | grep -v -e 'rc.' | grep -o -E "https.*${VERSION_PUBLISHED}.*${HOST_ARCH}\.deb\"" | tr -d '\"')
+    # we need to find the latest major release
+    MATTERMOST_MAX=$(grep -v -e '-rc.' "${CACHE_FILE}"  | grep -E -o 'v[[:digit:]]+' |sort -Vr |head -1)
+    # If for any reason users wish to stick to a prior major version they can set MATTERMOST_VER to e.g. "v5"
+    URL=$(grep -v -e '-rc.' "${CACHE_FILE}"  | grep -e "${MATTERMOST_VER:-${MATTERMOST_MAX}}"| grep -m 1 "browser_download_url.*"${HOST_ARCH}"\.deb\"" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
 fi
 PRETTY_NAME="Mattermost Desktop"
 WEBSITE="https://mattermost.com/"
