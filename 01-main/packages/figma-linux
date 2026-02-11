@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
 get_github_releases "Figma-Linux/figma-linux"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Figma Linux"
 WEBSITE="https://github.com/Figma-Linux/figma-linux"

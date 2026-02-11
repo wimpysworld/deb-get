@@ -14,7 +14,7 @@ esac
 WEBSITE="https://www.cendio.com/thinlinc/"
 get_website "${WEBSITE}/download/"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(grep deb "${CACHE_FILE}" | grep thinlinc | grep -v sha | cut -d"_" -f2 | sort -u)
+    VERSION_PUBLISHED=$(grep deb "${CACHE_FILE}" | grep thinlinc | grep -v sha | cut -d "_" -f 2 | sort -u)
     URL="https://www.cendio.com/downloads/clients/thinlinc-client_${VERSION_PUBLISHED}_${TARGET_ARCH}.deb"
 fi
 

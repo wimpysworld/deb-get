@@ -3,11 +3,11 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "muesli/duf" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     case "${HOST_ARCH}" in
-        armhf) URL=$(grep -m 1 "browser_download_url.*armv7\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+        armhf) URL=$(grep -m 1 "browser_download_url.*armv7\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
                ;;
-        *)     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+        *)     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
     esac
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="duf"
 WEBSITE="https://github.com/muesli/duf"
