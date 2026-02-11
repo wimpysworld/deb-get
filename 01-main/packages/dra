@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "devmatteini/dra" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+fi
+PRETTY_NAME="dra"
+WEBSITE="https://github.com/devmatteini/dra"
+SUMMARY="A command line tool to download release assets from GitHub."
