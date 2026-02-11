@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "zyedidia/micro"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v nightly | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
-fi
-PRETTY_NAME="micro"
-WEBSITE="https://micro-editor.github.io/"
-SUMMARY="A modern and intuitive terminal-based text editor."
