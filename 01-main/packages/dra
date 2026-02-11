@@ -1,4 +1,6 @@
 DEFVER=1
+# depends on libc6 (>= 2.39)
+CODENAMES_SUPPORTED="trixie sid noble questing"
 get_github_releases "devmatteini/dra" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
