@@ -1,11 +1,7 @@
 DEFVER=1
 get_website "https://api.github.com/repos/safing/portmaster/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    # VERSION_PUBLISHED=$(grep -oP '"name":\s*"\K[^"]+' "${CACHE_FILE}") # | tr -d " v")
-    # Above line gets the release name from the JSON response but relies on grep -P for Perl-compatible regex
-    # which may not be available in all environments. An alternative using sed is provided below:
     VERSION_PUBLISHED=$(sed -n 's/.*"name": *"\([^"]*\)".*/\1/p' "${CACHE_FILE}")
-    # VERSION_PUBLISHED=${VERSION_PUBLISHED#v}
     VERSION_PUBLISHED=${VERSION_PUBLISHED//v/}
 fi
 URL="https://updates.safing.io/latest/linux_amd64/packages/portmaster-installer.deb"
