@@ -3,7 +3,7 @@ CODENAMES_SUPPORTED="bookworm jammy noble oracular"
 get_github_releases "input-leap/input-leap" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL=$(grep -m 1 "browser_download_url.*${UPSTREAM_ID/ubuntu/ubuntu_}${UPSTREAM_RELEASE/./-}_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Input Leap"
 WEBSITE="https://github.com/input-leap/input-leap"

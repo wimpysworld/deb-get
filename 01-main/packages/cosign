@@ -3,7 +3,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "sigstore/cosign" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Cosign"
 WEBSITE="https://github.com/sigstore/cosign"

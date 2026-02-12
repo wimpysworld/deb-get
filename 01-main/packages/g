@@ -5,7 +5,7 @@ if [ "${ACTION}" != prettylist ]; then
 	#In at least one instance, they have republished an old version alongside the current version in the same release.
 	#The sed command ensures we get the actual newest version.
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH/armhf/arm}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4 | sed -E 's|(.*download/v)([^/]*)(/g_)([^_]*)(.*)|\1\2\3\2\5|')
-	VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
+	VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="g"
 WEBSITE="https://g.equationzhao.space/"

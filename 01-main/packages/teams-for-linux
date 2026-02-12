@@ -10,7 +10,7 @@ if [ "${ACTION}" != "prettylist" ]; then
             URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
         ;;
     esac
-    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Teams for Linux"
 WEBSITE="https://github.com/IsmaelMartinez/teams-for-linux"
