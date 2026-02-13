@@ -1,5 +1,5 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 arm64 armv7l"
+ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "agalwood/Motrix" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     case ${HOST_ARCH} in
