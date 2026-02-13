@@ -1,4 +1,5 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armv7l"
 get_github_releases "agalwood/Motrix" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
