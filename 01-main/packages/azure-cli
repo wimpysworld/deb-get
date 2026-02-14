@@ -1,5 +1,5 @@
 DEFVER=1
-CODENAMES_SUPPORTED="buster bullseye stretch bionic focal jammy noble"
+CODENAMES_SUPPORTED="bookworm jammy noble"
 # TODO: Test with Debian
 ASC_KEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
 APT_REPO_URL="https://packages.microsoft.com/repos/azure-cli/ ${UPSTREAM_CODENAME} main"
