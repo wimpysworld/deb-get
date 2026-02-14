@@ -1,9 +1,10 @@
 DEFVER=1
+CODENAMES_SUPPORTED="bullseye bookworm trixie focal jammy noble"
 get_website "https://www.ocenaudio.com/en/download" --prefer-family=IPv4
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(grep -m 1 "<p>Version" "${CACHE_FILE}" | sed -e 's/<[^>]*>//g' | cut -d' ' -f2)
+    VERSION_PUBLISHED=$(grep -m 1 "<p>Version" "${CACHE_FILE}" | sed -e 's/<[^>]*>//g' | cut -d ' ' -f 2)
 fi
-URL="https://www.ocenaudio.com/downloads/index.php/ocenaudio_debian9_64.deb"
+URL="https://www.ocenaudio.com/downloads$(grep -m 1 -E -o "/ocenaudio_${UPSTREAM_ID}${UPSTREAM_RELEASE}\.deb" "${CACHE_FILE}")"
 PRETTY_NAME="ocenaudio"
 WEBSITE="https://www.ocenaudio.com/"
 SUMMARY="Easy, fast and powerful audio editor."
