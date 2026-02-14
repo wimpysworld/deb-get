@@ -1,9 +1,0 @@
-DEFVER=1
-get_website "https://gitlab.com/gitterHQ/desktop/-/raw/master/CHANGELOG.md"
-if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(head -n1 "${CACHE_FILE}" | cut -d'`' -f2)
-    URL="https://update.gitter.im/linux64/gitter_${VERSION_PUBLISHED}_amd64.deb"
-fi
-PRETTY_NAME="Gitter"
-WEBSITE="https://gitter.im/"
-SUMMARY="A chat and networking platform to manage and connect communities through messaging, content and discovery."
