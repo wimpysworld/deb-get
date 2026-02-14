@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "eneshecan/whatsapp-for-linux"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
-fi
-PRETTY_NAME="WhatsApp for Linux"
-WEBSITE="https://github.com/eneshecan/whatsapp-for-linux"
-SUMMARY="An unofficial WhatsApp desktop application for Linux."
