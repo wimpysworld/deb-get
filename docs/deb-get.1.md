@@ -193,7 +193,7 @@ How to use:
 
 ### Custom User Includes
 
-As a more advanced feature, it is possible to also add your own local customizations or overrides, and supplement the list of packages supported by the main repository. This feature is especially useful so that your local copy of the main repository can remain unmodified and always be kept fully up to date by moving your customizations out in a seperate folder away from the main repository.
+As a more advanced feature, it is possible to also add your own local customizations or overrides, and supplement the list of packages supported by the main repository. This feature is especially useful so that your local copy of the main repository can remain unmodified and always be kept fully up to date by moving your customizations out in a separate folder away from the main repository.
 
 Typically because:
 
@@ -208,7 +208,7 @@ How to use:
 * For information on how to create a package definition file, head to [EXTREPO](https://github.com/wimpysworld/deb-get/blob/main/EXTREPO.md#the-package-definition-files).
 * Your user custom package definition files are then loaded after the package definitions from any added repository.
 * A recommendation message is printed for any new user added definitions, with a URL link to open a request.
-* Warning messages are then also printed for any conflicts detected for overriden definitions (of same name), which then take priority over existing ones.
+* Warning messages are then also printed for any conflicts detected for overridden definitions (of same name), which then take priority over existing ones.
 
 For the last situation, this is most often meant as a helpful reminder to remove your custom definition once it has been successfully merged upstream into the main repository, so after the main repository updates itself you are properly notified. It also avoids keeping lots of duplicate definitions around.
 
@@ -223,6 +223,7 @@ We really hope that you will enjoy the convenience and flexibility of the user o
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
   * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
   * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
+
 ## In the media
 
   * [The deb-get tool helps Ubuntu (and derivative distro) fans grab extra apps](https://www.gamingonlinux.com/2022/05/the-deb-get-tool-helps-ubuntu-and-derivative-distro-fans-grab-extra-apps/) - **GamingOnLinux**

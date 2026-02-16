@@ -1,10 +1,10 @@
 DEFVER=1
 get_github_releases "horsicq/DIE-engine" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-   URL="$(grep "browser_download_url.*${RELEASE_ID^}_${UPSTREAM_RELEASE}.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")"
+   URL=$(grep -m 1 "browser_download_url.*${RELEASE_ID^}_${UPSTREAM_RELEASE}.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | sed "s/v//")
 fi
 PRETTY_NAME="detectiteasy"
 WEBSITE="https://github.com/horsicq/DIE-engine"
 SUMMARY="die-engine - binary type detection"
-CODENAMES_SUPPORTED="bookworm bullseye buster trixie sid focal jammy kinetic lunar mantic"
+CODENAMES_SUPPORTED="bookworm bullseye buster focal jammy kinetic lunar mantic noble oracular "

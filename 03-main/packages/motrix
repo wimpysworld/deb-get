@@ -1,8 +1,12 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "agalwood/Motrix" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    case ${HOST_ARCH} in
+        amd64|arm64) URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4);;
+        armhf|armv7l) URL=$(grep -m 1 "browser_download_url.*armv7l\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4);;
+     esac
+    VERSION_PUBLISHED="$(cut -d '/' -f 8 <<< ${URL//v/})"
 fi
 PRETTY_NAME="Motrix"
 WEBSITE="https://motrix.app/"

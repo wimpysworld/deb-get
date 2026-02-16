@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid jammy noble"
+get_github_releases "rmcrackan/Libation" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f4)"
+    VERSION_PUBLISHED="$(cut -d'/' -f8 <<< "${URL}" | sed 's/v//')"
+fi
+PRETTY_NAME="Libation"
+WEBSITE="https://github.com/rmcrackan/Libation"
+SUMMARY="A free, open source audible library manager. Decrypt, backup, organize, and search your audible library"

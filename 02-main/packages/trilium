@@ -1,8 +1,13 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+case ${HOST_ARCH} in
+    amd64) ARCH=x64 ;;
+    arm64) ARCH=arm64 ;;
+esac
 get_github_releases "zadam/trilium" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    URL=$(grep -m 1 "browser_download_url.*${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
 PRETTY_NAME="Trilium Notes"
 WEBSITE="https://github.com/zadam/trilium/"

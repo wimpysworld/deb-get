@@ -1,0 +1,14 @@
+DEFVER=1
+get_website "https://sourceforge.net/projects/freeplane/files/freeplane%20stable/"
+if [ "${ACTION}" != "prettylist" ]; then
+    # Find the latest .deb URL for the current naming pattern
+    local REDIR_URL=$(grep -m 1 -Eo  'https://sourceforge.net/projects/freeplane/files/freeplane%20stable/freeplane_[1-9].*\.deb/download' $CACHE_FILE )
+    URL=$(unroll_url "${REDIR_URL}")
+    VERSION_PUBLISHED=$( grep -oP 'freeplane_\K([0-9]+\.[0-9]+\.[0-9]+(.upstream-[0-9]+)*)(?=_all\.deb)' <<<"${URL}" )
+    # of course they would leave '~' in the actual version so
+    VERSION_PUBLISHED="${VERSION_PUBLISHED/.ups/~ups}"
+
+fi
+PRETTY_NAME="Freeplane"
+WEBSITE="https://www.freeplane.org/"
+SUMMARY="Free and open source mind mapping and information management software. Alternative to Xmind and Mindmeister. Written in Java."

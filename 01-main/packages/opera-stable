@@ -1,6 +1,6 @@
 DEFVER=1
 ASC_KEY_URL="https://deb.opera.com/archive.key"
 APT_REPO_URL="https://deb.opera.com/opera-stable/ stable non-free"
-PRETTY_NAME="Opera"
+PRETTY_NAME="Opera Browser"
 WEBSITE="https://www.opera.com/"
 SUMMARY="Faster, safer and smarter than default browsers."

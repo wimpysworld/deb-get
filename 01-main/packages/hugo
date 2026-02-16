@@ -1,8 +1,8 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-get_github_releases "gohugoio/hugo" "latest"
+get_github_releases "gohugoio/hugo"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -v extended | head -n1 | cut -d'"' -f4)
+    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -v extended | cut -d'"' -f4)
     VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
 fi
 PRETTY_NAME="Hugo"

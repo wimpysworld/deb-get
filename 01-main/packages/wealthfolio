@@ -1,0 +1,12 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+#Installs but doesn't run in older Debian/Ubuntu versions due to outdated glibc.
+CODENAMES_SUPPORTED="trixie sid noble questing"
+get_github_releases "afadil/wealthfolio" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*${HOST_ARCH}.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '/' -f 8 <<< "${URL//v/}")"
+fi
+PRETTY_NAME="Wealthfolio"
+WEBSITE="https://wealthfolio.app"
+SUMMARY="Wealthfolio App is a Beautiful and Boring Investment Tracker, with Local Data Storage. No Subscriptions, No Cloud."

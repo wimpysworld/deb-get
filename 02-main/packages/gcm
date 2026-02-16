@@ -1,9 +1,16 @@
 DEFVER=1
-get_github_releases "GitCredentialManager/git-credential-manager" "latest"
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "git-ecosystem/git-credential-manager" "latest"
+
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
+    local ARCH_VER
+    case ${HOST_ARCH} in
+        amd64) ARCH_VER="(x64|amd64)";;
+        arm64) ARCH_VER=arm64;;
+    esac
+    URL=$(grep -m1 -E "browser_download_url.*linux[-_]${ARCH_VER}[-.].*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
 PRETTY_NAME="Git Credential Manager"
-WEBSITE="https://github.com/GitCredentialManager/git-credential-manager"
+WEBSITE="https://github.com/git-ecosystem/git-credential-manager"
 SUMMARY="Git Credential Manager (GCM) is a secure Git credential helper built on .NET that runs on Windows, macOS, and Linux."

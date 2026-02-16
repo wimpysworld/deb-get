@@ -1,4 +1,4 @@
-name: 01-main Tests
+name: 📦 Package Tests
 
 on:
   pull_request:
@@ -10,21 +10,152 @@ on:
       - "!01-main/packages/*.json"
       - "!01-main/packages/timestamp"
   workflow_dispatch:
+    inputs:
+      packages:
+        description: 'Space-separated list of packages to test (empty = all packages, random 256 if over limit)'
+        required: false
+        default: ''
 
 jobs:
-  tests:
+  detect-changes:
     runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.detect.outputs.packages }}
+      has_packages: ${{ steps.detect.outputs.has_packages }}
+      excluded_packages: ${{ steps.detect.outputs.excluded_packages }}
+      has_excluded: ${{ steps.detect.outputs.has_excluded }}
+      deprecated_packages: ${{ steps.detect.outputs.deprecated_packages }}
+      has_deprecated: ${{ steps.detect.outputs.has_deprecated }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+
+      - name: Detect changed packages
+        id: detect
+        run: |
+          MAX_JOBS=256
+
+          # Get deprecated packages from manifest (lines starting with # after repo URL line)
+          DEPRECATED=$(tail -n +2 01-main/manifest | grep '^#' | sed 's/^#//' | tr '\n' ' ')
+
+          if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
+            # Pull request: detect changed package files
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||" || true)
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # workflow_dispatch: use specified packages or read all from manifest
+            INPUT_PACKAGES="${{ github.event.inputs.packages }}"
+            if [ -n "${INPUT_PACKAGES}" ]; then
+              CHANGED_FILES="${INPUT_PACKAGES}"
+            else
+              # Read all packages from manifest (skip first line which is repo URL, comments, and empty lines)
+              echo "::notice::No packages specified. Reading all packages from manifest."
+              CHANGED_FILES=$(tail -n +2 01-main/manifest | grep -v '^#' | grep -v '^[[:space:]]*$' | tr '\n' ' ')
+            fi
+          else
+            CHANGED_FILES=""
+          fi
+
+          # Filter out non-package files (html, json, timestamp), commented entries, and deprecated packages
+          PACKAGES=""
+          SKIPPED_DEPRECATED=""
+          for FILE in ${CHANGED_FILES}; do
+            case "${FILE}" in
+              \#*|*.html|*.json|timestamp) continue ;;
+              *)
+                # Check if package is deprecated
+                if echo " ${DEPRECATED} " | grep -q -F " ${FILE} "; then
+                  SKIPPED_DEPRECATED="${SKIPPED_DEPRECATED} ${FILE}"
+                  echo "::notice::Skipping deprecated package: ${FILE}"
+                else
+                  PACKAGES="${PACKAGES} ${FILE}"
+                fi
+                ;;
+            esac
+          done
+
+          # Report skipped deprecated packages
+          SKIPPED_DEPRECATED=$(echo "${SKIPPED_DEPRECATED}" | xargs)
+          if [ -n "${SKIPPED_DEPRECATED}" ]; then
+            SKIPPED_COUNT=$(echo "${SKIPPED_DEPRECATED}" | wc -w)
+            echo "::warning::${SKIPPED_COUNT} deprecated package(s) will not be tested: ${SKIPPED_DEPRECATED}"
+          fi
+
+          # Trim leading/trailing whitespace
+          PACKAGES=$(echo "${PACKAGES}" | xargs)
+          PACKAGE_COUNT=$(echo "${PACKAGES}" | wc -w)
+
+          # Handle random selection if over limit
+          EXCLUDED=""
+          if [ "${PACKAGE_COUNT}" -gt "${MAX_JOBS}" ]; then
+            echo "::warning::Package count (${PACKAGE_COUNT}) exceeds GitHub's ${MAX_JOBS} job limit. Randomly selecting ${MAX_JOBS} packages."
+
+            # Shuffle and select MAX_JOBS packages
+            SELECTED=$(echo "${PACKAGES}" | tr ' ' '\n' | shuf | head -n ${MAX_JOBS} | sort | tr '\n' ' ' | xargs)
+
+            # Get excluded packages (those not selected)
+            EXCLUDED=$(echo "${PACKAGES}" | tr ' ' '\n' | sort | grep -v -x -F -f <(echo "${SELECTED}" | tr ' ' '\n') | tr '\n' ' ' | xargs)
+
+            PACKAGES="${SELECTED}"
+            EXCLUDED_COUNT=$(echo "${EXCLUDED}" | wc -w)
+            echo "::notice::Selected ${MAX_JOBS} packages for testing. ${EXCLUDED_COUNT} packages will not be tested."
+          elif [ "${PACKAGE_COUNT}" -gt 200 ]; then
+            echo "::warning::${PACKAGE_COUNT} packages specified. Approaching GitHub's ${MAX_JOBS} job limit."
+          fi
+
+          # Convert to JSON arrays and set outputs
+          if [ -n "${PACKAGES}" ]; then
+            JSON_ARRAY=$(echo "${PACKAGES}" | tr ' ' '\n' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "packages=${JSON_ARRAY}" >> $GITHUB_OUTPUT
+            echo "has_packages=true" >> $GITHUB_OUTPUT
+            echo "Detected packages: ${JSON_ARRAY}"
+          else
+            echo "packages=[]" >> $GITHUB_OUTPUT
+            echo "has_packages=false" >> $GITHUB_OUTPUT
+            echo "No packages to test"
+          fi
+
+          if [ -n "${EXCLUDED}" ]; then
+            EXCLUDED_JSON=$(echo "${EXCLUDED}" | tr ' ' '\n' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "excluded_packages=${EXCLUDED_JSON}" >> $GITHUB_OUTPUT
+            echo "has_excluded=true" >> $GITHUB_OUTPUT
+            echo "Excluded packages: ${EXCLUDED_JSON}"
+          else
+            echo "excluded_packages=[]" >> $GITHUB_OUTPUT
+            echo "has_excluded=false" >> $GITHUB_OUTPUT
+          fi
+
+          if [ -n "${SKIPPED_DEPRECATED}" ]; then
+            DEPRECATED_JSON=$(echo "${SKIPPED_DEPRECATED}" | tr ' ' '\n' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "deprecated_packages=${DEPRECATED_JSON}" >> $GITHUB_OUTPUT
+            echo "has_deprecated=true" >> $GITHUB_OUTPUT
+            echo "Deprecated packages: ${DEPRECATED_JSON}"
+          else
+            echo "deprecated_packages=[]" >> $GITHUB_OUTPUT
+            echo "has_deprecated=false" >> $GITHUB_OUTPUT
+          fi
+
+  test-package:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_packages == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.detect-changes.outputs.packages) }}
+    continue-on-error: true
+
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      DEBGET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v6
 
       - name: Install dependencies
         run: |
           sudo apt-get update
-
-          # Dependencies for deb-get itself
           sudo apt-get install apt apt-transport-https bash coreutils curl dpkg gpg grep libc-bin lsb-release sed software-properties-common sudo wget desktop-file-utils -y
 
       - name: Initialize /etc/deb-get
@@ -35,23 +166,207 @@ jobs:
           sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
           sudo gpg -k > /dev/null
 
-      # Install added/changed packages to see if they install properly and are detected as such
-      - name: Test package installations
+      - name: Test package ${{ matrix.package }}
+        id: test
         run: |
           chmod a+x ./deb-get
-          export DEBIAN_FRONTEND=noninteractive
-          export DEBGET_TOKEN=${{ secrets.GITHUB_TOKEN }}
           set -x
-          APPS="$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||")"
-          SUPPORTED="$(./deb-get list --raw)"
-          for APP in ${APPS}; do
-            if echo "${SUPPORTED}" | grep -q -m 1 "^${APP}$"; then
-              ./deb-get install "${APP}"
+
+          APP="${{ matrix.package }}"
+          START_TIME=$(date +%s)
+          STATUS="pass"
+          ERROR_MSG=""
+
+          SUPPORTED=$(./deb-get list --raw)
+          if echo "${SUPPORTED}" | grep -q -m 1 "^${APP}$"; then
+            ./deb-get install "${APP}" || { STATUS="fail"; ERROR_MSG="Installation failed"; }
+
+            if [ "${STATUS}" = "pass" ]; then
               if ./deb-get show "${APP}" | grep -q "Installed:	No"; then
-                echo "Failed to detect ${APP} as installed" >&2
-                exit 1
+                STATUS="fail"
+                ERROR_MSG="Failed to detect ${APP} as installed"
               else
-                ./deb-get purge "${APP}"
+                PUBLISHED_VER=$(./deb-get show "${APP}" | grep "Published:" | grep -oE '[^[:space:]]+$' || :)
+                INSTALLED_VER=$(dpkg-query -Wf '${Version}' "${APP}" || :)
+                if [ -n "${PUBLISHED_VER// /}" ] && dpkg --compare-versions "${PUBLISHED_VER}" gt "${INSTALLED_VER}"; then
+                  STATUS="fail"
+                  ERROR_MSG="Version mismatch: Published=${PUBLISHED_VER} Installed=${INSTALLED_VER}"
+                else
+                  ./deb-get purge "${APP}" || { STATUS="fail"; ERROR_MSG="Purge failed"; }
+                fi
               fi
             fi
-          done
+          else
+            STATUS="skip"
+            ERROR_MSG="Package not in supported list"
+          fi
+
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+
+          echo "status=${STATUS}" >> $GITHUB_OUTPUT
+          echo "duration=${DURATION}" >> $GITHUB_OUTPUT
+          echo "error_msg=${ERROR_MSG}" >> $GITHUB_OUTPUT
+
+          # Fail the step if test failed
+          if [ "${STATUS}" = "fail" ]; then
+            echo "::error::${ERROR_MSG}"
+            exit 1
+          fi
+
+      - name: Save result
+        if: always()
+        run: |
+          mkdir -p results
+          cat > results/${{ matrix.package }}.json << EOF
+          {
+            "package": "${{ matrix.package }}",
+            "status": "${{ steps.test.outputs.status || 'fail' }}",
+            "duration": ${{ steps.test.outputs.duration || 0 }},
+            "error": "${{ steps.test.outputs.error_msg || 'Unknown error' }}"
+          }
+          EOF
+
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: result-${{ matrix.package }}
+          path: results/${{ matrix.package }}.json
+          retention-days: 1
+
+  report-results:
+    needs: [detect-changes, test-package]
+    if: always() && needs.detect-changes.outputs.has_packages == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all results
+        id: download
+        continue-on-error: true
+        uses: actions/download-artifact@v7
+        with:
+          pattern: result-*
+          path: results
+          merge-multiple: true
+
+      - name: Generate summary
+        if: always()
+        env:
+          EXCLUDED_PACKAGES: ${{ needs.detect-changes.outputs.excluded_packages }}
+          HAS_EXCLUDED: ${{ needs.detect-changes.outputs.has_excluded }}
+          DEPRECATED_PACKAGES: ${{ needs.detect-changes.outputs.deprecated_packages }}
+          HAS_DEPRECATED: ${{ needs.detect-changes.outputs.has_deprecated }}
+          DOWNLOAD_OUTCOME: ${{ steps.download.outcome }}
+        run: |
+          PASSED=0
+          FAILED=0
+          SKIPPED=0
+          NOT_TESTED=0
+          DEPRECATED=0
+          RESULTS_FOUND=0
+
+          echo "## Package Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check if results directory exists and has files
+          if [ "${DOWNLOAD_OUTCOME}" != "success" ]; then
+            echo "**Warning:** Artifact download failed or was incomplete." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ ! -d "results" ]; then
+            echo "**No results directory found.** Test jobs may not have completed." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          elif [ -z "$(ls -A results/*.json 2>/dev/null)" ]; then
+            echo "**No result files found.** Test jobs may not have uploaded artifacts." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Package | Status | Duration |" >> $GITHUB_STEP_SUMMARY
+            echo "|---------|--------|----------|" >> $GITHUB_STEP_SUMMARY
+
+            for FILE in results/*.json; do
+              if [ -f "${FILE}" ]; then
+                # Validate JSON before parsing
+                if ! jq empty "${FILE}" 2>/dev/null; then
+                  BASENAME=$(basename "${FILE}" .json)
+                  echo "| ${BASENAME} | ⚠️ invalid result | - |" >> $GITHUB_STEP_SUMMARY
+                  FAILED=$((FAILED + 1))
+                  continue
+                fi
+
+                PACKAGE=$(jq -r '.package // "unknown"' "${FILE}")
+                STATUS=$(jq -r '.status // "unknown"' "${FILE}")
+                DURATION=$(jq -r '.duration // 0' "${FILE}")
+                ERROR=$(jq -r '.error // ""' "${FILE}")
+                RESULTS_FOUND=$((RESULTS_FOUND + 1))
+
+                case "${STATUS}" in
+                  pass)
+                    ICON="✅ pass"
+                    PASSED=$((PASSED + 1))
+                    ;;
+                  skip)
+                    ICON="⏭️ skip"
+                    SKIPPED=$((SKIPPED + 1))
+                    ;;
+                  *)
+                    ICON="❌ fail"
+                    FAILED=$((FAILED + 1))
+                    ;;
+                esac
+
+                echo "| ${PACKAGE} | ${ICON} | ${DURATION}s |" >> $GITHUB_STEP_SUMMARY
+              fi
+            done
+          fi
+
+          # Add deprecated packages section if any were skipped
+          if [ "${HAS_DEPRECATED}" = "true" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Deprecated (not tested)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Package | Status |" >> $GITHUB_STEP_SUMMARY
+            echo "|---------|--------|" >> $GITHUB_STEP_SUMMARY
+
+            # Parse deprecated packages JSON array
+            for PKG in $(echo "${DEPRECATED_PACKAGES}" | jq -r '.[]'); do
+              echo "| ${PKG} | ⚠️ deprecated |" >> $GITHUB_STEP_SUMMARY
+              DEPRECATED=$((DEPRECATED + 1))
+            done
+          fi
+
+          # Add excluded packages section if any were excluded
+          if [ "${HAS_EXCLUDED}" = "true" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Not Tested (exceeded 256 job limit)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Package | Status |" >> $GITHUB_STEP_SUMMARY
+            echo "|---------|--------|" >> $GITHUB_STEP_SUMMARY
+
+            # Parse excluded packages JSON array
+            for PKG in $(echo "${EXCLUDED_PACKAGES}" | jq -r '.[]'); do
+              echo "| ${PKG} | ⏭️ not tested |" >> $GITHUB_STEP_SUMMARY
+              NOT_TESTED=$((NOT_TESTED + 1))
+            done
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Passed:** ${PASSED}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Failed:** ${FAILED}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Skipped:** ${SKIPPED}" >> $GITHUB_STEP_SUMMARY
+          if [ "${DEPRECATED}" -gt 0 ]; then
+            echo "- **Deprecated:** ${DEPRECATED}" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ "${NOT_TESTED}" -gt 0 ]; then
+            echo "- **Not Tested:** ${NOT_TESTED}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "- **Total:** $((PASSED + FAILED + SKIPPED + DEPRECATED + NOT_TESTED))" >> $GITHUB_STEP_SUMMARY
+
+          # Exit with failure if any package failed
+          if [ "${FAILED}" -gt 0 ]; then
+            echo "::error::${FAILED} package(s) failed testing"
+            exit 1
+          fi

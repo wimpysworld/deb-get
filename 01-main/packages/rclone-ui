@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "rclone-ui/rclone-ui" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+fi
+PRETTY_NAME="Rclone UI"
+WEBSITE="https://rcloneui.com/"
+SUMMARY="The cross-platform desktop GUI for rclone & S3."

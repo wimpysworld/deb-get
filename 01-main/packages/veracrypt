@@ -1,13 +1,13 @@
 DEFVER=2
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 case ${HOST_ARCH} in
-    amd64) CODENAMES_SUPPORTED="bullseye bookworm focal jammy noble" ;;
-    arm64) CODENAMES_SUPPORTED="bullseye bookworm focal jammy noble" ;;
-    armhf) CODENAMES_SUPPORTED="bullseye bookworm focal" ;;
+    amd64) CODENAMES_SUPPORTED="bullseye bookworm trixie jammy noble plucky" ;;
+    arm64) CODENAMES_SUPPORTED="bullseye bookworm trixie jammy noble" ;;
+    armhf) CODENAMES_SUPPORTED="bullseye bookworm trixie focal" ;;
 esac
 get_website "https://www.veracrypt.fr/en/Downloads.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(grep -Eo '/Linux: Version [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+ ' /var/cache/deb-get/veracrypt.html | cut -d\  -f3)
+    VERSION_PUBLISHED=$(sed -En 's|.*Latest\s+Stable\s+Release\s*-?\s*(\S+).*|\1|p' "${CACHE_FILE}")
 
     URL=$(unroll_url "https://launchpad.net/veracrypt/trunk/${VERSION_PUBLISHED}/+download/veracrypt-${VERSION_PUBLISHED}-${UPSTREAM_ID^}-${UPSTREAM_RELEASE}-${HOST_ARCH}.deb\"")
 fi

@@ -1,4 +1,4 @@
-name: deb-get Tests
+name: 🍥 deb-get Tests
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install dependencies
         run: |
@@ -47,7 +47,7 @@ jobs:
 
       # update is skipped for now, as it depends on the 01-main subfolder being present
       # upgrade is skipped because of full system upgrade and otherwise testing package installs
-      # covers most of that. Seperate job/workflow for occassional upgrade validation
+      # covers most of that. Separate job/workflow for occasional upgrade validation
       # say when tagging for release might be good.
 
       # All these commands should return a non 0 status

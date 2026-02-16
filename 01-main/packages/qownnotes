@@ -1,5 +1,29 @@
-DEFVER=1
-PPA="ppa:pbek/qownnotes"
-PRETTY_NAME="qownnotes"
+DEFVER=2
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+local THE_KEY
+local THE_REPO
+case ${UPSTREAM_ID} in
+    ubuntu)
+        THE_KEY="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x54223c6547878405"
+        THE_REPO="https://ppa.launchpadcontent.net/pbek/qownnotes/ubuntu ${UPSTREAM_CODENAME} main"
+        ;;
+    *)
+        local DEBIANVER
+        local THE_OPTIONS
+        case ${UPSTREAM_CODENAME} in
+            sid|13|trixie) DEBIANVER=Unstable ;;
+            *) DEBIANVER=${UPSTREAM_RELEASE} ;;
+        esac
+        THE_KEY="http://download.opensuse.org/repositories/home:/pbek:/QOwnNotes/Debian_${DEBIANVER}/Release.key"
+        THE_REPO="http://download.opensuse.org/repositories/home:/pbek:/QOwnNotes/Debian_${DEBIANVER}/ /"
+        THE_OPTIONS="arch=${HOST_ARCH}"
+        ;;
+esac
+
+ASC_KEY_URL="${THE_KEY}"
+APT_REPO_URL="${THE_REPO}"
+APT_REPO_OPTIONS="${THE_OPTIONS}"
+APT_LIST_NAME=qownnotes
+PRETTY_NAME="QOwnNotes"
 WEBSITE="https://www.qownnotes.org"
 SUMMARY="Free open source plain-text file markdown note-taking with Nextcloud / ownCloud integration."

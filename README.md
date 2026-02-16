@@ -74,7 +74,7 @@ cog.out(f"```\n{help}\n```")
 ]]] -->
 ```
 
-deb-get {update [--repos-only] [--quiet] | upgrade | show <pkg list> | install <pkg list>
+deb-get {update [--repos-only] [--quiet] | upgrade [--dg-only] | show <pkg list> | install <pkg list>
         | reinstall <pkg list> | remove [--remove-repo] <pkg list>
         | purge [--remove-repo] <pkg list>
         | search [--include-unsupported] <regex> | cache | clean
@@ -96,6 +96,7 @@ update
 upgrade
     upgrade is used to install the newest versions of all packages currently
     installed on the system.
+    When --dg-only is provided, only the packages which have been installed by deb-get will be upgraded.
 
 install
     install is followed by one package (or a space-separated list of packages)
@@ -271,11 +272,15 @@ We really hope that you will enjoy the convenience and flexibility of the user o
 
   * [App Outlet](https://appoutlet.github.io/): *A Universal linux app store*
   * [bin-get](https://github.com/OhMyMndy/bin-get): *Script to easily and safely fetch binaries from GitHub Releases/tags*
+  * [bin](https://github.com/marcosnils/bin): *A lightweight, cross-platform binary manager without requiring root privileges*
   * [makedeb](https://www.makedeb.org/): *A simplicity-focused packaging tool for Debian archives*
   * [MakeResolveDeb](https://www.danieltufvesson.com/makeresolvedeb): *Install DaVinci Resolve or DaVinci Resolve Studio on Debian*
   * [pacstall](https://pacstall.dev/): *The AUR alternative for Ubuntu*
   * [Ubuntu Make](https://github.com/ubuntu/ubuntu-make): *Easy setup of common tools for developers on Ubuntu.*
   * [unsnap](https://github.com/popey/unsnap): *Quickly migrate from using snap packages to flatpaks*
+  * [AM](https://github.com/ivan-hc/AM): *Appimage Manager* (also now handles portable apps)
+  * [eget](https://github.com/zyedidia/eget): *Easily install prebuilt binaries from GitHub*
+  * [TopGrade](https://github.com/topgrade-rs/topgrade): *Upgrade all the things*
 ## In the media
 
   * [The deb-get tool helps Ubuntu (and derivative distro) fans grab extra apps](https://www.gamingonlinux.com/2022/05/the-deb-get-tool-helps-ubuntu-and-derivative-distro-fans-grab-extra-apps/) - **GamingOnLinux**

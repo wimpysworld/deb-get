@@ -1,0 +1,17 @@
+name: Deprecate Package
+description: A package in deb-get needs to be removed.
+title: "Package Deprecation: "
+labels: ["package deprecation"]
+body:
+- type: markdown
+  attributes:
+    value: |
+      ## Package Deprecation 🔥
+      Thank you for taking the time to report an issue to the deb-get project 🙂
+      Please describe which package needs removed and why:
+- type: textarea
+  id: app-to-remove
+  attributes:
+    label: App to Remove
+  validations:
+    required: true

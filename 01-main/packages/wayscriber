@@ -1,0 +1,9 @@
+DEFVER=1
+#It's able to install in older versions of Debian & Ubuntu, but won't run due to outdated glibc.
+CODENAMES_SUPPORTED="trixie sid noble questing"
+ASC_KEY_URL="https://wayscriber.com/apt/WAYSCRIBER-GPG-KEY.asc"
+APT_LIST_NAME="wayscriber"
+APT_REPO_URL="https://wayscriber.com/apt stable main"
+PRETTY_NAME="wayscriber"
+WEBSITE="https://wayscriber.com/"
+SUMMARY="A ZoomIt-like real-time screen annotation tool for Linux/Wayland, written in Rust."

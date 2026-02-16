@@ -1,9 +1,9 @@
 DEFVER=1
 get_github_releases "Mastermindzh/tidal-hifi" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f2)"
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
 fi
-PRETTY_NAME="Tidal-hifi"
+PRETTY_NAME="TIDAL Hi-Fi"
 WEBSITE="https://github.com/Mastermindzh/tidal-hifi"
 SUMMARY="Web version of listen.tidal.com running in Wlectron with hifi support thanks to widevine."

@@ -1,0 +1,43 @@
+name: New App
+description: Request a new app/package to be added to deb-get.
+title: "App Request: "
+labels: ["new package", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Requesting a new app ✨
+        Thank you for taking the time to report an issue to the deb-get project 🙂
+        If you are requesting a new app to be added to `deb-get` please complete the following sections, only one app per issue please.
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: "Is this a new request?"
+      options:
+        - label: I have checked that this app does not already have a pending request and has not previously been declined.
+    validations:
+      required: true
+  - type: input
+    id: app-name
+    attributes:
+      label: App Name
+    validations:
+      required: true
+  - type: input
+    id: download-url
+    attributes:
+      label: Download URL
+    validations:
+      required: true
+  - type: input
+    id: website-url
+    attributes:
+      label: Website URL
+    validations:
+      required: true
+  - type: textarea
+    id: app-summary
+    attributes:
+      label: App Summary
+    validations:
+      required: true

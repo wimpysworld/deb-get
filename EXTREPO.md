@@ -44,7 +44,7 @@ The variables defined in the package definition file are the following:
 * `WEBSITE`: A URL to the official website for the software.
 * `SUMMARY`: A brief description of what the software is and does.
 
-`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_LIST_NAME`, `APT_REPO_OPTIONS` and `EULA` are optional and can be ommited when not needed. `ARCHS_SUPPORTED` defaults to `amd64`, and `APT_LIST_NAME` defaults to `${APP}`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
+`ARCHS_SUPPORTED`, `CODENAMES_SUPPORTED`, `APT_LIST_NAME`, `APT_REPO_OPTIONS` and `EULA` are optional and can be omitted when not needed. `ARCHS_SUPPORTED` defaults to `amd64`, and `APT_LIST_NAME` defaults to `${APP}`. The URLs must use the HTTPS protocol whenever possible (i.e. except when using HTTPS would not work). To ensure the optimal performance of the commands `prettylist` and `csvlist`, if more complex operations (such as `curl`, `unroll_url` or `grep` over the GitHub releases JSON file) are needed to define the variables (most likely `URL` and `VERSION_PUBLISHED`), they (and the variables that depend on them) must be wrapped by the following condition:
 
 ```bash
 if [ "${ACTION}" != prettylist ]; then
@@ -63,7 +63,7 @@ The environment variables available to the package definition file are the follo
 * `OS_ID_PRETTY`: The brand name of the OS.
 * `OS_CODENAME`: The codename of the OS, as output by `lsb_release --codename --short`.
 * `UPSTREAM_ID`: The id of the upstream distribution. Supported values are `ubuntu` and `debian`.
-* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `lunar` (23.04), `mantic` (23.10) and `noble` (24.04)
+* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `noble` (24.04), `oracular` (24.10) and `plucky` (25.04).
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
@@ -148,8 +148,8 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 get_github_releases "<user-organization>/<repository>" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
 fi
 EULA=""
 PRETTY_NAME=""
@@ -165,8 +165,8 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 get_website "<website>"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep "<pattern>" "${CACHE_FILE}" | head -n1 | cut -d <delimiter> -f <field>)"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+    URL="$(grep -m 1 "<pattern>" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
 fi
 EULA=""
 PRETTY_NAME=""
@@ -182,7 +182,7 @@ ARCHS_SUPPORTED="amd64 arm64 armhf"
 CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(unroll_url "<website>")"
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
 fi
 EULA=""
 PRETTY_NAME=""

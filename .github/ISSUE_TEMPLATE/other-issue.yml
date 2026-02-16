@@ -1,0 +1,15 @@
+name: Other
+description: An issue which doesn't fit any other category.
+body:
+- type: markdown
+  attributes:
+    value: |
+      ## Other Issue ❓
+      Thank you for taking the time to report an issue to the deb-get project 🙂
+      Please describe the issue in as much detail as possible:
+- type: textarea
+  id: other-issue
+  attributes:
+    label: Other Issue
+  validations:
+    required: true

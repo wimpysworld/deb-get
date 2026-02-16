@@ -1,0 +1,20 @@
+DEFVER=2
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="trixie forky sid jammy noble plucky questing"
+case "${UPSTREAM_ID}" in
+    ubuntu)
+        PPA="ppa:ztefn/haguichi-stable" ;;
+    debian)
+            local RELEASE
+            case "${UPSTREAM_CODENAME}" in
+                "${DEBIAN_TESTING}") RELEASE="Testing" ;;
+                *) RELEASE="${UPSTREAM_RELEASE^}" ;;
+            esac
+        APT_LIST_NAME="haguichi"
+        APT_REPO_URL="http://download.opensuse.org/repositories/home:/ztefn:/debian/Debian_${RELEASE}/ /"
+        ASC_KEY_URL="https://download.opensuse.org/repositories/home:ztefn:debian/Debian_${RELEASE}/Release.key"
+        ;;
+esac
+PRETTY_NAME="Haguichi"
+WEBSITE="https://haguichi.net/"
+SUMMARY="Haguichi provides a user friendly GUI to control the Hamachi client on Linux."

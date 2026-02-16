@@ -1,33 +1,40 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm focal jammy noble"
+ARCHS_SUPPORTED="amd64 armhf" 
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie forky jammy noble plucky questing"
 get_website "https://openrgb.org/releases.html"
 if [ "${ACTION}" != "prettylist" ]; then
     local codename, regex, deb
     case "${UPSTREAM_CODENAME}" in
-        buster)
-            codename=buster
+        trixie|forky|plucky|questing)
+            codename=trixie
         ;;
-        bullseye|focal)
-            codename=bullseye
+        jammy|noble|bookworm)
+        # noble misses dependencies so we use bookworm builds instead
+        #  openrgb : Depends: libmbedcrypto16 (>= 3.6.0) but it is not installable
+        #            Depends: libmbedtls21 (>= 3.6.0) but it is not installable
+        #            Depends: libmbedx509-7 (>= 3.6.0) but it is not installable
+        #    Recommends: openrgb-dkms-drivers but it is not installable
+
+            codename=bookworm
         ;;
         *)
             codename=bookworm
         ;;
     esac
-    # allow more complex version numbers, such as 0.9.1, 0.9b, or 0.9-1:
-    regex="/releases/release_[^/]+/openrgb_[^_]+_${HOST_ARCH}_${codename}_[^.]+\.deb"
+    regex="releases/download/release_(candidate_){0,1}[[:digit:]]+(\.[[:alnum:]]+)+/openrgb_[[:digit:]]+(\.[[:alnum:]]+)+_${HOST_ARCH}_${codename}_[^_>]+\.deb"
     # can return multiple lines (since the content has no newlines):
-    deb=$( grep -m 1 -o -E "${regex}" "${CACHE_FILE}" )
+    deb=$( grep -m 1 -o -E "${regex}" "${CACHE_FILE}" ) 
+    # deb=$( sort  -r <<<"$deb" )
     # strip everything after the first newline:
     deb="${deb/$'\n'*/}"
-    URL="https://openrgb.org/${deb}"
+    URL="https://codeberg.org/OpenRGB/OpenRGB/${deb}"
     # grab the first version found in the path (in the directory name):
-    VERSION_PUBLISHED=$( grep -m 1 -o -E '_[^/]+/' <<<"${deb}" )
-    # strip the leading _:
-    VERSION_PUBLISHED="${VERSION_PUBLISHED/_/}"
-    # strip the trailing /:
-    VERSION_PUBLISHED="${VERSION_PUBLISHED/\//}"
+    VERSION_PUBLISHED=$( cut -d/ -f3 <<< "${deb}" )
+    VERSION_PUBLISHED="${VERSION_PUBLISHED/_candidate/}"
+    VERSION_PUBLISHED="${VERSION_PUBLISHED#release_}"
+    if [ "$VERSION_PUBLISHED" == "1.0rc2" ]; then
+        VERSION_PUBLISHED="0.9.1646~1.0rc2"
+    fi
 fi
 PRETTY_NAME="OpenRGB"
 WEBSITE="https://openrgb.org/"
