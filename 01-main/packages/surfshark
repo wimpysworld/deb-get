@@ -1,9 +1,0 @@
-DEFVER=1
-get_website "https://ocean.surfshark.com/debian/pool/main/s/surfshark/"
-if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(sed -e 's/<[^>]*>//g' "${CACHE_FILE}" | sed '/^[[:space:]]*$/d' | grep -m 1 "${HOST_ARCH}" | sort -r | awk '{print $1}' | cut -d'_' -f2)
-    URL="https://ocean.surfshark.com/debian/pool/main/s/surfshark/surfshark_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
-fi
-PRETTY_NAME="Surfshark VPN"
-WEBSITE="https://surfshark.com/"
-SUMMARY="Award-winning VPN service."
