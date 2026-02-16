@@ -1,8 +1,10 @@
 DEFVER=1
-get_github_releases "RocketChat/Rocket.Chat.Electron"
+get_github_releases "RocketChat/Rocket.Chat.Electron" "latest"
+# getting latest tag should omit pre-releases. We'll also filter out pre-releases from the list of assets just in case.
+# if we filter out pre-releases we don't need to match the version string by swapping '-' for '~' to get the correct version comparison in apt.
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8)
+    URL=$(grep -v -e '-alpha' -e '-beta' -e '-nightly' -e '-rc' "${CACHE_FILE}" | grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" | cut -d '"' -f 4 )
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}" ) # | tr '-' '~') 
 fi
 PRETTY_NAME="Rocketchat Desktop"
 WEBSITE="https://rocket.chat/"
