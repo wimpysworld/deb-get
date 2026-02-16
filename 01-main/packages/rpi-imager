@@ -1,4 +1,5 @@
 DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
 get_github_releases "raspberrypi/rpi-imager"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep  -m 1 "browser_download_url.*rpi-imager_.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
