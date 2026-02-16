@@ -1,9 +1,9 @@
 DEFVER=1
-get_github_releases "psygreg/linuxtoys" "latest"
+get_website  https://codeberg.org/psygreg/linuxtoys/releases.rss
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
+    VERSION_PUBLISHED=$(grep -m 1 -e 'guid' "${CACHE_FILE}" | sed -n 's#.*releases/tag/v\{0,1\}\([^<]*\).*#\1#p')
+    URL="https://codeberg.org/psygreg/linuxtoys/releases/download/${VERSION_PUBLISHED}/linuxtoys_${VERSION_PUBLISHED}-1_${HOST_ARCH}.deb"
 fi
 PRETTY_NAME="LinuxToys"
-WEBSITE="https://github.com/psygreg/linuxtoys"
+WEBSITE="https://codeberg.org/psygreg/linuxtoys"
 SUMMARY="A collection of tools for Linux in a user-friendly way."
