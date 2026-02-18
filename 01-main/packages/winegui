@@ -1,9 +1,36 @@
 DEFVER=1
-CODENAMES_SUPPORTED="bookworm trixie sid jammy noble plucky questing"
+CODENAMES_SUPPORTED="bookworm trixie forky sid noble plucky questing"
 get_gitlab_releases "https://gitlab.melroy.org/melroy/winegui" "latest"
+
+# WineGUI - Ubuntu 25.04 (Plucky Puffin) (.deb)
+# WineGUI - Ubuntu 24.04 (Noble Numbat)/Linux Mint 22/Zorin OS 18/elementary OS 8 (.deb)
+# WineGUI - Debian 14 Forky/Kali Linux (.deb)
+# WineGUI - Debian 13 Trixie/MX Linux 25 (.deb)
+# WineGUI - Debian 12 Bookworm/MX Linux 23 (.deb)
+# for testing on jammy
+# local TARGET_CODENAME="${UPSTREAM_CODENAME//jammy/plucky}"
+local TARGET_CODENAME="${UPSTREAM_CODENAME}"
+
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "\.deb$" "${CACHE_FILE}")"
-    VERSION_PUBLISHED="$(sed -E 's|.*-v(.*)\.deb|\1|' <<< "${URL}")"
+    # Prefer a later released version but if not found then fallback to the latest OS release and known to install OK
+    URL=$(grep -m 1 "${UPSTREAM_CODENAME}\.deb$" "${CACHE_FILE}")
+    if [ -z "${URL}" ]; then
+
+        case "${UPSTREAM_CODENAME}" in
+            questing)
+                TARGET_CODENAME="plucky"
+                ;;
+            sid)
+                TARGET_CODENAME="forky"
+                ;;
+        esac
+        URL=$(grep -m 1 "${TARGET_CODENAME}\.deb$" "${CACHE_FILE}")
+        if [ -z "${URL}" ]; then
+            fancy_message error "Failed to find a WineGUI .deb URL for codename ${UPSTREAM_CODENAME} in the cache file."
+        fi
+    fi
+    VERSION_PUBLISHED=$(sed -E "s|.*-v(.*)-${TARGET_CODENAME}\.deb|\1|" <<< "${URL}")
+    # VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL//v/}")
 fi
 PRETTY_NAME="WineGUI"
 WEBSITE="https://gitlab.melroy.org/melroy/winegui"
