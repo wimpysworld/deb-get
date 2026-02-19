@@ -3,7 +3,8 @@ ARCHS_SUPPORTED="amd64"
 CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
 get_github_releases "bambanah/deemix"
 if [ "${ACTION}" != prettylist ]; then
-    URL=$(grep -m 1 "browser_download_url.*gui.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    URL=$(grep -m 1 "browser_download_url.*gui.*${HOST_ARCH}\.deb\"" <<< $(sed "s/,/\n/g" "${CACHE_FILE}")  | cut -d '"' -f 4)
+    # The tag is in the format "gui-2.0.0" so we need to cut the filename and only keep the version number
     VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Deemix Gui"
