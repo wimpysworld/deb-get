@@ -3,7 +3,7 @@ CODENAMES_SUPPORTED="bionic bullseye buster jammy noble"
 get_website "https://code-industry.net/get-master-pdf-editor-for-ubuntu/?download"
 if [ "${ACTION}" != "prettylist" ]; then
         URL=$( grep 'document\.location' "${CACHE_FILE}" | grep -Eo "https://code-industry.net/public/.*\.deb" )
-        VERSION_PUBLISHED="$(echo "${URL}" | sed 's/^.*editor-//;s/-qt5.x86_64.*$//')"
+        VERSION_PUBLISHED=$(sed 's/^.*editor-//;s/-qt5.x86_64.*$//' <<< "${URL}")
 fi
 PRETTY_NAME="Master PDF Editor"
 WEBSITE="https://code-industry.net/free-pdf-editor/"

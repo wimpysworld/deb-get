@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_github_releases "menloresearch/jan" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
-    VERSION_PUBLISHED="$(cut -d'_' -f2 <<< "${URL}")"
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED="$(cut -d '/' -f 8 <<< "${URL//v/}")"
 fi
 PRETTY_NAME="Jan"
 WEBSITE="https://www.jan.ai/"

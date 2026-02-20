@@ -1,5 +1,7 @@
 DEFVER=2
+# shellcheck disable=SC2168
 local THE_KEY
+# shellcheck disable=SC2168
 local THE_REPO
 case ${UPSTREAM_ID} in
     ubuntu)
@@ -7,10 +9,11 @@ case ${UPSTREAM_ID} in
         THE_REPO="https://ppa.launchpadcontent.net/christian-boxdoerfer/fsearch-stable/ubuntu ${UPSTREAM_CODENAME} main"
         ;;
     *)
+        # shellcheck disable=SC2168
         local DEBIANVER
         case ${UPSTREAM_CODENAME} in
             sid|13|trixie) DEBIANVER=Unstable ;;
-            *) DEBIANVER=${UPSTREAM_RELEASE} ;;
+            *) DEBIANVER="${UPSTREAM_RELEASE}" ;;
         esac
         THE_KEY="https://download.opensuse.org/repositories/home:cboxdoerfer/Debian_${DEBIANVER}/Release.key"
         THE_REPO="http://download.opensuse.org/repositories/home:/cboxdoerfer/Debian_${DEBIANVER}/ /"
