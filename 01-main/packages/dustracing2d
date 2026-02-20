@@ -1,7 +1,8 @@
 DEFVER=1
+CODENAMES_SUPPORTED="noble" # questing"
 get_github_releases "juzzlin/DustRacing2D" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep -m 1 -e "18\.04" | cut -d '"' -f 4)
+    URL=$(grep -m 1 "browser_download_url.*-${OS_ID}-${UPSTREAM_RELEASE}_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)  
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
 fi
 PRETTY_NAME="DustRacing2D"
