@@ -182,7 +182,7 @@ function get_github_releases() {
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
             wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps --server-response "${URL}" -O- )
-            "${wgetcmdarray[@]}" 2> >("${ELEVATE}" tee "${HEADERS_FILE}" > /dev/null) | jq . | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+            "${wgetcmdarray[@]}" 2> >(${ELEVATE} tee "${HEADERS_FILE}" > /dev/null) | jq . | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
             if grep "401 Unauthorized" "${HEADERS_FILE}"; then
                 fancy_message warn "The DEBGET_TOKEN is invalid or expired."
             else
