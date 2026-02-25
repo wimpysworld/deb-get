@@ -1,0 +1,28 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armv7 armhf"
+# CODENAMES_SUPPORTED="bookworm trixie forky sid noble plucky questing"
+get_github_releases "duplicati/duplicati" "latest"
+
+
+
+if [ "${ACTION}" != prettylist ]; then
+    local TARGET_ARCH="xxx"
+    
+    case ${HOST_ARCH} in
+        amd64|intel)
+            TARGET_ARCH=x64;;
+        arm64)    
+            TARGET_ARCH=arm64;;
+        armhf|armv7)
+            TARGET_ARCH=arm7;;
+       *)
+            TARGET_ARCH=${HOST_ARCH};;
+   esac
+
+
+    URL="$(grep -m 1 "browser_download_url.*-${TARGET_ARCH}-gui\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}" | cut -d '_' -f 1 )
+fi
+PRETTY_NAME="Duplicati"
+WEBSITE="https://duplicati.com/"
+SUMMARY="Store securely encrypted backups in the cloud!"
