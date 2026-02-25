@@ -8,7 +8,7 @@ if [ "${ACTION}" != "prettylist" ] ; then
         ARCHNAME="aarch64"
     fi
     URL=$(grep -m 1 "browser_download_url.*${ARCHNAME}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'_' -f2)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/clamav-/}")
 fi
 PRETTY_NAME="ClamAV"
 WEBSITE="https://www.clamav.net/"
