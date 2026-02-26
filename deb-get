@@ -170,6 +170,7 @@ function follow_url() {
 function get_github_releases() {
     METHOD="github"
     CACHE_FILE="${CACHE_DIR}/${APP}.json_extract"
+    local HEADERS_FILE="${CACHE_DIR}/${APP}_http_headers"
     # Cache github releases json for 1 hour to try and prevent API rate limits
     #   https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
     #   {"message":"API rate limit exceeded for 62.31.16.154. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)","documentation_url":"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting"}
@@ -180,9 +181,30 @@ function get_github_releases() {
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             fancy_message info "Updating ${CACHE_FILE}"
             local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
-            wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O- )
-            "${wgetcmdarray[@]}" | jq . | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
-            if [ -f "${CACHE_FILE}" ] && grep "API rate limit exceeded" "${CACHE_FILE}"; then
+            wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps --server-response "${URL}" -O- )
+            "${wgetcmdarray[@]}" 2> >(${ELEVATE} tee "${HEADERS_FILE}" > /dev/null) | jq . | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
+            if grep "401 Unauthorized" "${HEADERS_FILE}"; then
+                fancy_message warn "The DEBGET_TOKEN is invalid or expired."
+            else
+                if [ -z "${DEBGET_TOKEN}" ]; then
+                    fancy_message recommend "DEBGET_TOKEN is not set. To increase your rate limit, create a Github Personal Access Token and put it in the DEBGET_TOKEN environment variable."
+                fi
+                local RATELIMIT_MAX=$(grep -E -o -m1 "X-RateLimit-Limit: [0-9]+" "${HEADERS_FILE}" | cut -d ' ' -f2)
+                local RATELIMIT_RESET=$(grep -E -o -m1 "X-RateLimit-Reset: [0-9]+" "${HEADERS_FILE}" | cut -d ' ' -f2)
+                local RATELIMIT_USED=$(grep -E -o -m1 "X-RateLimit-Used: [0-9]+" "${HEADERS_FILE}" | cut -d ' ' -f2)
+                local RATELIMIT_REMAIN=$(grep -E -o -m1 "X-RateLimit-Remaining: [0-9]+" "${HEADERS_FILE}" | cut -d ' ' -f2)
+                ${ELEVATE} rm "${HEADERS_FILE}" 2>/dev/null
+                if [[ "$RATELIMIT_MAX" =~ ^[0-9]+$ && "$RATELIMIT_RESET" =~ ^[0-9]+$ && "$RATELIMIT_USED" =~ ^[0-9]+$ && "$RATELIMIT_REMAIN" =~ ^[0-9]+$ ]]; then
+                    RATELIMIT_RESET=$((${RATELIMIT_RESET} - $(date +%s)))
+                    if [[ "$RATELIMIT_REMAIN" -lt 1 ]]; then
+                        fancy_message warn "Github API rate limit has been reached. You may experience problems downloading from Github."
+                    fi
+                    fancy_message info "Github API: ${RATELIMIT_USED} request(s) used out of ${RATELIMIT_MAX}. ${RATELIMIT_REMAIN} remaining."
+                    fancy_message info "Github API: Rate limit resets in $((${RATELIMIT_RESET} / 60)) minutes, $((${RATELIMIT_RESET} % 60)) seconds."
+                fi
+            fi
+            if [ -f "${CACHE_FILE}" ] && grep -o "API rate limit exceeded[^\"]*" "${CACHE_FILE}"; then
+                grep -o "https://[^\"]*" "${CACHE_FILE}"
                 fancy_message warn "Updating ${CACHE_FILE} exceeded GitHub API limits. Deleting it."
                 ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
             fi
