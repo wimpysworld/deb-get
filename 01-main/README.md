@@ -233,7 +233,6 @@ cog.out(pretty_list)
 | [<img src="../.github/github.png" align="top" width="20" />](https://www.onlyoffice.com/en/desktop.aspx) | `onlyoffice-desktopeditors` | <i>Free desktop office suite for document editing and collaboration.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/openaudible/openaudible) | `openaudible` | <i>A cross-platform desktop application for downloading and managing your Audible audiobooks.</i> |
 | [<img src="../.github/launchpad.png" align="top" width="20" />](https://openrazer.github.io/) | `openrazer-meta` | <i>Open source driver and user-space daemon that allows you to manage Razer peripherals.</i> |
-| [<img src="../.github/direct.png" align="top" width="20" />](https://openrgb.org/) | `openrgb` | <i>Open source RGB lighting control that doesn't depend on manufacturer software.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://www.opera.com/) | `opera-stable` | <i>Faster, safer and smarter than default browsers.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/home-assistant/os-agent) | `os-agent` | <i>This is the OS Agent for Home Assistant. It is used for Home Assistant OS and Home Assistant Supervised installation types and it allows the Home Assistant Supervisor to communicate with the host operating system.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://noborus.github.io/ov) | `ov` | <i>ov is a feature rich terminal pager.</i> |
@@ -349,7 +348,6 @@ cog.out(pretty_list)
 | [<img src="../.github/direct.png" align="top" width="20" />](https://www.webex.com/) | `webex` | <i>Video Conferencing, Cloud Calling and Screen Sharing.</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://weechat.org/) | `weechat` | <i>The extensible chat client.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/H-M-H/Weylus) | `weylus` | <i>Turn your tablet or smart phone into a graphic tablet/touch screen for your computer.</i> |
-| [<img src="../.github/github.png" align="top" width="20" />](https://whalebird.social/) | `whalebird` | <i>A Mastodon, Pleroma, and Misskey client for desktop application.</i> |
 | [<img src="../.github/github.png" align="top" width="20" />](https://github.com/eneshecan/whatsapp-for-linux) | `whatsapp-for-linux` | <i>An unofficial WhatsApp desktop application for Linux.</i> |
 | [<img src="../.github/gitlab.png" align="top" width="20" />](https://gitlab.melroy.org/melroy/winegui) | `winegui` | <i>A user-friendly WINE manager</i> |
 | [<img src="../.github/debian.png" align="top" width="20" />](https://winehq.org/) | `winehq-devel` | <i>the windows compatibility layer</i> |
