@@ -1,9 +1,0 @@
-DEFVER=1
-get_github_releases "Soundux/Soundux" "latest"
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "browser_download_url.*.deb" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | tr -d v)"
-fi
-PRETTY_NAME="Soundux Soundboard"
-WEBSITE="https://soundux.rocks"
-SUMMARY="Soundux is a cross-platform soundboard compatible with both Pulseaudio and Pipewire. It has a universal architecture and works with a variety of applications such as Discord, Steam, and more."
