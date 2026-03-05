@@ -1,0 +1,9 @@
+DEFVER=1
+get_website "https://www.xnview.com/update.txt"
+if [ "${ACTION}" != prettylist ]; then
+    URL="https://download.xnview.com/XnViewMP-linux-x64.deb"
+    VERSION_PUBLISHED="$(sed -n '/XnViewMP/{n; s/.*=//; p;}' "${CACHE_FILE}")"
+fi
+PRETTY_NAME="XnView"
+WEBSITE="https://www.xnview.com/en/xnview/"
+SUMMARY="XnView is a powerful, versatile and free image viewer, photo management, and image resizer software."
