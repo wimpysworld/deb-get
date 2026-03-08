@@ -189,7 +189,7 @@ function get_github_releases() {
             if grep "401 Unauthorized" "${HEADERS_FILE}"; then
                 fancy_message warn "The DEBGET_TOKEN is invalid or expired."
             else
-                if [ -z "${DEBGET_TOKEN}" ]; then
+                if [ -z "${DEBGET_TOKEN}" ] && [ -z "${QUIET}" ]; then
                     fancy_message recommend "DEBGET_TOKEN is not set. To increase your rate limit, create a Github Personal Access Token and put it in the DEBGET_TOKEN environment variable."
                 fi
                 local RATELIMIT_MAX=$(grep -E -o -m1 "X-RateLimit-Limit: [0-9]+" "${HEADERS_FILE}" | cut -d ' ' -f2)
@@ -202,8 +202,10 @@ function get_github_releases() {
                     if [[ "$RATELIMIT_REMAIN" -lt 1 ]]; then
                         fancy_message warn "Github API rate limit has been reached. You may experience problems downloading from Github."
                     fi
-                    fancy_message info "Github API: ${RATELIMIT_USED} request(s) used out of ${RATELIMIT_MAX}. ${RATELIMIT_REMAIN} remaining."
-                    fancy_message info "Github API: Rate limit resets in $((${RATELIMIT_RESET} / 60)) minutes, $((${RATELIMIT_RESET} % 60)) seconds."
+                    if [ -z "${QUIET}" ]; then
+                        fancy_message info "Github API: ${RATELIMIT_USED} request(s) used out of ${RATELIMIT_MAX}. ${RATELIMIT_REMAIN} remaining."
+                        fancy_message info "Github API: Rate limit resets in $((${RATELIMIT_RESET} / 60)) minutes, $((${RATELIMIT_RESET} % 60)) seconds."
+                    fi
                 fi
             fi
             if [ -f "${CACHE_FILE}" ] && grep -o "API rate limit exceeded[^\"]*" "${CACHE_FILE}"; then
