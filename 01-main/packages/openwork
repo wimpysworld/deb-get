@@ -1,12 +1,8 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-case ${HOST_ARCH} in
-    amd64) ARCH=amd64 ;;
-    arm64) ARCH=arm64 ;;
-esac
 get_github_releases "different-ai/openwork" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*openwork-desktop-linux-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    URL=$(grep -m 1 "browser_download_url.*openwork-desktop-linux-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
     VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
 fi
 PRETTY_NAME="OpenWork"
