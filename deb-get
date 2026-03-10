@@ -2,6 +2,7 @@
 LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
+unset QUIET
 
 readonly VERSION="0.4.7"
 
@@ -178,7 +179,9 @@ function get_github_releases() {
     # Do not process github releases while generating a pretty list or upgrading
     if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
-            fancy_message info "Updating ${CACHE_FILE}"
+            if [ -z ${QUIET} ]; then
+                fancy_message info "Updating ${CACHE_FILE}"
+            fi
             local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
             wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O- )
             "${wgetcmdarray[@]}" | jq . | ${ELEVATE} tee "${CACHE_FILE}" > /dev/null || ( fancy_message warn "Updating ${CACHE_FILE} failed." )
@@ -207,7 +210,9 @@ function get_gitlab_releases() {
 
     if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
-            fancy_message info "Updating ${CACHE_FILE}"
+            if [ -z ${QUIET} ]; then
+                fancy_message info "Updating ${CACHE_FILE}"
+            fi
             RELEASE=${2/%latest/permalink/latest}
             if [[ ${1} =~ ^https?://.* ]]; then
                 local GITLAB_HOST="$(sed -E 's|(https?://[^/]*).*|\1|' <<< ${1})"
@@ -234,7 +239,9 @@ function get_website() {
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
     if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
-            fancy_message info "Updating ${CACHE_FILE}"
+            if [ -z ${QUIET} ]; then
+                fancy_message info "Updating ${CACHE_FILE}"
+            fi
             # shellcheck disable=SC2086
             if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "$@" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
@@ -293,7 +300,7 @@ function eula() {
 
 function update_apt() {
   if ! [ "$DISABLE_APT" == "y" ]; then
-    ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y update
+    ${ELEVATE} apt-get -q${QUIET} -o Dpkg::Progress-Fancy="1" -y update
   fi
 }
 
@@ -726,7 +733,9 @@ function refresh_supported_cache_lists() {
     trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
     ${ELEVATE} touch "$lockfile"
     ${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
-    fancy_message info "Updating cache of supported apps in the background"
+    if [ -z ${QUIET} ]; then
+        fancy_message info "Updating cache of supported apps in the background"
+    fi
     list_debs | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
     ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
     # # belt and braces no longer needed
@@ -746,7 +755,9 @@ function update_repos() {
 
     for REPO in $(find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" | sed "s/.repo$//"); do
         # export REPO ETC_DIR ELEVATE  # no longer needed, `| bash -` replaced with `eval`
-        fancy_message info "Updating ${ETC_DIR}/${REPO}"
+        if [ -z ${QUIET} ]; then
+            fancy_message info "Updating ${ETC_DIR}/${REPO}"
+        fi
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
         # shellcheck disable=SC2086
         ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo.tmp" && ${ELEVATE} mv "${ETC_DIR}/${REPO}.repo.tmp" "${ETC_DIR}/${REPO}.repo"
@@ -1597,6 +1608,9 @@ function dg_action_update() {
         fi
         if [ -n "${3}" ] ; then
                     fancy_message error "Ignoring extra options from : ${3}"
+        fi
+        if [[ " $* " == *' --quiet '* ]] ; then
+            QUIET="q"
         fi
         elevate_privs
         create_cache_dir

@@ -1,0 +1,9 @@
+DEFVER=1
+get_website "https://www.xnview.com/update.txt"
+if [ "${ACTION}" != prettylist ]; then
+    URL="https://download.xnview.com/XnConvert-linux-x64.deb"
+    VERSION_PUBLISHED="$(sed -n '/XnConvert/{n; s/.*=//; p;}' "${CACHE_FILE}")"
+fi
+PRETTY_NAME="XnConvert"
+WEBSITE="https://www.xnview.com/en/xnconvert/"
+SUMMARY="XnConvert is a fast, powerful and free cross-platform batch image converter."
