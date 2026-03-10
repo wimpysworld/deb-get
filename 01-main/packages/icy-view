@@ -1,0 +1,24 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="trixie forky sid noble plucky questing resolute"
+MINIMUM_DEB_GET_VERSION="0.4.7"
+# required for post_download
+if ! dpkg --compare-versions "${VERSION}" ge "${MINIMUM_DEB_GET_VERSION}"; then
+    if [ "${ACTION}" == "install" ]; then
+        fancy_message  warn "deb-get Version ${VERSION} does not support $APP. Please use version ${MINIMUM_DEB_GET_VERSION} or later."
+    fi
+    ARCHS_SUPPORTED=""
+fi
+get_github_releases "mkrueger/icy_tools" "" --no-filter
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep -m 1 "browser_download_url.*icy_view_linux.*\.zip\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's/[^0-9.]//g')"
+fi
+FILE="icy-view.deb"
+post_download() {
+    ${ELEVATE} unzip -jq "${CACHE_DIR}/${FILE}" "icy_view.deb" -d "${CACHE_DIR}" || return 1
+    ${ELEVATE} mv "${CACHE_DIR}/icy_view.deb" "${CACHE_DIR}/${FILE}"
+}
+PRETTY_NAME="IcyView"
+WEBSITE="https://github.com/mkrueger/icy_tools/blob/master/crates/icy_view/README.md"
+SUMMARY="A viewer for ANSI, ASCII, and other BBS-era art file formats."
