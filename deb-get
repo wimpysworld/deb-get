@@ -1443,6 +1443,7 @@ case "${UPSTREAM_CODENAME}" in
     oracular) UPSTREAM_RELEASE="24.10";;
     plucky)   UPSTREAM_RELEASE="25.04";;
     questing) UPSTREAM_RELEASE="25.10";;
+    resolute) UPSTREAM_RELEASE="26.04";;
 
     *)  #Devuan
         if [[ "${UPSTREAM_ID}" == "debian" ]]; then
