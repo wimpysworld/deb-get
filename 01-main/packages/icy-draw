@@ -1,0 +1,15 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "mkrueger/icy_tools" "" --no-filter
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep -m 1 "browser_download_url.*icy_draw_linux.*\.zip\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(echo "${URL}" | cut -d'/' -f8 | sed 's/[^0-9.]//g')"
+fi
+FILE="icy-draw.deb"
+post_download() {
+    ${ELEVATE} unzip -jq "${CACHE_DIR}/${FILE}" "icy_draw.deb" -d "${CACHE_DIR}" || return 1
+    ${ELEVATE} mv "${CACHE_DIR}/icy_draw.deb" "${CACHE_DIR}/${FILE}"
+}
+PRETTY_NAME="IcyDraw"
+WEBSITE="https://github.com/mkrueger/icy_tools/blob/master/crates/icy_draw/README.md"
+SUMMARY="An ANSI/ASCII art editor with support for multiple character sets and file formats."
