@@ -283,6 +283,11 @@ function download_deb() {
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
         return 1
     fi
+
+    if declare -F post_download >/dev/null; then
+        post_download
+        return $?
+    fi
 }
 
 function eula() {
@@ -471,6 +476,7 @@ function validate_deb() {
     export PRETTY_NAME="" SUMMARY="" WEBSITE=""
     export URL=""
     export CACHE_FILE="" FILE=""
+    unset -f post_download 2>/dev/null
 
     # Source the variables
     if [ "${APP_SRC}" == "00-builtin" ]; then
