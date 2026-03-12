@@ -487,6 +487,27 @@ function validate_deb() {
         # shellcheck source=/dev/null
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
+
+    if [[ "${CODENAMES_SUPPORTED}" =~ "+" ]]; then
+        local DEBIAN_CODENAMES="$(cut -d ',' -f 3 "${DISTRO_INFO_DIR}/debian.csv")"
+        DEBIAN_CODENAMES="${DEBIAN_CODENAMES#*$'\n'}"; DEBIAN_CODENAMES="${DEBIAN_CODENAMES%$'\n'}"; DEBIAN_CODENAMES="${DEBIAN_CODENAMES//$'\n'/ }"
+        local UBUNTU_CODENAMES="$(cut -d ',' -f 3 "${DISTRO_INFO_DIR}/ubuntu.csv")"
+        UBUNTU_CODENAMES="${UBUNTU_CODENAMES#*$'\n'}"; UBUNTU_CODENAMES="${UBUNTU_CODENAMES%$'\n'}"; UBUNTU_CODENAMES="${UBUNTU_CODENAMES//$'\n'/ }"
+        local MIN_CODENAMES="$(grep -P -o "[a-z]+(?=\+)" <<< "${CODENAMES_SUPPORTED}")"
+        MIN_CODENAMES="${MIN_CODENAMES%$'\n'}"; MIN_CODENAMES="${MIN_CODENAMES//$'\n'/|}"
+        if [ -n "${MIN_CODENAMES}" ]; then
+            local OTHER_CODENAMES="$(grep -E -o "[a-z]+(\s|$)" <<< "${CODENAMES_SUPPORTED}")"
+            OTHER_CODENAMES="${OTHER_CODENAMES//$'\n'}"
+            CODENAMES_SUPPORTED="$(grep -E -o "(${MIN_CODENAMES})[^,]*" <<< "${DEBIAN_CODENAMES},${UBUNTU_CODENAMES}," || echo "${CODENAMES_SUPPORTED//+/}")"
+            CODENAMES_SUPPORTED="${CODENAMES_SUPPORTED/$'\n'/ }"; CODENAMES_SUPPORTED="${CODENAMES_SUPPORTED% }"
+            for other_codename in ${OTHER_CODENAMES}; do
+                if ! [[ "${CODENAMES_SUPPORTED}" =~ "${other_codename}" ]]; then
+                    CODENAMES_SUPPORTED="${other_codename} ${CODENAMES_SUPPORTED}"
+                fi
+            done
+        fi
+    fi
+
     if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
