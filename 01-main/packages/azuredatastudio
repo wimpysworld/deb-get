@@ -1,5 +1,5 @@
 DEFVER=1
-get_github_releases "microsoft/azuredatastudio" "latest"
+get_github_releases "microsoft/azuredatastudio" "latest" --no-filter
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 -Eo "https://.*\.deb" "${CACHE_FILE}" )
     VERSION_PUBLISHED=$(cut -d '-' -f 3 <<< "${URL//.deb/}")
