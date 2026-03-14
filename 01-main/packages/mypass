@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "snoack/mypass" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8)
+fi
+PRETTY_NAME="mypass"
+WEBSITE="https://github.com/snoack/mypass"
+SUMMARY="A secure password manager that can be used conviniently from the command line."
