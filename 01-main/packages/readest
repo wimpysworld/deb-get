@@ -4,7 +4,7 @@ CODENAMES_SUPPORTED="bookworm trixie sid jammy noble plucky questing"
 get_github_releases "readest/readest" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL=$(grep -m 1 "browser_download_url.*[${HOST_ARCH}|${HOST_CPU}]\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Readest"
 WEBSITE="https://readest.com/"
