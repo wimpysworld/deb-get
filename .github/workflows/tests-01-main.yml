@@ -161,6 +161,7 @@ jobs:
       - name: Initialize /etc/deb-get
         run: |
           sudo mkdir /etc/deb-get
+          sudo mkdir -p /usr/share/desktop-directories/
           echo "deb-get 1 github" | sudo tee /etc/deb-get/installed > /dev/null
           sudo cp ./01-main/manifest /etc/deb-get/01-main.repo
           sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
@@ -229,7 +230,7 @@ jobs:
 
       - name: Upload result
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: result-${{ matrix.package }}
           path: results/${{ matrix.package }}.json
@@ -244,7 +245,7 @@ jobs:
       - name: Download all results
         id: download
         continue-on-error: true
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: result-*
           path: results

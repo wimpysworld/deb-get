@@ -1,0 +1,20 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing"
+get_website "https://desktop.wifiman.com/wifiman-desktop-linux-manifest.json"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(grep -ozP '"version"\s*:\s*"\K[^"]+' "${CACHE_FILE}")"
+    URL="$(grep -ozP '"linux-x86_64"\s*:\s*"\K[^"]+' "${CACHE_FILE}")"
+fi
+post_download() {
+    local tmp=$(mktemp -d) || return 1
+    dpkg-deb --raw-extract "${CACHE_DIR}/${FILE}" "${tmp}" || return 1
+    # The postinst script matches "wifiman-desktop" too broadly, killing
+    # deb-get itself. Narrow the grep to the installed binary path instead.
+    sed -i "s|grep 'wifiman-desktop'|grep 'usr/bin/wifiman-desktop'|g" "${tmp}/DEBIAN/postinst" || return 1
+    ${ELEVATE} dpkg-deb --build --nocheck "${tmp}" "${CACHE_DIR}/${FILE}" || return 1
+    rm -rf "${tmp}"
+}
+PRETTY_NAME="WiFiman Desktop"
+WEBSITE="https://ui.com/download/app/wifiman-desktop"
+SUMMARY="Ubiquiti network discovery and Teleport client."

@@ -20,6 +20,7 @@ azuredatastudio
 balena-etcher
 bat
 battery-monitor
+bcompare
 beekeeper-studio
 beersmith3
 beszel-agent
@@ -36,9 +37,10 @@ caddy
 caprine
 #cawbird
 chronograf
+clamav
 code
 codium
-com.github.tkashkin.gamehub
+#com.github.tkashkin.gamehub
 copyq
 cosign
 cronopete
@@ -70,6 +72,7 @@ draw.io
 dropbox
 du-dust
 duf
+duplicati
 dustracing2d
 eaglemode
 eduvpn-client
@@ -106,7 +109,8 @@ fooyin
 franz
 freeplane
 freeshow
-fresh
+#fresh
+fresh-editor
 frostwire
 fsearch
 g
@@ -141,7 +145,7 @@ headset
 helio-workstation
 helmwave
 heroic
-homeassistant-supervised
+#homeassistant-supervised
 hugo
 hydralauncher
 hyper
@@ -314,7 +318,7 @@ smartgit
 sniffnet
 softmaker-office-2021
 songrec
-soundux
+#soundux
 speedtest
 spotify-client
 spotube
@@ -392,12 +396,15 @@ weechat
 weylus
 whalebird
 #whatsapp-for-linux
+wifiman-desktop
 winegui
 winehq-devel
 winehq-stable
 winehq-staging
 wire-desktop
 xemu
+xnconvert
+xnview
 xpipe
 yazi
 youtube-music

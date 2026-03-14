@@ -1,27 +1,25 @@
 DEFVER=1
 CODENAMES_SUPPORTED="bookworm trixie sid forky jammy noble plucky questing"
-get_website "https://posit.co/download/rstudio-desktop/"
+get_website "https://posit.co/wp-content/uploads/downloads.json"
+local RELEASE
+local CODENAME
+local ALL_RELEASES
 if [ "${ACTION}" != "prettylist" ]; then
+    ALL_RELEASES=$(jq -r '.rstudio.open_source.stable.desktop.installer[] | select(.platform.name | contains("Ubuntu") or contains("Debian")) | [.platform.name, .platform.key] | join(",")' "${CACHE_FILE}")
     case "${UPSTREAM_CODENAME}" in
-        bookworm|jammy|noble)
-            # Only these are present currently. Focal has been removed. Both currently point to jammy/bookworm builds.
-            #
-            URL=$(grep -A4 -e "${OS_ID} ${UPSTREAM_RELEASE%%.*}"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
-            ;;
-        plucky|questing)
-        # On the assumption that these will use 24 when a newer build is available.
-            URL=$(grep -A4 -e "${OS_ID} 24"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
-            ;;
-        forky|sid|trixie)
-        # currently only 12 is available. Amend when more are added.
-            URL=$(grep -A4 -e "${OS_ID} 12"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
-            ;;
-        *)
-        # Default to Ubuntu 22.04 build for other distros
-            URL=$(grep -A4 -e "Ubuntu 22"  $CACHE_FILE |grep -m 1 -E -o "https://.*${HOST_ARCH}\.deb" )
-            ;;
+        sid) RELEASE=$(grep -E -o "Debian [0-9]+" <<< "${ALL_RELEASES}" | cut -d ' ' -f2 | sort -rn | head -n1);;
+          *) RELEASE="${UPSTREAM_RELEASE%%.*}";;
     esac
-    VERSION_PUBLISHED=$(cut -d '-' -f 2-3 <<< "${URL}" | tr - +)
+    while [[ ${RELEASE} -gt 0 ]]; do
+        CODENAME=$(grep -i -m 1 -E -o "${UPSTREAM_ID} ${RELEASE}[^,]*,[[:alnum:]]+" <<< "${ALL_RELEASES}")
+        if [[ ${CODENAME} =~ ${UPSTREAM_ID^}\ ${RELEASE}[^,]*,[a-z]+ ]]; then break; fi
+        RELEASE=$((RELEASE - 1))
+    done
+    CODENAME=$(cut -d ',' -f2 <<< "${CODENAME}")
+    if [ -n "${CODENAME}" ]; then
+        URL=$(jq -r ".rstudio.open_source.stable.desktop.installer.${CODENAME}.url" "${CACHE_FILE}")
+        VERSION_PUBLISHED=$(jq -r ".rstudio.open_source.stable.desktop.installer.${CODENAME}.version" "${CACHE_FILE}")
+    fi
 fi
 PRETTY_NAME="RStudio"
 WEBSITE="https://posit.co/"
