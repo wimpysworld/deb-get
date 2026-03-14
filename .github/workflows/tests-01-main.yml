@@ -161,6 +161,7 @@ jobs:
       - name: Initialize /etc/deb-get
         run: |
           sudo mkdir /etc/deb-get
+          sudo mkdir -p /usr/share/desktop-directories/
           echo "deb-get 1 github" | sudo tee /etc/deb-get/installed > /dev/null
           sudo cp ./01-main/manifest /etc/deb-get/01-main.repo
           sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
