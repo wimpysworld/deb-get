@@ -6,6 +6,11 @@ function follow_url() {
     local TRIM_URL="$(curl -w "%{url_effective}" -I -L -s -S "${1}" -o /dev/null)"
     printf '%s' "${TRIM_URL}"
 }
+if [ "${ACTION}" == "install" ]; then
+    # we need to ensure that i386 architecture is enabled for the deb file to be installable on 64-bit systems
+    "${ELEVATE}" dpkg --add-architecture i386
+    "${ELEVATE}" apt-get update
+fi
 if [ "${ACTION}" != "prettylist" ]; then
     URL="$(follow_url "$(grep -o "https://www\.bitwig\.com/dl/Bitwig%20Studio/[[:digit:]]*.[[:digit:]]*.[[:digit:]]*/installer_linux/" "${CACHE_FILE}")")"
     VERSION_PUBLISHED="$(echo "\"${URL}\"" | cut -d "/" -f 4)"
