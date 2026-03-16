@@ -1,5 +1,5 @@
 DEFVER=1
-# CODENAMES_SUPPORTED="bookworm bullseye buster focal jammy noble oracular plucky questing trixie sid"
+# CODENAMES_SUPPORTED="bookworm bullseye buster focal jammy noble oracular plucky questing trixie forky sid"
 # ARCHS_SUPPORTED="amd64"
 get_github_releases "johannesjo/super-productivity" #"latest"
 if [ "${ACTION}" != "prettylist" ]; then
