@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-CODENAMES_SUPPORTED="bookworm trixie sid jammy noble plucky questing"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing"
 get_github_releases "readest/readest" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL=$(grep -m 1 "browser_download_url.*[${HOST_ARCH}|${HOST_CPU}]\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)

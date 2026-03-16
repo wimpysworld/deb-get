@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie forky sid focal jammy lunar mantic noble"
 get_github_releases "bambanah/deemix"
 if [ "${ACTION}" != prettylist ]; then
     URL=$(grep -m 1 "browser_download_url.*gui.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)

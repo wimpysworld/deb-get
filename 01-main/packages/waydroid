@@ -1,5 +1,5 @@
 DEFVER=2
-CODENAMES_SUPPORTED="bullseye bookworm trixie sid jammy noble plucky questing"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble plucky questing"
 GPG_KEY_URL="https://repo.waydro.id/waydroid.gpg"
 
 
