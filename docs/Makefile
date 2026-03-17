@@ -24,6 +24,7 @@ install_bins:
 	install -d $(DESTDIR)$(bindir)
 	install -m 755 ../deb-get $(DESTDIR)$(bindir)
 	install -m 644 ../deb-get_completion ${etcdir}/bash_completion.d/
+	install -d $(DESTDIR)$(datadir)/fish/vendor_completions.d/
 	install -m 644 ../deb-get.fish $(DESTDIR)$(datadir)/fish/vendor_completions.d/
 
 
