@@ -12,7 +12,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         URL=$(grep -m 1 "browser_download_url.*_debian${UPSTREAM_RELEASE}_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
         ;;
     *)
-        URL=$(grep -m 1 "browser_download_url._debian12_${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+        URL=$(grep -m 1 "browser_download_url.*_debian12_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
         ;;
     esac
 
