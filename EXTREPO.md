@@ -28,8 +28,8 @@ Create a package definition file named `<the-package-name>` in the `packages` pa
 The variables defined in the package definition file are the following:
 
 * `DEFVER`: An integer greater than or equal to `1` that represents the version of the package definition. It must be incremented every time `ASC_KEY_URL`, `GPG_KEY_URL`, `APT_REPO_URL`, `APT_REPO_OPTIONS` or `PPA` are added, changed or removed, or the package installation method changes.
-* `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`.
-* `CODENAMES_SUPPORTED`: A space-separated list of supported upstream codenames, supporting the values from `UPSTREAM_CODENAME`.
+* `ARCHS_SUPPORTED`: A space-separated list of supported architectures, following the format used by `dpkg --print-architecture`. Alternatively it can be set to `all`, if the package is compatible with all architectures.
+* `CODENAMES_SUPPORTED`: A space-separated list of supported upstream codenames, supporting the values from `UPSTREAM_CODENAME`. If a `+` is appended to the end of an codename, it will be set as the minimum version for its respective distro. 
 * `ASC_KEY_URL`: A URL to the ASCII-armored keyring file.
 * `GPG_KEY_URL`: A URL to the binary keyring file.
 * `GPG_KEY_ID`: The Key ID to be fetched from a keyserver.
@@ -52,7 +52,7 @@ if [ "${ACTION}" != prettylist ]; then
 fi
 ```
 
-`APT_REPO_URL`, `PPA`, `PRETTY_NAME`, `WEBSITE`, `SUMMARY` and the calls to `get_github_releases` or `get_website` must never be wrapped by the condition above.
+`APT_REPO_URL`, `PPA`, `PRETTY_NAME`, `WEBSITE`, `SUMMARY` and the calls to `get_github_releases`, `get_gitlab_releases` or `get_website` must never be wrapped by the condition above.
 
 The environment variables available to the package definition file are the following:
 
@@ -63,8 +63,9 @@ The environment variables available to the package definition file are the follo
 * `OS_ID_PRETTY`: The brand name of the OS.
 * `OS_CODENAME`: The codename of the OS, as output by `lsb_release --codename --short`.
 * `UPSTREAM_ID`: The id of the upstream distribution. Supported values are `ubuntu` and `debian`.
-* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `buster` (10), `bullseye` (11), `bookworm` (12), `trixie` (13), `sid` (unstable), `focal` (20.04), `jammy` (22.04), `noble` (24.04), `oracular` (24.10) and `plucky` (25.04).
+* `UPSTREAM_CODENAME`: The codename of the upstream distribution. Supported values are `bullseye` (11), `bookworm` (12), `trixie` (13), `forky` (14), `sid` (unstable), `jammy` (22.04), `noble` (24.04), `questing` (25.10) and `resolute` (26.04).
 * `UPSTREAM_RELEASE`: The release version of the upstream distribution.
+* `DEBIAN_TESTING`: When running on Debian Testing, this will be set to the same value as `UPSTREAM_CODENAME`. Otherwise, it will be unset.
 * `ACTION`: The command being executed by `deb-get`. Supported values are `update`, `upgrade`, `show`, `install`, `reinstall`, `remove`, `purge`, `prettylist` and `fix-installed`. `ACTION` for `csvlist` is `prettylist`.
 * `APP`: The name of the package.
 * `CACHE_FILE`: The path to the cached file for `website` and `github` packages.
@@ -73,6 +74,7 @@ The helper functions available to the package definition file are the following:
 
 * `unroll_url`: Handles redirection and returns the final URL.
 * `get_github_releases`: Sets `METHOD` to `github` and saves the GitHub releases JSON file from GitHub API to `CACHE_FILE`.
+* `get_gitlab_releases`: Sets `METHOD` to `gitlab` and saves the GitLab releases JSON file from GitLab API to `CACHE_FILE`.
 * `get_website`: Sets `METHOD` to `website` and saves the HTML file to `CACHE_FILE`.
 
 Use the following package definition templates as reference for adding a new package to the repository, according to the installation method of the package. The package definition files already implemented in the main repository can serve as further reference.
@@ -84,7 +86,7 @@ If the keyring file is in the ASCII-armored format (extension `*.asc`), use this
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble questing resolute"
 ASC_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -100,7 +102,7 @@ If the keyring file is in the binary format instead (extension `*.gpg`), use thi
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble questing resolute"
 GPG_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -116,7 +118,7 @@ If the keyring file must be fetched from a keyserver by ID use this template:
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble questing resolute"
 GPG_KEY_ID=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -145,10 +147,33 @@ Replace `<user-organization>` and `<repository>` with the correct values:
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble questing resolute"
 get_github_releases "<user-organization>/<repository>" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
+    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
+fi
+EULA=""
+PRETTY_NAME=""
+WEBSITE=""
+SUMMARY=""
+```
+
+## GitLab releases
+
+For self-hosted Gitlab projects, the full URL must be provided:
+`"https://<gitlab.example.com>/<user-organization>/<repository>"`
+For projects hosted on gitlab.com, `<user-organization>/<repository>` is sufficient.
+
+Replace `<gitlab.example.com>`, `<user-organization>` and `<repository>` with the correct values:
+
+```bash
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble questing resolute"
+get_gitlab_releases "<user-organization>/<repository>" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "https://.*\.deb" "${CACHE_FILE}")"
     VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
 fi
 EULA=""
@@ -162,7 +187,7 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble questing resolute"
 get_website "<website>"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep -m 1 "<pattern>" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
@@ -179,7 +204,7 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid jammy noble questing resolute"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(unroll_url "<website>")"
     VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
