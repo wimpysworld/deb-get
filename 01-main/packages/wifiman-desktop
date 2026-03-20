@@ -1,6 +1,15 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
 CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing"
+MINIMUM_DEB_GET_VERSION="0.4.7"
+# required for post_download
+if ! dpkg --compare-versions "${VERSION}" ge "${MINIMUM_DEB_GET_VERSION}"; then
+    if [ "${ACTION}" == "install" ]; then
+    fancy_message  warn "deb-get Version ${VERSION} does not support $APP. Please use version ${MINIMUM_DEB_GET_VERSION} or later."
+    fi
+    # This is a bit of a hack, but it prevents the app from being listed in the "deb-get list" output, which would be confusing to users of older deb-get versions.
+    ARCHS_SUPPORTED=""
+fi
 get_website "https://desktop.wifiman.com/wifiman-desktop-linux-manifest.json"
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED="$(grep -ozP '"version"\s*:\s*"\K[^"]+' "${CACHE_FILE}")"

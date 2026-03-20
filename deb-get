@@ -484,7 +484,7 @@ function validate_deb() {
     else
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
-    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+    if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} " | " all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
             fancy_message error "Missing required information of package ${APP}:"
@@ -551,7 +551,7 @@ function validate_deb() {
         if { { [[ ' github website gitlab ' =~ " ${METHOD} " ]] && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            ! [[ ' prettylist remove purge ' =~ " ${ACTION} " ]] &&
            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
-           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
+           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} " | " all ") ]]; } &&
            { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             printf >&2 '%s\n' "URL=${URL}" "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
@@ -610,7 +610,7 @@ function list_debs() {
             # because we need to update the cache files this one slow time
             for FULL_APP in "${APPS[@]}"; do
                 if validate_deb "${FULL_APP}"; then
-                    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+                    if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} " | " all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
                         case "${2}" in
                         (--raw)
                             printf '%s\n' "${APP}"
@@ -1437,33 +1437,18 @@ else
 fi
 
 case "${UPSTREAM_CODENAME}" in
-    buster)   UPSTREAM_RELEASE="10";;
-    bullseye) UPSTREAM_RELEASE="11";;
-    bookworm) UPSTREAM_RELEASE="12";;
-    trixie)   UPSTREAM_RELEASE="13";;
-    forky)    UPSTREAM_RELEASE="14";;
-    sid)      UPSTREAM_RELEASE="unstable";;
-    focal)    UPSTREAM_RELEASE="20.04";;
-    jammy)    UPSTREAM_RELEASE="22.04";;
-    noble)    UPSTREAM_RELEASE="24.04";;
-    oracular) UPSTREAM_RELEASE="24.10";;
-    plucky)   UPSTREAM_RELEASE="25.04";;
-    questing) UPSTREAM_RELEASE="25.10";;
-    resolute) UPSTREAM_RELEASE="26.04";;
-
-    *)  #Devuan
-        if [[ "${UPSTREAM_ID}" == "debian" ]]; then
+    sid) UPSTREAM_RELEASE="unstable";;
+      *) UPSTREAM_RELEASE="$(grep -m1 -o -P "^[^,\s]+(?=\s*[A-Z]*,[^,]+,${UPSTREAM_CODENAME},)" "${DISTRO_INFO_DIR}/${UPSTREAM_ID}.csv")"
+        #Devuan
+        if [ -z ${UPSTREAM_RELEASE} ] && [[ "${UPSTREAM_ID}" == "debian" ]]; then
             UPSTREAM_RELEASE="$(grep -E -o -m 1 "^[0-9]+" "/etc/debian_version")"
+            UPSTREAM_CODENAME="$(grep -m1 -o -P "^${UPSTREAM_RELEASE},[^,]+,\K[a-z]+(?=,)" "${DISTRO_INFO_DIR}/${UPSTREAM_ID}.csv")"
         fi
-        case "${UPSTREAM_RELEASE}" in
-            10) UPSTREAM_CODENAME="buster";;
-            11) UPSTREAM_CODENAME="bullseye";;
-            12) UPSTREAM_CODENAME="bookworm";;
-            13) UPSTREAM_CODENAME="trixie";;
-            14) UPSTREAM_CODENAME="forky";;
-             *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
-        esac
+        ;;
 esac
+if [ -z ${UPSTREAM_CODENAME} ] || [ -z ${UPSTREAM_RELEASE} ]; then
+    fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release."
+fi
 }
 
 function dg_action_cache() {
@@ -1505,7 +1490,7 @@ function dg_action_install() {
                 exit 1
             fi
             if validate_deb "${FULL_APP}"; then
-                if [[ " ${ARCHS_SUPPORTED} " != *" ${HOST_ARCH} "* ]]; then
+                if [[ " ${ARCHS_SUPPORTED} " != *" ${HOST_ARCH} "* && " ${ARCHS_SUPPORTED} " != *" all "* ]]; then
                     fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
                 fi
 
@@ -1684,6 +1669,7 @@ fi
 export CACHE_DIR="/var/cache/deb-get"
 readonly ETC_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
+readonly DISTRO_INFO_DIR="/usr/share/distro-info"
 
 readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
 readonly USER_HOME="${HOME}"
