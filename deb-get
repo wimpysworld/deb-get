@@ -1678,6 +1678,9 @@ readonly ETC_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
 readonly DISTRO_INFO_DIR="/usr/share/distro-info"
 
+# shellcheck disable=SC2034
+readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+
 readonly DEBGET_BIN=$(basename $0)
 
 parse_machine
