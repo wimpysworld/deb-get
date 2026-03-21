@@ -1,0 +1,7 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ASC_KEY_URL="https://apt.fury.io/wez/gpg.key"
+APT_REPO_URL="https://apt.fury.io/wez/ * *"
+PRETTY_NAME="WezTerm"
+WEBSITE="https://wezterm.org/"
+SUMMARY="A GPU-accelerated terminal emulator and multiplexer."
