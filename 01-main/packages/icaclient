@@ -1,8 +1,8 @@
-URL_PRE=$(curl https://www.citrix.com/downloads/workspace-app/ | grep "Citrix Workspace app.*Linux" | sort -r -k 5 | grep -m 1 -v -i tech | cut -d'"' -f2)
-URL="http:$(curl https://www.citrix.com/${URL_PRE} | grep ctx-dl-lin | cut -d'"' -f10 | grep icaclient.*${HOST_ARCH}.*deb)"
-FILE=$(echo "${URL}" | sed 's/.deb?.*/.deb/g')
+URL_PRE=$(curl https://www.citrix.com/downloads/workspace-app/ | grep "Citrix Workspace app.*Linux" | sort -r -k 5 | grep -m 1 -v -i tech | cut -d '"' -f 2)
+URL="http:$(curl https://www.citrix.com/${URL_PRE} | grep ctx-dl-lin | cut -d '"' -f 10 | grep icaclient.*${HOST_ARCH}.*deb)"
+FILE=$(sed 's/.deb?.*/.deb/g' <<< "${URL}")
 FILE=${FILE##*/}
-VERSION_PUBLISHED="$(echo "${URL}" | cut -d'_' -f 2)"
+VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 PRETTY_NAME="Citrix Workspace App"
 WEBSITE="https://www.citrix.com/en-gb/downloads/workspace-app/linux"
 SUMMARY="Enables users to access virtual desktops and hosted applications delivered by XenDesktop and XenApp."

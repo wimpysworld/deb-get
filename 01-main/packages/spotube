@@ -8,8 +8,8 @@ case ${HOST_ARCH} in
 esac
 get_github_releases "KRTirtho/spotube" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*${TARGET_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
-    VERSION_PUBLISHED=$(cut -d'/' -f8 <<< "${URL//v/}" )
+    URL=$(grep -m 1 "browser_download_url.*${TARGET_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}" )
 fi
 PRETTY_NAME="Spotube"
 WEBSITE="https://spotube.krtirtho.dev/"

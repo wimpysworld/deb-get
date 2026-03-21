@@ -1,4 +1,5 @@
 DEFVER=1
+# shellcheck disable=SC2168
 local QT_VER
 case "${UPSTREAM_CODENAME}" in
     buster|bookworm|focal|jammy|noble|lunar|kinetic|mantic) QT_VER="5" ;; # oracular has both 
@@ -7,8 +8,9 @@ case "${UPSTREAM_CODENAME}" in
 esac
 get_website "https://sourceforge.net/p/cudatext/activity/feed"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(unroll_url "$(sed 's|</*link>|\n|g' "${CACHE_FILE}" | grep -o -m 1 "^http.*qt${QT_VER}_amd64.deb")")"
-    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+    # shellcheck disable=SC2046
+    URL=$(unroll_url $(sed 's|</*link>|\n|g' "${CACHE_FILE}" | grep -o -m 1 "^http.*qt${QT_VER}_amd64.deb"))
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="CudaText"
 WEBSITE="https://cudatext.github.io/"

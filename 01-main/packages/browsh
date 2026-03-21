@@ -8,8 +8,8 @@ elif [[ "${URL_ARCH}" =~ i386 ]]; then
 fi
 get_github_releases "browsh-org/browsh"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${URL_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(grep -Eo '/v[^/]*' <<<"${URL}" | cut -d 'v' -f 2)
+    URL=$(grep -m 1 "browser_download_url.*${URL_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(grep -Eo '/v[^/]*' <<< "${URL}" | cut -d 'v' -f 2)
 fi
 PRETTY_NAME="browsh"
 WEBSITE="https://github.com/browsh-org/browsh"

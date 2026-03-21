@@ -14,8 +14,8 @@ case "${ARCH}" in
 esac
 get_github_releases "Tribler/tribler" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${ARCH}.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
+    URL=$(grep -m 1 "browser_download_url.*${ARCH}.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Tribler"
 WEBSITE="https://www.tribler.org/"

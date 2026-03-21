@@ -24,12 +24,12 @@ if [ "${ACTION}" != "prettylist" ]; then
     regex="releases/download/release_(candidate_){0,1}[[:digit:]]+(\.[[:alnum:]]+)+/openrgb_[[:digit:]]+(\.[[:alnum:]]+)+_${HOST_ARCH}_${codename}_[^_>]+\.deb"
     # can return multiple lines (since the content has no newlines):
     deb=$( grep -m 1 -o -E "${regex}" "${CACHE_FILE}" ) 
-    # deb=$( sort  -r <<<"$deb" )
+    # deb=$( sort  -r <<< "$deb" )
     # strip everything after the first newline:
     deb="${deb/$'\n'*/}"
     URL="https://codeberg.org/OpenRGB/OpenRGB/${deb}"
     # grab the first version found in the path (in the directory name):
-    VERSION_PUBLISHED=$( cut -d/ -f3 <<< "${deb}" )
+    VERSION_PUBLISHED=$( cut -d / -f 3 <<< "${deb}" )
     VERSION_PUBLISHED="${VERSION_PUBLISHED/_candidate/}"
     VERSION_PUBLISHED="${VERSION_PUBLISHED#release_}"
     if [ "$VERSION_PUBLISHED" == "1.0rc2" ]; then
