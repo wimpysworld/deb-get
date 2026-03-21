@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid bionic focal jammy kinetic lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid bionic jammy noble"
 ASC_KEY_URL="https://dl.winehq.org/wine-builds/winehq.key"
 APT_LIST_NAME="winehq"
 APT_REPO_URL="https://dl.winehq.org/wine-builds/${UPSTREAM_ID} ${UPSTREAM_CODENAME}  main"
