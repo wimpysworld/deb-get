@@ -1,5 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
+# shellcheck disable=SC2168
 local ARCH_VER
 case ${HOST_ARCH} in
     armhf) ARCH_VER="arm7" ;;
@@ -7,8 +8,8 @@ case ${HOST_ARCH} in
 esac
 get_github_releases "xxxserxxx/gotop"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*${ARCH_VER}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
-    VERSION_PUBLISHED="$(sed -E 's|.*_v([^_]*)_.*|\1|' <<< "${URL}")"
+    URL=$(grep -m 1 "browser_download_url.*${ARCH_VER}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(sed -E 's|.*_v([^_]*)_.*|\1|' <<< "${URL}")
 fi
 PRETTY_NAME="gotop"
 WEBSITE="https://github.com/xxxserxxx/gotop"

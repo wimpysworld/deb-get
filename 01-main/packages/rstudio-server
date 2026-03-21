@@ -7,7 +7,7 @@ local ALL_RELEASES
 if [ "${ACTION}" != "prettylist" ]; then
     ALL_RELEASES=$(jq -r '.rstudio.open_source.stable.server.installer[] | select(.platform.name | contains("Ubuntu") or contains("Debian")) | [.platform.name, .platform.key] | join(",")' "${CACHE_FILE}")
     case "${UPSTREAM_CODENAME}" in
-        sid) RELEASE=$(grep -E -o "Debian [0-9]+" <<< "${ALL_RELEASES}" | cut -d ' ' -f2 | sort -rn | head -n1);;
+        sid) RELEASE=$(grep -E -o "Debian [0-9]+" <<< "${ALL_RELEASES}" | cut -d ' ' -f 2 | sort -rn | head -n 1);;
           *) RELEASE="${UPSTREAM_RELEASE%%.*}";;
     esac
     while [[ ${RELEASE} -gt 0 ]]; do
@@ -15,7 +15,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         if [[ ${CODENAME} =~ ${UPSTREAM_ID^}\ ${RELEASE}[^,]*,[a-z]+ ]]; then break; fi
         RELEASE=$((RELEASE - 1))
     done
-    CODENAME=$(cut -d ',' -f2 <<< "${CODENAME}")
+    CODENAME=$(cut -d ',' -f 2 <<< "${CODENAME}")
     if [ -n "${CODENAME}" ]; then
         URL=$(jq -r ".rstudio.open_source.stable.server.installer.${CODENAME}.url" "${CACHE_FILE}")
         VERSION_PUBLISHED=$(jq -r ".rstudio.open_source.stable.server.installer.${CODENAME}.version" "${CACHE_FILE}")

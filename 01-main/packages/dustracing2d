@@ -3,7 +3,7 @@ CODENAMES_SUPPORTED="noble" # questing"
 get_github_releases "juzzlin/DustRacing2D" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*-${OS_ID}-${UPSTREAM_RELEASE}_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)  
-    VERSION_PUBLISHED="$(cut -d'/' -f 8 <<< "${URL}")"
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
 fi
 PRETTY_NAME="DustRacing2D"
 WEBSITE="https://juzzlin.github.io/DustRacing2D/index.html"
