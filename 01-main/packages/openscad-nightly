@@ -1,0 +1,27 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid noble oracular plucky questing"
+
+local OBS_DISTRO
+local RELEASE="${UPSTREAM_RELEASE}"
+
+case "${UPSTREAM_ID}" in
+    debian)
+        OBS_DISTRO="Debian"
+        case "${UPSTREAM_CODENAME}" in
+            "${DEBIAN_TESTING}") RELEASE="Testing" ;;
+            sid) RELEASE="Unstable" ;;
+        esac
+        ;;
+    ubuntu)
+        OBS_DISTRO="xUbuntu"
+        ;;
+esac
+
+APT_REPO_URL="https://download.opensuse.org/repositories/home:/t-paul/${OBS_DISTRO}_${RELEASE}/ /"
+ASC_KEY_URL="https://files.openscad.org/OBS-Repository-Key.pub"
+APT_LIST_NAME="openscad-nightly"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="OpenSCAD Nightly"
+WEBSITE="https://openscad.org/"
+SUMMARY="Development snapshot builds of the OpenSCAD 3D CAD modeler."
