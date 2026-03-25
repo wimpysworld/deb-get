@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "EutropicAI/Final2x" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*deb\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Final2x"
+WEBSITE="https://github.com/EutropicAI/Final2x"
+SUMMARY="A cross-platform image super-resolution tool."

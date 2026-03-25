@@ -5,7 +5,7 @@ UPSTREAM_RELEASE_NODOT="${UPSTREAM_RELEASE//./}"
 get_github_releases "ilya-zlobintsev/LACT" "latest"
 if [ "${ACTION}" != prettylist ]; then
     URL="$(grep -m 1 "browser_download_url.*lact-[0-9].*${HOST_ARCH}\.${UPSTREAM_ID}-${UPSTREAM_RELEASE_NODOT}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
-    VERSION_PUBLISHED="$(cut -d'/' -f8 <<< "${URL//v/}")"
+    VERSION_PUBLISHED="$(cut -d '/' -f 8 <<< "${URL//v/}")"
 fi
 PRETTY_NAME="LACT"
 WEBSITE="https://github.com/ilya-zlobintsev/LACT"

@@ -1,0 +1,9 @@
+DEFVER=1
+get_website https://aur.archlinux.org/packages/surfshark-client
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED=$(grep -m 1 'Package Details' "${CACHE_FILE}" |  grep -o -E '([[:digit:]]+\.)+[[:digit:]]+' )
+    URL="https://ocean.surfshark.com/debian/pool/main/s/surfshark_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+fi
+PRETTY_NAME="Surfshark VPN"
+WEBSITE="https://surfshark.com/"
+SUMMARY="Award-winning VPN service."

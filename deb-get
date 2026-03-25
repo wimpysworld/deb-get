@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2076 # We often use =~ to match strings rather than a regex.
+# shellcheck disable=SC2155 #  The exit codes aren't being used in these instances anyway.
+
 LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
@@ -189,9 +192,8 @@ function get_github_releases() {
                 fancy_message warn "Updating ${CACHE_FILE} exceeded GitHub API limits. Deleting it."
                 ${ELEVATE} rm "${CACHE_FILE}" 2>/dev/null
             fi
-            if [ ! ${APP} == "azuredatastudio" ]; then
-                # because MS have to be different
-                ${ELEVATE} sed -i '/browser_download/!d;/\.deb/!d' ${CACHE_FILE}
+            if [[ " $* " != *' --no-filter '* ]]; then
+                ${ELEVATE} sed -i "/browser_download/!d;/\.deb/!d" ${CACHE_FILE}
             fi
         fi
     fi
@@ -316,7 +318,7 @@ function upgrade_apt() {
 }
 
 function upgrade_only_dg() {
-    mapfile -t INSTALLED_APT_PPA < <(grep -E "apt\s*$|ppa\s*$" "${ETC_DIR}/installed"); INSTALLED_APT_PPA=(${INSTALLED_APT_PPA[@]%% *})
+    mapfile -t INSTALLED_APT_PPA < <(grep -P -o "\S+(?=\s\d+\s(apt\s*$|ppa\s*)$)" "${ETC_DIR}/installed")
     printf '%s\0' "${INSTALLED_APT_PPA[@]}" | xargs -0 ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y install --only-upgrade
 }
 
@@ -482,9 +484,10 @@ function validate_deb() {
     if [ "${APP_SRC}" == "00-builtin" ]; then
         deb_"${APP}" 2>/dev/null
     else
+        # shellcheck source=/dev/null
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
-    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+    if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
             fancy_message error "Missing required information of package ${APP}:"
@@ -551,7 +554,7 @@ function validate_deb() {
         if { { [[ ' github website gitlab ' =~ " ${METHOD} " ]] && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
            ! [[ ' prettylist remove purge ' =~ " ${ACTION} " ]] &&
            { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; } &&
-           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]]; } &&
+           { [ -z "${ARCHS_SUPPORTED}" ] || [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]]; } &&
            { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; }; then
             fancy_message error "Missing required information of ${METHOD} package ${APP}:"
             printf >&2 '%s\n' "URL=${URL}" "VERSION_PUBLISHED=${VERSION_PUBLISHED}"
@@ -610,7 +613,7 @@ function list_debs() {
             # because we need to update the cache files this one slow time
             for FULL_APP in "${APPS[@]}"; do
                 if validate_deb "${FULL_APP}"; then
-                    if [[ " ${ARCHS_SUPPORTED} " =~ " ${HOST_ARCH} " ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
+                    if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
                         case "${2}" in
                         (--raw)
                             printf '%s\n' "${APP}"
@@ -736,7 +739,7 @@ function refresh_supported_cache_lists() {
         fi
     fi
 
-    trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
+    trap 'trap - EXIT; ${ELEVATE} rm -f "$lockfile"' EXIT
     ${ELEVATE} touch "$lockfile"
     ${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
     if [ -z ${QUIET} ]; then
@@ -749,6 +752,7 @@ function refresh_supported_cache_lists() {
     cut -d" " -f 1 "${CACHE_DIR}/supported.list" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list" >/dev/null
 }
 
+
 function update_repos() {
     local REPO_URL=""
     # preserve current behaviour for now but allow modification via env
@@ -756,6 +760,7 @@ function update_repos() {
     local WGET_VERBOSITY="--quiet"
 
     if [[ " $* " == *' --quiet'* ]]  ; then
+        # shellcheck disable=SC2034
          CURL_OPTS="--disable --show-error --silent"
     fi
 
@@ -773,21 +778,22 @@ function update_repos() {
         # Faster by some margin if we are hitting github
         # Otherwise revert to old-style for a bespoke hosted repo
 
-        pushd "${ETC_DIR}/${REPO}.d" >/dev/null
-        (eval "$(
-        awk -F/ '/github/  {print "# fetching github repo";
-                            print "GITREPO="$4"/"$5;\
-                            print "BRANCH="$6;\
-                            print "curl ${CURL_OPTS} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
-                ! /github/ {print "# fetching non-github repo";
-                            print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
-                            print "${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
-                            print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
-                } '\
-                <<<"${REPO_URL}"
-        )")
+        if pushd "${ETC_DIR}/${REPO}.d" >/dev/null; then
+            (eval "$(
+            awk -F/ '/github/  {print "# fetching github repo";
+                                print "GITREPO="$4"/"$5;\
+                                print "BRANCH="$6;\
+                                print "curl ${CURL_OPTS} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
+                    ! /github/ {print "# fetching non-github repo";
+                                print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
+                                print "${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
+                                print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
+                    } '\
+                    <<<"${REPO_URL}"
+            )")
 
-        popd >/dev/null
+            popd >/dev/null || true
+        fi
     done
     refresh_supported_cache_lists &
 }
@@ -1423,6 +1429,7 @@ if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" <<< "${ETC_DEB_VER}"; the
     if apt-cache policy | grep -q -i -e "o=debian.*n=${ETC_DEB_VER%%/*}" -e "o=debian.*n=testing"; then
         UPSTREAM_CODENAME="${ETC_DEB_VER%%/*}"
         OS_CODENAME="${UPSTREAM_CODENAME}"
+        # shellcheck disable=SC2034 # this variable is only used within package definition files
         DEBIAN_TESTING="${UPSTREAM_CODENAME}"
     else
         UPSTREAM_CODENAME="sid"
@@ -1437,33 +1444,18 @@ else
 fi
 
 case "${UPSTREAM_CODENAME}" in
-    buster)   UPSTREAM_RELEASE="10";;
-    bullseye) UPSTREAM_RELEASE="11";;
-    bookworm) UPSTREAM_RELEASE="12";;
-    trixie)   UPSTREAM_RELEASE="13";;
-    forky)    UPSTREAM_RELEASE="14";;
-    sid)      UPSTREAM_RELEASE="unstable";;
-    focal)    UPSTREAM_RELEASE="20.04";;
-    jammy)    UPSTREAM_RELEASE="22.04";;
-    noble)    UPSTREAM_RELEASE="24.04";;
-    oracular) UPSTREAM_RELEASE="24.10";;
-    plucky)   UPSTREAM_RELEASE="25.04";;
-    questing) UPSTREAM_RELEASE="25.10";;
-    resolute) UPSTREAM_RELEASE="26.04";;
-
-    *)  #Devuan
-        if [[ "${UPSTREAM_ID}" == "debian" ]]; then
+    sid) UPSTREAM_RELEASE="unstable";;
+      *) UPSTREAM_RELEASE="$(grep -m1 -o -P "^[^,\s]+(?=\s*[A-Z]*,[^,]+,${UPSTREAM_CODENAME},)" "${DISTRO_INFO_DIR}/${UPSTREAM_ID}.csv")"
+        #Devuan
+        if [ -z ${UPSTREAM_RELEASE} ] && [[ "${UPSTREAM_ID}" == "debian" ]]; then
             UPSTREAM_RELEASE="$(grep -E -o -m 1 "^[0-9]+" "/etc/debian_version")"
+            UPSTREAM_CODENAME="$(grep -m1 -o -P "^${UPSTREAM_RELEASE},[^,]+,\K[a-z]+(?=,)" "${DISTRO_INFO_DIR}/${UPSTREAM_ID}.csv")"
         fi
-        case "${UPSTREAM_RELEASE}" in
-            10) UPSTREAM_CODENAME="buster";;
-            11) UPSTREAM_CODENAME="bullseye";;
-            12) UPSTREAM_CODENAME="bookworm";;
-            13) UPSTREAM_CODENAME="trixie";;
-            14) UPSTREAM_CODENAME="forky";;
-             *) fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release.";;
-        esac
+        ;;
 esac
+if [ -z ${UPSTREAM_CODENAME} ] || [ -z ${UPSTREAM_RELEASE} ]; then
+    fancy_message fatal "${OS_ID_PRETTY} ${OS_CODENAME^} is not supported because it is not derived from a supported Debian or Ubuntu release."
+fi
 }
 
 function dg_action_cache() {
@@ -1505,7 +1497,7 @@ function dg_action_install() {
                 exit 1
             fi
             if validate_deb "${FULL_APP}"; then
-                if [[ " ${ARCHS_SUPPORTED} " != *" ${HOST_ARCH} "* ]]; then
+                if [[ " ${ARCHS_SUPPORTED} " != *" ${HOST_ARCH} "* && " ${ARCHS_SUPPORTED} " != *" all "* ]]; then
                     fancy_message fatal "${APP} is not supported on ${HOST_ARCH}."
                 fi
 
@@ -1636,7 +1628,7 @@ function dg_action_update() {
                     remove_installed "${APP}"
                 fi
             done
-            mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=(${INSTALLED_APPS[@]%% *})
+            mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=("${INSTALLED_APPS[@]%% *}")
             update_debs
         fi
 }
@@ -1684,9 +1676,10 @@ fi
 export CACHE_DIR="/var/cache/deb-get"
 readonly ETC_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
+readonly DISTRO_INFO_DIR="/usr/share/distro-info"
 
+# shellcheck disable=SC2034
 readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
-readonly USER_HOME="${HOME}"
 
 readonly DEBGET_BIN=$(basename $0)
 
