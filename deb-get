@@ -489,22 +489,16 @@ function validate_deb() {
     fi
 
     if [[ "${CODENAMES_SUPPORTED}" =~ "+" ]]; then
-        local DEBIAN_CODENAMES="$(cut -d ',' -f 3 "${DISTRO_INFO_DIR}/debian.csv")"
-        DEBIAN_CODENAMES="${DEBIAN_CODENAMES#*$'\n'}"; DEBIAN_CODENAMES="${DEBIAN_CODENAMES%$'\n'}"; DEBIAN_CODENAMES="${DEBIAN_CODENAMES//$'\n'/ }"
-        local UBUNTU_CODENAMES="$(cut -d ',' -f 3 "${DISTRO_INFO_DIR}/ubuntu.csv")"
-        UBUNTU_CODENAMES="${UBUNTU_CODENAMES#*$'\n'}"; UBUNTU_CODENAMES="${UBUNTU_CODENAMES%$'\n'}"; UBUNTU_CODENAMES="${UBUNTU_CODENAMES//$'\n'/ }"
-        local MIN_CODENAMES="$(grep -P -o "[a-z]+(?=\+)" <<< "${CODENAMES_SUPPORTED}")"
-        MIN_CODENAMES="${MIN_CODENAMES%$'\n'}"; MIN_CODENAMES="${MIN_CODENAMES//$'\n'/|}"
-        if [ -n "${MIN_CODENAMES}" ]; then
-            local OTHER_CODENAMES="$(grep -E -o "[a-z]+(\s|$)" <<< "${CODENAMES_SUPPORTED}")"
-            OTHER_CODENAMES="${OTHER_CODENAMES//$'\n'}"
-            CODENAMES_SUPPORTED="$(grep -E -o "(${MIN_CODENAMES})[^,]*" <<< "${DEBIAN_CODENAMES},${UBUNTU_CODENAMES}," || echo "${CODENAMES_SUPPORTED//+/}")"
-            CODENAMES_SUPPORTED="${CODENAMES_SUPPORTED/$'\n'/ }"; CODENAMES_SUPPORTED="${CODENAMES_SUPPORTED% }"
-            for other_codename in ${OTHER_CODENAMES}; do
-                if ! [[ "${CODENAMES_SUPPORTED}" =~ "${other_codename}" ]]; then
-                    CODENAMES_SUPPORTED="${other_codename} ${CODENAMES_SUPPORTED}"
-                fi
-            done
+        ALL_CODENAMES="$(distro-info --supported)"
+        if [[ "${UPSTREAM_ID}" == "debian" ]]; then
+            ALL_CODENAMES="$(distro-info --all | grep -B1 -m1 "${ALL_CODENAMES}" | head -n1) ${ALL_CODENAMES}"
+        fi
+        ALL_CODENAMES="$(echo ${ALL_CODENAMES/experimental})"
+        MIN_CODENAME="$(grep -P -o "[a-z]+(?=\+)" <<< "${CODENAMES_SUPPORTED}" | grep -E -m1 "$(tr ' ' '|' <<< "${ALL_CODENAMES}")")"
+        if [ -n "${MIN_CODENAME}" ]; then
+            CODENAMES_SUPPORTED="$(grep -E -o "${MIN_CODENAME}.*" <<< "${ALL_CODENAMES}" || echo "${CODENAMES_SUPPORTED//+}")"
+        else
+            CODENAMES_SUPPORTED="$(grep -P -o -m1 "[a-z]+(?=\s|$)" <<< "${CODENAMES_SUPPORTED}")"
         fi
     fi
 
