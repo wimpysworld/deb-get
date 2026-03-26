@@ -1302,7 +1302,7 @@ function add_apt_repo() {
             APT_SOURCES_LINES+=("Components: ${APT_COMPONENTS}")
         fi
         if [[ -n "${APT_REPO_OPTIONS}" ]]; then
-            mapfile -t -O "${#APT_SOURCES_LINES[@]}" APT_SOURCES_LINES < <(grep -o -P "[^:\s]+:\s*[^:\s]+" <<< "${APT_REPO_OPTIONS}")
+            mapfile -t -O "${#APT_SOURCES_LINES[@]}" APT_SOURCES_LINES < <(grep -o -P "(^|\s)\K[^:]+:[^:]+(?=$|\s[^:]+:)" <<< "${APT_REPO_OPTIONS}")
         fi
         APT_SOURCES_LINES+=("Signed-By: /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg")
         printf '%s\n' "${APT_SOURCES_LINES[@]}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" > /dev/null
