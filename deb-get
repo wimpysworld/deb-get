@@ -324,8 +324,9 @@ function upgrade_only_dg() {
 
 # Update only the added repo (during install action)
 function update_only_repo() {
-    fancy_message info "Updating: /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-    ${ELEVATE} apt-get update -o Dir::Etc::sourcelist="sources.list.d/${APT_LIST_NAME}.list" \
+    if [[ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" ]]; then local EXT="sources"; else local EXT="list"; fi
+    fancy_message info "Updating: /etc/apt/sources.list.d/${APT_LIST_NAME}.${EXT}"
+    ${ELEVATE} apt-get update -o Dir::Etc::sourcelist="sources.list.d/${APT_LIST_NAME}.${EXT}" \
         -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
 }
 
@@ -471,6 +472,7 @@ function validate_deb() {
     export DEFVER=""
     export ASC_KEY_URL="" GPG_KEY_URL="" GPG_KEY_ID=""
     export APT_LIST_NAME="${APP}" APT_REPO_URL="" APT_REPO_OPTIONS="" PPA=""
+    export APT_SOURCES_URL="" APT_SUITES="" APT_COMPONENTS=""
     export ARCHS_SUPPORTED="amd64" CODENAMES_SUPPORTED=""
     export METHOD="direct"
     export EULA=""
@@ -495,7 +497,7 @@ function validate_deb() {
             return 1
         fi
         VERSION_INSTALLED=$(version_deb)
-        if [ -n "${APT_REPO_URL}" ]; then
+        if [[ -n "${APT_REPO_URL}" || -n "${APT_SOURCES_URL}" ]]; then
             METHOD="apt"
             if [ "${ACTION}" != "prettylist" ]; then
                 if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
@@ -1219,6 +1221,7 @@ function remove_repo() {
         local -r PPA_ARCHIVE=${PPA_ADDRESS#*/}
         APT_LIST_NAME="${PPA_PERSON}-ubuntu-${PPA_ARCHIVE}-${UPSTREAM_CODENAME}"
     fi
+    if [[ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" ]]; then local EXT="sources"; else local EXT="list"; fi
     local count=""
     if [ -e "${ETC_DIR}/aptrepos" ]; then
         count="$(grep -m 1 "^${APT_LIST_NAME} " "${ETC_DIR}/aptrepos" | cut -d " " -f 2)"
@@ -1238,14 +1241,15 @@ function remove_repo() {
             fi
             ${ELEVATE} rm -f "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
             if [ "${2}" != --quiet ]; then
-                fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+                fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.${EXT}"
             fi
-            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" 2> /dev/null
+            ${ELEVATE} rm -f "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" 2> /dev/null
             if [ -e "${ETC_DIR}/aptrepos" ]; then
                 ${ELEVATE} sed -i -E "/^${APT_LIST_NAME} [0-9]+/d" "${ETC_DIR}/aptrepos"
             fi
         elif [ "${2}" != --quiet ]; then
-            fancy_message warn "/etc/apt/sources.list.d/${APT_LIST_NAME}.list was not removed because other packages depend on it."
+            fancy_message warn "/etc/apt/sources.list.d/${APT_LIST_NAME}.${EXT} was not removed because other packages depend on it."
         fi
     fi
 }
@@ -1259,7 +1263,7 @@ function add_apt_repo() {
         if [ -z "${count}" ]; then
             count=0
         fi
-        if [ "${count}" -eq 0 ] && [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]; then
+        if [ "${count}" -eq 0 ] && { [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ] || [ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" ]; }; then
             ((count++))
         fi
         ((count++))
@@ -1291,15 +1295,28 @@ function add_apt_repo() {
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
     fi
+    if [[ -n "${APT_SOURCES_URL}" ]]; then
+        # Deb822 .sources format
+        local APT_SOURCES_LINES=("Enabled: yes" "Types: deb" "URIs: ${APT_SOURCES_URL}" "Suites: ${APT_SUITES}")
+        if ! [[ "${APT_SUITES}" =~ /$ ]] && [[ -n "${APT_COMPONENTS}" ]]; then
+            APT_SOURCES_LINES+=("Components: ${APT_COMPONENTS}")
+        fi
+        if [[ -n "${APT_REPO_OPTIONS}" ]]; then
+            mapfile -t -O "${#APT_SOURCES_LINES[@]}" APT_SOURCES_LINES < <(grep -o -P "[^:\s]+:\s*[^:\s]+" <<< "${APT_REPO_OPTIONS}")
+        fi
+        APT_SOURCES_LINES+=("Signed-By: /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg")
+        printf '%s\n' "${APT_SOURCES_LINES[@]}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" > /dev/null
+    else
+        # single line .list format
+        local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
 
-    local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+        if [ -n "${APT_REPO_OPTIONS}" ]; then
+            APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
+        fi
 
-    if [ -n "${APT_REPO_OPTIONS}" ]; then
-        APT_LIST_LINE="${APT_LIST_LINE} ${APT_REPO_OPTIONS}"
+        APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
+        ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" <<<"${APT_LIST_LINE}" >/dev/null
     fi
-
-    APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-    ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" <<<"${APT_LIST_LINE}" >/dev/null
 }
 
 function ppa_to_apt() {
