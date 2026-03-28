@@ -487,6 +487,21 @@ function validate_deb() {
         # shellcheck source=/dev/null
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
+
+    if [[ "${CODENAMES_SUPPORTED}" =~ "+" ]]; then
+        ALL_CODENAMES="$(distro-info --supported)"
+        if [[ "${UPSTREAM_ID}" == "debian" ]]; then
+            ALL_CODENAMES="$(distro-info --all | grep -B1 -m1 "${ALL_CODENAMES}" | head -n1) ${ALL_CODENAMES}"
+        fi
+        ALL_CODENAMES="$(echo ${ALL_CODENAMES/experimental})"
+        MIN_CODENAME="$(grep -P -o "[a-z]+(?=\+)" <<< "${CODENAMES_SUPPORTED}" | grep -E -m1 "$(tr ' ' '|' <<< "${ALL_CODENAMES}")")"
+        if [ -n "${MIN_CODENAME}" ]; then
+            CODENAMES_SUPPORTED="$(grep -E -o "${MIN_CODENAME}.*" <<< "${ALL_CODENAMES}" || echo "${CODENAMES_SUPPORTED//+}")"
+        else
+            CODENAMES_SUPPORTED="$(grep -P -o -m1 "[a-z]+(?=\s|$)" <<< "${CODENAMES_SUPPORTED}")"
+        fi
+    fi
+
     if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
