@@ -1,12 +1,10 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-# shellcheck disable=SC2046
-get_website $(unroll_url https://delta.chat/en/download)
-
+get_github_releases "deltachat/deltachat-desktop" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep "${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d "\"" -f 2)
-    VERSION_PUBLISHED=$(cut -d '/' -f 5 <<< "${URL//v/}")
+    URL=$(grep -m 1 "browser_download_url.*${APP}_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Delta Chat"
-WEBSITE="https://delta.chat/"
-SUMMARY="Email-based instant messaging for Desktop."
+WEBSITE="https://delta.chat"
+SUMMARY="Email-based decentralized messenger."
