@@ -472,7 +472,6 @@ function validate_deb() {
     export DEFVER=""
     export ASC_KEY_URL="" GPG_KEY_URL="" GPG_KEY_ID=""
     export APT_LIST_NAME="${APP}" APT_REPO_URL="" APT_REPO_OPTIONS="" PPA=""
-    export APT_SOURCES_URL="" APT_SUITES="" APT_COMPONENTS=""
     export ARCHS_SUPPORTED="amd64" CODENAMES_SUPPORTED=""
     export METHOD="direct"
     export EULA=""
@@ -497,7 +496,7 @@ function validate_deb() {
             return 1
         fi
         VERSION_INSTALLED=$(version_deb)
-        if [[ -n "${APT_REPO_URL}" || -n "${APT_SOURCES_URL}" ]]; then
+        if [ -n "${APT_REPO_URL}" ]; then
             METHOD="apt"
             if [ "${ACTION}" != "prettylist" ]; then
                 if [ -z "${ASC_KEY_URL}" ] && [ -z "${GPG_KEY_URL}" ] && [ -z "${GPG_KEY_ID}" ]; then
@@ -1295,17 +1294,41 @@ function add_apt_repo() {
             ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
     fi
-    if [[ -n "${APT_SOURCES_URL}" ]]; then
+
+    if [[ "${DEBGET_SOURCES}" == "sources" ]]; then
         # Deb822 .sources format
-        local APT_SOURCES_LINES=("Enabled: yes" "Types: deb" "URIs: ${APT_SOURCES_URL}" "Suites: ${APT_SUITES}")
-        if ! [[ "${APT_SUITES}" =~ /$ ]] && [[ -n "${APT_COMPONENTS}" ]]; then
-            APT_SOURCES_LINES+=("Components: ${APT_COMPONENTS}")
+        local URL="$(cut -d ' ' -f 1 <<< "${APT_REPO_URL}")"
+        local SUITES="$(cut -d ' ' -f 2 <<< "${APT_REPO_URL}")"
+        local COMPONENTS="$(cut -d ' ' -f 3- <<< "${APT_REPO_URL}")"
+        #local OPTIONS="$(cut -d ' ' -f 2 <<< "${APT_REPO_URL}")"
+        local APT_SOURCES_LINES=("Enabled: yes" "Types: deb" "URIs: ${URL}" "Suites: ${SUITES}")
+        if ! [[ "${SUITES}" =~ /$ ]] && [[ -n "${COMPONENTS}" ]]; then
+            APT_SOURCES_LINES+=("Components: ${COMPONENTS}")
         fi
         if [[ -n "${APT_REPO_OPTIONS}" ]]; then
-            mapfile -t -O "${#APT_SOURCES_LINES[@]}" APT_SOURCES_LINES < <(grep -o -P "(^|\s)\K[^:]+:[^:]+(?=$|\s[^:]+:)" <<< "${APT_REPO_OPTIONS}")
+            local option
+            for option in ${APT_REPO_OPTIONS}; do
+                case "${option}" in
+                    arch=*)
+                        option="${option/arch/Architectures}";;
+                    lang=*)
+                        option="${option/lang/Languages}";;
+                    target=*)
+                        option="${option/target/Targets}";;
+                    *)
+                        option="$(cut -d '=' -f1 <<< "${option}" | sed -E 's/(^|[- ])([a-z])/\1\u\2/g')=$(cut -d '=' -f 2 <<< "${option}")";;
+                esac
+                option="${option/=/: }"; option="${option//,/ }"
+                APT_SOURCES_LINES+=("${option}")
+            done
         fi
         APT_SOURCES_LINES+=("Signed-By: /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg")
+        if [[ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]]; then
+            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+            ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+        fi
         printf '%s\n' "${APT_SOURCES_LINES[@]}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" > /dev/null
+
     else
         # single line .list format
         local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
@@ -1315,6 +1338,10 @@ function add_apt_repo() {
         fi
 
         APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
+        if [[ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" ]]; then
+            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.sources"
+            ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources"
+        fi
         ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" <<<"${APT_LIST_LINE}" >/dev/null
     fi
 }
