@@ -1,10 +1,9 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64"
-get_github_releases "menloresearch/jan" "latest"
-if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)"
-    VERSION_PUBLISHED="$(cut -d '/' -f 8 <<< "${URL//v/}")"
+get_github_releases "janhq/jan"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | sed 's/^v//')
 fi
 PRETTY_NAME="Jan"
-WEBSITE="https://www.jan.ai/"
-SUMMARY="An open source alternative to ChatGPT that runs 100% offline on your computer"
+WEBSITE="https://jan.ai/"
+SUMMARY="Open-source ChatGPT alternative that runs 100% offline on your computer."
