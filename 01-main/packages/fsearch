@@ -12,7 +12,8 @@ case ${UPSTREAM_ID} in
         # shellcheck disable=SC2168
         local DEBIANVER
         case ${UPSTREAM_CODENAME} in
-            sid|13|trixie) DEBIANVER=Unstable ;;
+            sid) DEBIANVER=Unstable ;;
+            13|trixie) DEBIANVER=12 ;;
             *) DEBIANVER="${UPSTREAM_RELEASE}" ;;
         esac
         THE_KEY="https://download.opensuse.org/repositories/home:cboxdoerfer/Debian_${DEBIANVER}/Release.key"
