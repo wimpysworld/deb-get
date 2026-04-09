@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble questing resolute"
+get_website "https://app.gitbutler.com/api/downloads?limit=1&channel=release"
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -P -o -m 1 "\"\Khttps://[^\"]*${HOST_ARCH}\.deb(?=\")" "${CACHE_FILE}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 6 <<< "${URL%%-*}")
+fi
+PRETTY_NAME="GitButler"
+WEBSITE="https://gitbutler.com/"
+SUMMARY="GitButler is the Git-backed change management tool for modern, AI coding workflows."
