@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "aptakube/aptakube"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
+fi
+PRETTY_NAME="Aptakube"
+WEBSITE="https://aptakube.com/"
+SUMMARY="Desktop client for Kubernetes cluster management."
