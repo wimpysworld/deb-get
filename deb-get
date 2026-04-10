@@ -342,7 +342,13 @@ function install_apt() {
             remove_repo --remove-repo --quiet
             return
         fi
+        if [[ "${APT_PIN}" == "true" ]]; then
+            add_apt_pin "${APP}" "${APT_REPO_URL}"
+        else
+            remove_apt_pin "${APP}"
+        fi
         if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${APP}"; then
+            remove_apt_pin "${APP}"
             remove_repo --remove-repo --quiet
             return
         fi
@@ -350,7 +356,13 @@ function install_apt() {
         maint_supported_cache
     else
         if [ "${ACTION}" == "reinstall" ]; then
+            if [[ "${APT_PIN}" == "true" ]]; then
+                add_apt_pin "${APP}" "${APT_REPO_URL}"
+            else 
+                remove_apt_pin "${APP}"
+            fi
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${APP}"; then
+                remove_apt_pin "${APP}"
                 return
             fi
         else
@@ -379,7 +391,13 @@ function install_deb() {
         if ! download_deb "${URL}" "${FILE}"; then
             return
         fi
+        if [[ "${APT_PIN}" == "true" ]]; then
+            add_apt_pin "${APP}"
+        else
+            remove_apt_pin "${APP}"
+        fi
         if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y install "${CACHE_DIR}/${FILE}"; then
+            remove_apt_pin "${APP}"
             return
         fi
         add_installed
@@ -389,7 +407,13 @@ function install_deb() {
             if ! download_deb "${URL}" "${FILE}"; then
                 return
             fi
+            if [[ "${APT_PIN}" == "true" ]]; then
+                add_apt_pin "${APP}"
+            else
+                remove_apt_pin "${APP}"
+            fi
             if ! ${ELEVATE} apt-get -q=2 -o Dpkg::Progress-Fancy="1" -y --reinstall --allow-downgrades install "${CACHE_DIR}/${FILE}"; then
+                remove_apt_pin "${APP}"
                 return
             fi
         elif dpkg --compare-versions "${VERSION_PUBLISHED}" gt "${VERSION_INSTALLED}"; then
@@ -440,7 +464,7 @@ function remove_deb() {
         apt|ppa)
             remove_repo "${3}";;
     esac
-
+    remove_apt_pin "${APP}"
 }
 
 function version_deb() {
@@ -478,6 +502,7 @@ function validate_deb() {
     export PRETTY_NAME="" SUMMARY="" WEBSITE=""
     export URL=""
     export CACHE_FILE="" FILE=""
+    export APT_PIN="false"
     unset -f post_download 2>/dev/null
 
     # Source the variables
@@ -1343,6 +1368,27 @@ function add_installed() {
 
 function remove_installed() {
     ${ELEVATE} sed -i "/^${1} /d" "${ETC_DIR}/installed"
+}
+
+function add_apt_pin() {
+    local DOMAIN="${2#*//}"; DOMAIN="${DOMAIN%%/*}"; DOMAIN="${DOMAIN%%[[:space:]]*}"
+    if ! [[ -d /etc/apt/preferences.d ]]; then ${ELEVATE} mkdir "/etc/apt/preferences.d"; fi
+    fancy_message info "Adding pin: /etc/apt/preferences.d/99_deb-get_${1}"
+    # if a second parameter is not passed, origin will be set to "" which will prioritize local deb files.
+    printf "%s\n" "Package: ${1}" "Pin: origin \"${DOMAIN}\"" "Pin-Priority: 1001" | ${ELEVATE} tee "/etc/apt/preferences.d/99_deb-get_${1}" > /dev/null
+    if [[ -n "${DOMAIN}" ]]; then
+        update_only_repo
+    else
+        update_apt
+    fi
+}
+
+function remove_apt_pin() {
+    if [[ -e "/etc/apt/preferences.d/99_deb-get_${1}" ]]; then
+        fancy_message info "Removing /etc/apt/preferences.d/99_deb-get_${1}"
+        ${ELEVATE} rm "/etc/apt/preferences.d/99_deb-get_${1}"
+        update_apt
+    fi
 }
 
 function list_apps() {
