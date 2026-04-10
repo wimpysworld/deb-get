@@ -1,4 +1,5 @@
 DEFVER=2
+CODENAMES_SUPPORTED="bullseye bookworm jammy noble"
 # shellcheck disable=SC2168
 local THE_KEY
 # shellcheck disable=SC2168
@@ -9,14 +10,8 @@ case ${UPSTREAM_ID} in
         THE_REPO="https://ppa.launchpadcontent.net/christian-boxdoerfer/fsearch-stable/ubuntu ${UPSTREAM_CODENAME} main"
         ;;
     *)
-        # shellcheck disable=SC2168
-        local DEBIANVER
-        case ${UPSTREAM_CODENAME} in
-            sid|13|trixie) DEBIANVER=Unstable ;;
-            *) DEBIANVER="${UPSTREAM_RELEASE}" ;;
-        esac
-        THE_KEY="https://download.opensuse.org/repositories/home:cboxdoerfer/Debian_${DEBIANVER}/Release.key"
-        THE_REPO="http://download.opensuse.org/repositories/home:/cboxdoerfer/Debian_${DEBIANVER}/ /"
+        THE_KEY="https://download.opensuse.org/repositories/home:cboxdoerfer/Debian_${UPSTREAM_RELEASE}/Release.key"
+        THE_REPO="http://download.opensuse.org/repositories/home:/cboxdoerfer/Debian_${UPSTREAM_RELEASE}/ /"
         ;;
 esac
 ASC_KEY_URL="${THE_KEY}"
