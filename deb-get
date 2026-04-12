@@ -180,7 +180,7 @@ function get_github_releases() {
     #   curl -I https://api.github.com/users/flexiondotorg
 
     # Do not process github releases while generating a pretty list or upgrading
-    if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
+    if [[ ' install fix-installed show ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             if [ -z ${QUIET} ]; then
                 fancy_message info "Updating ${CACHE_FILE}"
@@ -210,7 +210,7 @@ function get_gitlab_releases() {
     # So for gitlab sourced apps that use this release model users can use 99-local to pin a version
     #
 
-    if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
+    if [[ ' install fix-installed show ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             if [ -z ${QUIET} ]; then
                 fancy_message info "Updating ${CACHE_FILE}"
@@ -239,7 +239,7 @@ function get_gitlab_releases() {
 function get_website() {
     METHOD="website"
     CACHE_FILE="${CACHE_DIR}/${APP}.html"
-    if [[ ' install fix-installed ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
+    if [[ ' install fix-installed show ' =~ " ${ACTION} " ]] || { [[ ' update ' =~ " ${ACTION} " ]] && package_is_installed "${APP}"; }; then
         if [ ! -e "${CACHE_FILE}" ] || [ -n "$(find "${CACHE_FILE}" -mmin +"${DEBGET_CACHE_RTN:-60}")" ]; then
             if [ -z ${QUIET} ]; then
                 fancy_message info "Updating ${CACHE_FILE}"
@@ -1470,6 +1470,7 @@ function dg_action_clean() {
 
 }
 function dg_action_show() {
+        elevate_privs
         for APP in "${@,,}"; do
             FULL_APP=${APPNAME2FULL[$APP]}
             if [ -z "${FULL_APP}" ]; then
