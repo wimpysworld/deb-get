@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "s4solutionsllc/Nexis" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}.*\.deb\"" "${CACHE_FILE}" | head -1 | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Nexis"
+WEBSITE="https://s4solutionsllc.github.io/Nexis/"
+SUMMARY="Cross-platform system optimizer for Linux & macOS. Successor to Stacer, rebuilt on Qt 6/C++17."
