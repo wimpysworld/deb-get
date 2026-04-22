@@ -1323,12 +1323,12 @@ function add_apt_repo() {
         fi
         APT_SOURCES_LINES+=("Signed-By: /usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg")
         if [[ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" ]]; then
-            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.list"
-            ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.list"
+            fancy_message info "Renaming /etc/apt/sources.list.d/${APT_LIST_NAME}.list to ${APT_LIST_NAME}.list.bak"
+            ${ELEVATE} mv "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" "/etc/apt/sources.list.d/${APT_LIST_NAME}.list.bak"
         fi
         printf '%s\n' "${APT_SOURCES_LINES[@]}" | ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" > /dev/null
 
-    else
+    elif ! [[ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" ]]; then
         # single line .list format
         local APT_LIST_LINE="deb [signed-by=/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
 
@@ -1337,10 +1337,6 @@ function add_apt_repo() {
         fi
 
         APT_LIST_LINE="${APT_LIST_LINE}] ${APT_REPO_URL}"
-        if [[ -e "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources" ]]; then
-            fancy_message info "Removing /etc/apt/sources.list.d/${APT_LIST_NAME}.sources"
-            ${ELEVATE} rm "/etc/apt/sources.list.d/${APT_LIST_NAME}.sources"
-        fi
         ${ELEVATE} tee "/etc/apt/sources.list.d/${APT_LIST_NAME}.list" <<<"${APT_LIST_LINE}" >/dev/null
     fi
 }
