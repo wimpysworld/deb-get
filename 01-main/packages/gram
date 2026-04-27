@@ -1,5 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
 get_website "https://codeberg.org/GramEditor/gram/releases.rss"
 if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED=$(grep -m 1 -e 'guid' "${CACHE_FILE}" | sed -n 's#.*releases/tag/v\{0,1\}\([^<]*\).*#\1#p')
