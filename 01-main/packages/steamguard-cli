@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "dyc3/steamguard-cli" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED="$(cut -d'_' -f2 <<< "${URL}" | cut -d'-' -f1)"
+fi
+PRETTY_NAME="steamguard-cli"
+WEBSITE="https://github.com/dyc3/steamguard-cli"
+SUMMARY="Utility for generating 2FA codes for Steam and managing Steam trades/confirmations"
