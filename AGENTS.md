@@ -2,12 +2,12 @@
 
 ## Project overview
 
-`deb-get` is a Bash CLI providing apt-get-like functionality for `.deb` packages from 3rd party apt repositories, PPAs, GitHub Releases, and direct downloads. Targets Debian, Ubuntu and derivatives. Single-file script (~65KB) with ~400 package definitions.
+`deb-get` is a Bash CLI providing apt-get-like functionality for `.deb` packages from 3rd party apt repositories, PPAs, GitHub Releases, GitLab Releases and direct downloads. Targets Debian, Ubuntu and derivatives. Single-file script (~65KB) with ~400 package definitions.
 
 ## Tech stack
 
 - **Language:** Bash (POSIX-compatible where practical)
-- **Dependencies:** `curl`, `wget`, `lsb-release`, `apt` toolchain, `gpg`
+- **Dependencies:** `curl`, `wget`, `lsb-release`, `apt` toolchain, `gpg`, `jq`, `dist-info-data`
 - **Documentation:** `cogapp` (Python) for README generation
 - **CI:** GitHub Actions on Ubuntu
 
@@ -50,12 +50,13 @@ Package files are Bash scripts in `01-main/packages/` (no shebang, no extension)
 - `ASC_KEY_URL` or `GPG_KEY_URL` - Signing key
 - `APT_REPO_URL` - Repository line for sources.list
 
-**For direct downloads/GitHub:**
+**For direct downloads/GitHub/GitLab:**
 - `URL` - Download URL for the `.deb`
 - `VERSION_PUBLISHED` - Current upstream version
 
 **Helper functions:**
 - `get_github_releases "org/repo" "latest"` - Fetch GitHub releases JSON
+- `get_gitlab_releases "org/repo" "latest"` - Fetch GitLab releases JSON
 - `get_website "url"` - Fetch HTML for scraping
 - `unroll_url "url"` - Follow redirects to final URL
 
@@ -109,5 +110,5 @@ Examples from history:
 
 - Packages must be `.deb` published by upstream vendor
 - No source builds, no unofficial community packages
-- GitHub releases must use dynamic version detection (no hardcoded versions)
+- GitHub and GitLab releases must use dynamic version detection (no hardcoded versions)
 - Target platforms: Debian, Ubuntu and derivatives only
