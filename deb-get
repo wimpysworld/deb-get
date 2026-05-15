@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2076 # We often use =~ to match strings rather than a regex.
-# shellcheck disable=SC2155 #  The exit codes aren't being used in these instances anyway.
-
 LC_ALL=C
 PACKAGE_INSTALLATION_TRIES=0
 PACKAGE_INSTALLATION_COUNT=0
@@ -318,7 +315,7 @@ function upgrade_apt() {
 }
 
 function upgrade_only_dg() {
-    mapfile -t INSTALLED_APT_PPA < <(grep -P -o "\S+(?=\s\d+\s(apt\s*$|ppa\s*)$)" "${ETC_DIR}/installed")
+    mapfile -t INSTALLED_APT_PPA < <(grep -E "apt\s*$|ppa\s*$" "${ETC_DIR}/installed"); INSTALLED_APT_PPA=(${INSTALLED_APT_PPA[@]%% *})
     printf '%s\0' "${INSTALLED_APT_PPA[@]}" | xargs -0 ${ELEVATE} apt-get -q -o Dpkg::Progress-Fancy="1" -y install --only-upgrade
 }
 
@@ -484,9 +481,20 @@ function validate_deb() {
     if [ "${APP_SRC}" == "00-builtin" ]; then
         deb_"${APP}" 2>/dev/null
     else
-        # shellcheck source=/dev/null
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
+
+    if [[ "${CODENAMES_SUPPORTED}" =~ "+" ]]; then
+        ALL_CODENAMES="$(distro-info --all)"
+        ALL_CODENAMES="$(echo ${ALL_CODENAMES/experimental})"
+        MIN_CODENAME="$(grep -P -o "[a-z]+(?=\+)" <<< "${CODENAMES_SUPPORTED}" | grep -E -m1 "${ALL_CODENAMES// /|}")"
+        if [ -n "${MIN_CODENAME}" ]; then
+            CODENAMES_SUPPORTED="$(grep -E -o "${MIN_CODENAME}.*" <<< "${ALL_CODENAMES}" || echo "${CODENAMES_SUPPORTED//+}")"
+        else
+            CODENAMES_SUPPORTED="$(grep -P -o -m1 "[a-z]+(?=\s|$)" <<< "${CODENAMES_SUPPORTED}")"
+        fi
+    fi
+
     if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
@@ -739,7 +747,7 @@ function refresh_supported_cache_lists() {
         fi
     fi
 
-    trap 'trap - EXIT; ${ELEVATE} rm -f "$lockfile"' EXIT
+    trap "trap - EXIT; ${ELEVATE} rm -f \"$lockfile\"" EXIT
     ${ELEVATE} touch "$lockfile"
     ${ELEVATE} rm -f "${CACHE_DIR}/supported.list" "${CACHE_DIR}/supported_apps.list"
     if [ -z ${QUIET} ]; then
@@ -752,7 +760,6 @@ function refresh_supported_cache_lists() {
     cut -d" " -f 1 "${CACHE_DIR}/supported.list" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list" >/dev/null
 }
 
-
 function update_repos() {
     local REPO_URL=""
     # preserve current behaviour for now but allow modification via env
@@ -760,7 +767,6 @@ function update_repos() {
     local WGET_VERBOSITY="--quiet"
 
     if [[ " $* " == *' --quiet'* ]]  ; then
-        # shellcheck disable=SC2034
          CURL_OPTS="--disable --show-error --silent"
     fi
 
@@ -778,22 +784,21 @@ function update_repos() {
         # Faster by some margin if we are hitting github
         # Otherwise revert to old-style for a bespoke hosted repo
 
-        if pushd "${ETC_DIR}/${REPO}.d" >/dev/null; then
-            (eval "$(
-            awk -F/ '/github/  {print "# fetching github repo";
-                                print "GITREPO="$4"/"$5;\
-                                print "BRANCH="$6;\
-                                print "curl ${CURL_OPTS} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
-                    ! /github/ {print "# fetching non-github repo";
-                                print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
-                                print "${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
-                                print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
-                    } '\
-                    <<<"${REPO_URL}"
-            )")
+        pushd "${ETC_DIR}/${REPO}.d" >/dev/null
+        (eval "$(
+        awk -F/ '/github/  {print "# fetching github repo";
+                            print "GITREPO="$4"/"$5;\
+                            print "BRANCH="$6;\
+                            print "curl ${CURL_OPTS} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
+                ! /github/ {print "# fetching non-github repo";
+                            print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
+                            print "${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
+                            print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
+                } '\
+                <<<"${REPO_URL}"
+        )")
 
-            popd >/dev/null || true
-        fi
+        popd >/dev/null
     done
     refresh_supported_cache_lists &
 }
@@ -1429,7 +1434,6 @@ if [[ "${UPSTREAM_ID}" == "debian" ]] && grep -q "sid" <<< "${ETC_DEB_VER}"; the
     if apt-cache policy | grep -q -i -e "o=debian.*n=${ETC_DEB_VER%%/*}" -e "o=debian.*n=testing"; then
         UPSTREAM_CODENAME="${ETC_DEB_VER%%/*}"
         OS_CODENAME="${UPSTREAM_CODENAME}"
-        # shellcheck disable=SC2034 # this variable is only used within package definition files
         DEBIAN_TESTING="${UPSTREAM_CODENAME}"
     else
         UPSTREAM_CODENAME="sid"
@@ -1628,7 +1632,7 @@ function dg_action_update() {
                     remove_installed "${APP}"
                 fi
             done
-            mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=("${INSTALLED_APPS[@]%% *}")
+            mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=(${INSTALLED_APPS[@]%% *})
             update_debs
         fi
 }
@@ -1678,8 +1682,8 @@ readonly ETC_DIR="/etc/deb-get"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
 readonly DISTRO_INFO_DIR="/usr/share/distro-info"
 
-# shellcheck disable=SC2034
 readonly USER_AGENT="Mozilla/5.0 (X11; Linux ${HOST_CPU}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+readonly USER_HOME="${HOME}"
 
 readonly DEBGET_BIN=$(basename $0)
 
