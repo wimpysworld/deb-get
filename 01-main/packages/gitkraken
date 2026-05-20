@@ -1,9 +1,16 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
-get_website "https://www.gitkraken.com/download/linux-deb"
-URL=$(grep -m 1 -o "https://[^']*\.deb" "${CACHE_FILE}")
+URL="https://api.gitkraken.dev/releases/production/linux/x64/active/gitkraken-amd64.deb"
+# Resolve the "active" alias to its versioned target. HEAD returns 404 on
+# this CDN, so we use a ranged GET (1 byte) instead of unroll_url.
+#shellcheck disable=SC2155
+function follow_url() {
+    local TRIM_URL=$(curl -w "%{url_effective}" --range 0-0 -L -s -S "${1}" -o /dev/null)
+    printf '%s' "${TRIM_URL}"
+}
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(sed -n -E "s/.*name:\s*'([^']*)'.*/\1/p" "${CACHE_FILE}")
+    RESOLVED_URL=$(follow_url "${URL}")
+    VERSION_PUBLISHED=$(sed -n -E 's|.*/x64/([0-9.]+)/.*|\1|p' <<< "${RESOLVED_URL}")
 fi
 PRETTY_NAME="GitKraken"
 WEBSITE="https://www.gitkraken.com/git-client"
