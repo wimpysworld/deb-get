@@ -1,10 +1,11 @@
 DEFVER=1
-ARCHS_SUPPORTED="amd64"
+ARCHS_SUPPORTED="amd64 arm64"
 get_website "https://help.gitkraken.com/gitkraken-desktop/current/"
-URL=$(grep -m 1 -o "https://[^']*\.deb" "${CACHE_FILE}")
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(sed -n -E "s/.*name:\s*'([^']*)'.*/\1/p" "${CACHE_FILE}")
-    URL="https://api.gitkraken.dev/releases/production/linux/x64/active/gitkraken-amd64.deb"
+    case "${HOST_ARCH}" in
+        "amd64") URL="https://api.gitkraken.dev/releases/production/linux/x64/active/gitkraken-amd64.deb" ;;
+        "arm64") URL="https://api.gitkraken.dev/releases/production/linux/arm64/active/gitkraken-aarch64.deb" ;;
+    esac
     VERSION_PUBLISHED=$(grep -m1 -E -o "[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+</h2>" "${CACHE_FILE}" | cut -d '<' -f 1)
 fi
 PRETTY_NAME="GitKraken"
