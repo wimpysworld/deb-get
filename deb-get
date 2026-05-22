@@ -1628,7 +1628,12 @@ function dg_action_update() {
                     remove_installed "${APP}"
                 fi
             done
-            mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"; INSTALLED_APPS=("${INSTALLED_APPS[@]%% *}")
+            if [ -s "${ETC_DIR}/installed" ]; then
+                mapfile -t INSTALLED_APPS <"${ETC_DIR}/installed"
+                INSTALLED_APPS=("${INSTALLED_APPS[@]%% *}")
+            else
+                INSTALLED_APPS=()
+            fi
             update_debs
         fi
 }
