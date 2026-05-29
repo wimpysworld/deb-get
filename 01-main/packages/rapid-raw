@@ -1,0 +1,19 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="jammy noble resolute" # only ships ubuntu-22.04 and ubuntu-24.04 debs; resolute falls back to ubuntu-24.04
+get_github_releases "CyberTimon/RapidRAW" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${OS_CODENAME}" in
+        jammy)
+            UBUNTU_VER="22.04"
+            ;;
+        noble|resolute)
+            UBUNTU_VER="24.04"
+            ;;
+    esac
+    URL=$(grep -m 1 "browser_download_url.*ubuntu-${UBUNTU_VER}.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d / -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="RapidRAW"
+WEBSITE="https://github.com/CyberTimon/RapidRAW"
+SUMMARY="A beautiful, non-destructive, and GPU-accelerated RAW image editor built with performance in mind."
