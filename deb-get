@@ -1338,7 +1338,10 @@ function maint_supported_cache() {
 
 function add_installed() {
     local line="${APP} ${DEFVER} ${METHOD}"
-    cat "${ETC_DIR}/installed" - <<< "${line}" | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
+    {
+        [ -f "${ETC_DIR}/installed" ] && cat "${ETC_DIR}/installed"
+        printf '%s\n' "${line}"
+    } | ${ELEVATE} sort -t " " -k 1 -u -o "${ETC_DIR}/installed"
 }
 
 function remove_installed() {
