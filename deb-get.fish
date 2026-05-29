@@ -44,7 +44,7 @@ complete -c deb-get -f -n "__fish_seen_subcommand_from list" -a "--not-installed
 
 # pretty_list / prettylist / csv_list / csvlist / csv: repo names
 complete -c deb-get -f -n "__fish_seen_subcommand_from pretty_list prettylist csv_list csvlist csv" \
-    -a "(find /etc/deb-get -maxdepth 1 \( -name '*.repo' ! -name '00-builtin.repo' ! -name '99-local.repo' -type f \) -o \( -name '99-local.d' -type d \) -printf '%f\n' 2>/dev/null | sed 's/\\.repo\$//; s/\\.d\$//')"
+    -a "(find /etc/deb-get -maxdepth 1 \( \( -name '*.repo' ! -name '00-builtin.repo' ! -name '99-local.repo' -type f \) -o \( -name '99-local.d' -type d \) \) -printf '%f\n' 2>/dev/null | sed 's/\\.repo\$//; s/\\.d\$//')"
 complete -c deb-get -f -n "__fish_seen_subcommand_from pretty_list prettylist csv_list csvlist csv" \
     -a "00-builtin 01-main"
 

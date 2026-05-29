@@ -1,0 +1,12 @@
+DEFVER=1
+# installs in Bullseye, but has lots of errors due to outdated GLIBC.
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble questing resolute"
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "koodo-reader/koodo-reader" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+fi
+PRETTY_NAME="Koodo Reader"
+WEBSITE="https://www.koodoreader.com"
+SUMMARY="A modern ebook manager and reader with sync and backup capacities for Windows, macOS, Linux, Android, iOS and Web"
