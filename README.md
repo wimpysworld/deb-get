@@ -23,7 +23,7 @@ release pages.
 Use `deb-get` to install `deb-get`.
 
 ```bash
-sudo apt install curl lsb-release wget
+sudo apt install curl lsb-release wget jq distro-info
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
 ```
 
@@ -198,10 +198,11 @@ If packages are available via a 3rd party `apt` repository
 <img src=".github/launchpad.png" align="top" width="20" />, then those packages
 will be updated/upgraded when using `sudo apt-get update` and `sudo apt-get upgrade`.
 
-#### GitHub Releases and direct downloads
+#### GitHub/GitLab Releases and direct downloads
 
 For `.deb` packages that are only available via GitHub Releases
-<img src=".github/github.png" align="top" width="20" /> or direct download
+<img src=".github/github.png" align="top" width="20" />, GitLab Releases
+<img src=".github/gitlab.png" align="top" width="20" /> or direct download
 <img src=".github/direct.png" align="top" width="20" />, then those packages
 can only be updated/upgraded by using `deb-get update` and `deb-get upgrade`.
 
