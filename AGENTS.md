@@ -20,7 +20,9 @@
 ./deb-get show <package>
 
 # Regenerate README after changing usage()
-pip3 install cogapp
+# comply with externally-managed python environment 
+sudo apt install python3-cogapp
+alias cog=cogapp
 cog -r README.md
 ```
 
