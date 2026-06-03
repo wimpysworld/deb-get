@@ -1517,6 +1517,8 @@ function dg_action_install() {
                     apt) install_apt;;
                     ppa) install_ppa;;
                 esac
+            else
+                exit 1
             fi
         done
 }
