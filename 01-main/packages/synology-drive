@@ -1,0 +1,19 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_website "https://archive.synology.com/download/Utility/SynologyDriveClient"
+if [ "${ACTION}" != prettylist ]; then
+    RELEASE=$(grep -oE 'SynologyDriveClient/[0-9]+\.[0-9]+\.[0-9]+-[0-9]+' "${CACHE_FILE}" \
+        | cut -d/ -f2 | sort -uV | tail -n1)
+    BUILD="${RELEASE##*-}"
+    URL="https://global.synologydownload.com/download/Utility/SynologyDriveClient/${RELEASE}/Ubuntu/Installer/synology-drive-client-${BUILD}.x86_64.deb"
+    SYNO_INSTALLED=$(dpkg-query -Wf '${Version}' synology-drive 2>/dev/null)
+    if [ -n "${SYNO_INSTALLED}" ]; then
+        # Keep the installed upstream part (e.g. 8.0.3), swap in the published build
+        VERSION_PUBLISHED="${SYNO_INSTALLED%-*}-${BUILD}"
+    else
+        VERSION_PUBLISHED="${RELEASE}"
+    fi
+fi
+PRETTY_NAME="Synology Drive Client"
+WEBSITE="https://www.synology.com/dsm/feature/drive"
+SUMMARY="Desktop sync client for Synology Drive on Synology NAS"
