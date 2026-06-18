@@ -1,0 +1,11 @@
+DEFVER=1
+# ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="trixie forky sid noble resolute"
+get_github_releases "Aryan-Raj3112/episteme" # "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*episteme-oss.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//desktop-v/}")
+fi
+PRETTY_NAME="Episteme OSS"
+WEBSITE="https://github.com/Aryan-Raj3112/episteme"
+SUMMARY="Episteme OSS is a modern, offline-first, privacy-focused document and e-book reader for Android and desktop, built with Kotlin Multiplatform and Compose."
