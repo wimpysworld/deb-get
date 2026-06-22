@@ -770,6 +770,15 @@ function update_repos() {
             fancy_message info "Updating ${ETC_DIR}/${REPO}"
         fi
         REPO_URL="$(head -n 1 "${ETC_DIR}/${REPO}.repo")"
+
+        # The repo URL is remote-controlled: the manifest overwrites this file
+        # on every update. It must never reach a shell-execution context.
+        # Require a plain https:// URL, which also blocks MITM substitution.
+        if [[ "${REPO_URL}" != https://* ]]; then
+            fancy_message warn "Skipping ${REPO}: repository URL is not https (${REPO_URL})"
+            continue
+        fi
+
         # shellcheck disable=SC2086
         ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo.tmp" && ${ELEVATE} mv "${ETC_DIR}/${REPO}.repo.tmp" "${ETC_DIR}/${REPO}.repo"
 
@@ -779,19 +788,29 @@ function update_repos() {
         # Otherwise revert to old-style for a bespoke hosted repo
 
         if pushd "${ETC_DIR}/${REPO}.d" >/dev/null; then
-            (eval "$(
-            awk -F/ '/github/  {print "# fetching github repo";
-                                print "GITREPO="$4"/"$5;\
-                                print "BRANCH="$6;\
-                                print "curl ${CURL_OPTS} -L https://api.github.com/repos/${GITREPO}/tarball/${BRANCH} | ${ELEVATE} tar zx --wildcards \"*/${REPO}*/packages/*\"   --strip-components=3"}
-                    ! /github/ {print "# fetching non-github repo";
-                                print "tail -n +2 \"${ETC_DIR}/${REPO}.repo\" | sed \"s/^#//\" | ${ELEVATE} sort -u -o \"${ETC_DIR}/${REPO}.repo.tmp\"";\
-                                print "${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B \"${REPO_URL}/packages/\" -i \"${ETC_DIR}/${REPO}.repo.tmp\" -P \"${ETC_DIR}/${REPO}.d\"";
-                                print "${ELEVATE} rm \"${ETC_DIR}/${REPO}.repo.tmp\""
-                    } '\
-                    <<<"${REPO_URL}"
-            )")
-
+            if [[ "${REPO_URL}" == *github* ]]; then
+                # fetching github repo
+                # Parse owner/repo/branch from the URL path without eval.
+                # Layout: https://host/<owner>/<repo>/<branch>[/...]
+                local -a URL_PARTS=()
+                IFS='/' read -ra URL_PARTS <<<"${REPO_URL}"
+                local GITREPO="${URL_PARTS[3]}/${URL_PARTS[4]}"
+                local BRANCH="${URL_PARTS[5]}"
+                # Every path segment must be a safe token. Reject shell
+                # metacharacters before any value is used as a command argument.
+                if [[ "${URL_PARTS[3]}" =~ ^[A-Za-z0-9._-]+$ && "${URL_PARTS[4]}" =~ ^[A-Za-z0-9._-]+$ && "${BRANCH}" =~ ^[A-Za-z0-9._-]+$ ]]; then
+                    # shellcheck disable=SC2086
+                    curl ${CURL_OPTS} -L "https://api.github.com/repos/${GITREPO}/tarball/${BRANCH}" | ${ELEVATE} tar zx --wildcards "*/${REPO}*/packages/*" --strip-components=3
+                else
+                    fancy_message warn "Skipping ${REPO}: invalid GitHub repository URL (${REPO_URL})"
+                fi
+            else
+                # fetching non-github repo
+                tail -n +2 "${ETC_DIR}/${REPO}.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/${REPO}.repo.tmp"
+                # shellcheck disable=SC2086
+                ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
+                ${ELEVATE} rm "${ETC_DIR}/${REPO}.repo.tmp"
+            fi
             popd >/dev/null || true
         fi
     done
