@@ -223,6 +223,24 @@ You probably want to put this into your `.profile` so it is always available. Re
 export DEBGET_TOKEN=github-personal-access-token
 ```
 
+#### Download integrity
+
+Direct `.deb` downloads (the `github`, `gitlab`, `website` and `direct`
+package types) are fetched over HTTPS and installed with `apt`/`dpkg`.
+`apt`/`dpkg` check the package format, but they do not verify an upstream
+signature for a `.deb` passed by path.
+
+`deb-get` does not add its own hash check across the board. Most upstream
+vendors do not publish per-release hashes, so `deb-get` would have to generate
+the hash itself from the same URL it downloads. A self-generated hash is
+change-detection, not authentication: if upstream ships a bad `.deb`, `deb-get`
+would hash the bad file and store it as good. With no upstream-signed reference,
+the hash has no trust anchor.
+
+Integrity therefore rests on HTTPS transport plus the `apt`/`dpkg` format
+checks. Where an upstream publishes its own checksums or signature, a
+per-package opt-in check is the right place to add one.
+
 
 
 ## Adding Software

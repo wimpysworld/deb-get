@@ -17,7 +17,7 @@ https://raw.githubusercontent.com/<user-organization>/<repository>/<branch>
 
 # The manifest file
 
-This is the most important file in an external repository, since without it nothing else would work. Its first line must always contain the base URL of the repository. The following lines must contain the names of the package definition files present in the `packages` path, one per line, ideally sorted and without repetition. They can also be commented (starting with `#`), in which case the package definition file is considered deprecated. **No file declared in the manifest should be missing, or else the caching mechanism will break**.
+This is the most important file in an external repository, since without it nothing else would work. Its first line must always contain the base URL of the repository. The following lines must contain the names of the package definition files present in the `packages` path, one per line, ideally sorted and without repetition. They can also be commented (starting with `#`), in which case the package definition file is considered deprecated. **No file declared in the manifest should be missing, or else the caching mechanism will break**. The manifest body must list relative package paths only; absolute URLs (lines containing `://`) are ignored, because they would let a manifest redirect downloads to other hosts.
 
 # The package definition files
 

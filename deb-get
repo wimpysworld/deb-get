@@ -245,7 +245,7 @@ function get_website() {
                 fancy_message info "Updating ${CACHE_FILE}"
             fi
             # shellcheck disable=SC2086
-            if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps ${WGET_TIMEOUT} "$@" -O "${CACHE_FILE}"; then
+            if ! ${ELEVATE} wget ${WGET_VERBOSITY} --no-use-server-timestamps "${WGET_TIMEOUT}" "$@" -O "${CACHE_FILE}"; then
                 fancy_message warn "Updating ${CACHE_FILE} failed. Deleting it."
                 ${ELEVATE} rm -f "${CACHE_FILE}"
             fi
@@ -280,7 +280,7 @@ function download_deb() {
     local FILE="${2}"
 
     # shellcheck disable=SC2086
-    if ! ${ELEVATE} wget ${WGET_VERBOSITY} --continue ${WGET_TIMEOUT} --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
+    if ! ${ELEVATE} wget ${WGET_VERBOSITY} --continue "${WGET_TIMEOUT}" --show-progress --progress=bar:force:noscroll "${URL}" -O "${CACHE_DIR}/${FILE}"; then
         fancy_message error "Failed to download ${URL}. Deleting ${CACHE_DIR}/${FILE}..."
         ${ELEVATE} rm "${CACHE_DIR}/${FILE}" 2>/dev/null
         return 1
@@ -780,7 +780,7 @@ function update_repos() {
         fi
 
         # shellcheck disable=SC2086
-        ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo.tmp" && ${ELEVATE} mv "${ETC_DIR}/${REPO}.repo.tmp" "${ETC_DIR}/${REPO}.repo"
+        ${ELEVATE} wget ${WGET_VERBOSITY} "${WGET_TIMEOUT}" "${REPO_URL}/manifest" -O "${ETC_DIR}/${REPO}.repo.tmp" && ${ELEVATE} mv "${ETC_DIR}/${REPO}.repo.tmp" "${ETC_DIR}/${REPO}.repo"
 
         # ${ELEVATE} rm "${ETC_DIR}/${REPO}.d/* # we currently leave old litter : either <- this or maybe rm older ones
         # although so long as manifest is good we are OK
@@ -807,8 +807,16 @@ function update_repos() {
             else
                 # fetching non-github repo
                 tail -n +2 "${ETC_DIR}/${REPO}.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/${REPO}.repo.tmp"
+                # Drop absolute URLs from the manifest body. wget -i follows
+                # them verbatim, ignoring -B and the https base, so an absolute
+                # entry could redirect a root download to any host (including
+                # plain http). Only relative package paths are allowed.
+                if grep -q '://' "${ETC_DIR}/${REPO}.repo.tmp"; then
+                    fancy_message warn "Ignoring absolute URLs in ${REPO} manifest body; only relative package paths are allowed"
+                    ${ELEVATE} sed -i '\#://#d' "${ETC_DIR}/${REPO}.repo.tmp"
+                fi
                 # shellcheck disable=SC2086
-                ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
+                ${ELEVATE} wget ${WGET_VERBOSITY} "${WGET_TIMEOUT}" -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
                 ${ELEVATE} rm "${ETC_DIR}/${REPO}.repo.tmp"
             fi
             popd >/dev/null || true
@@ -1293,7 +1301,7 @@ function add_apt_repo() {
     if [ ! -e "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg" ]; then
         if [ -n "${ASC_KEY_URL}" ]; then
             # shellcheck disable=SC2086
-            ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
+            ${ELEVATE} wget ${WGET_VERBOSITY} "${WGET_TIMEOUT}" "${ASC_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} gpg --yes --dearmor "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
             ${ELEVATE} rm "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring"
         elif [ -n "${GPG_KEY_ID}" ]; then
@@ -1307,7 +1315,7 @@ function add_apt_repo() {
             ${ELEVATE} rm /usr/share/keyrings/"${APT_LIST_NAME}"-archive-keyring-temp.gpg
         else #GPG_KEY_URL
             # shellcheck disable=SC2086
-            ${ELEVATE} wget ${WGET_VERBOSITY} ${WGET_TIMEOUT} "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
+            ${ELEVATE} wget ${WGET_VERBOSITY} "${WGET_TIMEOUT}" "${GPG_KEY_URL}" -O "/usr/share/keyrings/${APT_LIST_NAME}-archive-keyring.gpg"
         fi
     fi
 
@@ -1704,6 +1712,7 @@ fi
 
 export CACHE_DIR="/var/cache/deb-get"
 readonly ETC_DIR="/etc/deb-get"
+readonly WGET_TIMEOUT="--timeout=60"
 readonly MAIN_REPO_URL="https://raw.githubusercontent.com/wimpysworld/deb-get/main/01-main"
 readonly DISTRO_INFO_DIR="/usr/share/distro-info"
 
