@@ -41,8 +41,14 @@ jobs:
           DEPRECATED=$(tail -n +2 01-main/manifest | grep '^#' | sed 's/^#//' | tr '\n' ' ')
 
           if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
-            # Pull request: detect changed package files
-            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||" || true)
+            # Pull request: detect changed package files against the latest default branch HEAD
+            BASE_REF="${{ github.event.repository.default_branch }}"
+            if [ -z "${BASE_REF}" ]; then
+              BASE_REF="main"
+            fi
+
+            git fetch --no-tags --prune --depth=1 origin "${BASE_REF}"
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT "origin/${BASE_REF}" "${{ github.sha }}" | grep "^01-main/packages/" | sed "s|^01-main/packages/||" || true)
           elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # workflow_dispatch: use specified packages or read all from manifest
             INPUT_PACKAGES="${{ github.event.inputs.packages }}"
