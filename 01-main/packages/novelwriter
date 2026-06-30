@@ -1,9 +1,16 @@
 DEFVER=1
-CODENAMES_SUPPORTED="noble oracular plucky questing"
+CODENAMES_SUPPORTED="noble oracular plucky questing resolute stonking bookworm trixie forky sid"
+local DEB_CHOICE=""
 get_github_releases "vkbo/novelWriter" "latest"
+case ${UPSTREAM_CODENAME} in
+    noble|oracular|plucky|bookworm)
+        DEB_CHOICE="-oldstable";;
+    *)
+        DEB_CHOICE="";;
+esac
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+    URL=$(grep -m 1 "browser_download_url.*[0-9]${DEB_CHOICE}_all\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< ${URL//v/})
 fi
 PRETTY_NAME="novelWriter"
 WEBSITE="https://novelwriter.io"
