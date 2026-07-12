@@ -7,4 +7,4 @@ if [ "${ACTION}" != "prettylist" ]; then
 fi
 PRETTY_NAME="Hugo (extended)"
 WEBSITE="https://gohugo.io/"
-SUMMARY="Open-source static site generator (extended version with Sass/SCSS support)."
+SUMMARY="Open-source static site generator (extended version with support for Sass/SCSS and direct cloud deployment)."
