@@ -5,6 +5,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | grep withdeploy | grep -m 1 -v extended | cut -d '"' -f 4)
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
-PRETTY_NAME="Hugo (extended)"
+PRETTY_NAME="Hugo (with deployment)"
 WEBSITE="https://gohugo.io/"
-SUMMARY="Open-source static site generator (extended version with support for direct cloud deployment)."
+SUMMARY="Open-source static site generator (with support for direct cloud deployment)."
