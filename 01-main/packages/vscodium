@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 ppc64el"
+get_github_releases "VSCodium/vscodium" "latest"
+if [ "${ACTION}" != prettylist ]; then
+	URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="VSCodium"
+WEBSITE="https://vscodium.com"
+SUMMARY="VSCodium is a community-driven, freely-licensed binary distribution of Microsoft’s editor VS Code."
