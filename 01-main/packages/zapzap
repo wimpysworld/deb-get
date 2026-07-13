@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "rafatosta/zapzap" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*zapzap-.*-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL##*/}")
+fi
+PRETTY_NAME="ZapZap"
+WEBSITE="https://rtosta.com/zapzap/"
+SUMMARY="A WhatsApp desktop application with multi-account support and Linux integration."
