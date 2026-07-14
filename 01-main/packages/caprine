@@ -1,9 +1,10 @@
-DEFVER=1
-get_github_releases "sindresorhus/caprine"
+DEFVER=2
+get_github_releases "bankjaneo/caprine"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    URL=$(grep -m 1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*${HOST_ARCH}\.deb\"" "${CACHE_FILE}")
+    URL=${URL%\"}; URL=${URL##*\"}
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Caprine"
-WEBSITE="https://sindresorhus.com/caprine"
+WEBSITE="https://github.com/bankjaneo/caprine"
 SUMMARY="Elegant Facebook Messenger desktop app."
