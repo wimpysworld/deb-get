@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+get_github_releases "navidrome/navidrome" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1  "browser_download_url.*linux_${HOST_ARCH/hf/v7}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Navidrome"
+WEBSITE="https://www.navidrome.org"
+SUMMARY="Your personal streaming service"
