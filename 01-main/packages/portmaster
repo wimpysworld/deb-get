@@ -1,7 +1,7 @@
 DEFVER=1
 get_website "https://api.github.com/repos/safing/portmaster/releases/latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED=$(sed -n 's/.*"name": *"\([^"]*\)".*/\1/p' "${CACHE_FILE}")
+    VERSION_PUBLISHED=$(sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' "${CACHE_FILE}")
     VERSION_PUBLISHED=${VERSION_PUBLISHED//v/}
     URL="https://updates.safing.io/latest/linux_amd64/packages/Portmaster_${VERSION_PUBLISHED}_amd64.deb"
 fi
