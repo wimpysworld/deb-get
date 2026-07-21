@@ -2,13 +2,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "navidrome/navidrome" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    if [ "${HOST_ARCH}" = "amd64" ]; then
-        URL=$(grep "browser_download_url.*linux_amd64\.deb\"" "${CACHE_FILE}" | head -1 | cut -d '"' -f 4)
-    elif [ "${HOST_ARCH}" = "arm64" ]; then
-        URL=$(grep "browser_download_url.*linux_arm64\.deb\"" "${CACHE_FILE}" | head -1 | cut -d '"' -f 4)
-    elif [ "${HOST_ARCH}" = "armhf" ]; then
-        URL=$(grep "browser_download_url.*linux_armv7\.deb\"" "${CACHE_FILE}" | head -1 | cut -d '"' -f 4)
-    fi
+    URL=$(grep -m 1  "browser_download_url.*linux_${HOST_ARCH/hf/v7}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Navidrome"
