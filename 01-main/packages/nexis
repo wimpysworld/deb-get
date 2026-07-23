@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-CODENAMES_SUPPORTED="noble resolute stonking trixie sid"
+CODENAMES_SUPPORTED="resolute stonking trixie sid"
 get_github_releases "s4solutionsllc/Nexis"
 if [ "${ACTION}" != "prettylist" ]; then
     NEXIS_UBUNTU_RELEASE="ubuntu2604"
