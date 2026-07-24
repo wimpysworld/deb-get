@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "Tura-AI/tura" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Tura"
+WEBSITE="https://turaai.net/"
+SUMMARY="An open-source, local-first AI coding agent that works with existing AI subscriptions and coding tools."
