@@ -6,7 +6,7 @@ case "${ARCH}" in
     arm64) ARCH=-linux-arm64 ;;
     *) ;;
 esac
-get_github_releases "siyuan-note/siyuan" 
+get_github_releases "siyuan-note/siyuan" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(sed -E -n "s|.*browser_download_url.*(https.*${ARCH}\.deb).*|\1|p" "${CACHE_FILE}" | head -n 1)
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
