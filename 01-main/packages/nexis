@@ -1,12 +1,13 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
-CODENAMES_SUPPORTED="resolute stonking trixie sid"
+CODENAMES_SUPPORTED="noble plucky resolute stonking trixie sid"
+UPSTREAM_RELEASE_NODOT="${UPSTREAM_RELEASE//./}"
 get_github_releases "s4solutionsllc/Nexis"
 if [ "${ACTION}" != "prettylist" ]; then
-    NEXIS_UBUNTU_RELEASE="ubuntu2604"
-    if [ "${UPSTREAM_CODENAME}" = "noble" ]; then
-        NEXIS_UBUNTU_RELEASE="ubuntu2404"
-    fi
+    NEXIS_UBUNTU_RELEASE="${UPSTREAM_ID}${UPSTREAM_RELEASE_NODOT}"
+    case "${UPSTREAM_CODENAME}" in
+        stonking|trixie|sid) NEXIS_UBUNTU_RELEASE="ubuntu2604" ;;
+    esac
     URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}_${NEXIS_UBUNTU_RELEASE}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
