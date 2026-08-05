@@ -1,7 +1,7 @@
 DEFVER=2
 CODENAMES_SUPPORTED="bookworm trixie sid forky jammy noble plucky questing resolute"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(curl -fsIL -o /dev/null -w "%{url_effective}" https://rstudio.org/download/latest/stable/desktop/jammy/rstudio-latest-amd64.deb)
+    URL=$(curl -fsSIL -o /dev/null -w "%{url_effective}" https://rstudio.org/download/latest/stable/desktop/jammy/rstudio-latest-amd64.deb) || URL=""
     VERSION_PUBLISHED=$(echo "$URL" | grep -oP 'rstudio-\K[0-9.]+\-[0-9]+')
 fi
 PRETTY_NAME="RStudio"
