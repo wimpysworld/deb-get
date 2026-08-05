@@ -1,0 +1,22 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ARCH="${HOST_ARCH}"
+case "${ARCH}" in
+  arm64|aarch64)
+    ARCH=aarch64
+    ;;
+  amd64|x86_64)
+    ARCH=x64
+    ;;
+   *)
+    printf "Unsupported HOST_ARCH: '%s'\n" "${ARCH}"
+    ;;
+esac
+get_github_releases "TriliumNext/Notes" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -E "browser_download_url.*-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | tr -d v)
+fi
+PRETTY_NAME="TriliumNext Notes"
+WEBSITE="https://github.com/TriliumNext/Notes"
+SUMMARY="An open-source, cross-platform hierarchical note taking application with focus on building large personal knowledge bases"
