@@ -226,7 +226,7 @@ function get_gitlab_releases() {
             if [[ -n "${2}" ]]; then
                 local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT//\//%2F}/releases/${RELEASE}/assets/links?per_page=100"
             else
-                local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT//\//%2F}/releases"
+                local URL="${GITLAB_HOST}/api/v4/projects/${GITLAB_PROJECT//\//%2F}/releases?per_page=100"
             fi
             wgetcmdarray=(wget -q --no-use-server-timestamps "${URL}" -O- )
             # Only grab the .deb files URLs, but first add newlines, because the JSON is all on one line.
