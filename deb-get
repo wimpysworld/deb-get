@@ -187,7 +187,7 @@ function get_github_releases() {
             fi
             local URL="https://api.github.com/repos/${1}/releases${2:+/$2}"
             wgetcmdarray=(wget  "${HEADERPARAM}" "${HEADERAUTH}" -q --no-use-server-timestamps "${URL}" -O- )
-            if ! command -v "jq"; then
+            if ! command -v "jq" > /dev/null; then
                 fancy_message error "Please install jq."
                 exit 1
             fi
