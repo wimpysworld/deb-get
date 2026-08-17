@@ -134,9 +134,6 @@ function elevate_privs() {
 }
 
 function create_cache_dir() {
-    if [ -d /var/cache/get-deb ]; then
-        ${ELEVATE} mv /var/cache/get-deb "${CACHE_DIR}"
-    fi
     ${ELEVATE} mkdir -p "${CACHE_DIR}" 2>/dev/null
     ${ELEVATE} chmod 755 "${CACHE_DIR}" 2>/dev/null
 }
