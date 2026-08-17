@@ -1504,6 +1504,8 @@ function dg_action_clean() {
 
 }
 function dg_action_show() {
+        elevate_privs
+        create_cache_dir
         for APP in "${@,,}"; do
             FULL_APP=${APPNAME2FULL[$APP]}
             if [ -z "${FULL_APP}" ]; then
