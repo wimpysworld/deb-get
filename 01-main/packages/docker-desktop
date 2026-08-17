@@ -1,9 +1,13 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64"
-get_website "https://docs.docker.com/desktop/release-notes/"
+# The appcast has no "latest" entry; every live release is listed, oldest-first, each
+# with a staged-rollout "Visibility" percentage. Neither document order nor
+# Visibility==100 identifies the newest build, so select on highest BuildNumber.
+# AppVersion-BuildNumber matches the .deb's own Version field.
+get_website "https://desktop.docker.com/linux/main/amd64/appcast.json"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 -o 'https:[^>]*\.deb' "${CACHE_FILE}" )
-    VERSION_PUBLISHED=$(awk 'match($0, /href=#[0-9][^>]*>([^<]*)</, a) { print a[1]; exit }' "${CACHE_FILE}")
+    URL=$(jq -r '.Items | max_by(.BuildNumber|tonumber) | .Artifacts[]? | select(.Type=="deb") | .URL' "${CACHE_FILE}" 2>/dev/null)
+    VERSION_PUBLISHED=$(jq -r '.Items | max_by(.BuildNumber|tonumber) | select(.) | "\(.AppVersion)-\(.BuildNumber)"' "${CACHE_FILE}" 2>/dev/null)
 fi
 PRETTY_NAME="Docker Desktop"
 WEBSITE="https://www.docker.com/products/docker-desktop/"
