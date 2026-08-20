@@ -1,25 +1,8 @@
-DEFVER=1
-CODENAMES_SUPPORTED="bookworm trixie sid forky jammy noble plucky questing"
-get_website "https://posit.co/wp-content/uploads/downloads.json"
-local RELEASE
-local CODENAME
-local ALL_RELEASES
+DEFVER=2
+CODENAMES_SUPPORTED="bookworm trixie sid forky jammy noble plucky questing resolute"
 if [ "${ACTION}" != "prettylist" ]; then
-    ALL_RELEASES=$(jq -r '.rstudio.open_source.stable.desktop.installer[] | select(.platform.name | contains("Ubuntu") or contains("Debian")) | [.platform.name, .platform.key] | join(",")' "${CACHE_FILE}")
-    case "${UPSTREAM_CODENAME}" in
-        sid) RELEASE=$(grep -E -o "Debian [0-9]+" <<< "${ALL_RELEASES}" | cut -d ' ' -f 2 | sort -rn | head -n 1);;
-          *) RELEASE="${UPSTREAM_RELEASE%%.*}";;
-    esac
-    while [[ ${RELEASE} -gt 0 ]]; do
-        CODENAME=$(grep -i -m 1 -E -o "${UPSTREAM_ID} ${RELEASE}[^,]*,[[:alnum:]]+" <<< "${ALL_RELEASES}")
-        if [[ ${CODENAME} =~ ${UPSTREAM_ID^}\ ${RELEASE}[^,]*,[a-z]+ ]]; then break; fi
-        RELEASE=$((RELEASE - 1))
-    done
-    CODENAME=$(cut -d ',' -f 2 <<< "${CODENAME}")
-    if [ -n "${CODENAME}" ]; then
-        URL=$(jq -r ".rstudio.open_source.stable.desktop.installer.${CODENAME}.url" "${CACHE_FILE}")
-        VERSION_PUBLISHED=$(jq -r ".rstudio.open_source.stable.desktop.installer.${CODENAME}.version" "${CACHE_FILE}")
-    fi
+    URL=$(follow_url "https://rstudio.org/download/latest/stable/desktop/jammy/rstudio-latest-amd64.deb")
+    VERSION_PUBLISHED=$(grep -oP 'rstudio-\K[0-9.]+\-[0-9]+' <<< "${URL}")
 fi
 PRETTY_NAME="RStudio"
 WEBSITE="https://posit.co/"
