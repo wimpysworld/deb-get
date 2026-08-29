@@ -9,6 +9,19 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(jq -r '.Items | max_by(.BuildNumber|tonumber) | .Artifacts[]? | select(.Type=="deb") | .URL' "${CACHE_FILE}" 2>/dev/null)
     VERSION_PUBLISHED=$(jq -r '.Items | max_by(.BuildNumber|tonumber) | select(.) | "\(.AppVersion)-\(.BuildNumber)"' "${CACHE_FILE}" 2>/dev/null)
 fi
+if [ "${ACTION}" == "install" ]; then
+    # Of the dependencies only docker-ce-cli is absent from the distro archive; it comes
+    # from Docker's own apt repository, which is why Docker's install instructions open
+    # by adding it. Check for a candidate rather than an installed package, so a user who
+    # has the repository but not the CLI is not warned needlessly. Without this apt only
+    # fails after the ~450MB download.
+    # shellcheck disable=SC2168,SC2155
+    # as we are in a function context
+    local DOCKER_CE_CLI=$(apt-cache policy docker-ce-cli 2>/dev/null | awk '/Candidate:/ {print $2}')
+    if [ -z "${DOCKER_CE_CLI}" ] || [ "${DOCKER_CE_CLI}" == "(none)" ]; then
+        fancy_message warn "${APP} depends on docker-ce-cli, which no configured repository provides. Install it first with 'deb-get install docker-ce' to add Docker's apt repository, or follow https://docs.docker.com/desktop/setup/install/linux/"
+    fi
+fi
 PRETTY_NAME="Docker Desktop"
 WEBSITE="https://www.docker.com/products/docker-desktop/"
 SUMMARY="The fastest way to containerize applications."
