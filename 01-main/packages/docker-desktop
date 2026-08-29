@@ -9,15 +9,16 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(jq -r '.Items | max_by(.BuildNumber|tonumber) | .Artifacts[]? | select(.Type=="deb") | .URL' "${CACHE_FILE}" 2>/dev/null)
     VERSION_PUBLISHED=$(jq -r '.Items | max_by(.BuildNumber|tonumber) | select(.) | "\(.AppVersion)-\(.BuildNumber)"' "${CACHE_FILE}" 2>/dev/null)
 fi
-if [ "${ACTION}" == "install" ]; then
+if [ "${ACTION}" == "install" ] && ! package_is_installed "${APP}"; then
     # Of the ten dependencies only docker-ce-cli is absent from the Debian and Ubuntu
     # archives; it comes from Docker's own apt repository, which is why Docker's install
     # instructions open by adding that repository. Apt does abort without it, but not
     # before the ~450MB download, and it reports "Unable to correct problems, you have
     # held broken packages" without naming the dependency that is missing. Warn early so
     # the cause and the remedy are on screen before that.
-    # An installed package is its own candidate via /var/lib/dpkg/status, so this stays
-    # quiet both for a user who has the repository but not the CLI, and on re-runs once
+    # Scope it to a first install, so an up-to-date re-run does not warn about a
+    # dependency it is not about to need. An upgrade on a machine that has since lost
+    # docker-ce-cli is left to apt, which is rare because apt resists removing it while
     # docker-desktop is installed.
     # shellcheck disable=SC2168,SC2155
     # as we are in a function context
