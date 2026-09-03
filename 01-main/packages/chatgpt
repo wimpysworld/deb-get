@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="trixie forky sid noble plucky questing resolute"
+get_website "https://persistent.oaistatic.com/codex-app-prod/linux/deb/dists/stable/main/binary-${HOST_ARCH}/Packages"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="https://persistent.oaistatic.com/codex-app-prod/linux/deb/$(grep -m 1 "^Filename:" "${CACHE_FILE}" | cut -d ' ' -f 2)"
+    VERSION_PUBLISHED=$(grep -m 1 "^Version:" "${CACHE_FILE}" | cut -d ' ' -f 2)
+fi
+PRETTY_NAME="ChatGPT"
+WEBSITE="https://openai.com/codex/"
+SUMMARY="Desktop app for ChatGPT and Codex, OpenAI's AI coding partner."
