@@ -2,8 +2,8 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64"
 get_website "https://prelora.app/downloads/latest.json"
 if [ "${ACTION}" != "prettylist" ]; then
-  URL="$(python3 -c "import json,sys; print(json.load(sys.stdin)['latest_deb_url'])" <"${CACHE_FILE}")"
-  VERSION_PUBLISHED="$(python3 -c "import json,sys; print(json.load(sys.stdin)['version'])" <"${CACHE_FILE}")"
+    URL="$(jq -r '.latest_deb_url' "${CACHE_FILE}")"
+    VERSION_PUBLISHED="$(jq -r '.version' "${CACHE_FILE}")"
 fi
 PRETTY_NAME="Prelora"
 WEBSITE="https://prelora.app/"
