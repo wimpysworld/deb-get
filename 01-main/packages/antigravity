@@ -1,0 +1,16 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+if [ "${ACTION}" != "prettylist" ]; then
+    # The download page is rendered client-side, so the release metadata is read
+    # from the update manifest the application itself uses, which also publishes
+    # the .deb alongside the AppImage. Both Linux architectures share a build id.
+    ANTIGRAVITY_MANIFEST=$(curl -sf --max-time 10 --retry 3 "https://antigravity-hub-auto-updater-974169037036.us-central1.run.app/manifest/latest-x64-linux.yml")
+    URL=$(grep -m 1 -o "https://[^[:space:]]*/linux-x64/Antigravity\.deb" <<< "${ANTIGRAVITY_MANIFEST}")
+    if [ "${HOST_ARCH}" == "arm64" ]; then
+        URL="${URL/linux-x64/linux-arm}"
+    fi
+    VERSION_PUBLISHED=$(grep -m 1 "^version:" <<< "${ANTIGRAVITY_MANIFEST}" | cut -d ' ' -f 2)
+fi
+PRETTY_NAME="Google Antigravity"
+WEBSITE="https://antigravity.google"
+SUMMARY="Agentic development platform where AI agents plan, write and verify code."
