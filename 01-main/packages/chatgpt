@@ -7,5 +7,5 @@ if [ "${ACTION}" != "prettylist" ]; then
     VERSION_PUBLISHED=$(grep -m 1 "^Version:" "${CACHE_FILE}" | cut -d ' ' -f 2)
 fi
 PRETTY_NAME="ChatGPT"
-WEBSITE="https://openai.com/codex/"
+WEBSITE="https://developers.openai.com/codex/app"
 SUMMARY="Desktop app for ChatGPT and Codex, OpenAI's AI coding partner."
