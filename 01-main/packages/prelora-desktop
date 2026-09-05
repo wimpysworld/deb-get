@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_website "https://prelora.app/downloads/latest.json"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(jq -r '.latest_deb_url' "${CACHE_FILE}")"
+    VERSION_PUBLISHED="$(jq -r '.version' "${CACHE_FILE}")"
+fi
+PRETTY_NAME="Prelora"
+WEBSITE="https://prelora.app/"
+SUMMARY="Local-first GTD tasks and live countdown timers for Linux desktop."
