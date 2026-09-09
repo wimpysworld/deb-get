@@ -268,10 +268,17 @@ function fancy_message() {
       (progress) printf "  [${GREEN}+${RESET}] %s" "${MESSAGE}";;
       (recommend) printf "  [${MAGENTA}!${RESET}] %s\n" "${MESSAGE}";;
       (warn) printf "  [${YELLOW}*${RESET}] WARNING! %s\n" "${MESSAGE}";;
-      (error) printf "  [${RED}!${RESET}] ERROR! %s\n" "${MESSAGE}" >&2;;
-      (fatal)
-          printf "  [${RED}!${RESET}] ERROR! %s\n" "${MESSAGE}" >&2
-          exit 1;;
+      (error|fatal)
+          if [ "${SOURCING:-0}" == 1 ]; then
+              # stderr is discarded while a definition is being sourced,
+              # so fall back to stdout to keep the message visible.
+              printf "  [${RED}!${RESET}] ERROR! %s\n" "${MESSAGE}"
+          else
+              printf "  [${RED}!${RESET}] ERROR! %s\n" "${MESSAGE}" >&2
+          fi
+          if [ "${MESSAGE_TYPE}" == fatal ]; then
+              exit 1
+          fi;;
       (*) printf "  [?] UNKNOWN: %s\n" "${MESSAGE}";;
     esac
 }
@@ -481,13 +488,17 @@ function validate_deb() {
     export CACHE_FILE="" FILE=""
     unset -f post_download 2>/dev/null
 
-    # Source the variables
+    # Source the variables. Definitions are sourced with stderr discarded,
+    # so flag the window for fancy_message, which routes error/fatal to
+    # stdout while it is set to keep those messages visible.
+    local SOURCING=1
     if [ "${APP_SRC}" == "00-builtin" ]; then
         deb_"${APP}" 2>/dev/null
     else
         # shellcheck source=/dev/null
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
+    unset SOURCING
     if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
