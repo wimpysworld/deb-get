@@ -492,19 +492,19 @@ function validate_deb() {
 
     # Source the variables. Definitions are sourced with stderr discarded to
     # keep their noise out of the terminal, which would otherwise also hide
-    # real error/fatal messages.  Keep the real stderr on fd 3 for this
-    # window so fancy_message can surface those on stderr instead of
-    # polluting stdout (prettylist/csvlist emit structured output there).
-    exec 3>&2
+    # real error/fatal messages.  Point fd 3 at the real stderr for the
+    # duration of the source only (a plain redirection on the command, so an
+    # fd 3 the caller passed in is restored untouched afterwards) and flag
+    # the window for fancy_message, which routes error/fatal there instead of
+    # polluting stdout (prettylist/csvlist emit structured output on stdout).
     local SOURCING=1
     if [ "${APP_SRC}" == "00-builtin" ]; then
-        deb_"${APP}" 2>/dev/null
+        deb_"${APP}" 3>&2 2>/dev/null
     else
         # shellcheck source=/dev/null
-        . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
+        . "${ETC_DIR}/${APP_SRC}.d/${APP}" 3>&2 2>/dev/null
     fi
     unset SOURCING
-    exec 3>&-
     if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
