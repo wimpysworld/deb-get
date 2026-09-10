@@ -269,10 +269,12 @@ function fancy_message() {
       (recommend) printf "  [${MAGENTA}!${RESET}] %s\n" "${MESSAGE}";;
       (warn) printf "  [${YELLOW}*${RESET}] WARNING! %s\n" "${MESSAGE}";;
       (error|fatal)
-          if [ "${SOURCING:-0}" == 1 ]; then
-              # stderr is discarded while a definition is being sourced,
-              # so fall back to stdout to keep the message visible.
-              printf "  [${RED}!${RESET}] ERROR! %s\n" "${MESSAGE}"
+          if [ "${SOURCING:-0}" == 1 ] && { : >&3; } 2>/dev/null; then
+              # stderr is discarded while a definition is being sourced;
+              # validate_deb keeps the real stderr on fd 3 for that window,
+              # so route the message there.  Keeps it off stdout, which
+              # prettylist/csvlist use for structured output.
+              printf "  [${RED}!${RESET}] ERROR! %s\n" "${MESSAGE}" >&3
           else
               printf "  [${RED}!${RESET}] ERROR! %s\n" "${MESSAGE}" >&2
           fi
@@ -488,9 +490,12 @@ function validate_deb() {
     export CACHE_FILE="" FILE=""
     unset -f post_download 2>/dev/null
 
-    # Source the variables. Definitions are sourced with stderr discarded,
-    # so flag the window for fancy_message, which routes error/fatal to
-    # stdout while it is set to keep those messages visible.
+    # Source the variables. Definitions are sourced with stderr discarded to
+    # keep their noise out of the terminal, which would otherwise also hide
+    # real error/fatal messages.  Keep the real stderr on fd 3 for this
+    # window so fancy_message can surface those on stderr instead of
+    # polluting stdout (prettylist/csvlist emit structured output there).
+    exec 3>&2
     local SOURCING=1
     if [ "${APP_SRC}" == "00-builtin" ]; then
         deb_"${APP}" 2>/dev/null
@@ -499,6 +504,7 @@ function validate_deb() {
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 2>/dev/null
     fi
     unset SOURCING
+    exec 3>&-
     if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
         if [ -z "${DEFVER}" ] || [ -z "${PRETTY_NAME}" ] || [ -z "${SUMMARY}" ] || [ -z "${WEBSITE}" ]; then
