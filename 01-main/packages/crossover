@@ -1,10 +1,14 @@
 DEFVER=1
-get_website "https://media.codeweavers.com/pub/crossover/cxlinux/demo/?V=1;O=D;F=0;P=crossover_*.deb"
+
+get_website "https://www.codeweavers.com/crossover/changelog"
+
+# pkgrel=1
+_pkgdebrel=1
+
 if [ "${ACTION}" != "prettylist" ]; then
     # shellcheck disable=SC2168,SC2155
-    local VERSION_NAME=$(grep -m 1 "\.deb\"" "${CACHE_FILE}" | cut -d "\"" -f 2)
-    VERSION_PUBLISHED="${VERSION_NAME:10:-4}"
-    URL="https://media.codeweavers.com/pub/crossover/cxlinux/demo/${VERSION_NAME}"
+    VERSION_PUBLISHED=$(grep -m 1 -E '<a name=\"([[:digit:]])+'  ${CACHE_FILE} | cut -d \" -f 2)
+    URL="https://media.codeweavers.com/pub/${APP}/cxlinux/demo/${APP}_${VERSION_PUBLISHED}-${_pkgdebrel}.deb"
 fi
 PRETTY_NAME="CrossOver"
 WEBSITE="https://www.codeweavers.com/crossover"
