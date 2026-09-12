@@ -1,0 +1,16 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+case ${HOST_ARCH} in
+    amd64)
+        TARGET_ARCH=x86_64;;
+    arm64)
+        TARGET_ARCH=aarch64;;
+esac
+get_github_releases "alexmercerind2/harmonoid-releases" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*linux-${TARGET_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Harmonoid"
+WEBSITE="https://harmonoid.com/"
+SUMMARY="Music player and library manager built with Material Design."
