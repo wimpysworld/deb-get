@@ -1,17 +1,8 @@
-DEFVER=1
+DEFVER=2
 CODENAMES_SUPPORTED="noble oracular plucky questing resolute stonking bookworm trixie forky sid"
-local DEB_CHOICE=""
-get_github_releases "vkbo/novelWriter" "latest"
-case ${UPSTREAM_CODENAME} in
-    noble|oracular|plucky|bookworm)
-        DEB_CHOICE="-oldstable";;
-    *)
-        DEB_CHOICE="";;
-esac
-if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*[0-9]${DEB_CHOICE}_all\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< ${URL//v/})
-fi
+APT_REPO_URL="https://dl.cloudsmith.io/public/saga-soft/stable/deb/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+ASC_KEY_URL="https://dl.cloudsmith.io/public/saga-soft/stable/gpg.A5DB431AC9B30E63.key"
+APT_LIST_NAME="saga-soft-stable"
 PRETTY_NAME="novelWriter"
 WEBSITE="https://novelwriter.io"
 SUMMARY="An open source plain text editor designed for writing novels. It supports a minimal markdown-like syntax for formatting text."
