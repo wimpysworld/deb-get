@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
+get_github_releases "ChrisLauinger77/toerings" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="ToeRings"
+WEBSITE="https://github.com/ChrisLauinger77/toerings"
+SUMMARY="A lightweight desktop system monitor inspired by Conky Seamod."
