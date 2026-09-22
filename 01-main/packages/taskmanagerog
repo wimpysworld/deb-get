@@ -1,0 +1,17 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+case "${HOST_ARCH}" in
+    arm64)
+        get_website "https://tmog.org/downloads/release-linux-aarch64.json"
+        ;;
+    *)
+        get_website "https://tmog.org/downloads/release-linux.json"
+        ;;
+esac
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED="$(jq -r '.version' "${CACHE_FILE}" 2>/dev/null)"
+    URL="https://tmog.org/downloads/TaskManagerOG-${VERSION_PUBLISHED}-${HOST_ARCH}.deb"
+fi
+PRETTY_NAME="TMOG (Task Manager OG)"
+WEBSITE="https://tmog.org"
+SUMMARY="Native Qt 6 system monitor and task manager"
