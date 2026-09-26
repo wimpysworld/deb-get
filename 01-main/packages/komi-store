@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "komi-store/komi-store" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(basename "${URL}" | cut -d '_' -f 2)
+fi
+PRETTY_NAME="Komi Store"
+WEBSITE="https://www.komistore.app/"
+SUMMARY="Cross-platform app store for GitHub releases, designed to simplify discovering and installing open-source software."
