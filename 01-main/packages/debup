@@ -3,7 +3,7 @@ DIRECT=true
 get_github_releases "Ruraam/debup" "latest"
 
 if [ "${ACTION}" != "prettylist" ]; then
-case "${ARCH}" in
+case "${HOST_ARCH}" in
 amd64|arm64|armhf|i386|riscv64|all)
 URL=$(grep -m 1 "browser_download_url.*debup.*_all\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
 ;;
