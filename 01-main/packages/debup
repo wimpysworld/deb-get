@@ -1,0 +1,13 @@
+DEFVER=1
+get_github_releases "Ruraam/debup" "latest"
+
+if [ "${ACTION}" != "prettylist" ]; then
+URL=$(grep -m 1 "browser_download_url.*debup.*_all\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+if [ -n "${URL}" ]; then
+VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+fi
+
+PRETTY_NAME="Debup"
+WEBSITE="https://github.com/Ruraam/debup"
+SUMMARY="Yay-like hybrid package manager bridging native APT and GitHub Releases"
