@@ -2,7 +2,15 @@ DEFVER=1
 get_github_releases "Ruraam/debup" "latest"
 
 if [ "${ACTION}" != "prettylist" ]; then
+case "${ARCH}" in
+amd64|arm64|armhf|all)
 URL=$(grep -m 1 "browser_download_url.*debup.*_all\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+;;
+*)
+URL=""
+;;
+esac
+
 if [ -n "${URL}" ]; then
 VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
