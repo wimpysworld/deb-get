@@ -1,5 +1,4 @@
 DEFVER=1
-DIRECT=true
 get_github_releases "Ruraam/debup" "latest"
 
 if [ "${ACTION}" != "prettylist" ]; then
