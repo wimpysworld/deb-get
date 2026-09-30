@@ -3,7 +3,7 @@ CODENAMES_SUPPORTED="trixie forky sid noble plucky questing resolute"
 get_github_releases "gavindi/lookout" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*lookout_.*_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Lookout"
 WEBSITE="https://github.com/gavindi/lookout"
