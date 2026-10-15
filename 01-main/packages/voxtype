@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "peteonrails/voxtype" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*/voxtype_[^\"/]*_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(basename "${URL}" | cut -d '_' -f 2)
+fi
+PRETTY_NAME="Voxtype"
+WEBSITE="https://voxtype.io"
+SUMMARY="Voice-to-text for Linux (Whisper, Parakeet)"
