@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED='amd64 arm64'
+get_github_releases "alper-han/CrossMacro"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*${HOST_ARCH}\.deb\"" "${CACHE_FILE}")
+    URL=${URL%\"}; URL=${URL##*\"}
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="CrossMacro"
+WEBSITE="https://github.com/alper-han/CrossMacro"
+SUMMARY="A free, open-source mouse and keyboard macro recorder for Linux, Windows, and macOS."
