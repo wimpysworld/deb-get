@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED='amd64'
+get_github_releases "SimoHypers/limusic"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*${HOST_ARCH}\.deb\"" "${CACHE_FILE}")
+    URL=${URL%\"}; URL=${URL##*\"}
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Limusic"
+WEBSITE="https://github.com/SimoHypers/limusic"
+SUMMARY="A native desktop YouTube Music client. Rust + Tauri, ad-free, no Electron."
