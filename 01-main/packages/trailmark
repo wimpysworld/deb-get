@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "EdelmarSchneider/trailmark" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*TrailMark_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="TrailMark"
+WEBSITE="https://edelmarschneider.github.io/trailmark/"
+SUMMARY="Read what your AI writes. Write what it reads. Desktop Markdown IDE for reviewing and steering AI-written docs."
