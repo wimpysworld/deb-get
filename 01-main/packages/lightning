@@ -1,0 +1,12 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="trixie forky sid resolute"
+get_github_releases "Mizerd/lightning" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${UPSTREAM_CODENAME}" in resolute) local UBUNTU="ubuntu2604_";; esac
+    URL=$(grep -m 1 "browser_download_url.*${APP}_[0-9.]*_${UBUNTU}${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+fi
+PRETTY_NAME="Lightning"
+WEBSITE="https://www.lightning-matrix.org/"
+SUMMARY="Matrix client with a Qt Quick interface, built on the Matrix Rust SDK."
