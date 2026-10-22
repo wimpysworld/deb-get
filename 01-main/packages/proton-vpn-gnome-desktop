@@ -1,0 +1,7 @@
+DEFVER=1
+ASC_KEY_URL="https://repo.protonvpn.com/debian/public_key.asc"
+APT_LIST_NAME="protonvpn-stable"
+APT_REPO_URL="https://repo.protonvpn.com/debian stable main"
+PRETTY_NAME="Proton VPN"
+WEBSITE="https://protonvpn.com/"
+SUMMARY="High-speed Swiss VPN that safeguards your privacy."
