@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "Aster-Privacy/Aster-Mail" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*Aster\.Mail_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Aster Mail"
+WEBSITE="https://astermail.org/"
+SUMMARY="End-to-end encrypted email with post-quantum protection, PGP, aliases and custom domains."
