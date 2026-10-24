@@ -7,10 +7,14 @@ case ${HOST_ARCH} in
 esac
 get_website "https://www.veracrypt.fr/en/Downloads.html"
 if [ "${ACTION}" != "prettylist" ]; then
-    # The site's "Latest Stable Release" is a bare <h3> heading; the version
-    # itself sits in the <h4> Linux line below it. Anchor there and require a
-    # leading digit, or the markup tags become the version (#2064).
-    VERSION_PUBLISHED=$(sed -En 's|.*<h4>Linux[^-]*-\s*([0-9][0-9.]*).*|\1|p' "${CACHE_FILE}" | head -n1)
+    # The version sits either on the "Latest Stable Release" line itself or,
+    # while the site renders that as a bare <h3> heading (#2064), in the
+    # <h4> Linux line below it. Both extractions require a leading digit,
+    # so markup tags can never become the version.
+    VERSION_PUBLISHED=$(sed -En 's|.*Latest[[:space:]]+Stable[[:space:]]+Release[ -]+([[:digit:]][0-9.]*).*|\1|p' "${CACHE_FILE}" | head -n1)
+    if [ -z "${VERSION_PUBLISHED}" ]; then
+        VERSION_PUBLISHED=$(sed -En 's|.*<h4>Linux[^-]*-[[:space:]]*([[:digit:]][0-9.]*).*|\1|p' "${CACHE_FILE}" | head -n1)
+    fi
 
     URL=$(unroll_url "https://launchpad.net/veracrypt/trunk/${VERSION_PUBLISHED}/+download/veracrypt-${VERSION_PUBLISHED}-${UPSTREAM_ID^}-${UPSTREAM_RELEASE}-${HOST_ARCH}.deb\"")
 fi
