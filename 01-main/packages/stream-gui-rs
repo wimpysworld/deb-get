@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
+get_github_releases "ChrisLauinger77/stream-gui-rs" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*Stream-GUI-RS_.*_linux_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Stream GUI RS"
+WEBSITE="https://github.com/ChrisLauinger77/stream-gui-rs"
+SUMMARY="A native desktop application for browsing Twitch and watching live streams through Streamlink."
