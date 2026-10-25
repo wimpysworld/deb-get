@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "EdelmarSchneider/permark" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*PerMark_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="PerMark"
+WEBSITE="https://edelmarschneider.github.io/permark/"
+SUMMARY="A Markdown app to read and review what your AI agents write"
