@@ -1,23 +1,15 @@
 DEFVER=2
-ARCHS_SUPPORTED="amd64 arm64 armhf"
+ARCHS_SUPPORTED="amd64 arm64 i386"
 case ${HOST_ARCH} in
-    amd64) CODENAMES_SUPPORTED="bullseye bookworm trixie jammy noble plucky" ;;
-    arm64) CODENAMES_SUPPORTED="bullseye bookworm trixie jammy noble" ;;
-    armhf) CODENAMES_SUPPORTED="bullseye bookworm trixie focal" ;;
+    amd64) CODENAMES_SUPPORTED="bookworm trixie jammy noble resolute stonking" ;;
+    arm64) CODENAMES_SUPPORTED="trixie noble resolute" ;;
+    i386) CODENAMES_SUPPORTED="bookworm" ;;
 esac
-get_website "https://www.veracrypt.fr/en/Downloads.html"
+get_github_releases "veracrypt/VeraCrypt" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    # The version sits either on the "Latest Stable Release" line itself or,
-    # while the site renders that as a bare <h3> heading (#2064), in the
-    # <h4> Linux line below it. Both extractions require a leading digit,
-    # so markup tags can never become the version.
-    VERSION_PUBLISHED=$(sed -En 's|.*Latest[[:space:]]+Stable[[:space:]]+Release[ -]+([[:digit:]][0-9.]*).*|\1|p' "${CACHE_FILE}" | head -n1)
-    if [ -z "${VERSION_PUBLISHED}" ]; then
-        VERSION_PUBLISHED=$(sed -En 's|.*<h4>Linux[^-]*-[[:space:]]*([[:digit:]][0-9.]*).*|\1|p' "${CACHE_FILE}" | head -n1)
-    fi
-
-    URL=$(unroll_url "https://launchpad.net/veracrypt/trunk/${VERSION_PUBLISHED}/+download/veracrypt-${VERSION_PUBLISHED}-${UPSTREAM_ID^}-${UPSTREAM_RELEASE}-${HOST_ARCH}.deb\"")
+    URL=$(grep -m 1 -E "browser_download_url.*veracrypt-[0-9\.]+-${UPSTREAM_ID^}-${UPSTREAM_RELEASE}-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//VeraCrypt_/}")
 fi
 PRETTY_NAME="Veracrypt"
-WEBSITE="https://www.veracrypt.fr/en/Downloads.html"
+WEBSITE="https://veracrypt.jp/"
 SUMMARY="VeraCrypt is a free and open-source utility for on-the-fly encryption (OTFE)."
