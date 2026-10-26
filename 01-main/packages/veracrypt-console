@@ -10,6 +10,6 @@ if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 -E "browser_download_url.*veracrypt-console-[0-9\.]+-${UPSTREAM_ID^}-${UPSTREAM_RELEASE}-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//VeraCrypt_/}")
 fi
-PRETTY_NAME="Veracrypt"
+PRETTY_NAME="Veracrypt Console"
 WEBSITE="https://veracrypt.jp/"
 SUMMARY="VeraCrypt is a free and open-source utility for on-the-fly encryption (OTFE)."
