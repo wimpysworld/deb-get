@@ -1,0 +1,14 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+case ${HOST_ARCH} in
+    amd64) ARCH=x86_64 ;;
+    arm64) ARCH=arm64 ;;
+esac
+get_github_releases "XiaoYouChR/Ghost-Downloader-3" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*-Linux-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+fi
+PRETTY_NAME="Ghost Downloader"
+WEBSITE="https://gd.xychr.com/"
+SUMMARY="A multi-threaded download manager with IDM-style chunking. Handles HTTP, magnet/BitTorrent, FTP, M3U8, MPEG-DASH and eD2k, and parses YouTube and Bilibili videos."
