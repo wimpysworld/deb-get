@@ -1,0 +1,15 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf"
+case ${HOST_ARCH} in
+    amd64) ARCH=amd64 ;;
+    arm64) ARCH=arm64 ;;
+    armhf) ARCH=armv7l ;;
+esac
+get_github_releases "4gray/iptvnator" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*-linux-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "$(basename "${URL}")")
+fi
+PRETTY_NAME="IPTVnator"
+WEBSITE="https://4gray.github.io/iptvnator/"
+SUMMARY="Cross-platform IPTV player for M3U/M3U8 playlists and Xtream Codes, with XMLTV EPG support."
