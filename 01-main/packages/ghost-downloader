@@ -1,5 +1,7 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
+#Installs but doesn't run in older Debian/Ubuntu versions due to outdated glibc.
+CODENAMES_SUPPORTED="trixie forky sid noble questing"
 case ${HOST_ARCH} in
     amd64) ARCH=x86_64 ;;
     arm64) ARCH=arm64 ;;
