@@ -1,5 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
 ARCH=${HOST_ARCH}
 case "${ARCH}" in
     amd64) ARCH=-linux-x86_64 ;;
