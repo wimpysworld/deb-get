@@ -1,0 +1,19 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
+get_github_releases "simplex-chat/simplex-chat" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${UPSTREAM_CODENAME}" in
+        bookworm|jammy) BUILD=ubuntu-22_04 ;;
+        *) BUILD=ubuntu-24_04 ;;
+    esac
+    case "${HOST_ARCH}" in
+        amd64) ARCH=x86_64 ;;
+        arm64) ARCH=aarch64 ;;
+    esac
+    URL=$(grep -m 1 "browser_download_url.*simplex-desktop-${BUILD}-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | sed 's/^v//')
+fi
+PRETTY_NAME="SimpleX Chat"
+WEBSITE="https://simplex.chat/"
+SUMMARY="Private messenger with no user identifiers, end-to-end encrypted chats, calls and file transfers."
