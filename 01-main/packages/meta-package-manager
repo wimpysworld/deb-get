@@ -1,0 +1,6 @@
+DEFVER=1
+ARCHS_SUPPORTED="all"
+PPA="ppa:kdeldycke/mpm"
+PRETTY_NAME="Meta Package Manager"
+WEBSITE="https://mpm.run"
+SUMMARY="Unified command line for every package manager on the machine: list, search, install, upgrade and remove packages through all of them at once."
