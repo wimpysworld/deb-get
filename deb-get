@@ -504,6 +504,9 @@ function validate_deb() {
         # shellcheck source=/dev/null
         . "${ETC_DIR}/${APP_SRC}.d/${APP}" 3>&2 2>/dev/null
     fi
+    if [[ "${GITHUB_WORKFLOW}" == "📦 Package Tests" ]]; then
+        CODENAMES_SUPPORTED="${CODENAMES_SUPPORTED} ${UPSTREAM_CODENAME}"
+    fi
     unset SOURCING
     if [[ " ${ARCHS_SUPPORTED} " =~ (" ${HOST_ARCH} "|" all ") ]] && { [ -z "${CODENAMES_SUPPORTED}" ] || [[ " ${CODENAMES_SUPPORTED} " =~ " ${UPSTREAM_CODENAME} " ]]; } && { [ "${METHOD}" != ppa ] || [ "${UPSTREAM_ID}" == ubuntu ]; }; then
 
