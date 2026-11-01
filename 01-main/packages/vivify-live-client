@@ -1,0 +1,9 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+if [ "${ACTION}" != prettylist ]; then
+    URL="https://r2.vivify.video/downloads/client/stable/linux-x64/Vivify-Live-Linux-0.2.17-amd64.deb"
+    VERSION_PUBLISHED="0.2.17"
+fi
+PRETTY_NAME="Vivify Live"
+WEBSITE="https://vivify.video"
+SUMMARY="Realtime AI face swap, live try-on and restyle desktop app."
