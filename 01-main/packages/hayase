@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_website "https://api.hayase.watch/files/latest-linux.yml"
+if [ "${ACTION}" != "prettylist" ]; then
+    VERSION_PUBLISHED=$(grep -m 1 "^version:" "${CACHE_FILE}" | cut -d ' ' -f 2)
+    URL="https://api.hayase.watch/files/$(grep -m 1 -o "linux-hayase-.*-linux\.deb" "${CACHE_FILE}")"
+fi
+PRETTY_NAME="Hayase"
+WEBSITE="https://hayase.watch/"
+SUMMARY="A bring-your-own-content torrent streaming client for anime."
