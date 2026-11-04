@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "nymtech/nym-vpn-client" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*nym-vpn-app_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL##*/}")
+fi
+PRETTY_NAME="NymVPN"
+WEBSITE="https://nym.com/"
+SUMMARY="Desktop client for NymVPN, a privacy VPN using the Nym mixnet. Requires nym-vpnd."
