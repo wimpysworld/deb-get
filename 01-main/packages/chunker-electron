@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "HiveGamesOSS/Chunker" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep "browser_download_url.*${HOST_ARCH}-linux\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
+fi
+PRETTY_NAME="Chunker"
+WEBSITE="https://www.chunker.app/"
+SUMMARY="Free and open-source Minecraft world converter between Java and Bedrock"
