@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "Zarestia-Dev/rclone-manager" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*RClone\.Manager_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="RClone Manager"
+WEBSITE="https://github.com/Zarestia-Dev/rclone-manager"
+SUMMARY="A cross-platform GUI for managing rclone remotes."
