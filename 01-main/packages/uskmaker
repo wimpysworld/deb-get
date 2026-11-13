@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "walterfr/UltraStarKaraokeMaker" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*USKMaker_.*_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="USKMaker"
+WEBSITE="https://github.com/walterfr/UltraStarKaraokeMaker"
+SUMMARY="AI-powered UltraStar Deluxe & YARG karaoke package generator."
