@@ -8,7 +8,7 @@ esac
 get_github_releases "4gray/iptvnator" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(grep -m 1 "browser_download_url.*-linux-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "$(basename "${URL}")")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="IPTVnator"
 WEBSITE="https://4gray.github.io/iptvnator/"
