@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
+get_github_releases "anefzaoui/misterdownloadmanager" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*MisterDownloadManager-.*-linux-x86_64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Mister Download Manager"
+WEBSITE="https://misterdownloadmanager.com/"
+SUMMARY="Open-source download manager written in Rust, with browser extensions and a CLI."
