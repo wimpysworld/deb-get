@@ -1,0 +1,14 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "CherryHQ/cherry-studio" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${HOST_ARCH}" in
+        amd64) ARCH="x64" ;;
+        arm64) ARCH="arm64" ;;
+    esac
+    URL=$(grep -m 1 "browser_download_url.*Cherry-Studio-.*-linux-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Cherry Studio"
+WEBSITE="https://cherry-ai.com/"
+SUMMARY="AI productivity studio with chat, agents, and multi-model support."
