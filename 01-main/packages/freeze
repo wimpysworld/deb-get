@@ -2,7 +2,7 @@ DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
 get_github_releases "charmbracelet/freeze" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(sed -E -n "s|.*browser_download_url.*(https.*${ARCH}\.deb).*|\1|p" "${CACHE_FILE}" | head -n 1)
+    URL=$(sed -E -n "s|.*browser_download_url.*(https.*${HOST_ARCH}\.deb).*|\1|p" "${CACHE_FILE}" | head -n 1)
     VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Freeze"
