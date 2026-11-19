@@ -1,0 +1,11 @@
+DEFVER=1
+
+get_website "https://proton.me/download/lumo/desktop/linux/v1/version.json"
+
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -o -m 1 "https://.*\.deb" "${CACHE_FILE}")
+    VERSION_PUBLISHED="$(cut -d '_' -f 2 <<< "${URL}")"
+fi
+PRETTY_NAME="Proton Lumo"
+WEBSITE="https://proton.me/lumo"
+SUMMARY="Private AI with zero-access encryption and no server-side logs."
