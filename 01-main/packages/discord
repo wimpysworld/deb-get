@@ -2,6 +2,7 @@ DEFVER=1
 get_website "https://discord.com/api/updates/stable?platform=linux"
 if [ "${ACTION}" != "prettylist" ]; then
     URL="https://discord.com/api/download/stable?platform=linux&format=deb"
+    FILE="discord.deb"
     VERSION_PUBLISHED=$(jq -r '.name // empty' "${CACHE_FILE}" 2>/dev/null)
 fi
 PRETTY_NAME="Discord"
