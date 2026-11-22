@@ -1,7 +1,8 @@
 DEFVER=1
+get_website "https://discord.com/api/updates/stable?platform=linux"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(unroll_url "https://discord.com/api/download?platform=linux&format=deb")
-    VERSION_PUBLISHED=$(cut -d '/' -f 6 <<< "${URL}")
+    URL="https://discord.com/api/download/stable?platform=linux&format=deb"
+    VERSION_PUBLISHED=$(jq -r '.name // empty' "${CACHE_FILE}" 2>/dev/null)
 fi
 PRETTY_NAME="Discord"
 WEBSITE="https://discord.com/"
