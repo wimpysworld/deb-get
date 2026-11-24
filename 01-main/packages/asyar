@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="jammy noble plucky questing resolute"
+get_github_releases "Xoshbin/asyar" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*asyar_.*_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="Asyar"
+WEBSITE="https://asyar.org/"
+SUMMARY="Open-source, extensible keyboard launcher in the style of Raycast and Alfred."
