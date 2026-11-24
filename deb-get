@@ -364,7 +364,7 @@ function install_apt() {
                 return
             fi
         else
-            fancy_message info "${APP} is up to date."
+            fancy_message info "${APP}${VERSION_INSTALLED:+ (${VERSION_INSTALLED})} is up to date."
         fi
     fi
     ((PACKAGE_INSTALLATION_COUNT++))
