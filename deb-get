@@ -412,7 +412,7 @@ function install_deb() {
         elif [ -z "${FILE}" ]; then
             fancy_message warn "${APP} update check failed, moving on to next package."
         else
-            fancy_message info "${FILE} is up to date."
+            fancy_message info "${APP} (${VERSION_INSTALLED}) is up to date."
         fi
     fi
     ((PACKAGE_INSTALLATION_COUNT++))
