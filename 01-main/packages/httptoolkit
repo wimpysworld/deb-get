@@ -1,0 +1,14 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "httptoolkit/httptoolkit-desktop" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    case "${HOST_ARCH}" in
+        amd64) ARCH="x64" ;;
+        arm64) ARCH="arm64" ;;
+    esac
+    URL=$(grep -m 1 "browser_download_url.*HttpToolkit-.*-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="HTTP Toolkit"
+WEBSITE="https://httptoolkit.com/"
+SUMMARY="Intercept, inspect and rewrite HTTP(S) traffic for debugging, testing and development."
