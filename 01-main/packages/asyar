@@ -1,9 +1,10 @@
 DEFVER=1
-CODENAMES_SUPPORTED="jammy noble plucky questing resolute"
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="jammy noble questing resolute stonking"
 get_github_releases "Xoshbin/asyar" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL=$(grep -m 1 "browser_download_url.*asyar_.*_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+    URL=$(grep -m 1 "browser_download_url.*asyar_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | sed 's/^v//')
 fi
 PRETTY_NAME="Asyar"
 WEBSITE="https://asyar.org/"
