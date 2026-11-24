@@ -7,7 +7,7 @@ if [ "${ACTION}" != "prettylist" ]; then
         arm64) ARCH="arm64" ;;
     esac
     URL=$(grep -m 1 "browser_download_url.*HttpToolkit-.*-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
-    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | sed 's/^v//')
 fi
 PRETTY_NAME="HTTP Toolkit"
 WEBSITE="https://httptoolkit.com/"
