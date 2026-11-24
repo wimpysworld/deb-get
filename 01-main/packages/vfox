@@ -10,7 +10,7 @@ esac
 get_github_releases "version-fox/vfox" "latest"
 if [ "${ACTION}" != "prettylist" ]; then
     URL=$(sed -E -n "s|.*browser_download_url.*(https.*${ARCH}\.deb).*|\1|p"  "${CACHE_FILE}")
-    VERSION_PUBLISHED=$(sed -E "s|.*/v([^/]*)/.*|\1|" <<<"${URL}")
+    VERSION_PUBLISHED=$(sed -E "s|.*/v([^/]*)/.*|\1|" <<< "${URL}")
 fi
 PRETTY_NAME="vfox"
 WEBSITE="https://vfox.dev/"

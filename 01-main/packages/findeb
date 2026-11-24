@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "DerLinke/FinDeb" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL//v/}" )
+fi
+PRETTY_NAME="FinDeb"
+WEBSITE="https://github.com/DerLinke/FinDeb"
+SUMMARY="The Universal Package Manager Wrapper"

@@ -8,8 +8,8 @@ if [ "${ACTION}" != "prettylist" ]; then
         amd64) ARCH_VER="(x64|amd64)";;
         arm64) ARCH_VER=arm64;;
     esac
-    URL=$(grep -m1 -E "browser_download_url.*linux[-_]${ARCH_VER}[-.].*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
-    VERSION_PUBLISHED=$(echo "${URL}" | cut -d'/' -f8 | tr -d v)
+    URL=$(grep -m 1 -E "browser_download_url.*linux[-_]${ARCH_VER}[-.].*\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
 fi
 PRETTY_NAME="Git Credential Manager"
 WEBSITE="https://github.com/git-ecosystem/git-credential-manager"

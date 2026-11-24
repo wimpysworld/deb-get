@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="debget-title">
+  <title id="debget-title">deb-get</title>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#E93578" stroke="#B81D59" stroke-width="1.5"/>
+  <g id="ribbon-and-arrow">
+    <rect x="26" y="3" width="12" height="58" fill="#F472B6"/>
+    <path d="M26 3h12v23h9.5L32 45.5 16.5 26H26Z" fill="#FCE7F3"/>
+  </g>
+  <g id="barcode">
+    <rect x="9" y="45" width="15" height="10" rx="1.6" fill="#FFFFFF"/>
+    <rect x="11" y="47.2" width="2.2" height="5.6" fill="#374151"/>
+    <rect x="14.4" y="47.2" width="1.2" height="5.6" fill="#374151"/>
+    <rect x="16.8" y="47.2" width="2.4" height="5.6" fill="#374151"/>
+    <rect x="20.4" y="47.2" width="1.4" height="5.6" fill="#374151"/>
+  </g>
+  <g id="swirl" fill="none" stroke="#9D0A3E" stroke-linecap="round">
+    <path d="M47 56.5c-4.5-.8-7.5-4.4-7.5-8.7 0-4.8 3.8-8.3 8.5-8.3 4.3 0 7.3 3 7.3 6.8 0 3.3-2.5 5.6-5.6 5.6-2.7 0-4.5-1.9-4.5-4.2 0-1.9 1.5-3.2 3.3-3.2 1.4 0 2.3.9 2.3 2.1" stroke-width="2.6"/>
+  </g>
+</svg>

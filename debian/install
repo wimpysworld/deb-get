@@ -1,3 +1,4 @@
 deb-get usr/bin
 docs/deb-get.1 usr/share/man/man1
 deb-get_completion etc/bash_completion.d
+deb-get.fish usr/share/fish/vendor_completions.d

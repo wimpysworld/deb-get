@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED='amd64'
-get_github_releases 'localsend/localsend' 'latest'
+get_github_releases 'localsend/localsend'
 if [ "${ACTION}" != prettylist ]; then
     URL=$(grep -m 1 -o "\"browser_download_url\":[[:space:]]*\"[^\"]*x86-64\.deb\"" "${CACHE_FILE}")
     URL=${URL%\"}; URL=${URL##*\"}

@@ -1,0 +1,33 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm trixie forky sid noble questing resolute"
+get_github_releases "benapetr/TuxManager" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    local URLS=$(grep -o -P 'browser_download_url.*\Khttps://(?!.*dbgsym).*'"_${HOST_ARCH}\.deb(?=\")" "${CACHE_FILE}" | sort -V -r)
+    case ${UPSTREAM_CODENAME} in
+        sid)
+            # use the newest debian for sid
+            URL=$(grep -E -m 1 "deb[0-9]+_${HOST_ARCH}\.deb" <<< "${URLS}") ;;
+    questing|resolute)
+            URL=$(grep -m 1 "${UPSTREAM_ID}${UPSTREAM_RELEASE}_${HOST_ARCH}\.deb" <<< "${URLS}")
+            if [[ -z ${URL} ]]; then
+                # These dependencies have different names in noble. So we fallback to the debian13 package instead.
+                # libqt6gui6/libqt6gui6t64 libqt6widgets6/libqt6widgets6t64
+                URL=$(grep -m 1 "deb13_${HOST_ARCH}\.deb" <<< "${URLS}")
+            fi
+            ;;
+        *)
+            URL=$(grep -m 1 "${UPSTREAM_ID/ian/}${UPSTREAM_RELEASE}_${HOST_ARCH}\.deb" <<< "${URLS}")
+            if [[ -z ${URL} ]]; then
+                # general fallback if they lack a package for our specific release.
+                local RELEASES=$(grep -o -P "http.*${UPSTREAM_ID/ian/}\K\d+(\.\d{2})?(?=_${HOST_ARCH}\.deb)" <<< "${URLS}"; echo "${UPSTREAM_RELEASE}")
+                RELEASES="$(sort -V -r <<< "${RELEASES}")"
+                local RELEASE=$(grep -P -A 1 "${UPSTREAM_RELEASE}" <<< "${RELEASES}" | tail -n 1)
+                URL=$(grep -m 1 "${RELEASE}_${HOST_ARCH}\.deb" <<< "${URLS}")
+            fi
+            ;;
+    esac
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+fi
+PRETTY_NAME="Tux Manager"
+WEBSITE="https://github.com/benapetr/TuxManager"
+SUMMARY="Linux system monitor inspired by Windows Task Manager"

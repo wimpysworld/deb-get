@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "dheerajshenoy/lektra" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "$(basename "${URL}")")
+fi
+PRETTY_NAME="Lektra"
+WEBSITE="https://dheerajshenoy.github.io/lektra"
+SUMMARY="High-performance document and image viewer that prioritizes screen space and control."

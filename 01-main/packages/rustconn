@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="trixie forky sid noble plucky questing resolute"
+get_github_releases "totoshko88/RustConn" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*rustconn_.*_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="RustConn"
+WEBSITE="https://github.com/totoshko88/RustConn"
+SUMMARY="A modern connection manager for SSH, RDP, VNC, SPICE, and other remote connection protocols."

@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="trixie forky sid noble plucky questing resolute"
+get_github_releases "crmne/zapfast" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*zapfast_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | sed 's/^v//')
+fi
+PRETTY_NAME="ZapFast"
+WEBSITE="https://zapfast.rocks/"
+SUMMARY="A lightweight, native WhatsApp client written in Rust."

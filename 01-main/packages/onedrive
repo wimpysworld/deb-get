@@ -1,6 +1,6 @@
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="bullseye bookworm trixie sid focal jammy noble oracular plucky"
+CODENAMES_SUPPORTED="bullseye bookworm trixie forky sid focal jammy noble oracular plucky"
 local RELEASE
 local ID="${UPSTREAM_ID^}"
 case "${UPSTREAM_CODENAME}" in

@@ -1,0 +1,17 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+case ${HOST_ARCH} in
+    amd64)
+        URL="https://clockify.me/downloads/Clockify_Setup_x64.deb";;
+    arm64)
+        URL="https://clockify.me/downloads/Clockify_Setup_arm64.deb";;
+esac
+if [ "${ACTION}" != prettylist ]; then
+    CONTROL_TMP=$(mktemp)
+    curl -sL -r 0-524288 "${URL}" -o "${CONTROL_TMP}"
+    VERSION_PUBLISHED=$(ar p "${CONTROL_TMP}" control.tar.xz | tar -xJO ./control | grep -m 1 -oP '^Version:\s*\K.*')
+    rm -f "${CONTROL_TMP}"
+fi
+PRETTY_NAME="Clockify"
+WEBSITE="https://clockify.me/"
+SUMMARY="Free time tracking app for teams to track work hours across projects."

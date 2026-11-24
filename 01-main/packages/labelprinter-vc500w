@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64 armhf i386 ppc64el riscv64 s390x"
+get_github_releases "snoack/labelprinter-vc500w" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)"
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="labelprinter-vc500w"
+WEBSITE="https://github.com/snoack/labelprinter-vc500w"
+SUMMARY="Command-line driver for Brother VC-500W label printers"

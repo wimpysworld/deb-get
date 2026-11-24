@@ -28,7 +28,7 @@ jobs:
       has_deprecated: ${{ steps.detect.outputs.has_deprecated }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -41,8 +41,14 @@ jobs:
           DEPRECATED=$(tail -n +2 01-main/manifest | grep '^#' | sed 's/^#//' | tr '\n' ' ')
 
           if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
-            # Pull request: detect changed package files
-            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep "^01-main/packages/" | sed "s|^01-main/packages/||" || true)
+            # Pull request: detect changed package files against the latest default branch HEAD
+            BASE_REF="${{ github.event.repository.default_branch }}"
+            if [ -z "${BASE_REF}" ]; then
+              BASE_REF="main"
+            fi
+
+            git fetch --no-tags --prune --depth=1 origin "${BASE_REF}"
+            CHANGED_FILES=$(git diff --name-only --diff-filter=ACMRT "origin/${BASE_REF}" "${{ github.sha }}" | grep "^01-main/packages/" | sed "s|^01-main/packages/||" || true)
           elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # workflow_dispatch: use specified packages or read all from manifest
             INPUT_PACKAGES="${{ github.event.inputs.packages }}"
@@ -151,7 +157,7 @@ jobs:
       DEBGET_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install dependencies
         run: |
@@ -161,6 +167,7 @@ jobs:
       - name: Initialize /etc/deb-get
         run: |
           sudo mkdir /etc/deb-get
+          sudo mkdir -p /usr/share/desktop-directories/
           echo "deb-get 1 github" | sudo tee /etc/deb-get/installed > /dev/null
           sudo cp ./01-main/manifest /etc/deb-get/01-main.repo
           sudo cp -r ./01-main/packages /etc/deb-get/01-main.d
@@ -197,7 +204,7 @@ jobs:
               fi
             fi
           else
-            STATUS="skip"
+            STATUS="fail"
             ERROR_MSG="Package not in supported list"
           fi
 
@@ -229,7 +236,7 @@ jobs:
 
       - name: Upload result
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: result-${{ matrix.package }}
           path: results/${{ matrix.package }}.json
@@ -244,7 +251,7 @@ jobs:
       - name: Download all results
         id: download
         continue-on-error: true
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: result-*
           path: results

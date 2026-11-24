@@ -24,6 +24,8 @@ install_bins:
 	install -d $(DESTDIR)$(bindir)
 	install -m 755 ../deb-get $(DESTDIR)$(bindir)
 	install -m 644 ../deb-get_completion ${etcdir}/bash_completion.d/
+	install -d $(DESTDIR)$(datadir)/fish/vendor_completions.d/
+	install -m 644 ../deb-get.fish $(DESTDIR)$(datadir)/fish/vendor_completions.d/
 
 
 install: install_bins  install_docs
@@ -32,6 +34,7 @@ uninstall::
 	rm -f $(DESTDIR)$(mandir)/man1/deb-get.1
 	rm -f $(DESTDIR)$(bindir)/deb-get
 	rm -f ${etcdir}/bash_completion.d/deb-get_completion
+	rm -f $(DESTDIR)$(datadir)/fish/vendor_completions.d/deb-get.fish
 
 
 .PHONY: all

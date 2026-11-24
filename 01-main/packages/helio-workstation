@@ -1,8 +1,8 @@
 DEFVER=1
 get_website "https://helio.fm"
 if [ "${ACTION}" != "prettylist" ]; then
-    URL="$(grep -o "https://..*\.deb" "${CACHE_FILE}" | grep -v dev)"
-    VERSION_PUBLISHED="$(echo "${URL}" |cut -d '-' -f2)"
+    URL=$(grep -o "https://..*\.deb" "${CACHE_FILE}" | grep -v dev)
+    VERSION_PUBLISHED=$(cut -d '-' -f 2 <<< "${URL}")
 fi
 PRETTY_NAME="Helio Project"
 WEBSITE="https://helio.fm/"

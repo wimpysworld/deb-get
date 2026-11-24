@@ -1,9 +1,8 @@
-DEFVER=1
-get_website "https://dbeaver.io/debs/dbeaver-ce/"
-if [ "${ACTION}" != "prettylist" ]; then
-    VERSION_PUBLISHED="$(grep -o '"dbeaver-ce_.*amd64\.deb"' "${CACHE_FILE}" | sort --version-sort | tail -n1 | cut -d"_" -f2)"
-    URL="https://dbeaver.io/debs/dbeaver-ce/dbeaver-ce_${VERSION_PUBLISHED}_amd64.deb"
-fi
+DEFVER=2
+ARCHS_SUPPORTED="amd64 arm64"
+ASC_KEY_URL="https://dbeaver.io/debs/dbeaver.gpg.key"
+APT_LIST_NAME="dbeaver"
+APT_REPO_URL="https://dbeaver.io/debs/dbeaver-ce /"
 PRETTY_NAME="DBeaver"
 WEBSITE="https://dbeaver.io/"
 SUMMARY="Database GUI Client"

@@ -17,7 +17,7 @@ https://raw.githubusercontent.com/<user-organization>/<repository>/<branch>
 
 # The manifest file
 
-This is the most important file in an external repository, since without it nothing else would work. Its first line must always contain the base URL of the repository. The following lines must contain the names of the package definition files present in the `packages` path, one per line, ideally sorted and without repetition. They can also be commented (starting with `#`), in which case the package definition file is considered deprecated. **No file declared in the manifest should be missing, or else the caching mechanism will break**.
+This is the most important file in an external repository, since without it nothing else would work. Its first line must always contain the base URL of the repository. The following lines must contain the names of the package definition files present in the `packages` path, one per line, ideally sorted and without repetition. They can also be commented (starting with `#`), in which case the package definition file is considered deprecated. **No file declared in the manifest should be missing, or else the caching mechanism will break**. The manifest body must list relative package paths only; absolute URLs (lines containing `://`) are ignored, because they would let a manifest redirect downloads to other hosts.
 
 # The package definition files
 
@@ -72,7 +72,8 @@ The environment variables available to the package definition file are the follo
 The helper functions available to the package definition file are the following:
 
 * `unroll_url`: Handles redirection and returns the final URL.
-* `get_github_releases`: Sets `METHOD` to `github` and saves the GitHub releases JSON file from GitHub API to `CACHE_FILE`.
+* `get_github_releases`: Sets `METHOD` to `github` and saves the GitHub releases' download links extracted from the GitHub API JSON to `CACHE_FILE`.
+* `get_gitlab_releases`: Sets `METHOD` to `gitlab` and saves the GitLab releases' URLs from the GitLab API to `CACHE_FILE`.
 * `get_website`: Sets `METHOD` to `website` and saves the HTML file to `CACHE_FILE`.
 
 Use the following package definition templates as reference for adding a new package to the repository, according to the installation method of the package. The package definition files already implemented in the main repository can serve as further reference.
@@ -84,7 +85,7 @@ If the keyring file is in the ASCII-armored format (extension `*.asc`), use this
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy noble resolute"
 ASC_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -100,7 +101,7 @@ If the keyring file is in the binary format instead (extension `*.gpg`), use thi
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy noble resolute"
 GPG_KEY_URL=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -116,7 +117,7 @@ If the keyring file must be fetched from a keyserver by ID use this template:
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy noble resolute"
 GPG_KEY_ID=""
 APT_LIST_NAME=""
 APT_REPO_URL=""
@@ -145,11 +146,11 @@ Replace `<user-organization>` and `<repository>` with the correct values:
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy noble resolute"
 get_github_releases "<user-organization>/<repository>" "latest"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
-    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
+    URL=$(grep -m 1 "browser_download_url.*\.deb\"" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)
+    VERSION_PUBLISHED=$(cut -d <delimiter> -f <field> <<< "${URL/v/}")
 fi
 EULA=""
 PRETTY_NAME=""
@@ -162,11 +163,11 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy noble resolute"
 get_website "<website>"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(grep -m 1 "<pattern>" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)"
-    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
+    URL=$(grep -m 1 "<pattern>" "${CACHE_FILE}" | cut -d <delimiter> -f <field>)
+    VERSION_PUBLISHED=$(cut -d <delimiter> -f <field> <<< "${URL}")
 fi
 EULA=""
 PRETTY_NAME=""
@@ -179,10 +180,10 @@ SUMMARY=""
 ```bash
 DEFVER=1
 ARCHS_SUPPORTED="amd64 arm64 armhf"
-CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy lunar mantic noble"
+CODENAMES_SUPPORTED="buster bullseye bookworm trixie sid focal jammy noble resolute"
 if [ "${ACTION}" != prettylist ]; then
-    URL="$(unroll_url "<website>")"
-    VERSION_PUBLISHED="$(cut -d <delimiter> -f <field> <<< "${URL}")"
+    URL=$(unroll_url "<website>")
+    VERSION_PUBLISHED=$(cut -d <delimiter> -f <field> <<< "${URL}")
 fi
 EULA=""
 PRETTY_NAME=""

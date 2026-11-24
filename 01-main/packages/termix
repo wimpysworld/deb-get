@@ -1,0 +1,9 @@
+DEFVER=1
+get_github_releases "Termix-SSH/Termix"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*x64_deb\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | sed 's/^release-//;s/-tag$//')
+fi
+PRETTY_NAME="Termix"
+WEBSITE="https://termix.site/"
+SUMMARY="Open-source self-hosted all-in-one server management platform."

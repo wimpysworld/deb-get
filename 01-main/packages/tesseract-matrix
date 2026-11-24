@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "surakin/tesseract" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*Tesseract-.*-Linux\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL/v/}")
+fi
+PRETTY_NAME="Tesseract"
+WEBSITE="https://github.com/surakin/tesseract"
+SUMMARY="Matrix client built on the Matrix Rust SDK."

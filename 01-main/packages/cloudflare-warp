@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="resolute noble jammy trixie bookworm"
+ASC_KEY_URL="https://pkg.cloudflareclient.com/pubkey.gpg"
+APT_LIST_NAME="cloudflare-warp"
+APT_REPO_URL="https://pkg.cloudflareclient.com/ ${UPSTREAM_CODENAME} main"
+APT_REPO_OPTIONS="arch=amd64,arm64"
+PRETTY_NAME="Cloudflare WARP"
+WEBSITE="https://1.1.1.1"
+SUMMARY="Cloudflare's WARP VPN client"
+
