@@ -40,7 +40,7 @@ sudo apt-get install ./path/to/deb-get_<version>.deb
 
 - **Ubuntu**: Releases listed in `/usr/share/distro-info/ubuntu.csv`, plus development releases once `distro-info-data` includes the new codename.
 - **Debian**: `stable`, `testing`, `sid`, and releases listed in `/usr/share/distro-info/debian.csv`.
-- **Derivatives**: Distributions whose `/etc/os-release` sets `ID_LIKE` to `ubuntu` or `debian` and provides `UBUNTU_CODENAME`, `DEBIAN_CODENAME`, or `VERSION_CODENAME` (such as Linux Mint, Pop!_OS, elementary OS, Zorin OS, KDE Neon, and Devuan).
+- **Derivatives**: Distributions whose `/etc/os-release` sets `ID_LIKE` to `ubuntu` or `debian` (such as Linux Mint, Pop!_OS, elementary OS, Zorin OS, KDE Neon, and Devuan). `deb-get` resolves the upstream codename from `UBUNTU_CODENAME`, `DEBIAN_CODENAME`, or `VERSION_CODENAME`, and falls back to `/etc/debian_version` on Debian derivatives when the codename lookup finds no release.
 
 Individual package definitions can restrict release codenames through `CODENAMES_SUPPORTED`, and Launchpad PPA packages apply only to Ubuntu and Ubuntu derivatives. Run `deb-get list --include-unsupported` to view all packages regardless of release or architecture restrictions.
 
