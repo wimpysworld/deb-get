@@ -752,22 +752,18 @@ function refresh_supported_cache_lists() {
     # WARN: this function must run in a subshell
     local ACTION="list"
     local lockfile="${CACHE_DIR}/updating_supported.lock"
-    local lock_pid=""
-    if ! ${ELEVATE} sh -c 'set -C; printf "%s\n" "$1" > "$2"' _ "${BASHPID}" "${lockfile}" 2>/dev/null; then
-        IFS= read -r lock_pid < "${lockfile}" 2>/dev/null || true
-        if [[ "${lock_pid}" =~ ^[0-9]+$ ]] && { kill -0 "${lock_pid}" 2>/dev/null || [ -d "/proc/${lock_pid}" ]; }; then
-            fancy_message warn "Cannot update cache of supported apps: ${lockfile} found (PID ${lock_pid} still running)."
-            return 0
-        fi
-        fancy_message warn "Lock file found, but job is not running. Deleting ${lockfile}, cache update continues."
-        ${ELEVATE} rm -f "${lockfile}"
-        if ! ${ELEVATE} sh -c 'set -C; printf "%s\n" "$1" > "$2"' _ "${BASHPID}" "${lockfile}" 2>/dev/null; then
-            fancy_message warn "Cannot update cache of supported apps: ${lockfile} acquired by another process."
-            return 0
-        fi
+    local lock_fd=""
+    if [ ! -e "${lockfile}" ]; then
+        ${ELEVATE} touch "${lockfile}"
+    fi
+    exec {lock_fd}<"${lockfile}"
+    if ! flock -n "${lock_fd}"; then
+        exec {lock_fd}<&-
+        fancy_message warn "Cannot update cache of supported apps: ${lockfile} is locked by another process."
+        return 0
     fi
 
-    trap 'trap - EXIT; ${ELEVATE} rm -f "${CACHE_DIR}/updating_supported.lock" "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported_apps.list.tmp"' EXIT
+    trap 'trap - EXIT; ${ELEVATE} rm -f "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported_apps.list.tmp"; exec {lock_fd}<&-' EXIT
     if [ -z ${QUIET} ]; then
         fancy_message info "Updating cache of supported apps in the background"
     fi
