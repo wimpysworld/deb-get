@@ -23,7 +23,7 @@ release pages.
 Use `deb-get` to install `deb-get`.
 
 ```bash
-sudo apt install curl lsb-release wget jq
+sudo apt install curl distro-info-data lsb-release wget jq
 curl -sL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | sudo -E bash -s install deb-get
 ```
 
@@ -33,6 +33,17 @@ and install it manually with
 ``` bash
 sudo apt-get install ./path/to/deb-get_<version>.deb
 ```
+
+### Supported Distributions and Releases
+
+`deb-get` resolves supported release codenames dynamically from `/usr/share/distro-info/` (provided by `distro-info-data`) rather than a hardcoded release table:
+
+- **Ubuntu**: Releases listed in `/usr/share/distro-info/ubuntu.csv`, plus development releases once `distro-info-data` includes the new codename.
+- **Debian**: `stable`, `testing`, `sid`, and releases listed in `/usr/share/distro-info/debian.csv`.
+- **Derivatives**: Distributions whose `/etc/os-release` sets `ID_LIKE` to `ubuntu` or `debian` (such as Linux Mint, Pop!_OS, elementary OS, Zorin OS, KDE Neon, and Devuan). `deb-get` resolves the upstream codename from `UBUNTU_CODENAME`, `DEBIAN_CODENAME`, or `VERSION_CODENAME`, and falls back to `/etc/debian_version` on Debian derivatives when the codename lookup finds no release.
+
+Individual package definitions can restrict release codenames through `CODENAMES_SUPPORTED`, and Launchpad PPA packages apply only to Ubuntu and Ubuntu derivatives. Run `deb-get list --include-unsupported` to view all packages regardless of release or architecture restrictions.
+
 ### GitHub Personal Access Token (PAT)
 
 You must provide `deb-get` with a GitHub [Personal Access Token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Once created, insert it into the `DEBGET_TOKEN` environment variable for `deb-get` to use for authorization with the GitHub API.
