@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="all"
+CODENAMES_SUPPORTED="bookworm trixie jammy noble resolute stonking"
+get_github_releases "bleachbit/bleachbit" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*bleachbit_[^/]*_all_${UPSTREAM_ID}${UPSTREAM_RELEASE//./}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL##*/}")
+fi
+PRETTY_NAME="BleachBit"
+WEBSITE="https://www.bleachbit.org/"
+SUMMARY="Delete unnecessary files to free valuable disk space and maintain privacy."
