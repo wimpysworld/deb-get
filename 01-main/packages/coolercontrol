@@ -1,0 +1,8 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+ASC_KEY_URL="https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/gpg.668189E5007F5A8D.key"
+APT_REPO_URL="https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/deb/${UPSTREAM_ID} ${UPSTREAM_CODENAME} main"
+APT_REPO_OPTIONS="arch=${HOST_ARCH}"
+PRETTY_NAME="CoolerControl"
+WEBSITE="https://docs.coolercontrol.org/"
+SUMMARY="Monitor system sensors and apply custom fan and pump cooling profiles."
