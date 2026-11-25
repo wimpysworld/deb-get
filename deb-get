@@ -858,7 +858,6 @@ function list_repo_apps() {
 
 function populate_deprecated_apps() {
     declare -ga DEPRECATED_APPS=() DEPRECATED_INSTALLED=()
-    local pkg=""
     if [ -d "${ETC_DIR}" ]; then
         mapfile -t DEPRECATED_APPS < <(
         find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" |
@@ -868,12 +867,8 @@ function populate_deprecated_apps() {
             sed -n -e "1d; s/^#/${REPO%.repo}\//p" <"${ETC_DIR}/${REPO}" | sort -t / -k 2 | uniq
         done
         )
-        if [ "${#DEPRECATED_APPS[@]}" -gt 0 ] && [ "${#INSTALLED_APPS[@]}" -gt 0 ]; then
-            while IFS= read -r pkg; do
-                if package_is_installed "${pkg}"; then
-                    DEPRECATED_INSTALLED+=("${pkg}")
-                fi
-            done < <(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' "${DEPRECATED_APPS[@]##*/}" | sed -n -e 's/^ii //p')
+        if [ "${#DEPRECATED_APPS[@]}" -gt 0 ]; then
+            mapfile -t DEPRECATED_INSTALLED < <(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' "${DEPRECATED_APPS[@]##*/}" | sed -n -e 's/^.i //p')
         fi
     fi
 }
@@ -913,8 +908,10 @@ function print_etc_overrides() {
 
 function print_deprecated() {
     for APP in "${DEPRECATED_INSTALLED[@]}"; do
-        fancy_message warn "Deprecated package ${APP} detected. It will no longer receive updates, and keeping it installed is considered unsafe."
-        fancy_message recommend "Please remove it with: deb-get purge ${APP}"
+        if package_is_installed "${APP}"; then
+            fancy_message warn "Deprecated package ${APP} detected. It will no longer receive updates, and keeping it installed is considered unsafe."
+            fancy_message recommend "Please remove it with: deb-get purge ${APP}"
+        fi
     done
 }
 
