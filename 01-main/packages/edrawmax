@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_website "https://edrawmax.wondershare.com/download.html"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 -oE 'https://download\.wondershare\.com/[^"'\'' <>]*edrawmax_[0-9.]+_en\.deb' "${CACHE_FILE}")
+    VERSION_PUBLISHED=$(sed -E 's|.*edrawmax_([0-9.]+)_en\.deb|\1|' <<< "${URL}")
+fi
+PRETTY_NAME="EdrawMax"
+WEBSITE="https://edrawmax.wondershare.com/"
+SUMMARY="All-in-one diagramming software for flowcharts, floor plans, org charts, and technical diagrams."
