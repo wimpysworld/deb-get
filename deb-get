@@ -700,6 +700,7 @@ function update_debs() {
     local STATUS=""
     update_apt
     for APP in "${INSTALLED_APPS[@]}"; do
+        [ -n "${APPNAME2FULL[$APP]}" ] || continue
         validate_deb "${APPNAME2FULL[$APP]}"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ] || [ "${METHOD}" == "gitlab" ] || [ "${METHOD}" == "website" ]; then
             STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
@@ -718,6 +719,7 @@ function upgrade_debs() {
         upgrade_only_dg
     fi
     for APP in "${INSTALLED_APPS[@]}"; do
+        [ -n "${APPNAME2FULL[$APP]}" ] || continue
         validate_deb "${APPNAME2FULL[$APP]}"
         if [ "${METHOD}" == "direct" ] || [ "${METHOD}" == "github" ]|| [ "${METHOD}" == "gitlab" ] || [ "${METHOD}" == "website" ]; then
             STATUS=$(dpkg-query -Wf '${Status}' "${APP}")
@@ -856,6 +858,7 @@ function list_repo_apps() {
 
 function populate_deprecated_apps() {
     declare -ga DEPRECATED_APPS=() DEPRECATED_INSTALLED=()
+    local pkg=""
     if [ -d "${ETC_DIR}" ]; then
         mapfile -t DEPRECATED_APPS < <(
         find "${ETC_DIR}" -maxdepth 1 -name "*.repo" ! -name 00-builtin.repo ! -name 99-local.repo -type f -printf "%f\n" |
@@ -865,11 +868,14 @@ function populate_deprecated_apps() {
             sed -n -e "1d; s/^#/${REPO%.repo}\//p" <"${ETC_DIR}/${REPO}" | sort -t / -k 2 | uniq
         done
         )
-        if [ "${#DEPRECATED_APPS[@]}" -gt 0 ]; then
-            mapfile -t DEPRECATED_INSTALLED < <(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' "${DEPRECATED_APPS[@]##*/}" | sed -n -e 's/^ii //p')
+        if [ "${#DEPRECATED_APPS[@]}" -gt 0 ] && [ "${#INSTALLED_APPS[@]}" -gt 0 ]; then
+            while IFS= read -r pkg; do
+                if package_is_installed "${pkg}"; then
+                    DEPRECATED_INSTALLED+=("${pkg}")
+                fi
+            done < <(dpkg-query 2>/dev/null -Wf '${db:Status-abbrev}${Package}\n' "${DEPRECATED_APPS[@]##*/}" | sed -n -e 's/^ii //p')
         fi
     fi
-    readonly DEPRECATED_INSTALLED
 }
 
 function list_local_apps() {
@@ -1670,13 +1676,14 @@ function dg_action_update() {
         update_repos "$@"
         if [[ " $* " != *' --repos-only '* ]] ; then
             populate_apps
+            populate_deprecated_apps
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP=${APPNAME2FULL[$APP]}
                 if [ -n "${FULL_APP}" ]; then
                     if validate_deb "${FULL_APP}"; then
                         fix_installed
                     fi
-                else
+                elif ! [[ " ${DEPRECATED_INSTALLED[*]} " =~ " ${APP} " ]]; then
                     remove_installed "${APP}"
                 fi
             done
@@ -1706,13 +1713,14 @@ function dg_action_fix-installed() {
                 fi
             done
         else
+            populate_deprecated_apps
             for APP in "${INSTALLED_APPS[@]}"; do
                 FULL_APP="$(printf '%s\n' "${APPS[@]}" | grep -m 1 "/${APP}$")"
                 if [ -n "${FULL_APP}" ]; then
                     if validate_deb "${FULL_APP}"; then
                         fix_installed
                     fi
-                else
+                elif ! [[ " ${DEPRECATED_INSTALLED[*]} " =~ " ${APP} " ]]; then
                     remove_installed "${APP}"
                 fi
             done
