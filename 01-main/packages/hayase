@@ -1,0 +1,13 @@
+
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+
+PRETTY_NAME="Hayase"
+
+get_github_releases "hayase-app/ui" "latest"
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -oE 'https://[^"]*/linux-hayase-[0-9]+(\.[0-9]+)*-linux\.deb' "${CACHE_FILE}" | head -n 1)
+
+    VERSION_PUBLISHED=$(echo "${URL}" | sed -E 's|.*/linux-hayase-([0-9.]+)-linux\.deb|\1|')
+fi
