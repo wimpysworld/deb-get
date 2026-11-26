@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
+get_github_releases "codeforreal1/compressO" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*/CompressO_[^\"/]*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL##*/}")
+fi
+PRETTY_NAME="CompressO"
+WEBSITE="https://compresso.codeforreal.com/"
+SUMMARY="Open-source desktop application to compress videos, images, and audio files offline."
