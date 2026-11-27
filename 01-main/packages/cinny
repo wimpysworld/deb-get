@@ -1,0 +1,12 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "cinnyapp/cinny-desktop" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 'browser_download_url.*/Cinny_desktop-x86_64\.deb"' "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
+    VERSION_PUBLISHED="${VERSION_PUBLISHED#v}"
+    FILE="cinny_${VERSION_PUBLISHED}_${HOST_ARCH}.deb"
+fi
+PRETTY_NAME="Cinny"
+WEBSITE="https://cinny.in/"
+SUMMARY="Open-source Matrix client for desktop built with Tauri."
