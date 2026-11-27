@@ -550,7 +550,7 @@ function validate_deb() {
                 fi
             fi
 
-            if { { [[ ' github website ' =~ " ${METHOD} " ]] && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
+            if { { [[ ' github website gitlab ' =~ " ${METHOD} " ]] && [ -s "${CACHE_FILE}" ]; } || [ "${METHOD}" == direct ]; } &&
             ! [[ ' prettylist remove purge ' =~ " ${ACTION} " ]] &&
             { [ -z "${URL}" ] || [ -z "${VERSION_PUBLISHED}" ]; }; then
                 fancy_message error "Missing required information of ${METHOD} package ${APP}:"
@@ -820,23 +820,23 @@ function update_repos() {
                 local GITREPO="${URL_PARTS[3]}/${URL_PARTS[4]}"
                 local BRANCH="${URL_PARTS[5]}"
                 # Every path segment must be a safe token. Reject shell
-                # metacharacters before any value is used as a command argument.
-                if [[ "${URL_PARTS[3]}" =~ ^[A-Za-z0-9._-]+$ && "${URL_PARTS[4]}" =~ ^[A-Za-z0-9._-]+$ && "${BRANCH}" =~ ^[A-Za-z0-9._-]+$ ]]; then
+                # metacharacters and dot-segments before any value is used.
+                if [[ "${URL_PARTS[3]}" =~ ^[A-Za-z0-9._-]+$ && "${URL_PARTS[3]}" != "." && "${URL_PARTS[3]}" != ".." && "${URL_PARTS[4]}" =~ ^[A-Za-z0-9._-]+$ && "${URL_PARTS[4]}" != "." && "${URL_PARTS[4]}" != ".." && "${BRANCH}" =~ ^[A-Za-z0-9._-]+$ && "${BRANCH}" != "." && "${BRANCH}" != ".." ]]; then
                     # shellcheck disable=SC2086
-                    curl ${CURL_OPTS} -L "https://api.github.com/repos/${GITREPO}/tarball/${BRANCH}" | ${ELEVATE} tar zx --wildcards "*/${REPO}*/packages/*" --strip-components=3
+                    curl ${CURL_OPTS} --fail -L "https://api.github.com/repos/${GITREPO}/tarball/${BRANCH}" | ${ELEVATE} tar zx --no-same-owner --no-same-permissions --wildcards "*/${REPO}*/packages/*" --strip-components=3
                 else
                     fancy_message warn "Skipping ${REPO}: invalid GitHub repository URL (${REPO_URL})"
                 fi
             else
                 # fetching non-github repo
                 tail -n +2 "${ETC_DIR}/${REPO}.repo" | sed "s/^#//" | ${ELEVATE} sort -u -o "${ETC_DIR}/${REPO}.repo.tmp"
-                # Drop absolute URLs from the manifest body. wget -i follows
-                # them verbatim, ignoring -B and the https base, so an absolute
-                # entry could redirect a root download to any host (including
-                # plain http). Only relative package paths are allowed.
-                if grep -q '://' "${ETC_DIR}/${REPO}.repo.tmp"; then
-                    fancy_message warn "Ignoring absolute URLs in ${REPO} manifest body; only relative package paths are allowed"
-                    ${ELEVATE} sed -i '\#://#d' "${ETC_DIR}/${REPO}.repo.tmp"
+                # Drop anything other than plain single-segment package filenames
+                # from the manifest body. wget -i resolves absolute URLs,
+                # protocol-relative URLs (//host/path), leading-slash paths, and
+                # traversal segments outside the https packages directory.
+                if grep -q -v -E '^[A-Za-z0-9][A-Za-z0-9._+-]*$' "${ETC_DIR}/${REPO}.repo.tmp"; then
+                    fancy_message warn "Ignoring invalid entries in ${REPO} manifest body; only plain package filenames are allowed"
+                    ${ELEVATE} sed -i -E '/^[A-Za-z0-9][A-Za-z0-9._+-]*$/!d' "${ETC_DIR}/${REPO}.repo.tmp"
                 fi
                 # shellcheck disable=SC2086
                 ${ELEVATE} wget ${WGET_VERBOSITY} "${WGET_TIMEOUT}" -N -B "${REPO_URL}/packages/" -i "${ETC_DIR}/${REPO}.repo.tmp" -P "${ETC_DIR}/${REPO}.d"
