@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "axel10/vynody" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*vynody-linux-.*-${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED="${URL##*/vynody-linux-}"
+    VERSION_PUBLISHED="${VERSION_PUBLISHED%-"${HOST_ARCH}".deb}"
+fi
+PRETTY_NAME="Vynody"
+WEBSITE="https://axel10.github.io/vynody_site/"
+SUMMARY="Cross-platform local music player with synced lyrics and audio tag editor."
