@@ -1,0 +1,11 @@
+# Each "Alpha N" release is tested and stable. Alpha only means not feature-complete.
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "melo-foundation/melo" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*/melo_[^/]*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL##*/}")
+fi
+PRETTY_NAME="melo"
+WEBSITE="https://melo-foundation.github.io/melo/"
+SUMMARY="A YouTube integrated native desktop music player."
