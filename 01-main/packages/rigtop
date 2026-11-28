@@ -1,0 +1,10 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "akivajp/rigtop" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}" | tr -d v)
+fi
+PRETTY_NAME="rigtop"
+WEBSITE="https://github.com/akivajp/rigtop"
+SUMMARY="System monitor for workstations, laptops and NAS with a terminal UI and a native GUI."
