@@ -1,0 +1,23 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="bookworm trixie jammy noble resolute"
+PRETTY_NAME="TurboJedi"
+WEBSITE="https://github.com/cyanide-burnout/TurboJedi"
+SUMMARY="Turbo Vision viewer of the systemd journal"
+case "${UPSTREAM_CODENAME}" in
+    bookworm) TARGET="debian-12" ;;
+    trixie) TARGET="debian-13" ;;
+    jammy) TARGET="ubuntu-22.04" ;;
+    noble) TARGET="ubuntu-24.04" ;;
+    resolute) TARGET="ubuntu-26.04" ;;
+    *) TARGET="unsupported" ;;
+esac
+get_github_releases "cyanide-burnout/TurboJedi" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -m 1 "browser_download_url.*_${TARGET}_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d'"' -f4)
+    if [ -n "${URL}" ]; then
+        RELEASE_VERSION="${URL##*/turbojedi_}"
+        RELEASE_VERSION="${RELEASE_VERSION%%_*}"
+        VERSION_PUBLISHED="${RELEASE_VERSION}~${TARGET//-/}"
+    fi
+fi
