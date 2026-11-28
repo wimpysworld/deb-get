@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+get_github_releases "open-cli-collective/atlassian-cli"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*/jtk_[^\"/]*_linux_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED="${URL##*/jtk_}"
+    VERSION_PUBLISHED="${VERSION_PUBLISHED%_linux_"${HOST_ARCH}".deb}"
+fi
+PRETTY_NAME="jtk"
+WEBSITE="https://github.com/open-cli-collective/atlassian-cli"
+SUMMARY="Command-line interface for Jira Cloud issues, sprints, boards, and dashboards."
