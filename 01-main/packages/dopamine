@@ -1,0 +1,12 @@
+DEFVER=1
+
+get_github_releases "digimezzo/dopamine" "latest"
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 'browser_download_url.*\.deb"' "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(sed -E 's|.*/download/v?([^/]+)/.*|\1|' <<< "${URL}")
+fi
+
+PRETTY_NAME="dopamine"
+WEBSITE="https://github.com/digimezzo/dopamine"
+SUMMARY="Music player for organizing and listening to music"
