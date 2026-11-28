@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "LiveFaceSwapAI/livefaceswap" "latest"
+if [ "${ACTION}" != prettylist ]; then
+    URL=$(grep -m 1 "browser_download_url.*LiveFaceSwap-Linux-.*-${HOST_ARCH}\\.deb\\\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED="${URL##*/LiveFaceSwap-Linux-}"
+    VERSION_PUBLISHED="${VERSION_PUBLISHED%-${HOST_ARCH}.deb}"
+fi
+PRETTY_NAME="LiveFaceSwap AI Desktop"
+WEBSITE="https://livefaceswap.ai/desktop"
+SUMMARY="Real-time AI face swap, live try-on and restyle desktop app."
