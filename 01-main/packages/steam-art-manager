@@ -1,0 +1,12 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "Tormak9970/Steam-Art-Manager" "latest"
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 'browser_download_url.*steam-art-manager\.deb"' "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(sed -E 's|.*/download/v?([^/]+)/.*|\1|' <<< "${URL}")
+fi
+
+PRETTY_NAME="Steam Art Manager"
+WEBSITE="https://github.com/Tormak9970/Steam-Art-Manager"
+SUMMARY="Manage and customize Steam library artwork"
