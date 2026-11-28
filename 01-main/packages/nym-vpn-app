@@ -1,0 +1,16 @@
+
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+
+PRETTY_NAME="NymVPN"
+
+get_github_releases "nymtech/nym-vpn-client"
+
+WEBSITE="https://nym.com/"
+SUMMARY="Privacy-focused VPN application"
+
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -oE 'https://[^"]*nym-vpn-app_[0-9]+(\.[0-9]+)*_amd64\.deb' "${CACHE_FILE}" | sort -Vu | tail -n 1)
+
+    VERSION_PUBLISHED=$(echo "${URL}" | sed -E 's|.*/nym-vpn-app_([0-9.]+)_amd64\.deb|\1|')
+fi
