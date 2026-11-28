@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble resolute stonking"
+get_github_releases "Freakoverse/DENOS" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL/v/}")
+fi
+PRETTY_NAME="DENOS"
+WEBSITE="https://github.com/Freakoverse/DENOS"
+SUMMARY="Desktop Nostr signer, decentralized identity manager, and cryptocurrency wallet"
