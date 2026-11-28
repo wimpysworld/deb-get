@@ -1,0 +1,10 @@
+DEFVER=1
+CODENAMES_SUPPORTED="bookworm trixie jammy noble plucky questing"
+get_github_releases "alper-han/CrossMacro" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*crossmacro-.*_amd64\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL//v/}")
+fi
+PRETTY_NAME="CrossMacro"
+WEBSITE="https://alper-han.github.io/CrossMacro/"
+SUMMARY="Desktop automation app with macro recording, playback, scheduling and text expansion, aware of Wayland and X11."
