@@ -310,6 +310,7 @@ We really hope that you will enjoy the convenience and flexibility of the user o
   * [AM](https://github.com/ivan-hc/AM): *Appimage Manager* (also now handles portable apps)
   * [eget](https://github.com/zyedidia/eget): *Easily install prebuilt binaries from GitHub*
   * [TopGrade](https://github.com/topgrade-rs/topgrade): *Upgrade all the things*
+  * [Upkeep](https://github.com/lcestou/upkeep): *Update manager for the Linux apps your package manager misses*
 ## In the media
 
   * [The deb-get tool helps Ubuntu (and derivative distro) fans grab extra apps](https://www.gamingonlinux.com/2022/05/the-deb-get-tool-helps-ubuntu-and-derivative-distro-fans-grab-extra-apps/) - **GamingOnLinux**
