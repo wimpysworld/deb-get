@@ -1,0 +1,17 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64 arm64"
+CODENAMES_SUPPORTED="bookworm trixie forky sid jammy noble plucky questing resolute"
+case "${HOST_ARCH}" in
+    amd64) ARCH="x86_64" ;;
+    arm64) ARCH="aarch64" ;;
+    *) ARCH="" ;;
+esac
+get_github_releases "storytold/gridcraft" "latest"
+if [ "${ACTION}" != "prettylist" ] && [ -n "${ARCH}" ]; then
+    URL=$(grep -m 1 "browser_download_url.*/gridcraft-[^\"/]*-linux-${ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '/' -f 8 <<< "${URL}")
+    VERSION_PUBLISHED="${VERSION_PUBLISHED#v}"
+fi
+PRETTY_NAME="GridCraft"
+WEBSITE="https://getartcraft.com/apps/gridcraft"
+SUMMARY="Open-source native spreadsheet application in Rust."
