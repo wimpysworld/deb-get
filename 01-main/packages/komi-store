@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+get_github_releases "komi-store/komi-store" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -m 1 "browser_download_url.*komi-store_.*_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED="${URL##*/komi-store_}"
+    VERSION_PUBLISHED="${VERSION_PUBLISHED%_"${HOST_ARCH}".deb}"
+fi
+PRETTY_NAME="Komi Store"
+WEBSITE="https://www.komistore.app/"
+SUMMARY="Open-source app store for discovering and installing GitHub, Codeberg, and Forgejo releases."
