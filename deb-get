@@ -754,7 +754,8 @@ function refresh_supported_cache_lists() {
     # WARN: this function must run in a subshell
     local ACTION="list"
     local lockfile="${CACHE_DIR}/updating_supported.lock"
-    local lock_fd=""
+    # Not local: the EXIT trap runs after this function returns in the subshell.
+    lock_fd=""
     if [ ! -e "${lockfile}" ]; then
         ${ELEVATE} touch "${lockfile}"
     fi
@@ -769,7 +770,7 @@ function refresh_supported_cache_lists() {
     if [ -z ${QUIET} ]; then
         fancy_message info "Updating cache of supported apps in the background"
     fi
-    list_debs --uncached | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
+    list_debs --uncached 2>/dev/null | grep -v -e '^[[:space:]][[:space:]]*\[' | ${ELEVATE} tee "${CACHE_DIR}/supported.list.tmp" >/dev/null
     cut -d " " -f 1 "${CACHE_DIR}/supported.list.tmp" | sort -u | ${ELEVATE} tee "${CACHE_DIR}/supported_apps.list.tmp" >/dev/null
     ${ELEVATE} mv "${CACHE_DIR}/supported_apps.list.tmp" "${CACHE_DIR}/supported_apps.list"
     ${ELEVATE} mv "${CACHE_DIR}/supported.list.tmp" "${CACHE_DIR}/supported.list"
