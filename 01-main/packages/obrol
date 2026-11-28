@@ -1,0 +1,11 @@
+DEFVER=1
+ARCHS_SUPPORTED="amd64"
+CODENAMES_SUPPORTED="trixie forky sid noble resolute stonking" # requires the t64 GTK and GLib packages
+get_github_releases "Katon17/obrol-wa" "latest"
+if [ "${ACTION}" != "prettylist" ]; then
+    URL=$(grep -E -m 1 "browser_download_url.*/obrol_[^/_\"]+_${HOST_ARCH}\.deb\"" "${CACHE_FILE}" | cut -d '"' -f 4)
+    VERSION_PUBLISHED=$(cut -d '_' -f 2 <<< "${URL##*/}")
+fi
+PRETTY_NAME="Obrol"
+WEBSITE="https://github.com/Katon17/obrol-wa"
+SUMMARY="Unofficial GTK desktop client for WhatsApp."
